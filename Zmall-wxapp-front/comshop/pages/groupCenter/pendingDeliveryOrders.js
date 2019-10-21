@@ -107,7 +107,7 @@ Page({
             title: "商品提货确认",
             content: "请确认买家已收到货，再进行提货确认哦！",
             confirmText: "确定",
-            confirmColor: "#FF673F",
+          confirmColor: "#4facfe",
             success: function(e) {
                 if (e.confirm) {
                     wx.showLoading({
@@ -133,7 +133,7 @@ Page({
             title: "订单提货确认",
             content: "请确认买家已收改订单的所有商品，再进行提货确认哦！",
             confirmText: "确定",
-            confirmColor: "#FF673F",
+            confirmColor: "#4facfe",
             success: function(e) {
                 if (e.confirm) {
                     wx.hideLoading();
@@ -157,7 +157,7 @@ Page({
             title: "订单提货确认",
             content: "请确认买家已收选中的商品，再进行提货确认哦！",
             confirmText: "确定",
-            confirmColor: "#FF673F",
+          confirmColor: "#4facfe",
             success: function(e) {
                 e.confirm && (wx.showLoading({
                     title: "加载中...",

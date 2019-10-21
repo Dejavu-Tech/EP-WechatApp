@@ -28,7 +28,7 @@
 }
 
 .community-item .community-title .em {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 26rpx;
     line-height: 26rpx;
     white-space: nowrap;

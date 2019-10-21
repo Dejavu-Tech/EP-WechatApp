@@ -41,7 +41,7 @@
     width: 432rpx;
     height: 72rpx;
     color: #fff;
-    background: linear-gradient(to left,#ff2756,#ff2f30);
+    background: linear-gradient(100deg,#4facfe 0%,#00f2fe 100%);
     font-size: 32rpx;
     line-height: 72rpx;
     border-radius: 12rpx;

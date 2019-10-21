@@ -19,52 +19,50 @@ Page({
         });
     },
     getData: function() {
-        wx.showLoading();
-        var t = wx.getStorageSync("token"), o = this, a = wx.getStorageSync("community");
+        var t = wx.getStorageSync("token"), n = this, e = wx.getStorageSync("community");
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "supply.get_details",
                 token: t,
-                page: o.page,
+                page: n.page,
                 is_random: 1,
-                head_id: a.communityId,
-                id: o.supplyId
+                head_id: e.communityId,
+                id: n.supplyId
             },
             dataType: "json",
             success: function(t) {
-                if (wx.hideLoading(), 0 == t.data.code) {
-                    var a = o.data.list, e = t.data.data || [], i = a.concat(t.data.list), s = !1;
-                    1 == o.page && (wx.setNavigationBarTitle({
-                        title: e.storename || e.shopname || "供应商"
-                    }), 0 == i.length && (s = !0));
-                    var n = !1;
-                    0 == t.data.list.length && (n = !0), o.setData({
-                        list: i,
-                        info: e,
-                        noMore: n,
-                        noData: s
+                if (0 == t.data.code) {
+                    var e = n.data.list, a = t.data.data || [], i = e.concat(t.data.list);
+                    1 == n.page && wx.setNavigationBarTitle({
+                        title: a.storename || a.shopname || "供应商"
                     });
-                } else o.setData({
+                    var s = !1;
+                    0 == t.data.list.length && (s = !0), n.setData({
+                        list: i,
+                        info: a,
+                        noMore: s
+                    });
+                } else n.setData({
                     noMore: !0
                 });
             }
         });
     },
     onShow: function() {
-        var e = this, i = this;
+        var a = this, i = this;
         util.check_login_new().then(function(t) {
-            if (t) e.setData({
+            if (t) a.setData({
                 needAuth: !1
             }), (0, status.cartNum)("", !0).then(function(t) {
                 0 == t.code && i.setData({
                     cartNum: t.data
                 });
             }); else {
-                var a = e.specialId;
-                e.setData({
+                var e = a.specialId;
+                a.setData({
                     needAuth: !0,
-                    navBackUrl: "/lionfish_comshop/pages/supply/home?id=" + a
+                    navBackUrl: "/lionfish_comshop/pages/supply/home?id=" + e
                 });
             }
         });
@@ -74,10 +72,10 @@ Page({
         this.data.noMore || (this.page++, this.getData());
     },
     onShareAppMessage: function(t) {
-        var a = this.data.info.storename || "供应商主页", e = wx.getStorageSync("member_id");
+        var e = this.data.info.storename || "供应商主页", a = wx.getStorageSync("member_id");
         return {
-            title: a,
-            path: "lionfish_comshop/pages/special/index?id=" + this.supplyId + "&share_id=" + e,
+            title: e,
+            path: "lionfish_comshop/pages/special/index?id=" + this.supplyId + "&share_id=" + a,
             success: function(t) {},
             fail: function(t) {}
         };

@@ -1,4 +1,4 @@
-@import "../../../wuBaseWxss/0.wxss";
+@import "../../../_wuBaseWxss_/0.wxss";
 
 page {
     background-color: #fff;
@@ -62,7 +62,7 @@ page {
 
 .nickname {
     line-height: 68rpx;
-    color: #FF5777;
+    color: #4facfe;
 }
 
 .message {
@@ -140,7 +140,7 @@ page {
 }
 
 .goods-name .goods-price {
-    color: #ff5777;
+    color: #4facfe;
     margin-top: 5rpx;
     font-weight: bold;
 }
@@ -163,7 +163,7 @@ page {
 }
 
 .buy-btn {
-    background-color: #FF5777;
+    background-color: #4facfe;
     width: 160rpx;
     height: 60rpx;
     text-align: center;
@@ -192,5 +192,5 @@ page {
 
 .add_post text {
     font-size: 60rpx;
-    color: #ff5777;
+    color: #4facfe;
 }

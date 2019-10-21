@@ -5,7 +5,6 @@
         "i-img": "../img/index",
         "i-sku": "../sku/index",
         "i-router-link": "../router-link/router-link",
-        "i-input-number": "../input-number/index",
-        "i-vip-price": "../vipPrice/vipPrice"
+        "i-input-number": "../input-number/index"
     }
 }

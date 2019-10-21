@@ -56,7 +56,7 @@
 
 .btn {
     margin: 50rpx 30rpx;
-    background-color: #f75451;
+    background-color: #4facfe;
     color: #fff;
     text-align: center;
     line-height: 88rpx;
@@ -65,7 +65,7 @@
 }
 
 .btn.disable {
-    background-color: #f59997;
+    background-color: #00f2fe;
 }
 
 .desc {

@@ -20,8 +20,7 @@ Page({
         });
     },
     getData: function(t) {
-        wx.showLoading();
-        var e = wx.getStorageSync("token"), n = this, a = wx.getStorageSync("community");
+        var e = wx.getStorageSync("token"), s = this, a = wx.getStorageSync("community");
         app.util.request({
             url: "entry/wxapp/index",
             data: {
@@ -32,17 +31,14 @@ Page({
             },
             dataType: "json",
             success: function(t) {
-                if (wx.hideLoading(), 0 == t.data.code) {
+                if (0 == t.data.code) {
                     var e = t.data.list, a = t.data.data, i = t.data.ishow_special_share_btn || 0;
                     wx.setNavigationBarTitle({
                         title: a.special_title || "专题"
-                    });
-                    var s = 0 == e.length;
-                    n.setData({
+                    }), s.setData({
                         list: e,
                         info: a,
-                        ishowShareBtn: i,
-                        noData: s
+                        ishowShareBtn: i
                     });
                 } else 1 == t.data.code ? wx.showModal({
                     title: "提示",
@@ -53,7 +49,7 @@ Page({
                             url: "/lionfish_comshop/pages/index/index"
                         });
                     }
-                }) : 2 == t.data.code && n.setData({
+                }) : 2 == t.data.code && s.setData({
                     needAuth: !0
                 });
             }

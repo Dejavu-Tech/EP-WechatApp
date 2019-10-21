@@ -1,14 +1,8 @@
-@import "wuBaseWxss/0.wxss";
-
 page {
     background-color: #f6f6f6;
     font-size: 28rpx;
     font-weight: 400;
     color: #333;
-}
-
-.mb10 {
-    margin-bottom: 20rpx;
 }
 
 .pb20 {
@@ -92,6 +86,126 @@ page {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.i-as {
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    transform: translate3d(0,100%,0);
+    transform-origin: center;
+    transition: all 0.2s ease-in-out;
+    z-index: 900;
+    visibility: hidden;
+    border-radius: 30rpx 30rpx 0 0;
+}
+
+.i-as-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 900;
+    transition: all 0.2s ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.i-as-mask-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.i-as-show {
+    transform: translate3d(0,0,0);
+    visibility: visible;
+}
+
+.i-modal-content {
+    position: fixed;
+    overflow: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    width: auto;
+    height: auto;
+    outline: 0;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    transform: translateZ(2rpx);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.i-modal-show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.ipx {
+    padding-bottom: 40rpx;
+}
+
+.auth-content {
+    width: 520rpx;
+    height: 660rpx;
+    background: #fff;
+    border-radius: 24rpx;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 60px auto;
+}
+
+.auth-content .bg {
+    width: 520rpx;
+    height: 354rpx;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.auth-content .h1 {
+    color: #444;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+}
+
+.auth-content .h2 {
+    font-size: 24rpx;
+    line-height: 36rpx;
+    color: #999;
+    width: 408rpx;
+    margin-bottom: 44rpx;
+}
+
+.auth-content .h2 p {
+    text-align: center;
+    display: block;
+}
+
+.auth-content .confirm {
+    width: 432rpx;
+    height: 72rpx;
+    color: #fff;
+    background: linear-gradient(to left,#4facfe,#00f2fe);
+    font-size: 32rpx;
+    line-height: 72rpx;
+    border-radius: 12rpx;
+    margin: 0 0 30rpx;
 }
 
 .sku-content {
@@ -181,7 +295,7 @@ page {
 }
 
 .sku-card .sku-header .sku-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
     margin-bottom: -4rpx;
 }
@@ -212,19 +326,19 @@ page {
     display: flex;
     align-items: flex-start;
     padding: 20rpx;
-    color: #ca7e57;
+    color: #4facfe;
     box-sizing: border-box;
 }
 
 .sku-card .sku-msg .tag {
     border-radius: 16rpx;
-    border: 1rpx solid #ffa49c;
+    border: 1rpx solid #4facfe;
     font-size: 20rpx;
     line-height: 28rpx;
     font-weight: 500;
     padding: 0 8rpx;
     margin-right: 8rpx;
-    color: #ff5344;
+    color: #4facfe;
     white-space: nowrap;
     vertical-align: middle;
 }
@@ -274,8 +388,8 @@ page {
 }
 
 .sku-card .sku-spec .spec-list .on {
-    border-color: #ffa49c;
-    color: #ff5344;
+    border-color: #00f2fe;
+    color: #4facfe;
     background: #fff;
 }
 
@@ -306,7 +420,7 @@ page {
 
 .sku-card .sku-num-content .even-num {
     width: 420rpx;
-    color: #ff5344;
+    color: #4facfe;
     font-size: 26rpx;
     line-height: 50rpx;
     white-space: nowrap;
@@ -316,7 +430,7 @@ page {
 .sku-card .sku-confirm {
     width: 750rpx;
     height: 96rpx;
-    background: linear-gradient(to right,#ff5041,#ff695c);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     line-height: 96rpx;
     text-align: center;
     color: #fff;
@@ -409,21 +523,4 @@ page {
 .i-flex-alc {
     justify-content: center;
     align-items: center;
-}
-
-.i-flex-spb {
-    justify-content: space-between;
-    align-items: center;
-}
-
-.wxParse-p image {
-    vertical-align: top;
-}
-
-.bg-f {
-    background-color: #fff;
-}
-
-.red {
-    color: #ff5344;
 }

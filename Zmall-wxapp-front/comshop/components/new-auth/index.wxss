@@ -47,8 +47,8 @@
 }
 
 .auth-content .btn .close-btn {
-    color: #f45b56;
-    border: 1rpx solid #f45b56;
+    color: #4facfe;
+    border: 1rpx solid #4facfe;
     border-radius: 36rpx;
     margin: 0 15rpx;
     padding: 0 15px;
@@ -68,7 +68,7 @@
     height: 64rpx;
     line-height: 64rpx;
     color: #fff;
-    background: #f45b56;
+    background: #4facfe;
     border-radius: 36rpx;
     margin: 0 15rpx;
 }
@@ -86,7 +86,7 @@
     height: 64rpx;
     line-height: 64rpx;
     color: #fff;
-    background: #f45b56;
+    background: #4facfe;
     border-radius: 36rpx;
     margin: 0 0 30rpx;
     text-align: center;

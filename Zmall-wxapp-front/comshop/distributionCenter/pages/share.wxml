@@ -18,14 +18,14 @@
         <view class="service-list">
             <view class="service-item">
                 <button class="none_btn" openType="share" plain="true">
-                    <text class="iconfont icon-weixin2 service-icon"></text>
+                    <image class="service-icon" mode="widthFix" src="../../images/weixin-green.png"></image>
                     <view class="cube-text">
                         <text>好友</text>
                     </view>
                 </button>
             </view>
             <navigator class="service-item" url="/lionfish_comshop/pages/index/share?type=commiss">
-                <text class="iconfont icon-pengyouquan service-icon"></text>
+                <image class="service-icon" mode="widthFix" src="../../images/friend.png"></image>
                 <view class="cube-text">
                     <text>海报</text>
                 </view>

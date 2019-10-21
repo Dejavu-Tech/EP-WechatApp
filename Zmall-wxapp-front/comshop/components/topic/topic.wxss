@@ -1,14 +1,9 @@
 .topic {
     padding-bottom: 30rpx;
-    margin: 20rpx;
-    background: #fff;
-    border-radius: 10rpx;
-    overflow: hidden;
 }
 
 .topic-img {
     width: 100%;
-    vertical-align: top;
 }
 
 .new-comers {
@@ -66,7 +61,7 @@
 }
 
 .new-comers-item .price {
-    color: #ff5041;
+    color: #4facfe;
 }
 
 .new-comers-item {

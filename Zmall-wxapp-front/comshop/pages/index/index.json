@@ -17,8 +17,6 @@
         "i-new-comer": "../../components/new-comer/index",
         "i-spike": "../../components/spike/index",
         "i-topic": "../../components/topic/topic",
-        "i-new-auth": "../../components/new-auth/index",
-        "i-change-community": "../../components/changeCommunity/index",
-        "i-rush-spu": "../../components/rush-spu-col/index"
+        "i-new-auth": "../../components/new-auth/index"
     }
 }

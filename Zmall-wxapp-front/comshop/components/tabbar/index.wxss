@@ -42,7 +42,7 @@
     top: -4rpx;
     width: 36rpx;
     height: 36rpx;
-    background: #f43530;
+    background: #ff758c;
     border-radius: 36rpx;
     color: #fff;
     font-size: 22rpx;

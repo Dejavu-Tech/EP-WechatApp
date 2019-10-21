@@ -14,8 +14,7 @@ Component({
     },
     data: {
         disabled: !1,
-        list: [],
-        placeholdeImg: app.globalData.placeholdeImg
+        list: []
     },
     attached: function() {
         this.getData();

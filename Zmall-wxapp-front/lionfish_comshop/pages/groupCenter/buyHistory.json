@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "购买记录",
-    "usingComponents": {
-        "i-load-more": "../../components/load-more/index"
-    }
-}

@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "核销管理",
-    "usingComponents": {
-        "i-load-more": "../../components/load-more/index"
-    }
-}

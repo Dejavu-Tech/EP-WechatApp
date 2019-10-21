@@ -23,11 +23,7 @@ Page({
         isLastCategory: !1,
         pageEmpty: !1,
         active_sub_index: 0,
-        needPosition: !0,
-        groupInfo: {
-            group_name: "社区",
-            owner_name: "团长"
-        }
+        needPosition: !0
     },
     $data: {
         options: {},
@@ -45,40 +41,34 @@ Page({
         }
     },
     isFirst: 0,
-    onLoad: function(s) {
-        wx.showLoading(), wx.hideTabBar(), status.setNavBgColor(), status.setGroupInfo().then(function(t) {
-            i.setData({
-                groupInfo: t
-            });
-        });
-        var t = app.globalData.isIpx, i = this;
+    onLoad: function(o) {
+        wx.showLoading(), wx.hideTabBar(), status.setNavBgColor();
+        var t = app.globalData.isIpx, s = this;
         if (this.getScrollViewHeight(), this.setData({
             subCateHeight: this.getPx(44),
             isIpx: !!t
-        }), console.log("options", s), s && 0 != Object.keys(s).length) {
-            var r = wx.getStorageSync("community"), n = r.communityId || "";
-            "undefined" != (i.$data.options = s).share_id && 0 < s.share_id && wcache.put("share_id", s.share_id), 
-            "undefined" != s.community_id && 0 < s.community_id && app.util.request({
+        }), console.log("options", o), o && 0 != Object.keys(o).length) {
+            var i = wx.getStorageSync("community").communityId || "";
+            "undefined" != (s.$data.options = o).share_id && 0 < o.share_id && wcache.put("share_id", o.share_id), 
+            "undefined" != o.community_id && 0 < o.community_id && app.util.request({
                 url: "entry/wxapp/index",
                 data: {
                     controller: "index.get_community_info",
-                    community_id: s.community_id
+                    community_id: o.community_id
                 },
                 dataType: "json",
                 success: function(t) {
                     var a = wx.getStorageSync("token");
                     if (0 == t.data.code) {
-                        var e = t.data.data, o = t.data.hide_community_change_btn;
-                        s.community_id != n && ("" == n ? (wcache.put("community", e), i.setData({
+                        var e = t.data.data;
+                        o.community_id != i && ("" == i ? (wcache.put("community", e), s.setData({
                             needPosition: !1
-                        })) : i.setData({
+                        })) : s.setData({
                             showChangeCommunity: !0,
-                            changeCommunity: e,
-                            community: r,
-                            hide_community_change_btn: o
+                            changeCommunity: e
                         }));
                     }
-                    a && i.addhistory();
+                    a && s.addhistory();
                 }
             });
         }
@@ -86,17 +76,17 @@ Page({
         this.get_cate_list();
     },
     onShow: function() {
-        var e = this;
-        if (e.setData({
+        var n = this;
+        n.setData({
             tabbarRefresh: !0
         }), util.check_login_new().then(function(t) {
             if (t) {
                 if ((0, status.cartNum)("", !0).then(function(t) {
-                    0 == t.code && e.setData({
+                    0 == t.code && n.setData({
                         cartNum: t.data
                     });
-                }), 1 <= e.isFirst) {
-                    var a = app.globalData.goodsListCarCount, o = e.data.rushList;
+                }), 1 <= n.isFirst) {
+                    var a = app.globalData.goodsListCarCount, o = n.data.rushList;
                     if (0 < a.length && 0 < o.length) {
                         var s = !1;
                         a.forEach(function(a) {
@@ -107,28 +97,27 @@ Page({
                                 var e = 1 * a.num;
                                 o[t].car_count = 0 <= e ? e : 0, s = !0;
                             }
-                        }), e.setData({
+                        }), n.setData({
                             rushList: o,
                             changeCarCount: s
                         });
                     }
+                    if (n.$data.rushCategoryId = app.globalData.typeCateId || 0, app.globalData.typeCateId = 0, 
+                    n.$data.rushCategoryId) {
+                        var e = n.data.rushCategoryData, i = e.tabs, r = n.$data.rushCategoryId;
+                        e.activeIndex = i.findIndex(function(t) {
+                            return t.id == r;
+                        }) || 0, n.setData({
+                            rushCategoryData: e
+                        }, function() {
+                            n.setCategory(e.activeIndex);
+                        });
+                    }
                 }
-            } else e.setData({
+            } else n.setData({
                 needAuth: !0
             });
-        }), 1 <= e.isFirst && (e.$data.rushCategoryId = app.globalData.typeCateId || 0, 
-        console.log("typeCateId", e.$data.rushCategoryId), app.globalData.typeCateId = 0, 
-        e.$data.rushCategoryId)) {
-            var t = e.data.rushCategoryData, a = t.tabs, o = e.$data.rushCategoryId;
-            t.activeIndex = a.findIndex(function(t) {
-                return t.id == o;
-            }) || 0, e.setData({
-                rushCategoryData: t
-            }, function() {
-                e.setCategory(t.activeIndex);
-            });
-        }
-        e.isFirst++;
+        }), n.isFirst++;
     },
     authSuccess: function() {
         this.$data = _extends({}, this.$data, {
@@ -336,49 +325,48 @@ Page({
         });
     },
     reqPromise: function() {
-        var h = this;
-        return new Promise(function(c, t) {
-            var a = wx.getStorageSync("token"), e = wx.getStorageSync("community"), l = h.$data.rushCategoryId;
+        var n = this;
+        return new Promise(function(i, t) {
+            var a = wx.getStorageSync("token"), e = wx.getStorageSync("community"), r = n.$data.rushCategoryId;
             app.util.request({
                 url: "entry/wxapp/index",
                 data: {
                     controller: "index.load_gps_goodslist",
                     token: a,
-                    pageNum: h.$data.pageNum,
+                    pageNum: n.$data.pageNum,
                     head_id: e.communityId,
-                    gid: l,
+                    gid: r,
                     per_page: 50
                 },
                 dataType: "json",
                 success: function(t) {
                     if (0 == t.data.code) {
-                        var a = h.data.rushList.concat(t.data.list), e = t.data, o = e.full_money, s = e.full_reducemoney, i = e.is_open_fullreduction, r = e.is_open_vipcard_buy, n = {
-                            full_money: o,
-                            full_reducemoney: s,
-                            is_open_fullreduction: i
-                        }, d = {
+                        var a = n.data.rushList.concat(t.data.list), e = {
+                            full_money: t.data.full_money,
+                            full_reducemoney: t.data.full_reducemoney,
+                            is_open_fullreduction: t.data.is_open_fullreduction
+                        }, o = {
                             rushList: a,
                             pageEmpty: !1,
                             cur_time: t.data.cur_time,
-                            reduction: n,
-                            rushCategoryData: h.data.rushCategoryData,
-                            is_open_vipcard_buy: r || 0
+                            reduction: e,
+                            rushCategoryData: n.data.rushCategoryData
                         };
-                        1 == h.$data.pageNum && (d.resetScrollBarTop = 51), d.loadText = h.data.loadMore ? "加载中..." : "没有更多商品了~", 
-                        h.$data.isSetCategoryScrollBarTop && (d.categoryScrollBarTop = 50 * d.rushCategoryData.activeIndex - (h.data.scrollViewHeight - 50) / 2), 
-                        h.setData(d, function() {
-                            h.$data.loading = !1, h.$data.pageNum += 1, !l && d.rushCategoryData.tabs && d.rushCategoryData.tabs[0] && (h.$data.rushCategoryId = d.rushCategoryData.tabs[0].id);
+                        1 == n.$data.pageNum && (o.resetScrollBarTop = 51), o.loadText = n.data.loadMore ? "加载中..." : "没有更多商品了~", 
+                        n.$data.isSetCategoryScrollBarTop && (o.categoryScrollBarTop = 50 * o.rushCategoryData.activeIndex - (n.data.scrollViewHeight - 50) / 2), 
+                        n.setData(o, function() {
+                            n.$data.loading = !1, n.$data.pageNum += 1, !r && o.rushCategoryData.tabs && o.rushCategoryData.tabs[0] && (n.$data.rushCategoryId = o.rushCategoryData.tabs[0].id);
                         });
                     } else if (1 == t.data.code) {
-                        var u = {
+                        var s = {
                             loadMore: !1,
                             canNext: !0
                         };
-                        1 == h.$data.pageNum && (console.log("无数据"), u.pageEmpty = !0), h.setData(u);
-                    } else 2 == t.data.code && h.setData({
+                        1 == n.$data.pageNum && (console.log("无数据"), s.pageEmpty = !0), n.setData(s);
+                    } else 2 == t.data.code && n.setData({
                         needAuth: !0
                     });
-                    c(t);
+                    i(t);
                 }
             });
         });

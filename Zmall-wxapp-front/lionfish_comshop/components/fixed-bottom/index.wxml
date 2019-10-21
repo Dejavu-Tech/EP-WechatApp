@@ -1,3 +1,0 @@
-<view class="fixed-bar {{isIpx?'pb20':''}}">
-    <slot></slot>
-</view>

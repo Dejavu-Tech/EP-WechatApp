@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns="http://www.we7.cc" versionCode="0.8,1.0">
+<manifest xmlns="http://www.dejavu871.com" versionCode="0.8,1.0">
 
 	<application setting="false">
-		<name><![CDATA[狮子鱼社区团购小程序]]></name>
+		<name><![CDATA[霸气妖吃货星球团购小程序]]></name>
 		<identifie><![CDATA[lionfish_comshop]]></identifie>
-		<version><![CDATA[7.8.0]]></version>
+		<version><![CDATA[7.5.0]]></version>
 		<type><![CDATA[business]]></type>
-		<ability><![CDATA[狮子鱼商城小程序、拼团]]></ability>
-		<description><![CDATA[社区团购，社区拼团，社区电商，人人店，人人代言，独创双模式：以团长为中心，以小区为中心。S2B2C模式，无缝连接人、货、场。
-
-——狮子鱼团队]]></description>
-		<author><![CDATA[云硕科技]]></author>
-		<url><![CDATA[http://www.we7.cc/]]></url>
+		<ability><![CDATA[霸气妖吃货星球团购小程序]]></ability>
+		<description><![CDATA[社区团购，社区拼团，社区电商]]></description>
+		<author><![CDATA[蒂佳芙科技(云南)有限公司]]></author>
+		<url><![CDATA[http://www.dejavu871.com/]]></url>
 	</application>
 
 	<platform>
@@ -35,6 +33,7 @@
 
 	<bindings>
 		<page>
+			<entry title="首页" do="/lionfish_comshop/pages/index/index" state="" direct="false"/>
 			<entry title="首页" do="/lionfish_comshop/pages/index/index" state="" direct="false"/>
 		</page>
 
@@ -74,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head` (
   KEY `uniacid` (`uniacid`,`member_id`),
   KEY `lon` (`lon`,`lat`),
   KEY `agent_id` (`agent_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='狮子鱼社区团购团长表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购团长表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_commiss` (
@@ -96,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_commiss` (
   KEY `member_id` (`member_id`) USING BTREE,
   KEY `uniacid` (`uniacid`),
   KEY `uniacid_2` (`uniacid`,`head_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_commiss_order` (
@@ -119,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_commiss_order` (
   KEY `member_id` (`member_id`) USING BTREE,
   KEY `uniacid` (`uniacid`),
   KEY `uniacid_2` (`uniacid`,`head_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_goods` (
@@ -131,7 +130,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_goods` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`head_id`),
   KEY `head_id` (`head_id`,`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼社区团购，团长商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购，团长商品表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_group` (
@@ -140,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_group` (
   `groupname` varchar(255) NOT NULL COMMENT '分组名称',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城团长分组表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城团长分组表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_invite_recod` (
@@ -153,7 +152,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_invite_recod` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`head_id`),
   KEY `agent_member_id` (`agent_member_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼团长推荐团长记录表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖团长推荐团长记录表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_community_head_tixian_order` (
@@ -187,7 +186,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_community_history` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`,`head_id`),
   KEY `uniacid` (`uniacid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='狮子鱼社区团购上个小区历史记录表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购上个小区历史记录表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_address` (
@@ -206,7 +205,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_address` (
   `province_id` int(10) NOT NULL COMMENT '省',
   PRIMARY KEY (`address_id`),
   KEY `uniacid` (`uniacid`,`member_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城地址库';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城地址库';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_adv` (
@@ -217,13 +216,13 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_adv` (
   `link` varchar(255) NOT NULL COMMENT '广告链接地址',
   `appid` varchar(255) DEFAULT NULL COMMENT '外部小程序appid',
   `linktype` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0外链 1小程序内 2外部小程序',
-  `type` enum('slider','nav','pintuan') CHARACTER SET utf8mb4 NOT NULL COMMENT '广告类型，slider幻灯，nav导航小图',
+  `type` enum('slider','nav') NOT NULL COMMENT '广告类型，slider幻灯，nav导航小图',
   `displayorder` int(10) NOT NULL COMMENT '排序，越大排序越前面',
   `enabled` tinyint(1) NOT NULL COMMENT '是否生效，1生效，0不生效',
   `addtime` int(10) NOT NULL COMMENT '添加广告时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品广告表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品广告表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_area` (
@@ -235,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_area` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3608 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城地区配置表';
+) ENGINE=InnoDB AUTO_INCREMENT=3607 DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城地区配置表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_article` (
@@ -248,7 +247,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_article` (
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城文章列表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城文章列表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_car` (
@@ -263,7 +262,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_car` (
   KEY `token` (`token`),
   KEY `uniacid` (`uniacid`),
   KEY `community_id` (`community_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='客户端购物车表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='客户端购物车表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_chargetype` (
@@ -274,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_chargetype` (
   `uniacid` int(10) NOT NULL COMMENT '公众号id',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员充值选项表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='会员充值选项表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_commission_level` (
@@ -287,7 +286,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_commission_level` (
   `ordermoney` decimal(10,2) DEFAULT '0.00',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城分销等级表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城分销等级表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_head_level` (
@@ -303,7 +302,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_head_level` (
   `commission3` float(10,2) DEFAULT '0.00' COMMENT '3级分销比例',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='狮子鱼商城团长等级表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城团长等级表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_pickup_member` (
@@ -317,7 +316,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_pickup_member` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`member_id`),
   KEY `community_id` (`community_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='核销人员表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='核销人员表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_pickup_member_record` (
@@ -330,7 +329,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_community_pickup_member_record`
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`order_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='核销员核销记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='核销员核销记录';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_config` (
@@ -341,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_config` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon` (
@@ -354,7 +353,6 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon` (
   `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '类型。0店铺专用，1所有通用',
   `is_index_show` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否推荐首页，供用户领取',
   `is_index_alert` tinyint(1) DEFAULT '0' COMMENT '是否首页弹窗，0否，1是',
-  `is_new_man` tinyint(1) DEFAULT '0' COMMENT '是否新人券，0非，1新人',
   `is_share_doubling` tinyint(1) DEFAULT '0' COMMENT '是否分享翻倍，0：不翻倍，1翻倍',
   `get_over_hour` float(10,2) DEFAULT '0.00' COMMENT '领券后过期时间',
   `is_limit_goods_buy` tinyint(1) DEFAULT '0' COMMENT '是否限制商品购买，0不限制，1限制',
@@ -374,7 +372,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon` (
   `displayorder` int(10) DEFAULT NULL COMMENT '排序',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon_category` (
@@ -388,7 +386,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon_category` (
   KEY `idx_uniacid` (`uniacid`),
   KEY `idx_displayorder` (`displayorder`),
   KEY `idx_status` (`status`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon_list` (
@@ -415,7 +413,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_coupon_list` (
   KEY `voucher_id` (`voucher_id`) USING BTREE,
   KEY `user_id` (`user_id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_delivery_address` (
@@ -444,9 +442,9 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliveryclerk` (
   `logo` varchar(255) DEFAULT NULL COMMENT '头像',
   `mobile` varchar(50) NOT NULL COMMENT '配送员手机号',
   `addtime` int(10) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`,`line_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购配送员表';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`,`line_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购配送员表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliveryline` (
@@ -455,9 +453,9 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliveryline` (
   `name` varchar(255) NOT NULL COMMENT '线路名称',
   `clerk_id` int(10) NOT NULL COMMENT '配送员id',
   `addtime` int(10) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`,`clerk_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购配送线路';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`,`clerk_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购配送线路';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliveryline_headrelative` (
@@ -466,10 +464,10 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliveryline_headrelative` (
   `head_id` int(11) NOT NULL COMMENT '团长id',
   `uniacid` int(10) NOT NULL COMMENT '公众号id',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`,`line_id`) USING BTREE,
-  KEY `head_id` (`head_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购线路团长关联表';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`,`line_id`),
+  KEY `head_id` (`head_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购线路团长关联表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist` (
@@ -491,11 +489,11 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist` (
   `head_get_time` int(10) DEFAULT NULL COMMENT '清单配送到时间',
   `create_time` int(10) NOT NULL COMMENT '创建清单时间',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`,`line_id`) USING BTREE,
-  KEY `clerk_id` (`clerk_id`) USING BTREE,
-  KEY `head_id` (`head_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购清单表';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`,`line_id`),
+  KEY `clerk_id` (`clerk_id`),
+  KEY `head_id` (`head_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购清单表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist_goods` (
@@ -509,11 +507,11 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist_goods` (
   `goods_image` varchar(255) NOT NULL COMMENT '商品图片',
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   `goods_count` int(10) NOT NULL COMMENT '商品数量',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`) USING BTREE,
-  KEY `list_id` (`list_id`) USING BTREE,
-  KEY `goods_id` (`goods_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`),
+  KEY `list_id` (`list_id`),
+  KEY `goods_id` (`goods_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist_order` (
@@ -522,10 +520,10 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_deliverylist_order` (
   `list_id` int(10) NOT NULL COMMENT '清单id',
   `order_id` int(11) NOT NULL COMMENT '订单id',
   `addtime` int(11) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `uniacid` (`uniacid`,`list_id`) USING BTREE,
-  KEY `order_id` (`order_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='狮子鱼社区团购清单订单关联表';
+  PRIMARY KEY (`id`),
+  KEY `uniacid` (`uniacid`,`list_id`),
+  KEY `order_id` (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购清单订单关联表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_diypage` (
@@ -546,7 +544,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_diypage` (
   KEY `idx_keyword` (`keyword`),
   KEY `idx_lastedittime` (`lastedittime`),
   KEY `idx_createtime` (`createtime`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_diypage_template` (
@@ -564,7 +562,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_diypage_template` (
   KEY `idx_uniacid` (`uniacid`),
   KEY `idx_type` (`type`),
   KEY `idx_cate` (`cate`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_express` (
@@ -574,7 +572,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_express` (
   `simplecode` varchar(100) NOT NULL COMMENT '快递简码',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城快递表';
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城快递表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_commiss` (
@@ -593,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_commiss` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品分销配置表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品分销配置表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_common` (
@@ -639,7 +637,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_common` (
   KEY `uniacid` (`uniacid`),
   KEY `goods_id` (`goods_id`),
   KEY `supply_id` (`supply_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品详情表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品详情表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_lottery` (
@@ -652,7 +650,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_lottery` (
   `real_win_quantity` int(10) NOT NULL COMMENT '实际中奖人数',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城抽奖商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城抽奖商品表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_pin` (
@@ -664,14 +662,9 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_pin` (
   `pin_hour` decimal(10,2) NOT NULL COMMENT '拼团小时，可以小数点',
   `begin_time` int(10) NOT NULL COMMENT '拼团开始时间',
   `end_time` int(10) NOT NULL COMMENT '拼团结束时间',
-  `is_commiss_tuan` tinyint(1) DEFAULT '0' COMMENT '是否佣金团，0否，1是',
-  `is_zero_open` tinyint(1) DEFAULT '0' COMMENT '是否0元开团：0否，1是',
-  `is_newman` tinyint(1) DEFAULT '0' COMMENT '是否仅新人参加：0否，1是',
-  `commiss_type` tinyint(1) DEFAULT '0' COMMENT '0百分比，1固定金额',
-  `commiss_money` float(10,2) DEFAULT '0.00' COMMENT '具体佣金比例或佣金',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城拼团商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城拼团商品表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_pin_ladder` (
@@ -682,7 +675,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_good_pin_ladder` (
   `price` decimal(10,2) NOT NULL COMMENT '阶梯价格',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城阶梯团详情表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城阶梯团详情表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods` (
@@ -693,8 +686,6 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods` (
   `grounding` tinyint(1) NOT NULL COMMENT '商品状态，1上架，0下架， 2 仓库中， 3 回收站',
   `price` decimal(10,2) NOT NULL COMMENT '商品价格',
   `costprice` float(10,2) DEFAULT '0.00' COMMENT '成本价',
-  `card_price` float(10,2) DEFAULT '0.00' COMMENT '会员卡商品购买价格',
-  `is_take_vipcard` tinyint(1) DEFAULT '0' COMMENT '是否参加会员卡，1参加，0不参加',
   `productprice` decimal(10,2) NOT NULL COMMENT '商品原价',
   `sales` int(10) NOT NULL COMMENT '已出售数',
   `seller_count` int(10) DEFAULT '0' COMMENT '实际销量',
@@ -719,7 +710,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods` (
   `settoptime` int(10) DEFAULT '0' COMMENT '置顶时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城普通商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城普通商品表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_category` (
@@ -737,7 +728,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_category` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `pid` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品分类表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品分类表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_images` (
@@ -749,7 +740,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_images` (
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`),
   KEY `uniacid` (`uniacid`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品图片表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品图片表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option` (
@@ -760,7 +751,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option` (
   `displayorder` int(10) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品规格关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品规格关联表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option_item` (
@@ -774,7 +765,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option_item` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`),
   KEY `goods_option_id` (`goods_option_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品规格选项表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品规格选项表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option_item_value` (
@@ -785,14 +776,13 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_option_item_value` (
   `productprice` decimal(10,2) NOT NULL COMMENT '商品原价',
   `marketprice` decimal(10,2) NOT NULL COMMENT '商品价格',
   `pinprice` decimal(10,2) DEFAULT '0.00' COMMENT '拼团价格',
-  `card_price` float(10,2) DEFAULT '0.00' COMMENT '会员卡购买价格',
   `stock` int(10) NOT NULL COMMENT '库存',
   `costprice` decimal(10,2) NOT NULL COMMENT '商品成本价',
   `goodssn` varchar(100) NOT NULL COMMENT '商品编码',
   `weight` int(10) NOT NULL COMMENT '商品重量',
   `title` varchar(200) NOT NULL COMMENT '商品规格关联标题',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品规格值关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品规格值关联表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_share_image` (
@@ -819,7 +809,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_tags` (
   `sort_order` int(10) NOT NULL COMMENT '排序',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品标签表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品标签表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_to_category` (
@@ -829,7 +819,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_goods_to_category` (
   `goods_id` int(11) NOT NULL COMMENT '商品id',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`,`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品分类关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品分类关联表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_group` (
@@ -926,7 +916,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_jiapinorder` (
   `addtime` int(10) DEFAULT NULL COMMENT '加入时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_jiauser` (
@@ -937,7 +927,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_jiauser` (
   `mobile` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member` (
@@ -974,63 +964,11 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member` (
   `is_writecommiss_form` tinyint(1) DEFAULT '0' COMMENT '是否收集过表单',
   `is_share_tj` tinyint(1) DEFAULT '0' COMMENT '是否分销条件中，分享成为',
   `commiss_formcontent` text COMMENT '表单收集的内容',
-  `card_id` int(10) DEFAULT '0' COMMENT '会员卡id',
-  `card_begin_time` int(10) DEFAULT '0' COMMENT '会员卡开始时间',
-  `card_end_time` int(10) DEFAULT '0' COMMENT '会员卡结束时间',
   PRIMARY KEY (`member_id`),
   KEY `openid` (`openid`(191)),
   KEY `we_openid` (`we_openid`(191)),
   KEY `agentid` (`agentid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城会员表';
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_card` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `uniacid` int(10) NOT NULL COMMENT '公众号id',
-  `cardname` varchar(255) NOT NULL COMMENT '会员卡名称',
-  `orignprice` float(10,2) NOT NULL COMMENT '原价',
-  `price` float(10,2) NOT NULL COMMENT '实际购买价格',
-  `expire_day` float(10,2) NOT NULL COMMENT '有效期天数，支持小数点',
-  `addtime` int(10) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`),
-  KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='付费会员卡表';
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_card_equity` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `uniacid` int(10) NOT NULL COMMENT '公众号id',
-  `equity_name` varchar(255) NOT NULL COMMENT '权益名称',
-  `image` varchar(255) NOT NULL COMMENT '权益图标',
-  `addtime` int(10) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`),
-  KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员卡权益';
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_card_order` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `order_sn` varchar(50) NOT NULL COMMENT '订单编号',
-  `uniacid` int(10) NOT NULL COMMENT '公众号id',
-  `member_id` int(10) NOT NULL COMMENT '会员id',
-  `pay_type` enum('weixin','yuer') NOT NULL COMMENT '支付类型，微信，余额',
-  `state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '支付状态：0未支付，1已支付',
-  `car_id` int(10) NOT NULL COMMENT '购买的 会员卡id',
-  `trans_id` varchar(255) DEFAULT NULL COMMENT '微信交易单号',
-  `formid` varchar(255) DEFAULT NULL COMMENT '支付formid',
-  `expire_day` float(10,2) NOT NULL COMMENT '有效期天数，支持小数点',
-  `price` float(10,2) NOT NULL COMMENT '购买价格',
-  `order_type` tinyint(1) DEFAULT '1' COMMENT '购买类型：1首次购买，2有效期内续期，3过期后续费',
-  `begin_time` int(10) DEFAULT '0' COMMENT '有效期开始时间',
-  `end_time` int(10) NOT NULL DEFAULT '0' COMMENT '有效期截止时间点',
-  `pay_time` int(10) DEFAULT '0' COMMENT '支付的时间点',
-  `addtime` int(10) NOT NULL COMMENT '下单的时间',
-  PRIMARY KEY (`id`),
-  KEY `order_sn` (`order_sn`),
-  KEY `uniacid` (`uniacid`),
-  KEY `member_id` (`member_id`),
-  KEY `car_id` (`car_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='付费会员卡 购买订单表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城会员表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_charge_flow` (
@@ -1050,7 +988,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_charge_flow` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城会员充值记录表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='霸气妖商城会员充值记录表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_commiss` (
@@ -1067,7 +1005,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_commiss` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`) USING BTREE,
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_commiss_apply` (
@@ -1099,7 +1037,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_commiss_order` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`) USING BTREE,
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_formid` (
@@ -1112,7 +1050,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_formid` (
   PRIMARY KEY (`id`),
   KEY `member_id` (`member_id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='会员的群发formid表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员的群发formid表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_group` (
@@ -1120,7 +1058,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_group` (
   `uniacid` int(11) DEFAULT '0',
   `groupname` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_integral_flow` (
@@ -1176,7 +1114,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_member_tixian_order` (
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_navigat` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `uniacid` int(11) NOT NULL COMMENT '公众号id',
-  `navname` varchar(200) NOT NULL COMMENT '名称',
+  `navname` varchar(200) DEFAULT NULL COMMENT '名称',
   `thumb` varchar(255) NOT NULL COMMENT '图片地址',
   `link` varchar(255) NOT NULL COMMENT '链接地址',
   `appid` varchar(255) NOT NULL COMMENT '外部小程序appid',
@@ -1186,7 +1124,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_navigat` (
   `addtime` int(10) NOT NULL COMMENT '添加广告时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='导航图标';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='导航图标';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_notice` (
@@ -1198,7 +1136,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_notice` (
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城公告表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城公告表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_notify_order` (
@@ -1226,8 +1164,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order` (
   `store_id` int(11) NOT NULL DEFAULT '0' COMMENT '商家id',
   `head_id` int(10) DEFAULT '0' COMMENT '团长id',
   `supply_id` int(10) DEFAULT '0' COMMENT '供应商id',
-  `is_vipcard_buy` tinyint(1) DEFAULT '0' COMMENT '是否会员卡购买，0 否，1是',
-  `type` enum('pintuan','normal','lottery','virtual','bargain','integral','community','ignore') DEFAULT 'normal',
+  `type` enum('pintuan','normal','lottery','virtual','bargain','integral','community') DEFAULT 'normal',
   `charge_mobile` varchar(30) DEFAULT NULL COMMENT '充值的手机号',
   `is_pin` tinyint(1) DEFAULT '0' COMMENT '是否拼团，0表示否，1表示是',
   `from_type` enum('weixin','wepro') DEFAULT 'weixin' COMMENT '订单来源：weixin表示服务号，wepro表示小程序',
@@ -1341,7 +1278,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_comment` (
   PRIMARY KEY (`comment_id`),
   KEY `goods_id` (`goods_id`) USING BTREE,
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_goods` (
@@ -1371,8 +1308,6 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_goods` (
   `score_for_money` float(10,2) DEFAULT '0.00' COMMENT '积分抵扣金额',
   `fenbi_li` float(10,2) DEFAULT '0.00' COMMENT '订单中金额占比',
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `is_vipcard_buy` tinyint(1) DEFAULT '0' COMMENT '0非vip价格购买，1是',
-  `old_total` float(10,2) DEFAULT '0.00' COMMENT '原始总价',
   `rela_goodsoption_valueid` varchar(50) DEFAULT NULL COMMENT '关联属性id',
   `is_refund_state` tinyint(1) DEFAULT '0' COMMENT '是否退款，0未退款，1已退款',
   `is_statements_state` tinyint(1) DEFAULT '1' COMMENT '是否结算',
@@ -1473,7 +1408,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_refund_disable` (
   KEY `uniacid` (`uniacid`),
   KEY `ref_id` (`ref_id`),
   KEY `order_id` (`order_id`,`order_goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='禁止申请退款的订单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='禁止申请退款的订单';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_refund_history` (
@@ -1525,7 +1460,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_refund_reson` (
   `addtime` int(10) NOT NULL COMMENT '时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城订单退款原因表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城订单退款原因表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_order_relate` (
@@ -1573,7 +1508,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_perm_log` (
   `ip` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城系统日志表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='霸气妖商城系统日志表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pick_order` (
@@ -1621,8 +1556,6 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pin` (
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '会员id',
   `need_count` int(11) NOT NULL DEFAULT '0' COMMENT '拼团人数',
   `state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '拼团状态，0拼团中，1拼团成功，2拼团失败并退款',
-  `is_commiss_tuan` tinyint(1) DEFAULT '0' COMMENT '是否佣金团',
-  `is_newman_takein` tinyint(1) DEFAULT '0' COMMENT '是否仅新人参加',
   `lottery_state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '抽奖状态，0抽奖中，1可退款，2已退款送券。',
   `is_lottery` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否抽奖拼团，0正常订单，1抽奖订单',
   `begin_time` int(11) NOT NULL COMMENT '拼团开始时间',
@@ -1635,7 +1568,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pin` (
   KEY `user_id` (`user_id`) USING BTREE,
   KEY `order_id` (`order_id`) USING BTREE,
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pin_order` (
@@ -1648,59 +1581,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pin_order` (
   KEY `pin_id` (`pin_id`) USING BTREE,
   KEY `order_id` (`order_id`) USING BTREE,
   KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pintuan_commiss` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `uniacid` int(10) NOT NULL COMMENT '公众号id',
-  `member_id` int(10) NOT NULL COMMENT '会员ID',
-  `money` float(10,2) DEFAULT '0.00' COMMENT '可提现金额',
-  `dongmoney` float(10,2) DEFAULT '0.00' COMMENT '提现中金额',
-  `getmoney` float(10,2) DEFAULT '0.00' COMMENT '已提现金额',
-  PRIMARY KEY (`id`),
-  KEY `member_id` (`member_id`) USING BTREE,
-  KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pintuan_commiss_order` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-  `uniacid` int(11) NOT NULL COMMENT '公众号id',
-  `member_id` int(10) NOT NULL COMMENT '会员ID',
-  `order_id` int(10) NOT NULL COMMENT '订单ID',
-  `order_goods_id` int(10) DEFAULT '0' COMMENT '商品订单id',
-  `type` tinyint(1) DEFAULT '1' COMMENT '1按照比例。2按照固定金额',
-  `bili` float(10,2) DEFAULT '0.00' COMMENT '比例，如果是固定金额，那么这里就是固定金额',
-  `store_id` int(10) NOT NULL COMMENT '店铺ID',
-  `state` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否结算：0，待计算。1，已结算。2，订单取消\r\n3、已打款',
-  `money` float(10,2) NOT NULL DEFAULT '0.00' COMMENT '分佣金额',
-  `statement_time` int(10) DEFAULT '0' COMMENT '结算时间',
-  `addtime` int(10) NOT NULL COMMENT '添加时间',
-  PRIMARY KEY (`id`),
-  KEY `member_id` (`member_id`) USING BTREE,
-  KEY `uniacid` (`uniacid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-
-CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_pintuan_tixian_order` (
-  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `uniacid` int(10) NOT NULL,
-  `member_id` int(10) NOT NULL COMMENT '会员id',
-  `money` float(10,2) NOT NULL COMMENT '提现金额',
-  `service_charge` float(10,2) DEFAULT '0.00' COMMENT '提现手续费比例',
-  `service_charge_money` float(10,2) DEFAULT '0.00' COMMENT '提现后实际到账金额',
-  `state` tinyint(1) NOT NULL COMMENT '提现状态，0申请中，1提现成功，2体现失败',
-  `shentime` int(10) NOT NULL COMMENT '审核时间',
-  `type` tinyint(1) DEFAULT '0' COMMENT '1余额，2微信 3支付宝 4 银行卡',
-  `bankname` varchar(255) DEFAULT NULL COMMENT '银行卡名称',
-  `bankaccount` varchar(255) DEFAULT NULL COMMENT '卡号',
-  `bankusername` varchar(255) DEFAULT NULL COMMENT '持卡人姓名',
-  `addtime` int(10) NOT NULL COMMENT '提交时间',
-  PRIMARY KEY (`id`),
-  KEY `uniacid` (`uniacid`),
-  KEY `member_id` (`member_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='分销佣金提现表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_refund_address` (
@@ -1740,7 +1621,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_shipping` (
   `enabled` tinyint(1) DEFAULT '1' COMMENT '启用1:0关闭',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城运费模板表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城运费模板表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_site_config` (
@@ -1748,7 +1629,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_site_config` (
   `type` varchar(32) NOT NULL DEFAULT '',
   `content` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spec` (
@@ -1760,7 +1641,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spec` (
   `addtime` int(11) NOT NULL COMMENT '10',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城规格表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城规格表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_special` (
@@ -1797,7 +1678,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spike` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `begin_time` (`begin_time`,`end_tme`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼秒杀活动表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖秒杀活动表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spike_goods` (
@@ -1813,7 +1694,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spike_goods` (
   KEY `goods_id` (`goods_id`),
   KEY `spike_id` (`spike_id`),
   KEY `activity_begintime` (`activity_begintime`,`activity_endtime`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城秒杀商品表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城秒杀商品表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spike_time_slot` (
@@ -1830,7 +1711,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_spike_time_slot` (
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城秒杀时间段';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城秒杀时间段';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_supply` (
@@ -1854,7 +1735,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_supply` (
   `addtime` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼社区团购供应商表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖社区团购供应商表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_sysset` (
@@ -1865,7 +1746,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_sysset` (
   `sec` text,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城设置表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城设置表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_system_copyright` (
@@ -1878,7 +1759,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_system_copyright` (
   `title` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_user_favgoods` (
@@ -1890,7 +1771,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_user_favgoods` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `member_id` (`member_id`,`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城商品收藏表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城商品收藏表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_weprogram_token` (
@@ -1903,7 +1784,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_comshop_weprogram_token` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `member_id` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='狮子鱼商城小程序会员token表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='霸气妖商城小程序会员token表';
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_supply_commiss` (
@@ -1916,7 +1797,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_supply_commiss` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `uniacid_2` (`uniacid`,`supply_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_supply_commiss_order` (
@@ -1935,7 +1816,7 @@ CREATE TABLE IF NOT EXISTS `ims_lionfish_supply_commiss_order` (
   PRIMARY KEY (`id`),
   KEY `uniacid` (`uniacid`),
   KEY `uniacid_2` (`uniacid`,`supply_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 
 CREATE TABLE IF NOT EXISTS `ims_lionfish_supply_tixian_order` (
@@ -9170,8 +9051,6 @@ INSERT INTO ims_lionfish_comshop_area VALUES
 ('3605','0','','0','820200007');
 INSERT INTO ims_lionfish_comshop_area VALUES 
 ('3606','0','湖里街道','147','820200008');
-INSERT INTO ims_lionfish_comshop_area VALUES 
-('3607','0','安海镇','181','820200009');
 INSERT INTO ims_lionfish_comshop_express VALUES 
 ('1','0','安捷快递','AJ');
 INSERT INTO ims_lionfish_comshop_express VALUES 
@@ -9457,9 +9336,6 @@ DROP TABLE IF EXISTS `ims_lionfish_comshop_group_post_fav`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_jiapinorder`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_jiauser`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_member`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_member_card`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_member_card_equity`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_member_card_order`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_member_charge_flow`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_member_commiss`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_member_commiss_apply`;
@@ -9493,9 +9369,6 @@ DROP TABLE IF EXISTS `ims_lionfish_comshop_pick_order`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_pick_up`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_pin`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_pin_order`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_pintuan_commiss`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_pintuan_commiss_order`;
-DROP TABLE IF EXISTS `ims_lionfish_comshop_pintuan_tixian_order`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_refund_address`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_shipping`;
 DROP TABLE IF EXISTS `ims_lionfish_comshop_site_config`;

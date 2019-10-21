@@ -1,14 +1,20 @@
 Component({
+    externalClasses: [ "i-class" ],
     properties: {
+        showHome: {
+            type: Boolean,
+            value: !1
+        },
         cartNum: {
             type: Number,
-            default: 0
+            value: 0
         }
     },
     methods: {
-        goCart: function() {
+        goLink: function(e) {
+            var t = e.currentTarget.dataset.link;
             wx.switchTab({
-                url: "/lionfish_comshop/pages/order/shopCart"
+                url: t
             });
         }
     }

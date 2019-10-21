@@ -39,7 +39,7 @@
     bottom: 0;
     left: 28rpx;
     border-radius: 24rpx;
-    background: linear-gradient(to right,#fe655c,#fa875b);
-    box-shadow: 0rpx 4rpx 4rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
+    box-shadow: 0rpx 4rpx 4rpx 0rpx rgba(0,89,255,0.25);
     transition: all 1s ease-in-out;
 }

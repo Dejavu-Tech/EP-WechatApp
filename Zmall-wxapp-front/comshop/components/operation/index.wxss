@@ -53,7 +53,7 @@
 
 .card-btn .btn-3 {
     color: white;
-    background: linear-gradient(90deg,#ff5041 0%,#ff877d 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     text-align: center;
     padding: 0;
     width: 136rpx;

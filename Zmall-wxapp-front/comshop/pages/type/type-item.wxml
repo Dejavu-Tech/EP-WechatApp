@@ -15,7 +15,6 @@
                 <view class="spu-desc" wx:if="{{spuItem.spuDescribe}}">
                     <em>{{spuItem.spuDescribe}}</em>
                 </view>
-                <i-vip-price price="{{spuItem.card_price}}" wx:if="{{is_open_vipcard_buy==1&&spuItem.is_take_vipcard==1}}"></i-vip-price>
             </view>
             <view class="spu-price">
                 <view class="sale-price">

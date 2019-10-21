@@ -4,9 +4,9 @@
             <image class="icon-close" src="../../images/icon-sku-close.png"></image>
         </view>
         <view class="t1">您的提货码为</view>
-        <view class="code-img">
-            <image class="img" mode="widthFix" src="{{codeImg}}"></image>
+        <view>
+            <text class="item" wx:for="{{coderList}}" wx:key="index">{{item}}</text>
         </view>
-        <view class="t2">提货时，请出示提货二维码。</view>
+        <view class="t2">5分钟有效时长</view>
     </view>
 </i-modal>

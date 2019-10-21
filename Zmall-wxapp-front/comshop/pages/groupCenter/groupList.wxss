@@ -29,8 +29,8 @@
     right: 0;
     bottom: 0;
     height: 3px;
-    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
-    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0,89,255,0.25);
     border-radius: 24rpx;
 }
 
@@ -76,7 +76,7 @@
 .noRecordCon .goIndex {
     width: 164rpx;
     height: 60rpx;
-    background: #ff3432;
+    background: #4facfe;
     border-radius: 30rpx;
     font-size: 28rpx;
     color: #fff;
@@ -136,7 +136,7 @@
 }
 
 .groupList .nav .line {
-    background: linear-gradient(90deg,#ffd59a 0%,#e5b983 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(229,185,131,0.5);
     border-radius: 24rpx;
 }
@@ -169,7 +169,7 @@
 .groupList .noRecordCon .goIndex {
     width: 164rpx;
     height: 60rpx;
-    background: linear-gradient(90deg,#f0daad 0%,#e7c98f 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     border-radius: 30rpx;
     font-size: 28rpx;
     color: #fff;
@@ -196,11 +196,11 @@
     display: inline-block;
     height: 52rpx;
     padding: 0 24rpx;
-    border: 2rpx solid #f75451;
+    border: 2rpx solid #4facfe;
     border-radius: 52rpx;
     text-align: center;
     line-height: 52rpx;
-    color: #f75451;
+    color: #4facfe;
 }
 
 .goods-sign-btn.gray {
@@ -288,7 +288,7 @@ swiper-item {
 }
 
 .spu .detail .tips .price {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 32rpx;
 }
 

@@ -5,7 +5,7 @@
 
 .groupDetail .orderStatus {
     height: 200rpx;
-    background: #fe8464;
+    background: #4facfe;
     padding-left: 60rpx;
     padding-right: 120rpx;
     display: flex;
@@ -19,33 +19,33 @@
 }
 
 .groupDetail .orderStatus .toBeGroupImg {
-    width: 118rpx;
-    height: 112rpx;
+    width: 126rpx;
+    height: 126rpx;
 }
 
 .groupDetail .orderStatus .forShippingImg {
-    width: 152rpx;
-    height: 98rpx;
+    width: 126rpx;
+    height: 126rpx;
 }
 
 .groupDetail .orderStatus .toSignImg {
-    width: 120rpx;
-    height: 114rpx;
+    width: 126rpx;
+    height: 126rpx;
 }
 
 .groupDetail .orderStatus .toPickUpImg {
     width: 126rpx;
-    height: 120rpx;
+    height: 126rpx;
 }
 
 .groupDetail .orderStatus .successfulDealImg {
-    width: 124rpx;
-    height: 94rpx;
+    width: 126rpx;
+    height: 126rpx;
 }
 
 .groupDetail .orderStatus .purchaseImg {
-    width: 122rpx;
-    height: 108rpx;
+    width: 126rpx;
+    height: 126rpx;
 }
 
 .groupDetail .goodsDetail {
@@ -171,7 +171,7 @@
 }
 
 .groupDetail .goodsDetail .end span:first-of-type text {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .groupDetail .goodsDetail .end span:last-of-type {
@@ -209,7 +209,7 @@
 
 .groupDetail .total .totalList .realPayPrice {
     font-size: 28rpx;
-    color: #f65b30;
+    color: #ff758c;
 }
 
 .groupDetail .orderInfor {
@@ -254,9 +254,5 @@
     margin-top: 4rpx;
     font-size: 28rpx;
     font-weight: 600;
-    color: #ff5344;
-}
-
-.orderComment {
-    margin: 0 20rpx;
+    color: #4facfe;
 }

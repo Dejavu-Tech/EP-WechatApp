@@ -36,9 +36,7 @@
                     <span>共计 {{order.goods_count?order.goods_count:0}} 件商品</span>
                 </view>
             </view>
-            <view class="orderComment">
-                <i-orderComment comment="{{order.order_info.comment}}" wx:if="{{order.order_info.comment}}"></i-orderComment>
-            </view>
+            <i-orderComment comment="{{order.order_info.comment}}" wx:if="{{order.order_info.comment}}"></i-orderComment>
             <view class="orderInfor">
                 <view class="for-title">团单信息</view>
                 <view class="for-content">

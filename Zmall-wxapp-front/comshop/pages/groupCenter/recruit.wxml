@@ -6,5 +6,9 @@
         </view>
         <navigator class="apply-btn" hoverClass="none" url="/lionfish_comshop/pages/groupCenter/apply">点击申请</navigator>
     </view>
-    <i-aside-btn showHome="{{true}}"></i-aside-btn>
+    <view class="menu-list">
+        <navigator class="menu-item" hoverClass="router-hover" openType="switchTab" url="/lionfish_comshop/pages/index/index">
+            <image src="../../images/back_to_home@2x.png"></image>
+        </navigator>
+    </view>
 </view>

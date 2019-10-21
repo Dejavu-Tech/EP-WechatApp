@@ -57,6 +57,6 @@
 }
 
 .footer .money {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 40rpx;
 }

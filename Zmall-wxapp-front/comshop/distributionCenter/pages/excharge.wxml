@@ -15,8 +15,9 @@
                     <view bindtap="getAll" class="getall">全部提现</view>
                     <view class="bottom-line {{onFocus?'ipt-focus':''}}"></view>
                 </view>
-                <view class="tip">手续费：{{info.commiss_tixian_bili}}% <text style="margin-left:10rpx;">最终到账：{{final_money}}</text>
-                </view>
+                <view class="tip">手续费：{{info.commiss_tixian_bili}}%</view>
+                <view class="tip">最终到账：{{final_money}}</view>
+                <view class="tip">已提现(元)：{{info.getmoney}}</view>
                 <radio-group bindchange="radioChange" class="radio-group">
                     <label class="radio" wx:if="{{item.show}}" wx:for="{{items}}" wx:key="{{index}}">
                         <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
@@ -25,17 +26,17 @@
                 </radio-group>
                 <view class="form-box" wx:if="{{type==2}}">
                     <view class="form-group">
-                        <label>微信真实姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_weixin_realname}}"></input>
+                        <label>微信人姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_weixin_realname}}"></input>
                         </label>
                     </view>
                 </view>
                 <view class="form-box" wx:if="{{type==3}}">
-                    <view class="form-group" wx:if="{{type!=2}}">
-                        <label>支付宝账户：<input class="form-ipt" name="bankaccount" type="text" value="{{info.last_alipay_account}}"></input>
+                    <view class="form-group">
+                        <label>支付宝名称：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_alipay_name}}"></input>
                         </label>
                     </view>
-                    <view class="form-group">
-                        <label>支付宝真实姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_alipay_name}}"></input>
+                    <view class="form-group" wx:if="{{type!=2}}">
+                        <label>支付宝账号：<input class="form-ipt" name="bankaccount" type="text" value="{{info.last_alipay_account}}"></input>
                         </label>
                     </view>
                 </view>

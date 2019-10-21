@@ -18,13 +18,13 @@ Page({
     },
     canRefund: !0,
     onLoad: function(e) {
-        var t = e.id, a = e.order_goods_id, o = e.ref_id, i = this;
+        var t = e.id, a = e.order_goods_id, i = e.ref_id, o = this;
         this.setData({
             order_id: t || 0,
             order_goods_id: a || 0,
-            ref_id: o || 0
+            ref_id: i || 0
         }, function() {
-            i.getData();
+            o.getData();
         });
     },
     bindPickerChange: function(e) {
@@ -62,10 +62,10 @@ Page({
                     },
                     success: function(e) {
                         wx.hideLoading();
-                        var t = JSON.parse(e.data), a = t.image_thumb, o = t.image_o, i = r.data.refund_imgs, n = r.data.refund_thumb_imgs;
-                        i.push(o), n.push(a), r.setData({
+                        var t = JSON.parse(e.data), a = t.image_thumb, i = t.image_o, o = r.data.refund_imgs, n = r.data.refund_thumb_imgs;
+                        o.push(i), n.push(a), r.setData({
                             refund_thumb_imgs: n,
-                            refund_imgs: i
+                            refund_imgs: o
                         });
                     }
                 });
@@ -79,9 +79,9 @@ Page({
         });
     },
     cancle_img: function(e) {
-        var t = e.currentTarget.dataset.sr, a = 0, o = this.data.refund_imgs, i = this.data.refund_thumb_imgs, n = [], r = [];
-        for (var d in i) i[d] == t ? (console.log("find"), a = d) : r.push(i[d]);
-        for (var d in o) d != a && n.push(o[d]);
+        var t = e.currentTarget.dataset.sr, a = 0, i = this.data.refund_imgs, o = this.data.refund_thumb_imgs, n = [], r = [];
+        for (var d in o) o[d] == t ? (console.log("find"), a = d) : r.push(o[d]);
+        for (var d in i) d != a && n.push(i[d]);
         this.setData({
             refund_thumb_imgs: r,
             refund_imgs: n
@@ -106,20 +106,20 @@ Page({
         });
     },
     refund_money_input: function(e) {
-        var t = 1 * e.detail.value, a = this.data.refund_money, o = {};
+        var t = 1 * e.detail.value, a = this.data.refund_money, i = {};
         a < t && (wx.showToast({
             title: "最大退款金额为" + a,
             icon: "none",
             duration: 1e3
-        }), t = a, o.refund_money = a), o.complaint_money = t, this.setData(o);
+        }), t = a, i.refund_money = a), i.complaint_money = t, this.setData(i);
     },
     sub_refund: function() {
         var t = this;
         if (t.canRefund) {
-            var e = this.data, a = e.index, o = e.xarray, i = e.order_id, n = e.order_goods_id, r = e.refund_type, d = e.refund_imgs, s = e.complaint_desc, u = e.complaint_mobile, _ = e.total, c = e.complaint_name, l = e.complaint_money, m = (e.refund_money, 
+            var e = this.data, a = e.index, i = e.xarray, o = e.order_id, n = e.order_goods_id, r = e.refund_type, d = e.refund_imgs, s = e.complaint_desc, u = e.complaint_mobile, _ = e.total, c = e.complaint_name, l = e.complaint_money, m = (e.refund_money, 
             e.ref_id);
             if (0 == a) return this.errorToast("退款原因"), !1;
-            var f = o[a];
+            var f = i[a];
             if (l <= 0) return this.errorToast("退款金额"), !1;
             if (_ < l && (l = _), "" == s) return this.errorToast("问题描述"), !1;
             if ("" == c) return this.errorToast("联系人"), !1;
@@ -134,7 +134,7 @@ Page({
                     controller: "afterorder.refund_sub",
                     token: p,
                     ref_id: m,
-                    order_id: i,
+                    order_id: o,
                     order_goods_id: n,
                     complaint_type: r,
                     complaint_images: d,
@@ -180,28 +180,28 @@ Page({
         });
     },
     getData: function() {
-        var e = wx.getStorageSync("token"), h = this, t = this.data, a = t.order_id, o = t.order_goods_id, i = t.ref_id;
+        var e = wx.getStorageSync("token"), h = this, t = this.data, a = t.order_id, i = t.order_goods_id, o = t.ref_id;
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "afterorder.get_order_money",
                 token: e,
                 order_id: a,
-                order_goods_id: o,
-                ref_id: i
+                order_goods_id: i,
+                ref_id: o
             },
             dataType: "json",
             success: function(e) {
                 if (1 == e.data.code) {
-                    var t = e.data, a = t.order_goods, o = t.order_status_id, i = t.refund_image, n = t.refund_info, r = t.shipping_name, d = t.shipping_tel, s = t.total, u = h.data.xarray, _ = n.ref_name, c = u.findIndex(function(e) {
+                    var t = e.data, a = t.order_goods, i = t.order_status_id, o = t.refund_image, n = t.refund_info, r = t.shipping_name, d = t.shipping_tel, s = t.total, u = h.data.xarray, _ = n.ref_name, c = u.findIndex(function(e) {
                         return e == _;
                     });
                     c = c <= 0 ? 0 : c;
                     var l = n.ref_description, m = n.ref_mobile, f = n.complaint_name, p = n.ref_money;
                     h.setData({
                         order_goods: a,
-                        order_status_id: o,
-                        refund_image: i,
+                        order_status_id: i,
+                        refund_image: o,
                         refund_info: n,
                         shipping_name: r,
                         shipping_tel: d,

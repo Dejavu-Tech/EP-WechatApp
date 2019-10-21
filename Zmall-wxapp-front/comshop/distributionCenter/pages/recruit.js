@@ -1,7 +1,7 @@
 var _extends = Object.assign || function(t) {
     for (var e = 1; e < arguments.length; e++) {
-        var a = arguments[e];
-        for (var s in a) Object.prototype.hasOwnProperty.call(a, s) && (t[s] = a[s]);
+        var s = arguments[e];
+        for (var a in s) Object.prototype.hasOwnProperty.call(s, a) && (t[a] = s[a]);
     }
     return t;
 }, app = getApp(), util = require("../../utils/util.js"), WxParse = require("../../wxParse/wxParse.js"), status = require("../../utils/index.js");
@@ -31,7 +31,7 @@ Page({
         });
     },
     get_instruct: function() {
-        var a = this;
+        var s = this;
         app.util.request({
             url: "entry/wxapp/index",
             data: {
@@ -41,13 +41,13 @@ Page({
             success: function(t) {
                 if (0 == t.data.code) {
                     var e = t.data.content || "";
-                    WxParse.wxParse("article", "html", e, a, 5);
+                    WxParse.wxParse("article", "html", e, s, 5);
                 }
             }
         });
     },
     getData: function() {
-        var t = wx.getStorageSync("token"), h = this;
+        var t = wx.getStorageSync("token"), p = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -57,27 +57,23 @@ Page({
             dataType: "json",
             success: function(t) {
                 if (wx.hideLoading(), 0 == t.data.code) {
-                    var e = t.data.data, a = e.comsiss_flag, s = e.comsiss_state, i = t.data, n = i.commiss_level, o = i.commiss_sharemember_need, r = (i.commiss_biaodan_need, 
+                    var e = t.data.data, s = e.comsiss_flag, a = e.comsiss_state, i = t.data, n = i.commiss_level, o = i.commiss_sharemember_need, r = (i.commiss_biaodan_need, 
                     i.commiss_share_member_update), u = i.share_member_count, c = (i.commiss_become_condition, 
-                    t.data.commiss_diy_name || "分销");
-                    wx.setNavigationBarTitle({
-                        title: "会员" + c
-                    });
-                    var d = {}, m = 0;
+                    {}), d = 0;
                     if (0 < n) {
-                        var l = 0, p = !1;
-                        1 == a && 1 == s ? l = 1 : 1 == o ? (l = 2, (m = 1 * r - 1 * u) <= 0 && (l = 3, 
-                        p = !0)) : p = !0, d = {
+                        var l = 0, m = !1;
+                        1 == s && 1 == a ? l = 1 : 1 == o ? (l = 2, (d = 1 * r - 1 * u) <= 0 && (l = 3, 
+                        m = !0)) : m = !0, c = {
                             formStatus: 0,
-                            need_num_update: m,
+                            need_num_update: d,
                             comsissStatus: l,
-                            canApply: p
+                            canApply: m
                         };
                     }
-                    h.setData(_extends({}, d, {
+                    p.setData(_extends({}, c, {
                         commiss_diy_name: t.data.commiss_diy_name || "分销"
                     }));
-                } else h.setData({
+                } else p.setData({
                     needAuth: !0
                 }), wx.setStorage({
                     key: "member_id",
@@ -128,8 +124,8 @@ Page({
     },
     goNext: function(t) {
         if (this.authModal()) {
-            var e = 0, a = this.data.member_info || {}, s = a.comsiss_flag || 0, i = a.comsiss_state || 0;
-            1 == s && (e = 0 == i ? 1 : 2);
+            var e = 0, s = this.data.member_info || {}, a = s.comsiss_flag || 0, i = s.comsiss_state || 0;
+            1 == a && (e = 0 == i ? 1 : 2);
             var n = t.currentTarget.dataset.type;
             "share" == n ? wx.navigateTo({
                 url: "/lionfish_comshop/distributionCenter/pages/share"

@@ -16,19 +16,26 @@
 }
 
 .personal .basicInform .modify {
-    width: 34rpx;
-    height: 30rpx;
-    line-height: 30rpx;
-    margin-left: 10rpx;
-    font-size: 22rpx;
+    width: 120rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    margin-top: 10rpx;
+    padding: 0 6rpx;
+    background: #39a2fd;
+    font-size: 24rpx;
+    color: #ffffff;
+    border-radius: 16rpx;
+    float: left;
     border: none;
-    background: transparent;
-    padding: 0;
-    color: #fff;
 }
 
 .personal .basicInform .modify::after {
     border: none;
+}
+
+.personal .basicInform .updateWx {
+    color: #fff;
+    margin-left: 190rpx;
 }
 
 .personal .order {
@@ -87,7 +94,7 @@
     font-size: 20rpx;
     color: #fff;
     border: 2rpx solid #fff;
-    background: #ff6557;
+    background: #ff758c;
     border-radius: 50%;
     position: absolute;
     right: 0;
@@ -98,9 +105,9 @@
 }
 
 .personal .order .orderTab .order_status .icon-img {
-    height: 56rpx;
-    width: 56rpx;
-    margin-bottom: 20rpx;
+    height: 80rpx;
+    width: 80rpx;
+    margin-bottom: 10rpx;
 }
 
 .personal .icon-right {
@@ -194,7 +201,7 @@
     margin-top: 158rpx;
     font-size: 28rpx;
     line-height: 28rpx;
-    color: #f75451;
+    color: #4facfe;
     margin-left: -20rpx;
 }
 
@@ -210,13 +217,13 @@
     text-align: center;
     box-sizing: border-box;
     border-radius: 26rpx;
-    border: 2rpx solid #ff695c;
+    border: 2rpx solid #4facfe;
     padding: 14rpx 0;
     margin: 20rpx auto 0;
     width: 184rpx;
     font-size: 24rpx;
     line-height: 24rpx;
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .version {
@@ -249,8 +256,8 @@
 
 .personal .basicInform .personalCon .userInfo .userAvatarUrl {
     border-radius: 50%;
-    width: 100rpx;
-    height: 100rpx;
+    width: 80rpx;
+    height: 80rpx;
     margin-left: 40rpx;
     margin-right: 20rpx;
 }
@@ -280,7 +287,7 @@
 .personal .basicInform .personalCon .userInfo .user-name .user-name-top .refresh .modify {
     width: 24rpx;
     height: 24rpx;
-    background: #ea544c;
+    background: #4facfe;
     opacity: 0;
     border: none;
     position: absolute;
@@ -318,7 +325,7 @@
 }
 
 .personal .basicInform .personalCon .pineCones .myPineCones {
-    color: #e9cc95;
+    color: #00f2fe;
     font-size: 28rpx;
     font-weight: bold;
     display: flex;
@@ -342,10 +349,10 @@
 }
 
 .personal .basicInform .personalCon .pineCones .pineconeDetail {
-    color: #e9cc95;
+    color: #00f2fe;
     font-size: 24rpx;
     padding: 2rpx 20rpx;
-    border: 0.1rpx solid #e9cc95;
+    border: 0.1rpx solid #00f2fe;
     border-radius: 22rpx;
 }
 
@@ -401,7 +408,7 @@
 }
 
 .modal-foot .tot,.modal-head-r {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .modal-head-l {
@@ -417,7 +424,7 @@
 
 .modal-foot-r.btn {
     color: #fff;
-    background-color: #ff5344;
+    background-color: #4facfe;
     padding: 6rpx 30rpx;
     border-radius: 8rpx;
 }
@@ -500,81 +507,4 @@
     width: 40rpx;
     max-height: 50rpx;
     margin-right: 18rpx;
-}
-
-.userLevel {
-    display: flex;
-    align-items: center;
-    margin-top: 10rpx;
-    color: #fff;
-}
-
-.userLevelName {
-    background: #372d35;
-    border-radius: 20rpx;
-    padding: 0 15rpx;
-    height: 38rpx;
-    line-height: 38rpx;
-    text-align: center;
-    font-size: 22rpx;
-}
-
-.userLevelName .iconfont {
-    color: #fae9bb;
-    font-size: 24rpx;
-}
-
-.userLevel .userLeveldiscount {
-    font-size: 24rpx;
-    margin-left: 10rpx;
-}
-
-.fetch-coder {
-    position: absolute;
-    right: 20rpx;
-    text-align: center;
-    color: #fff;
-}
-
-.fetch-coder .iconfont {
-    color: #fff;
-    background: rgba(0,0,0,0.1);
-    width: 72rpx;
-    height: 72rpx;
-    text-align: center;
-    line-height: 72rpx;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.fetch-coder-text {
-    font-size: 22rpx;
-    margin-top: 4rpx;
-}
-
-.personal .order.hasVip {
-    margin-top: -95rpx;
-}
-
-.vip {
-    background: linear-gradient(to right,#e3c28c,#fdd2a7);
-    height: 76rpx;
-    margin: 20rpx;
-    padding: 0 30rpx;
-    font-size: 24rpx;
-    color: #72491d;
-    border-radius: 10rpx;
-}
-
-.vip .goright.iconfont {
-    font-size: 24rpx;
-}
-
-.vip-logo {
-    width: 30rpx;
-    height: 30rpx;
-}
-
-.vip-name {
-    align-items: center;
 }

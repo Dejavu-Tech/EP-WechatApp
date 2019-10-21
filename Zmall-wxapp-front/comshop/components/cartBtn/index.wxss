@@ -1,35 +1,36 @@
-.cart {
+.cart-btn {
     position: fixed;
     left: 30rpx;
-    bottom: 80rpx;
-    width: 120rpx;
-    height: 120rpx;
-    border-radius: 50%;
+    bottom: 100rpx;
+    z-index: 100;
+}
+
+.cart-btn .icon {
+    position: relative;
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 20rpx;
+}
+
+.cart-btn .icon .num {
+    position: absolute;
+    right: -5rpx;
+    top: -5rpx;
+    background-color: #4facfe;
+    min-width: 44rpx;
+    height: 44rpx;
+    padding: 8rpx;
+    box-sizing: border-box;
+    border-radius: 22rpx;
+    color: #fff;
+    font-size: 22rpx;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    line-height: 1;
-    font-size: 24rpx;
-    background: linear-gradient(45deg,#fdd225 0%,#feb600 100%);
-    color: #000;
+    line-height: 44rpx;
 }
 
-.cart .img {
-    width: 54rpx;
-    height: 54rpx;
-}
-
-.cart .num {
-    color: #fff;
-    background-color: #ff5041;
-    position: absolute;
-    top: -15rpx;
-    right: -15rpx;
-    min-width: 54rpx;
-    height: 54rpx;
-    line-height: 54rpx;
-    border-radius: 54rpx;
-    text-align: center;
-    font-size: 26rpx;
+.cart-btn .icon .img {
+    width: 80rpx;
+    height: 80rpx;
 }

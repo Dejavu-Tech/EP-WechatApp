@@ -28,15 +28,15 @@
 }
 
 .tot {
-    color: #CE3C39;
+    color: #4facfe;
 }
 
 .foot-btn button {
-    background-color: #f75451;
+    background-color: #4facfe;
 }
 
 button.primary-btn {
-    background-color: #ff673f;
+    background-color: #00f2fe;
     color: #fff;
     margin-left: 40rpx;
 }
@@ -87,8 +87,8 @@ button.primary-btn {
 }
 
 .model-services .model-services-content .service-icon {
-    font-size: 80rpx;
-    color: #50b674;
+    width: 80rpx;
+    display: inline-block;
 }
 
 .service-name {
@@ -107,7 +107,7 @@ button.primary-btn {
 
 .none_btn {
     border: none;
-    line-height: 1.1;
+    line-height: 38rpx;
     padding: 0px;
 }
 

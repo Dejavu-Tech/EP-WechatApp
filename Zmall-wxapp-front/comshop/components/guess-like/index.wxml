@@ -1,4 +1,4 @@
-<view class="like i-class" wx:if="{{list.length&&show_goods_guess_like==1}}">
+<view class="like" wx:if="{{list.length}}">
     <view class="like-title">——{{likeTitle}}——</view>
     <view class="like-list">
         <i-router-link routerClass="new-comers-item" url="/lionfish_comshop/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="{{index}}">

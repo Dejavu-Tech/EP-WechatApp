@@ -56,7 +56,7 @@
     font-size: 28rpx;
     line-height: 96rpx;
     width: 750rpx;
-    background: #f75451;
+    background: #4facfe;
     text-align: center;
     display: block;
     position: fixed;

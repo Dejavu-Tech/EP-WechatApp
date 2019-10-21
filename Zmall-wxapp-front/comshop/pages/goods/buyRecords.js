@@ -91,7 +91,7 @@ Page({
                         e.community_id != o && wx.showModal({
                             title: "温馨提示",
                             content: "是否切换为分享人所在小区“" + a.communityName,
-                            confirmColor: "#F75451",
+                            confirmColor: "#4facfe",
                             success: function(t) {
                                 t.confirm ? (app.globalData.community = a, app.globalData.changedCommunity = !0, 
                                 wx.setStorage({
@@ -126,7 +126,7 @@ Page({
                         title: "提示",
                         content: "该商品不存在，回首页",
                         showCancel: !1,
-                        confirmColor: "#F75451",
+                        confirmColor: "#4facfe",
                         success: function(t) {
                             t.confirm && wx.switchTab({
                                 url: "/lionfish_comshop/pages/index/index"
@@ -164,7 +164,7 @@ Page({
                         title: "温馨提示",
                         content: "团长休息中，欢迎下次光临!",
                         showCancel: !1,
-                        confirmColor: "#F75451",
+                        confirmColor: "#4facfe",
                         confirmText: "好的",
                         success: function(t) {}
                     });
@@ -183,7 +183,7 @@ Page({
             title: "提示",
             content: "您未绑定该小区，请切换后下单！",
             showCancel: !1,
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm && wx.redirectTo({
                     url: "/lionfish_comshop/pages/position/community"

@@ -1,0 +1,27 @@
+<view>
+    <view class="search">
+        <icon class="icon-search" size="14" type="search"></icon>
+        <input bindconfirm="searchByKey" bindinput="bindSearchChange" confirmType="done" placeholder="微信昵称/手机号" type="text" value="{{searchKey}}"></input>
+    </view>
+    <view class="list-header">
+        <view>粉丝</view>
+        <view>关注时间</view>
+    </view>
+    <scroll-view scrollY bindscrolltolower="getMore" class="list-content" style="height:{{containerHeight}}px" wx:if="{{order.length}}">
+        <view class="list">
+            <navigator class="list-item" url="/lionfish_comshop/pages/distribution/memberInfo?memberId={{item.member_id}}" wx:for="{{order}}" wx:key="{{index}}">
+                <view class="item-left">
+                    <component-img defaultImage="../../images/placeholder-refund.png" height="36" isCircle="true" loadImage="{{item.avatar}}" width="36"></component-img>
+                    <view>
+                        <text>{{item.username}}</text>
+                    </view>
+                </view>
+                <view class="item-right">
+          {{item.create_time}}
+          </view>
+            </navigator>
+        </view>
+        <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+    </scroll-view>
+    <view class="none-member" wx:else>暂无粉丝</view>
+</view>

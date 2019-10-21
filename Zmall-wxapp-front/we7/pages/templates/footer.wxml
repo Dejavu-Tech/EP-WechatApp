@@ -1,0 +1,24 @@
+<template name="goHome">
+    <navigator class="goHome" hoverClass="active" openType="redirect" url="/we7/pages/index/index">
+        <image mode="widthFix" src="/we7/resource/images/home.png"></image>
+    </navigator>
+</template>
+<template name="footerWx">
+    <view class="we7-bottom" style="background-color:{{backgroundColor}};border-color:{{borderStyle}}" wx:if="{{list}}">
+        <block wx:for="{{list}}" wx:key="{{index}}">
+            <view class="we7-bottom-item" hoverClass="active" wx:if="{{item.pageUrl=='/'+thisurl}}">
+                <navigator hoverClass="active" openType="redirect" url="{{item.pagePath}}">
+                    <image class="item-img" mode="widthFix" src="{{item.selectedIconPath}}"></image>
+                    <view class="item-text" style="color: {{selectedColor}};">{{item.text}}</view>
+                </navigator>
+            </view>
+            <view class="we7-bottom-item" hoverClass="active" wx:else>
+                <navigator hoverClass="active" openType="redirect" url="{{item.pagePath}}">
+                    <image class="item-img" mode="widthFix" src="{{item.iconPath}}"></image>
+                    <view class="item-text" style="color: {{color}}">{{item.text}}</view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+    <view class="we7-bottom-placeholder"></view>
+</template>

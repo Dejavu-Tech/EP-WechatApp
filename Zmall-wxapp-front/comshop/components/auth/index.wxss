@@ -49,7 +49,7 @@
     height: 90rpx;
     line-height: 90rpx;
     margin-top: 40rpx;
-    background: #1aad19;
+    background: #4facfe;
     color: #fff;
     border-radius: 10rpx;
     font-size: 34rpx;

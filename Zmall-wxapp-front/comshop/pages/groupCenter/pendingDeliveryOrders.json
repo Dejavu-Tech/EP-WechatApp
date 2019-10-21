@@ -4,7 +4,6 @@
     "navigationBarTextStyle": "black",
     "usingComponents": {
         "i-auth": "../../components/auth/index",
-        "component-img": "../../components/image/index",
-        "i-aside-btn": "../../components/asideBtn/index"
+        "component-img": "../../components/image/index"
     }
 }

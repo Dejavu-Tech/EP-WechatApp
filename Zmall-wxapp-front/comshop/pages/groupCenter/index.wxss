@@ -6,8 +6,8 @@
 
 .groupCenter .basicInform {
     width: 100%;
-    height: 226rpx;
-    background: #fe8464;
+    height: 216rpx;
+    background: #4facfe;
     display: flex;
     justify-content: flex-start;
 }
@@ -54,25 +54,22 @@
 }
 
 .groupCenter .basicInform .userInfo .user-name .icon-edit {
+    height: 22rpx;
+    width: 22rpx;
     margin-right: 10rpx;
-    font-size: 24rpx;
 }
 
 .groupCenter .basicInform .userInfo .userId,.groupCenter .basicInform .userInfo .address {
     position: relative;
     font-size: 26rpx;
     color: #fff;
+    line-height: 60rpx;
     z-index: 1;
-    margin-top: 10rpx;
 }
 
 .groupCenter .basicInform .userInfo .address {
     width: 520rpx;
     line-height: 32rpx;
-}
-
-.groupCenter .basicInform .userInfo .address .iconfont {
-    font-size: 24rpx;
 }
 
 .groupCenter .distributionCon {
@@ -118,7 +115,7 @@
 
 .groupCenter .distributionCon .distribution .incomeCon .income .incomeTop {
     font-size: 36rpx;
-    color: #ff673f;
+    color: #4facfe;
     margin-bottom: 16rpx;
     font-weight: 500;
 }
@@ -153,8 +150,8 @@
 }
 
 .groupCenter .effectData .nav .on {
-    color: #fe8464;
-    border-bottom: 4rpx solid #fe8464;
+    color: #4facfe;
+    border-bottom: 4rpx solid #4facfe;
     margin: 0;
 }
 
@@ -290,8 +287,8 @@
     height: 34rpx;
     background: #fff;
     font-size: 22rpx;
-    color: #f1283b;
-    border: 2rpx solid #f1283b;
+    color: #4facfe;
+    border: 2rpx solid #4facfe;
     border-radius: 50%;
     position: absolute;
     right: 0;
@@ -428,7 +425,7 @@
     position: absolute;
     text-align: center;
     color: #fff;
-    background: #ff673f;
+    background: #4facfe;
     font-size: 32rpx;
     height: 72rpx;
     width: 432rpx;
@@ -440,7 +437,7 @@
     position: absolute;
     width: 120rpx;
     height: 100rpx;
-    padding: 10rpx 40rpx 0 0;
+    padding: 30rpx 40rpx 0 0;
     right: -20rpx;
     top: 0;
     z-index: 1000;
@@ -448,5 +445,6 @@
 }
 
 .scan-code .icon-scan {
-    font-size: 50rpx;
+    width: 50rpx;
+    height: 50rpx;
 }

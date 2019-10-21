@@ -55,8 +55,8 @@ Page({
         });
     },
     showCartGoods: function() {
-        var f = this, t = wx.getStorageSync("community").communityId;
-        console.log("onshow购物车里面的community_id:"), f.setData({
+        var m = this, t = wx.getStorageSync("community").communityId;
+        console.log("onshow购物车里面的community_id:"), m.setData({
             community_id: t
         });
         var a = wx.getStorageSync("token");
@@ -71,31 +71,28 @@ Page({
             dataType: "json",
             success: function(t) {
                 if (wx.hideLoading(), 0 == t.data.code) {
-                    var a = t.data.mult_carts || [], s = {}, e = f.data.tabIdx, r = !1;
-                    if ("[object Array]" == Object.prototype.toString.call(a)) 1 < a.length ? (r = !0, 
-                    s = a[e] || {}) : s = a[0] || {}; else {
+                    var a = t.data.mult_carts || [], s = {}, r = m.data.tabIdx, e = !1;
+                    if (console.log("mult_carts", a), "[object Array]" == Object.prototype.toString.call(a)) 1 < a.length ? (e = !0, 
+                    s = a[r] || {}) : s = a[0] || {}; else {
                         var o = Object.keys(a).length;
-                        1 < o && (r = !0), s = 1 < o ? a[e] || {} : a[1] || {};
+                        1 < o && (e = !0), s = 1 < o ? a[r] || {} : a[1] || {};
                     }
                     var c = !0;
-                    0 != Object.keys(s).length && (c = !1, s = f.sortCarts(s));
-                    var i = t.data, n = i.man_free_tuanzshipping, d = i.delivery_tuanz_money, l = i.is_comunity_rest, u = i.open_man_orderbuy, h = i.man_orderbuy_money, p = i.is_show_guess_like, m = i.is_open_vipcard_buy, g = i.is_vip_card_member, _ = i.vipcard_save_money;
-                    f.setData({
+                    0 != Object.keys(s).length && (c = !1, s = m.sortCarts(s));
+                    var n = t.data, i = n.man_free_tuanzshipping, d = n.delivery_tuanz_money, l = n.is_comunity_rest, u = n.open_man_orderbuy, h = n.man_orderbuy_money, p = n.is_show_guess_like;
+                    m.setData({
                         carts: s,
                         mult_carts: a,
-                        showTab: r,
+                        showTab: e,
                         isEmpty: c,
                         is_comunity_rest: l,
                         open_man_orderbuy: u,
                         man_orderbuy_money: 1 * h,
                         is_show_guess_like: p,
-                        man_free_tuanzshipping: n,
-                        delivery_tuanz_money: d,
-                        is_open_vipcard_buy: m,
-                        is_vip_card_member: g,
-                        vipcard_save_money: _
-                    }), f.xuan_func();
-                } else f.setData({
+                        man_free_tuanzshipping: i,
+                        delivery_tuanz_money: d
+                    }), m.xuan_func();
+                } else m.setData({
                     needAuth: !0,
                     isEmpty: !0
                 }), wx.hideTabBar();
@@ -108,9 +105,9 @@ Page({
         }), console.log("onHide");
     },
     sortCarts: function(t) {
-        var a = 0, s = 0, e = 0, r = 0;
+        var a = 0, s = 0, r = 0, e = 0;
         for (var o in t) {
-            s = t[o].is_open_fullreduction, e = t[o].full_reducemoney, r = t[o].full_money;
+            s = t[o].is_open_fullreduction, r = t[o].full_reducemoney, e = t[o].full_money;
             var c = t[o].shopcarts;
             c.forEach(function(t) {
                 1 == t.can_man_jian && a++;
@@ -121,26 +118,25 @@ Page({
         return this.setData({
             reduceNum: a,
             is_open_fullreduction: s,
-            full_reducemoney: e,
-            full_money: r
+            full_reducemoney: r,
+            full_money: e
         }), t;
     },
     xuan_func: function() {
-        var t = 0, a = 0, s = 1, e = !1, r = 1, o = this.data;
-        o.is_open_vipcard_buy, o.is_vip_card_member;
-        for (var c in this.data.carts) {
-            var i = 0;
-            this.data.carts[c].goodstypeselect = 0, this.data.carts[c].goodstype = this.data.carts[c].shopcarts.length;
-            for (var n = 0; n < this.data.carts[c].shopcarts.length; n++) {
-                var d = this.data.carts[c].shopcarts[n];
-                0 == d.isselect && 1 == d.can_buy && (s = 0), d.isselect && 1 == d.can_buy && (r = 0, 
-                i = this.calcVipPrice(i, d), this.data.carts[c].goodstypeselect++, t = parseInt(t) + parseInt(d.goodsnum)), 
-                0 == d.can_buy && (d.isselect = !1);
+        var t = 0, a = 0, s = 1, r = !1, e = 1;
+        for (var o in this.data.carts) {
+            var c = 0;
+            this.data.carts[o].goodstypeselect = 0, this.data.carts[o].goodstype = this.data.carts[o].shopcarts.length;
+            for (var n = 0; n < this.data.carts[o].shopcarts.length; n++) {
+                var i = this.data.carts[o].shopcarts[n];
+                0 == i.isselect && 1 == i.can_buy && (s = 0), i.isselect && 1 == i.can_buy && (e = 0, 
+                c += parseFloat(i.currntprice) * parseFloat(i.goodsnum), this.data.carts[o].goodstypeselect++, 
+                t = parseInt(t) + parseInt(i.goodsnum)), 0 == i.can_buy && (i.isselect = !1);
             }
-            this.data.carts[c].count = i.toFixed(2), a += i;
+            this.data.carts[o].count = c.toFixed(2), a += c;
         }
-        1 == s && 0 == r && (e = !0), this.setData({
-            allselect: e,
+        1 == s && 0 == e && (r = !0), this.setData({
+            allselect: r,
             allnum: t,
             allcount: a.toFixed(2),
             carts: this.data.carts
@@ -181,66 +177,66 @@ Page({
         });
     },
     shopselect: function(t) {
-        var a = parseInt(t.target.dataset.index), s = this.data.allselect, e = 0, r = 0, o = 0;
+        var a = parseInt(t.target.dataset.index), s = this.data.allselect, r = 0, e = 0, o = 0;
         if (1 == this.data.carts[a].isselect) {
             s = this.data.carts[a].isselect = !1;
             for (var c = 0; c < this.data.carts[a].shopcarts.length; c++) 1 == this.data.carts[a].shopcarts[c].isselect && (this.data.carts[a].shopcarts[c].isselect = !1, 
-            e = parseInt(e) + parseInt(this.data.carts[a].shopcarts[c].goodsnum), this.data.carts[a].goodstypeselect = this.data.carts[a].goodstypeselect - 1);
-            e = this.data.allnum - e, r = parseFloat(this.data.allcount) - parseFloat(this.data.carts[a].count), 
+            r = parseInt(r) + parseInt(this.data.carts[a].shopcarts[c].goodsnum), this.data.carts[a].goodstypeselect = this.data.carts[a].goodstypeselect - 1);
+            r = this.data.allnum - r, e = parseFloat(this.data.allcount) - parseFloat(this.data.carts[a].count), 
             this.data.carts[a].count = "0.00", this.setData({
                 carts: this.data.carts,
-                allnum: e,
-                allcount: r.toFixed(2),
+                allnum: r,
+                allcount: e.toFixed(2),
                 allselect: s
             });
         } else {
-            var i = 0;
+            var n = 0;
             this.data.carts[a].isselect = !0;
-            for (c = 0; c < this.data.carts[a].shopcarts.length; c++) {
-                var n = this.data.carts[a].shopcarts[c];
-                0 == n.isselect && (n.isselect = !0, this.data.carts[a].goodstypeselect = this.data.carts[a].goodstypeselect + 1, 
-                e = parseInt(e) + parseInt(n.goodsnum), i = this.calcVipPrice(i, n)), o = this.calcVipPrice(o, n);
-            }
-            e = this.data.allnum + e, r = parseFloat(this.data.allcount) + i, this.data.carts[a].count = o.toFixed(2);
-            var d = 1;
-            for (var c in this.data.carts) for (var l = 0; l < this.data.carts[c].shopcarts.length; l++) 0 == this.data.carts[c].shopcarts[l].isselect && (d = 0);
-            1 == d && (s = !0), this.setData({
+            for (c = 0; c < this.data.carts[a].shopcarts.length; c++) 0 == this.data.carts[a].shopcarts[c].isselect && (this.data.carts[a].shopcarts[c].isselect = !0, 
+            this.data.carts[a].goodstypeselect = this.data.carts[a].goodstypeselect + 1, r = parseInt(r) + parseInt(this.data.carts[a].shopcarts[c].goodsnum), 
+            n += parseFloat(this.data.carts[a].shopcarts[c].currntprice) * this.data.carts[a].shopcarts[c].goodsnum), 
+            o += parseFloat(this.data.carts[a].shopcarts[c].currntprice) * this.data.carts[a].shopcarts[c].goodsnum;
+            r = this.data.allnum + r, e = parseFloat(this.data.allcount) + n, this.data.carts[a].count = o.toFixed(2);
+            var i = 1;
+            for (var c in this.data.carts) for (var d = 0; d < this.data.carts[c].shopcarts.length; d++) 0 == this.data.carts[c].shopcarts[d].isselect && (i = 0);
+            1 == i && (s = !0), this.setData({
                 carts: this.data.carts,
-                allnum: e,
-                allcount: r.toFixed(2),
+                allnum: r,
+                allcount: e.toFixed(2),
                 allselect: s
             });
         }
         this.go_record();
     },
     goodsselect: function(t) {
-        var a = parseInt(t.target.dataset.parentid), s = parseInt(t.target.dataset.index), e = this.data.allselect, r = this.data.carts[a].shopcarts[s];
-        if (1 == r.isselect) {
-            r.isselect = !1, e && (e = !1), this.data.carts[a].goodstypeselect = parseInt(this.data.carts[a].goodstypeselect) - 1, 
+        var a = parseInt(t.target.dataset.parentid), s = parseInt(t.target.dataset.index), r = this.data.allselect;
+        if (1 == this.data.carts[a].shopcarts[s].isselect) {
+            this.data.carts[a].shopcarts[s].isselect = !1, r && (r = !1), this.data.carts[a].goodstypeselect = parseInt(this.data.carts[a].goodstypeselect) - 1, 
             this.data.carts[a].goodstypeselect <= 0 && (this.data.carts[a].isselect = !1);
-            var o = parseInt(this.data.allnum) - parseInt(r.goodsnum), c = this.calcVipPrice(this.data.allcount, r, "", "red"), i = this.calcVipPrice(this.data.carts[a].count, r, "", "red");
-            this.data.carts[a].count = i.toFixed(2), this.setData({
+            var e = parseInt(this.data.allnum) - parseInt(this.data.carts[a].shopcarts[s].goodsnum), o = parseFloat(this.data.allcount) - parseFloat(this.data.carts[a].shopcarts[s].currntprice) * this.data.carts[a].shopcarts[s].goodsnum, c = parseFloat(this.data.carts[a].count) - parseFloat(this.data.carts[a].shopcarts[s].currntprice) * this.data.carts[a].shopcarts[s].goodsnum;
+            this.data.carts[a].count = c.toFixed(2), this.setData({
                 carts: this.data.carts,
-                allnum: o,
-                allcount: c.toFixed(2),
-                allselect: e
+                allnum: e,
+                allcount: o.toFixed(2),
+                allselect: r
             });
         } else {
-            r.isselect = !0, this.data.carts[a].goodstypeselect = parseInt(this.data.carts[a].goodstypeselect) + 1, 
+            this.data.carts[a].shopcarts[s].isselect = !0, this.data.carts[a].goodstypeselect = parseInt(this.data.carts[a].goodstypeselect) + 1, 
             0 < this.data.carts[a].goodstypeselect && (this.data.carts[a].isselect = !0);
             var n = 1;
-            for (var d in this.data.carts) {
+            for (var i in this.data.carts) {
                 console.log("in");
-                for (var l = 0; l < this.data.carts[d].shopcarts.length; l++) 0 == this.data.carts[d].shopcarts[l].isselect && (n = 0);
+                for (var d = 0; d < this.data.carts[i].shopcarts.length; d++) 0 == this.data.carts[i].shopcarts[d].isselect && (n = 0);
             }
-            1 == n && (e = !0);
-            o = parseInt(this.data.allnum) + parseInt(r.goodsnum), c = this.calcVipPrice(this.data.allcount, r), 
-            i = this.calcVipPrice(this.data.carts[a].count, r);
-            this.data.carts[a].count = i.toFixed(2), this.setData({
+            1 == n && (r = !0);
+            e = parseInt(this.data.allnum) + parseInt(this.data.carts[a].shopcarts[s].goodsnum), 
+            o = parseFloat(this.data.allcount) + parseFloat(this.data.carts[a].shopcarts[s].currntprice) * this.data.carts[a].shopcarts[s].goodsnum, 
+            c = parseFloat(this.data.carts[a].count) + parseFloat(this.data.carts[a].shopcarts[s].currntprice) * this.data.carts[a].shopcarts[s].goodsnum;
+            this.data.carts[a].count = c.toFixed(2), this.setData({
                 carts: this.data.carts,
-                allnum: o,
-                allcount: c.toFixed(2),
-                allselect: e
+                allnum: e,
+                allcount: o.toFixed(2),
+                allselect: r
             });
         }
         this.go_record();
@@ -250,154 +246,156 @@ Page({
         this.data.carts;
         if (a) {
             a = !1;
-            var s = 0, e = 0;
-            for (var r in this.data.carts) for (var o in this.data.carts[r].count = "0.00", 
-            this.data.carts[r].isselect = !1, this.data.carts[r].goodstypeselect = 0, this.data.carts[r].shopcarts) this.data.carts[r].shopcarts[o].isselect = !1;
+            var s = 0, r = 0;
+            for (var e in this.data.carts) for (var o in this.data.carts[e].count = "0.00", 
+            this.data.carts[e].isselect = !1, this.data.carts[e].goodstypeselect = 0, this.data.carts[e].shopcarts) this.data.carts[e].shopcarts[o].isselect = !1;
             this.setData({
                 carts: this.data.carts,
                 allnum: s,
-                allcount: e.toFixed(2),
+                allcount: r.toFixed(2),
                 allselect: a
             });
         } else {
             a = !0;
-            s = 0, e = 0;
-            for (var r in this.data.carts) {
+            s = 0, r = 0;
+            for (var e in this.data.carts) {
                 var c = 0;
-                this.data.carts[r].isselect = !0;
-                var i = this.data.carts[r].shopcarts;
-                for (var o in this.data.carts[r].goodstypeselect = i.length, i) 1 == i[o].can_buy && (c = this.calcVipPrice(c, i[o]), 
-                s = parseInt(s) + parseInt(this.data.carts[r].shopcarts[o].goodsnum), i[o].isselect = !0);
-                this.data.carts[r].count = c.toFixed(2), e += c;
+                this.data.carts[e].isselect = !0;
+                var n = this.data.carts[e].shopcarts;
+                for (var o in this.data.carts[e].goodstypeselect = n.length, n) 1 == n[o].can_buy && (c += parseFloat(n[o].currntprice) * parseFloat(n[o].goodsnum), 
+                s = parseInt(s) + parseInt(this.data.carts[e].shopcarts[o].goodsnum), n[o].isselect = !0);
+                this.data.carts[e].count = c.toFixed(2), r += c;
             }
             this.setData({
                 carts: this.data.carts,
                 allnum: s,
-                allcount: e.toFixed(2),
+                allcount: r.toFixed(2),
                 allselect: a
             });
         }
         this.go_record();
     },
     regoodsnum: function(t) {
-        var a = parseInt(t.currentTarget.dataset.parentid), s = parseInt(t.currentTarget.dataset.index), e = this.data.updateCart, r = this.data.carts[a].shopcarts[s], o = this;
-        if (1 == r.goodsnum) o.cofirm_del(a, s); else if (1 == r.isselect) {
-            var c = parseInt(this.data.allnum) - 1, i = this.calcVipPrice(o.data.allcount, r, 1, "red"), n = this.calcVipPrice(this.data.carts[a].count, r, 1, "red");
-            o.data.carts[a].count = n.toFixed(2), r.goodsnum = r.goodsnum - 1, this.setData({
+        var a = parseInt(t.currentTarget.dataset.parentid), s = parseInt(t.currentTarget.dataset.index), r = this.data.updateCart, e = this;
+        if (1 == this.data.carts[a].shopcarts[s].goodsnum) e.cofirm_del(a, s); else if (1 == this.data.carts[a].shopcarts[s].isselect) {
+            var o = parseInt(this.data.allnum) - 1, c = parseFloat(this.data.allcount) - parseFloat(this.data.carts[a].shopcarts[s].currntprice), n = parseFloat(this.data.carts[a].count) - parseFloat(this.data.carts[a].shopcarts[s].currntprice);
+            e.data.carts[a].count = n.toFixed(2), this.data.carts[a].shopcarts[s].goodsnum = this.data.carts[a].shopcarts[s].goodsnum - 1, 
+            this.setData({
                 carts: this.data.carts,
-                allnum: c,
-                allcount: i.toFixed(2)
+                allnum: o,
+                allcount: c.toFixed(2)
             });
-        } else r.goodsnum = parseInt(r.goodsnum) - 1, this.setData({
+        } else this.data.carts[a].shopcarts[s].goodsnum = parseInt(this.data.carts[a].shopcarts[s].goodsnum) - 1, 
+        this.setData({
             carts: this.data.carts
         });
-        if ("" == r.goodstype) {
-            var d = 1 * r.goodsnum, l = t.currentTarget.dataset.gid;
-            status.indexListCarCount(l, d), o.setData({
-                updateCart: e + 1
+        if ("" == this.data.carts[a].shopcarts[s].goodstype) {
+            var i = 1 * e.data.carts[a].shopcarts[s].goodsnum, d = t.currentTarget.dataset.gid;
+            status.indexListCarCount(d, i), e.setData({
+                updateCart: r + 1
             });
         }
-        o.go_record();
+        e.go_record();
     },
-    cofirm_del: function(l, u) {
+    cofirm_del: function(d, l) {
         2 < arguments.length && void 0 !== arguments[2] && arguments[2];
-        var h = this, p = this.data.updateCart;
+        var u = this, h = this.data.updateCart;
         wx.showModal({
             title: "提示",
             content: "确定删除这件商品吗？",
-            confirmColor: "#FF0000",
+            confirmColor: "#4facfe",
             success: function(t) {
                 if (t.confirm) {
-                    var a = h.data.carts[l].shopcarts[u];
-                    if ("" == a.goodstype) {
-                        var s = a.id;
-                        status.indexListCarCount(s, 0), h.setData({
-                            updateCart: p + 1
+                    if ("" == u.data.carts[d].shopcarts[l].goodstype) {
+                        var a = u.data.carts[d].shopcarts[l].id;
+                        status.indexListCarCount(a, 0), u.setData({
+                            updateCart: h + 1
                         });
                     }
-                    var e = a.key, r = h.data.reduceNum;
-                    if (1 == a.can_man_jian && (r--, h.setData({
+                    var s = u.data.carts[d].shopcarts[l].key, r = u.data.reduceNum;
+                    if (1 == u.data.carts[d].shopcarts[l].can_man_jian && (r--, u.setData({
                         reduceNum: r
-                    }), console.log(r)), 1 == a.isselect) {
-                        var o = h.data.allnum - 1, c = h.calcVipPrice(h.data.allcount, a, 1, "red"), i = h.calcVipPrice(h.data.carts[l].count, a, 1, "red");
-                        if (h.data.carts[l].count = i.toFixed(2), h.data.carts[l].goodstype = h.data.carts[l].goodstype - 1, 
-                        h.data.carts[l].goodstypeselect = h.data.carts[l].goodstypeselect - 1, 0 == h.data.carts[l].goodstype) {
-                            var n = h.data.carts;
-                            delete n[l], 0 == Object.keys(n).length && h.setData({
+                    }), console.log(r)), 1 == u.data.carts[d].shopcarts[l].isselect) {
+                        var e = u.data.allnum - 1, o = parseFloat(u.data.allcount) - parseFloat(u.data.carts[d].shopcarts[l].currntprice), c = parseFloat(u.data.carts[d].count) - parseFloat(u.data.carts[d].shopcarts[l].currntprice);
+                        if (u.data.carts[d].count = c.toFixed(2), u.data.carts[d].goodstype = u.data.carts[d].goodstype - 1, 
+                        u.data.carts[d].goodstypeselect = u.data.carts[d].goodstypeselect - 1, 0 == u.data.carts[d].goodstype) {
+                            var n = u.data.carts;
+                            delete n[d], 0 == Object.keys(n).length && u.setData({
                                 isEmpty: !0
                             });
-                        } else h.data.carts[l].shopcarts.splice(u, 1), h.isAllSelect();
-                        h.setData({
-                            carts: h.data.carts,
-                            allnum: o,
-                            allcount: c.toFixed(2)
+                        } else u.data.carts[d].shopcarts.splice(l, 1), u.isAllSelect();
+                        u.setData({
+                            carts: u.data.carts,
+                            allnum: e,
+                            allcount: o.toFixed(2)
                         });
                     } else {
-                        if (h.data.carts[l].goodstype = h.data.carts[l].goodstype - 1, 0 == h.data.carts[l].goodstype) {
-                            var d = h.data.carts;
-                            delete d[l], 0 == Object.keys(d).length && h.setData({
+                        if (u.data.carts[d].goodstype = u.data.carts[d].goodstype - 1, 0 == u.data.carts[d].goodstype) {
+                            var i = u.data.carts;
+                            delete i[d], 0 == Object.keys(i).length && u.setData({
                                 isEmpty: !0
                             });
-                        } else h.data.carts[l].shopcarts.splice(u, 1);
-                        h.setData({
-                            carts: h.data.carts
+                        } else u.data.carts[d].shopcarts.splice(l, 1);
+                        u.setData({
+                            carts: u.data.carts
                         });
                     }
-                    h.del_car_goods(e), h.calcAmount();
+                    u.del_car_goods(s), u.calcAmount();
                 } else console.log("取消删除");
             }
         });
     },
     isAllSelect: function() {
-        var t = 1, a = !1, s = this.data.carts, e = 0;
-        for (var r in s) for (var o = 0; o < s[r].shopcarts.length; o++) 1 == s[r].shopcarts[o].can_buy && (e = 1), 
-        0 == s[r].shopcarts[o].isselect && 1 == s[r].shopcarts[o].can_buy && (t = 0);
-        1 == t && 1 == e && (a = !0), this.setData({
+        var t = 1, a = !1, s = this.data.carts, r = 0;
+        for (var e in s) for (var o = 0; o < s[e].shopcarts.length; o++) 1 == s[e].shopcarts[o].can_buy && (r = 1), 
+        0 == s[e].shopcarts[o].isselect && 1 == s[e].shopcarts[o].can_buy && (t = 0);
+        1 == t && 1 == r && (a = !0), this.setData({
             allselect: a
         });
     },
     addgoodsnum: function(o) {
         if (0 != addFlag) {
             addFlag = 0;
-            var c = parseInt(o.currentTarget.dataset.parentid), t = parseInt(o.currentTarget.dataset.index), i = this, n = this.data.carts[c].shopcarts[t], a = parseInt(n.max_quantity);
-            if (1 == n.isselect) {
-                var d = parseInt(this.data.allnum) + 1, s = this.calcVipPrice(this.data.allcount, n, 1), e = this.calcVipPrice(this.data.carts[c].count, n, 1);
-                if (i.data.carts[c].count = e.toFixed(2), !(n.goodsnum < a)) {
-                    n.goodsnum = a, d--;
-                    var r = "最多购买" + a + "个";
+            var c = parseInt(o.currentTarget.dataset.parentid), n = parseInt(o.currentTarget.dataset.index), i = this, t = parseInt(this.data.carts[c].shopcarts[n].max_quantity);
+            if (1 == this.data.carts[c].shopcarts[n].isselect) {
+                var d = parseInt(this.data.allnum) + 1, a = parseFloat(this.data.allcount) + parseFloat(this.data.carts[c].shopcarts[n].currntprice), s = parseFloat(this.data.carts[c].count) + parseFloat(this.data.carts[c].shopcarts[n].currntprice);
+                if (i.data.carts[c].count = s.toFixed(2), !(this.data.carts[c].shopcarts[n].goodsnum < t)) {
+                    this.data.carts[c].shopcarts[n].goodsnum = t, d--;
+                    var r = "最多购买" + t + "个";
                     return wx.showToast({
                         title: r,
                         icon: "none",
                         duration: 2e3
                     }), !1;
                 }
-                n.goodsnum = parseInt(n.goodsnum) + 1, this.setData({
+                this.data.carts[c].shopcarts[n].goodsnum = parseInt(this.data.carts[c].shopcarts[n].goodsnum) + 1, 
+                this.setData({
                     carts: this.data.carts,
                     allnum: d,
-                    allcount: s.toFixed(2)
+                    allcount: a.toFixed(2)
                 });
             } else {
-                if (!(parseInt(n.goodsnum) < a)) {
-                    r = "最多购买" + a + "个";
+                if (!(parseInt(this.data.carts[c].shopcarts[n].goodsnum) < t)) {
+                    r = "最多购买" + t + "个";
                     return wx.showToast({
                         title: r,
                         icon: "none",
                         duration: 2e3
                     }), !1;
                 }
-                n.goodsnum = parseInt(n.goodsnum) + 1;
+                this.data.carts[c].shopcarts[n].goodsnum = parseInt(this.data.carts[c].shopcarts[n].goodsnum) + 1;
             }
-            var l = wx.getStorageSync("token"), u = [], h = [], p = (d = this.data.allnum, this.data.carts);
-            for (var m in p) for (var g in p[m].shopcarts) u.push(p[m].shopcarts[g].key), h.push(p[m].shopcarts[g].key + "_" + p[m].shopcarts[g].goodsnum);
-            var _ = this.data.updateCart || 0;
+            var e = wx.getStorageSync("token"), l = [], u = [], h = (d = this.data.allnum, this.data.carts);
+            for (var p in h) for (var m in h[p].shopcarts) l.push(h[p].shopcarts[m].key), u.push(h[p].shopcarts[m].key + "_" + h[p].shopcarts[m].goodsnum);
+            var g = this.data.updateCart || 0;
             app.util.request({
                 url: "entry/wxapp/index",
                 data: {
                     controller: "car.checkout_flushall",
-                    token: l,
-                    car_key: u,
+                    token: e,
+                    car_key: l,
                     community_id: i.data.community_id,
-                    all_keys_arr: h
+                    all_keys_arr: u
                 },
                 method: "POST",
                 dataType: "json",
@@ -409,18 +407,19 @@ Page({
                             0 == t.code && i.setData({
                                 cartNum: t.data
                             });
-                        }), "" == n.goodstype) {
-                            var a = 1 * n.goodsnum, s = o.currentTarget.dataset.gid;
+                        }), "" == i.data.carts[c].shopcarts[n].goodstype) {
+                            var a = 1 * i.data.carts[c].shopcarts[n].goodsnum, s = o.currentTarget.dataset.gid;
                             status.indexListCarCount(s, a), i.setData({
-                                updateCart: _ + 1
+                                updateCart: g + 1
                             });
                         }
                     } else {
-                        if (n.goodsnum = parseInt(n.goodsnum) - 1, 1 == n.isselect) {
-                            var e = i.calcVipPrice(i.data.allcount, n, 1, "red"), r = i.calcVipPrice(i.data.carts[c].count, n, 1, "red");
-                            i.data.carts[c].count = r.toFixed(2), d--, i.setData({
+                        if (i.data.carts[c].shopcarts[n].goodsnum = parseInt(i.data.carts[c].shopcarts[n].goodsnum) - 1, 
+                        1 == i.data.carts[c].shopcarts[n].isselect) {
+                            var r = parseFloat(i.data.allcount) - parseFloat(i.data.carts[c].shopcarts[n].currntprice), e = parseFloat(i.data.carts[c].count) - parseFloat(i.data.carts[c].shopcarts[n].currntprice);
+                            i.data.carts[c].count = e.toFixed(2), d--, i.setData({
                                 allnum: d,
-                                allcount: e.toFixed(2)
+                                allcount: r.toFixed(2)
                             });
                         }
                         i.setData({
@@ -439,51 +438,51 @@ Page({
     changeNumber: function(t) {
         if (!(Object.keys(this.data.carts).length <= 0)) {
             wx.hideLoading();
-            var e = this, r = parseInt(t.currentTarget.dataset.parentid), o = parseInt(t.currentTarget.dataset.index), a = t.detail.value, c = e.count_goods(r, o), s = this.data.carts[r].shopcarts[o], i = s.goodsnum;
+            var r = this, e = parseInt(t.currentTarget.dataset.parentid), o = parseInt(t.currentTarget.dataset.index), a = t.detail.value, c = r.count_goods(e, o), n = this.data.carts[e].shopcarts[o].goodsnum;
             console.log(a);
-            var n = this.data.updateCart || 0;
+            var i = this.data.updateCart || 0;
             if (0 < a) {
-                var d = parseInt(s.max_quantity);
-                d < a && (a = d, wx.showToast({
+                var s = parseInt(this.data.carts[e].shopcarts[o].max_quantity);
+                s < a && (a = s, wx.showToast({
                     title: "不能购买更多啦",
                     icon: "none"
-                })), s.goodsnum = a, 1 == e.data.carts[r].shopcarts[o].isselect && (c = e.count_goods(r, o)), 
+                })), this.data.carts[e].shopcarts[o].goodsnum = a, 1 == r.data.carts[e].shopcarts[o].isselect && (c = r.count_goods(e, o)), 
                 this.setData({
                     carts: this.data.carts,
                     allnum: c.allnum,
                     allcount: c.allcount
                 });
-                var l = wx.getStorageSync("token"), u = [], h = [], p = (this.data.allnum, this.data.carts);
-                for (var m in p) for (var g in p[m].shopcarts) u.push(p[m].shopcarts[g].key), h.push(p[m].shopcarts[g].key + "_" + p[m].shopcarts[g].goodsnum);
+                var d = wx.getStorageSync("token"), l = [], u = [], h = (this.data.allnum, this.data.carts);
+                for (var p in h) for (var m in h[p].shopcarts) l.push(h[p].shopcarts[m].key), u.push(h[p].shopcarts[m].key + "_" + h[p].shopcarts[m].goodsnum);
                 app.util.request({
                     url: "entry/wxapp/index",
                     data: {
                         controller: "car.checkout_flushall",
-                        token: l,
-                        car_key: u,
-                        community_id: e.data.community_id,
-                        all_keys_arr: h
+                        token: d,
+                        car_key: l,
+                        community_id: r.data.community_id,
+                        all_keys_arr: u
                     },
                     method: "POST",
                     dataType: "json",
                     success: function(t) {
                         if (0 == t.data.code) {
-                            if (e.setData({
-                                carts: e.data.carts
+                            if (r.setData({
+                                carts: r.data.carts
                             }), (0, status.cartNum)("", !0).then(function(t) {
-                                0 == t.code && e.setData({
+                                0 == t.code && r.setData({
                                     cartNum: t.data
                                 });
-                            }), "" == e.data.carts[r].shopcarts[o].goodstype) {
-                                var a = 1 * e.data.carts[r].shopcarts[o].goodsnum, s = e.data.carts[r].shopcarts[o].id;
-                                status.indexListCarCount(s, a), e.setData({
-                                    updateCart: n + 1
+                            }), "" == r.data.carts[e].shopcarts[o].goodstype) {
+                                var a = 1 * r.data.carts[e].shopcarts[o].goodsnum, s = r.data.carts[e].shopcarts[o].id;
+                                status.indexListCarCount(s, a), r.setData({
+                                    updateCart: i + 1
                                 });
                             }
-                            e.go_record();
-                        } else e.data.carts[r].shopcarts[o].goodsnum = i, 1 == e.data.carts[r].shopcarts[o].isselect && (c = e.count_goods(r, o)), 
-                        e.setData({
-                            carts: e.data.carts,
+                            r.go_record();
+                        } else r.data.carts[e].shopcarts[o].goodsnum = n, 1 == r.data.carts[e].shopcarts[o].isselect && (c = r.count_goods(e, o)), 
+                        r.setData({
+                            carts: r.data.carts,
                             allnum: c.allnum,
                             allcount: c.allcount
                         }), wx.showToast({
@@ -494,110 +493,97 @@ Page({
                     }
                 });
             } else {
-                wx.hideLoading(), (this.data.carts[r].shopcarts[o].goodsnum = 1) == e.data.carts[r].shopcarts[o].isselect && (c = e.count_goods(r, o)), 
+                wx.hideLoading(), (this.data.carts[e].shopcarts[o].goodsnum = 1) == r.data.carts[e].shopcarts[o].isselect && (c = r.count_goods(e, o)), 
                 this.setData({
                     carts: this.data.carts,
                     allnum: c.allnum,
                     allcount: c.allcount
                 });
-                l = wx.getStorageSync("token"), u = [], h = [], this.data.allnum, p = this.data.carts;
-                for (var m in p) for (var g in p[m].shopcarts) u.push(p[m].shopcarts[g].key), h.push(p[m].shopcarts[g].key + "_" + p[m].shopcarts[g].goodsnum);
+                d = wx.getStorageSync("token"), l = [], u = [], this.data.allnum, h = this.data.carts;
+                for (var p in h) for (var m in h[p].shopcarts) l.push(h[p].shopcarts[m].key), u.push(h[p].shopcarts[m].key + "_" + h[p].shopcarts[m].goodsnum);
                 app.util.request({
                     url: "entry/wxapp/index",
                     data: {
                         controller: "car.checkout_flushall",
-                        token: l,
-                        car_key: u,
-                        community_id: e.data.community_id,
-                        all_keys_arr: h
+                        token: d,
+                        car_key: l,
+                        community_id: r.data.community_id,
+                        all_keys_arr: u
                     },
                     method: "POST",
                     dataType: "json",
                     success: function(t) {
                         if (0 == t.data.code) {
-                            if (e.setData({
-                                carts: e.data.carts
+                            if (r.setData({
+                                carts: r.data.carts
                             }), (0, status.cartNum)("", !0).then(function(t) {
-                                0 == t.code && e.setData({
+                                0 == t.code && r.setData({
                                     cartNum: t.data
                                 });
-                            }), "" == e.data.carts[r].shopcarts[o].goodstype) {
-                                var a = 1 * e.data.carts[r].shopcarts[o].goodsnum, s = e.data.carts[r].shopcarts[o].id;
-                                status.indexListCarCount(s, a), e.setData({
-                                    updateCart: n + 1
+                            }), "" == r.data.carts[e].shopcarts[o].goodstype) {
+                                var a = 1 * r.data.carts[e].shopcarts[o].goodsnum, s = r.data.carts[e].shopcarts[o].id;
+                                status.indexListCarCount(s, a), r.setData({
+                                    updateCart: i + 1
                                 });
                             }
-                            e.go_record();
+                            r.go_record();
                         }
                     }
-                }), e.cofirm_del(r, o);
+                }), r.cofirm_del(e, o);
             }
         }
     },
     count_goods: function(t, a) {
-        var s = this, e = this.data.carts, r = 0, o = 0, c = !0, i = !1, n = void 0;
-        try {
-            for (var d, l = Object.keys(e)[Symbol.iterator](); !(c = (d = l.next()).done); c = !0) {
-                e[d.value].shopcarts.forEach(function(t, a) {
-                    t.isselect && (o = s.calcVipPrice(o, t), r += parseInt(t.goodsnum));
-                });
-            }
-        } catch (t) {
-            i = !0, n = t;
-        } finally {
-            try {
-                !c && l.return && l.return();
-            } finally {
-                if (i) throw n;
-            }
-        }
-        return {
+        var s = this.data.carts[t], r = 0, e = 0;
+        return s.shopcarts.forEach(function(t, a) {
+            t.isselect && (e += t.currntprice * parseInt(t.goodsnum), r += parseInt(t.goodsnum));
+        }), {
             allnum: r,
-            allcount: o.toFixed(2)
+            allcount: e.toFixed(2)
         };
     },
     delgoods: function(t) {
-        var d = parseInt(t.target.dataset.parentid), l = parseInt(t.target.dataset.index), u = this;
+        var i = parseInt(t.target.dataset.parentid), d = parseInt(t.target.dataset.index), l = this;
         wx.showModal({
             title: "提示",
             content: "确定删除这件商品吗？",
-            confirmColor: "#FF0000",
+            confirmColor: "#4facfe",
             success: function(t) {
                 if (t.confirm) {
-                    var a = u.data.carts[d].shopcarts[l], s = a.key;
-                    if (1 == a.isselect) {
-                        var e = parseInt(u.data.allnum) - parseInt(a.goodsnum), r = u.calcVipPrice(u.data.allcount, a, 1, "red"), o = u.calcVipPrice(u.data.carts[d].count, a, 1, "red");
-                        u.data.carts[d].count = o.toFixed(2), u.data.carts[d].goodstype = u.data.carts[d].goodstype - 1, 
-                        u.data.carts[d].goodstypeselect = u.data.carts[d].goodstypeselect - 1, 0 == u.data.carts[d].goodstype && console.log(d), 
-                        u.data.carts[d].shopcarts.splice(l, 1);
-                        for (var c = 0, i = 0; i < u.data.carts.length; i++) for (var n = 0; n < u.data.carts[i].shopcarts.length; n++) c += u.data.carts[i].shopcarts[n].goodsnum;
-                        e == c && (u.data.allselect = !0), u.setData({
-                            carts: u.data.carts,
-                            allnum: e,
+                    var a = l.data.carts[i].shopcarts[d].key;
+                    if (1 == l.data.carts[i].shopcarts[d].isselect) {
+                        var s = parseInt(l.data.allnum) - parseInt(l.data.carts[i].shopcarts[d].goodsnum), r = parseFloat(l.data.allcount) - parseFloat(l.data.carts[i].shopcarts[d].currntprice) * l.data.carts[i].shopcarts[d].goodsnum, e = parseFloat(l.data.carts[i].count) - parseFloat(l.data.carts[i].shopcarts[d].currntprice) * l.data.carts[i].shopcarts[d].goodsnum;
+                        l.data.carts[i].count = e.toFixed(2), l.data.carts[i].goodstype = l.data.carts[i].goodstype - 1, 
+                        l.data.carts[i].goodstypeselect = l.data.carts[i].goodstypeselect - 1, 0 == l.data.carts[i].goodstype && console.log(i), 
+                        l.data.carts[i].shopcarts.splice(d, 1);
+                        for (var o = 0, c = 0; c < l.data.carts.length; c++) for (var n = 0; n < l.data.carts[c].shopcarts.length; n++) o += l.data.carts[c].shopcarts[n].goodsnum;
+                        s == o && (l.data.allselect = !0), l.setData({
+                            carts: l.data.carts,
+                            allnum: s,
                             allcount: r.toFixed(2),
-                            allselect: u.data.allselect
+                            allselect: l.data.allselect
                         });
                     } else {
-                        u.data.carts[d].goodstype = u.data.carts[d].goodstype - 1, u.data.carts[d].goodstype, 
-                        u.data.carts[d].shopcarts.splice(l, 1);
-                        for (c = 0, i = 0; i < u.data.carts.length; i++) for (n = 0; n < u.data.carts[i].shopcarts.length; n++) c += u.data.carts[i].shopcarts[n].goodsnum;
-                        u.data.allnum == c && (u.data.allselect = !0), u.setData({
-                            carts: u.data.carts,
-                            allselect: u.data.allselect
+                        l.data.carts[i].goodstype = l.data.carts[i].goodstype - 1, l.data.carts[i].goodstype, 
+                        l.data.carts[i].shopcarts.splice(d, 1);
+                        for (o = 0, c = 0; c < l.data.carts.length; c++) for (n = 0; n < l.data.carts[c].shopcarts.length; n++) o += l.data.carts[c].shopcarts[n].goodsnum;
+                        l.data.allnum == o && (l.data.allselect = !0), l.setData({
+                            carts: l.data.carts,
+                            allselect: l.data.allselect
                         });
                     }
-                    0 == u.data.carts[d].shopcarts.length && (delete u.data.carts[d], 0 == Object.keys(u.data.carts).length && u.setData({
+                    0 == l.data.carts[i].shopcarts.length && (delete l.data.carts[i], 0 == Object.keys(l.data.carts).length && l.setData({
                         carts: []
-                    })), u.del_car_goods(s);
+                    })), l.del_car_goods(a);
                 }
             }
         }), this.go_record();
     },
     del_car_goods: function(t) {
-        var a = wx.getStorageSync("token"), s = this, e = this.data.updateCart;
+        var a = wx.getStorageSync("token"), s = this, r = this.data.updateCart;
         console.log("del_car_goods:开始");
-        var r = wx.getStorageSync("community").communityId;
-        console.log("缓存中的：" + r), console.log("使用中的：" + s.data.community_id), app.util.request({
+        var e = wx.getStorageSync("community").communityId;
+        console.log("缓存中的：" + e), console.log("使用中的：" + s.data.community_id), app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "car.del_car_goods",
@@ -611,24 +597,24 @@ Page({
                 0 == t.data.code && (0, status.cartNum)("", !0).then(function(t) {
                     0 == t.code && s.setData({
                         cartNum: t.data,
-                        updateCart: e + 1
+                        updateCart: r + 1
                     });
                 });
             }
         });
     },
     delete: function(t) {
-        var e = parseInt(t.currentTarget.dataset.parentid), r = parseInt(t.currentTarget.dataset.index), o = this;
+        var r = parseInt(t.currentTarget.dataset.parentid), e = parseInt(t.currentTarget.dataset.index), o = this;
         wx.showModal({
             title: "提示",
             content: "确认删除这件商品吗？",
-            confirmColor: "#FF0000",
+            confirmColor: "#4facfe",
             success: function(t) {
                 if (t.confirm) {
-                    var a = o.data.carts, s = a[e].shopcarts[r].key;
-                    a[e].shopcarts.splice(r, 1), o.setData({
+                    var a = o.data.carts, s = a[r].shopcarts[e].key;
+                    a[r].shopcarts.splice(e, 1), o.setData({
                         carts: a
-                    }), 0 == a[e].shopcarts.length && (delete a[e], 0 == Object.keys(a).length && o.setData({
+                    }), 0 == a[r].shopcarts.length && (delete a[r], 0 == Object.keys(a).length && o.setData({
                         carts: {}
                     })), o.del_car_goods(s);
                 }
@@ -640,7 +626,7 @@ Page({
         wx.showModal({
             title: "提示",
             content: "确认清空失效商品吗？",
-            confirmColor: "#FF0000",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm && a.setData({
                     loselist: []
@@ -649,10 +635,10 @@ Page({
         });
     },
     go_record: function() {
-        var a = this, t = wx.getStorageSync("token"), s = [], e = [], r = (this.data.allnum, 
+        var a = this, t = wx.getStorageSync("token"), s = [], r = [], e = (this.data.allnum, 
         this.data.carts);
-        for (var o in r) for (var c in r[o].shopcarts) r[o].shopcarts[c].isselect && s.push(r[o].shopcarts[c].key), 
-        e.push(r[o].shopcarts[c].key + "_" + r[o].shopcarts[c].goodsnum);
+        for (var o in e) for (var c in e[o].shopcarts) e[o].shopcarts[c].isselect && s.push(e[o].shopcarts[c].key), 
+        r.push(e[o].shopcarts[c].key + "_" + e[o].shopcarts[c].goodsnum);
         app.util.request({
             url: "entry/wxapp/index",
             data: {
@@ -660,7 +646,7 @@ Page({
                 token: t,
                 car_key: s,
                 community_id: a.data.community_id,
-                all_keys_arr: e
+                all_keys_arr: r
             },
             method: "POST",
             dataType: "json",
@@ -680,9 +666,9 @@ Page({
     toorder: function() {
         var t = wx.getStorageSync("token"), a = [], s = [];
         if (0 < this.data.allnum) {
-            var e = this.data.carts;
-            for (var r in e) for (var o in e[r].shopcarts) e[r].shopcarts[o].isselect && a.push(e[r].shopcarts[o].key), 
-            s.push(e[r].shopcarts[o].key + "_" + e[r].shopcarts[o].goodsnum);
+            var r = this.data.carts;
+            for (var e in r) for (var o in r[e].shopcarts) r[e].shopcarts[o].isselect && a.push(r[e].shopcarts[o].key), 
+            s.push(r[e].shopcarts[o].key + "_" + r[e].shopcarts[o].goodsnum);
             app.util.request({
                 url: "entry/wxapp/index",
                 data: {
@@ -710,7 +696,7 @@ Page({
         } else wx.showModal({
             title: "提示",
             content: "请选择您要购买的商品",
-            confirmColor: "#FF0000",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm;
             }
@@ -722,52 +708,48 @@ Page({
         });
     },
     calcAmount: function() {
-        var t = this.data, r = t.is_open_vipcard_buy, o = t.is_vip_card_member, c = t.carts, i = t.delivery_tuanz_money, n = t.man_free_tuanzshipping, a = t.vipcard_save_money, s = 0, e = 0, d = 0, l = Object.getOwnPropertyNames(c), u = [], h = 0, p = 0;
-        l.forEach(function(t, a) {
-            var s = c[t];
+        var e = this.data.carts, t = 0, a = 0, s = 0, r = Object.getOwnPropertyNames(e), o = [], c = 0, n = 0, i = 0, d = this.data, l = d.delivery_tuanz_money, u = d.man_free_tuanzshipping;
+        r.forEach(function(t, a) {
+            var s = e[t];
             if (0 == (s.is_open_fullreduction || 0)) return !1;
-            var e = s.shopcarts;
-            h = 1 * s.full_money, p = 1 * s.full_reducemoney, e.forEach(function(t) {
-                t.isselect && t.can_man_jian && u.push(t), t.isselect && 0 < n && 0 < i && (1 == r && 1 == o && 1 == t.is_take_vipcard ? m += t.card_price * t.goodsnum * 1 : m += t.currntprice * t.goodsnum * 1);
+            var r = s.shopcarts;
+            c = 1 * s.full_money, n = 1 * s.full_reducemoney, r.forEach(function(t) {
+                t.isselect && t.can_man_jian && o.push(t), t.isselect && 0 < u && 0 < l && (i += t.currntprice * t.goodsnum * 1);
             });
         });
-        var m = 0;
-        u.forEach(function(t) {
-            t.isselect && t.can_man_jian && (1 == r && 1 == o && 1 == t.is_take_vipcard ? m += t.card_price * t.goodsnum * 1 : m += t.currntprice * t.goodsnum * 1);
-        }), h <= m ? e += p : d = h - m, console.log("deliveryGoodsTot", 0);
-        var g = 0;
-        0 < 1 * n && (g = 1 * n - 0), s = (1 * this.data.allcount - e).toFixed(2), 1 == r && 1 == o && (s = (s - 1 * a).toFixed(2));
-        var _ = 1 * (s = s <= 0 ? 0 : s) - this.data.man_orderbuy_money;
-        console.log(s), this.setData({
-            totalAmount: s,
-            disAmount: e.toFixed(2),
-            diffMoney: d.toFixed(2),
-            canbuy_other: _.toFixed(2),
-            diffDeliveryMoney: g.toFixed(2)
+        var h = 0;
+        o.forEach(function(t) {
+            t.isselect && t.can_man_jian && (h += t.currntprice * t.goodsnum * 1);
+        }), c <= h ? a += n : s = c - h, console.log("deliveryGoodsTot", i);
+        var p = 0;
+        i < 1 * u && (p = 1 * u - i);
+        var m = 1 * (t = (t = (1 * this.data.allcount - a).toFixed(2)) <= 0 ? 0 : t) - this.data.man_orderbuy_money;
+        this.setData({
+            totalAmount: t,
+            disAmount: a.toFixed(2),
+            diffMoney: s.toFixed(2),
+            canbuy_other: m.toFixed(2),
+            diffDeliveryMoney: p.toFixed(2)
         });
     },
-    calcVipPrice: function(t, a) {
-        var s = 2 < arguments.length && void 0 !== arguments[2] ? arguments[2] : 0, e = 3 < arguments.length && void 0 !== arguments[3] ? arguments[3] : "add", r = this.data, o = r.is_open_vipcard_buy, c = r.is_vip_card_member, i = 0 < s ? s : parseFloat(a.goodsnum);
-        return "red" === e && (i *= -1), t = parseFloat(t), 1 == o && 1 == c && 1 == a.is_take_vipcard ? t + parseFloat(a.card_price) * i : t + parseFloat(a.currntprice) * i;
-    },
     openSku: function(t) {
-        var a = t.detail, s = a.actId, e = a.skuList;
+        var a = t.detail, s = a.actId, r = a.skuList;
         this.setData({
             addCar_goodsid: s
         });
-        var r = e.list || [], o = [];
-        if (0 < r.length) {
-            for (var c = 0; c < r.length; c++) {
-                var i = r[c].option_value[0], n = {
-                    name: i.name,
-                    id: i.option_value_id,
+        var e = r.list || [], o = [];
+        if (0 < e.length) {
+            for (var c = 0; c < e.length; c++) {
+                var n = e[c].option_value[0], i = {
+                    name: n.name,
+                    id: n.option_value_id,
                     index: c,
                     idx: 0
                 };
-                o.push(n);
+                o.push(i);
             }
             for (var d = "", l = 0; l < o.length; l++) l == o.length - 1 ? d += o[l].id : d = d + o[l].id + "_";
-            var u = e.sku_mu_list[d];
+            var u = r.sku_mu_list[d];
             this.setData({
                 sku: o,
                 sku_val: 1,
@@ -796,18 +778,18 @@ Page({
         wx.showLoading(), a.collectFormIds(t.detail.formId), this.goOrder();
     },
     goOrder: function() {
-        var e = this;
-        e.data.can_car && (e.data.can_car = !1);
-        var t = wx.getStorageSync("token"), a = wx.getStorageSync("community"), r = e.data.addCar_goodsid, s = a.communityId, o = e.data.sku_val, c = e.data.cur_sku_arr, i = "", n = e.data.updateCart;
-        c && c.option_item_ids && (i = c.option_item_ids), app.util.request({
+        var r = this;
+        r.data.can_car && (r.data.can_car = !1);
+        var t = wx.getStorageSync("token"), a = wx.getStorageSync("community"), e = r.data.addCar_goodsid, s = a.communityId, o = r.data.sku_val, c = r.data.cur_sku_arr, n = "", i = r.data.updateCart;
+        c && c.option_item_ids && (n = c.option_item_ids), app.util.request({
             url: "entry/wxapp/user",
             data: {
                 controller: "car.add",
                 token: t,
-                goods_id: r,
+                goods_id: e,
                 community_id: s,
                 quantity: o,
-                sku_str: i,
+                sku_str: n,
                 buy_type: "dan",
                 pin_id: 0,
                 is_just_addcar: 1
@@ -823,16 +805,16 @@ Page({
                     title: "您未登录",
                     duration: 2e3,
                     success: function() {
-                        e.setData({
+                        r.setData({
                             needAuth: !0,
                             isEmpty: !0
                         });
                     }
                 }); else if (6 == t.data.code) {
                     var a = t.data.max_quantity || "";
-                    0 < a && e.setData({
+                    0 < a && r.setData({
                         sku_val: a,
-                        updateCart: n + 1
+                        updateCart: i + 1
                     });
                     var s = t.data.msg;
                     wx.showToast({
@@ -840,10 +822,10 @@ Page({
                         icon: "none",
                         duration: 2e3
                     });
-                } else e.closeSku(), e.showCartGoods(), status.indexListCarCount(r, t.data.cur_count), 
-                (0, status.cartNum)(t.data.total), e.setData({
+                } else r.closeSku(), r.showCartGoods(), status.indexListCarCount(e, t.data.cur_count), 
+                (0, status.cartNum)(t.data.total), r.setData({
                     cartNum: t.data.total,
-                    updateCart: n + 1
+                    updateCart: i + 1
                 }), wx.showToast({
                     title: "已加入购物车",
                     image: "../../images/addShopCart.png"
@@ -852,26 +834,26 @@ Page({
         });
     },
     selectSku: function(t) {
-        var a = t.currentTarget.dataset.type.split("_"), s = this.data.sku, e = {
+        var a = t.currentTarget.dataset.type.split("_"), s = this.data.sku, r = {
             name: a[3],
             id: a[2],
             index: a[0],
             idx: a[1]
         };
-        s.splice(a[0], 1, e), this.setData({
+        s.splice(a[0], 1, r), this.setData({
             sku: s
         });
-        for (var r = "", o = 0; o < s.length; o++) o == s.length - 1 ? r += s[o].id : r = r + s[o].id + "_";
-        var c = this.data.skuList.sku_mu_list[r];
+        for (var e = "", o = 0; o < s.length; o++) o == s.length - 1 ? e += s[o].id : e = e + s[o].id + "_";
+        var c = this.data.skuList.sku_mu_list[e];
         this.setData({
             cur_sku_arr: c
         });
     },
     setNum: function(t) {
-        var a = t.currentTarget.dataset.type, s = 1, e = 1 * this.data.sku_val;
-        "add" == a ? s = e + 1 : "decrease" == a && 1 < e && (s = e - 1);
-        var r = this.data.sku, o = this.data.skuList;
-        if (0 < r.length) for (var c = "", i = 0; i < r.length; i++) i == r.length - 1 ? c += r[i].id : c = c + r[i].id + "_";
+        var a = t.currentTarget.dataset.type, s = 1, r = 1 * this.data.sku_val;
+        "add" == a ? s = r + 1 : "decrease" == a && 1 < r && (s = r - 1);
+        var e = this.data.sku, o = this.data.skuList;
+        if (0 < e.length) for (var c = "", n = 0; n < e.length; n++) n == e.length - 1 ? c += e[n].id : c = c + e[n].id + "_";
         0 < o.length ? s > o.sku_mu_list[c].canBuyNum && (s -= 1) : s > this.data.cur_sku_arr.canBuyNum && (s -= 1);
         this.setData({
             sku_val: s
@@ -891,14 +873,14 @@ Page({
         });
     },
     changeTabs: function(t) {
-        var a = this, s = t.currentTarget.dataset.idx || 0, e = this.data, r = e.tabIdx, o = e.carts, c = e.mult_carts;
-        if (r != s) {
-            c[r] = o, o = c[s];
-            var i = !0;
-            0 != Object.keys(o).length && (i = !1), this.setData({
+        var a = this, s = t.currentTarget.dataset.idx || 0, r = this.data, e = r.tabIdx, o = r.carts, c = r.mult_carts;
+        if (e != s) {
+            c[e] = o, o = c[s];
+            var n = !0;
+            0 != Object.keys(o).length && (n = !1), this.setData({
                 tabIdx: s,
                 mult_carts: c,
-                isEmpty: i,
+                isEmpty: n,
                 carts: o
             }, function() {
                 a.xuan_func();

@@ -89,7 +89,7 @@
 
 .list .listData .list-tit .num {
     font-size: 32rpx;
-    color: #ff5344;
+    color: #4facfe;
     font-weight: bold;
 }
 

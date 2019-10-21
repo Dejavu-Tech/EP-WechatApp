@@ -46,16 +46,10 @@ Page({
             },
             dataType: "json",
             success: function(t) {
-                if (wx.stopPullDownRefresh(), wx.hideLoading(), 1 == s.page) {
-                    var a = t.data.supply_diy_name || "供应商";
-                    wx.setNavigationBarTitle({
-                        title: a + "列表"
-                    });
-                }
-                if (0 == t.data.code) {
-                    var e = s.data.supplyList.concat(t.data.data);
+                if (wx.stopPullDownRefresh(), wx.hideLoading(), 0 == t.data.code) {
+                    var a = s.data.supplyList.concat(t.data.data);
                     s.setData({
-                        supplyList: e
+                        supplyList: a
                     });
                 } else s.setData({
                     noMore: !0
@@ -81,12 +75,12 @@ Page({
     },
     openSku: function(t) {
         if (this.authModal()) {
-            var a = t.currentTarget.dataset.shopidx, e = this.data.supplyList[a].goods_list || [];
+            var a = t.currentTarget.dataset.shopidx, s = this.data.supplyList[a].goods_list || [];
             this.setData({
-                list: e
+                list: s
             });
-            var s = this, i = e[t.currentTarget.dataset.idx], n = i.actId, o = i.skuList;
-            s.setData({
+            var e = this, i = s[t.currentTarget.dataset.idx], n = i.actId, o = i.skuList;
+            e.setData({
                 addCar_goodsid: n
             });
             var u = o.list || [], r = [];
@@ -102,7 +96,7 @@ Page({
                 }
                 for (var h = "", c = 0; c < r.length; c++) c == r.length - 1 ? h += r[c].id : h = h + r[c].id + "_";
                 var g = o.sku_mu_list[h];
-                s.setData({
+                e.setData({
                     sku: r,
                     sku_val: 1,
                     cur_sku_arr: g,
@@ -112,7 +106,7 @@ Page({
                 });
             } else {
                 var f = i;
-                s.setData({
+                e.setData({
                     sku: [],
                     sku_val: 1,
                     skuList: [],
@@ -123,7 +117,7 @@ Page({
                         formId: ""
                     }
                 };
-                v.detail.formId = "the formId is a mock one", s.gocarfrom(v);
+                v.detail.formId = "the formId is a mock one", e.gocarfrom(v);
             }
         }
     },

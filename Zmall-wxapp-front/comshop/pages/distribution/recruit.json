@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "会员分销",
+    "usingComponents": {
+        "i-auth": "../../components/auth/index"
+    }
+}

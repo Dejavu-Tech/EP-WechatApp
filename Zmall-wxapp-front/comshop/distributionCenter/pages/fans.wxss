@@ -27,7 +27,7 @@
 }
 
 .search text {
-    color: #ff673f;
+    color: #4facfe;
     margin-left: 28rpx;
 }
 
@@ -44,7 +44,7 @@
 
 .date .date-value {
     margin-left: 12rpx;
-    color: #ff673f;
+    color: #4facfe;
 }
 
 .date .icon-date {
@@ -62,7 +62,7 @@
 .date .icon-clear {
     height: 32rpx;
     float: right;
-    color: #ff673f;
+    color: #4facfe;
     margin: 0 28rpx 0 0;
     font-size: 24rpx;
 }

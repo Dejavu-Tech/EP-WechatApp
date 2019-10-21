@@ -4,6 +4,6 @@
         <view class="wxParse">
             <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
         </view>
-        <navigator class="apply-btn" hoverClass="none" url="/lionfish_comshop/pages/supply/apply">申请成为{{supply_diy_name}}</navigator>
+        <navigator class="apply-btn" hoverClass="none" url="/lionfish_comshop/pages/supply/apply">申请成为供应商</navigator>
     </view>
 </view>

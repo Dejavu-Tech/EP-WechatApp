@@ -8,21 +8,18 @@
                 <view class="user-name">
                     <text>{{community_info.head_name}}</text>
                     <view bindtap="goEdit" class="edit-name">
-                        <text class="iconfont icon-edit"></text>
+                        <image class="icon-edit" src="../../images/icon-edit.png"></image>
                         <text>编辑</text>
                     </view>
                 </view>
                 <view class="userId">
                     <text>ID：{{community_info.re_id}}</text>
                     <view bindtap="goScan" class="scan-code">
-                        <text class="iconfont icon-erweima icon-scan"></text>
+                        <image class="icon-scan" src="../../images/scan.png"></image>
                     </view>
                 </view>
-                <view bindtap="changeMycommunion" class="address">
-          绑定{{groupInfo.group_name}}：{{community_info.community_name}}<text class="iconfont icon-youjiantou"></text>
-                </view>
-                <view class="address" wx:if="{{community_info.is_show_head_level}}">
-                    <text>{{groupInfo.owner_name}}等级：{{community_info.head_level_info.levelname}}(分佣比例:{{community_info.head_level_info.commission}}%)</text>
+                <view class="address">
+                    <text>绑定{{groupInfo.group_name}}：{{community_info.community_name}}</text>
                 </view>
             </view>
         </view>
@@ -148,7 +145,7 @@
                 </navigator>
                 <navigator hoverClass="none" url="/lionfish_comshop/pages/groupCenter/distributionList">
                     <view class="recordList">
-                        <text class="recordListTit">结算记录</text>
+                        <text class="recordListTit">分销记录</text>
                         <image class="rightArrowImg" src="../../images/rightArrowImg.png"></image>
                     </view>
                 </navigator>
@@ -178,11 +175,17 @@
                 </navigator>
                 <navigator hoverClass="none" url="/lionfish_comshop/pages/groupCenter/gruopInfo" wx:if="{{open_community_head_leve>0}}">
                     <view class="recordList borNone">
-                        <text class="recordListTit">{{groupInfo.owner_name}}{{commiss_diy_name}}</text>
+                        <text class="recordListTit">{{groupInfo.owner_name}}分销</text>
                         <image class="rightArrowImg" src="../../images/rightArrowImg.png"></image>
                     </view>
                 </navigator>
             </view>
+            <navigator class="distributionInstr" hoverClass="none" style="display:none;" url="/lionfish_comshop/pages/groupCenter/distributionInstruct">
+                <view class="disInstr">
+                    <image class="distributionInstrIcon" src="../../images/question.png"></image>
+                    <text>分销说明</text>
+                </view>
+            </navigator>
         </view>
     </view>
     <view bindtap="confirmMessage" class="hide-dialog" wx:if="{{dialogShow}}"></view>

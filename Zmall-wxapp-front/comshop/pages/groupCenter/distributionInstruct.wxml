@@ -1,0 +1,13 @@
+<view class="instruction">
+    <image class="headImg" src="https://image.songshupinpin.com/goods_1537947662398.png"></image>
+    <view class="content">
+        <image class="imgOne" src="https://image.songshupinpin.com/goods_1537947697373.png"></image>
+        <image class="imgTwo" src="https://image.songshupinpin.com/goods_1537949030325.png"></image>
+        <image class="imgThree" src="https://image.songshupinpin.com/goods_1539153212507.png"></image>
+        <image class="imgFour" src="https://image.songshupinpin.com/goods_1539153272355.png"></image>
+        <image class="imgFive" src="https://image.songshupinpin.com/goods_1539153289505.png"></image>
+        <image class="imgSix" src="https://image.songshupinpin.com/goods_1537949448700.png"></image>
+        <image class="imgSeven" src="https://image.songshupinpin.com/goods_1539153308290.png"></image>
+        <image class="imgEight" src="https://image.songshupinpin.com/goods_1537949474130.png"></image>
+    </view>
+</view>

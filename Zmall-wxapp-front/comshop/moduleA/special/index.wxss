@@ -55,7 +55,7 @@
     color: #fff;
     border-radius: 22rpx;
     margin: 0;
-    background: linear-gradient(270deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(270deg,#4facfe 0%,#00f2fe 100%);
     font-size: 24rpx;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .new-comers-item .price {
-    color: #ff5041;
+    color: #ff758c;
 }
 
 .new-comers-item {
@@ -313,7 +313,7 @@
 }
 
 .spu .spu-content .item-bottom .spu-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
 }
 
@@ -347,7 +347,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ff5344;
+    background: #4facfe;
     color: #fff;
     border-radius: 30rpx;
 }
@@ -389,12 +389,12 @@
 }
 
 .spu .item-top .spu-active .tag-green {
-    background: linear-gradient(to left,#46c8d0,#29ba9a);
+    background: linear-gradient(100deg,#4facfe 0%,#00f2fe 100%);
 }
 
 .spu .spu-content .time-tip {
     position: absolute;
-    background: #ff5344;
+    background: #4facfe;
     left: 0;
     bottom: 0;
     width: 250rpx;

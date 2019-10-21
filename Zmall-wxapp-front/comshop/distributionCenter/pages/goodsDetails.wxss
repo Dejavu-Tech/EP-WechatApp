@@ -1,5 +1,5 @@
 .zr {
-    background: #fe8464;
+    background: #00f2fe;
     width: 100%;
     height: 130px;
     position: relative;
@@ -103,13 +103,13 @@
     bottom: 0;
     height: 6rpx;
     width: 100%;
-    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
-    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0,89,255,0.25);
     border-radius: 24rpx;
 }
 
 .nav .on {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .swiper-box {
@@ -153,7 +153,7 @@
 .swiper-box .noRecordCon .goIndex {
     width: 164rpx;
     height: 60rpx;
-    background: #ff3432;
+    background: #4facfe;
     border-radius: 30rpx;
     font-size: 28rpx;
     color: #fff;
@@ -176,8 +176,8 @@
 }
 
 .distributionList .on {
-    color: #fe8464;
-    border-bottom: 4rpx solid #fe8464;
+    color: #00f2fe;
+    border-bottom: 4rpx solid #00f2fe;
     margin: 0;
 }
 
@@ -220,13 +220,14 @@
 }
 
 .spu .goodsImg {
-    width: 140rpx;
-    height: 140rpx;
+    width: 120rpx;
+    height: 120rpx;
+    margin-right: 20rpx;
 }
 
 .spu .goodsImg .img-class {
-    width: 140rpx;
-    height: 140rpx;
+    width: 120rpx;
+    height: 120rpx;
 }
 
 .spu .detail {
@@ -254,7 +255,7 @@
 }
 
 .spu .detail .tips .price {
-    color: #ff5344;
+    color: #ff758c;
     font-size: 32rpx;
 }
 
@@ -273,7 +274,7 @@
 }
 
 .item-head .status {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .list-item .line {

@@ -1,0 +1,118 @@
+.promotion {
+    box-sizing: border-box;
+    height: 126rpx;
+    padding: 0 20rpx 20rpx;
+    background-color: #fff;
+}
+
+.promotion .head {
+    font-size: 24rpx;
+    color: #999;
+    margin-bottom: 16rpx;
+}
+
+.promotion .slider {
+    position: relative;
+    overflow: hidden;
+}
+
+.promotion .slider-wraper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    overflow-y: auto;
+}
+
+.promotion .list {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.promotion .list-item {
+    margin-right: 10rpx;
+}
+
+.promotion .list-item:last-child {
+    margin-right: 0px;
+}
+
+.promotion .card-content {
+    height: 106rpx;
+    border-radius: 3rpx;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(https://wxapp.ch871.com/Common/image/117603130_6i5767h706g683dj35febbc2c37a4_176x116.png);
+}
+
+.promotion .card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    border-radius: 4rpx;
+    height: 88rpx;
+    width: 180rpx;
+    padding: 8rpx;
+}
+
+.promotion .card-price {
+    flex-flow: row nowrap;
+    align-items: flex-start;
+}
+
+.promotion .card-price--unit,.card-price {
+    display: flex;
+}
+
+.promotion .card-price--unit {
+    font-size: 18rpx;
+}
+
+.promotion .card-price--num {
+    font-size: 48rpx;
+    line-height: 48rpx;
+}
+
+.promotion .card-desc,.card-price--num {
+    display: flex;
+}
+
+.promotion .card-desc {
+    font-size: 20rpx;
+}
+
+.promotion .card-tag {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 64rpx;
+    height: 64rpx;
+    position: absolute;
+    bottom: -16rpx;
+    right: -10rpx;
+    transform: rotate(-20deg);
+    border: 1px solid #666;
+    border-radius: 50%;
+}
+
+.promotion .card-tag--text {
+    font-size: 20rpx;
+    color: #666;
+    margin-bottom: 10rpx;
+    text-align: center;
+}
+
+.promotion .card-tag--get {
+    display: flex;
+}
+
+.promotion .card-content.get {
+    background-image: none;
+    background-color: #c7c7c7;
+}

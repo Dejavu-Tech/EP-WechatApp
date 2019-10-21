@@ -78,5 +78,5 @@
 .options-card .btns .confirm {
     flex: 1;
     color: #fff;
-    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
 }

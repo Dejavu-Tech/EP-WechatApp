@@ -62,7 +62,6 @@
 }
 
 .spu .spu-content .item-right {
-    flex: 1;
     box-sizing: border-box;
     margin-left: 24rpx;
     display: flex;
@@ -74,6 +73,7 @@
     color: #222;
     font-size: 30rpx;
     height: 32rpx;
+    width: 350rpx;
     margin-bottom: 12rpx;
     margin-top: 10rpx;
     font-weight: 500;
@@ -143,7 +143,7 @@
 }
 
 .spu .spu-content .item-right .spu-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
 }
 
@@ -188,7 +188,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(to right,#ff5041,#ff994b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     border-radius: 0 14rpx 14rpx 0;
     padding: 0 12rpx;
     height: 30rpx;

@@ -3,7 +3,7 @@
         <view class="search-box">
             <input bindconfirm="goResult" class="ipt" confirmType="搜索" placeholder="搜索商品" type="text"></input>
             <view class="search-icon">
-                <text class="iconfont icon-sousuo1"></text>
+                <image src="../../images/search.png"></image>
             </view>
         </view>
     </view>
@@ -36,7 +36,7 @@
             </view>
             <view style="min-height: {{scrollViewHeight+50}}px;">
                 <block wx:if="{{!pageEmpty}}">
-                    <i-type-item bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:openSku="openSku" changeCarCount="{{changeCarCount}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" needAuth="{{needAuth}}" reduction="{{reduction}}" spuItem="{{item}}" stopClick="{{stopClick}}" wx:for="{{rushList}}" wx:key="{{item.actId}}"></i-type-item>
+                    <i-type-item bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:openSku="openSku" changeCarCount="{{changeCarCount}}" needAuth="{{needAuth}}" reduction="{{reduction}}" spuItem="{{item}}" stopClick="{{stopClick}}" wx:for="{{rushList}}" wx:key="{{item.actId}}"></i-type-item>
                 </block>
                 <view class="none-rush-list" wx:elif="{{pageEmpty}}">
                     <image class="img-block" src="../../images/icon-index-empty.png"></image>
@@ -110,4 +110,16 @@
         </form>
     </view>
 </view>
-<i-change-community bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" changeCommunity="{{changeCommunity}}" community="{{community}}" groupInfo="{{groupInfo}}" visible="{{showChangeCommunity}}"></i-change-community>
+<i-modal scrollUp="{{false}}" visible="{{showChangeCommunity}}">
+    <view class="community-content">
+        <view class="community-content-title">
+      温馨提示
+      <image bindtap="closeChangeCommunity" src="../../images/closePoster.png"></image>
+        </view>
+        <view class="community-content-tip">参加“
+      <text style="font-weight:bold;">{{changeCommunity.communityName}}</text>” ({{changeCommunity.fullAddress}}),敬请光临
+      <text bindtap="goSelectCommunity" class="community-content-change">切换{{groupInfo.group_name}}</text>
+        </view>
+        <i-button bindtap="confrimChangeCommunity" class="community-content-btn" iClass="btn">确认无误，前往购物</i-button>
+    </view>
+</i-modal>

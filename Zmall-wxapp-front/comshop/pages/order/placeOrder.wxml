@@ -72,7 +72,6 @@
                   <text wx:for="{{item.option}}" wx:for-item="option" wx:key="key">{{option.value}}；</text>
                             </view>
                             <view class="original-price">¥{{item.price}} ×{{item.quantity}}</view>
-                            <i-vip-price price="{{item.card_price}}" wx:if="{{is_open_vipcard_buy==1&&item.is_take_vipcard==1}}"></i-vip-price>
                             <view class="sku-price">小计：
                   <span>¥{{item.total}}</span>
                             </view>
@@ -85,10 +84,6 @@
             </i-card>
         </view>
         <view class="act-content">
-            <view class="cell" wx:if="{{is_vip_card_member==1&&is_open_vipcard_buy==1&&vipcard_save_money>0}}">
-                <span>会员</span>
-                <em>- ¥ {{vipcard_save_money}}</em>
-            </view>
             <view class="cell" wx:if="{{tabIdx!=0}}">
                 <block wx:if="{{tabIdx==1}}">
                     <span>配送费</span>
@@ -132,27 +127,24 @@
                     <image class="icon-right" src="../../images/rightArrowImg.png"></image>
                 </view>
             </view>
-            <view class="cell" wx:if="{{open_score_buy_score==1}}">
-                <span>
-          当前积分{{score}},本次<block wx:if="{{bue_use_score>0}}">可用{{bue_use_score}}积分抵扣{{score_for_money}}元</block>
-                    <block wx:else>不可用积分支付</block>
-                </span>
+            <view class="cell" wx:if="{{open_score_buy_score==1&&bue_use_score>0}}">
+                <span>当前积分{{score}},本次可用{{bue_use_score}}积分抵扣{{score_for_money}}元</span>
                 <view>
-                    <switch bindchange="scoreChange" checked="{{use_score==1}}" disabled="{{bue_use_score<=0}}"></switch>
+                    <switch bindchange="scoreChange" checked="{{use_score==1}}"></switch>
                 </view>
             </view>
         </view>
         <view class="act-content" wx:if="{{is_yue_open==1&&can_yupay}}">
             <view avalonctrl="oc_payment" bindtap="ck_wxpays" class="oc-payment">
                 <view class="oc-payment-item {{ck_yupay==0?'oc-payment-selected':''}}">
-                    <text class="iconfont icon-weixinzhifu oc-payment-icon" style="color:#00c800;"></text>
+                    <image class="oc-payment-icon" src="../../images/wxpay.png"></image>
                     <view class="oc-payment-method">微信支付</view>
                     <view class="oc-payment-recommend">推荐</view>
                 </view>
             </view>
             <view avalonctrl="oc_payment" bindtap="ck_yupays" class="oc-payment">
                 <view class="oc-payment-item {{ck_yupay>0?'oc-payment-selected':''}}">
-                    <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
+                    <image class="oc-payment-icon" src="../../images/yue.png"></image>
                     <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
                 </view>
             </view>

@@ -5,7 +5,7 @@
             <picker bindchange="bindDateChange" fields="month" mode="date" value="{{date}}">
                 <view class="choose-day">
                     <text>{{chooseDate}}</text>
-                    <text class="iconfont icon-xiatiao"></text>
+                    <image src="../../images/down-arrow.png"></image>
                 </view>
             </picker>
         </view>

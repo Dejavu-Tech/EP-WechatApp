@@ -1,5 +1,5 @@
 .comment-card {
-    margin: 0 auto 20rpx;
+    margin-bottom: 20rpx;
 }
 
 .comment-card .header {

@@ -2,25 +2,20 @@ var app = getApp(), util = require("../../utils/util.js"), WxParse = require("..
 
 Page({
     data: {},
-    onLoad: function(a) {
+    onLoad: function(t) {
         status.setNavBgColor();
-        var n = this;
+        var e = this;
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "supply.get_apply_page"
             },
             dataType: "json",
-            success: function(a) {
-                var t = a.data.supply_diy_name || "供应商";
-                if (wx.setNavigationBarTitle({
-                    title: t
-                }), n.setData({
-                    supply_diy_name: t
-                }), 0 == a.data.code) {
-                    console.log(a);
-                    var e = a.data.data || "";
-                    WxParse.wxParse("article", "html", e, n, 5);
+            success: function(t) {
+                if (0 == t.data.code) {
+                    console.log(t);
+                    var a = t.data.data || "";
+                    WxParse.wxParse("article", "html", a, e, 5);
                 }
             }
         });

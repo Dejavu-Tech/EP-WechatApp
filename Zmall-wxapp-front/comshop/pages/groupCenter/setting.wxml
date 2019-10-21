@@ -3,7 +3,7 @@
     <view class="avatar-box">
         <image src="{{headInfo.member_info.avatar}}"></image>
         <view class="user-id">ID: {{headInfo.re_id}}</view>
-        <view class="rest" wx:if="{{headInfo.close_reset_btn!=1}}">
+        <view class="rest">
             <text>{{rest==1?'休息中':'营业中'}}</text>
             <switch bindchange="switchChange" checked="{{rest==1?false:true}}" color="#f34b1f"></switch>
         </view>
@@ -121,10 +121,7 @@
             <view bindtap="choseImg" class="info-item">
                 <view class="item-title">群分享二维码(点击修改)</view>
                 <view class="item-content">
-                    <image class="img" src="{{headInfo.share_wxcode}}" wx:if="{{headInfo.share_wxcode}}"></image>
-                    <view class="upload-btn" wx:else>
-                        <text class="iconfont icon-xiangce"></text>
-                    </view>
+                    <image class="img" src="{{headInfo.share_wxcode}}"></image>
                 </view>
             </view>
             <view class="edit-btn">

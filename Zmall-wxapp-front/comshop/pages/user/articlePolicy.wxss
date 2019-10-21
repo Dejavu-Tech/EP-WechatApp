@@ -1,0 +1,17 @@
+.article {
+    background: #fff;
+    padding: 20rpx;
+    font-size: 28rpx;
+}
+
+.article view {
+    margin-bottom: 10rpx;
+}
+
+.article view.mar {
+    margin-bottom: 20rpx;
+}
+
+.article view.indent {
+    text-indent: 2em;
+}

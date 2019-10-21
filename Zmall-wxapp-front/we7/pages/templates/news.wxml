@@ -1,0 +1,14 @@
+<template name="newsDetail">
+    <block wx:for="{{content}}" wx:for-index="idy" wx:for-item="cellData">
+        <view class="p" wx:if="{{cellData.type=='view'}}">
+            <block wx:for="{{cellData.child}}" wx:key="text">
+                <text bindtap="stockClick" class="a" data-seccode="{{item.attr['data-seccode']}}" data-secname="{{item.attr['data-secname']}}" wx:if="{{item.type=='a'}}">{{item.text}}</text>
+                <text wx:else>{{item.text}}</text>
+            </block>
+        </view>
+        <block wx:if="{{cellData.type=='img'}}">
+      {{wn_html_images}}
+      <image bindload="imageLoad" class="img" data-index="{{idy}}" mode="widthFix" src="{{cellData.attr.src}}" style="width: {{cellData['attr']['width']}};max-width: 100%;height: {{cellData['attr']['height']?cellData['attr']['height']:auto}}"></image>
+        </block>
+    </block>
+</template>

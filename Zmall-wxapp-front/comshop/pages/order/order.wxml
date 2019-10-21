@@ -20,10 +20,6 @@
                     <view class="font-bold-20">备货中</view>
                     <image class="little-img" src="../../images/img_delivery@2x.png"></image>
                 </view>
-                <view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==2}}">
-                    <view class="font-bold-20">拼团中，已付款</view>
-                    <image class="little-img" src="../../images/img_delivery@2x.png"></image>
-                </view>
                 <view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==14}}">
                     <view class="font-bold-20">配送中</view>
                     <image class="little-img" src="../../images/img_delivery@2x.png"></image>
@@ -85,8 +81,7 @@
                                     <i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{goodsInfo.image}}" width="60"></i-img>
                                 </view>
                                 <view style="flex-grow: 1 ">
-                                    <view class="name bold-text">
-                                        <text class="pintag" wx:if="{{order.order_info.is_pin==1}}">拼团</text> {{goodsInfo.name}}</view>
+                                    <view class="name bold-text">{{goodsInfo.name}}</view>
                                     <view class="mount">
                                         <block wx:if="{{goodsInfo.option_str}}">{{goodsInfo.option_str}} </block>￥{{goodsInfo.price}} x {{goodsInfo.quantity}}</view>
                                     <view class="bottom-info">
@@ -105,7 +100,7 @@
                                             <view bindtap="applyForService" class="btn-1 mar-left-8" data-order_goods_id="{{goodsInfo.order_goods_id}}" data-type="{{order.order_info.order_id}}" wx:if="{{goodsInfo.can_ti_refund!=0&&goodsInfo.is_refund_state==0&&order.order_info.order_status_id==4}}">申请售后</view>
                                         </block>
                                         <view bindtap="applyForService" class="btn-1 mar-left-8" data-order_goods_id="{{goodsInfo.order_goods_id}}" data-type="{{order.order_info.order_id}}" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)}}">申请售后</view>
-                                        <button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch==1}}">
+                                        <button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{isCanRefund!==1}}">
                                             <text>联系客服</text>
                                         </button>
                                         <view class="btn-2 mar-left-8" wx:if="{{goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==1||order.order_info.order_status_id==14)}}">备货中</view>
@@ -116,8 +111,7 @@
                         </block>
                     </view>
                     <view class="footer">
-                        <view bindtap="cancelOrder" class="btn-1 mar-left-8" data-order_goods_id="0" data-type="{{order.order_info.order_id}}" wx:if="{{order.order_info.order_status_id==1&&order_can_del_cancle==1&&order.order_info.is_pin!=1}}">取消订单</view>
-                        <navigator class="btn-1" url="/lionfish_comshop/moduleA/pin/share?id={{order.order_info.order_id}}" wx:if="{{order.order_info.is_pin==1}}">拼团详情</navigator>
+                        <view bindtap="cancelOrder" class="btn-1 mar-left-8" data-order_goods_id="0" data-type="{{order.order_info.order_id}}" wx:if="{{order.order_info.order_status_id==1&&order_can_del_cancle==1}}">取消订单</view>
                     </view>
                 </view>
                 <view class="space-between-card" wx:if="{{index!==orderSkuResps.length-1}}"></view>
@@ -145,7 +139,11 @@
                 </view>
             </i-fixedBottom>
         </view>
-        <i-aside-btn iClass="home-btn" showHome="{{true}}"></i-aside-btn>
+        <view class="menu-list">
+            <navigator class="menu-item" hoverClass="router-hover" openType="switchTab" url="/lionfish_comshop/pages/index/index">
+                <image src="../../images/back_to_home@2x.png"></image>
+            </navigator>
+        </view>
         <guess-like bind:openSku="openSku" likeTitle="猜你喜欢" updateCart="{{updateCart}}" wx:if="{{is_show_guess_like==1}}"></guess-like>
     </view>
 </i-auth>

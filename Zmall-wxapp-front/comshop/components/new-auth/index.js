@@ -66,7 +66,7 @@ Component({
                         duration: 2e3
                     }), e.triggerEvent("authSuccess"), app.globalData.changedCommunity = !0, e.data.needPosition && location.getGps();
                 }).catch(function() {
-                    e.triggerEvent("cancel"), console.log("授权失败");
+                    this.triggerEvent("cancel"), console.log("授权失败");
                 }) : (wx.showToast({
                     title: "授权失败，为了完整体验，获取更多优惠活动，需要您的授权。",
                     icon: "none"

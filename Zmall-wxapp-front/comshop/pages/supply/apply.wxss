@@ -1,5 +1,5 @@
 .header {
-    background: #f75451;
+    background: #4facfe;
     height: 160rpx;
     color: #fff;
     font-size: 30rpx;
@@ -29,7 +29,7 @@
 }
 
 .form-group .form-item.error {
-    border-color: #f75451;
+    border-color: #4facfe;
 }
 
 .form-group .form-item .form-item-control {
@@ -53,7 +53,7 @@ weui-cell__hd {
 .weui-pos {
     width: 40rpx;
     height: 50rpx;
-    background: url(https://mall.shiziyu888.com/dan/Common/image/order_checkout_icon.png) no-repeat;
+    background: url(https://wxapp.ch871.com/Common/image/order_checkout_icon.png) no-repeat;
     background-position: 0rpx 0;
     background-size: 132rpx 142rpx;
 }
@@ -86,7 +86,7 @@ weui-cell__hd {
     height: 94rpx;
     border-radius: 94rpx;
     font-size: 36rpx;
-    background: #f75451;
+    background: #4facfe;
     color: #fff;
     display: flex;
     justify-content: center;
@@ -152,7 +152,7 @@ weui-cell__hd {
     width: 186rpx;
     height: 186rpx;
     font-size: 230rpx;
-    color: #ef994c;
+    color: #4facfe;
     margin-bottom: 40rpx;
     margin-top: 106rpx;
     display: flex;
@@ -176,7 +176,7 @@ weui-cell__hd {
     width: 310rpx;
     height: 98rpx;
     border-radius: 20rpx;
-    background: #fb5a50;
+    background: #4facfe;
     color: #fff;
     font-size: 32rpx;
     display: flex;

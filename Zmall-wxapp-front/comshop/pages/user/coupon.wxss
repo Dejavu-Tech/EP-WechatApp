@@ -36,7 +36,7 @@
     bottom: 2rpx;
     box-sizing: border-box;
     height: 2rpx;
-    background-color: #ff5777;
+    background-color: #4facfe;
     transition: transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
     transform-origin: 0 0;
 }
@@ -124,7 +124,7 @@
 }
 
 .tabs-nav .tabs-tab:active {
-    color: #f13e3a;
+    color: #4facfe;
 }
 
 .tabs-nav .tabs-tab .anticon {
@@ -134,7 +134,7 @@
 }
 
 .tabs-nav .tabs-tab-active {
-    color: #ff4936;
+    color: #4facfe;
 }
 
 .tabs-nav .tabs-tab-active::after {
@@ -144,8 +144,8 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
-    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0,89,255,0.25);
     border-radius: 24rpx;
 }
 
@@ -167,7 +167,7 @@
     background: #fff;
     transform: translateZ(0);
     border-color: #d9d9d9;
-    color: #f13e3a;
+    color: #4facfe;
 }
 
 .tabs.tabs-card>.tabs-bar .tabs-nav--wrap {
@@ -282,7 +282,7 @@
     color: #fff;
     font-weight: normal;
     font-size: 20rpx;
-    background: #ec6b5a;
+    background: #4facfe;
     padding: 2rpx 8rpx;
     border-radius: 4rpx;
 }
@@ -325,9 +325,9 @@
 }
 
 .go-shop {
-    border: 1rpx solid #ec6b5a;
+    border: 1rpx solid #4facfe;
     border-radius: 30rpx;
-    color: #ec6b5a;
+    color: #4facfe;
     font-size: 24rpx;
     margin-top: 60rpx;
     margin-right: 12rpx;

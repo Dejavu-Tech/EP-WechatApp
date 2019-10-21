@@ -153,7 +153,7 @@ Page({
                                 title: "提示",
                                 content: e.msg,
                                 showCancel: !1,
-                                confirmColor: "#f57"
+                                confirmColor: "#4facfe"
                             });
                         }
                     }), wx.hideLoading();

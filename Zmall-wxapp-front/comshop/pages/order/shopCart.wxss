@@ -34,7 +34,7 @@
     width: 310rpx;
     height: 96rpx;
     border-radius: 20rpx;
-    background: linear-gradient(to right,#ff5041,#ff695c);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     line-height: 96rpx;
     text-align: center;
     color: #fff;
@@ -93,7 +93,7 @@
     font-size: 20rpx;
     line-height: 28rpx;
     padding: 0 8rpx;
-    background: #ff5344;
+    background: #4facfe;
     color: #fff;
     border-radius: 28rpx;
     white-space: nowrap;
@@ -115,13 +115,14 @@
     font-size: 26rpx;
     line-height: 26rpx;
     margin-top: 4rpx;
-    color: #ff5344;
+    color: #4facfe;
     font-weight: 500;
     white-space: nowrap;
 }
 
-.shop-cart-content .card-group .card-header .i-link .iconfont {
-    font-size: 18rpx;
+.shop-cart-content .card-group .card-header .i-link image {
+    width: 10rpx;
+    height: 16rpx;
     margin-left: 6rpx;
 }
 
@@ -176,7 +177,7 @@
 .fixed-bar .fixed-bar-center .total span {
     font-size: 30rpx;
     font-weight: bold;
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .fixed-bar .fixed-bar-center .total-detail {
@@ -197,7 +198,7 @@
     line-height: 96rpx;
     color: #fff;
     font-size: 30rpx;
-    background: #ff5344;
+    background: linear-gradient(100deg, #ff758c 0%, #ff7eb3 100%);
     border-radius: 0;
     font-weight: bold;
     margin: 20rpx;
@@ -255,7 +256,7 @@
     padding: 0;
     margin: 0;
     height: 100%;
-    background: #ff5344;
+    background: #4facfe;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -347,7 +348,7 @@
 }
 
 .cart-item-content .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     font-size: 20rpx;
     line-height: 20rpx;
 }
@@ -367,7 +368,7 @@
     align-items: center;
     font-size: 24rpx;
     line-height: 24rpx;
-    color: #ff695c;
+    color: #00f2fe;
     padding: 20rpx;
 }
 
@@ -406,10 +407,10 @@
     border-radius: 26rpx;
     height: 22rpx;
     padding: 0 8rpx;
-    border: 1rpx solid #ffa49c;
+    border: 1rpx solid #00f2fe;
     font-size: 20rpx;
     line-height: 22rpx;
-    color: #ff5344;
+    color: #4facfe;
     margin-right: 16rpx;
     white-space: nowrap;
     margin-top: 3rpx;
@@ -422,7 +423,7 @@
 }
 
 .diff-money text {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .reduce-item+.normal-item {
@@ -452,7 +453,7 @@
     font-size: 20rpx;
     line-height: 28rpx;
     padding: 0 8rpx;
-    background: #ff5344;
+    background: #4facfe;
     color: #fff;
     border-radius: 6rpx;
     white-space: nowrap;
@@ -474,13 +475,14 @@
     font-size: 26rpx;
     line-height: 26rpx;
     margin-top: 4rpx;
-    color: #ff5344;
+    color: #4facfe;
     font-weight: 500;
     white-space: nowrap;
 }
 
-.fullreductionInfo .i-link .iconfont {
-    font-size: 18rpx;
+.fullreductionInfo .i-link image {
+    width: 10rpx;
+    height: 16rpx;
     margin-left: 6rpx;
 }
 
@@ -488,7 +490,7 @@
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(to right,#ff5041,#ff994b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     border-radius: 0 14rpx 14rpx 0;
     padding: 0 12rpx;
     height: 30rpx;
@@ -531,7 +533,7 @@
 }
 
 .cart-tabs-item.active {
-    color: #ff5041;
+    color: #4facfe;
     font-weight: bold;
 }
 
@@ -541,20 +543,10 @@
     left: 20%;
     right: 20%;
     bottom: 0;
-    border-bottom: 2px solid #ff5041;
+    border-bottom: 2px solid #4facfe;
     border-radius: 2px;
 }
 
 .h88 {
     height: 88rpx;
-}
-
-.vipprice {
-    color: #964c00;
-    font-size: 20rpx;
-    padding: 2rpx 8rpx;
-    border-radius: 6rpx;
-    font-weight: bold;
-    margin-left: 10rpx;
-    background: linear-gradient(to right,#ffeea2,#ffe689);
 }

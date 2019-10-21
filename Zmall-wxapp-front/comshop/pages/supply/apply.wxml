@@ -1,15 +1,15 @@
 <view>
     <view class="container" wx:if="{{state==null}}">
-        <view class="header">申请{{supply_diy_name}}身份，需要您填写真实姓名、手机</view>
+        <view class="header">申请供应商身份，需要您填写真实姓名、手机</view>
         <form>
             <view class="form-group">
                 <view class="form-item {{errors[1]===2?'error':''}}">
                     <label class="form-item-control">名称</label>
-                    <input bindinput="inputShopName" class="form-item-input" data-key="1" placeholder="请输入{{supply_diy_name}}名称" type="text"></input>
+                    <input bindinput="inputShopName" class="form-item-input" data-key="1" placeholder="请输入供应商名称" type="text"></input>
                 </view>
                 <view class="form-item {{errors[3]===2?'error':''}}">
                     <label class="form-item-control">联系人</label>
-                    <input bindinput="inputName" class="form-item-input" data-key="3" placeholder="请输入{{supply_diy_name}}联系人" type="text"></input>
+                    <input bindinput="inputName" class="form-item-input" data-key="3" placeholder="请输入供应商联系人" type="text"></input>
                 </view>
                 <view class="form-item {{errors[2]===2?'error':''}}">
                     <label class="form-item-control">手机号</label>
@@ -25,7 +25,7 @@
                 </view>
                 <view class="form-item form-item2">
                     <label class="form-item-control">产品</label>
-                    <textarea bindinput="inputAdvantage" class="form-item-textarea" maxlength="300" placeholder="产品以及优势（选填）" placeholderClass="placeholder" wx:if="{{!(needAuth&&showAuthModal)}}"></textarea>
+                    <textarea bindinput="inputAdvantage" class="form-item-textarea" maxlength="300" placeholder="产品以及优势（选填）" placeholderClass="placeholder"></textarea>
                 </view>
                 <view class="form-item">
                     <label class="submit">

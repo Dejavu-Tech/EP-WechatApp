@@ -58,9 +58,7 @@ Page(Object.assign({}, countDownInit.default, {
             group_name: "社区",
             owner_name: "团长"
         },
-        needPosition: !0,
-        typeTopicList: [],
-        pinList: {}
+        needPosition: !0
     },
     isFirst: 0,
     $data: {
@@ -93,58 +91,61 @@ Page(Object.assign({}, countDownInit.default, {
             isSticky: !1
         }), this.$data.stickyFlag = !1), this.$data.scrollTop = t.scrollTop);
     },
-    onLoad: function(i) {
-        console.log("options", i), wx.hideTabBar();
-        var s = this;
+    onLoad: function(o) {
+        console.log("options", o), wx.hideTabBar();
+        var i = this;
         status.setNavBgColor(), status.setGroupInfo().then(function(t) {
-            s.setData({
+            i.setData({
                 groupInfo: t
             });
         }), console.log("step1");
-        var n = wx.getStorageSync("community"), d = n.communityId || "";
-        if (i && 0 != Object.keys(i).length) {
+        var t = wx.getStorageSync("community"), s = t.communityId;
+        if (o && 0 != Object.keys(o).length) {
             console.log("step2");
-            var t = decodeURIComponent(i.scene);
-            if ("undefined" != t) {
-                var a = t.split("_");
-                i.community_id = a[0], wcache.put("share_id", a[1]);
+            var a = decodeURIComponent(o.scene);
+            if ("undefined" != a) {
+                var e = a.split("_");
+                o.community_id = e[0], wcache.put("share_id", e[1]);
             }
-            "undefined" != (s.options = i).share_id && 0 < i.share_id && wcache.put("share_id", i.share_id), 
-            "undefined" != i.community_id && 0 < i.community_id ? (console.log("step3"), s.setData({
+            "undefined" != (i.options = o).share_id && 0 < o.share_id && wcache.put("share_id", o.share_id), 
+            "undefined" != o.community_id && 0 < o.community_id ? (console.log("step3"), i.setData({
                 needPosition: !1
             }), app.util.request({
                 url: "entry/wxapp/index",
                 data: {
                     controller: "index.get_community_info",
-                    community_id: i.community_id
+                    community_id: o.community_id
                 },
                 dataType: "json",
                 success: function(t) {
                     var a = wx.getStorageSync("token");
-                    if (0 == t.data.code && t.data.data) {
+                    if (0 == t.data.code) {
                         console.log("step4");
                         var e = t.data.data;
-                        console.log("分享community_id", i.community_id), console.log("历史community_id", d);
-                        var o = {};
-                        i.community_id != d ? d ? (o.showChangeCommunity = !0, o.changeCommunity = e, o.community = n) : (o.shareCommunity = e, 
-                        wcache.put("community", e)) : o.community = n, o.hidetip = !1, o.token = a, o.showEmpty = !1, 
-                        s.setData(o), s.loadPage();
-                    } else console.log("step5"), s.loadPage(), s.setData({
+                        o.community_id != s && i.setData({
+                            showChangeCommunity: !0,
+                            changeCommunity: e
+                        }), i.loadPage(), i.setData({
+                            hidetip: !1,
+                            token: a,
+                            showEmpty: !1
+                        });
+                    } else console.log("step5"), i.loadPage(), i.setData({
                         hidetip: !1,
                         token: a,
                         showEmpty: !1
                     });
-                    a && s.addhistory();
+                    a && i.addhistory();
                 }
-            })) : (console.log("step6"), s.loadPage());
+            })) : (console.log("step6"), i.loadPage());
         } else {
-            console.log("step7"), s.loadPage();
-            var e = wx.getStorageSync("token");
-            s.setData({
+            console.log("step7"), i.loadPage();
+            var n = wx.getStorageSync("token");
+            i.setData({
                 hidetip: !1,
-                token: e,
+                token: n,
                 showEmpty: !1,
-                community: n
+                community: t
             });
         }
     },
@@ -171,8 +172,7 @@ Page(Object.assign({}, countDownInit.default, {
     loadPage: function() {
         wx.showLoading(), console.log("step8");
         var e = this;
-        e.get_index_info(), e.get_type_topic(), e.getNavigat(), e.getCoupon(), e.getPinList(), 
-        status.loadStatus().then(function() {
+        e.get_index_info(), e.getNavigat(), e.getCoupon(), status.loadStatus().then(function() {
             var t = app.globalData.appLoadStatus;
             if (console.log("appLoadStatus", t), 0 == t) wx.hideLoading(), e.setData({
                 needAuth: !0,
@@ -239,35 +239,30 @@ Page(Object.assign({}, countDownInit.default, {
                 hasCommingGoods: !0
             }), app.globalData.changedCommunity = !1, this.get_index_info(), this.addhistory(), 
             this.load_goods_data();
-        } else console.log("nochange"), 1 <= e.isFirst && (this.setData({
-            loadOver: !0
-        }), this.changeRushListNum());
+        } else if (console.log("nochange"), 1 <= e.isFirst) {
+            this.setData({
+                loadOver: !0
+            });
+            var o = app.globalData.goodsListCarCount, i = this.data.rushList;
+            if (0 < o.length && 0 < i.length) {
+                var s = !1;
+                o.forEach(function(a) {
+                    var t = i.findIndex(function(t) {
+                        return t.actId == a.actId;
+                    });
+                    if (-1 != t && 0 === i[t].skuList.length) {
+                        var e = 1 * a.num;
+                        i[t].car_count = 0 <= e ? e : 0, s = !0;
+                    }
+                }), this.setData({
+                    rushList: i,
+                    changeCarCount: s
+                });
+            }
+        }
         0 == e.isFirst ? this.setData({
             couponRefresh: !0
         }) : this.getCoupon(), e.isFirst++;
-    },
-    changeRushListNum: function() {
-        var t = app.globalData.goodsListCarCount, o = this.data.rushList, i = !1;
-        this.setData({
-            changeCarCount: i
-        }), 0 < t.length && 0 < o.length && (t.forEach(function(a) {
-            var t = o.findIndex(function(t) {
-                return t.actId == a.actId;
-            });
-            if (-1 != t && 0 === o[t].skuList.length) {
-                var e = 1 * a.num;
-                o[t].car_count = 0 <= e ? e : 0, i = !0;
-            }
-        }), this.setData({
-            rushList: o,
-            changeCarCount: i
-        }));
-    },
-    changeNotListCartNum: function(t) {
-        var a = t.detail;
-        (0, status.cartNum)(this.setData({
-            cartNum: a
-        })), this.changeRushListNum();
     },
     onHide: function() {
         this.setData({
@@ -315,39 +310,30 @@ Page(Object.assign({}, countDownInit.default, {
         }), !1);
     },
     getHistoryCommunity: function() {
-        var d = this, c = wx.getStorageSync("token");
+        var i = this, t = wx.getStorageSync("token");
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "index.load_history_community",
-                token: c
+                token: t
             },
             dataType: "json",
             success: function(t) {
                 if (console.log("step14"), 0 == t.data.code) {
                     console.log("getHistoryCommunity");
-                    var a = t.data.list, e = !1;
-                    0 != Object.keys(a).length && 0 != a.communityId || (e = !0);
-                    var o = a && a.fullAddress && a.fullAddress.split("省");
-                    if (a = Object.assign({}, a, {
-                        address: o[1]
-                    }), d.setData({
+                    var a = t.data.list;
+                    0 != Object.keys(a).length && 0 != a.communityId || !0;
+                    var e = a && a.fullAddress && a.fullAddress.split("省");
+                    a = Object.assign({}, a, {
+                        address: e[1]
+                    }), i.setData({
                         community: a
-                    }), wcache.put("community", a), app.globalData.community = a, c && !e) {
-                        var i = wx.getStorageSync("lastCommunity"), s = i.communityId || "";
-                        "" != s && s != a.communityId && d.setData({
-                            showChangeCommunity: !0,
-                            changeCommunity: i
-                        }, function() {
-                            wx.removeStorageSync("lastCommunity");
-                        });
-                    }
-                    d.setData({
+                    }), wcache.put("community", a), app.globalData.community = a, i.setData({
                         community: app.globalData.community
-                    }), d.load_goods_data();
+                    }), i.load_goods_data();
                 } else {
-                    var n = d.options;
-                    void 0 !== n && n.community_id ? (console.log("新人加入分享进来的社区id:", d.options), d.addhistory(n.community_id)) : wx.redirectTo({
+                    var o = i.options;
+                    void 0 !== o && o.community_id ? (console.log("新人加入分享进来的社区id:", i.options), i.addhistory(o.community_id)) : wx.redirectTo({
                         url: "/lionfish_comshop/pages/position/community"
                     });
                 }
@@ -373,104 +359,96 @@ Page(Object.assign({}, countDownInit.default, {
         });
     },
     get_index_info: function() {
-        var D = this, t = wx.getStorageSync("community"), T = t && t.communityId || "", a = wx.getStorageSync("token");
+        var v = this, t = wx.getStorageSync("community"), D = t && t.communityId || "", a = wx.getStorageSync("token");
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "index.index_info",
-                communityId: T,
+                communityId: D,
                 token: a
             },
             dataType: "json",
             success: function(t) {
                 var a = t.data;
                 if (0 == a.code) {
-                    if (!t.data.is_community && T && !D.data.needAuth) {
-                        var e = D.data.changeCommunity || {};
-                        e.communityId || "" ? (wcache.put("community", e), D.addhistory(e.community_id), 
-                        D.setData({
-                            community: e,
-                            showChangeCommunity: !1
-                        }), D.loadPage()) : wx.showModal({
-                            title: "提示",
-                            content: "该小区不在，请重新选择小区",
-                            showCancel: !1,
-                            confirmColor: "#F75451",
-                            success: function(t) {
-                                t.confirm && wx.redirectTo({
-                                    url: "/lionfish_comshop/pages/position/community"
-                                });
-                            }
-                        });
-                    }
-                    var o = a.notice_list, i = a.slider_list, s = a.index_lead_image;
-                    s ? status.getInNum().then(function(t) {
-                        t && D.setData({
+                    t.data.is_community || !D || v.data.needAuth || wx.showModal({
+                        title: "提示",
+                        content: "该小区不在，请重新选择小区",
+                        showCancel: !1,
+                        confirmColor: "#4facfe",
+                        success: function(t) {
+                            t.confirm && wx.redirectTo({
+                                url: "/lionfish_comshop/pages/position/community"
+                            });
+                        }
+                    });
+                    var e = a.notice_list, o = a.slider_list, i = a.index_lead_image;
+                    i ? status.getInNum().then(function(t) {
+                        t && v.setData({
                             isTipShow: !0
                         }, function() {
                             timerOut = setTimeout(function() {
-                                D.setData({
+                                v.setData({
                                     isTipShow: !1
                                 });
                             }, 9e3);
                         });
-                    }) : D.setData({
+                    }) : v.setData({
                         isTipShow: !1
                     });
-                    var n = a.common_header_backgroundimage;
-                    app.globalData.common_header_backgroundimage = n;
-                    var d = a.order_notify_switch, c = a.index_list_top_image_on || 1, r = a.index_change_cate_btn || 0, l = "../../images/rush-title.png";
-                    1 == c && (l = "");
-                    var u = a.index_list_top_image ? a.index_list_top_image : l, h = {
+                    var s = a.common_header_backgroundimage;
+                    app.globalData.common_header_backgroundimage = s;
+                    var n = a.order_notify_switch, d = a.index_list_top_image_on || 1, c = a.index_change_cate_btn || 0, r = "../../images/rush-title.png";
+                    1 == d && (r = "");
+                    var l = a.index_list_top_image ? a.index_list_top_image : r, u = {
                         shoname: a.shoname,
                         shop_index_share_image: a.shop_index_share_image,
-                        index_list_top_image: u,
+                        index_list_top_image: l,
                         title: a.title,
-                        common_header_backgroundimage: n,
-                        order_notify_switch: d,
+                        common_header_backgroundimage: s,
+                        order_notify_switch: n,
                         index_top_img_bg_open: a.index_top_img_bg_open || 0,
-                        index_top_font_color: a.index_top_font_color || "#fff",
-                        index_communityinfo_showtype: a.index_communityinfo_showtype || 0
+                        index_top_font_color: a.index_top_font_color || "#fff"
                     };
                     app.globalData.placeholdeImg = a.index_loading_image || "", wcache.put("shopname", a.shoname), 
                     wx.setNavigationBarTitle({
                         title: a.shoname
                     });
-                    var m = a.category_list || [], g = a.index_type_first_name || "全部";
-                    0 < m.length ? (m.unshift({
+                    var h = a.category_list || [], g = a.index_type_first_name || "全部";
+                    0 < h.length ? (h.unshift({
                         name: g,
                         id: 0
-                    }), D.setData({
+                    }), v.setData({
                         isShowClassification: !0,
-                        "classification.tabs": m
-                    })) : D.setData({
+                        "classification.tabs": h
+                    })) : v.setData({
                         isShowClassification: !1
                     });
-                    var p = a.theme || 0, _ = 1e3 * a.rushtime || 0, f = a.index_share_switch || 0, y = a.is_show_list_count || 0, w = a.is_show_list_timer || 0, x = a.index_service_switch || 0, v = a.index_switch_search || 0;
-                    1 != a.is_comunity_rest || D.data.needAuth || wx.showModal({
+                    var p = a.theme || 0, m = 1e3 * a.rushtime || 0, _ = a.index_share_switch || 0, f = a.is_show_list_count || 0, y = a.is_show_list_timer || 0, w = a.index_service_switch || 0, x = a.index_switch_search || 0;
+                    1 != a.is_comunity_rest || v.data.needAuth || wx.showModal({
                         title: "温馨提示",
                         content: "团长休息中，欢迎下次光临!",
                         showCancel: !1,
-                        confirmColor: "#F75451",
+                        confirmColor: "#4facfe",
                         confirmText: "好的",
                         success: function(t) {}
-                    }), D.postion = a.postion, D.setData({
-                        notice_list: o,
-                        slider_list: i,
-                        index_lead_image: s,
+                    }), v.postion = a.postion, v.setData({
+                        notice_list: e,
+                        slider_list: o,
+                        index_lead_image: i,
                         theme: p,
                         indexBottomImage: a.index_bottom_image || "",
-                        shop_info: h,
+                        shop_info: u,
                         loadOver: !0,
-                        rushEndTime: _,
+                        rushEndTime: m,
                         commingNum: a.comming_goods_total,
-                        isShowShareBtn: f,
-                        isShowListCount: y,
-                        isShowListTimer: w,
+                        isShowShareBtn: _,
+                        isShowListCount: f,
+                        isShowListTimer: y,
                         is_comunity_rest: a.is_comunity_rest,
-                        index_change_cate_btn: r,
-                        isShowContactBtn: x,
-                        index_switch_search: v,
+                        index_change_cate_btn: c,
+                        isShowContactBtn: w,
+                        index_switch_search: x,
                         is_show_new_buy: a.is_show_new_buy || 0,
                         qgtab: t.data.qgtab || {},
                         notice_setting: a.notice_setting || {},
@@ -511,68 +489,64 @@ Page(Object.assign({}, countDownInit.default, {
         });
     },
     load_goods_data: function() {
-        var t = wx.getStorageSync("token"), l = this, a = wx.getStorageSync("community"), e = l.data.classificationId;
-        this.$data.isLoadData = !0, console.log("load_goods_begin "), l.hasRefeshin || l.$data.loadOver ? l.load_over_gps_goodslist() : (console.log("load_goods_in "), 
-        this.hasRefeshin = !0, l.setData({
+        var t = wx.getStorageSync("token"), n = this, a = wx.getStorageSync("community"), e = n.data.classificationId;
+        this.$data.isLoadData = !0, console.log("load_goods_begin "), n.hasRefeshin || n.$data.loadOver ? n.load_over_gps_goodslist() : (console.log("load_goods_in "), 
+        this.hasRefeshin = !0, n.setData({
             loadMore: !0
         }), app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "index.load_gps_goodslist",
                 token: t,
-                pageNum: l.data.pageNum,
+                pageNum: n.data.pageNum,
                 head_id: a.communityId,
-                gid: e,
-                per_page: 12
+                gid: e
             },
             dataType: "json",
             success: function(t) {
-                if (1 == l.data.pageNum && l.setData({
-                    cate_info: t.data.cate_info || {}
-                }), 0 == t.data.code) {
+                if (0 == t.data.code) {
                     var a = "";
-                    if (1 == t.data.is_show_list_timer) for (var e in a = l.transTime(t.data.list), 
-                    l.$data.countDownMap) l.initCountDown(l.$data.countDownMap[e]); else {
-                        var o = l.data.rushList;
+                    if (1 == t.data.is_show_list_timer) for (var e in a = n.transTime(t.data.list), 
+                    n.$data.countDownMap) n.initCountDown(n.$data.countDownMap[e]); else {
+                        var o = n.data.rushList;
                         a = o.concat(t.data.list);
                     }
-                    var i = t.data, s = i.full_money, n = i.full_reducemoney, d = i.is_open_fullreduction, c = i.is_open_vipcard_buy, r = {
-                        full_money: s,
-                        full_reducemoney: n,
-                        is_open_fullreduction: d
+                    var i = t.data, s = {
+                        full_money: i.full_money,
+                        full_reducemoney: i.full_reducemoney,
+                        is_open_fullreduction: i.is_open_fullreduction
                     };
-                    1 == l.data.pageNum && l.setData({
+                    1 == n.data.pageNum && n.setData({
                         copy_text_arr: i.copy_text_arr || []
-                    }), l.hasRefeshin = !1, l.setData({
+                    }), n.hasRefeshin = !1, n.setData({
                         rushList: a,
-                        pageNum: l.data.pageNum + 1,
+                        pageNum: n.data.pageNum + 1,
                         loadMore: !1,
-                        reduction: r,
-                        tip: "",
-                        is_open_vipcard_buy: c || 0
+                        reduction: s,
+                        tip: ""
                     }, function() {
-                        1 == l.isFirst && (l.isFirst++, a.length && !l.$data.stickyTop && (wx.createSelectorQuery().select(".tab-nav").boundingClientRect(function(t) {
-                            if (t && t.top) wcache.put("tabPos", t), l.$data.stickyTop = t.top + t.height, l.$data.stickyBackTop = t.top; else {
+                        1 == n.isFirst && (n.isFirst++, a.length && !n.$data.stickyTop && (wx.createSelectorQuery().select(".tab-nav").boundingClientRect(function(t) {
+                            if (t && t.top) wcache.put("tabPos", t), n.$data.stickyTop = t.top + t.height, n.$data.stickyBackTop = t.top; else {
                                 var a = wcache.get("tabPos", !1);
-                                a && (l.$data.stickyTop = a.top + a.height, l.$data.stickyBackTop = a.top);
+                                a && (n.$data.stickyTop = a.top + a.height, n.$data.stickyBackTop = a.top);
                             }
-                        }).exec(), l.$data.scrollTop > l.$data.stickyTop && wx.pageScrollTo({
+                        }).exec(), n.$data.scrollTop > n.$data.stickyTop && wx.pageScrollTo({
                             duration: 0,
-                            scrollTop: l.$data.stickyTop + 4
-                        }))), l.getScrollHeight(), 2 == l.data.pageNum && t.data.list.length < 10 && (console.log("load_over_goods_list_begin"), 
-                        l.$data.loadOver = !0, l.hasRefeshin = !0, l.setData({
+                            scrollTop: n.$data.stickyTop + 4
+                        }))), n.getScrollHeight(), 2 == n.data.pageNum && t.data.list.length < 10 && (console.log("load_over_goods_list_begin"), 
+                        n.$data.loadOver = !0, n.hasRefeshin = !0, n.setData({
                             loadMore: !0
                         }, function() {
-                            l.load_over_gps_goodslist();
+                            n.load_over_gps_goodslist();
                         }));
                     });
-                } else 1 == t.data.code ? (l.$data.loadOver = !0, l.load_over_gps_goodslist()) : 2 == t.data.code && l.setData({
+                } else 1 == t.data.code ? (n.$data.loadOver = !0, n.load_over_gps_goodslist()) : 2 == t.data.code && n.setData({
                     needAuth: !0,
                     couponRefresh: !1
                 });
             },
             complete: function() {
-                l.$data.isLoadData = !1, wx.hideLoading();
+                n.$data.isLoadData = !1, wx.hideLoading();
             }
         }));
     },
@@ -753,12 +727,12 @@ Page(Object.assign({}, countDownInit.default, {
                     skuList: [],
                     cur_sku_arr: h
                 });
-                var m = {
+                var g = {
                     detail: {
                         formId: ""
                     }
                 };
-                m.detail.formId = "the formId is a mock one", this.gocarfrom(m);
+                g.detail.formId = "the formId is a mock one", this.gocarfrom(g);
             }
         }
     },
@@ -875,7 +849,7 @@ Page(Object.assign({}, countDownInit.default, {
     },
     goLink: function(t) {
         var a = t.currentTarget.dataset.link;
-        a && wx.navigateTo({
+        wx.redirectTo({
             url: a
         });
     },
@@ -1138,10 +1112,7 @@ Page(Object.assign({}, countDownInit.default, {
                         n.setData({
                             quan: a
                         });
-                    } else if (4 == t.data.code) wx.showToast({
-                        title: "新人专享",
-                        icon: "none"
-                    }); else if (3 == t.data.code) {
+                    } else if (3 == t.data.code) {
                         a = [];
                         for (var e in s) s[e].id == o && (s[e].is_get = 1), a.push(s[e]);
                         1 == i ? n.setData({
@@ -1176,43 +1147,6 @@ Page(Object.assign({}, countDownInit.default, {
                 url: "/lionfish_comshop/pages/type/result?type=1&gid=" + s
             });
         }
-    },
-    get_type_topic: function() {
-        var e = this;
-        app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "goods.get_category_col_list"
-            },
-            dataType: "json",
-            success: function(t) {
-                if (0 == t.data.code) {
-                    var a = t.data.data || [];
-                    e.setData({
-                        typeTopicList: a
-                    });
-                }
-            }
-        });
-    },
-    getPinList: function() {
-        var n = this;
-        app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "group.get_pintuan_list",
-                is_index: 1
-            },
-            dataType: "json",
-            success: function(t) {
-                if (0 == t.data.code) {
-                    var a = {}, e = t.data, o = e.list, i = e.pintuan_index_coming_img, s = e.pintuan_index_show;
-                    a.list = o || [], a.img = i || "", a.show = s || 0, n.setData({
-                        pinList: a
-                    });
-                }
-            }
-        });
     },
     onShareAppMessage: function(t) {
         this.setData({

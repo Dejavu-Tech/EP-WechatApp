@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     height: 500rpx;
-    background: linear-gradient(35deg,#f6f6f6 200rpx,#fe8464 0);
+    background: linear-gradient(35deg,#f6f6f6 200rpx,#4facfe 0);
 }
 
 .avatar-box {
@@ -79,7 +79,7 @@
 }
 
 .bot-line.focus {
-    border-bottom: 2rpx solid #fe8464;
+    border-bottom: 2rpx solid #4facfe;
 }
 
 .info-item {
@@ -169,7 +169,7 @@
 }
 
 .edit-box .edit-btn button {
-    background-color: #fe8464;
+    background-color: #4facfe;
     text-align: center;
     line-height: 68rpx;
     margin-top: 40rpx;
@@ -232,19 +232,4 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 .img {
     width: 240rpx;
     height: 240rpx;
-}
-
-.upload-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 240rpx;
-    height: 240rpx;
-    border: 1rpx dashed #ccc;
-    border-radius: 5rpx;
-}
-
-.upload-btn .iconfont {
-    font-size: 100rpx;
-    color: #ccc;
 }

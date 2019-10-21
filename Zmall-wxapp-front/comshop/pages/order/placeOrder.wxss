@@ -90,7 +90,7 @@ page {
     padding: 26rpx;
     border-bottom: 1rpx solid #efefef;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .sku-item .sku-img {
@@ -107,7 +107,7 @@ page {
     font-size: 26rpx;
     color: #444;
     line-height: 32rpx;
-    margin-bottom: 10rpx;
+    margin-bottom: 12rpx;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -125,18 +125,17 @@ page {
     font-size: 22rpx;
     line-height: 22rpx;
     color: #aaa;
-    margin-bottom: 10rpx;
+    margin-bottom: 20rpx;
 }
 
 .sku-item .sku-msg .sku-price {
     font-size: 22rpx;
     line-height: 26rpx;
     color: #444;
-    margin-top: 10rpx;
 }
 
 .sku-item .sku-msg .sku-price span {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 26rpx;
     font-weight: 500;
 }
@@ -181,11 +180,11 @@ page {
 }
 
 .sku-item-gift .sku-msg .tag {
-    border: 1rpx solid #ff5344;
+    border: 1rpx solid #4facfe;
     padding: 0 12rpx;
     font-size: 20rpx;
     border-radius: 16rpx;
-    color: #ff5344;
+    color: #4facfe;
     height: 24rpx;
     line-height: 24rpx;
     position: absolute;
@@ -218,7 +217,7 @@ page {
 }
 
 .fixed-content .fixed-left .h1 span {
-    color: #ff5344;
+    color: #4facfe;
     font-weight: bold;
 }
 
@@ -239,7 +238,7 @@ page {
     line-height: 96rpx;
     color: #fff;
     font-size: 30rpx;
-    background: #ff5344;
+    background: #4facfe;
     border-radius: 0;
     padding: 0;
     margin: 0;
@@ -268,7 +267,7 @@ page {
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #ff5344;
+    color: #4facfe;
     line-height: 26rpx;
     font-size: 26rpx;
     margin-bottom: 48rpx;
@@ -321,7 +320,7 @@ page {
 }
 
 .confirm-order-modal .order-content .total em {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .confirm-order-modal .button-group {
@@ -355,13 +354,13 @@ page {
 
 .confirm-order-modal .button-group .right-btn {
     color: #fff;
-    background: linear-gradient(to right,#ff5041,#ff695c);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
 }
 
 .tab-nav {
     height: 70rpx;
     display: flex;
-    border-bottom: 4rpx solid #ff5041;
+    border-bottom: 4rpx solid #4facfe;
     transition: all 0.3s linear;
     margin-bottom: 20rpx;
 }
@@ -390,7 +389,7 @@ page {
 }
 
 .tab-nav .tab-nav-item.active {
-    background-color: #ff5041;
+    background-color: #4facfe;
     color: #fff;
     z-index: 2;
     border-radius: 3px 3px 0 0;
@@ -532,7 +531,7 @@ picker.receive-name {
     text-align: center;
     margin-top: 20rpx;
     margin-bottom: 20rpx;
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .cart-footer {
@@ -590,9 +589,9 @@ picker.receive-name {
     line-height: 17px;
     text-align: center;
     font-size: 11px;
-    color: #ee2e3a;
+    color: #4facfe;
     border-radius: 2px;
-    border: 1px solid #ee2e3a;
+    border: 1px solid #4facfe;
 }
 
 .oc-payment-selected:after {
@@ -602,13 +601,14 @@ picker.receive-name {
     height: 10px;
     top: 16px;
     right: 0;
-    background: url(https://mall.shiziyu888.com/Common/images/order_checkout_sprites-c1e0c02afa.png) no-repeat;
+    background: url(https://wxapp.ch871.com/Common/images/order_checkout_sprites-c1e0c02afa.png) no-repeat;
     background-size: 214px 100px;
     background-position: -125px -40px;
 }
 
 .oc-payment-icon {
-    font-size: 36rpx;
+    width: 40rpx;
+    height: 40rpx;
 }
 
 .coupon {
@@ -692,7 +692,7 @@ picker.receive-name {
     color: #fff;
     font-weight: normal;
     font-size: 20rpx;
-    background: #ec6b5a;
+    background: #4facfe;
     padding: 2rpx 8rpx;
     border-radius: 4rpx;
     margin-left: 10rpx;
@@ -721,7 +721,7 @@ picker.receive-name {
 }
 
 .coupon.used .reduce-type,.coupon.expired .reduce-type {
-    background: #eeaea6;
+    background: #00f2fe;
 }
 
 .coupon.used .footer,.coupon.expired .footer {
@@ -729,24 +729,26 @@ picker.receive-name {
 }
 
 .distance {
-    color: #ff5041;
+    color: #4facfe;
 }
 
 .wx-switch-input {
-    width: 42px!important;
-    height: 20px!important;
+    width: 82rpx!important;
+    height: 40rpx!important;
+    margin: 0!important;
+    padding: 0!important;
 }
 
 .wx-switch-input::before {
-    width: 40px!important;
-    height: 18px!important;
+    width: 80rpx!important;
+    height: 36rpx!important;
 }
 
 .wx-switch-input::after {
-    width: 18px!important;
-    height: 18px!important;
+    width: 38rpx!important;
+    height: 36rpx!important;
 }
 
 .cart-header-left {
-    color: #ff5344;
+    color: #4facfe;
 }

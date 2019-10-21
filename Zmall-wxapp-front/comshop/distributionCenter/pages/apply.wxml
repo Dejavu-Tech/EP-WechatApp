@@ -2,7 +2,7 @@
     <view class="gcs-info card" wx:if="{{status==0}}">
         <form bindsubmit="formSubmit">
             <view class="card-header">
-                <view class="title">{{commiss_diy_name}}会员申请</view>
+                <view class="title">分销会员申请</view>
             </view>
             <view class="card-body">
                 <block wx:for="{{commiss_diy_form}}" wx:key="{{index}}">
@@ -44,8 +44,8 @@
     </view>
     <view class="status" wx:if="{{status==2}}">
         <image class="status-img" mode="widthFix" src="../../images/auditSuccess.png"></image>
-        <view class="p">您已经是{{commiss_diy_name}}会员</view>
-        <button bindtap="goLink" class="status-btn" data-url="/lionfish_comshop/distributionCenter/pages/me" type="warn">进入{{commiss_diy_name}}</button>
+        <view class="p">您已经是分销会员</view>
+        <button bindtap="goLink" class="status-btn" data-url="/lionfish_comshop/distributionCenter/pages/me" type="warn">进入分销</button>
     </view>
 </view>
 <i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>

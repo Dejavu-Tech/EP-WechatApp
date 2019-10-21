@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "订单明细",
-    "navigationBarTextStyle": "black",
-    "usingComponents": {
-        "i-load-more": "../../components/load-more/index"
-    }
-}

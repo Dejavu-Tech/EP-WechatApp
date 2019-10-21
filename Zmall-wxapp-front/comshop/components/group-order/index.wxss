@@ -68,6 +68,6 @@
 }
 
 .spu .detail .tips .price {
-    color: #ff5344;
+    color: #ff758c;
     font-size: 32rpx;
 }

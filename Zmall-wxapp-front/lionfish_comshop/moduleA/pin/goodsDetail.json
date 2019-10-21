@@ -1,8 +1,0 @@
-{
-    "navigationBarTitleText": "商品详情",
-    "usingComponents": {
-        "i-new-auth": "../../components/new-auth/index",
-        "i-count-down": "../../components/count-down/index",
-        "i-order-notify": "../../components/order-notify/index"
-    }
-}

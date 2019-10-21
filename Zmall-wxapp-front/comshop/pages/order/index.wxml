@@ -22,17 +22,7 @@
                         </view>
                     </view>
                     <view class="card-content" slot="content">
-                        <view class="content-wrap" wx:if="{{item.is_pin==1}}">
-                            <i-img height="60" iClass="show-img mar-right-10" lazyLoad="true" loadImage="{{item.goods_list[0].goods_images}}" width="60"></i-img>
-                            <view class="i-flex-item">
-                                <view class="name bold">
-                                    <text class="pintag">拼团</text>{{item.goods_list[0].name}}</view>
-                                <view class="mount">{{item.goods_list[0].option_str}} x {{item.goods_list[0].quantity}}</view>
-                                <view class="bottom-info">¥{{item.goods_list[0].price}} <text>¥{{item.goods_list[0].orign_price}}</text>
-                                </view>
-                            </view>
-                        </view>
-                        <view class="content-wrap" wx:else>
+                        <view class="content-wrap">
                             <view class="clearfix">
                                 <i-img height="60" iClass="show-img {{i_inx<4?'mar-right-10':''}}" lazyLoad="true" loadImage="{{img.goods_images}}" width="60" wx:if="{{i_inx<4}}" wx:for="{{item.goods_list}}" wx:for-index="i_inx" wx:for-item="img" wx:key="{{img.order_goods_id}}"></i-img>
                             </view>

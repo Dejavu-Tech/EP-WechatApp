@@ -22,7 +22,7 @@
 
 .apply-btn {
     height: 96rpx;
-    background: #f75451;
+    background: #4facfe;
     color: #fff;
     font-size: 30rpx;
     line-height: 96rpx;
@@ -44,5 +44,5 @@
 }
 
 .tip .btn,.tot {
-    color: #f75451;
+    color: #4facfe;
 }

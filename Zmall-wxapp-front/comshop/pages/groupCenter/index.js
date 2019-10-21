@@ -23,12 +23,12 @@ Page({
         }
     },
     onLoad: function(t) {
-        var o = this;
+        var e = this;
         status.setGroupInfo().then(function(t) {
             var a = t && t.owner_name || "团长";
             wx.setNavigationBarTitle({
                 title: a + "中心"
-            }), o.setData({
+            }), e.setData({
                 groupInfo: t
             });
         }), this.loadPage();
@@ -46,7 +46,7 @@ Page({
         }), this.load_community_data();
     },
     load_community_data: function() {
-        var t = wx.getStorageSync("token"), u = this;
+        var t = wx.getStorageSync("token"), s = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -56,13 +56,13 @@ Page({
             dataType: "json",
             success: function(t) {
                 if (0 == t.data.code) {
-                    var a = t.data, o = a.commission_info;
-                    o.mix_total_money = o.mix_total_money.toFixed(2);
-                    var e = t.data, n = e.head_today_pay_money, i = e.today_add_head_member, r = e.today_after_sale_order_count, s = e.today_invite_head_member;
-                    u.setData({
+                    var a = t.data, e = a.commission_info;
+                    e.mix_total_money = e.mix_total_money.toFixed(2);
+                    var o = t.data, n = o.head_today_pay_money, i = o.today_add_head_member, r = o.today_after_sale_order_count, _ = o.today_invite_head_member;
+                    s.setData({
                         member_info: a.member_info,
                         community_info: a.community_info,
-                        commission_info: o,
+                        commission_info: e,
                         total_order_count: a.total_order_count || 0,
                         total_member_count: a.total_member_count || 0,
                         today_order_count: a.today_order_count || 0,
@@ -78,7 +78,7 @@ Page({
                         head_today_pay_money: n,
                         today_add_head_member: i,
                         today_after_sale_order_count: r,
-                        today_invite_head_member: s
+                        today_invite_head_member: _
                     });
                 } else wx.reLaunch({
                     url: "/lionfish_comshop/pages/user/me"
@@ -96,10 +96,8 @@ Page({
         });
     },
     onShow: function() {
-        var t = this.data.show_on_one, a = wx.getStorageSync("commiss_diy_name") || "分销";
-        0 < t && this.load_community_data(), this.setData({
-            show_on_one: 1,
-            commiss_diy_name: a
+        0 < this.data.show_on_one && this.load_community_data(), this.setData({
+            show_on_one: 1
         });
     },
     goOrder: function(t) {
@@ -127,47 +125,6 @@ Page({
             effectEstimate: this.data.effectList[a].estimate,
             effectSettle: this.data.effectList[a].settle,
             effectValidOrderNum: this.data.effectList[a].validOrderNum
-        });
-    },
-    changeMycommunion: function() {
-        var t = this.data.community_info.id;
-        console.log(t);
-        var a = wx.getStorageSync("token"), o = this;
-        void 0 !== t && app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "index.addhistory_community",
-                community_id: t,
-                token: a
-            },
-            dataType: "json",
-            success: function(t) {
-                console.log("s1"), o.getCommunityInfo().then(function() {
-                    console.log("s2"), app.globalData.changedCommunity = !0, wx.switchTab({
-                        url: "/lionfish_comshop/pages/index/index"
-                    });
-                });
-            }
-        });
-    },
-    getCommunityInfo: function() {
-        return new Promise(function(o, t) {
-            var a = wx.getStorageSync("token");
-            app.util.request({
-                url: "entry/wxapp/index",
-                data: {
-                    controller: "index.load_history_community",
-                    token: a
-                },
-                dataType: "json",
-                success: function(t) {
-                    if (0 == t.data.code) {
-                        var a = t.data.list;
-                        0 < Object.keys(a).length || 0 != a.communityId ? (wx.setStorageSync("community", a), 
-                        app.globalData.community = a, o(a)) : o("");
-                    }
-                }
-            });
         });
     }
 });

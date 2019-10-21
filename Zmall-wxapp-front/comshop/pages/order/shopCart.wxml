@@ -46,12 +46,9 @@
                                         <view class="spec">{{shopcarts.goodstype}}</view>
                                     </view>
                                     <view class="cart-item-content-bottom">
-                                        <view class="sale-price" wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member==1&&shopcarts.is_take_vipcard==1}}">
-                      ¥<span>{{shopcarts.card_price}}</span>
-                                            <text class="vipprice">会员价</text>
-                                        </view>
-                                        <view class="sale-price" wx:else>
-                      ¥<span>{{shopcarts.currntprice}}</span>
+                                        <view class="sale-price">
+                      ¥
+                      <span>{{shopcarts.currntprice}}</span>
                                         </view>
                                         <view class="i-class i-input-number i-input-number-size-{{size}}" wx:if="{{shopcarts.can_buy==1}}">
                                             <view bindtap="regoodsnum" class="i-input-number-minus " data-gid="{{shopcarts.id}}" data-index="{{idx}}" data-parentid="{{index}}">
@@ -102,12 +99,9 @@
                                         <view class="spec">{{shopcarts.goodstype}}</view>
                                     </view>
                                     <view class="cart-item-content-bottom">
-                                        <view class="sale-price" wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member==1&&shopcarts.is_take_vipcard==1}}">
-                      ¥<span>{{shopcarts.card_price}}</span>
-                                            <text class="vipprice">会员价</text>
-                                        </view>
-                                        <view class="sale-price" wx:else>
-                      ¥<span>{{shopcarts.currntprice}}</span>
+                                        <view class="sale-price">
+                      ¥
+                      <span>{{shopcarts.currntprice}}</span>
                                         </view>
                                         <view class="i-class i-input-number i-input-number-size-{{size}}" wx:if="{{shopcarts.can_buy==1}}">
                                             <view bindtap="regoodsnum" class="i-input-number-minus " data-gid="{{shopcarts.id}}" data-index="{{idx}}" data-parentid="{{index}}">
@@ -147,7 +141,8 @@
                 <view class="active-msg" wx:else>满¥{{man_free_tuanzshipping}}免配送费¥{{delivery_tuanz_money}}</view>
             </view>
             <i-router-link url="/lionfish_comshop/pages/index/index" wx:if="{{diffDeliveryMoney<0&&man_free_tuanzshipping>0&&delivery_tuanz_money>0}}">
-                <view class="i-link">去凑单 <text class="iconfont icon-youjiantou"></text>
+                <view class="i-link">去凑单
+          <image src="../../images/icon-right-arrow-red.png"></image>
                 </view>
             </i-router-link>
         </view>
@@ -159,13 +154,15 @@
             <i-router-link url="/lionfish_comshop/pages/index/index" wx:if="{{disAmount<=0&&is_open_fullreduction==1}}">
                 <view class="i-link">
                     <view class="diff-money" wx:if="{{diffMoney&&diffMoney!='0.00'}}">还差
-            <text>{{diffMoney}}</text>元,</view>去凑单 <text class="iconfont icon-youjiantou"></text>
+            <text>{{diffMoney}}</text>元,</view>去凑单
+          <image src="../../images/icon-right-arrow-red.png"></image>
                 </view>
             </i-router-link>
             <i-router-link type="switch" url="/lionfish_comshop/pages/index/index" wx:else>
                 <view class="i-link">
                     <view class="diff-money" wx:if="{{disAmount&&disAmount>0}}">已减
-            <text>{{disAmount}}</text>元,</view>逛一逛 <text class="iconfont icon-youjiantou"></text>
+            <text>{{disAmount}}</text>元,</view>逛一逛
+          <image src="../../images/icon-right-arrow-red.png"></image>
                 </view>
             </i-router-link>
         </view>

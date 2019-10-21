@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "i-auth": "../../components/auth/index",
+        "comming-spu": "../../components/comming-spu-disabled/index",
+        "i-img": "../../components/img/index",
+        "i-button": "../../components/button/index",
+        "i-router-link": "../../components/router-link/router-link",
+        "sku": "../../components/sku/index"
+    }
+}

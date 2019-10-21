@@ -1,8 +1,0 @@
-{
-    "navigationBarTitleText": "申请提现",
-    "navigationBarBackgroundColor": "#FE8464",
-    "navigationBarTextStyle": "white",
-    "usingComponents": {
-        "i-refund-options": "../../components/refund-options/index"
-    }
-}

@@ -4,7 +4,7 @@ function getdomain() {
 }
 
 function api() {
-    return "https://mall.shiziyu888.com/dan/";
+    return "https://wxapp.ch871.com/";
 }
 
 function check_login() {
@@ -99,7 +99,7 @@ function login_prosime() {
     var i = !(0 < arguments.length && void 0 !== arguments[0]) || arguments[0], r = getApp(), a = wx.getStorageSync("share_id");
     null == a && (a = "0");
     var e = wx.getStorageSync("community"), s = e && (e.communityId || 0);
-    return e && wx.setStorageSync("lastCommunity", e), new Promise(function(n, o) {
+    return new Promise(function(n, o) {
         wx.login({
             success: function(e) {
                 e.code ? (console.log(e.code), r.util.request({

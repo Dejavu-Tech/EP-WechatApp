@@ -1,16 +1,16 @@
 var util = require("../../utils/util.js"), status = require("../../utils/index.js"), WxParse = require("../../wxParse/wxParse.js"), app = getApp(), detailClearTime = null;
 
-function count_down(t, a) {
-    var e = Math.floor(a / 1e3), s = e / 3600 / 24, o = Math.floor(s), i = e / 3600 - 24 * o, n = Math.floor(i), d = e / 60 - 1440 * o - 60 * n, r = Math.floor(d), u = e - 86400 * o - 3600 * n - 60 * r;
+function count_down(t, e) {
+    var a = Math.floor(e / 1e3), o = a / 3600 / 24, s = Math.floor(o), i = a / 3600 - 24 * s, n = Math.floor(i), d = a / 60 - 1440 * s - 60 * n, r = Math.floor(d), c = a - 86400 * s - 3600 * n - 60 * r;
     if (t.setData({
         endtime: {
-            days: fill_zero_prefix(o),
+            days: fill_zero_prefix(s),
             hours: fill_zero_prefix(n),
             minutes: fill_zero_prefix(r),
-            seconds: fill_zero_prefix(u),
+            seconds: fill_zero_prefix(c),
             show_detail: 1
         }
-    }), a <= 0) return clearTimeout(detailClearTime), detailClearTime = null, 0 == t.data.goods.over_type && t.authSuccess(), 
+    }), e <= 0) return clearTimeout(detailClearTime), detailClearTime = null, 0 == t.data.goods.over_type && t.authSuccess(), 
     void t.setData({
         endtime: {
             days: "00",
@@ -20,7 +20,7 @@ function count_down(t, a) {
         }
     });
     detailClearTime = setTimeout(function() {
-        count_down(t, a -= 1e3);
+        count_down(t, e -= 1e3);
     }, 1e3);
 }
 
@@ -39,7 +39,6 @@ Page({
             minutes: "00",
             seconds: "00"
         },
-        is_share_html: !0,
         imageSize: {
             imageWidth: "100%",
             imageHeight: 600
@@ -59,136 +58,210 @@ Page({
         canvasWidth: 375,
         canvasHeight: 300,
         fmShow: !0,
-        pinListCount: 0,
-        pinList: []
+        relative_goods_list: [],
+        needPosition: !1
     },
     $data: {
         id: "",
-        scene: ""
+        scene: "",
+        community_id: 0
     },
     imageUrl: "",
     goodsImg: "",
     currentOptions: [],
-    buy_type: "pindan",
-    onLoad: function(t) {
-        app.globalData.navBackUrl = "";
-        var a = this;
+    onLoad: function(a) {
+        var l = this;
         status.setNavBgColor(), status.setIcon().then(function(t) {
-            a.setData({
+            l.setData({
                 iconArr: t
             });
         });
-        wx.getStorageSync("token");
-        var e = decodeURIComponent(t.scene);
-        if (this.$data.id = t.id, this.$data.scene = t.scene, wx.showLoading(), "undefined" != t.share_id && 0 < t.share_id && wx.setStorage({
-            key: "share_id",
-            data: t.share_id
-        }), "undefined" != e) {
-            var s = e.split("_");
-            t.id = s[0], wx.setStorage({
-                key: "share_id",
-                data: s[1]
+        var o = wx.getStorageSync("token"), s = decodeURIComponent(a.scene);
+        this.$data.id = a.id, this.$data.community_id = a.community_id, this.$data.scene = a.scene;
+        var t = wx.getStorageSync("community"), g = t && t.communityId || "";
+        if (wx.showLoading(), g) console.log("step3"), n(), d(t); else {
+            var e = {};
+            if ("undefined" !== a.community_id && 0 < a.community_id && (e.communityId = a.community_id), 
+            "undefined" !== s) {
+                var i = s.split("_");
+                a.community_id = i[2], e.communityId = a.community_id;
+            }
+            util.getCommunityInfo(e).then(function(t) {
+                console.log("step1"), n(), d(t);
+            }).catch(function(t) {
+                console.log("step4 新人"), "" != Object.keys(t) && l.addhistory(t, !0);
             });
         }
-        this.get_goods_details(t.id), this.get_instructions(), this.setData({
-            canvasWidth: app.globalData.systemInfo.windowWidth,
-            canvasHeight: .8 * app.globalData.systemInfo.windowWidth,
-            goods_id: t.id
-        });
-    },
-    get_goods_details: function(t) {
-        var r = this;
-        if (!t) return wx.hideLoading(), wx.showModal({
-            title: "提示",
-            content: "参数错误",
-            showCancel: !1,
-            confirmColor: "#F75451",
-            success: function(t) {
-                t.confirm && wx.redirectTo({
-                    url: "/lionfish_comshop/pages/index/index"
+        function n() {
+            if (console.log("step2"), "undefined" != a.community_id && 0 < a.community_id && e(a.community_id), 
+            "undefined" != s) {
+                var t = s.split("_");
+                a.id = t[0], wx.setStorage({
+                    key: "share_id",
+                    data: t[1]
+                }), e(t[2]);
+            }
+            function e(a) {
+                app.util.request({
+                    url: "entry/wxapp/index",
+                    data: {
+                        controller: "index.get_community_info",
+                        community_id: a
+                    },
+                    dataType: "json",
+                    success: function(t) {
+                        if (0 == t.data.code) {
+                            var e = t.data.data;
+                            if (a != g) wx.showModal({
+                                title: "温馨提示",
+                                content: "是否切换为分享人所在小区“" + e.communityName,
+                                confirmColor: "#4facfe",
+                                success: function(t) {
+                                    t.confirm ? (app.globalData.community = e, app.globalData.changedCommunity = !0, 
+                                    wx.setStorage({
+                                        key: "community",
+                                        data: e
+                                    }), o && l.addhistory(e), d(e), console.log("用户点击确定")) : t.cancel && (l.showNoBindCommunity(), 
+                                    console.log("用户点击取消"));
+                                }
+                            }); else console.log("step5"), wx.getStorageSync("community") || (app.globalData.community = e, 
+                            app.globalData.changedCommunity = !0, wx.setStorage({
+                                key: "community",
+                                data: e
+                            }));
+                        }
+                    }
                 });
             }
-        }), !1;
-        this.getFujinTuan(t);
-        var a = wx.getStorageSync("token");
-        app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "groupdo.get_goods_detail",
-                token: a,
-                id: t,
-                community_id: 0
-            },
-            dataType: "json",
+            l.setData({
+                goods_id: a.id
+            });
+        }
+        function d(t) {
+            if (!a.id) return wx.hideLoading(), wx.showModal({
+                title: "提示",
+                content: "参数错误",
+                showCancel: !1,
+                confirmColor: "#4facfe",
+                success: function(t) {
+                    t.confirm && wx.redirectTo({
+                        url: "/lionfish_comshop/pages/index/index"
+                    });
+                }
+            }), !1;
+            t && (g = t.communityId), app.util.request({
+                url: "entry/wxapp/index",
+                data: {
+                    controller: "goods.get_goods_detail",
+                    token: o,
+                    id: a.id,
+                    community_id: g
+                },
+                dataType: "json",
+                success: function(t) {
+                    wx.hideLoading();
+                    var a = t.data.data.goods;
+                    a && 0 != a.length && "" != Object.keys(a) || wx.showModal({
+                        title: "提示",
+                        content: "该商品不存在，回首页",
+                        showCancel: !1,
+                        confirmColor: "#4facfe",
+                        success: function(t) {
+                            t.confirm && wx.switchTab({
+                                url: "/lionfish_comshop/pages/index/index"
+                            });
+                        }
+                    });
+                    var e = t.data.comment_list;
+                    e.map(function(t) {
+                        3 < 14 * t.content.length / app.globalData.systemInfo.windowWidth && (t.showOpen = !0), 
+                        t.isOpen = !0;
+                    });
+                    var o = t.data.data.goods_image, s = [];
+                    o.forEach(function(t) {
+                        s.push(t.image);
+                    });
+                    var i = t.data.isopen_community_group_share || 0, n = t.data.group_share_info, d = t.data.data.relative_goods_list || [], r = [];
+                    "[object Object]" == Object.prototype.toString.call(d) && 0 < Object.keys(d).length ? Object.keys(d).forEach(function(t) {
+                        r.push(d[t]);
+                    }) : r = d, l.currentOptions = t.data.data.options, l.setData({
+                        order_comment_count: t.data.order_comment_count,
+                        comment_list: e,
+                        goods: a,
+                        options: t.data.data.options,
+                        order: {
+                            goods_id: t.data.data.goods.goods_id,
+                            pin_id: t.data.data.pin_id
+                        },
+                        share_title: a.share_title,
+                        buy_record_arr: t.data.data.buy_record_arr,
+                        goods_image: t.data.data.goods_image,
+                        goods_image_length: t.data.data.goods_image.length,
+                        service: a.tag,
+                        showSkeleton: !1,
+                        is_comunity_rest: t.data.is_comunity_rest,
+                        prevImgArr: s,
+                        open_man_orderbuy: t.data.open_man_orderbuy,
+                        man_orderbuy_money: t.data.man_orderbuy_money,
+                        goodsdetails_addcart_bg_color: t.data.goodsdetails_addcart_bg_color || "linear-gradient(270deg, #f9c706 0%, #feb600 100%)",
+                        goodsdetails_buy_bg_color: t.data.goodsdetails_buy_bg_color || "linear-gradient(90deg, #ff5041 0%, #ff695c 100%)",
+                        isopen_community_group_share: i,
+                        group_share_info: n,
+                        relative_goods_list: r,
+                        needPosition: !!g
+                    }, function() {
+                        var t = a.goods_share_image;
+                        if (t) console.log("draw分享图"), status.download(t + "?imageView2/1/w/500/h/400").then(function(t) {
+                            l.goodsImg = t.tempFilePath, l.drawImgNoPrice();
+                        }); else {
+                            console.log("draw价格");
+                            var e = a.image_thumb;
+                            status.download(e + "?imageView2/1/w/500/h/400").then(function(t) {
+                                l.goodsImg = t.tempFilePath, l.drawImg();
+                            });
+                        }
+                    }), 1 == t.data.is_comunity_rest && wx.showModal({
+                        title: "温馨提示",
+                        content: "团长休息中，欢迎下次光临!",
+                        showCancel: !1,
+                        confirmColor: "#4facfe",
+                        confirmText: "好的",
+                        success: function(t) {}
+                    });
+                    var c = 0;
+                    0 < (c = 0 == a.over_type ? 1e3 * (a.begin_time - t.data.data.cur_time) : 1e3 * (a.end_time - t.data.data.cur_time)) && count_down(l, c);
+                    var u = t.data.data.goods.description;
+                    WxParse.wxParse("article", "html", u, l, 0, app.globalData.systemInfo);
+                }
+            });
+        }
+        "undefined" != a.share_id && 0 < a.share_id && wx.setStorage({
+            key: "share_id",
+            data: a.share_id
+        }), this.get_instructions(), this.setData({
+            canvasWidth: app.globalData.systemInfo.windowWidth,
+            canvasHeight: .8 * app.globalData.systemInfo.windowWidth
+        });
+    },
+    showNoBindCommunity: function() {
+        wx.showModal({
+            title: "提示",
+            content: "您未绑定该小区，请切换后下单！",
+            showCancel: !1,
+            confirmColor: "#4facfe",
             success: function(t) {
-                wx.hideLoading();
-                var e = t.data.data.goods;
-                e && 0 != e.length && "" != Object.keys(e) || wx.showModal({
-                    title: "提示",
-                    content: "该商品不存在，回首页",
-                    showCancel: !1,
-                    confirmColor: "#F75451",
-                    success: function(t) {
-                        t.confirm && wx.switchTab({
-                            url: "/lionfish_comshop/pages/index/index"
-                        });
-                    }
+                t.confirm && wx.redirectTo({
+                    url: "/lionfish_comshop/pages/position/community"
                 });
-                var a = t.data.comment_list;
-                a.map(function(t) {
-                    3 < 14 * t.content.length / app.globalData.systemInfo.windowWidth && (t.showOpen = !0), 
-                    t.isOpen = !0;
-                });
-                var s = t.data.data.goods_image, o = [];
-                s.forEach(function(t) {
-                    o.push(t.image);
-                }), r.currentOptions = t.data.data.options;
-                var i = t.data.data.pin_info || {};
-                r.setData({
-                    order_comment_count: t.data.order_comment_count,
-                    comment_list: a,
-                    goods: e,
-                    options: t.data.data.options,
-                    order: {
-                        goods_id: t.data.data.goods.goods_id,
-                        pin_id: t.data.data.pin_id
-                    },
-                    share_title: e.share_title,
-                    buy_record_arr: t.data.data.buy_record_arr,
-                    goods_image: t.data.data.goods_image,
-                    goods_image_length: t.data.data.goods_image.length,
-                    service: e.tag,
-                    showSkeleton: !1,
-                    is_comunity_rest: t.data.is_comunity_rest,
-                    prevImgArr: o,
-                    open_man_orderbuy: t.data.open_man_orderbuy,
-                    man_orderbuy_money: t.data.man_orderbuy_money,
-                    goodsdetails_addcart_bg_color: t.data.goodsdetails_addcart_bg_color || "linear-gradient(270deg, #f9c706 0%, #feb600 100%)",
-                    goodsdetails_buy_bg_color: t.data.goodsdetails_buy_bg_color || "linear-gradient(90deg, #ff5041 0%, #ff695c 100%)",
-                    pin_info: i
-                }, function() {
-                    var t = e.goods_share_image;
-                    if (t) console.log("draw分享图"), status.download(t + "?imageView2/1/w/500/h/400").then(function(t) {
-                        r.goodsImg = t.tempFilePath, r.drawImgNoPrice();
-                    }); else {
-                        console.log("draw价格");
-                        var a = e.image_thumb;
-                        status.download(a + "?imageView2/1/w/500/h/400").then(function(t) {
-                            r.goodsImg = t.tempFilePath, r.drawImg();
-                        });
-                    }
-                });
-                var n = 0;
-                0 < (n = 0 == e.over_type ? 1e3 * (e.begin_time - t.data.data.cur_time) : 1e3 * (e.end_time - t.data.data.cur_time)) && count_down(r, n);
-                var d = t.data.data.goods.description;
-                WxParse.wxParse("article", "html", d, r, 0, app.globalData.systemInfo);
             }
         });
     },
     authSuccess: function() {
-        var t = "/lionfish_comshop/moduleA/pin/goodsDetail?id=" + this.$data.id + "&scene=" + this.$data.scene;
-        app.globalData.navBackUrl = t, wx.redirectTo({
-            url: t
+        var t = this.$data.id, e = this.$data.scene, a = "/lionfish_comshop/pages/goods/goodsDetail?id=" + t + "&community_id=" + this.$data.community_id + "&scene=" + e;
+        app.globalData.navBackUrl = a;
+        var o = wx.getStorageSync("community"), s = this.data.needPosition;
+        o && (s = !1), s || wx.redirectTo({
+            url: a
         });
     },
     authModal: function() {
@@ -196,28 +269,47 @@ Page({
             showAuthModal: !this.data.showAuthModal
         }), !1);
     },
-    onShow: function() {
-        var a = this;
-        util.check_login_new().then(function(t) {
-            t ? (0, status.cartNum)("", !0).then(function(t) {
-                0 == t.code && a.setData({
-                    cartNum: t.data
-                });
-            }) : a.setData({
-                needAuth: !0
-            });
-        }), this.setData({
-            stopNotify: !1
+    addhistory: function(t) {
+        var e = 1 < arguments.length && void 0 !== arguments[1] && arguments[1], a = t.communityId;
+        console.log("addhistory");
+        var o = wx.getStorageSync("token");
+        app.util.request({
+            url: "entry/wxapp/index",
+            data: {
+                controller: "index.addhistory_community",
+                community_id: a,
+                token: o
+            },
+            dataType: "json",
+            success: function(t) {
+                e && (console.log("新人 社区"), app.util.request({
+                    url: "entry/wxapp/index",
+                    data: {
+                        controller: "index.get_community_info",
+                        community_id: a
+                    },
+                    dataType: "json",
+                    success: function(t) {
+                        if (0 == t.data.code) {
+                            var e = t.data.data;
+                            app.globalData.community = e, app.globalData.changedCommunity = !0, wx.setStorage({
+                                key: "community",
+                                data: e
+                            });
+                        }
+                    }
+                }));
+            }
         });
     },
     imageLoad: function(t) {
-        var a = util.imageUtil(t);
+        var e = util.imageUtil(t);
         this.setData({
-            imageSize: a
+            imageSize: e
         });
     },
     get_instructions: function() {
-        var e = this;
+        var a = this;
         app.util.request({
             url: "entry/wxapp/index",
             data: {
@@ -226,10 +318,10 @@ Page({
             dataType: "json",
             success: function(t) {
                 if (0 == t.data.code) {
-                    var a = t.data.data.value;
-                    WxParse.wxParse("instructions", "html", a, e, 25), "" == a && e.setData({
+                    var e = t.data.data.value;
+                    WxParse.wxParse("instructions", "html", e, a, 25), "" == e && a.setData({
                         noIns: !0
-                    }), e.setData({
+                    }), a.setData({
                         index_bottom_image: t.data.data.index_bottom_image,
                         goods_details_middle_image: t.data.data.goods_details_middle_image,
                         is_show_buy_record: t.data.data.is_show_buy_record,
@@ -239,207 +331,10 @@ Page({
                         isShowContactBtn: t.data.data.index_service_switch || 0,
                         goods_industrial_switch: t.data.data.goods_industrial_switch || 0,
                         goods_industrial: t.data.data.goods_industrial || "",
-                        is_show_ziti_time: t.data.data.is_show_ziti_time || 0,
-                        hide_community_change_btn: t.data.data.hide_community_change_btn || 0,
-                        is_show_goodsdetails_communityinfo: t.data.data.is_show_goodsdetails_communityinfo || 0
+                        is_show_ziti_time: t.data.data.is_show_ziti_time || 0
                     });
                 }
             }
-        });
-    },
-    getFujinTuan: function(t) {
-        var i = this;
-        app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "groupdo.get_goods_fujin_tuan",
-                goods_id: t,
-                limit: 4
-            },
-            dataType: "json",
-            success: function(t) {
-                if (0 == t.data.code) {
-                    var a = t.data, e = a.list, s = a.count;
-                    if (e.length) {
-                        var o = Date.parse(new Date());
-                        e.forEach(function(t, a) {
-                            e[a].seconds = 1e3 * (t.end_time - t.cur_interface_time) + o, console.log(t.end_time - t.cur_interface_time);
-                        });
-                    }
-                    i.setData({
-                        pinList: e || [],
-                        pinListCount: s || 0
-                    });
-                }
-            }
-        });
-    },
-    openSku: function(t) {
-        if (this.authModal()) {
-            var a = this.data.goods_id, e = this.currentOptions;
-            this.setData({
-                addCar_goodsid: a
-            });
-            var s = e.list || [], o = [];
-            if (0 < s.length) {
-                for (var i = 0; i < s.length; i++) {
-                    var n = s[i].option_value[0], d = {
-                        name: n.name,
-                        id: n.option_value_id,
-                        index: i,
-                        idx: 0
-                    };
-                    o.push(d);
-                }
-                for (var r = "", u = 0; u < o.length; u++) u == o.length - 1 ? r += o[u].id : r = r + o[u].id + "_";
-                var c = e.sku_mu_list[r];
-                this.setData({
-                    sku: o,
-                    sku_val: 1,
-                    cur_sku_arr: c,
-                    skuList: e,
-                    visible: !0,
-                    showSku: !0,
-                    is_just_addcar: 0
-                });
-            } else {
-                var l = this.data.goods, g = this.data.pin_info.danprice || 0, _ = {
-                    canBuyNum: l.total,
-                    spuName: l.goodsname,
-                    marketPrice: l.marketPrice,
-                    stock: l.total,
-                    skuImage: l.image_thumb,
-                    pinprice: l.actPrice,
-                    actPrice: g.split(".")
-                };
-                this.setData({
-                    sku: [],
-                    sku_val: 1,
-                    cur_sku_arr: _,
-                    skuList: [],
-                    visible: !0,
-                    showSku: !0
-                });
-            }
-        }
-    },
-    gocarfrom: function(t) {
-        wx.showLoading();
-        var a = wx.getStorageSync("token");
-        app.util.request({
-            url: "entry/wxapp/user",
-            data: {
-                controller: "user.get_member_form_id",
-                token: a,
-                from_id: t.detail.formId
-            },
-            dataType: "json",
-            success: function(t) {}
-        }), this.goOrder();
-    },
-    closeSku: function() {
-        this.setData({
-            visible: 0,
-            stopClick: !1
-        });
-    },
-    goOrder: function() {
-        var o = this;
-        if (o.data.can_car && (o.data.can_car = !1), 1 == this.data.open_man_orderbuy) {
-            var t = 1 * this.data.man_orderbuy_money, a = this.data.sku_val, e = this.data.cur_sku_arr, s = e.actPrice[0] + "." + e.actPrice[1];
-            if (console.log(1 * s * a), 1 * s * a < t) return wx.showToast({
-                title: "满" + t + "元可下单！",
-                icon: "none"
-            }), !1;
-        }
-        var i = wx.getStorageSync("token"), n = o.data.addCar_goodsid, d = o.data.sku_val, r = o.data.cur_sku_arr, u = "", c = this.buy_type;
-        r && r.option_item_ids && (u = r.option_item_ids), app.util.request({
-            url: "entry/wxapp/user",
-            data: {
-                controller: "car.add",
-                token: i,
-                goods_id: n,
-                community_id: 0,
-                quantity: d,
-                sku_str: u,
-                buy_type: c,
-                pin_id: 0,
-                is_just_addcar: 0
-            },
-            dataType: "json",
-            method: "POST",
-            success: function(t) {
-                if (3 == t.data.code) wx.showToast({
-                    title: t.data.msg,
-                    icon: "none",
-                    duration: 2e3
-                }); else if (4 == t.data.code) wx.hideLoading(), o.setData({
-                    needAuth: !0,
-                    showAuthModal: !0,
-                    visible: !1
-                }); else if (6 == t.data.code) {
-                    var a = t.data.msg, e = t.data.max_quantity || "";
-                    0 < e && o.setData({
-                        sku_val: e
-                    }), wx.showToast({
-                        title: a,
-                        icon: "none",
-                        duration: 2e3
-                    });
-                } else {
-                    var s = t.data.is_limit_distance_buy;
-                    3 < getCurrentPages().length ? wx.redirectTo({
-                        url: "/lionfish_comshop/pages/order/placeOrder?type=" + c + "&is_limit=" + s
-                    }) : wx.navigateTo({
-                        url: "/lionfish_comshop/pages/order/placeOrder?type=" + c + "&is_limit=" + s
-                    });
-                }
-            }
-        });
-    },
-    selectSku: function(t) {
-        var a = t.currentTarget.dataset.type.split("_"), e = this.data.sku, s = {
-            name: a[3],
-            id: a[2],
-            index: a[0],
-            idx: a[1]
-        };
-        e.splice(a[0], 1, s), this.setData({
-            sku: e
-        });
-        for (var o = "", i = 0; i < e.length; i++) i == e.length - 1 ? o += e[i].id : o = o + e[i].id + "_";
-        var n = this.data.skuList.sku_mu_list[o];
-        this.setData({
-            cur_sku_arr: n
-        }), console.log(o);
-    },
-    submit: function(t) {
-        var a = t.detail.formId, e = wx.getStorageSync("token");
-        app.util.request({
-            url: "entry/wxapp/user",
-            data: {
-                controller: "user.get_member_form_id",
-                token: e,
-                from_id: a
-            },
-            dataType: "json",
-            success: function(t) {}
-        });
-    },
-    balance: function(t) {
-        var a = t.currentTarget.dataset.type;
-        this.buy_type = a, this.setData({
-            buy_type: a
-        }), this.authModal() && this.openSku(a);
-    },
-    setNum: function(t) {
-        var a = t.currentTarget.dataset.type, e = 1, s = 1 * this.data.sku_val;
-        "add" == a ? e = s + 1 : "decrease" == a && 1 < s && (e = s - 1);
-        var o = this.data.sku, i = this.data.skuList;
-        if (0 < o.length) for (var n = "", d = 0; d < o.length; d++) d == o.length - 1 ? n += o[d].id : n = n + o[d].id + "_";
-        0 < i.length ? e > i.sku_mu_list[n].canBuyNum && (e -= 1) : e > this.data.cur_sku_arr.canBuyNum && (e -= 1);
-        this.setData({
-            sku_val: e
         });
     },
     scrollImagesChange: function(t) {
@@ -448,51 +343,18 @@ Page({
             goodsIndex: t.detail.current + 1
         });
     },
-    share_handler: function() {
-        this.setData({
-            is_share_html: !this.data.is_share_html
-        });
-    },
-    share_quan: function() {
-        wx.showLoading({
-            title: "获取中"
-        });
-        var t = wx.getStorageSync("token"), a = wx.getStorageSync("community"), e = this.data.order.goods_id, s = a.communityId, o = this;
-        app.util.request({
-            url: "entry/wxapp/index",
-            data: {
-                controller: "goods.get_user_goods_qrcode",
-                token: t,
-                community_id: s,
-                goods_id: e
-            },
-            dataType: "json",
-            success: function(t) {
-                if (0 == t.data.code) {
-                    setTimeout(function() {
-                        wx.hideLoading();
-                    }, 2e3);
-                    var a = t.data.image_path;
-                    wx.getImageInfo({
-                        src: a,
-                        success: function(t) {
-                            var a = t.path;
-                            wx.saveImageToPhotosAlbum({
-                                filePath: a,
-                                success: function(t) {
-                                    wx.showToast({
-                                        title: "图片保存成功，可以分享了",
-                                        icon: "none",
-                                        duration: 2e3
-                                    }), o.setData({
-                                        is_share_html: !0
-                                    });
-                                }
-                            });
-                        }
-                    });
-                }
-            }
+    onShow: function() {
+        var e = this;
+        util.check_login_new().then(function(t) {
+            t ? (0, status.cartNum)("", !0).then(function(t) {
+                0 == t.code && e.setData({
+                    cartNum: t.data
+                });
+            }) : e.setData({
+                needAuth: !0
+            });
+        }), this.setData({
+            stopNotify: !1
         });
     },
     onReady: function(t) {
@@ -508,176 +370,98 @@ Page({
             stopNotify: !0
         }), console.log("详情页unload", this.data.stopNotify), detailClearTime = null, clearTimeout(detailClearTime);
     },
-    get_share_img: function() {
-        if (wx.showLoading(), "" != this.data.shareImgUrl) wx.hideLoading(), this.setData({
-            hideModal: !1,
-            is_share_html: !0
-        }); else {
-            var t = wx.getStorageSync("token"), a = wx.getStorageSync("community"), e = this.data.goods_id, s = a.communityId;
-            app.util.request({
-                url: "entry/wxapp/index",
-                data: {
-                    controller: "goods.get_user_goods_qrcode",
-                    token: t,
-                    community_id: s,
-                    goods_id: e
-                },
-                dataType: "json",
-                success: function(t) {
-                    if (0 == t.data.code) {
-                        wx.hideLoading();
-                        var a = t.data.image_path;
-                        wx.previewImage({
-                            current: a,
-                            urls: [ a ]
-                        });
-                    }
-                }
-            });
-        }
-    },
-    closeShareModal: function() {
-        this.setData({
-            hideModal: !0
-        });
-    },
-    bindOpen: function(t) {
-        var a = t.currentTarget.dataset.idx;
-        if (console.log(a), this.data.comment_list[a].isOpen) {
-            this.data.comment_list[a].isOpen = !1;
-            var e = this.data.comment_list;
-            this.setData({
-                comment_list: e
-            });
-        } else {
-            this.data.comment_list[a].isOpen = !0;
-            e = this.data.comment_list;
-            this.setData({
-                comment_list: e
-            });
-        }
-    },
-    saveThumb: function(t) {
-        wx.showLoading();
-        var e = this, a = this.data.shareImgUrl;
-        wx.getImageInfo({
-            src: a,
-            success: function(t) {
-                var a = t.path;
-                a && wx.saveImageToPhotosAlbum({
-                    filePath: a,
-                    success: function(t) {
-                        console.log(t), wx.hideLoading(), wx.showToast({
-                            title: "已保存相册",
-                            icon: "none",
-                            duration: 2e3
-                        }), e.setData({
-                            hideModal: !0
-                        });
-                    },
-                    fail: function(t) {
-                        wx.hideLoading(), console.log(t), "saveImageToPhotosAlbum:fail:auth denied" === t.errMsg && wx.openSetting({
-                            success: function(t) {
-                                t.authSetting["scope.writePhotosAlbum"] ? console.log("获取权限成功，再次点击图片保存到相册") : console.log("获取权限失败");
-                            }
-                        });
-                    }
-                });
-            }
-        });
-    },
     drawImgNoPrice: function() {
-        var a = this;
+        var e = this;
         wx.createSelectorQuery().select(".canvas-img").boundingClientRect(function() {
             var t = wx.createCanvasContext("myCanvas");
-            t.drawImage(a.goodsImg, 0, 0, status.getPx(375), status.getPx(300)), a.data.goods.video && t.drawImage("../../images/play.png", status.getPx(127.5), status.getPx(90), status.getPx(120), status.getPx(120)), 
-            t.save(), t.restore(), t.draw(!1, a.checkCanvasNoPrice());
+            t.drawImage(e.goodsImg, 0, 0, status.getPx(375), status.getPx(300)), e.data.goods.video && t.drawImage("../../images/play.png", status.getPx(150), status.getPx(105), status.getPx(76), status.getPx(76)), 
+            t.save(), t.restore(), t.draw(!1, e.checkCanvasNoPrice());
         }).exec();
     },
     checkCanvasNoPrice: function() {
-        var a = this;
+        var e = this;
         setTimeout(function() {
             wx.canvasToTempFilePath({
                 canvasId: "myCanvas",
                 success: function(t) {
-                    t.tempFilePath ? a.imageUrl = t.tempFilePath : a.drawImgNoPrice(), console.log("我画完了");
+                    t.tempFilePath ? e.imageUrl = t.tempFilePath : e.drawImgNoPrice(), console.log("我画完了");
                 },
                 fail: function(t) {
-                    a.drawImgNoPrice();
+                    e.drawImgNoPrice();
                 }
             });
         }, 500);
     },
     drawImg: function() {
-        var t = this.data.endtime, u = (0 < t.days ? t.days + "天" : "") + t.hours + ":" + t.minutes + ":" + t.seconds, c = this;
+        var t = this.data.endtime, r = (0 < t.days ? t.days + "天" : "") + t.hours + ":" + t.minutes + ":" + t.seconds, c = this;
         wx.createSelectorQuery().select(".canvas-img").boundingClientRect(function() {
             var t = wx.createCanvasContext("myCanvas");
             t.font = "28px Arial";
-            var a = t.measureText("￥").width + 2, e = t.measureText(c.data.goods.price_front + "." + c.data.goods.price_after).width;
+            var e = t.measureText("￥").width + 2, a = t.measureText(c.data.goods.price_front + "." + c.data.goods.price_after).width;
             t.font = "17px Arial";
-            var s = t.measureText("￥" + c.data.goods.productprice).width + 3, o = t.measureText("累计销售 " + c.data.goods.seller_count).width, i = t.measureText("· 剩余" + c.data.goods.total + " ").width + 10;
+            var o = t.measureText("￥" + c.data.goods.productprice).width + 3, s = t.measureText("累计销售 " + c.data.goods.seller_count).width, i = t.measureText("· 剩余" + c.data.goods.total + " ").width + 10;
             t.font = "18px Arial";
-            var n = 0 == c.data.goods.over_type ? "距开始" : "距结束", d = t.measureText(n).width, r = t.measureText(u).width + 10;
+            var n = t.measureText("距结束").width, d = t.measureText(r).width + 10;
             t.drawImage(c.goodsImg, 0, 0, status.getPx(375), status.getPx(300)), t.drawImage("../../images/shareBottomBg.png", status.getPx(0), status.getPx(225), status.getPx(375), status.getPx(75)), 
-            c.data.goods.video && t.drawImage("../../images/play.png", status.getPx(127.5), status.getPx(70), status.getPx(120), status.getPx(120)), 
+            c.data.goods.video && t.drawImage("../../images/play.png", status.getPx(149.5), status.getPx(74.5), status.getPx(76), status.getPx(76)), 
             t.save(), status.drawText(t, {
                 color: "#ffffff",
                 size: 28,
                 textAlign: "left"
-            }, "￥", status.getPx(6), status.getPx(267), status.getPx(a)), status.drawText(t, {
+            }, "￥", status.getPx(6), status.getPx(267), status.getPx(e)), status.drawText(t, {
                 color: "#ffffff",
                 size: 28,
                 textAlign: "left"
-            }, c.data.goods.price_front + "." + c.data.goods.price_after, status.getPx(a), status.getPx(267), status.getPx(e)), 
+            }, c.data.goods.price_front + "." + c.data.goods.price_after, status.getPx(e), status.getPx(267), status.getPx(a)), 
             t.restore(), t.save(), t.restore(), t.save(), (0, status.drawText)(t, {
                 color: "#ffffff",
                 size: 15,
                 textAlign: "left"
-            }, "￥" + c.data.goods.productprice, (0, status.getPx)(a + e + 10), (0, status.getPx)(267), (0, 
-            status.getPx)(s)), t.restore(), t.save(), (0, status.drawText)(t, {
-                color: "#ffffff",
-                size: 17,
-                textAlign: "left"
-            }, "累计销售" + c.data.goods.seller_count, (0, status.getPx)(10), (0, status.getPx)(290), (0, 
+            }, "￥" + c.data.goods.productprice, (0, status.getPx)(e + a + 10), (0, status.getPx)(267), (0, 
             status.getPx)(o)), t.restore(), t.save(), (0, status.drawText)(t, {
                 color: "#ffffff",
                 size: 17,
                 textAlign: "left"
-            }, "· 剩余" + c.data.goods.total, (0, status.getPx)(o + 10), (0, status.getPx)(290), (0, 
+            }, "累计销售" + c.data.goods.seller_count, (0, status.getPx)(10), (0, status.getPx)(290), (0, 
+            status.getPx)(s)), t.restore(), t.save(), (0, status.drawText)(t, {
+                color: "#ffffff",
+                size: 17,
+                textAlign: "left"
+            }, "· 剩余" + c.data.goods.total, (0, status.getPx)(s + 10), (0, status.getPx)(290), (0, 
             status.getPx)(i)), t.restore(), t.save(), t.beginPath(), t.setStrokeStyle("white"), 
-            t.moveTo((0, status.getPx)(a + e + 10), (0, status.getPx)(261)), t.lineTo((0, status.getPx)(a + e + s + 15), (0, 
+            t.moveTo((0, status.getPx)(e + a + 10), (0, status.getPx)(261)), t.lineTo((0, status.getPx)(e + a + o + 15), (0, 
             status.getPx)(261)), t.stroke(), t.restore(), t.save(), (0, status.drawText)(t, {
                 color: "#F8E71C",
                 size: 18,
                 textAlign: "center"
-            }, n, (0, status.getPx)(318), (0, status.getPx)(260), (0, status.getPx)(d)), t.restore(), 
-            t.save(), (0, status.drawText)(t, {
+            }, "距结束", (0, status.getPx)(318), (0, status.getPx)(260), (0, status.getPx)(n)), 
+            t.restore(), t.save(), (0, status.drawText)(t, {
                 color: "#F8E71C",
                 size: 18,
                 textAlign: "center"
-            }, u, (0, status.getPx)(315), (0, status.getPx)(288), (0, status.getPx)(r)), t.restore(), 
+            }, r, (0, status.getPx)(315), (0, status.getPx)(288), (0, status.getPx)(d)), t.restore(), 
             t.draw(!1, c.checkCanvas());
         }).exec();
     },
     checkCanvas: function() {
-        var a = this;
+        var e = this;
         setTimeout(function() {
             wx.canvasToTempFilePath({
                 canvasId: "myCanvas",
                 success: function(t) {
-                    t.tempFilePath ? a.imageUrl = t.tempFilePath : a.drawImg(), console.log("我画完了");
+                    t.tempFilePath ? e.imageUrl = t.tempFilePath : e.drawImg(), console.log("我画完了");
                 },
                 fail: function(t) {
-                    a.drawImg();
+                    e.drawImg();
                 }
             });
         }, 500);
     },
     previewImg: function(t) {
-        var a = t.currentTarget.dataset.idx || 0, e = this.data.prevImgArr;
+        var e = t.currentTarget.dataset.idx || 0, a = this.data.prevImgArr;
         wx.previewImage({
-            current: e[a],
-            urls: e
+            current: a[e],
+            urls: a
         });
     },
     btnPlay: function() {
@@ -695,27 +479,5 @@ Page({
             fmShow: !0
         });
     },
-    goLink: function(t) {
-        var a = getCurrentPages(), e = t.currentTarget.dataset.link;
-        3 < a.length ? wx.redirectTo({
-            url: e
-        }) : wx.navigateTo({
-            url: e
-        });
-    },
-    onShareAppMessage: function() {
-        this.data.goods_id;
-        var t = this.data.share_title, a = wx.getStorageSync("member_id"), e = "lionfish_comshop/moduleA/pin/goodsDetail?id=" + this.data.goods_id + "&share_id=" + a, s = this.data.goods.goods_share_image;
-        console.log("商品分享地址："), console.log(e);
-        return this.setData({
-            is_share_html: !0,
-            hideModal: !0
-        }), {
-            title: t,
-            path: e,
-            imageUrl: s || this.imageUrl,
-            success: function(t) {},
-            fail: function(t) {}
-        };
-    }
+    onShareAppMessage: function() {}
 });

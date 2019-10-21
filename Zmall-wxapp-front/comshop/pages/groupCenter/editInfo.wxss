@@ -44,7 +44,7 @@ view {
     width: 710rpx;
     height: 88rpx;
     border-radius: 8rpx;
-    background: #fe8464;
+    background: #4facfe;
     font-size: 30rpx;
     font-family: PingFangSC-Medium;
     font-weight: 500;
@@ -72,7 +72,7 @@ view {
 }
 
 .get-all {
-    color: #fe8464;
+    color: #4facfe;
 }
 
 .type-wrap {
@@ -109,8 +109,8 @@ radio .wx-radio-input.wx-radio-input-checked::before {
     text-align: center;
     font-size: 28rpx;
     color: #fff;
-    background: #fe8464;
-    border-color: #fe8464;
+    background: #4facfe;
+    border-color: #4facfe;
 }
 
 .form-box {

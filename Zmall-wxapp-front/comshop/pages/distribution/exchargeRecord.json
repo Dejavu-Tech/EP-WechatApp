@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "提现记录",
+    "usingComponents": {
+        "i-load-more": "../../components/load-more/index",
+        "i-auth": "../../components/auth/index"
+    }
+}

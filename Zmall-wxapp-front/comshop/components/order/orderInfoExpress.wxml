@@ -38,7 +38,7 @@
                 <view class="title">配送方式</view>
                 <view class="detail">团长配送</view>
             </view>
-            <view class="item" wx:if="{{order.order_info.type=='normal'}}">
+            <view class="item">
                 <view class="title">团长信息</view>
                 <view class="detail">
                     <text>{{order.order_info.ziti_name}}</text>

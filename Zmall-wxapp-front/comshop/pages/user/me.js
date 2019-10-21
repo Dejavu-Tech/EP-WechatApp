@@ -50,7 +50,7 @@ Page({
         }), wx.showLoading(), this.getCopyright();
     },
     getMemberInfo: function() {
-        var e = wx.getStorageSync("token"), l = this;
+        var e = wx.getStorageSync("token"), u = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -62,36 +62,37 @@ Page({
                 if (wx.hideLoading(), 0 == e.data.code) {
                     var t = !1;
                     1 != e.data.is_show_auth_mobile || e.data.data.telephone || (t = !0);
-                    var a = e.data.data || "", s = {};
-                    if (a) {
-                        if (a.member_level_info && (a.member_level_info.discount = (a.member_level_info.discount / 10).toFixed(1)), 
-                        0 < e.data.commiss_level) {
-                            var o = 1 * e.data.commiss_share_member_update, i = 1 * e.data.share_member_count, n = 1 * e.data.commiss_share_member_update - 1 * e.data.share_member_count, r = 0;
-                            1 == a.is_writecommiss_form && (r = 1) == a.comsiss_flag && (r = 0 == a.comsiss_state ? 1 : 2), 
-                            s = {
-                                formStatus: r,
-                                commiss_level: e.data.commiss_level,
-                                commiss_sharemember_need: e.data.commiss_sharemember_need,
-                                commiss_share_member_update: o,
-                                commiss_biaodan_need: e.data.commiss_biaodan_need,
-                                share_member_count: i,
-                                today_share_member_count: e.data.today_share_member_count,
-                                yestoday_share_member_count: e.data.yestoday_share_member_count,
-                                need_num_update: n
-                            };
-                        }
-                    } else s.needAuth = !0;
-                    var u = e.data, _ = u.is_supply, c = u.is_open_vipcard_buy, m = u.modify_vipcard_name, d = u.is_vip_card_member, h = u.modify_vipcard_logo;
-                    l.setData(_extends({}, s, {
+                    var a = e.data.data, s = {};
+                    if (0 < e.data.commiss_level) {
+                        var o = 1 * e.data.commiss_share_member_update, i = 1 * e.data.share_member_count, n = 1 * e.data.commiss_share_member_update - 1 * e.data.share_member_count, r = 0;
+                        1 == a.is_writecommiss_form && (r = 1) == a.comsiss_flag && (r = 0 == a.comsiss_state ? 1 : 2), 
+                        s = {
+                            formStatus: r,
+                            commiss_level: e.data.commiss_level,
+                            commiss_sharemember_need: e.data.commiss_sharemember_need,
+                            commiss_share_member_update: o,
+                            commiss_biaodan_need: e.data.commiss_biaodan_need,
+                            share_member_count: i,
+                            today_share_member_count: e.data.today_share_member_count,
+                            yestoday_share_member_count: e.data.yestoday_share_member_count,
+                            need_num_update: n
+                        };
+                    }
+                    u.setData(_extends({}, s, {
                         member_info: a,
-                        is_supply: _ || 0,
+                        enabled_front_supply: e.data.enabled_front_supply,
+                        is_supply: e.data.is_supply,
+                        is_open_yue_pay: e.data.is_open_yue_pay,
+                        is_show_score: e.data.is_show_score,
                         showGetPhone: t,
-                        is_open_vipcard_buy: c || 0,
-                        modify_vipcard_name: m || "会员",
-                        is_vip_card_member: d || 0,
-                        modify_vipcard_logo: h
+                        index_top_font_color: e.data.index_top_font_color || "#fff",
+                        user_order_menu_icons: e.data.user_order_menu_icons || {},
+                        commiss_diy_name: e.data.commiss_diy_name || "分销",
+                        close_community_apply_enter: e.data.close_community_apply_enter || 0,
+                        user_tool_icons: e.data.user_tool_icons || {},
+                        ishow_user_loginout_btn: e.data.ishow_user_loginout_btn || 0
                     }));
-                } else l.setData({
+                } else u.setData({
                     needAuth: !0
                 }), wx.hideTabBar(), wx.setStorage({
                     key: "member_id",
@@ -101,7 +102,7 @@ Page({
         });
     },
     getCopyright: function() {
-        var g = this;
+        var t = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -109,27 +110,11 @@ Page({
             },
             dataType: "json",
             success: function(e) {
-                if (0 == e.data.code) {
-                    var t = e.data, a = t.enabled_front_supply, s = t.is_open_yue_pay, o = t.is_show_score, i = t.user_order_menu_icons, n = t.close_community_apply_enter, r = t.user_tool_icons, u = t.ishow_user_loginout_btn, _ = t.commiss_diy_name, c = t.supply_diy_name, m = t.user_service_switch, d = t.fetch_coder_type, h = t.show_user_pin, l = t.common_header_backgroundimage, p = t.is_show_about_us;
-                    _ = _ || "分销", c = c || "供应商", wcache.put("commiss_diy_name", _), wcache.put("supply_diy_name", c), 
-                    g.setData({
-                        copyright: t.data || "",
-                        common_header_backgroundimage: l || "",
-                        is_show_about_us: p || 0,
-                        enabled_front_supply: a,
-                        is_open_yue_pay: s,
-                        is_show_score: o,
-                        user_order_menu_icons: i || {},
-                        commiss_diy_name: _,
-                        close_community_apply_enter: n || 0,
-                        user_tool_icons: r || {},
-                        ishow_user_loginout_btn: u || 0,
-                        supply_diy_name: c,
-                        user_service_switch: m,
-                        fetch_coder_type: d || 0,
-                        show_user_pin: h
-                    });
-                }
+                0 == e.data.code && t.setData({
+                    copyright: e.data.data || "",
+                    common_header_backgroundimage: e.data.common_header_backgroundimage || "",
+                    is_show_about_us: e.data.is_show_about_us || 0
+                });
             }
         });
     },
@@ -224,10 +209,10 @@ Page({
                 0 == e.code && t.setData({
                     cartNum: e.data
                 });
-            })) : (t.setData({
+            }), t.getMemberInfo()) : (t.setData({
                 needAuth: !0
             }), wx.hideLoading());
-        }), t.getCopyright(), t.getMemberInfo();
+        });
     },
     onHide: function() {
         this.setData({
@@ -301,11 +286,6 @@ Page({
                     url: "/lionfish_comshop/pages/user/me"
                 });
             }
-        });
-    },
-    toggleFetchCoder: function() {
-        this.authModal() && this.setData({
-            isShowCoder: !this.data.isShowCoder
         });
     }
 });

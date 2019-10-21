@@ -40,7 +40,7 @@ Page({
         });
     },
     getMemberInfo: function() {
-        var e = wx.getStorageSync("token"), n = this;
+        var e = wx.getStorageSync("token"), o = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -52,17 +52,17 @@ Page({
                 if (0 == e.data.code) {
                     var t = e.data.data;
                     if (0 < e.data.commiss_level) {
-                        var a = 1 * e.data.commiss_share_member_update, s = 1 * e.data.share_member_count, i = 1 * e.data.commiss_share_member_update - 1 * e.data.share_member_count, o = e.data.commiss_diy_name || "分销";
+                        var a = 1 * e.data.commiss_share_member_update, s = 1 * e.data.share_member_count, i = 1 * e.data.commiss_share_member_update - 1 * e.data.share_member_count, n = e.data.commiss_diy_name || "分销";
                         wx.setNavigationBarTitle({
-                            title: "会员" + o
-                        }), n.setData({
+                            title: "会员" + n
+                        }), o.setData({
                             member_info: t,
                             commiss_level: e.data.commiss_level,
                             commiss_sharemember_need: e.data.commiss_sharemember_need,
                             commiss_share_member_update: a,
                             share_member_count: s,
                             need_num_update: i,
-                            commiss_diy_name: o
+                            commiss_diy_name: n
                         });
                     } else wx.showModal({
                         title: "提示",
@@ -74,7 +74,7 @@ Page({
                             }));
                         }
                     });
-                } else n.setData({
+                } else o.setData({
                     is_login: !1
                 }), wx.setStorage({
                     key: "member_id",

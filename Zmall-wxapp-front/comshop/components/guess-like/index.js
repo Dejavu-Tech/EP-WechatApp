@@ -1,7 +1,6 @@
 var app = getApp(), status = require("../../utils/index.js");
 
 Component({
-    externalClasses: [ "i-class" ],
     properties: {
         updateCart: {
             type: Number,
@@ -13,20 +12,11 @@ Component({
         likeTitle: {
             type: String,
             value: "大家常买"
-        },
-        controller: {
-            type: "String",
-            value: "index.load_gps_goodslist"
-        },
-        gid: {
-            type: "Number",
-            value: 0
         }
     },
     data: {
         disabled: !1,
-        list: [],
-        show_goods_guess_like: 1
+        list: []
     },
     attached: function() {
         this.getData();
@@ -38,28 +28,24 @@ Component({
     },
     methods: {
         getData: function() {
-            var t = wx.getStorageSync("token"), o = this, a = wx.getStorageSync("community"), e = this.data, s = e.controller, i = e.gid;
+            var t = wx.getStorageSync("token"), e = this, a = wx.getStorageSync("community");
             app.util.request({
                 url: "entry/wxapp/index",
                 data: {
-                    controller: s,
+                    controller: "index.load_gps_goodslist",
                     token: t,
                     pageNum: 1,
                     is_random: 1,
-                    head_id: a.communityId,
-                    id: i
+                    head_id: a.communityId
                 },
                 dataType: "json",
                 success: function(t) {
-                    if (console.log("guess", t.data), 0 == t.data.code) {
-                        var a = o.data.list, e = t.data.list || [];
-                        e = a.concat(e);
-                        var s = 1;
-                        i && (s = t.data.show_goods_guess_like || 0), o.setData({
-                            list: e,
-                            show_goods_guess_like: s
+                    if (0 == t.data.code) {
+                        var a = e.data.list.concat(t.data.list);
+                        e.setData({
+                            list: a
                         });
-                    } else o.setData({
+                    } else e.setData({
                         noMore: !0
                     });
                 }
@@ -71,7 +57,7 @@ Component({
                 disabled: !1
             });
             var e = this.data.list[a];
-            void 0 === e.skuList.length ? this.triggerEvent("openSku", {
+            this.triggerEvent("openSku", {
                 actId: e.actId,
                 skuList: e.skuList,
                 promotionDTO: e.promotionDTO || "",
@@ -83,10 +69,6 @@ Component({
                     stock: e.spuCanBuyNum,
                     marketPrice: e.marketPrice
                 }
-            }) : this.addCart({
-                value: 1,
-                type: "plus",
-                idx: a
             });
         },
         changeNumber: function(t) {
@@ -96,21 +78,21 @@ Component({
         outOfMax: function(t) {
             console.log(t);
             t.detail;
-            var a = t.idx, e = this.data.list, s = e[a].spuCanBuyNum;
-            e[a].car_count >= s && wx.showToast({
+            var a = t.idx, e = this.data.list, n = e[a].spuCanBuyNum;
+            e[a].car_count >= n && wx.showToast({
                 title: "不能购买更多啦",
                 icon: "none"
             });
         },
         addCart: function(t) {
-            var a = wx.getStorageSync("token"), e = wx.getStorageSync("community"), s = t.idx, o = this.data.list, i = o[s].actId, n = e.communityId, u = this;
+            var a = wx.getStorageSync("token"), e = wx.getStorageSync("community"), n = t.idx, i = this.data.list, s = i[n].actId, o = e.communityId, u = this;
             "plus" == t.type ? app.util.request({
                 url: "entry/wxapp/user",
                 data: {
                     controller: "car.add",
                     token: a,
-                    goods_id: i,
-                    community_id: n,
+                    goods_id: s,
+                    community_id: o,
                     quantity: 1,
                     sku_str: "",
                     buy_type: "dan",
@@ -126,8 +108,8 @@ Component({
                         duration: 2e3
                     }); else if (6 == t.data.code) {
                         var a = t.data.max_quantity || "";
-                        o[s].car_count = t.data.max_quantity || 0, console.log(o[s].car_count)(0 < a) && u.setData({
-                            list: o
+                        i[n].car_count = t.data.max_quantity || 0, 0 < a && u.setData({
+                            list: i
                         });
                         var e = t.data.msg;
                         wx.showToast({
@@ -135,21 +117,21 @@ Component({
                             icon: "none",
                             duration: 2e3
                         });
-                    } else u.triggerEvent("changeCartNum", t.data.total), o[s].car_count = t.data.cur_count || 0, 
+                    } else u.triggerEvent("changeCartNum", t.data.total), i[n].car_count = t.data.cur_count || 0, 
                     u.setData({
-                        list: o
+                        list: i
                     }), wx.showToast({
                         title: "已加入购物车",
                         image: "../../images/addShopCart.png"
-                    }), status.indexListCarCount(i, t.data.cur_count);
+                    }), status.indexListCarCount(s, t.data.cur_count);
                 }
             }) : app.util.request({
                 url: "entry/wxapp/user",
                 data: {
                     controller: "car.reduce_car_goods",
                     token: a,
-                    goods_id: i,
-                    community_id: n,
+                    goods_id: s,
+                    community_id: o,
                     quantity: 1,
                     sku_str: "",
                     buy_type: "dan",
@@ -163,25 +145,25 @@ Component({
                         title: t.data.msg,
                         icon: "none",
                         duration: 2e3
-                    }) : (u.triggerEvent("changeCartNum", t.data.total), o[s].car_count = t.data.cur_count || 0, 
+                    }) : (u.triggerEvent("changeCartNum", t.data.total), i[n].car_count = t.data.cur_count || 0, 
                     u.setData({
-                        list: o
-                    }), status.indexListCarCount(i, t.data.cur_count));
+                        list: i
+                    }), status.indexListCarCount(s, t.data.cur_count));
                 }
             });
         },
         updateCartNum: function() {
-            var t = app.globalData.goodsListCarCount, s = this.data.list;
-            0 < t.length && 0 < s.length && (t.forEach(function(a) {
-                var t = s.findIndex(function(t) {
+            var t = app.globalData.goodsListCarCount, n = this.data.list;
+            0 < t.length && 0 < n.length && (t.forEach(function(a) {
+                var t = n.findIndex(function(t) {
                     return t.actId == a.actId;
                 });
-                if (-1 != t && 0 === s[t].skuList.length) {
+                if (-1 != t && 0 === n[t].skuList.length) {
                     var e = 1 * a.num;
-                    s[t].car_count = 0 <= e ? e : 0;
+                    n[t].car_count = 0 <= e ? e : 0;
                 }
             }), this.setData({
-                list: s
+                list: n
             }));
         }
     }

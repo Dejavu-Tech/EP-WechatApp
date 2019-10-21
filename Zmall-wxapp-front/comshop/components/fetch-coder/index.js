@@ -6,10 +6,6 @@ Component({
         },
         coderList: {
             type: Array
-        },
-        codeImg: {
-            type: String,
-            value: ""
         }
     },
     data: {

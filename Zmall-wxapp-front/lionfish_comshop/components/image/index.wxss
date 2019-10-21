@@ -1,8 +1,0 @@
-.img-view {
-    display: inline-block;
-    position: relative;
-}
-
-.img-view .img-image {
-    position: absolute;
-}

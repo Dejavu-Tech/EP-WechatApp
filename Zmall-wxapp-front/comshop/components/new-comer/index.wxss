@@ -1,9 +1,6 @@
 .new-comers {
     position: relative;
-    padding: 20rpx 0;
-    margin: 20rpx;
-    background: #fff;
-    border-radius: 10rpx;
+    margin: 30rpx;
 }
 
 .new-comers-title {
@@ -21,7 +18,7 @@
     top: 0;
     bottom: 0;
     left: 0;
-    border-left: 8rpx solid #f75451;
+    border-left: 8rpx solid #4facfe;
 }
 
 .new-comers-scroll {
@@ -75,7 +72,7 @@
 }
 
 .new-comers-item .price {
-    color: #ff5041;
+    color: #ff758c;
 }
 
 .new-comers-item {

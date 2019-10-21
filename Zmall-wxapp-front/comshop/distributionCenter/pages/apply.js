@@ -29,7 +29,7 @@ Page({
         });
     },
     getMemberInfo: function() {
-        var t = wx.getStorageSync("token"), o = this;
+        var t = wx.getStorageSync("token"), r = this;
         t && app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -39,16 +39,13 @@ Page({
             dataType: "json",
             success: function(t) {
                 if (wx.hideLoading(), 0 == t.data.code) {
-                    var e = t.data.commiss_diy_name || "分销";
-                    if (wx.setNavigationBarTitle({
-                        title: "会员" + e
-                    }), 0 == t.data.commiss_level) return void wx.navigateTo({
+                    if (0 == t.data.commiss_level) return void wx.navigateTo({
                         url: "/lionfish_comshop/pages/user/me"
                     });
-                    var a = t.data.data, i = 0;
-                    1 == t.data.commiss_biaodan_need ? 1 == a.is_writecommiss_form && (i = 1) == a.comsiss_flag && (i = 0 == a.comsiss_state ? 1 : 2) : i = 1;
-                    var s = [], r = t.data.commiss_diy_form;
-                    r && 0 < r.length && r.forEach(function(t) {
+                    var e = t.data.data, a = 0;
+                    1 == t.data.commiss_biaodan_need ? 1 == e.is_writecommiss_form && (a = 1) == e.comsiss_flag && (a = 0 == e.comsiss_state ? 1 : 2) : a = 1;
+                    var i = [], s = t.data.commiss_diy_form;
+                    s && 0 < s.length && s.forEach(function(t) {
                         var e = "";
                         "text" != t.type && "textarea" != t.type || (e = t.value);
                         var a = {
@@ -57,15 +54,14 @@ Page({
                             value: e,
                             index: 0
                         };
-                        s.push(a);
-                    }), o.setData({
-                        commiss_diy_form: r,
-                        userInfo: a,
-                        status: i,
-                        formArr: s,
-                        commiss_diy_name: e
+                        i.push(a);
+                    }), r.setData({
+                        commiss_diy_form: s,
+                        userInfo: e,
+                        status: a,
+                        formArr: i
                     });
-                } else o.setData({
+                } else r.setData({
                     needAuth: !0
                 });
             }

@@ -11,6 +11,7 @@
     "lionfish_comshop/pages/order/refunddetail",
     "lionfish_comshop/pages/user/protocol",
     "lionfish_comshop/pages/user/articleProtocol",
+    "lionfish_comshop/pages/user/articlePolicy",
     "lionfish_comshop/pages/order/refund",
     "lionfish_comshop/pages/order/evaluate",
     "lionfish_comshop/pages/position/cities",
@@ -42,6 +43,7 @@
     "lionfish_comshop/pages/groupCenter/apply",
     "lionfish_comshop/pages/groupCenter/communityMembers",
     "lionfish_comshop/pages/groupCenter/distributionList",
+    "lionfish_comshop/pages/groupCenter/distributionInstruct",
     "lionfish_comshop/pages/groupCenter/settlementList",
     "lionfish_comshop/pages/groupCenter/settlementDetail",
     "lionfish_comshop/pages/groupCenter/editInfo",
@@ -62,8 +64,7 @@
     "lionfish_comshop/pages/groupCenter/goodsManage",
     "lionfish_comshop/pages/groupCenter/gruopInfo",
     "lionfish_comshop/pages/groupCenter/headlist",
-    "lionfish_comshop/pages/groupCenter/recommend",
-    "lionfish_comshop/pages/type/details"
+    "lionfish_comshop/pages/groupCenter/recommend"
   ],
   "permission": {
     "scope.userLocation": {
@@ -127,21 +128,12 @@
       "pages": [
         "special/index",
         "special/list",
-        "pin/goodsDetail",
-        "pin/share",
-        "pin/me",
-        "pin/index",
-        "pin/income",
-        "pin/rule",
-        "pin/excharge",
-        "pin/exchargeRecord",
-        "vip/upgrade",
-        "vip/notice"
+        "pin/goodsDetail"
       ]
     }
   ],
   "navigateToMiniProgramAppIdList": [
-    "wx0c95abbbc01623ba"
+    "appid"
   ],
   "sitemapLocation": "sitemap.json"
 }

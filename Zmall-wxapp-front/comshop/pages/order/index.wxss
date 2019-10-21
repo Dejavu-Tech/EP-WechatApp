@@ -88,7 +88,7 @@
 }
 
 .tabs-nav .tabs-tab-active {
-    color: #f57;
+    color: #4facfe;
 }
 
 .tabs.tabs-card>.tabs-bar .tabs-tab {
@@ -103,11 +103,11 @@
 
 .tabs.tabs-card>.tabs-bar .tabs-tab-active {
     background: #fff;
-    color: #f13e3a;
+    color: #4facfe;
 }
 
 .tabs.tabs-card>.tabs-bar .tabs-tab-active {
-    color: #ff5777;
+    color: #4facfe;
 }
 
 .tabs.tabs-card>.tabs-bar .tabs-tab.list-line {
@@ -126,6 +126,7 @@
     -moz-box-direction: normal;
     flex-direction: row;
     will-change: transform;
+    transition: transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
     transition: transform 0.3s cubic-bezier(0.645,0.045,0.355,1),-webkit-transform 0.3s cubic-bezier(0.645,0.045,0.355,1);
 }
 
@@ -215,7 +216,7 @@
 .shop-title--status {
     float: right;
     margin-left: 0.2rem;
-    color: #ff5777;
+    color: #4facfe;
     white-space: nowrap;
 }
 
@@ -266,7 +267,7 @@
 }
 
 .red {
-    color: #ff5777;
+    color: #4facfe;
     padding-right: 5rpx;
 }
 
@@ -334,7 +335,7 @@
 
 .primary {
     color: #fff;
-    background: #ff5777;
+    background: #4facfe;
 }
 
 .operate-button .meili-all-vue-base-button {
@@ -381,7 +382,7 @@
 
 .pay-price--content {
     font-size: 0.75rem;
-    color: #ff5777;
+    color: #4facfe;
 }
 
 .weui-loading {
@@ -418,7 +419,7 @@
 }
 
 .order-lottery-lucky,.order-lottery-not,.order-lottery-wait {
-    background-image: url(https://mall.shiziyu888.com/Common/image/sprites_stamps-02e13e88f3.png);
+    background-image: url(https://wxapp.ch871.com/Common/image/sprites_stamps-02e13e88f3.png);
     background-repeat: no-repeat;
     background-size: 299.83425px 299.83425px;
     background-position: -199.8895px -99.94475px;
@@ -467,8 +468,8 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
-    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0,89,255,0.25);
     border-radius: 24rpx;
 }
 
@@ -631,7 +632,7 @@
     color: white;
     border: none;
     border-radius: 26rpx;
-    background: linear-gradient(90deg,#ff5041 0%,#ff877d 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
 }
 
 .right-arrow {
@@ -645,48 +646,10 @@
 }
 
 .red {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 24rpx;
 }
 
 .gray {
     color: #aaa;
-}
-
-.name {
-    width: 510rpx;
-    font-size: 26rpx;
-    color: #444;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-.pintag {
-    background: linear-gradient(to right,#ff5041,#ff695c);
-    color: #fff;
-    font-size: 20rpx;
-    padding: 1rpx 8rpx;
-    border-radius: 6rpx;
-    font-weight: bold;
-    margin-right: 10rpx;
-}
-
-.mount {
-    font-size: 22rpx;
-    color: #aaa;
-    margin-top: 10rpx;
-}
-
-.bottom-info {
-    justify-content: space-between;
-    font-size: 28rpx;
-    color: #444;
-    margin-top: 18rpx;
-}
-
-.bottom-info text {
-    text-decoration: line-through;
-    color: #999;
-    font-size: 22rpx;
 }

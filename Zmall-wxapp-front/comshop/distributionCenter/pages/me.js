@@ -80,7 +80,7 @@ Page({
                 if (wx.hideLoading(), 0 == e.data.code) {
                     var t = e.data.commiss_diy_name || "分销";
                     wx.setNavigationBarTitle({
-                        title: t + "中心"
+                        title: "会员" + t
                     }), a.setData({
                         member_info: e.data.data
                     });

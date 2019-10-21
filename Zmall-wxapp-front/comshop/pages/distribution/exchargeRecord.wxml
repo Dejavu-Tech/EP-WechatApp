@@ -1,0 +1,23 @@
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+    <view class="wrap">
+        <block wx:if="{{!noData}}">
+            <view class="title">
+                <view class="time">申请时间</view>
+                <view class="status">状态</view>
+                <view class="money">金额(元)</view>
+            </view>
+            <view class="list">
+                <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
+                    <view class="time">{{item.addtime}}</view>
+                    <view class="status">{{state[item.state]}}</view>
+                    <view class="money">{{item.money}}</view>
+                </view>
+            </view>
+        </block>
+        <view class="noDistributionList" wx:else>
+            <image class="noDistributionListImg" src="../../images/noData.png"></image>
+            <view class="noDistributionListTit">暂无任何明细记录</view>
+        </view>
+        <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{loadMore}}"></i-load-more>
+    </view>
+</i-auth>

@@ -6,7 +6,6 @@
         "i-order-info-express": "../../components/order/orderInfoExpress",
         "i-goods-info": "../../components/goodsInfo/index",
         "i-order-info": "../../components/orderInfo/index",
-        "i-card": "../../components/card/index",
-        "i-aside-btn": "../../components/asideBtn/index"
+        "i-card": "../../components/card/index"
     }
 }

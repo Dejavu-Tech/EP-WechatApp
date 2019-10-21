@@ -15,7 +15,6 @@
         "i-orderComment": "../../components/orderComment/index",
         "i-img": "../../components/img/index",
         "sku": "../../components/sku/index",
-        "guess-like": "../../components/guess-like/index",
-        "i-aside-btn": "../../components/asideBtn/index"
+        "guess-like": "../../components/guess-like/index"
     }
 }

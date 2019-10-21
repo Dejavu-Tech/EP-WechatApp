@@ -7,14 +7,14 @@
             <view class="service-list">
                 <view class="service-item">
                     <button class="none_btn" openType="share" plain="true">
-                        <text class="iconfont icon-weixin2 service-icon"></text>
+                        <image class="service-icon" mode="widthFix" src="https://wxapp.ch871.com/Common/image/weixin.png"></image>
                         <view class="cube-text">
                             <text>好友</text>
                         </view>
                     </button>
                 </view>
                 <view bindtap="get_share_img" class="service-item">
-                    <text class="iconfont icon-pengyouquan service-icon"></text>
+                    <image class="service-icon" mode="widthFix" src="https://wxapp.ch871.com/Common/image/friend.png"></image>
                     <view class="cube-text">
                         <text>海报</text>
                     </view>
@@ -98,31 +98,6 @@
                 <view class="stock">已售
           <text class="remaining"> {{goods.seller_count}} </text>件，仅剩
           <text class="remaining"> {{goods.total}} </text>件</view>
-            </view>
-            <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1}}">
-                <view class="i-flex vip-name">
-                    <image class="vip-logo" src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}"></image>
-                    <text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text> “{{modify_vipcard_name}}”<block wx:if="{{goods.is_take_vipcard==1}}">会员价{{goods.card_price}}</block>
-                </view>
-                <view bindtap="goLink" data-link="/lionfish_comshop/moduleA/vip/upgrade" wx:if="{{is_vip_card_member==0}}">立即开通
-          <text class="iconfont icon-youjiantou goright"></text>
-                </view>
-                <view bindtap="goLink" data-link="/lionfish_comshop/moduleA/vip/upgrade" wx:if="{{is_vip_card_member==2}}">
-                    <text style="color:#5c5c5c;">已到期,</text>立即开通
-          <text class="iconfont icon-youjiantou goright"></text>
-                </view>
-            </view>
-        </view>
-        <view bindtap="changeCommunity" class="group" wx:if="{{is_show_goodsdetails_communityinfo==1&&community&&community.communityName}}">
-            <view class="group-avatar">
-                <image src="{{community.headImg||community.disUserHeadImg}}"></image>
-            </view>
-            <view class="group-m">
-                <view class="group-title">{{community.communityName}}</view>
-                <view class="group-desc">取货地址:{{community.fullAddress}}</view>
-            </view>
-            <view class="group-r" wx:if="{{hide_community_change_btn==0}}">
-                <image class="group-r-icon" src="../../images/community-right-arrow.png"></image>
             </view>
         </view>
         <view bindtap="showGroupCode" class="group" wx:if="{{isopen_community_group_share==1&&group_share_info&&group_share_info.share_wxcode}}">
@@ -211,7 +186,6 @@
             </view>
             <image class="icon-right" src="../../images/rightArrowImg.png"></image>
         </navigator>
-        <guess-like bind:changeCartNum="changeCartNum" bind:openSku="openSku" controller="goods.goods_guess_like" gid="{{goods_id}}" iClass="guessLike" likeTitle="猜你喜欢" wx:if="{{goods_id}}"></guess-like>
         <image class="sloganImg" src="{{index_bottom_image?index_bottom_image:'../../images/icon-index-slogan.png'}}"></image>
     </view>
     <view class="i-fixed-bottom">
@@ -265,11 +239,7 @@
                         <span>{{cur_sku_arr.spuName}}</span>
                     </view>
                     <view class="sku-price">
-                        <view class="sale-price" wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member==1&&goods.is_take_vipcard==1}}">
-              ¥
-              <span>{{cur_sku_arr.card_price[0]}}</span>.{{cur_sku_arr.card_price[1]}}
-            </view>
-                        <view class="sale-price" wx:else>
+                        <view class="sale-price">
               ¥
               <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
             </view>
@@ -311,12 +281,11 @@
     </view>
 </view>
 <button bindtap="share_handler" class="fixed-share">
-    <text class="iconfont icon-fenxiang"></text>
+    <image mode="aspectFit" src="../../images/share-white.png"></image>
     <view>分享</view>
 </button>
 <button class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
-    <text class="iconfont icon-kefu"></text>
-    <view>客服</view>
+    <image mode="aspectFit" src="../../images/contactService.png"></image>
 </button>
 <i-order-notify iClass="order-notify" stopNotify="{{stopNotify}}" wx:if="{{order_notify_switch==1}}"></i-order-notify>
 <i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}" needPosition="{{needPosition}}"></i-new-auth>
@@ -328,14 +297,14 @@
         <view class="share-modal-btn-list">
             <view class="share-modal-btn-item">
                 <button class="none_btn" openType="share" plain="true">
-                    <text class="iconfont icon-weixin1 btn-icon"></text>
+                    <image class="btn-icon" mode="widthFix" src="../../images/weixin.png"></image>
                     <view class="btn-text">
                         <text>分享好友</text>
                     </view>
                 </button>
             </view>
             <view catchtap="saveThumb" class="share-modal-btn-item">
-                <text class="iconfont icon-zhaopian btn-icon"></text>
+                <image class="btn-icon" mode="widthFix" src="../../images/save.png"></image>
                 <view class="btn-text">
                     <text>保存相册</text>
                 </view>
@@ -343,5 +312,4 @@
         </view>
     </view>
 </view>
-<i-change-community bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" changeCommunity="{{changeCommunity}}" community="{{community}}" groupInfo="{{groupInfo}}" visible="{{showChangeCommunity}}"></i-change-community>
 <canvas canvasId="myCanvas" class="canvas-img" style="width: {{canvasWidth}}px;height: {{canvasHeight}}px;"></canvas>

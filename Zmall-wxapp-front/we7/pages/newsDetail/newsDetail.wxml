@@ -1,0 +1,15 @@
+<import src="/we7/pages/templates/news.wxml"></import>
+<view class="page_gap page_news">
+    <text class="h1" id="newsTitle">{{newsData.sTitle}}</text>
+    <view class="news_info">
+        <text class="span" id="newsAuthor">{{newsData.sFrom}}</text>
+        <text class="span" id="newsDate">{{newsData.time}}</text>
+    </view>
+    <view id="font-adjust">
+        <view class="news_relative" id="newsRelative"></view>
+        <view class="summary_block" id="summary">{{newsData.sDescription}}</view>
+        <view class="news_txt" id="newsContent">
+            <template is="newsDetail" data="{{...newsData}}"></template>
+        </view>
+    </view>
+</view>

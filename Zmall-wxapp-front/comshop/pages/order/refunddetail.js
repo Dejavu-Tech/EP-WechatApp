@@ -77,7 +77,7 @@ Page({
             title: "撤销申请",
             content: "退款申诉一旦撤销就不可恢复，并且不可以再次申请，确定要撤销本次申诉吗？",
             confirmText: "我要撤销",
-            confirmColor: "#ff5344",
+            confirmColor: "#4facfe",
             cancelText: "暂不撤销",
             cancelColor: "#666666",
             success: function(e) {

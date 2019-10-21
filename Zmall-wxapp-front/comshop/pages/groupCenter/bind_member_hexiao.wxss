@@ -35,7 +35,7 @@
 .sub-btn {
     color: #fff;
     line-height: 80rpx;
-    background-color: #ff5344;
+    background-color: #4facfe;
     border-radius: 10rpx;
     text-align: center;
     margin-top: 50rpx;

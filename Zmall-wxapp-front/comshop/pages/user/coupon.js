@@ -65,17 +65,14 @@ Page({
         if (e.length >= a) if (0 == e[a].is_limit_goods_buy) wx.switchTab({
             url: "/lionfish_comshop/pages/index/index"
         }); else if (1 == e[a].is_limit_goods_buy) {
-            var i = e[a].limit_goods_list, s = "";
-            s = 1 < i.split(",").length ? "/lionfish_comshop/pages/type/result?type=2&good_ids=" + i : "/lionfish_comshop/pages/goods/goodsDetail?id=" + i, 
+            var i = e[a].limit_goods_list;
             wx.navigateTo({
-                url: s
+                url: "/lionfish_comshop/pages/goods/goodsDetail?id=" + i
             });
-        } else if (2 == e[a].is_limit_goods_buy) {
-            var o = e[a].goodscates || 0;
-            wx.navigateTo({
-                url: "/lionfish_comshop/pages/type/result?type=1&gid=" + o
-            });
-        }
+        } else 2 == e[a].is_limit_goods_buy && (app.globalData.typeCateId = e[a].goodscates, 
+        wx.switchTab({
+            url: "/lionfish_comshop/pages/type/index"
+        }));
     },
     onReachBottom: function() {
         if (1 == this.data.no_order) return !1;

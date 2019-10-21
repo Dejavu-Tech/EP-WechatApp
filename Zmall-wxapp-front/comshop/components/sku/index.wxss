@@ -85,7 +85,7 @@
 }
 
 .sku-card .sku-header .sku-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
     margin-bottom: -4rpx;
 }
@@ -128,7 +128,7 @@
     font-weight: 500;
     padding: 0 8rpx;
     margin-right: 8rpx;
-    color: #ff5344;
+    color: #4facfe;
     white-space: nowrap;
     vertical-align: middle;
 }
@@ -179,7 +179,7 @@
 
 .sku-card .sku-spec .spec-list .on {
     border-color: #ffa49c;
-    color: #ff5344;
+    color: #4facfe;
     background: #fff;
 }
 
@@ -210,7 +210,7 @@
 
 .sku-card .sku-num-content .even-num {
     width: 420rpx;
-    color: #ff5344;
+    color: #4facfe;
     font-size: 26rpx;
     line-height: 50rpx;
     white-space: nowrap;
@@ -220,7 +220,7 @@
 .sku-card .sku-confirm {
     width: 750rpx;
     height: 96rpx;
-    background: linear-gradient(to right,#ff5041,#ff695c);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     line-height: 96rpx;
     text-align: center;
     color: #fff;

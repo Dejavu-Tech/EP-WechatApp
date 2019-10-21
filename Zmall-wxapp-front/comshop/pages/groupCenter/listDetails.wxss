@@ -29,7 +29,7 @@
     color: #fff;
     font-size: 30rpx;
     margin-right: 20rpx;
-    background: #f75451;
+    background: #4facfe;
     white-space: nowrap;
 }
 
@@ -88,6 +88,6 @@
 }
 
 .spu .detail .tips .price {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 32rpx;
 }

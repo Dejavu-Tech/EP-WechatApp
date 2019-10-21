@@ -36,7 +36,7 @@ Page({
     },
     canTixian: !0,
     onLoad: function(e) {
-        var i = wx.getStorageSync("token"), c = this;
+        var i = wx.getStorageSync("token"), r = this;
         app.util.request({
             url: "entry/wxapp/user",
             data: {
@@ -46,17 +46,17 @@ Page({
             dataType: "json",
             success: function(e) {
                 if (0 == e.data.code) {
-                    var i = e.data, t = c.data.items, n = i.community_info;
+                    var i = e.data, t = r.data.items, n = i.community_info;
                     0 == n.head_commiss_tixianway_yuer && (t[0].show = !1), 0 == n.head_commiss_tixianway_weixin && (t[1].show = !1), 
                     0 == n.head_commiss_tixianway_alipay && (t[2].show = !1), 0 == n.head_commiss_tixianway_bank && (t[3].show = !1);
-                    for (var a = c.data.type, o = 0; o < t.length; o++) if (t[o].show) {
+                    for (var a = r.data.type, o = 0; o < t.length; o++) if (t[o].show) {
                         t[o].checked = !0, a = t[o].name;
                         break;
                     }
                     var s = i.head_commiss_tixian_publish;
-                    WxParse.wxParse("article", "html", s, c, 15, app.globalData.systemInfo);
+                    WxParse.wxParse("article", "html", s, r, 15, app.globalData.systemInfo);
                     var m = "" != s;
-                    c.setData({
+                    r.setData({
                         member_info: i.member_info,
                         community_info: i.community_info,
                         commission_info: i.commission_info,
@@ -121,11 +121,11 @@ Page({
                     title: "本次最大可提现" + s + "元",
                     icon: "none"
                 });
-                var c = (s * (100 - a.community_tixian_fee) / 100).toFixed(2), r = (s - c).toFixed(2);
+                var r = (s * (100 - a.community_tixian_fee) / 100).toFixed(2), c = (s - r).toFixed(2);
                 return this.setData({
                     tixian_money: s,
-                    final_money: c,
-                    sxfee: r
+                    final_money: r,
+                    sxfee: c
                 }), !1;
             }
             if (this.canTixian) {

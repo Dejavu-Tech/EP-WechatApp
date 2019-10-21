@@ -6,7 +6,6 @@
         "i-router-link": "../../components/router-link/router-link",
         "sku": "../../components/sku/index",
         "i-cart-btn": "../../components/cartBtn/index",
-        "i-input-number": "../../components/input-number/index",
-        "i-aside-btn": "../../components/asideBtn/index"
+        "i-input-number": "../../components/input-number/index"
     }
 }

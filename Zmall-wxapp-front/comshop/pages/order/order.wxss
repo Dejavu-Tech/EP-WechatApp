@@ -1,5 +1,5 @@
 .status {
-    background: #ff5777;
+    background: #4facfe;
     padding: 10px 0 10px 10px;
     color: #fff;
 }
@@ -154,7 +154,7 @@
 }
 
 .red {
-    color: #ff5777;
+    color: #4facfe;
     padding-right: 5rpx;
 }
 
@@ -297,7 +297,7 @@
 }
 
 .foot-price--sum {
-    color: #ff5777;
+    color: #4facfe;
     vertical-align: baseline;
     font-weight: 400;
     font-size: 36rpx;
@@ -364,7 +364,7 @@ page {
 }
 
 .btn-group .pay-btn {
-    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     color: white;
     height: 96rpx;
     line-height: 96rpx;
@@ -374,7 +374,7 @@ page {
 .btn-group .confirm-receipt {
     width: 100%;
     background-color: white;
-    color: #ff5243;
+    color: #4facfe;
     border-top: 0.1rpx solid rgba(0,0,0,0.1);
     height: 96rpx;
     line-height: 96rpx;
@@ -383,7 +383,7 @@ page {
 .btn-group .del-order {
     margin: 20rpx 0 0 20rpx;
     padding: 34rpx 276rpx;
-    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     border-radius: 20rpx;
     color: white;
     font-size: 30rpx;
@@ -556,7 +556,7 @@ page {
 }
 
 .header .goods-ready {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .header .goods-cancel {
@@ -632,7 +632,7 @@ page {
 
 .card-btn .btn-3 {
     color: white;
-    background: linear-gradient(90deg,#ff5041 0%,#ff877d 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     text-align: center;
     padding: 0;
     width: 136rpx;
@@ -705,7 +705,7 @@ page {
 }
 
 .footer .money {
-    color: #ff5344;
+    color: #4facfe;
     font-weight: 500;
     font-size: 30rpx;
 }
@@ -743,7 +743,7 @@ page {
     position: relative;
     flex: 1;
     font-size: 30rpx;
-    background: #ff5344;
+    background: #4facfe;
 }
 
 .share-btn {
@@ -764,16 +764,30 @@ page {
     height: 48rpx;
 }
 
-.home-btn {
-    bottom: 40%!important;
+.router-hover {
+    opacity: 1;
 }
 
-.pintag {
-    background: linear-gradient(to right,#ff5041,#ff695c);
-    color: #fff;
-    font-size: 20rpx;
-    padding: 1rpx 8rpx;
-    border-radius: 6rpx;
-    font-weight: bold;
-    margin-right: 10rpx;
+.menu-list {
+    position: fixed;
+    width: 80rpx;
+    right: 10rpx;
+    bottom: 40%;
+    text-align: center;
+    z-index: 10;
+}
+
+.menu-list .menu-item {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-bottom: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-list image {
+    width: 80rpx;
+    height: 80rpx;
 }

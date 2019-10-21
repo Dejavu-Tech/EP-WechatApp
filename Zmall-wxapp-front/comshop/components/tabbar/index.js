@@ -80,7 +80,7 @@ Component({
     },
     methods: {
         getTabbar: function() {
-            var c = this;
+            var r = this;
             app.util.request({
                 url: "entry/wxapp/index",
                 data: {
@@ -89,7 +89,7 @@ Component({
                 dataType: "json",
                 success: function(t) {
                     if (0 == t.data.code) {
-                        var e = t.data.data, a = c.data.tabbar;
+                        var e = t.data.data, a = r.data.tabbar;
                         a.list[0].text = e.t1 || "首页", a.list[0].iconPath = e.i1 || "/lionfish_comshop/images/icon-tab-index.png", 
                         a.list[0].selectedIconPath = e.s1 || "/lionfish_comshop/images/icon-tab-index-active.png", 
                         a.list[1].text = e.t4 || "分类", a.list[1].iconPath = e.i4 || "/lionfish_comshop/images/icon-tab-type.png", 
@@ -99,16 +99,16 @@ Component({
                         a.list[3].selectedIconPath = e.s2 || "/lionfish_comshop/images/icon-tab-shop-active.png", 
                         a.list[4].text = e.t3 || "我的", a.list[4].iconPath = e.i3 || "/lionfish_comshop/images/icon-tab-me.png", 
                         a.list[4].selectedIconPath = e.s3 || "/lionfish_comshop/images/icon-tab-me-active.png";
-                        var o = t.data.open_tabbar_type || 0, i = t.data.open_tabbar_out_weapp || 0, s = t.data.tabbar_out_appid, n = t.data.tabbar_out_link, p = t.data.tabbar_out_type;
-                        a.selectedColor = t.data.wepro_tabbar_selectedColor || "#F75451", c.setData({
+                        var s = t.data.open_tabbar_type || 0, i = t.data.open_tabbar_out_weapp || 0, o = t.data.tabbar_out_appid, n = t.data.tabbar_out_link, p = t.data.tabbar_out_type;
+                        a.selectedColor = t.data.wepro_tabbar_selectedColor || "#F75451", r.setData({
                             tabbar: a,
-                            open_tabbar_type: o,
+                            open_tabbar_type: s,
                             open_tabbar_out_weapp: i,
-                            tabbar_out_appid: s,
+                            tabbar_out_appid: o,
                             tabbar_out_link: n,
                             tabbar_out_type: p
                         });
-                    } else c.setData({
+                    } else r.setData({
                         hideTabbar: !0
                     });
                 }
@@ -116,13 +116,13 @@ Component({
         },
         goWeapp: function() {
             var t = this.data.tabbar_out_appid, e = this.data.tabbar_out_link, a = this.data.tabbar_out_type;
-            if (0 == a) wx.navigateTo({
+            0 == a ? wx.navigateTo({
                 url: "/lionfish_comshop/pages/web-view?url=" + encodeURIComponent(e)
-            }); else if (1 == a) -1 != e.indexOf("lionfish_comshop/pages/index/index") || -1 != e.indexOf("lionfish_comshop/pages/order/shopCart") || -1 != e.indexOf("lionfish_comshop/pages/user/me") || -1 != e.indexOf("lionfish_comshop/pages/type/index") ? wx.switchTab({
+            }) : 1 == a ? -1 != e.indexOf("lionfish_comshop/pages/index/index") || -1 != e.indexOf("lionfish_comshop/pages/order/shopCart") || -1 != e.indexOf("lionfish_comshop/pages/user/me") || -1 != e.indexOf("lionfish_comshop/pages/type/index") ? wx.switchTab({
                 url: e
             }) : wx.navigateTo({
                 url: e
-            }); else if (2 == a) t && wx.navigateToMiniProgram({
+            }) : 2 == a && t && wx.navigateToMiniProgram({
                 appId: t,
                 path: e,
                 extraData: {},
@@ -130,11 +130,7 @@ Component({
                 success: function(t) {
                     console.log(t);
                 }
-            }); else if (3 == a) {
-                wx.redirectTo({
-                    url: "/lionfish_comshop/moduleA/pin/index"
-                });
-            }
+            });
         }
     }
 });

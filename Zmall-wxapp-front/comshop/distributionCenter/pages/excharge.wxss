@@ -68,7 +68,7 @@
 
 .btn {
     margin: 50rpx 30rpx;
-    background-color: #f75451;
+    background-color: #4facfe;
     color: #fff;
     text-align: center;
     line-height: 88rpx;
@@ -81,13 +81,13 @@ button.btn::after {
 }
 
 .btn.disable {
-    background-color: #f59997;
+    background-color: #00f2fe;
 }
 
 button.btn[disabled] {
     color: #fff!important;
-    background: #f59997!important;
-    border-color: #f59997!important;
+    background: #00f2fe!important;
+    border-color: #00f2fe!important;
 }
 
 .desc {
@@ -114,14 +114,14 @@ button.btn[disabled] {
 
 .sucess .applyPassImg {
     width: 172rpx;
-    color: #ef994c;
+    color: #ff758c;
     margin-bottom: 40rpx;
 }
 
 .sucess .h1 {
     font-size: 32rpx;
     margin-bottom: 20rpx;
-    color: #fb5a50;
+    color: #4facfe;
     font-weight: bold;
 }
 
@@ -131,7 +131,7 @@ button.btn[disabled] {
 }
 
 .sucess .link-btn {
-    color: #fb5a50;
+    color: #4facfe;
     font-size: 28rpx;
     margin-top: 100rpx;
 }
@@ -179,14 +179,12 @@ radio .wx-radio-input.wx-radio-input-checked::before {
 
 .form-group {
     margin-bottom: 20rpx;
-    font-size: 30rpx;
 }
 
 .form-ipt {
     position: relative;
     border: 1rpx solid #e5e5e5;
-    padding: 5rpx 10rpx;
-    line-height: 52rpx;
+    padding: 0 10rpx;
 }
 
 .getall {

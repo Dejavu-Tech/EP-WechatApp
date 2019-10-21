@@ -54,7 +54,7 @@ swiper image {
 }
 
 .sticky-title.sticky .nav .tab-btn-active {
-    color: #ff5344;
+    color: #4facfe;
     line-height: 80rpx;
 }
 
@@ -63,7 +63,7 @@ swiper image {
     width: 56rpx;
     height: 6rpx;
     border-radius: 6rpx;
-    background: linear-gradient(to right,#fe655c,#fa875b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -115,7 +115,7 @@ swiper image {
 .spuInfoImg .share {
     width: 160rpx;
     height: 68rpx;
-    background: linear-gradient(90deg,#f75451 0%,#fa6f57 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     border-radius: 48rpx 0 0 48rpx;
     position: absolute;
     top: 60rpx;
@@ -211,7 +211,7 @@ swiper image {
     align-items: center;
     flex-direction: column;
     font-size: 26rpx;
-    color: #f8e71c;
+    color: #fff;
     white-space: nowrap;
 }
 
@@ -241,7 +241,7 @@ swiper image {
 }
 
 .spuInfo .bgOne {
-    background: url("http://shiziyu.liofis.com/attachment/images/3/2019/01/s8DBXZhrLr998t89Tg8BblqnXbNB8r.png");
+    background: url("http://wxapp.ch871.com/attachment/images/3/2019/01/s8DBXZhrLr998t89Tg8BblqnXbNB8r.png");
     background-size: 100% 100%;
 }
 
@@ -255,7 +255,7 @@ swiper image {
     background: #fff;
     box-shadow: 0 0 40rpx 0 rgba(0,0,0,0.05);
     border-radius: 0 0 20rpx 20rpx;
-    padding: 30rpx 20rpx;
+    padding: 30rpx 20rpx 0;
     margin: 0 auto;
 }
 
@@ -306,8 +306,8 @@ swiper image {
 
 .spuInfo .spuDetailInfo .preferential .tit,.spuInfo .straightInLive .preferential .tit,.spuInfo .buyRecords .preferential .tit {
     font-size: 20rpx;
-    color: #ff5344;
-    border: 2rpx solid #ffa49c;
+    color: #4facfe;
+    border: 2rpx solid #00f2fe;
     border-radius: 16rpx;
     padding: 0 8rpx;
     margin-right: 10rpx;
@@ -320,7 +320,7 @@ swiper image {
 .spuInfo .spuDetailInfo .purchasing,.spuInfo .spuDetailInfo .saleNum,.spuInfo .straightInLive .purchasing,.spuInfo .straightInLive .saleNum,.spuInfo .buyRecords .purchasing,.spuInfo .buyRecords .saleNum {
     font-size: 26rpx;
     color: #666;
-    padding: 30rpx 0 0;
+    padding: 30rpx 0;
     margin: 0 10rpx;
     border-bottom: 0.1rpx solid #efefef;
 }
@@ -334,7 +334,7 @@ swiper image {
 .spuInfo .spuDetailInfo .purchasing .remaining,.spuInfo .spuDetailInfo .saleNum .remaining,.spuInfo .straightInLive .purchasing .remaining,.spuInfo .straightInLive .saleNum .remaining,.spuInfo .buyRecords .purchasing .remaining,.spuInfo .buyRecords .saleNum .remaining {
     font-weight: bold;
     margin: 0;
-    color: #ff5344;
+    color: #ff758c;
 }
 
 .spuInfo .spuDetailInfo .purchasing .stock,.spuInfo .spuDetailInfo .saleNum .stock,.spuInfo .straightInLive .purchasing .stock,.spuInfo .straightInLive .saleNum .stock,.spuInfo .buyRecords .purchasing .stock,.spuInfo .buyRecords .saleNum .stock {
@@ -475,7 +475,7 @@ swiper image {
 }
 
 .spuInfo .buyRecords .title .buyNum text {
-    color: #ff5344;
+    color: #ff758c;
     font-weight: bold;
 }
 
@@ -593,7 +593,7 @@ swiper image {
 .spuInfo .service .instructions .instructionsList .instructionsMark {
     width: 6rpx;
     height: 6rpx;
-    background: #ff5344;
+    background: #4facfe;
     margin-top: 16rpx;
 }
 
@@ -612,7 +612,7 @@ swiper image {
 }
 
 .spuInfo .service .instructions .instructionsList .instructionsText .instructionsTime {
-    color: #ff6557;
+    color: #4facfe;
     font-weight: bold;
 }
 
@@ -842,7 +842,7 @@ button::after {
     top: -4rpx;
     width: 36rpx;
     height: 36rpx;
-    background: #f43530;
+    background: #ff758c;
     border-radius: 36rpx;
     color: #fff;
     font-size: 22rpx;
@@ -873,7 +873,7 @@ button::after {
 .goods-bottom-bar .gobuy .add-to-cart {
     width: 240rpx;
     height: 96rpx;
-    background: linear-gradient(270deg,#f9c706 0%,#feb600 100%);
+    background: linear-gradient(270deg,#4facfe 0%,#00f2fe 100%);
     color: #fff;
     font-size: 30rpx;
     display: flex;
@@ -900,7 +900,7 @@ button::after {
 .goods-bottom-bar .gobuy .balanceBtn .balance {
     height: 96rpx;
     flex: 1;
-    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     color: #fff;
     font-size: 30rpx;
     display: flex;
@@ -962,8 +962,8 @@ button::after {
 }
 
 .model-services .model-services-content .service-icon {
-    font-size: 80rpx;
-    color: #50b674;
+    width: 80rpx;
+    display: inline-block;
 }
 
 .service-name {
@@ -982,7 +982,7 @@ button::after {
 
 .none_btn {
     border: none;
-    line-height: 1.1;
+    line-height: 38rpx;
     padding: 0px;
 }
 
@@ -1031,8 +1031,7 @@ button[plain] {
 }
 
 .share-modal .btn-icon {
-    font-size: 70rpx;
-    color: #fff;
+    width: 70rpx;
     margin: 0 auto;
 }
 
@@ -1064,8 +1063,10 @@ button[plain] {
     z-index: 100;
 }
 
-.fixed-share .iconfont {
-    font-size: 30rpx;
+.fixed-share image {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
 }
 
 .spuInfoImg .item-tag {
@@ -1127,33 +1128,30 @@ button[plain] {
     width: 80rpx;
     height: 80rpx;
     position: fixed;
-    background: rgba(0,0,0,0.5);
     border-radius: 50%;
-    text-align: center;
-    color: #fff;
     box-sizing: border-box;
-    font-size: 20rpx;
-    padding: 10rpx;
-    line-height: 1.2;
     z-index: 100;
+    padding: 0;
+    line-height: 1;
+    background-color: transparent;
 }
 
 .fixed-service::after {
     border: 0;
 }
 
-.fixed-service .iconfont {
-    font-size: 30rpx;
+.fixed-service image {
+    width: 80rpx;
+    height: 80rpx;
 }
 
 .cell {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30rpx 20rpx;
+    margin: 30rpx 0;
     background-color: #fff;
     padding: 20rpx 30rpx;
-    border-radius: 20rpx;
 }
 
 .cell-left {
@@ -1187,8 +1185,8 @@ button[plain] {
 }
 
 .btn_view image {
-    width: 120rpx;
-    height: 120rpx;
+    width: 104rpx;
+    height: 104rpx;
     background: rgba(0,0,0,0.1);
     border-radius: 50%;
     animation: playScale 2s ease-in-out infinite;
@@ -1257,7 +1255,7 @@ button[plain] {
 }
 
 .group-btn {
-    background: #ff5344;
+    background: #4facfe;
     color: #fff;
     padding: 10rpx 30rpx;
     border-radius: 60rpx;
@@ -1279,38 +1277,4 @@ button[plain] {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-}
-
-.group-r-icon {
-    width: 20rpx;
-    height: 36rpx;
-    vertical-align: middle;
-}
-
-.guessLike {
-    margin-bottom: 0!important;
-    margin-top: 30rpx!important;
-}
-
-.vip {
-    background: linear-gradient(to right,#e3c28c,#fdd2a7);
-    height: 76rpx;
-    padding: 0 30rpx;
-    font-size: 24rpx;
-    color: #72491d;
-    border-radius: 10rpx;
-    margin-top: 30rpx;
-}
-
-.vip .goright.iconfont {
-    font-size: 24rpx;
-}
-
-.vip-logo {
-    width: 30rpx;
-    height: 30rpx;
-}
-
-.vip-name {
-    align-items: center;
 }

@@ -67,7 +67,7 @@ page {
 }
 
 .new-comers-item .price {
-    color: #ff5041;
+    color: #4facfe;
 }
 
 .new-comers-item {

@@ -31,13 +31,13 @@
     bottom: 0;
     height: 6rpx;
     width: 100%;
-    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
-    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(0,89,255,0.25);
     border-radius: 24rpx;
 }
 
 .nav .on {
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .swiper-box {
@@ -81,7 +81,7 @@
 .swiper-box .noRecordCon .goIndex {
     width: 164rpx;
     height: 60rpx;
-    background: #ff3432;
+    background: #4facfe;
     border-radius: 30rpx;
     font-size: 28rpx;
     color: #fff;
@@ -121,9 +121,9 @@
     flex-direction: column;
 }
 
-.refresh .refreshImg {
-    font-size: 32rpx;
-    color: #000;
+.refresh image {
+    width: 32rpx;
+    height: 32rpx;
     margin-bottom: 4rpx;
 }
 
@@ -153,11 +153,10 @@ swiper-item {
     flex: 1;
 }
 
-.section .picker .choose-day .iconfont {
-    font-size: 12rpx;
-    margin-left: 6rpx;
-    vertical-align: middle;
-    color: #999;
+.section .picker .choose-day image {
+    width: 18rpx;
+    height: 14rpx;
+    margin: 0 0 2.1rpx 6rpx;
 }
 
 .distributionList {
@@ -169,8 +168,8 @@ swiper-item {
 }
 
 .distributionList .on {
-    color: #fe8464;
-    border-bottom: 4rpx solid #fe8464;
+    color: #4facfe;
+    border-bottom: 4rpx solid #4facfe;
     margin: 0;
 }
 
@@ -205,7 +204,7 @@ swiper-item {
 
 .distributionNum .statusName {
     font-size: 26rpx;
-    color: #fe8464;
+    color: #4facfe;
 }
 
 .spu {

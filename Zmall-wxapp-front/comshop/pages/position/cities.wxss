@@ -8,7 +8,7 @@ page {
     border-radius: 8rpx;
     width: 200rpx;
     height: 80rpx;
-    background: #f7b251;
+    background: #00f2fe;
     display: block;
 }
 

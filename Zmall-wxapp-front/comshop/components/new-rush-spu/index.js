@@ -59,10 +59,6 @@ Component({
         needAuth: {
             type: Boolean,
             value: !1
-        },
-        is_open_vipcard_buy: {
-            type: Number,
-            value: 0
         }
     },
     attached: function() {
@@ -124,6 +120,7 @@ Component({
             });
         },
         addCart: function(t) {
+            console.log(t);
             var a = wx.getStorageSync("token"), e = wx.getStorageSync("community"), u = this.data.spuItem.actId, s = e.communityId, i = this;
             "plus" == t.type ? app.util.request({
                 url: "entry/wxapp/user",

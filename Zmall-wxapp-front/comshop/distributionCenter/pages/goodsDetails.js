@@ -27,7 +27,7 @@ Page({
     page: 1,
     onLoad: function(t) {
         var a = wx.getSystemInfoSync();
-        this.setData({
+        console.log(a.windowHeight), this.setData({
             containerHeight: a.windowHeight - Math.round(a.windowHeight / 375 * 48) - 130
         }), this.getInfo(), this.getData();
     },
@@ -69,7 +69,7 @@ Page({
             },
             dataType: "json",
             success: function(t) {
-                if (0 == t.data.code) {
+                if (console.log(t), 0 == t.data.code) {
                     var a = t.data.data;
                     a = e.data.list.concat(a), e.page++, e.setData({
                         list: a
@@ -92,7 +92,7 @@ Page({
     bindChange: function(t) {
         var a = this;
         this.page = 1, this.setData({
-            currentTab: t,
+            currentTab: 1 * t.detail.current,
             list: [],
             noData: 0,
             loadMore: !0
@@ -101,13 +101,9 @@ Page({
         });
     },
     switchNav: function(t) {
-        var a = this;
         if (this.data.currentTab === 1 * t.target.dataset.current) return !1;
-        var e = 1 * t.target.dataset.current;
         this.setData({
-            currentTab: e
-        }, function() {
-            a.bindChange(e);
+            currentTab: 1 * t.target.dataset.current
         });
     }
 });

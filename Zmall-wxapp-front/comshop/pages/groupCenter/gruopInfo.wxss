@@ -1,5 +1,5 @@
 .zr {
-    background: #fe8464;
+    background: #4facfe;
     width: 100%;
     height: 130px;
     position: relative;
@@ -140,7 +140,7 @@
     left: 0;
     top: 4rpx;
     bottom: 4rpx;
-    border-left: 6rpx solid #fe8464;
+    border-left: 6rpx solid #4facfe;
 }
 
 .distributionNum {
@@ -163,7 +163,7 @@
 
 .distributionNum .statusName {
     font-size: 26rpx;
-    color: #fe8464;
+    color: #4facfe;
 }
 
 .distributionCommision {

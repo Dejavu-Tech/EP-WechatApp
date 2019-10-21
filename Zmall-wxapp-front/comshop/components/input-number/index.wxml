@@ -1,9 +1,9 @@
 <view class="i-class i-input-number i-input-number-size-{{size}}">
-    <view catchtap="handleMinus" class="i-input-number-minus i-input-number-view i-number-view {{value<=min?'i-input-number-disabled':''}}">
-        <image class="img i-number-img" src="{{reduceImage}}"></image>
+    <view catchtap="handleMinus" class="i-input-number-minus i-input-number-view {{value<=min?'i-input-number-disabled':''}}">
+        <image class="img" src="{{reduceImage}}"></image>
     </view>
     <input disabled bindblur="handleBlur" bindfocus="handleFocus" catchtap="returnTap" class="i-class-number-text i-input-number-text {{min>=max?'i-input-number-disabled':''}}" type="number" value="{{value}}"></input>
-    <view catchtap="handlePlus" class="i-input-number-plus i-input-number-view i-number-view {{value>=max?'i-input-number-disabled':''}}">
-        <image class="img i-number-img" src="{{addImage}}"></image>
+    <view catchtap="handlePlus" class="i-input-number-plus i-input-number-view {{value>=max?'i-input-number-disabled':''}}">
+        <image class="img" src="{{addImage}}"></image>
     </view>
 </view>

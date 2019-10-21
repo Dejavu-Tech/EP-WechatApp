@@ -88,7 +88,7 @@ Page({
         wx.showModal({
             title: "提示",
             content: "确认提货",
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm && app.util.request({
                     url: "entry/wxapp/index",

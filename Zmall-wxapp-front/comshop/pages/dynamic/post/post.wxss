@@ -1,4 +1,4 @@
-@import "../../../../wuBaseWxss/0.wxss";
+@import "../../../../_wuBaseWxss_/0.wxss";
 
 .container {
     padding: 20rpx 25rpx;
@@ -6,7 +6,7 @@
 }
 
 .btn-area button {
-    background-color: #ff5777;
+    background-color: #4facfe;
     color: #fff;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .goods-name .goods-price {
-    color: #ff5777;
+    color: #4facfe;
     margin-top: 5rpx;
     font-weight: bold;
 }
@@ -148,7 +148,7 @@
 }
 
 .p_price {
-    color: #ff5777;
+    color: #4facfe;
 }
 
 .scroll-wrapper {
@@ -173,7 +173,7 @@
 }
 
 .goods-tip-close {
-    color: #ff5777;
+    color: #4facfe;
 }
 
 .tips {

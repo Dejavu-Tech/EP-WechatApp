@@ -61,26 +61,26 @@ Page({
     options: "",
     canCancel: !0,
     onLoad: function(e) {
-        var l = this;
-        l.options = e;
+        var o = this;
+        o.options = e;
         var t = wx.getStorageSync("userInfo");
         t && (t.shareNickName = 3 < t.nickName.length ? t.nickName.substr(0, 3) + "..." : t.nickName), 
         status.setGroupInfo().then(function(e) {
-            l.setData({
+            o.setData({
                 groupInfo: e
             });
         }), util.check_login() ? this.setData({
             needAuth: !1
         }) : this.setData({
             needAuth: !0
-        }), l.setData({
+        }), o.setData({
             common_header_backgroundimage: app.globalData.common_header_backgroundimage,
             userInfo: t
         });
         var a = wx.getStorageSync("token");
         wx.hideShareMenu(), wx.showLoading();
-        var u = e && e.is_show || 0, o = e && e.isfail || "";
-        null != (this.is_show_tip = u) && 1 == u || wx.showLoading(), null != o && 1 == o && wx.showToast({
+        var r = e && e.is_show || 0, n = e && e.isfail || "";
+        null != (this.is_show_tip = r) && 1 == r || wx.showLoading(), null != n && 1 == n && wx.showToast({
             title: "支付失败",
             icon: "none"
         }), app.util.request({
@@ -94,11 +94,11 @@ Page({
             method: "POST",
             success: function(e) {
                 if (wx.hideLoading(), 0 == e.data.code) {
-                    if (null != u && 1 == u && "integral" == e.data.data.order_info.type) wx.showToast({
+                    if (null != r && 1 == r && "integral" == e.data.data.order_info.type) wx.showToast({
                         title: "兑换成功"
-                    }); else if (null != u && 1 == u) if (1 == e.data.order_pay_after_share) {
+                    }); else if (null != r && 1 == r) if (1 == e.data.order_pay_after_share) {
                         var t = e.data.data.share_img;
-                        l.setData({
+                        o.setData({
                             share_img: t,
                             isShowModal: !0
                         });
@@ -107,24 +107,22 @@ Page({
                     });
                     if (3 == e.data.data.order_info.order_status_id) {
                         var a = 1e3 * (e.data.data.order_info.over_buy_time - e.data.data.order_info.cur_time);
-                        0 < a ? count_down(l, a) : 1 == e.data.data.order_info.open_auto_delete && l.setData({
+                        0 < a ? count_down(o, a) : 1 == e.data.data.order_info.open_auto_delete && o.setData({
                             changeState: 1
                         });
                     }
-                    var o = e.data, r = o.pingtai_deal, n = o.order_refund, i = o.order_can_del_cancle, d = o.is_hidden_orderlist_phone, s = o.is_show_guess_like, c = o.user_service_switch;
-                    l.setData({
+                    o.setData({
                         order: e.data.data,
-                        pingtai_deal: r,
-                        order_refund: n,
-                        order_can_del_cancle: i,
+                        pingtai_deal: e.data.pingtai_deal,
+                        order_refund: e.data.order_refund,
+                        order_can_del_cancle: e.data.order_can_del_cancle,
                         loadover: !0,
                         is_show: 1,
                         hide_lding: !0,
-                        is_hidden_orderlist_phone: d || 0,
-                        is_show_guess_like: s || 0,
-                        user_service_switch: c || 1
-                    }), l.hide_lding();
-                } else 2 == e.data.code && l.setData({
+                        is_hidden_orderlist_phone: e.data.is_hidden_orderlist_phone || 0,
+                        is_show_guess_like: e.data.is_show_guess_like || 0
+                    }), o.hide_lding();
+                } else 2 == e.data.code && o.setData({
                     needAuth: !0
                 });
             }
@@ -167,7 +165,7 @@ Page({
         wx.showModal({
             title: "提示",
             content: "确认收到",
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(e) {
                 e.confirm && app.util.request({
                     url: "entry/wxapp/index",
@@ -219,7 +217,7 @@ Page({
         wx.showModal({
             title: "取消支付",
             content: "好不容易挑出来，确定要取消吗？",
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(e) {
                 e.confirm && app.util.request({
                     url: "entry/wxapp/index",
@@ -407,7 +405,7 @@ Page({
             title: "取消订单并退款",
             content: "取消订单后，款项将原路退回到您的支付账户；详情请查看退款进度。",
             confirmText: "取消订单",
-            confirmColor: "#ff5344",
+            confirmColor: "#4facfe",
             cancelText: "再等等",
             cancelColor: "#666666",
             success: function(e) {
@@ -428,7 +426,7 @@ Page({
                                 title: "提示",
                                 content: "取消订单成功",
                                 showCancel: !1,
-                                confirmColor: "#ff5344",
+                                confirmColor: "#4facfe",
                                 success: function(e) {
                                     e.confirm && wx.redirectTo({
                                         url: "/lionfish_comshop/pages/order/index"

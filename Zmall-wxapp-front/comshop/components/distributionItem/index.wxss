@@ -25,7 +25,7 @@
 
 .distributionNum .statusName {
     font-size: 26rpx;
-    color: #fe8464;
+    color: #00f2fe;
 }
 
 .spu {

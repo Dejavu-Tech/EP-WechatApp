@@ -39,7 +39,7 @@
                         <view class="ll-title">{{typeName[item.type]}}</view>
                     </view>
                     <view class="details-item" wx:if="{{item.type!='tuijian'}}">
-                        <view class="ll-title">{{commiss_diy_name}}等级</view>
+                        <view class="ll-title">分销等级</view>
                         <view class="ll-title">{{item.level}}级</view>
                     </view>
                     <view class="details-item" wx:if="{{item.type!='tuijian'}}">

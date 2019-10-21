@@ -73,7 +73,7 @@
 .local-position-content span {
     font-size: 40rpx;
     font-weight: bold;
-    color: #ff5344;
+    color: #4facfe;
     margin-right: 8rpx;
 }
 

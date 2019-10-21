@@ -1,1 +1,0 @@
-<text class="bold {{status==0||status==1?'red':'gray'}}">{{showStatus}}</text>

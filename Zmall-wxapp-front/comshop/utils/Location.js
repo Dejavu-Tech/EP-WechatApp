@@ -33,7 +33,7 @@ function openSetting(t) {
         wx.showModal({
             content: "为了更好的服务您,需要您的地理位置",
             confirmText: "去开启",
-            confirmColor: "#FF673F",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm ? wx.openSetting({
                     success: function(t) {

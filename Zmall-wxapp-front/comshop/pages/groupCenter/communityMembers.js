@@ -21,22 +21,24 @@ Page({
         order: [],
         tip: "正在加载"
     },
-    onLoad: function(e) {
-        var a = wx.getSystemInfoSync();
+    onLoad: function(a) {
+        var t = wx.getSystemInfoSync();
         this.setData({
-            containerHeight: a.windowHeight - Math.round(a.windowWidth / 375 * 125)
+            containerHeight: t.windowHeight - Math.round(t.windowWidth / 375 * 125)
         }), page = 1, this.data.queryData.communityId = app.globalData.disUserInfo.communityId, 
         this.data.queryData.createTime = null, this.getData();
     },
+    onReady: function() {},
     onShow: function() {
-        var e = this.data.is_show_on;
-        0 < e ? (this.setData({
+        var a = this.data.is_show_on;
+        0 < a ? (this.setData({
             page: 1,
             order: []
         }), this.getData()) : this.setData({
-            is_show_on: e + 1
+            is_show_on: a + 1
         });
     },
+    onHide: function() {},
     getData: function() {
         wx.showLoading({
             title: "加载中...",
@@ -44,38 +46,38 @@ Page({
         }), this.setData({
             isHideLoadMore: !0
         }), this.data.no_order = 1;
-        var i = this, e = wx.getStorageSync("token");
+        var e = this, a = wx.getStorageSync("token");
         app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "community.get_community_member_orderlist",
-                date: i.data.date,
-                searchKey: i.data.searchKey,
-                token: e,
-                page: i.data.page
+                date: e.data.date,
+                searchKey: e.data.searchKey,
+                token: a,
+                page: e.data.page
             },
             dataType: "json",
-            success: function(e) {
-                if (0 != e.data.code) return i.setData({
+            success: function(a) {
+                if (0 != a.data.code) return e.setData({
                     isHideLoadMore: !0
                 }), wx.hideLoading(), !1;
-                var a = e.data.close_community_delivery_orders || 0, t = i.data.order.concat(e.data.data);
-                i.setData({
+                console.log(e.data.page);
+                var t = e.data.order.concat(a.data.data);
+                e.setData({
                     order: t,
                     hide_tip: !0,
-                    no_order: 0,
-                    close_community_delivery_orders: a
+                    no_order: 0
                 }), wx.hideLoading();
             }
         });
     },
     getTodayMs: function() {
-        var e = new Date();
-        return e.setHours(0), e.setMinutes(0), e.setSeconds(0), e.setMilliseconds(0), Date.parse(e);
+        var a = new Date();
+        return a.setHours(0), a.setMinutes(0), a.setSeconds(0), a.setMilliseconds(0), Date.parse(a);
     },
-    bindSearchChange: function(e) {
+    bindSearchChange: function(a) {
         this.setData({
-            searchKey: e.detail.value
+            searchKey: a.detail.value
         });
     },
     searchByKey: function() {
@@ -91,13 +93,13 @@ Page({
             order: []
         }), this.data.queryData.memberNickName = null, this.getData();
     },
-    bindDateChange: function(e) {
+    bindDateChange: function(a) {
         page = 1, this.setData({
-            date: e.detail.value,
+            date: a.detail.value,
             order: [],
             no_order: 0,
             page: 1
-        }), this.data.queryData.createTime = new Date(e.detail.value).getTime() - 288e5, 
+        }), this.data.queryData.createTime = new Date(a.detail.value).getTime() - 288e5, 
         this.getData();
     },
     clearDate: function() {
@@ -108,29 +110,22 @@ Page({
             page: 1
         }), this.data.queryData.createTime = null, this.getData();
     },
-    callTelphone: function(e) {
-        var a = this, t = e.currentTarget.dataset.phone;
-        "未下单" != t && (this.data.isCalling || (this.data.isCalling = !0, wx.makePhoneCall({
-            phoneNumber: t,
+    callTelphone: function(a) {
+        var t = this, e = a.currentTarget.dataset.phone;
+        "未下单" != e && (this.data.isCalling || (this.data.isCalling = !0, wx.makePhoneCall({
+            phoneNumber: e,
             complete: function() {
-                a.data.isCalling = !1;
+                t.data.isCalling = !1;
             }
         })));
     },
     getMore: function() {
-        if (1 == this.data.no_order) return !1;
+        if (console.log(222), 1 == this.data.no_order) return !1;
         this.data.page += 1, this.getData(), this.setData({
             isHideLoadMore: !1
         });
     },
-    goLink: function(e) {
-        if (1 != this.data.close_community_delivery_orders) {
-            var a = getCurrentPages(), t = e.currentTarget.dataset.link;
-            3 < a.length ? wx.redirectTo({
-                url: t
-            }) : wx.navigateTo({
-                url: t
-            });
-        }
-    }
+    onUnload: function() {},
+    onPullDownRefresh: function() {},
+    onReachBottom: function() {}
 });

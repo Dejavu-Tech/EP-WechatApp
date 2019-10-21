@@ -77,7 +77,7 @@
 
 .goodsInfo .goodsDetail .detailBottom .price {
     font-size: 20rpx;
-    color: #ff5344;
+    color: #ff758c;
 }
 
 .goodsInfo .goodsDetail .detailBottom .price .salePrice {

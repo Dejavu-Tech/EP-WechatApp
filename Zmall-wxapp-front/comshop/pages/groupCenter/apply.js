@@ -15,10 +15,6 @@ Page({
         needAuth: !1,
         member_info: {
             is_head: 0
-        },
-        groupInfo: {
-            group_name: "社区",
-            owner_name: "团长"
         }
     },
     community_id: "",
@@ -53,20 +49,20 @@ Page({
         });
     },
     chose_location: function() {
-        var c = this;
+        var r = this;
         wx.chooseLocation({
             success: function(t) {
-                var e = t.longitude + "," + t.latitude, a = t.address, n = c.data.region, i = "", o = a, s = new RegExp("(.*?省)(.*?市)(.*?区)", "g"), u = s.exec(o);
+                var e = t.longitude + "," + t.latitude, a = t.address, n = r.data.region, i = "", o = a, s = new RegExp("(.*?省)(.*?市)(.*?区)", "g"), u = s.exec(o);
                 null == u && null == (u = (s = new RegExp("(.*?省)(.*?市)(.*?市)", "g")).exec(o)) && null == (u = (s = new RegExp("(.*?省)(.*?市)(.*县)", "g")).exec(o)) || (n[0] == u[1] && n[1] == u[2] && n[2] == u[3] || wx.showToast({
                     title: "省市区信息已同步修改",
                     icon: "none"
                 }), n[0] = u[1], n[1] = u[2], n[2] = u[3], i = a.replace(u[0], ""));
-                var r = i + t.name, l = "";
+                var l = i + t.name, c = "";
                 locat.getGpsLocation(t.latitude, t.longitude).then(function(t) {
-                    (l = t) && (n[0] = l.province, n[1] = l.city, n[2] = l.district), c.setData({
+                    (c = t) && (n[0] = c.province, n[1] = c.city, n[2] = c.district), r.setData({
                         region: n,
                         lon_lat: e,
-                        addr_detail: r
+                        addr_detail: l
                     });
                 }), "省" == n[0] && wx.showToast({
                     title: "请重新选择省市区",
@@ -77,8 +73,8 @@ Page({
     },
     submit: function() {
         if (this.authModal()) {
-            var t = wx.getStorageSync("token"), e = this.data.region[0], a = this.data.region[1], n = this.data.region[2], i = this.data.addr_detail, o = this.data.community_name, s = this.data.mobile_detail, u = this.data.lon_lat, r = this.data.head_name, l = this.data.wechat, c = this;
-            if ("" == r || void 0 === r) return wx.showToast({
+            var t = wx.getStorageSync("token"), e = this.data.region[0], a = this.data.region[1], n = this.data.region[2], i = this.data.addr_detail, o = this.data.community_name, s = this.data.mobile_detail, u = this.data.lon_lat, l = this.data.head_name, c = this.data.wechat, r = this;
+            if ("" == l || void 0 === l) return wx.showToast({
                 title: "请填写姓名",
                 icon: "none"
             }), !1;
@@ -88,7 +84,7 @@ Page({
                 title: "手机号码有误",
                 icon: "none"
             }), !1;
-            if ("" == l || void 0 === l) return wx.showToast({
+            if ("" == c || void 0 === c) return wx.showToast({
                 title: "请填写微信号",
                 icon: "none"
             }), !1;
@@ -116,8 +112,8 @@ Page({
                 addr_detail: i,
                 community_name: o,
                 mobile: s,
-                head_name: r,
-                wechat: l,
+                head_name: l,
+                wechat: c,
                 controller: "community.sub_community_head",
                 token: t,
                 community_id: this.community_id
@@ -132,7 +128,7 @@ Page({
                         title: "提交成功，等待审核",
                         icon: "none",
                         duration: 2e3
-                    }), c.setData({
+                    }), r.setData({
                         apply_complete: !0
                     }));
                 }
@@ -140,12 +136,9 @@ Page({
         }
     },
     onLoad: function(t) {
-        var a = this;
         status.setNavBgColor(), status.setGroupInfo().then(function(t) {
             var e = t && t.owner_name || "团长";
-            a.setData({
-                groupInfo: t
-            }), wx.setNavigationBarTitle({
+            wx.setNavigationBarTitle({
                 title: e + "申请"
             });
         });

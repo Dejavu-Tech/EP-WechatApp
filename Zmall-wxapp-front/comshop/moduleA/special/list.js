@@ -35,7 +35,6 @@ Page({
         });
     },
     getData: function() {
-        wx.showLoading();
         var t = wx.getStorageSync("token"), e = this, a = wx.getStorageSync("community");
         app.util.request({
             url: "entry/wxapp/index",
@@ -47,7 +46,7 @@ Page({
             },
             dataType: "json",
             success: function(t) {
-                if (wx.stopPullDownRefresh(), wx.hideLoading(), 0 == t.data.code) {
+                if (wx.stopPullDownRefresh(), 0 == t.data.code) {
                     var a = t.data.data;
                     a = e.data.specialList.concat(a), e.page++, e.setData({
                         specialList: a
@@ -77,13 +76,13 @@ Page({
             var r = o.list || [], u = [];
             if (0 < r.length) {
                 for (var c = 0; c < r.length; c++) {
-                    var d = r[c].option_value[0], l = {
-                        name: d.name,
-                        id: d.option_value_id,
+                    var l = r[c].option_value[0], d = {
+                        name: l.name,
+                        id: l.option_value_id,
                         index: c,
                         idx: 0
                     };
-                    u.push(l);
+                    u.push(d);
                 }
                 for (var h = "", p = 0; p < u.length; p++) p == u.length - 1 ? h += u[p].id : h = h + u[p].id + "_";
                 var g = o.sku_mu_list[h];

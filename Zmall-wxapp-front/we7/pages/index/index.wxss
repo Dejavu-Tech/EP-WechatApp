@@ -1,0 +1,86 @@
+.container {
+    background: #e6e6e6;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: #fff;
+    width: 100%;
+}
+
+.nav-item {
+    width: 248rpx;
+    height: 237rpx;
+    border: #c9c9c9 solid 1px;
+    color: #fff;
+    flex-direction: column;
+    text-align: center;
+    border-left: none;
+    border-top: none;
+}
+
+.nav-item.nav-item-no-border {
+    border-right: none;
+}
+
+.nav-item .nav-icon {
+    width: 118rpx;
+    height: 118rpx;
+    align-items: center;
+    margin-top: 38rpx;
+}
+
+.nav-item .nav-title,.commend-item .commend-title {
+    color: #000;
+    margin-top: 20rpx;
+    font-size: 24rpx;
+}
+
+.swiper {
+    width: 100%;
+    height: 350rpx;
+}
+
+.swiper swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper image {
+    width: 100%;
+    height: 100%;
+}
+
+.commend {
+    width: 100%;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-top: 20rpx;
+    background: #fff;
+}
+
+.commend .commend-column {
+    display: flex;
+}
+
+.commend .commend-header-title {
+    text-align: left;
+    line-height: 98rpx;
+    font-size: 30rpx;
+    padding-left: 15rpx;
+}
+
+.commend .commend-item {
+    display: flex;
+    flex-direction: column;
+    border-right: #c9c9c9 solid 1px;
+    padding-bottom: 60rpx;
+    width: 372rpx;
+}
+
+.commend .commend-item image {
+    width: 100%;
+    height: 210rpx;
+}

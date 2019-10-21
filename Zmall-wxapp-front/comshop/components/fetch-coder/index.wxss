@@ -1,6 +1,6 @@
 .coder-content {
     position: relative;
-    height: 650rpx;
+    height: 448rpx;
     width: 630rpx;
     background: #fff;
     border-radius: 20rpx;
@@ -13,8 +13,8 @@
     font-weight: 500;
     color: #444;
     line-height: 36rpx;
-    margin-bottom: 60rpx;
-    margin-top: 60rpx;
+    margin-bottom: 80rpx;
+    margin-top: 80rpx;
 }
 
 .coder-content .t2 {
@@ -22,7 +22,7 @@
     font-weight: 400;
     color: #bababa;
     line-height: 24rpx;
-    margin-top: 40rpx;
+    margin-top: 80rpx;
 }
 
 .coder-content .item {
@@ -58,8 +58,4 @@
 .coder-content .icon-close {
     height: 24rpx;
     width: 24rpx;
-}
-
-.coder-content .code-img .img {
-    width: 60%;
 }

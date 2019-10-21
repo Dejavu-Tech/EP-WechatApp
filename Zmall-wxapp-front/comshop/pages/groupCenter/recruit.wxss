@@ -7,7 +7,7 @@
 .section .apply-btn {
     width: 710rpx;
     height: 96rpx;
-    background: #f75451;
+    background: #4facfe;
     border-radius: 20rpx;
     color: #fff;
     font-size: 30rpx;
@@ -24,4 +24,31 @@
 
 .wxParse-inline {
     padding: 8rpx 0;
+}
+
+.router-hover {
+    opacity: 1;
+}
+
+.menu-list {
+    position: fixed;
+    width: 80rpx;
+    right: 10rpx;
+    bottom: 40%;
+    text-align: center;
+}
+
+.menu-list .menu-item {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    margin-bottom: 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-list image {
+    width: 80rpx;
+    height: 80rpx;
 }

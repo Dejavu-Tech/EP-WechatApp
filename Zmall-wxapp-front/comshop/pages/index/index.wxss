@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-@import "template/pin.wxss";
-
 ::-webkit-scrollbar {
     width: 0;
     height: 0;
@@ -42,6 +40,7 @@
     border-radius: 12rpx;
     position: relative;
     overflow: hidden;
+    box-shadow: 0px 0px 3px #888888;
 }
 
 .swiper-content .banner .banner-img {
@@ -88,7 +87,7 @@
     white-space: nowrap;
     height: 28rpx;
     border-radius: 28rpx;
-    color: #f78076;
+    color: #ff758c;
     text-align: center;
     font-size: 24rpx;
     line-height: 24rpx;
@@ -111,8 +110,8 @@
     width: 52rpx;
     height: 22rpx;
     font-size: 20rpx;
-    border: 1rpx solid #ff5344;
-    color: #ff5344;
+    border: 1rpx solid #4facfe;
+    color: #4facfe;
     margin-right: 8rpx;
     line-height: 22rpx;
     border-radius: 22rpx;
@@ -221,11 +220,16 @@
     background: #f7f7f7;
 }
 
+page {
+    background: #fff;
+}
+
 .router-hover {
     opacity: 1;
 }
 
 .list-content {
+    background: #fff;
     z-index: 1;
     position: relative;
 }
@@ -306,10 +310,6 @@
     margin-left: 30rpx;
 }
 
-.header-content .location .iconfont {
-    font-size: 22rpx;
-}
-
 .header-content .location .community-address {
     font-size: 24rpx;
     line-height: 30rpx;
@@ -349,14 +349,14 @@
 }
 
 .top-msg {
-    width: 690rpx;
-    height: 80rpx;
+    width: 700rpx;
+    height: 60rpx;
     display: flex;
     align-items: center;
     padding: 0 30rpx;
     box-sizing: border-box;
-    color: #ff5344;
-    font-size: 24rpx;
+    color: #ff758c;
+    font-size: 26rpx;
     line-height: 24rpx;
     margin: 0 auto 20rpx;
     background: #fff9f4;
@@ -364,10 +364,10 @@
 }
 
 .top-msg image {
-    width: 42rpx;
+    width: 32rpx;
     height: 26rpx;
     margin-right: 20rpx;
-    margin-top: -4rpx;
+    margin-top: 0rpx;
     line-height: 80rpx;
 }
 
@@ -439,7 +439,7 @@
 }
 
 .sticky-title .tab-btn-active {
-    color: #ff5344;
+    color: #4facfe;
     line-height: 80rpx;
 }
 
@@ -448,7 +448,7 @@
     width: 112rpx;
     height: 6rpx;
     border-radius: 6rpx;
-    background: linear-gradient(to right,#fe655c,#fa875b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -540,8 +540,9 @@
     z-index: 100;
 }
 
-.fixed-share .iconfont {
-    font-size: 30rpx;
+.fixed-share image {
+    width: 50%;
+    height: 50%;
 }
 
 .i-router-hover {
@@ -677,7 +678,7 @@
 }
 
 .spu .spu-content .item-right .spu-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
 }
 
@@ -731,7 +732,7 @@
 }
 
 .spu .spu-content .spu-active .tag {
-    background: linear-gradient(to right,#ff5041,#ff994b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     border-radius: 0 14rpx 14rpx 0;
     padding: 0 12rpx;
     height: 24rpx;
@@ -799,6 +800,70 @@
     }
 }
 
+.community-content {
+    width: 580rpx;
+    background: #fff;
+    border-radius: 24rpx;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 60px auto;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.community-content-title {
+    position: relative;
+    line-height: 2.4;
+    background-color: #4facfe;
+    color: #fff;
+    font-size: 36rpx;
+    width: 100%;
+    text-align: center;
+}
+
+.community-content-title image {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 42rpx;
+    height: 42rpx;
+    padding: 23rpx;
+}
+
+.community-content-change {
+    color: #44abf7;
+    margin-left: 15rpx;
+}
+
+.community-content-tip {
+    color: #666;
+    font-size: 32rpx;
+    line-height: 1.6;
+    width: 514rpx;
+    margin-top: 20rpx;
+}
+
+.community-content-name {
+    color: #4facfe;
+    font-size: 30rpx;
+    padding: 0 30rpx;
+}
+
+.community-content-btn {
+    text-align: center;
+    width: 432rpx;
+    height: 72rpx;
+    color: #fff;
+    background: #4facfe;
+    font-size: 30rpx;
+    line-height: 72rpx;
+    border-radius: 12rpx;
+    margin: 40rpx 0 30rpx;
+}
+
 .miniAppTip {
     position: relative;
     z-index: 100;
@@ -810,7 +875,7 @@
     top: 10rpx;
     color: #333;
     font-size: 22rpx;
-    background-color: #fbe94e;
+    background-color: #00f2fe;
     padding: 15rpx 20rpx;
     border-radius: 30rpx;
     transition: all 400ms ease-in;
@@ -819,7 +884,7 @@
 .add-myapp:after {
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid #fbe94e;
+    border-bottom: 5px solid #00f2fe;
     content: "";
     position: absolute;
     width: 0;
@@ -855,7 +920,7 @@
     right: 20rpx;
     color: #fff;
     font-size: 26rpx;
-    background: #ff5344;
+    background: #4facfe;
     height: 50rpx;
     line-height: 50rpx;
     border-radius: 10rpx 0 0 0;
@@ -906,7 +971,7 @@
     height: 70rpx;
     display: flex;
     margin: 0 30rpx;
-    border-bottom: 4rpx solid #fc4443;
+    border-bottom: 4rpx solid #4facfe;
     transition: all 0.3s linear;
 }
 
@@ -1003,6 +1068,7 @@
 }
 
 .sticky-cate .category-list {
+    margin-top: 20rpx;
     background-color: #fff;
 }
 
@@ -1052,8 +1118,8 @@
 }
 
 .model-services .model-services-content .service-icon {
-    font-size: 80rpx;
-    color: #50b674;
+    width: 80rpx;
+    display: inline-block;
 }
 
 .service-name {
@@ -1072,7 +1138,7 @@
 
 .none_btn {
     border: none;
-    line-height: 1.1;
+    line-height: 38rpx;
     padding: 0px;
 }
 
@@ -1135,6 +1201,12 @@ button[plain] {
     font-size: 24rpx;
 }
 
+.community-local {
+    width: 25rpx;
+    height: 24rpx;
+    margin-right: 8rpx;
+}
+
 .fixed-service {
     display: inline-block;
     bottom: 13%;
@@ -1142,23 +1214,21 @@ button[plain] {
     width: 80rpx;
     height: 80rpx;
     position: fixed;
-    background: rgba(0,0,0,0.5);
     border-radius: 50%;
-    text-align: center;
-    color: #fff;
     box-sizing: border-box;
-    font-size: 20rpx;
-    padding: 10rpx;
-    line-height: 1.2;
     z-index: 100;
+    padding: 0;
+    line-height: 1;
+    background-color: transparent;
 }
 
 .fixed-service::after {
     border: 0;
 }
 
-.fixed-service .iconfont {
-    font-size: 30rpx;
+.fixed-service image {
+    width: 80rpx;
+    height: 80rpx;
 }
 
 .search-bar {
@@ -1184,8 +1254,9 @@ button[plain] {
     margin-right: 12rpx;
 }
 
-.search-icon .iconfont {
-    font-size: 34rpx;
+.search-icon image {
+    width: 36rpx;
+    height: 36rpx;
     padding-top: 10rpx;
 }
 
@@ -1229,7 +1300,7 @@ button[plain] {
 .new-coupou-body {
     flex: 1;
     width: 100%;
-    background: linear-gradient(to right,#fe655c,#fa875b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     border-radius: 20rpx;
     box-sizing: border-box;
     padding: 0 30rpx;
@@ -1239,9 +1310,9 @@ button[plain] {
     padding: 40rpx 0;
 }
 
-.new-coupou-foot .iconfont {
-    font-size: 60rpx;
-    color: #fff;
+.new-coupou-foot image {
+    width: 60rpx;
+    height: 60rpx;
 }
 
 .new-coupou-body-head {
@@ -1296,7 +1367,7 @@ button[plain] {
 
 .new-coupou-time {
     font-size: 24rpx;
-    color: #fe655c;
+    color: #ff758c;
     margin-top: 10rpx;
 }
 
@@ -1305,7 +1376,7 @@ button[plain] {
 }
 
 .new-coupou-price {
-    color: #fe655c;
+    color: #ff758c;
     font-size: 48rpx;
     font-weight: bold;
 }
@@ -1318,7 +1389,7 @@ button[plain] {
 }
 
 .new-coupou-use {
-    background: #fe655c;
+    background: #4facfe;
     border-radius: 20rpx;
     color: #fff;
     font-size: 22rpx;
@@ -1346,7 +1417,7 @@ button[plain] {
 
 .copytext-title {
     width: 100%;
-    background-color: #f75451;
+    background-color: #4facfe;
     text-align: center;
     color: #fff;
     font-weight: bold;
@@ -1387,11 +1458,10 @@ button[plain] {
 
 .copytext-close {
     position: absolute;
-    font-size: 50rpx;
+    width: 50rpx;
+    height: 50rpx;
     top: 25rpx;
     right: 30rpx;
-    color: #fff;
-    line-height: 1;
 }
 
 .copytext-btn {
@@ -1407,18 +1477,6 @@ button[plain] {
     border-right: 0;
     padding: 5rpx 15rpx 5rpx 20rpx;
     border-radius: 40rpx 0 0 40rpx;
-}
-
-.community-content-btn {
-    text-align: center;
-    width: 432rpx;
-    height: 72rpx;
-    color: #fff;
-    background: #f75451;
-    font-size: 30rpx;
-    line-height: 72rpx;
-    border-radius: 12rpx;
-    margin: 40rpx 0 30rpx;
 }
 
 .promotion {
@@ -1468,7 +1526,7 @@ button[plain] {
     overflow: hidden;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(https://mall.shiziyu888.com/Common/image/117603130_6i5767h706g683dj35febbc2c37a4_176x116.png);
+    background-image: url(https://wxapp.ch871.com/Common/image/117603130_6i5767h706g683dj35febbc2c37a4_176x116.png);
 }
 
 .promotion .card {
@@ -1571,56 +1629,6 @@ button[plain] {
 
 .m-coupou-r .new-coupou-use.kong {
     background: transparent;
-    border: 1rpx solid #fe655c;
-    color: #fe655c;
-}
-
-.theme3 {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 20rpx;
-    border-radius: 10rpx;
-    overflow: hidden;
-}
-
-.theme3 .topic-img {
-    width: 100%;
-}
-
-.location-theme2 {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20rpx 20rpx 0;
-}
-
-.location-theme2 .loc-m {
-    flex: 1;
-    margin: 0 20rpx;
-    font-size: 30rpx;
-    font-weight: bold;
-}
-
-.location-theme2 .loc-m .iconfont {
-    font-size: 26rpx;
-}
-
-.location-theme2 .loc-l .img {
-    width: 60rpx;
-    height: 60rpx;
-    border-radius: 50%;
-    vertical-align: middle;
-}
-
-.location-theme2 .top-search {
-    background-color: #ebebeb;
-    border-radius: 30rpx;
-    padding: 10rpx 40rpx;
-    color: #666;
-}
-
-.location-theme2 .top-search .iconfont {
-    font-size: 28rpx;
-    margin-right: 20rpx;
+    border: 1rpx solid #4facfe;
+    color: #4facfe;
 }

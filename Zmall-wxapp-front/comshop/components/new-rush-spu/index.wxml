@@ -14,9 +14,6 @@
                 <view class="tag">满{{reduction.full_money}}减{{reduction.full_reducemoney}}</view>
                 <view class="tag tag-green" wx:if="{{spuItem.isLimit}}">限购</view>
             </view>
-            <view class="spu-play" wx:if="{{spuItem.is_video}}">
-                <image class="img" src="../../images/play.png"></image>
-            </view>
         </view>
         <view class="item-right">
             <view class="item-right-top">
@@ -33,7 +30,6 @@
                         <text class="txt spu-count-num">仅剩{{spuItem.spuCanBuyNum}}件</text>
                     </view>
                 </view>
-                <i-vip-price price="{{spuItem.card_price}}" wx:if="{{is_open_vipcard_buy==1&&spuItem.is_take_vipcard==1}}"></i-vip-price>
             </view>
             <view class="spu-price">
                 <view class="sale-price">

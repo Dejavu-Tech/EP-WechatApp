@@ -30,9 +30,9 @@ Page({
         });
     },
     goGoodsDetails: function(o) {
-        var a = o.currentTarget.dataset.id || 0, e = this.data.order.order_info.head_id || "";
+        var a = o.currentTarget.dataset.id || 0;
         wx.navigateTo({
-            url: "/lionfish_comshop/pages/goods/goodsDetail?id=" + a + "&community_id=" + e
+            url: "/lionfish_comshop/pages/goods/goodsDetail?id=" + a
         });
     },
     onHide: function() {},

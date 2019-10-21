@@ -52,12 +52,15 @@
             </i-router-link>
         </view>
     </view>
-    <view class="none-rush-list" wx:if="{{noData}}">
+    <view class="none-rush-list" wx:else>
         <image class="img-block" src="../../images/icon-index-empty.png"></image>
         <view class="h1">暂时没有团购</view>
         <view class="h2">我们正在为您准备更优惠的团购</view>
     </view>
-    <i-aside-btn showHome="{{true}}" showShare="{{ishowShareBtn==1}}"></i-aside-btn>
+    <button class="fixed-share" openType="share" wx:if="{{ishowShareBtn==1}}">
+        <image mode="aspectFit" src="../../images/share-white.png"></image>
+        <view>分享</view>
+    </button>
     <i-cart-btn cartNum="{{cartNum}}" showHome="{{true}}"></i-cart-btn>
 </view>
 <i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>

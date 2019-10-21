@@ -26,7 +26,7 @@
 }
 
 .express-header .span {
-    color: #25ae5f;
+    color: #4facfe;
     margin-left: 10rpx;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .express-trace-info-dot-green {
-    background-color: #25ae5f;
+    background-color: #4facfe;
     box-shadow: rgba(37,174,95,0.3) 0 0 0 3px;
     -webkit-transform: translate(0,-0.08rem);
 }
@@ -129,7 +129,7 @@
 }
 
 .one-expre:first-child .express-trace-info ._trace-info .trace-detail {
-    color: #25ae5f!important;
+    color: #4facfe!important;
 }
 
 .express-trace-info ._trace-info .trace-time {
@@ -141,7 +141,7 @@
 }
 
 .one-expre:first-child .express-trace-info ._trace-info .trace-time {
-    color: #25ae5f!important;
+    color: #4facfe!important;
 }
 
 page {

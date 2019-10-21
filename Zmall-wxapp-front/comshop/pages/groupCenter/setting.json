@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "#FE8464",
+    "navigationBarBackgroundColor": "#4facfe",
     "usingComponents": {
         "i-modal": "../../components/modal/index"
     }

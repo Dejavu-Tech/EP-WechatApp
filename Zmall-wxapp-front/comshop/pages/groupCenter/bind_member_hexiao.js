@@ -15,9 +15,9 @@ Page({
         });
         var e = decodeURIComponent(t.scene);
         if ("undefined" != e) {
-            var o = e;
+            var i = e;
             this.setData({
-                community_id: o
+                community_id: i
             });
         } else wx.showModal({
             title: "提示",
@@ -36,18 +36,18 @@ Page({
         });
     },
     bindInfo: function() {
-        var t = wx.getStorageSync("token"), e = this.data.name, o = this.data.mobile, i = this.data.community_id;
+        var t = wx.getStorageSync("token"), e = this.data.name, i = this.data.mobile, o = this.data.community_id;
         return "" == e ? (wx.showToast({
             title: "请输入姓名！",
             icon: "none"
-        }), !1) : "" != o && /^1(3|4|5|6|7|8|9)\d{9}$/.test(o) ? (wx.showLoading(), void app.util.request({
+        }), !1) : "" != i && /^1(3|4|5|6|7|8|9)\d{9}$/.test(i) ? (wx.showLoading(), void app.util.request({
             url: "entry/wxapp/index",
             data: {
                 controller: "community.bind_community_member_do",
                 token: t,
-                community_id: i,
+                community_id: o,
                 name: e,
-                mobile: o
+                mobile: i
             },
             dataType: "json",
             success: function(t) {

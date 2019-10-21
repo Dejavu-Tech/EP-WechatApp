@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "提现",
+    "usingComponents": {
+        "i-auth": "../../components/auth/index"
+    }
+}

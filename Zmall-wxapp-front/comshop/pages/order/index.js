@@ -104,7 +104,7 @@ Page({
         wx.showModal({
             title: "提示",
             content: "确认收到",
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm && app.util.request({
                     url: "entry/wxapp/index",
@@ -130,7 +130,7 @@ Page({
         wx.showModal({
             title: "取消支付",
             content: "好不容易挑出来，确定要取消吗？",
-            confirmColor: "#F75451",
+            confirmColor: "#4facfe",
             success: function(t) {
                 t.confirm && app.util.request({
                     url: "entry/wxapp/index",

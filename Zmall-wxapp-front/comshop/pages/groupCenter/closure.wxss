@@ -25,7 +25,7 @@
 
 .list .item .num {
     font-weight: bold;
-    color: #ff5344;
+    color: #4facfe;
 }
 
 .add-btn {

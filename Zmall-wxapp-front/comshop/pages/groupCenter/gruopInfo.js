@@ -16,16 +16,14 @@ Page({
     page: 1,
     hasMore: !0,
     onLoad: function(t) {
-        var a = this, s = wx.getStorageSync("commiss_diy_name") || "分销";
+        var a = this;
         status.setGroupInfo().then(function(t) {
             var e = t && t.owner_name || "团长";
             wx.setNavigationBarTitle({
-                title: e + s
+                title: e + "分销"
             }), a.setData({
                 groupInfo: t
             });
-        }), this.setData({
-            commiss_diy_name: s
         }), util.check_login() || wx.reLaunch({
             url: "/lionfish_comshop/pages/user/me"
         }), wx.showLoading(), this.getList();

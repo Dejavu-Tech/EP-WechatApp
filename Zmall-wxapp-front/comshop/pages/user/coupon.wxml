@@ -32,7 +32,6 @@
                         <view class="reduce-area" wx:elif="{{item.is_limit_goods_buy==2}}">使用范围：指定分类</view>
                     </view>
                     <view class="status">
-                        <view bindtap="goUse" class="go-shop" data-idx="{{index}}" wx:if="{{item.is_over==0&&item.is_use==0}}">去使用</view>
                         <image src="../../images/expired.png" wx:if="{{item.is_over==1&&item.is_use==0}}"></image>
                         <image src="../../images/used.png" wx:if="{{item.is_use==1}}"></image>
                     </view>

@@ -1,0 +1,11 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+    <view>
+        <view class="section">
+            <view class="wxParse">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+            <view bindtap="subCommis" class="apply-btn">点击申请</view>
+        </view>
+    </view>
+</i-auth>

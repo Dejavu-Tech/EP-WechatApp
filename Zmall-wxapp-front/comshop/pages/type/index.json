@@ -7,7 +7,6 @@
         "i-img": "../../components/img/index",
         "i-type-item": "./type-item",
         "i-modal": "../../components/modal/index",
-        "i-new-auth": "../../components/new-auth/index",
-        "i-change-community": "../../components/changeCommunity/index"
+        "i-new-auth": "../../components/new-auth/index"
     }
 }

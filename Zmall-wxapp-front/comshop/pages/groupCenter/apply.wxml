@@ -24,8 +24,8 @@
           </view>
                 </view>
                 <view class="form-item {{errors[1]===2?'error':''}}">
-                    <label class="form-item-control">{{groupInfo.group_name}}名称</label>
-                    <input bindinput="inputCommunity" class="form-item-input" data-key="1" placeholder="请输入{{groupInfo.group_name}}名称" type="text"></input>
+                    <label class="form-item-control">小区名称</label>
+                    <input bindinput="inputCommunity" class="form-item-input" data-key="1" placeholder="请输入小区名称" type="text"></input>
                 </view>
                 <view bindtap="chose_location" class="form-item {{errors[0]===2?'error':''}}">
                     <label class="form-item-control">所在位置</label>

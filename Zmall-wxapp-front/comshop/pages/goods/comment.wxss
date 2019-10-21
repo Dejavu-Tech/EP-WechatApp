@@ -206,7 +206,7 @@ button::after {
 
 .goodsInfo .goodsDetail .detailBottom .price {
     font-size: 20rpx;
-    color: #ff5344;
+    color: #ff758c;
 }
 
 .goodsInfo .goodsDetail .detailBottom .price text {
@@ -297,7 +297,7 @@ button::after {
     top: -4rpx;
     width: 36rpx;
     height: 36rpx;
-    background: #ff384a;
+    background: #ff758c;
     border-radius: 36rpx;
     color: #fff;
     font-size: 22rpx;
@@ -328,7 +328,7 @@ button::after {
 .goods-bottom-bar .gobuy .add-to-cart {
     width: 240rpx;
     height: 96rpx;
-    background: linear-gradient(270deg,#f9c706 0%,#feb600 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     color: #fff;
     font-size: 30rpx;
     display: flex;
@@ -355,7 +355,7 @@ button::after {
 .goods-bottom-bar .gobuy .balanceBtn .balance {
     height: 96rpx;
     flex: 1;
-    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
     color: #fff;
     font-size: 30rpx;
     display: flex;

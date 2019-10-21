@@ -29,7 +29,7 @@
 
 .card-header .title {
     flex: 1;
-    color: #f75451;
+    color: #4facfe;
     font-size: 30rpx;
     font-weight: bold;
 }
@@ -42,7 +42,7 @@
 }
 
 .bot-line.focus {
-    border-bottom: 2rpx solid #f75451;
+    border-bottom: 2rpx solid #4facfe;
 }
 
 .info-item {
@@ -69,7 +69,7 @@
 }
 
 .edit-btn button {
-    background-color: #f75451;
+    background-color: #4facfe;
     text-align: center;
     line-height: 90rpx;
     margin: 80rpx 36rpx;

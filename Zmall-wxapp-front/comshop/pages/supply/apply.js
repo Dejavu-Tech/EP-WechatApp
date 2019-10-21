@@ -39,7 +39,7 @@ Page({
     },
     getData: function() {
         wx.showLoading();
-        var t = wx.getStorageSync("token"), o = this;
+        var t = wx.getStorageSync("token"), e = this;
         app.util.request({
             url: "entry/wxapp/index",
             data: {
@@ -50,15 +50,10 @@ Page({
             method: "POST",
             success: function(t) {
                 wx.hideLoading();
-                var a = t.data.code, e = t.data.supply_diy_name || "供应商";
-                wx.setNavigationBarTitle({
-                    title: "申请成为" + e
-                }), 0 == a ? o.setData({
-                    state: t.data.data.state || 0,
-                    supply_diy_name: e
-                }) : 1 == a && (o.setData({
-                    supply_diy_name: e
-                }), console.log("needAuth"));
+                var a = t.data.code;
+                0 == a ? e.setData({
+                    state: t.data.data.state || 0
+                }) : 1 == a && console.log("needAuth");
             }
         });
     },
@@ -83,12 +78,12 @@ Page({
         });
     },
     addImg: function() {
-        var n = this;
+        var i = this;
         wx.chooseImage({
             count: 1,
             success: function(t) {
                 var a = t.tempFilePaths;
-                n.data.thumb_img;
+                i.data.thumb_img;
                 wx.showLoading({
                     title: "上传中"
                 }), wx.uploadFile({
@@ -106,11 +101,11 @@ Page({
                     },
                     success: function(t) {
                         wx.hideLoading();
-                        var a = JSON.parse(t.data), e = a.image_thumb, o = a.image_o_full, i = a.image_o;
-                        n.setData({
+                        var a = JSON.parse(t.data), e = a.image_thumb, o = a.image_o_full, n = a.image_o;
+                        i.setData({
                             image_thumb: e,
                             image_o_full: o,
-                            orign_image: i
+                            orign_image: n
                         });
                     }
                 });
@@ -119,7 +114,7 @@ Page({
     },
     submit: function() {
         if (this.authModal()) {
-            var t = wx.getStorageSync("token"), a = this.data.shopname, e = this.data.mobile, o = this.data.name, i = this.data.product;
+            var t = wx.getStorageSync("token"), a = this.data.shopname, e = this.data.mobile, o = this.data.name, n = this.data.product;
             if ("" == a) return wx.showToast({
                 title: "请填供应商名称",
                 icon: "none"
@@ -132,17 +127,17 @@ Page({
                 title: "手机号码有误",
                 icon: "none"
             }), !1;
-            var n = {
+            var i = {
                 shopname: a,
                 name: o,
                 mobile: e,
-                product: i,
+                product: n,
                 controller: "user.supply_apply",
                 token: t
             };
             app.util.request({
                 url: "entry/wxapp/user",
-                data: n,
+                data: i,
                 method: "post",
                 dataType: "json",
                 success: function(t) {

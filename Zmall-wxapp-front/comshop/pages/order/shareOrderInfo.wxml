@@ -41,5 +41,9 @@
     <view class="order-info">
         <i-order-info orderInfo="{{order.order_info}}"></i-order-info>
     </view>
-    <i-aside-btn showHome="{{true}}"></i-aside-btn>
+    <view class="menu-list">
+        <navigator class="menu-item" hoverClass="router-hover" openType="switchTab" url="/lionfish_comshop/pages/index/index">
+            <image src="../../images/back_to_home@2x.png"></image>
+        </navigator>
+    </view>
 </view>

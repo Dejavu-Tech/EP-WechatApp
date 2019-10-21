@@ -6,7 +6,11 @@ Page({
         wxSearchData: []
     },
     onLoad: function(e) {
-        wx.showLoading(), this.getHisKeys();
+        wx.showLoading(), util.check_login() ? this.setData({
+            is_login: !0
+        }) : this.setData({
+            is_login: !1
+        }), this.getHisKeys();
     },
     onShow: function() {
         wx.hideLoading();
@@ -50,15 +54,15 @@ Page({
         });
     },
     wxSearchAddHisKey: function(e) {
-        var t = {}, a = this;
+        var t = {}, s = this;
         if (t.name = e, void 0 !== t && 0 != t.length) {
-            var s = wx.getStorageSync("wxSearchHisKeys");
-            s ? JSON.stringify(s).indexOf(JSON.stringify(t)) < 0 && (4 < s.length && s.pop(), 
-            s.unshift(t)) : (s = []).push(t), wx.setStorage({
+            var i = wx.getStorageSync("wxSearchHisKeys");
+            i ? JSON.stringify(i).indexOf(JSON.stringify(t)) < 0 && (4 < i.length && i.pop(), 
+            i.unshift(t)) : (i = []).push(t), wx.setStorage({
                 key: "wxSearchHisKeys",
-                data: s,
+                data: i,
                 success: function() {
-                    a.getHisKeys();
+                    s.getHisKeys();
                 }
             });
         }

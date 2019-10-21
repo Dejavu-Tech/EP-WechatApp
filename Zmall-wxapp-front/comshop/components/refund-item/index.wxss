@@ -18,7 +18,7 @@
 }
 
 .status-color-pink {
-    color: #ff5344;
+    color: #4facfe;
     font-family: PingFangSC-Medium;
     font-weight: 500;
 }

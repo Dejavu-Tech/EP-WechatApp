@@ -3,7 +3,7 @@
 }
 
 .red {
-    color: #ff5344;
+    color: #4facfe;
     font-size: 24rpx;
 }
 

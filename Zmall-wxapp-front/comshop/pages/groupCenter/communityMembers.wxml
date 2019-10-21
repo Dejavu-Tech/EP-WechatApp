@@ -11,7 +11,7 @@
     </view>
     <scroll-view scrollY bindscrolltolower="getMore" class="list-content" style="height:{{containerHeight}}px" wx:if="{{order.length}}">
         <view class="list">
-            <view bindtap="goLink" class="list-item" data-link="/lionfish_comshop/pages/groupCenter/pendingDeliveryOrders?memberId={{item.member_id}}" wx:for="{{order}}" wx:key="{{index}}">
+            <navigator class="list-item" url="/lionfish_comshop/pages/groupCenter/pendingDeliveryOrders?memberId={{item.member_id}}" wx:for="{{order}}" wx:key="{{index}}">
                 <view class="item-left">
                     <component-img defaultImage="../../images/placeholder-refund.png" height="36" isCircle="true" loadImage="{{item.avatar}}" width="36"></component-img>
                     <view>
@@ -28,9 +28,9 @@
                 </view>
                 <view class="item-right">
                     <text class="text">{{item.order_count}}个</text>
-                    <image class="iconfont icon-right-arrow rightArrowImg" src="../../images/rightArrowImg.png" wx:if="{{close_community_delivery_orders!=1}}"></image>
+                    <image class="iconfont icon-right-arrow rightArrowImg" src="../../images/rightArrowImg.png"></image>
                 </view>
-            </view>
+            </navigator>
         </view>
         <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
     </scroll-view>

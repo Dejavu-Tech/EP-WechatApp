@@ -75,6 +75,10 @@
                 <view class="btn btn-disabled" wx:else>确认签收</view>
             </view>
         </view>
-        <i-aside-btn showHome="{{true}}"></i-aside-btn>
+        <view class="menu-list">
+            <navigator class="menu-item" hoverClass="router-hover" openType="switchTab" url="/lionfish_comshop/pages/index/index">
+                <image src="../../images/back_to_home@2x.png"></image>
+            </navigator>
+        </view>
     </view>
 </i-auth>

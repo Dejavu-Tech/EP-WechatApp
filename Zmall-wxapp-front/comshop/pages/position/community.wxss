@@ -130,7 +130,7 @@ page {
     width: 170rpx;
     height: 40rpx;
     border-radius: 20rpx 0 0 20rpx;
-    background: linear-gradient(to right,#ff5041,#ff695c);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     color: #fff;
     font-size: 22rpx;
     line-height: 40rpx;
@@ -201,7 +201,7 @@ page {
     font-size: 40rpx;
     line-height: 40rpx;
     color: #444;
-    border-left: 10rpx solid #ff695c;
+    border-left: 10rpx solid #4facfe;
     text-indent: 20rpx;
     font-weight: bold;
 }
@@ -246,5 +246,5 @@ page {
 
 .link-apply {
     display: inline-block;
-    color: #ff5777;
+    color: #4facfe;
 }

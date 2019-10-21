@@ -94,13 +94,13 @@
 }
 
 .spu .spu-content .item-right .spu-title {
-    color: #333;
+    color: #222;
     font-size: 30rpx;
     height: 32rpx;
     width: 400rpx;
     margin-bottom: 12rpx;
     margin-top: 10rpx;
-    font-weight: bold;
+    font-weight: 500;
     position: relative;
 }
 
@@ -156,7 +156,7 @@
 }
 
 .spu .spu-content .item-right .spu-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
 }
 
@@ -182,7 +182,7 @@
 
 .spu .spu-content .item-right .spu-count .spu-count-border {
     display: inline-block;
-    border: 1rpx solid #f78076;
+    border: 1rpx solid #4facfe;
     border-radius: 20rpx;
     overflow: hidden;
     height: 30rpx;
@@ -191,13 +191,13 @@
 
 .spu .spu-content .item-right .spu-count .spu-count-border .txt {
     padding: 0 10rpx;
-    color: #f78076;
+    color: #4facfe;
     height: 30rpx;
     line-height: 30rpx;
 }
 
 .spu .spu-content .item-right .spu-count .spu-count-border .spu-count-num {
-    background-color: #f78076;
+    background-color: #4facfe;
     color: #fff;
 }
 
@@ -231,7 +231,7 @@
 }
 
 .spu .spu-content .spu-active .tag {
-    background: linear-gradient(to right,#ff5041,#ff994b);
+    background: linear-gradient(to right,#4facfe,#00f2fe);
     border-radius: 0 14rpx 14rpx 0;
     padding: 0 12rpx;
     height: 30rpx;
@@ -322,19 +322,4 @@
     font-size: 24rpx;
     color: #333;
     width: 58rpx;
-}
-
-.spu-play {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 100rpx;
-    height: 100rpx;
-    margin-top: -50rpx;
-    margin-left: -50rpx;
-}
-
-.spu-play .img {
-    width: 100%;
-    height: 100%;
 }

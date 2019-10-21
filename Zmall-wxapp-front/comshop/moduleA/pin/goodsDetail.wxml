@@ -1,27 +1,5 @@
 <import src="../../wxParse/wxParse.wxml"></import>
 <view class="goods-wrapper">
-    <view bindtap="share_handler" class="ui-mask" hidden="{{is_share_html}}"></view>
-    <view class="model-services show" hidden="{{is_share_html}}">
-        <view class="model-services-title">分享</view>
-        <view class="model-services-content">
-            <view class="service-list">
-                <view class="service-item">
-                    <button class="none_btn" openType="share" plain="true">
-                        <text class="iconfont icon-weixin2 service-icon"></text>
-                        <view class="cube-text">
-                            <text>好友</text>
-                        </view>
-                    </button>
-                </view>
-                <view bindtap="get_share_img" class="service-item">
-                    <text class="iconfont icon-pengyouquan service-icon"></text>
-                    <view class="cube-text">
-                        <text>海报</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
     <view class="spuInfoImg" style="height:{{imageSize.imageHeight}}px;background: url(\"/lionfish_comshop/images/index-comming-goods-bitmap.png)\";background-size: 100% 100%;">
         <view class="item-tag" wx:if="{{goods.label_info&&goods.label_info.type==0}}">
             <image class="item-tag-bg" mode="widthFix" src="../../images/tag.png"></image>
@@ -51,116 +29,26 @@
     <view bindtap="endPlay" class="end-play" wx:if="{{fmShow==false}}">
         <text class="btn">退出播放</text>
     </view>
+    <view class="spuTime">
+        <view>限时特卖</view>
+        <view class="">
+      距离结束还剩
+      <block wx:if="{{endtime.days>0}}">{{endtime.days}}天</block>{{endtime.hours}}:{{endtime.minutes}}:{{endtime.seconds}}
+    </view>
+    </view>
     <view class="spuInfo" style="z-index: {{fmShow==false?-1:2}}">
-        <view class="spuPrice">
-            <image class="spuPriceBg" src="{{goods_details_price_bg?goods_details_price_bg:'../../images/shareBottomBg.png'}}"></image>
+        <view class="spuDetailInfo bg-f">
+            <view class="spuName">{{goods.goodsname}}</view>
             <view class="price">
         ¥
         <text class="salePrice">{{goods.price_front}}</text>.{{goods.price_after}}
         <text class="storePrice">¥{{goods.productprice}}</text>
-                <text class="pin-type">{{pin_info.pin_count}}人团</text>
             </view>
-            <view class="time">
-                <text wx:if="{{goods.over_type==1}}">距结束</text>
-                <text class="endAct" wx:if="{{goods.over_type==0}}">距开始</text>
-                <text class="endAct" wx:if="{{goods.over_type==2}}">结束时间</text>
-                <text class="endAct" wx:if="{{goods.over_type==2}}">{{goods.end_date}}</text>
-                <view class="countdown-class i-count-down" wx:else>
-                    <em wx:if="{{endtime.days>0}}">{{endtime.days}}天</em>
-                    <span class="item-class">{{endtime.hours}}</span>:
-          <span class="item-class">{{endtime.minutes}}</span>:
-          <span class="item-class">{{endtime.seconds}}</span>
-                </view>
-            </view>
-        </view>
-        <view class="spuDetailInfo">
-            <view class="spuName">{{goods.goodsname}}</view>
             <view class="saleNum">
                 <text class="purTit">销量</text>
                 <view class="stock">已售
           <text class="remaining"> {{goods.seller_count}} </text>件，仅剩
           <text class="remaining"> {{goods.total}} </text>件</view>
-            </view>
-        </view>
-        <view class="pinRecords buyRecords" wx:if="{{pinListCount}}">
-            <navigator class="moreBuyer" hoverClass="none" url="/lionfish_comshop/pages/goods/buyRecords?id={{goods_id}}">
-                <view class="title">
-                    <view>
-                        <text class="red">{{pinListCount}}</text>人正在拼团，可直接参与</view>
-                </view>
-            </navigator>
-            <view class="pinList">
-                <view class="pinList-item" wx:for="{{pinList}}" wx:key="{{index}}">
-                    <view class="pinList-item-l">
-                        <image class="avatar" src="{{item.avatar}}"></image>
-                        <text class="iconfont icon-jiaru"></text>
-                    </view>
-                    <view class="pinList-item-m">
-                        <view class="num">还差<text>{{item.re_need_count}}人</text>成团</view>
-                        <view class="time">
-                            <i-count-down showDay="{{false}}" target="{{item.seconds}}">
-                                <span class="count-down-text">仅剩</span>
-                            </i-count-down>
-                        </view>
-                    </view>
-                    <view bindtap="goLink" class="pinList-item-r" data-link="/lionfish_comshop/moduleA/pin/share?id={{item.order_id}}">去参团</view>
-                </view>
-            </view>
-        </view>
-        <view class="pinRecords buyRecords">
-            <view bindtap="goLink" class="pinIntro" data-link="/lionfish_comshop/moduleA/pin/rule">
-                <view class="i-flex i-flex-spb pinIntro-top">
-                    <view class="pinIntro-title">拼团玩法</view>
-                    <view class="">查看规则<text class="iconfont icon-youjiantou"></text>
-                    </view>
-                </view>
-                <view class="i-flex i-flex-spb pinIntro-bot">
-                    <view class="rule-item">
-                        <view class="step">1</view>
-                        <view class="p">支付开团</view>
-                        <view class="p">参团</view>
-                    </view>
-                    <view class="rule-item">
-                        <view class="step">2</view>
-                        <view class="p">邀请用户</view>
-                        <view class="p">参团</view>
-                    </view>
-                    <view class="rule-item">
-                        <view class="step">3</view>
-                        <view class="p">拼团成功</view>
-                        <view class="p">按时送达</view>
-                    </view>
-                    <view class="rule-item">
-                        <view class="step">4</view>
-                        <view class="p">逾期未成</view>
-                        <view class="p">团退款</view>
-                    </view>
-                </view>
-            </view>
-        </view>
-        <view wx:if="{{order_comment_count>0&&is_show_comment_list==1}}">
-            <view class="straightInLive">
-                <view class="title">
-          商品评价
-          <text class="commentsNum">（{{order_comment_count}}）</text>
-                </view>
-                <view class="comments" wx:for="{{comment_list}}" wx:key="{{item.comment_id}}">
-                    <view class="comment-user">
-                        <image src="{{item.avatar}}"></image>
-                        <text>{{item.user_name}}</text>
-                    </view>
-                    <view bindtap="bindOpen" class="commentsCon {{item.isOpen&&item.showOpen?'doubleHidden':''}}" data-idx="{{index}}">{{item.content}}</view>
-                    <view class="commentsOpen" wx:if="{{item.showOpen}}">
-                        <text bindtap="bindOpen" data-idx="{{index}}">{{item.isOpen?'展开':'收起'}}</text>
-                        <image class="commentsOpenImg down" src="../../images/commentsOpen.png"></image>
-                    </view>
-                    <view class="allImg" wx:if="{{item.images.length>0}}">
-                        <view class="commentsImg" wx:for="{{item.images}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="{{idx}}">
-                            <image class="goodsImg img-class" src="{{imgItem}}" style="width:75px;height:75px;"></image>
-                        </view>
-                    </view>
-                    <navigator class="checkComments" hoverClass="none" url="/lionfish_comshop/pages/goods/comment?id={{item.goods_id}}">查看全部评论</navigator>
-                </view>
             </view>
         </view>
         <view class="spuDetail">
@@ -171,25 +59,6 @@
                 </view>
             </view>
         </view>
-        <view class="service">
-            <view class="detailLogo">
-                <text></text>
-                <image class="detailLogoImg" mode="widthFix" src="{{goods_details_middle_image}}" wx:if="{{goods_details_middle_image}}"></image>
-                <text></text>
-            </view>
-            <view class="instructions" wx:if="{{!noIns}}">
-                <view class="wxParse">
-                    <template is="wxParse" data="{{wxParseData:instructions.nodes}}"></template>
-                </view>
-            </view>
-        </view>
-        <navigator class="cell" url="/lionfish_comshop/pages/goods/industrial" wx:if="{{goods_industrial_switch==1&&goods_industrial}}">
-            <view class="cell-left">
-                <image class="cell-icon" mode="widthFix" src="data:image/jpeg;base64,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"></image>
-                <text>工商资质</text>
-            </view>
-            <image class="icon-right" src="../../images/rightArrowImg.png"></image>
-        </navigator>
         <image class="sloganImg" src="{{index_bottom_image?index_bottom_image:'../../images/icon-index-slogan.png'}}"></image>
     </view>
     <view class="i-fixed-bottom">
@@ -217,111 +86,17 @@
             <view class="goodsStatus" wx:elif="{{goods.grounding!=1}}">已下架</view>
             <view class="goodsStatus" wx:elif="{{is_comunity_rest==1}}">团长休息中</view>
             <view class="gobuy" wx:else>
-                <label class="balanceBtn" for="formId">
-                    <view bindtap="balance" class="bar-item balance" data-type="pindan" style="background: {{goodsdetails_addcart_bg_color}}">
-                        <view class="bar-item-price">¥{{pin_info.danprice}}</view>
-                        <view class="bar-item-name">单独购买</view>
-                    </view>
-                </label>
+                <form bindsubmit="addToCart" reportSubmit="true">
+                    <view class="bar-item add-to-cart" style="background: {{goodsdetails_addcart_bg_color}}">加入购物车</view>
+                    <button class="btn" formType="submit"></button>
+                </form>
                 <form bindsubmit="submit" reportSubmit="true">
                     <button hidden formType="submit" id="formId"></button>
                 </form>
                 <label class="balanceBtn" for="formId">
-                    <view bindtap="balance" class="bar-item balance" data-type="pintuan" style="background: {{goodsdetails_buy_bg_color}}">
-                        <view class="bar-item-price">¥{{pin_info.pin_price}}</view>
-                        <view class="bar-item-name">一键开团</view>
-                    </view>
+                    <view bindtap="balance" class="bar-item balance" style="background: {{goodsdetails_buy_bg_color}}">立即购买</view>
                 </label>
             </view>
         </view>
     </view>
-    <view bindtap="closeSku" class="mask" hidden="{{!visible}}"></view>
-    <view bind:cancel="close" class="sku-content" hidden="{{!visible}}" scrollUp="{{true}}">
-        <view class="sku-card">
-            <view bindtap="closeSku" class="close">
-                <image src="../../images/icon-sku-close.png"></image>
-            </view>
-            <view class="sku-header">
-                <image class="sku-img" src="{{cur_sku_arr.skuImage}}" style="width:80px;height:80px;"></image>
-                <view class="sku-desc">
-                    <view class="sku-title">
-                        <span>{{cur_sku_arr.spuName}}</span>
-                    </view>
-                    <view class="sku-price">
-                        <view class="sale-price" wx:if="{{buy_type=='pindan'}}">
-              ¥ <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
-            </view>
-                        <view class="sale-price" wx:if="{{buy_type=='pintuan'}}">
-              ¥ <span>{{cur_sku_arr.pinprice[0]}}</span>.{{cur_sku_arr.pinprice[1]}}
-            </view>
-                        <view class="market-price">¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</view>
-                    </view>
-                    <view class="sku-switch-on" wx:if="{{cur_sku_arr.spec}}">已选择：{{cur_sku_arr.spec}}</view>
-                </view>
-            </view>
-            <view class="sku-spec" wx:for="{{skuList.list}}" wx:key="{{index}}">
-                <view class="title">{{item.name}}</view>
-                <view class="spec-list">
-                    <span bindtap="selectSku" class="{{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-idx="{{idx}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for="{{item.option_value}}" wx:for-index="idx" wx:for-item="value" wx:key="{{idx}}">{{value.name}}</span>
-                </view>
-            </view>
-            <view class="sku-num-content">
-                <view class="title">数量</view>
-                <view class="i-class i-input-number i-input-number-size-{{size}}">
-                    <view bindtap="setNum" class="i-input-number-minus {{value<=min?'i-input-number-disabled':''}}" data-type="decrease">
-                        <image src="../../images/icon-input-reduce.png"></image>
-                    </view>
-                    <input bindblur="handleBlur" bindfocus="handleFocus" class="i-input-number-text {{min>=max?'i-input-number-disabled':''}}" disabled="true" type="number" value="{{sku_val}}"></input>
-                    <view bindtap="setNum" class="i-input-number-plus {{value>=max?'i-input-number-disabled':''}}" data-type="add">
-                        <image src="../../images/icon-input-add.png"></image>
-                    </view>
-                </view>
-                <view class="msg" wx:if="{{skuList[current].isLimit}}">
-                    <span wx:if="{{skuList[current].limitMemberNum>-1}}">每人限{{skuList[current].limitMemberNum}}单</span>
-                    <span wx:if="{{skuList[current].limitOrderNum>-1}}">每单限{{skuList[current].limitOrderNum}}份</span>
-                    <span></span>
-                </view>
-                <view class="even-num" wx:elif="{{!skuList[current].isLimit&&skuList[current].canBuyNum-value<=10&&skuList[current].canBuyNum-value>-1}}">还可以购买 {{skuList[current].canBuyNum-value}} 件</view>
-            </view>
-            <form bindsubmit="gocarfrom" reportSubmit="true">
-                <button class="sku-confirm" disabled="{{cur_sku_arr.stock==0?true:false}}" formType="submit">
-                    <view>{{cur_sku_arr.stock==0?'已抢光':'确定'}}</view>
-                </button>
-            </form>
-        </view>
-    </view>
 </view>
-<button bindtap="share_handler" class="fixed-share">
-    <text class="iconfont icon-fenxiang"></text>
-    <view>分享</view>
-</button>
-<button class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
-    <text class="iconfont icon-kefu"></text>
-    <view>客服</view>
-</button>
-<i-order-notify iClass="order-notify" stopNotify="{{stopNotify}}" wx:if="{{order_notify_switch==1}}"></i-order-notify>
-<i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}" needPosition="{{false}}"></i-new-auth>
-<view bindtap="closeShareModal" class="share-modal" hidden="{{hideModal}}">
-    <view class="share-modal-content">
-        <view class="share-modal-img">
-            <image mode="widthFix" src="{{shareImgUrl}}"></image>
-        </view>
-        <view class="share-modal-btn-list">
-            <view class="share-modal-btn-item">
-                <button class="none_btn" openType="share" plain="true">
-                    <text class="iconfont icon-weixin1 btn-icon"></text>
-                    <view class="btn-text">
-                        <text>分享好友</text>
-                    </view>
-                </button>
-            </view>
-            <view catchtap="saveThumb" class="share-modal-btn-item">
-                <text class="iconfont icon-zhaopian btn-icon"></text>
-                <view class="btn-text">
-                    <text>保存相册</text>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-<canvas canvasId="myCanvas" class="canvas-img" style="width: {{canvasWidth}}px;height: {{canvasHeight}}px;"></canvas>

@@ -30,7 +30,7 @@
 }
 
 .search text {
-    color: #ff673f;
+    color: #4facfe;
     margin-left: 28rpx;
 }
 
@@ -47,7 +47,7 @@
 
 .date .date-value {
     margin-left: 12rpx;
-    color: #ff673f;
+    color: #4facfe;
 }
 
 .date .icon-date {
@@ -65,7 +65,7 @@
 .date .icon-clear {
     height: 32rpx;
     float: right;
-    color: #ff673f;
+    color: #4facfe;
     margin: 0 28rpx 0 0;
     font-size: 24rpx;
 }
@@ -158,10 +158,10 @@
 .item-phone {
     display: inline-block;
     padding: 5rpx 16rpx;
-    border: 2rpx solid #ff673f;
+    border: 2rpx solid #4facfe;
     border-radius: 22rpx;
     margin-left: 10rpx;
-    color: #ff673f;
+    color: #4facfe;
 }
 
 .icon-phone {

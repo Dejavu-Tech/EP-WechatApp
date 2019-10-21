@@ -128,7 +128,7 @@
 }
 
 .spu .spu-content .item-bottom .spu-price .sale-price {
-    color: #ff5344;
+    color: #ff758c;
     margin-right: 12rpx;
 }
 
@@ -162,7 +162,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ff5344;
+    background: #4facfe;
     color: #fff;
     border-radius: 30rpx;
 }
@@ -186,7 +186,7 @@
 }
 
 .spu .item-top .spu-active .tag {
-    background: linear-gradient(to right,#ff5041,#ff994b);
+    background: linear-gradient(100deg,#4facfe 0%,#00f2fe 100%);
     border-radius: 0 25rpx 25rpx 0;
     padding: 0 15rpx;
     height: 50rpx;
@@ -209,7 +209,7 @@
 
 .spu .spu-content .time-tip {
     position: absolute;
-    background: #ff5344;
+    background: #4facfe;
     left: 0;
     bottom: 0;
     width: 250rpx;
@@ -291,19 +291,4 @@
     font-size: 24rpx;
     color: #333;
     width: 58rpx;
-}
-
-.spu-play {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 160rpx;
-    height: 160rpx;
-    margin-top: -80rpx;
-    margin-left: -80rpx;
-}
-
-.spu-play .img {
-    width: 100%;
-    height: 100%;
 }

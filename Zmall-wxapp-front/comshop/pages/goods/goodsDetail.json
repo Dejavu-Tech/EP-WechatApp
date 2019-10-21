@@ -3,8 +3,6 @@
     "usingComponents": {
         "i-new-auth": "../../components/new-auth/index",
         "i-order-notify": "../../components/order-notify/index",
-        "i-relative-goods-list": "./relativeGoodsList",
-        "i-change-community": "../../components/changeCommunity/index",
-        "guess-like": "../../components/guess-like/index"
+        "i-relative-goods-list": "./relativeGoodsList"
     }
 }

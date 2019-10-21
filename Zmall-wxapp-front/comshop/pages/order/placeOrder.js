@@ -67,9 +67,9 @@ Page({
     },
     canPay: !0,
     onLoad: function(e) {
-        var O = this;
+        var T = this;
         status.setGroupInfo().then(function(e) {
-            O.setData({
+            T.setData({
                 groupInfo: e
             });
         });
@@ -88,7 +88,7 @@ Page({
         }), wx.showLoading();
         var n = wx.getStorageSync("latitude2"), s = wx.getStorageSync("longitude2");
         function r() {
-            "dan" != e.type && (i = 0), app.util.request({
+            app.util.request({
                 url: "entry/wxapp/user",
                 data: {
                     controller: "car.checkout",
@@ -99,28 +99,28 @@ Page({
                 dataType: "json",
                 method: "POST",
                 success: function(e) {
-                    var t = e.data, a = 0, i = 0, o = O.data.tabList, n = [], s = e.data, r = s.delivery_express_name, d = s.delivery_tuanzshipping_name, c = s.delivery_ziti_name, _ = s.delivery_diy_sort, u = s.delivery_type_express, l = s.delivery_type_tuanz, h = s.delivery_type_ziti, p = s.delivery_tuanz_money, m = s.is_vip_card_member, y = s.vipcard_save_money, g = s.is_open_vipcard_buy;
+                    var t = e.data, a = 0, i = 0, o = T.data.tabList, n = [], s = e.data, r = s.delivery_express_name, d = s.delivery_tuanzshipping_name, c = s.delivery_ziti_name, _ = s.delivery_diy_sort, u = s.delivery_type_express, l = s.delivery_type_tuanz, h = s.delivery_type_ziti, p = s.delivery_tuanz_money;
                     if (1 == u && (o[2].enabled = !0, i++), 1 == l && (o[1].enabled = !0, i++), 1 == h && (o[0].enabled = !0, 
                     i++), _) {
-                        var f = _.split(",");
-                        f[2] && o[f[2]] && o[f[2]].enabled && (a = f[2]), f[1] && o[f[1]] && o[f[1]].enabled && (a = f[1]), 
-                        f[0] && o[f[0]] && o[f[0]].enabled && (a = f[0]), f.forEach(function(e) {
+                        var g = _.split(",");
+                        g[2] && o[g[2]] && o[g[2]].enabled && (a = g[2]), g[1] && o[g[1]] && o[g[1]].enabled && (a = g[1]), 
+                        g[0] && o[g[0]] && o[g[0]].enabled && (a = g[0]), g.forEach(function(e) {
                             n.push(o[e]);
                         });
                     }
                     r && (o[2].name = r), d && (o[1].name = d), c && (o[0].name = c);
                     1 == a || 2 == a && t.trans_free_toal;
                     wx.hideLoading();
-                    var v = 0, x = 0, b = t.seller_goodss, w = (Object.keys(b).length, {});
-                    for (var S in b) w[S] = "";
-                    var k = "";
-                    for (var z in b) for (var D in 1 == b[z].show_voucher && (b[z].chose_vouche.id && (v = b[z].chose_vouche.id), 
-                    b[z].chose_vouche.store_id && (x = b[z].chose_vouche.store_id), "[object Object]" == Object.prototype.toString.call(b[z].chose_vouche) && (k = b[z].chose_vouche)), 
-                    b[z].goodsnum = Object.keys(b[z].goods).length, b[z].goods) 0 < b[z].goods[D].header_disc && b[z].goods[D].header_disc < 100 && (b[z].goods[D].header_disc = (b[z].goods[D].header_disc / 10).toFixed(1));
-                    var T = {
+                    var m = 0, y = 0, f = t.seller_goodss, v = (Object.keys(f).length, {});
+                    for (var x in f) v[x] = "";
+                    var b = "";
+                    for (var w in f) for (var S in 1 == f[w].show_voucher && (f[w].chose_vouche.id && (m = f[w].chose_vouche.id), 
+                    f[w].chose_vouche.store_id && (y = f[w].chose_vouche.store_id), "[object Object]" == Object.prototype.toString.call(f[w].chose_vouche) && (b = f[w].chose_vouche)), 
+                    f[w].goodsnum = Object.keys(f[w].goods).length, f[w].goods) 0 < f[w].goods[S].header_disc && f[w].goods[S].header_disc < 100 && (f[w].goods[S].header_disc = (f[w].goods[S].header_disc / 10).toFixed(1));
+                    var k = {
                         loadover: !0,
-                        commentArr: w,
-                        sel_chose_vouche: k,
+                        commentArr: v,
+                        sel_chose_vouche: b,
                         tabList: n,
                         is_limit_distance_buy: t.is_limit_distance_buy || 0,
                         tabIdx: a,
@@ -141,17 +141,14 @@ Page({
                         is_man_delivery_tuanz_fare: t.is_man_delivery_tuanz_fare,
                         fare_man_delivery_tuanz_fare_money: t.fare_man_delivery_tuanz_fare_money,
                         is_man_shipping_fare: t.is_man_shipping_fare,
-                        fare_man_shipping_fare_money: t.fare_man_shipping_fare_money,
-                        is_vip_card_member: m,
-                        vipcard_save_money: y,
-                        is_open_vipcard_buy: g
-                    }, A = t.address;
-                    Object.keys(A) && 0 < Object.keys(A).length ? (T.ziti_name = t.address.name, T.ziti_mobile = A.telephone, 
-                    T.receiverAddress = A.address, T.region = [ A.province_name || "选择地址", A.city_name || "", A.country_name || "" ]) : (T.ziti_name = t.ziti_name, 
-                    T.ziti_mobile = t.ziti_mobile);
-                    var I = t.tuan_send_address_info;
-                    Object.keys(I) && 0 < Object.keys(I).length && (T.tuan_region = [ I.province_name, I.city_name, I.country_name ], 
-                    T.lou_meng_hao = I.lou_meng_hao), O.setData(_extends({}, T, {
+                        fare_man_shipping_fare_money: t.fare_man_shipping_fare_money
+                    }, z = t.address;
+                    Object.keys(z) && 0 < Object.keys(z).length ? (k.ziti_name = t.address.name, k.ziti_mobile = z.telephone, 
+                    k.receiverAddress = z.address, k.region = [ z.province_name || "选择地址", z.city_name || "", z.country_name || "" ]) : (k.ziti_name = t.ziti_name, 
+                    k.ziti_mobile = t.ziti_mobile);
+                    var D = t.tuan_send_address_info;
+                    Object.keys(D) && 0 < Object.keys(D).length && (k.tuan_region = [ D.province_name, D.city_name, D.country_name ], 
+                    k.lou_meng_hao = D.lou_meng_hao), T.setData(_extends({}, k, {
                         pick_up_time: e.data.pick_up_time,
                         pick_up_type: e.data.pick_up_type,
                         pick_up_weekday: e.data.pick_up_weekday,
@@ -160,8 +157,8 @@ Page({
                         is_ziti: e.data.is_ziti,
                         pick_up_arr: e.data.pick_up_arr,
                         seller_goodss: e.data.seller_goodss,
-                        seller_chose_id: v,
-                        seller_chose_store_id: x,
+                        seller_chose_id: m,
+                        seller_chose_store_id: y,
                         goods: e.data.goods,
                         buy_type: e.data.buy_type,
                         yupay: e.data.can_yupay,
@@ -174,7 +171,7 @@ Page({
                         is_open_fullreduction: e.data.is_open_fullreduction,
                         cha_reduce_money: e.data.cha_reduce_money
                     }), function() {
-                        O.calcPrice();
+                        T.calcPrice();
                     });
                 }
             });
@@ -266,7 +263,7 @@ Page({
             title: "提示",
             content: "离团长太远了，暂不支持下单",
             showCancel: !1,
-            confirmColor: "#F75451"
+            confirmColor: "#4facfe"
         }), !1;
         if (this.canPay) {
             this.setData({
@@ -278,28 +275,28 @@ Page({
             });
             var c = e.commentArr, _ = [];
             for (var u in c) _.push(c[u]);
-            var l = _.join("@EOF@"), h = e.receiverAddress, p = e.region, m = e.ziti_name, y = e.ziti_mobile, g = [];
+            var l = _.join("@EOF@"), h = e.receiverAddress, p = e.region, g = e.ziti_name, m = e.ziti_mobile, y = [];
             if (0 < a) {
                 var f = o + "_" + a;
-                g.push(f);
+                y.push(f);
             }
             var v = "", x = "", b = "", w = "", S = "", k = "";
             1 == s ? (v = e.tuan_send_address, w = (x = e.tuan_region)[0], S = x[1], k = x[2]) : 2 == s && (b = h, 
             w = p[0], S = p[1], k = p[2]);
-            var z = wx.getStorageSync("community").communityId, D = wx.getStorageSync("latitude2"), T = wx.getStorageSync("longitude2"), A = this.data, I = A.use_score, O = A.buy_type;
+            var z = wx.getStorageSync("community").communityId, D = wx.getStorageSync("latitude2"), T = wx.getStorageSync("longitude2"), I = this.data.use_score;
             app.util.request({
                 url: "entry/wxapp/user",
                 data: {
                     controller: "car.sub_order",
                     token: t,
                     pay_method: "wxpay",
-                    buy_type: O,
+                    buy_type: i.data.buy_type,
                     pick_up_id: z,
                     dispatching: d,
-                    ziti_name: m,
-                    quan_arr: g,
+                    ziti_name: g,
+                    quan_arr: y,
                     comment: l,
-                    ziti_mobile: y,
+                    ziti_mobile: m,
                     latitude: D,
                     longitude: T,
                     ck_yupay: n,
@@ -316,12 +313,10 @@ Page({
                 success: function(t) {
                     var e = t.data.has_yupay || 0, a = t.data.order_id;
                     console.log("支付日志："), console.log(t), 0 == t.data.code ? (i.changeIndexList(), 1 == e ? (i.canPay = !0, 
-                    "dan" == O ? t.data.is_go_orderlist <= 1 ? wx.redirectTo({
+                    t.data.is_go_orderlist <= 1 ? wx.redirectTo({
                         url: "/lionfish_comshop/pages/order/order?id=" + a + "&is_show=1"
                     }) : wx.redirectTo({
                         url: "/lionfish_comshop/pages/order/index?is_show=1"
-                    }) : wx.redirectTo({
-                        url: "/lionfish_comshop/moduleA/pin/share?id=" + a
                     })) : wx.requestPayment({
                         appId: t.data.appId,
                         timeStamp: t.data.timeStamp,
@@ -330,12 +325,10 @@ Page({
                         signType: t.data.signType,
                         paySign: t.data.paySign,
                         success: function(e) {
-                            i.canPay = !0, "dan" == O ? t.data.is_go_orderlist <= 1 ? wx.redirectTo({
+                            i.canPay = !0, t.data.is_go_orderlist <= 1 ? wx.redirectTo({
                                 url: "/lionfish_comshop/pages/order/order?id=" + a + "&is_show=1"
                             }) : wx.redirectTo({
                                 url: "/lionfish_comshop/pages/order/index?is_show=1"
-                            }) : wx.redirectTo({
-                                url: "/lionfish_comshop/moduleA/pin/share?id=" + a
                             });
                         },
                         fail: function(e) {
@@ -418,8 +411,8 @@ Page({
         });
     },
     checkOut: function(e) {
-        var s = this, t = wx.getStorageSync("token"), a = wx.getStorageSync("community").communityId, i = wx.getStorageSync("latitude2"), o = wx.getStorageSync("longitude2"), n = this.data.buy_type;
-        "dan" != n && (a = 0), app.util.request({
+        var n = this, t = wx.getStorageSync("token"), a = wx.getStorageSync("community").communityId, i = wx.getStorageSync("latitude2"), o = wx.getStorageSync("longitude2");
+        app.util.request({
             url: "entry/wxapp/user",
             data: {
                 controller: "car.checkout",
@@ -427,30 +420,28 @@ Page({
                 community_id: a,
                 mb_city_name: e,
                 latitude: i,
-                longitude: o,
-                buy_type: n
+                longitude: o
             },
             dataType: "json",
             method: "POST",
             success: function(e) {
                 if (1 == e.data.code) {
-                    var t = e.data, a = t.vipcard_save_money, i = t.shop_buy_distance, o = t.is_limit_distance_buy, n = t.current_distance;
-                    1 == s.data.tabIdx && 1 == o && i < n && wx.showModal({
+                    var t = e.data, a = t.shop_buy_distance || 0, i = t.is_limit_distance_buy || 0, o = t.current_distance || "";
+                    1 == n.data.tabIdx && 1 == i && a < o && wx.showModal({
                         title: "提示",
                         content: "超出配送范围，请重新选择",
                         showCancel: !1,
-                        confirmColor: "#F75451"
-                    }), s.setData({
-                        vipcard_save_money: a,
-                        is_limit_distance_buy: o || 0,
-                        current_distance: n || "",
+                        confirmColor: "#4facfe"
+                    }), n.setData({
+                        is_limit_distance_buy: i,
+                        current_distance: o,
                         trans_free_toal: t.trans_free_toal,
                         is_man_delivery_tuanz_fare: t.is_man_delivery_tuanz_fare,
                         fare_man_delivery_tuanz_fare_money: t.fare_man_delivery_tuanz_fare_money,
                         is_man_shipping_fare: t.is_man_shipping_fare,
                         fare_man_shipping_fare_money: t.fare_man_shipping_fare_money
                     }, function() {
-                        s.calcPrice();
+                        n.calcPrice();
                     });
                 }
             }
@@ -562,8 +553,8 @@ Page({
     },
     chose_voucher_id: function(e) {
         wx.showLoading();
-        var n = e.currentTarget.dataset.voucher_id, s = e.currentTarget.dataset.seller_id, r = this, t = wx.getStorageSync("token"), a = s + "_" + n, i = wx.getStorageSync("latitude2"), o = wx.getStorageSync("longitude2"), d = r.data.buy_type, c = 0;
-        "dan" == d && (c = wx.getStorageSync("community").communityId || ""), app.util.request({
+        var n = e.currentTarget.dataset.voucher_id, s = e.currentTarget.dataset.seller_id, r = this, t = wx.getStorageSync("token"), a = s + "_" + n, i = wx.getStorageSync("latitude2"), o = wx.getStorageSync("longitude2"), d = r.data.buy_type, c = wx.getStorageSync("community").communityId;
+        app.util.request({
             url: "entry/wxapp/user",
             data: {
                 controller: "car.checkout",
@@ -607,35 +598,24 @@ Page({
         });
     },
     calcPrice: function() {
-        var e = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0, t = this.data, a = t.total_free, i = t.delivery_tuanz_money, o = t.trans_free_toal, n = t.tabIdx, s = t.goods;
-        a *= 1, i *= 1, o *= 1;
-        var r = 0, d = 0, c = !0, _ = !1, u = void 0;
-        try {
-            for (var l, h = Object.keys(s)[Symbol.iterator](); !(c = (l = h.next()).done); c = !0) {
-                d += s[l.value].total;
-            }
-        } catch (e) {
-            _ = !0, u = e;
-        } finally {
-            try {
-                !c && h.return && h.return();
-            } finally {
-                if (_) throw u;
-            }
-        }
-        console.log(d);
-        var p = d;
+        var e = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : 0, t = this.data, a = 1 * t.total_free, i = 1 * t.delivery_tuanz_money, o = 1 * t.trans_free_toal, n = t.tabIdx, s = t.goods, r = 0, d = 0;
+        "[object Object]" == Object.prototype.toString.call(s) ? Object.keys(s).forEach(function(e) {
+            d += s[e].total;
+        }) : s.forEach(function(e) {
+            d += e.total;
+        });
+        var c = d;
         if (0 == n) r = a; else if (1 == n) {
-            r = 0 == t.is_man_delivery_tuanz_fare ? i + a : a, p += i;
+            r = 0 == t.is_man_delivery_tuanz_fare ? i + a : a, c += i;
         } else if (2 == n) {
-            p += o, r = 0 == t.is_man_shipping_fare ? o + a : a;
+            c += o, r = 0 == t.is_man_shipping_fare ? o + a : a;
         }
-        var m = t.use_score;
-        e && m && (r -= 1 * t.score_for_money);
-        var y;
-        y = (p - 1 * r).toFixed(2), this.setData({
-            total_all: p.toFixed(2),
-            disAmount: y,
+        var _ = t.use_score;
+        e && _ && (r -= 1 * t.score_for_money);
+        var u;
+        u = (c - 1 * r).toFixed(2), this.setData({
+            total_all: c.toFixed(2),
+            disAmount: u,
             tot_price: r.toFixed(2),
             total_goods_price: d.toFixed(2)
         });
@@ -647,7 +627,7 @@ Page({
         });
     },
     changeIndexList: function() {
-        var e = this.data.goods || [];
+        var e = this.data.goods;
         0 < e.length && e.forEach(function(e) {
             0 == e.option.length && status.indexListCarCount(e.goods_id, 0);
         });

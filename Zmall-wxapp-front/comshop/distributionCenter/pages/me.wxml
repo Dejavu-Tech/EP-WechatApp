@@ -4,16 +4,13 @@
         <view class="i-flex-item">
             <view class="nickname">{{member_info.username}}</view>
             <view class="userid">ID：{{member_info.member_id}}</view>
-            <view class="invote">邀请人：{{info.share_name||'无'}}</view>
+            <view class="invote">邀请人：{{info.share_name}}</view>
         </view>
     </view>
     <view class="money i-flex i-flex-alc bor-bottom">
-        <view class="i-flex-item">
-            <view class="recharge-money">{{info.total_money}}</view>
-            <view class="recharge-tip">可提现金额（元）</view>
-        </view>
+        <view class="i-flex-item">奖励金额：{{info.total_money}}元</view>
         <view bindtap="goLink" class="btn" data-link="/lionfish_comshop/distributionCenter/pages/excharge">
-            <button size="mini" type="warn">提现</button>
+            <button size="mini" type="warn">立即提现</button>
         </view>
     </view>
     <view class="menu">
@@ -27,7 +24,7 @@
         </view>
         <view bindtap="goLink" data-link="/lionfish_comshop/distributionCenter/pages/goodsDetails">
             <view class="item-main i-flex i-flex-alc bor-bottom">
-                <view class="item-title i-flex-item">推广明细</view>
+                <view class="item-title i-flex-item">我的粉丝收益</view>
                 <view class="tool-right">
                     <image class="icon-right " src="../../images/rightArrowImg.png"></image>
                 </view>

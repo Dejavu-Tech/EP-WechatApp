@@ -24,8 +24,8 @@
         <view class="nav">
             <view bindtap="switchNav" class="orderList_item {{currentTab==index?'on':''}}" data-current="{{index}}" wx:for="{{navList}}" wx:key="{{index}}">{{item.name}}</view>
         </view>
-        <swiper class="swiper-box" style="height:{{containerHeight}}px">
-            <swiper-item>
+        <swiper bindchange="bindChange" class="swiper-box" current="{{currentTab}}" duration="300" style="height:{{containerHeight}}px">
+            <swiper-item wx:for="{{navList}}" wx:for-item="navItem" wx:key="{{index}}">
                 <scroll-view scrollY bindscrolltolower="getCurrentList" class="order-scroll-view" style="height: {{containerHeight}}px">
                     <view class="noRecordCon" wx:if="{{noData==1}}">
                         <image class="noRecordImg" src="../../images/noRecord.png"></image>
@@ -46,6 +46,9 @@
                                     <view class="tips">
                                         <text>￥{{item.price}}</text> x {{item.quantity}} {{item.option_str}}
                   </view>
+                                    <view class="tips">
+                                        <text>小计：￥{{item.total}}</text>
+                                    </view>
                                 </view>
                             </view>
                             <view class="line">

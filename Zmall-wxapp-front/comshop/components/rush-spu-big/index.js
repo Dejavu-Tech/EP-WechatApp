@@ -59,10 +59,6 @@ Component({
         needAuth: {
             type: Boolean,
             value: !1
-        },
-        is_open_vipcard_buy: {
-            type: Number,
-            value: 0
         }
     },
     attached: function() {

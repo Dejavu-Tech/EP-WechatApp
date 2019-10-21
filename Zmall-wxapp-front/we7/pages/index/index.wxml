@@ -1,0 +1,28 @@
+<view class="container">
+    <view class="swiper">
+        <swiper autoplay="true" duration="1200" indicatorDots="true" interval="3000">
+            <swiper-item wx:for="{{slide}}" wx:key="{{index}}">
+                <image class="nav-icon" mode="aspectFill" src="{{item.thumb}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="nav">
+        <navigator class="nav-item {{(index+1)%3==0?'nav-item-no-border':''}}" hoverClass="navigator-hover" url="{{item.url}}" wx:for="{{navs}}" wx:key="{{index}}">
+            <image class="nav-icon" src="{{item.icon}}"></image>
+            <view class="nav-title">{{item.name}}</view>
+        </navigator>
+    </view>
+    <view class="commend">
+        <block wx:for="{{commend}}" wx:key="{{index}}">
+            <view class="commend-header-title">{{item.name}}</view>
+            <view class="commend-column">
+                <navigator class="commend-item" hoverClass="navigator-hover" wx:for="{{item.article}}" wx:for-item="subItem">
+                    <image class="commend-thumb" src="{{subItem.thumb}}"></image>
+                    <view class="commend-title">{{subItem.title}}</view>
+                </navigator>
+            </view>
+        </block>
+    </view>
+</view>
+<import src="/we7/pages/templates/footer.wxml"></import>
+<template is="footerWx" data="{{...tabBar}}"></template>
