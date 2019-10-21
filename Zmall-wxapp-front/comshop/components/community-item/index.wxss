@@ -1,0 +1,65 @@
+.community-item {
+    box-sizing: border-box;
+    display: flex;
+    padding: 60rpx 30rpx;
+}
+
+.community-item .group-head {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 80rpx;
+    margin-right: 20rpx;
+}
+
+.community-item .community-title {
+    font-size: 32rpx;
+    line-height: 32rpx;
+    height: 32rpx;
+    width: 520rpx;
+    margin-bottom: 20rpx;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.community-item .community-title .span {
+    color: #444;
+    font-weight: 500;
+}
+
+.community-item .community-title .em {
+    color: #ff5344;
+    font-size: 26rpx;
+    line-height: 26rpx;
+    white-space: nowrap;
+}
+
+.community-item .community-address {
+    font-size: 26rpx;
+    line-height: 34rpx;
+    color: #666;
+    width: 520rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: initial;
+    white-space: normal;
+}
+
+.community-item .group-master {
+    width: 560rpx;
+    font-size: 26rpx;
+    line-height: 26rpx;
+    color: #aaa;
+    position: relative;
+    margin-bottom: 6rpx;
+}
+
+.community-item .group-master .right-arrow {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 14rpx;
+    height: 28rpx;
+}

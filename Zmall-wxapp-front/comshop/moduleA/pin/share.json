@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "i-new-auth": "../../components/new-auth/index",
+        "i-img": "../../components/img/index",
+        "i-count-down": "../../components/count-down/index",
+        "i-goods-info": "../components/pinGoodsInfo",
+        "i-aside-btn": "../../components/asideBtn/index",
+        "i-spu": "../components/rushNormal"
+    }
+}

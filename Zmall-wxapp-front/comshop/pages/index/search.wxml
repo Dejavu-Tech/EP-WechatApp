@@ -1,0 +1,14 @@
+<view class="diy-search {{item.style.searchstyle}}" style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
+    <view class="inner left" style="{{item.style.inputbackground?'background:'+item.style.inputbackground+';':''}}">
+        <navigator hoverClass="none" url="/Snailfish_shop/pages/goods/search?fromsearch=1">
+            <view>
+                <view class="search-icon" style="line-height:26px;">
+                    <image src="{{icons.search}}" style="width:18px;height:18px;"></image>
+                </view>
+                <view class="search-input" style="{{item.style.textalign?'text-align:'+item.style.textalign+';':''}}{{item.style.color?'color:'+item.style.color+';':''}}">
+                    <text style="padding:0 10px 0;">{{item.params.placeholder?item.params.placeholder:'输入关键字进行搜索'}}</text>
+                </view>
+            </view>
+        </navigator>
+    </view>
+</view>

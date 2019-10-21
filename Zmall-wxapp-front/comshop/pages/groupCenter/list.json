@@ -1,0 +1,9 @@
+{
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "清单列表",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "i-auth": "../../components/auth/index",
+        "i-load-more": "../../components/load-more/index"
+    }
+}

@@ -1,0 +1,4 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view class="wxParse" style="margin:0px;padding:{{item.style.padding?item.style.padding/2:0}}px;{{item.style.background?'background: '+item.style.background+';':''}}">
+    <template is="wxParse" data="{{ wxParseData:wxParseData[item.params.htmlindex] }}"></template>
+</view>

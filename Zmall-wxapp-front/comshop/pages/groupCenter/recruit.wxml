@@ -1,0 +1,10 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view>
+    <view class="section">
+        <view class="wxParse">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+        </view>
+        <navigator class="apply-btn" hoverClass="none" url="/lionfish_comshop/pages/groupCenter/apply">点击申请</navigator>
+    </view>
+    <i-aside-btn showHome="{{true}}"></i-aside-btn>
+</view>

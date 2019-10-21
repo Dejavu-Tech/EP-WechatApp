@@ -1,0 +1,48 @@
+.section {
+    background: #fff;
+    margin-bottom: 20rpx;
+    padding: 0 10rpx 150rpx;
+}
+
+.wxParse-img {
+    width: 100%;
+    vertical-align: top;
+}
+
+.wxParse-inline {
+    padding: 8rpx 0;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.apply-btn {
+    height: 96rpx;
+    background: #f75451;
+    color: #fff;
+    font-size: 30rpx;
+    line-height: 96rpx;
+    text-align: center;
+    display: block;
+}
+
+.apply-btn.disabled {
+    background: #ccc;
+}
+
+.tip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15rpx 20rpx;
+    background: #fff;
+    box-shadow: 0 -2px 3px -1px #ccc;
+}
+
+.tip .btn,.tot {
+    color: #f75451;
+}

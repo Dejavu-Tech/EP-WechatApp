@@ -1,0 +1,209 @@
+.zr {
+    background: #fff;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 30rpx;
+    margin-bottom: 20rpx;
+}
+
+.top_box {
+    color: #333;
+    font-size: 24rpx;
+    line-height: 1;
+}
+
+.total {
+    text-align: center;
+    padding-bottom: 40rpx;
+}
+
+.total-money {
+    font-weight: bold;
+    font-size: 58rpx;
+    margin-top: 15rpx;
+    padding-left: 80rpx;
+}
+
+.three {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.three-item {
+    position: relative;
+    flex: 1;
+    text-align: center;
+}
+
+.three-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1rpx;
+    border-left: 1rpx solid #cfcfcf;
+}
+
+.three-item:first-child::before {
+    content: none;
+}
+
+.three-title {
+    color: #999;
+    font-size: 24rpx;
+}
+
+.three-money {
+    margin-top: 15rpx;
+    font-size: 28rpx;
+    font-weight: bold;
+}
+
+.rightArrowImg {
+    width: 12rpx;
+    height: 22rpx;
+    margin-left: 8rpx;
+}
+
+.qrcode {
+    display: inline-block;
+    width: 80rpx;
+    font-size: 22rpx;
+    text-align: center;
+    padding: 8rpx 0;
+    border-radius: 5rpx;
+    background: #ff5344;
+    color: #fff;
+    vertical-align: middle;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    transition: top 0.3s;
+    z-index: 10;
+    background: #fff;
+    height: 92rpx;
+    border-bottom: 2rpx solid #f2f2f2;
+    padding: 0 60rpx;
+    width: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .orderList_item {
+    margin-bottom: 4rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #666;
+    position: relative;
+    height: 96rpx;
+    line-height: 96rpx;
+}
+
+.nav .on {
+    position: relative;
+    color: #ff5344;
+    border-bottom: 4rpx solid #ff5344;
+}
+
+.nav .on::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 2rpx solid #ff5344;
+}
+
+.noRecordCon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.noRecordCon .noRecordImg {
+    width: 132rpx;
+    height: 138rpx;
+    margin-top: 30%;
+}
+
+.noRecordCon .noRefundImg {
+    width: 218rpx;
+    height: 218rpx;
+    margin-top: 50%;
+}
+
+.noRecordCon .noRecord {
+    padding-top: 32rpx;
+    font-size: 30rpx;
+    font-family: PingFangSC-Light;
+    font-weight: 300;
+    color: #666;
+    line-height: 30rpx;
+}
+
+.noRecordCon .goIndex {
+    width: 164rpx;
+    height: 60rpx;
+    background: #ff3432;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    color: #fff;
+    margin-top: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list-item {
+    padding: 30rpx;
+    background-color: #fff;
+    margin-bottom: 20rpx;
+    font-size: 26rpx;
+}
+
+.item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1rpx solid #ececec;
+    padding-bottom: 20rpx;
+}
+
+.item-head .status {
+    color: #ff5344;
+}
+
+.list-item .line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 2;
+}
+
+.line-tit {
+    color: #999;
+}
+
+.top_box_head {
+    padding: 30rpx;
+}
+
+.tx-btn {
+    color: #ff5344;
+}
+
+.goodsInfo {
+    padding: 0!important;
+}
+
+.goodsInfo .identity {
+    left: 0!important;
+}

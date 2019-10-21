@@ -1,0 +1,85 @@
+.basicInForm {
+    width: 100%;
+    background: #fe8464;
+    color: #fff;
+    text-align: center;
+    padding: 50rpx 0 20rpx;
+}
+
+.today-box {
+    margin-bottom: 30rpx;
+}
+
+.today-income {
+    font-size: 30rpx;
+}
+
+.today-income-money {
+    font-size: 60rpx;
+    font-weight: bold;
+    line-height: 2;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-item {
+    flex: 1;
+}
+
+.other-item {
+    position: relative;
+}
+
+.other-income .other-item:first-child::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    border-left: 1px solid #fff;
+    transform: scaleX(0.5);
+}
+
+.income-money {
+    font-weight: bold;
+    line-height: 2;
+}
+
+.income-data {
+    padding: 20rpx 30rpx;
+}
+
+.common-title {
+    display: flex;
+    color: #999;
+    align-content: center;
+    align-items: center;
+}
+
+.common-title .subtit {
+    margin-right: 10px;
+}
+
+.common-nav {
+    color: #000;
+    margin: 5px;
+}
+
+.common-money {
+    font-size: 40rpx;
+    line-height: 2;
+}
+
+.income-btn {
+    margin: 40rpx 30rpx;
+    line-height: 70rpx;
+    background-color: #fe8464;
+    border-radius: 5px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 30rpx;
+}

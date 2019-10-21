@@ -1,0 +1,21 @@
+<view class="member-box">
+    <view class="member-list">
+        <view class="list-item">
+            <i-img class="list-item-img" defaultImage="../../images/placeholder-refund.png" height="60" iClass="img-class" loadImage="{{item.image}}" width="60"></i-img>
+            <view class="list-item-mes">
+                <view class="list-item-name flex-items">
+                    <span class="name">贺佳.</span>
+                    <span class="text-right">最近成交:2018-12-06</span>
+                </view>
+                <view class="list-item-submes flex-items ">
+                    <span>付款订单数:5</span>
+                    <span class="text-right">消费总金额:￥63.30</span>
+                </view>
+            </view>
+            <view class="icon-right">
+                <image class="rightArrowImg" src="../../images/rightArrowImg.png"></image>
+            </view>
+        </view>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{!isHideLoadMore}}" tip="{{loadText}}" wx:if="{{!isHideLoadMore}}"></i-load-more>
+</view>

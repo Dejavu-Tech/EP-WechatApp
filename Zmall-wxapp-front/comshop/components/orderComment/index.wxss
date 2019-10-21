@@ -1,0 +1,17 @@
+.comment-card {
+    margin: 0 auto 20rpx;
+}
+
+.comment-card .header {
+    padding: 20rpx 30rpx;
+    color: #444;
+    font-size: 28rpx;
+    font-weight: 500;
+}
+
+.comment-card .content-wrap {
+    padding: 16rpx 30rpx;
+    font-size: 26rpx;
+    color: #444;
+    border-top: 0.1rpx solid #efefef;
+}

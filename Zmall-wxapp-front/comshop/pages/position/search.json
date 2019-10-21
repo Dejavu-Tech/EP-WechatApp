@@ -1,0 +1,8 @@
+{
+    "navigationBarTitleText": "社区团购",
+    "usingComponents": {
+        "i-load-more": "../../components/load-more/index",
+        "i-community-item": "../../components/community-item/index",
+        "i-router-link": "../../components/router-link/router-link"
+    }
+}

@@ -1,0 +1,51 @@
+<view>
+    <view class="section">
+        <image class="groupDay" src="../../images/groupDay.png"></image>
+        <view class="picker">
+            <picker bindchange="bindDateChange" fields="month" mode="date" value="{{date}}">
+                <view class="choose-day">
+                    <text>{{chooseDate}}</text>
+                    <text class="iconfont icon-xiatiao"></text>
+                </view>
+            </picker>
+        </view>
+        <view>
+            <text>佣金收入：￥{{settle/100}}</text>
+        </view>
+    </view>
+    <view class="settlementList">
+        <scroll-view scrollY bindscrolltolower="getMoreList" class="order-scroll-view" scrollTop="{{scrollTop}}" style="height: {{containerHeight}}px">
+            <view class="noRecordCon" wx:if="{{settlementList.length===0}}">
+                <image class="noRecordImg" src="../../images/noRecord.png"></image>
+                <view class="noRecord">还没有记录 快去分享吧～</view>
+            </view>
+            <block wx:else>
+                <navigator url="/lionfish_comshop/pages/groupCenter/settlementDetail?disSettleNo={{item.disSettleNo}}&totalAmount={{item.totalAmount}}&settleNum={{item.settleNum}}&payNo={{item.payNo}}&createTime={{item.createTime}}&id={{item.id}}" wx:for="{{settlementList}}" wx:key="index">
+                    <view class="title">
+                        <text>佣金结算单号（{{item.disSettleNo}}）</text>
+                    </view>
+                    <view class="main">
+                        <view class="left">
+                            <view class="per">
+                                <text>结算量</text>
+                                <text>{{item.settleNum}}</text>
+                            </view>
+                            <view class="per">
+                                <text>结算金额</text>
+                                <text>￥{{item.totalAmount/100}}</text>
+                            </view>
+                            <view class="per">
+                                <text>结算日期</text>
+                                <text>{{item.createTime}}</text>
+                            </view>
+                        </view>
+                        <view class="arrow">
+                            <image class="iconfont icon-right-arrow rightArrowImg" src="../../images/rightArrowImg.png"></image>
+                        </view>
+                    </view>
+                </navigator>
+                <component-load-more loading="{{LoadingComplete}}" tip="{{loadText}}"></component-load-more>
+            </block>
+        </scroll-view>
+    </view>
+</view>
