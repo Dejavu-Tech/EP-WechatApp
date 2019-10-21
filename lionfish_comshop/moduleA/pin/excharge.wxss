@@ -1,0 +1,195 @@
+.top {
+    position: relative;
+    padding: 30rpx;
+    text-align: center;
+    background: #fff;
+}
+
+.money {
+    padding-top: 30rpx;
+}
+
+.record {
+    position: absolute;
+    top: 30rpx;
+    right: 30rpx;
+    color: #408ce2;
+}
+
+.yue {
+    font-size: 54rpx;
+    color: #000;
+    font-weight: bold;
+}
+
+.card {
+    margin-top: 20rpx;
+    padding: 30rpx;
+    background-color: #fff;
+}
+
+.tip {
+    font-size: 24rpx;
+    color: #666;
+    margin-top: 15rpx;
+}
+
+.flex-ipt {
+    position: relative;
+    display: flex;
+    font-size: 40rpx;
+    color: #000;
+    justify-content: center;
+    align-content: center;
+    overflow: hidden;
+    border-bottom: 2rpx solid #ececec;
+    align-items: center;
+}
+
+.flex-ipt .money {
+    font-size: 30rpx;
+    flex: 1;
+    padding: 20rpx 0;
+}
+
+.flex-ipt .bottom-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4rpx;
+    background-color: #2facff;
+    transition: 200ms all ease-in;
+}
+
+.flex-ipt .bottom-line.ipt-focus {
+    width: 100%;
+}
+
+.btn {
+    margin: 50rpx 30rpx;
+    background-color: #f75451;
+    color: #fff;
+    text-align: center;
+    line-height: 88rpx;
+    font-size: 30rpx;
+    border-radius: 5rpx;
+}
+
+button.btn::after {
+    border: none;
+}
+
+.btn.disable {
+    background-color: #f59997;
+}
+
+button.btn[disabled] {
+    color: #fff!important;
+    background: #f59997!important;
+    border-color: #f59997!important;
+}
+
+.desc {
+    padding: 0 30rpx;
+    line-height: 1.6;
+    font-size: 26rpx;
+    color: #666;
+}
+
+.desc .h2 {
+    font-size: 30rpx;
+    margin-bottom: 10rpx;
+}
+
+.sucess {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100vh;
+    text-align: center;
+    background: #fff;
+}
+
+.sucess .applyPassImg {
+    width: 172rpx;
+    color: #ef994c;
+    margin-bottom: 40rpx;
+}
+
+.sucess .h1 {
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+    color: #fb5a50;
+    font-weight: bold;
+}
+
+.sucess .p {
+    font-size: 28rpx;
+    color: #999;
+}
+
+.sucess .link-btn {
+    color: #fb5a50;
+    font-size: 28rpx;
+    margin-top: 100rpx;
+}
+
+.radio-group {
+    margin-top: 40rpx;
+}
+
+.radio {
+    position: relative;
+    margin-right: 20rpx;
+    width: 38rpx;
+}
+
+.radio text {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+radio {
+    width: 38rpx;
+}
+
+radio .wx-radio-input {
+    border-radius: 50%;
+    width: 28rpx;
+    height: 28rpx;
+}
+
+radio .wx-radio-input.wx-radio-input-checked::before {
+    border-radius: 50%;
+    width: 44rpx;
+    height: 44rpx;
+    line-height: 44rpx;
+    text-align: center;
+    font-size: 28rpx;
+    color: #fff;
+    background: #2facff;
+    border-color: #2facff;
+}
+
+.form-box {
+    margin-top: 30rpx;
+}
+
+.form-group {
+    margin-bottom: 20rpx;
+    font-size: 30rpx;
+}
+
+.form-ipt {
+    position: relative;
+    border: 1rpx solid #e5e5e5;
+    padding: 5rpx 10rpx;
+    line-height: 52rpx;
+}
+
+.getall {
+    font-size: 28rpx;
+    color: #408ce2;
+}

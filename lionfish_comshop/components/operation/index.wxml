@@ -1,0 +1,10 @@
+<view class="card-btn">
+    <view bindtap="goComment" class="btn-1" wx:if="{{canEvaluate===1}}">去评价</view>
+    <view bindtap="applyForService" class="btn-1 mar-left-8" wx:if="{{isCanRefund===1}}">申请售后</view>
+    <button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{isCanRefund!==1}}">
+        <text>联系客服</text>
+    </button>
+    <view class="btn-2 mar-left-8" wx:if="{{orderStatus===4}}">备货中</view>
+    <view bindtap="callDialog" class="btn-3 mar-left-8" data-show="confirmGoodsVisible" wx:if="{{orderStatus===1&&orderSkuStatus===0}}">确认提货</view>
+</view>
+<i-dialog bind:cancel="callDialog" bind:confirm="confirmGoods" data-cancel="confirmGoodsVisible" text="确认该商品已经提货？" visible="{{confirmGoodsVisible}}"></i-dialog>

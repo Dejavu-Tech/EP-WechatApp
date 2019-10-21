@@ -1,0 +1,12 @@
+<i-modal bind:cancel="close" scrollUp="{{false}}" visible="{{visible}}">
+    <view class="coder-content">
+        <view bindtap="close" class="icon-wrap">
+            <image class="icon-close" src="../../images/icon-sku-close.png"></image>
+        </view>
+        <view class="t1">您的提货码为</view>
+        <view class="code-img">
+            <image class="img" mode="widthFix" src="{{codeImg}}"></image>
+        </view>
+        <view class="t2">提货时，请出示提货二维码。</view>
+    </view>
+</i-modal>

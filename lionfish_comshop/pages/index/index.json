@@ -1,0 +1,24 @@
+{
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "i-auth": "../../components/auth/index",
+        "i-tabbar": "../../components/tabbar/index",
+        "i-router-link": "../../components/router-link/router-link",
+        "i-rush-spu-big": "../../components/rush-spu-big/index",
+        "i-comming-spu": "../../components/comming-spu-disabled/index",
+        "i-img": "../../components/img/index",
+        "i-sku": "../../components/sku/index",
+        "i-count-down": "../../components/count-down/index",
+        "i-load-more": "../../components/load-more/index",
+        "i-tabs": "../../components/tabs/index",
+        "i-modal": "../../components/modal/index",
+        "i-order-notify": "../../components/order-notify/index",
+        "i-new-rush-spu": "../../components/new-rush-spu/index",
+        "i-new-comer": "../../components/new-comer/index",
+        "i-spike": "../../components/spike/index",
+        "i-topic": "../../components/topic/topic",
+        "i-new-auth": "../../components/new-auth/index",
+        "i-change-community": "../../components/changeCommunity/index",
+        "i-rush-spu": "../../components/rush-spu-col/index"
+    }
+}

@@ -1,0 +1,16 @@
+<view class="wrap">
+    <image class="topic-img" mode="widthFix" src="{{cate_info.banner}}" wx:if="{{cate_info.banner}}"></image>
+    <view class="list">
+        <i-rush-spu bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:openSku="openSku" class="item" needAuth="{{needAuth}}" reduction="{{reduction}}" spuItem="{{item}}" stopClick="{{stopClick}}" wx:for="{{rushList}}" wx:key="{{item.actId}}"></i-rush-spu>
+    </view>
+    <view class="none-rush-list" wx:if="{{showEmpty}}">
+        <image class="img-block" src="../../images/icon-index-empty.png"></image>
+        <view class="h1">暂时没有团购</view>
+        <view class="h2">我们正在为您准备更优惠的团购</view>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!loadOver&&!showEmpty&&loadMore}}"></i-load-more>
+    <i-cart-btn cartNum="{{cartNum}}"></i-cart-btn>
+    <i-aside-btn showHome="{{true}}" showShare="{{true}}"></i-aside-btn>
+</view>
+<i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>
+<sku bind:cancel="closeSku" bind:changeCartNum="changeCartNum" cur_sku_arr="{{cur_sku_arr}}" goodsid="{{addCar_goodsid}}" sku="{{sku}}" skuList="{{skuList}}" sku_val="{{sku_val}}" visible="{{visible}}"></sku>

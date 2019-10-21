@@ -1,0 +1,93 @@
+.auth-content {
+    width: 520rpx;
+    min-height: 480rpx;
+    max-height: 660rpx;
+    background: #fff;
+    border-radius: 24rpx;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.auth-content .bg {
+    width: 520rpx;
+}
+
+.auth-content .h1 {
+    color: #000;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+    font-weight: bold;
+}
+
+.auth-content .h2 {
+    font-size: 24rpx;
+    line-height: 36rpx;
+    color: #999;
+    width: 408rpx;
+    margin-bottom: 44rpx;
+}
+
+.auth-content .h2 p {
+    text-align: center;
+    display: block;
+}
+
+.auth-content .btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+}
+
+.auth-content .btn .close-btn {
+    color: #f45b56;
+    border: 1rpx solid #f45b56;
+    border-radius: 36rpx;
+    margin: 0 15rpx;
+    padding: 0 15px;
+    height: 64rpx;
+    line-height: 64rpx;
+}
+
+.auth-content .btn .close-img {
+    margin: 0 15rpx;
+}
+
+.auth-content .btn .img {
+    width: 180rpx;
+}
+
+.auth-content .confirm {
+    height: 64rpx;
+    line-height: 64rpx;
+    color: #fff;
+    background: #f45b56;
+    border-radius: 36rpx;
+    margin: 0 15rpx;
+}
+
+.auth-content .confirm-img {
+    width: 180rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    margin: 0 15rpx;
+    padding: 0;
+}
+
+.updateWx {
+    width: 425rpx;
+    height: 64rpx;
+    line-height: 64rpx;
+    color: #fff;
+    background: #f45b56;
+    border-radius: 36rpx;
+    margin: 0 0 30rpx;
+    text-align: center;
+}

@@ -1,0 +1,13 @@
+.article {
+    background: #fff;
+    padding: 20rpx 30rpx;
+    font-size: 28rpx;
+}
+
+.wxParse-img {
+    width: 100%;
+}
+
+.wxParse-inline {
+    padding: 5rpx 0;
+}

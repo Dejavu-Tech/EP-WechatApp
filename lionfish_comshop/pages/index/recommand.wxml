@@ -1,0 +1,55 @@
+<view class="fui-goods-group {{item.style.liststyle}} border" style="{{item.style.background?'background:'+item.style.background+';':''}}" wx:if="{{item.data}}">
+    <view class="fui-goods-item" data-goodsid="{{items.id}}" data-type="{{items.type}}" wx:for="{{item.data}}" wx:for-index="idx" wx:for-item="items" wx:key="itemdata">
+        <navigator url="/pages/goods/detail/index?id={{items.gid}}&frommyshop=1">
+            <view class="image {{item.style.iconstyle}}" data-text="{{item.style.goodsicon}}" style="background-image:url(\"{{items.thumb}}\");" wx:if="{{item.params.showicon==1}}">
+                <block wx:if="{{items.total<=0}}">
+                    <view class="salez diy" style="background-image: url(\"{{approot}}/static/template/mobile/default/static/images/salez.png\"); " wx:if="{{item.params.saleout==0}}"></view>
+                    <view class="salez diy" style="background-image: url(\"{{item.params.saleout}}\"); " wx:elif="{{item.params.saleout&&item.params.saleout!=-1}}"></view>
+                </block>
+            </view>
+            <view class="image" style="position:relative;background-image:url(\"{{items.thumb}}\");" wx:elif="{{item.params.showicon==2}}">
+                <view class="goodsicon {{item.params.iconposition}}" style="width:{{item.style.iconzoom?item.style.iconzoom:100}}%;{{item.params.icontopname}}: {{item.style.iconpaddingtop}}px; {{item.params.iconleftname}}: {{item.style.iconpaddingleft}}px; text-align: {{item.params.iconleftname}};">
+                    <image bindload="imagesHeight" class="advimg" data-type="giconheight" mode="widthFix" src="{{item.params.goodsiconsrc}}"></image>
+                </view>
+                <block wx:if="{{items.total<=0}}">
+                    <view class="salez diy" style="background-image: url(\"{{approot}}/static/template/mobile/default/static/images/salez.png\"); " wx:if="{{item.params.saleout==0}}"></view>
+                    <view class="salez diy" style="background-image: url(\"{{item.params.saleout}}\"); " wx:elif="{{item.params.saleout&&item.params.saleout!=-1}}"></view>
+                </block>
+            </view>
+            <view class="image" style="background-image:url(\"{{items.thumb}}\");" wx:else>
+                <block wx:if="{{items.total<=0}}">
+                    <view class="salez diy" style="background-image: url(\"{{approot}}/static/template/mobile/default/static/images/salez.png\"); " wx:if="{{item.params.saleout==0}}"></view>
+                    <view class="salez diy" style="background-image: url(\"{{item.params.saleout}}\"); " wx:elif="{{item.params.saleout&&item.params.saleout!=-1}}"></view>
+                </block>
+            </view>
+        </navigator>
+        <view class="detail">
+            <navigator url="/pages/goods/detail/index?id={{items.gid}}&frommyshop=1">
+                <view class="name" style="{{item.style.titlecolor?'color:'+item.style.titlecolor+';':''}}" wx:if="{{item.params.showtitle==1}}">
+                    <text class="fui-tag fui-tag-danger" wx:if="{{items.ispresell==1}}">预售</text>{{items.title}}</view>
+                <view class="productprice" wx:if="{{item.params.showproductprice==1}}">
+                    <text class="text" style="{{item.style.productpricecolor?'color:'+item.style.productpricecolor+';':''}}{{item.params.productpriceline==1?'text-decoration: line-through;':''}}">{{item.params.productpricetext?item.params.productpricetext:'原价'}}: ￥{{items.productprice}}</text>
+                </view>
+                <view class="productprice" wx:if="{{item.params.showsales==1}}">
+                    <text class="text" style="{{item.style.salescolor?'color:'+item.style.salescolor+';':''}}">{{item.params.salestext?item.params.salestext:'销量'}}: {{items.sales}}</text>
+                </view>
+                <view class="price" wx:if="{{item.params.showprice==1}}">
+                    <text class="text" style="{{item.style.pricecolor?'color:'+item.style.pricecolor+';':''}}">￥{{items.price}}</text>
+                    <view class="buy {{item.style.buystyle}}" style="{{item.style.buybtncolor?'border-color:'+item.style.buybtncolor+';color:'+(item.style.buystyle!='buybtn-2'?item.style.buybtncolor:';background:'+item.style.buybtncolor+';')+';':''}}" wx:if="{{item.style.buystyle=='buybtn-1'||item.style.buystyle=='buybtn-2'}}">购买</view>
+                    <view class="buy {{item.style.buystyle}}" style="background:{{item.style.buybtncolor}}" wx:if="{{item.style.buystyle=='buybtn-3'}}">
+                        <view class="icox icox-cartfill"></view>
+                    </view>
+                    <view class="buy {{item.style.buystyle}}" style="border-color:{{item.style.buybtncolor}}" wx:if="{{item.style.buystyle=='buybtn-4'}}">
+                        <view class="icox icox-cart" style="font-size:12px;color:{{item.style.buybtncolor}}"></view>
+                    </view>
+                    <view class="buy {{item.style.buystyle}}" style="border-color:{{item.style.buybtncolor}};" wx:if="{{item.style.buystyle=='buybtn-5'}}">
+                        <view class="icox icox-add" style="font-size:14px;color:{{item.style.buybtncolor}}"></view>
+                    </view>
+                    <view class="buy {{item.style.buystyle}}" style="background:{{item.style.buybtncolor}};border-color:{{item.style.buybtncolor}};" wx:if="{{item.style.buystyle=='buybtn-6'}}">
+                        <view class="icox icox-add" style="font-size:14px;"></view>
+                    </view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

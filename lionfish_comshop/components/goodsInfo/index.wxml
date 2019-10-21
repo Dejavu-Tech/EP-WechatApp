@@ -1,0 +1,43 @@
+<i-card showModal="true">
+    <view slot="header">
+        <view class="header">提货信息</view>
+    </view>
+    <view slot="content">
+        <view class="content-wrap">
+            <view class="item">
+                <view class="title">提货人</view>
+                <view class="detail">{{order.order_info.shipping_name}} {{order.order_info.shipping_tel}}</view>
+            </view>
+            <view class="item" wx:if="{{order.order_info.name&&showNickname}}">
+                <view class="title">昵称</view>
+                <view class="detail">{{order.order_info.name}}</view>
+            </view>
+            <view class="item">
+                <view class="title">提货地点</view>
+                <view class="detail">{{order.order_info.shipping_address}}</view>
+            </view>
+            <view class="item">
+                <view class="title">配送方式</view>
+                <view class="detail">{{order.order_info.delivery_name}}</view>
+            </view>
+            <view class="item" wx:if="{{order.order_info.type=='normal'}}">
+                <view class="title">团长信息</view>
+                <view class="detail">
+                    <text>{{order.order_info.ziti_name}}</text>
+                    <view bindtap="callTelphone" class="phone" data-phone="{{order.order_info.ziti_mobile}}" wx:if="{{hidePhone==0}}">
+                        <image class="icon-phone" src="../../images/phone2.png"></image>
+                        <text>联系团长</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view slot="footer">
+        <view class="footer">
+      共{{order.goods_count}}件商品 小计：
+      <view class="money">
+        ￥{{order.order_info.total}}
+      </view>
+        </view>
+    </view>
+</i-card>

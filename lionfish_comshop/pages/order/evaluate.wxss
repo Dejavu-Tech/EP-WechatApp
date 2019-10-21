@@ -1,0 +1,142 @@
+.good-card {
+    height: 678rpx;
+    width: 710rpx;
+    border-radius: 20rpx;
+    background: #fff;
+    margin: 30rpx 20rpx;
+    padding-top: 20rpx;
+    z-index: 5;
+    box-shadow: 0 0 40rpx rgba(0,0,0,0.1);
+}
+
+.good-card .good {
+    font-size: 28rpx;
+    height: 102rpx;
+    display: flex;
+    align-items: center;
+    padding: 0rpx 20rpx 20rpx 20rpx;
+    background: #fff;
+    border-bottom: 0.1rpx solid #efefef;
+}
+
+.good-card .good image {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 20rpx;
+}
+
+.good-card .good text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.good-card .evaluate-content {
+    min-height: 452rpx;
+    margin-bottom: 40rpx;
+    padding: 10rpx 26rpx;
+    background: #fff;
+}
+
+.good-card .evaluate-content textarea {
+    width: 660rpx;
+    height: 320rpx;
+    margin-top: 10rpx;
+    font-size: 28rpx;
+}
+
+.good-card .evaluate-content .placeholder-class {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.submit {
+    color: #fff;
+    font-size: 28rpx;
+    line-height: 96rpx;
+    width: 750rpx;
+    background: #f75451;
+    text-align: center;
+    display: block;
+    position: fixed;
+    bottom: 0;
+}
+
+.img-group {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 24rpx;
+}
+
+.img-group .img-item {
+    margin: 0 6rpx;
+    width: 150rpx;
+    height: 150rpx;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.img-group .img-item .progress {
+    position: absolute;
+    left: 16rpx;
+    bottom: 20rpx;
+    width: 120rpx;
+    height: 16rpx;
+    border-radius: 20rpx;
+    border: 2rpx solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+.img-group .img-item .progress span {
+    height: 8rpx;
+    width: 0;
+    max-width: 112rpx;
+    border-radius: 12rpx;
+    position: absolute;
+    left: 4rpx;
+    top: 4rpx;
+    background: #f5f5f5;
+}
+
+.img-group .img-item .hide-progress {
+    opacity: 0;
+}
+
+.img-group .img-item .close {
+    width: 32rpx;
+    height: 32rpx;
+    position: absolute;
+    right: -8rpx;
+    top: -8rpx;
+}
+
+.img-group .img-item image {
+    height: 100%;
+    width: 100%;
+}
+
+.img-group .img-item .closeImg {
+    font-size: 40rpx;
+    color: #a0a0a0;
+}
+
+.img-group .img-add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 2rpx dashed #dedede;
+    color: #bcbcbc;
+}
+
+.img-group .img-add .cameraImg {
+    width: 44rpx;
+    height: 44rpx;
+    color: #cdcdcd;
+    margin-bottom: 8rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

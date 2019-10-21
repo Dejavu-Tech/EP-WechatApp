@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "i-img": "../img/index",
+        "i-count-down": "../count-down/index"
+    }
+}

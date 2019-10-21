@@ -1,0 +1,60 @@
+<view class="container">
+    <form bindreset="formReset" bindsubmit="formSubmit">
+        <view class="content">
+            <textarea bindinput="textValue" class="area" hidden="{{isGoods}}" maxlength="{{max}}" name="content" placeholder="请输入内容">
+                <text class="currentWordNumber">{{currentWordNumber|0}}/{{max}}</text>
+            </textarea>
+        </view>
+        <view class="img-v">
+            <view class="img" wx:for="{{thumb_img}}" wx:key="{{index}}">
+                <image bindtap="previewImg" data-imgidx="{{index}}" mode="aspectFill" src="{{item}}"></image>
+                <view catchtap="deleteImg" class="delete-btn m-icon m-icon-close" data-imgidx="{{index}}"></view>
+            </view>
+        </view>
+        <view class="goods s-flex" wx:if="{{goodsItem}}">
+            <view class="goods-cover">
+                <image mode="widthFix" src="{{goodsItem.image}}"></image>
+            </view>
+            <view class="goods-name s-flex-1">
+                <view class="goods-title">{{goodsItem.name}}</view>
+                <view class="goods-price">¥{{goodsItem.price}}</view>
+            </view>
+            <view catchtap="deleteGoods" class="delete-btn m-icon m-icon-close" data-gid="{{gid}}"></view>
+        </view>
+        <view class="menu-list">
+            <view bindtap="chooseImg" class="menu-icon">
+                <text class="m-icon m-icon-xiangce"></text> 图片
+      </view>
+            <view bindtap="chooseGoods" class="menu-icon">
+                <text class="m-icon m-icon-gouwudai"></text> 商品
+      </view>
+        </view>
+        <view class="btn-area">
+            <button formType="submit">提 交</button>
+        </view>
+    </form>
+</view>
+<view class="goods_wrapper {{isGoods?'visible':''}}">
+    <view class="goods-tip s-flex">
+        <view class="goods-tip-name">商品列表</view>
+        <view bindtap="closeGoods" class="goods-tip-close">关闭</view>
+    </view>
+    <scroll-view enableBackToTop scrollY bindscrolltolower="loadMore" class="scroll-wrapper">
+        <view class="guess_goods">
+            <view bindtap="chooseGoodsItem" class="item-wrap" data-index="{{index}}" wx:for="{{list}}" wx:key="{{item.goods_id}}">
+                <view class="iwf">
+                    <view class="img-wrap">
+                        <image lazyLoad="true" mode="aspectFill" src="{{item.image}}"></image>
+                    </view>
+                    <view class="title">{{item.name}}</view>
+                    <view class="bot_box clearfix">
+                        <view class="p_price fl">¥{{item.price}}</view>
+                        <view class="p_feed fr">已售{{item.seller_count}}件</view>
+                    </view>
+                </view>
+            </view>
+            <view class="tips" wx:if="{{is_more}}">正在加载...</view>
+            <view class="tips" wx:else>^_^已经到底了</view>
+        </view>
+    </scroll-view>
+</view>

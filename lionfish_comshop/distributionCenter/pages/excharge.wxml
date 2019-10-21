@@ -1,0 +1,74 @@
+<import src="../../wxParse/wxParse.wxml"></import>
+<view class="wrap">
+    <block wx:if="{{status==0}}">
+        <view class="top">
+            <view class="money">
+                <view class="yue">{{info.money}}</view>
+                <view class="tip">可提现金额（元）</view>
+            </view>
+            <navigator class="record" hoverClass="none" url="/lionfish_comshop/distributionCenter/pages/exchargeRecord">提现记录</navigator>
+        </view>
+        <form bindsubmit="formSubmit">
+            <view class="card">
+                <view class="flex-ipt">
+                    <input bindblur="bindIptBlur" bindfocus="bindIptFocus" bindinput="bindTixianMoneyInput" class="money" max="{{info.total_money}}" maxlength="15" min="0" name="money" placeholder="请输入提现金额" type="digit" value=""></input>
+                    <view bindtap="getAll" class="getall">全部提现</view>
+                    <view class="bottom-line {{onFocus?'ipt-focus':''}}"></view>
+                </view>
+                <view class="tip">手续费：{{info.commiss_tixian_bili}}% <text style="margin-left:10rpx;">最终到账：{{final_money}}</text>
+                </view>
+                <radio-group bindchange="radioChange" class="radio-group">
+                    <label class="radio" wx:if="{{item.show}}" wx:for="{{items}}" wx:key="{{index}}">
+                        <radio checked="{{item.checked}}" value="{{item.name}}"></radio>
+                        <text>{{item.value}}</text>
+                    </label>
+                </radio-group>
+                <view class="form-box" wx:if="{{type==2}}">
+                    <view class="form-group">
+                        <label>微信真实姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_weixin_realname}}"></input>
+                        </label>
+                    </view>
+                </view>
+                <view class="form-box" wx:if="{{type==3}}">
+                    <view class="form-group" wx:if="{{type!=2}}">
+                        <label>支付宝账户：<input class="form-ipt" name="bankaccount" type="text" value="{{info.last_alipay_account}}"></input>
+                        </label>
+                    </view>
+                    <view class="form-group">
+                        <label>支付宝真实姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_alipay_name}}"></input>
+                        </label>
+                    </view>
+                </view>
+                <view class="form-box" wx:if="{{type==4}}">
+                    <view class="form-group">
+                        <label>银行卡名称：<input class="form-ipt" name="bankname" type="text" value="{{info.last_bank_bankname}}"></input>
+                        </label>
+                    </view>
+                    <view class="form-group">
+                        <label>持卡人姓名：<input class="form-ipt" name="bankusername" type="text" value="{{info.last_bank_name}}"></input>
+                        </label>
+                    </view>
+                    <view class="form-group" wx:if="{{type!=2}}">
+                        <label>银行卡账户：<input class="form-ipt" name="bankaccount" type="text" value="{{info.last_bank_account}}"></input>
+                        </label>
+                    </view>
+                </view>
+            </view>
+            <button class="btn" disabled="{{canPay?false:true}}" formType="submit">提交</button>
+        </form>
+        <view class="desc">
+            <view class="h2">提现规则：</view>
+            <view class="wxParse">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+        </view>
+    </block>
+    <view class="sucess" wx:else>
+        <view>
+            <image class="applyPassImg" mode="widthFix" src="../../images/auditSuccess.png"></image>
+            <view class="h1">提现申请提交成功</view>
+        </view>
+        <navigator class="link-btn" hoverClass="none" url="/lionfish_comshop/distributionCenter/pages/exchargeRecord">查看提现记录</navigator>
+    </view>
+</view>
+<i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>

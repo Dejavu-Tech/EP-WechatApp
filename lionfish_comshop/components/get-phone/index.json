@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "i-modal": "../modal/index",
+        "i-button": "../button/index"
+    }
+}

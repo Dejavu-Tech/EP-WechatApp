@@ -1,0 +1,51 @@
+<view>
+    <view class="settlementDetail">
+        <scroll-view scrollY bindscrolltolower="getMoreList" style="height: {{containerHeight}}px">
+            <view class="header">
+                <view class="title">
+                    <text>佣金结算单号（{{orderDetail.disSettleNo}}）</text>
+                </view>
+                <view class="container">
+                    <view class="per">
+                        <text>结算量</text>
+                        <text>{{orderDetail.settleNum}}</text>
+                    </view>
+                    <view class="per">
+                        <text>结算金额</text>
+                        <text>￥{{orderDetail.totalAmount/100}}</text>
+                    </view>
+                    <view class="per" wx:if="{{orderDetail.payNo!='null'}}">
+                        <text>微信支付单号</text>
+                        <text>{{orderDetail.payNo}}</text>
+                    </view>
+                    <view class="per">
+                        <text>结算日期</text>
+                        <text>{{orderDetail.createTime}}</text>
+                    </view>
+                </view>
+            </view>
+            <view>
+                <view class="main" wx:for="{{rewardList}}" wx:key="index">
+                    <view class="title">
+                        <text class="date">{{item.createTime}}</text>
+                        <text class="status">{{item.disStatusName}}</text>
+                    </view>
+                    <view class="figcaption">
+                        <view class="figure">
+                            <image src="{{item.goodsImage}}" wx:if="{{item.goodsImage}}"></image>
+                            <image src="../../images/goods-detail-bitmap.png" wx:else></image>
+                        </view>
+                        <view class="desc">
+                            <view class="goodsName">{{item.spuName}}</view>
+                            <view class="goods-detail">
+                团单金额 ￥{{item.totalAmount/100}}
+                <text class="line">|</text> 佣金 ￥{{item.orderCommission/100}}
+              </view>
+                        </view>
+                    </view>
+                </view>
+                <component-load-more loading="{{LoadingComplete}}" tip="{{loadText}}"></component-load-more>
+            </view>
+        </scroll-view>
+    </view>
+</view>

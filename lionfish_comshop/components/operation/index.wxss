@@ -1,0 +1,78 @@
+.mar-left-8 {
+    margin-left: 16rpx;
+}
+
+.card-btn {
+    display: flex;
+}
+
+.card-btn .button-hover {
+    background: #b6b6b6;
+}
+
+.card-btn .btn-1 {
+    position: relative;
+    color: #666;
+    text-align: center;
+    padding: 0;
+    width: 136rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    font-size: 24rpx;
+    border-radius: 26rpx;
+    box-sizing: border-box;
+}
+
+.card-btn .btn-1::after {
+    box-sizing: border-box;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+    border: 2rpx solid #b6b6b6;
+    border-radius: 52rpx;
+    pointer-events: none;
+}
+
+.card-btn .btn-2 {
+    text-align: center;
+    padding: 0;
+    width: 136rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    font-size: 24rpx;
+    border-radius: 26rpx;
+    box-sizing: border-box;
+    color: #aaa;
+    background-color: #f6f6f6;
+}
+
+.card-btn .btn-3 {
+    color: white;
+    background: linear-gradient(90deg,#ff5041 0%,#ff877d 100%);
+    text-align: center;
+    padding: 0;
+    width: 136rpx;
+    height: 52rpx;
+    line-height: 52rpx;
+    font-size: 24rpx;
+    border-radius: 26rpx;
+    box-sizing: border-box;
+}
+
+.card-btn .btn-5 {
+    display: flex;
+    align-items: center;
+    color: #aaa;
+}
+
+.card-btn .arrow-right {
+    width: 12rpx;
+    height: 22rpx;
+    margin-left: 10rpx;
+    font-size: 24rpx;
+}

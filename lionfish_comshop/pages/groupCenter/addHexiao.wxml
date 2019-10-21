@@ -1,0 +1,9 @@
+<view class="content">
+    <view class="top">
+        <view class="tip">邀请员工扫码，完成添加</view>
+        <view class="qrcode">
+            <image src="{{qrcode}}"></image>
+            <view class="name"></view>
+        </view>
+    </view>
+</view>

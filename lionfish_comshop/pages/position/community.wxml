@@ -1,0 +1,59 @@
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+    <view>
+        <view class="header-content">
+            <image class="header-bg" src="{{common_header_backgroundimage?common_header_backgroundimage:'../../images/TOP_background@2x.png'}}"></image>
+            <view class="search-content">
+                <i-router-link openType="redirect" url="/lionfish_comshop/pages/position/cities">
+                    <view class="city-content">
+                        <image class="search-icon" src="../../images/icon-search.png"></image>
+            {{city.districtName}}
+            <image class="bottom-arrow" src="../../images/icon-bottom-arrow.png"></image>
+                    </view>
+                </i-router-link>
+                <view bindtap="linkSearch" class="search-ipt">
+                    <view class="ipt-class">请输入{{groupInfo.group_name}}名称</view>
+                </view>
+            </view>
+            <block wx:if="{{!community.communityId}}">
+                <view class="location-title">当前地址</view>
+                <view class="location-msg">{{city.districtName}}</view>
+                <view class="switch-btn">请选择您的{{groupInfo.group_name}}</view>
+            </block>
+            <block wx:else>
+                <view class="location-title location-title-pad">当前{{groupInfo.group_name}}</view>
+                <navigator class="local-community-card" openType="switchTab" url="/lionfish_comshop/pages/index/index">
+                    <image class="card-bg" src="../../images/community-desc-bg.png"></image>
+                    <view class="head-pic">
+                        <image class="head-pic-content" src="{{community.disUserHeadImg||community.headImg}}" wx:if="{{community.disUserHeadImg||community.headImg}}"></image>
+                        <image class="head-pic-content" src="../../images/head-bitmap.png" wx:else></image>
+                    </view>
+                    <view class="card-msg">
+                        <view class="group-master">{{groupInfo.owner_name}}：{{community.disUserName||community.realName}}</view>
+                        <view class="community-name">{{community.communityName}}</view>
+                        <view class="community-address">{{community.communityAddress||community.fullAddress}}</view>
+                    </view>
+                </navigator>
+            </block>
+        </view>
+        <view class="community-list history-communities" style="display:none;" wx:if="{{!isNotHistory}}">
+            <view class="title">曾用{{groupInfo.group_name}}</view>
+            <i-community-item city="{{city}}" class="item-border" isOld="true" item="{{historyCommunity}}"></i-community-item>
+        </view>
+        <view class="community-list around-communities">
+            <view class="title">附近{{groupInfo.group_name}}</view>
+            <i-community-item city="{{city}}" class="item-border" groupInfo="{{groupInfo}}" hiddenDetails="{{index_hide_headdetail_address}}" item="{{item}}" wx:if="{{communities.length}}" wx:for="{{communities}}" wx:key="{{index}}"></i-community-item>
+            <view class="no-community" wx:if="{{isEmpty}}">
+                <view bindtap="openSetting" class="flex-align" wx:if="{{!canGetGPS}}">
+                    <image src="../../images/noData.png"></image>
+                    <view>未获得您的位置信息，点击开启</view>
+                </view>
+                <block wx:else>
+                    <image src="../../images/noData.png"></image>
+                    <view>当前城市暂未开通服务，请更换城市或<navigator class="link-apply" url="/lionfish_comshop/pages/groupCenter/recruit">申请开通></navigator>
+                    </view>
+                </block>
+            </view>
+            <i-load-more loading="{{loadMore}}" tip="{{tip}}"></i-load-more>
+        </view>
+    </view>
+</i-auth>

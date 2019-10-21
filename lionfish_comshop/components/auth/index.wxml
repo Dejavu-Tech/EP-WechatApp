@@ -1,0 +1,14 @@
+<view class="wrap" wx:if="{{needAuth&&loaded}}">
+    <button bindgetuserinfo="bindGetUserInfoTwo" class="auth_bg" openType="getUserInfo" style="background: url({{auth_bg}}) no-repeat top center;background-size: cover;" wx:if="{{auth_bg}}"></button>
+    <block wx:else>
+        <image class="auth-login" mode="widthFix" src="../../images/login.png"></image>
+        <view class="line1">我们的小程序将获取您的以下权限：</view>
+        <view class="line2">·获取您的公开信息（昵称和头像等）</view>
+        <view class="line3">（如未授权，可能无法正常使用该小程序）</view>
+        <i-button bindgetuserinfo="bindGetUserInfo" iClass="confirm" loading="{{btnLoading}}" openType="getUserInfo" wx:if="canIUse">确认授权</i-button>
+        <view class="updateWx" wx:else>请升级微信版本</view>
+    </block>
+</view>
+<view class="container {{isIpx?'pb20 mb20':''}}" wx:else>
+    <slot></slot>
+</view>

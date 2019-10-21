@@ -1,0 +1,26 @@
+<view class="list-box">
+    <view class="item" wx:for="{{list}}" wx:key="{{item.id}}">
+        <view class="spu">
+            <image class="i-class goodsImg" mode="widthFix" src="{{item.goods_image?item.goods_image:'../../images/index-comming-goods-bitmap.png'}}"></image>
+            <view class="detail">
+                <view class="spuName">
+                    <text>{{item.goods_name}}</text>
+                </view>
+                <view class="tips">
+                    <span> 商品数量：{{item.goods_count}}</span>
+                    <span class="last" wx:if="{{item.sku_str}}">规格：{{item.sku_str}}</span>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="bottom-bar {{isIpx?'pb20':''}}">
+    <view class="flex">
+        <label class="btn" wx:if="{{list.length>0&&state==1}}">
+      确认收货
+      <button hidden bindtap="signAll"></button>
+        </label>
+        <view class="btn btn-disabled" wx:elif="{{state==0}}">待配送</view>
+        <view class="btn btn-disabled" wx:else>已送达</view>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "购物车",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "i-card": "../../components/card/index",
+        "i-tabbar": "../../components/tabbar/index",
+        "i-dialog": "../../components/dialog/index",
+        "i-router-link": "../../components/router-link/router-link",
+        "i-img": "../../components/img/index",
+        "guess-like": "../../components/guess-like/index",
+        "i-new-auth": "../../components/new-auth/index"
+    }
+}

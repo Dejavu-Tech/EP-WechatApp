@@ -1,0 +1,83 @@
+<i-card showModal="true">
+    <view slot="header">
+        <view class="header">订单信息</view>
+    </view>
+    <view slot="content">
+        <view class="content-wrap">
+            <view class="item">
+                <view class="title">订单编号</view>
+                <view class="detail">{{orderInfo.order_num_alias}}</view>
+            </view>
+            <view class="item">
+                <view class="title">下单时间</view>
+                <view class="detail">
+                    <text>{{orderInfo.date_added}}</text>
+                </view>
+            </view>
+            <view class="item" wx:if="{{orderInfo.pay_time>0}}">
+                <view class="title">支付时间</view>
+                <view class="detail">
+                    <text>{{orderInfo.pay_date}}</text>
+                </view>
+            </view>
+            <view class="item" wx:if="{{orderInfo.express_tuanz_time}}">
+                <view class="title">送达时间</view>
+                <view class="detail">
+                    <text>{{orderInfo.express_tuanz_date}}</text>
+                </view>
+            </view>
+            <view class="item" wx:if="{{orderInfo.receive_time}}">
+                <view class="title">收货时间</view>
+                <view class="detail">
+                    <text>{{orderInfo.receive_date}}</text>
+                </view>
+            </view>
+            <view class="item" wx:if="{{orderInfo.shipping_fare>0}}">
+                <view class="title">配送费</view>
+                <view class="detail">
+          + ¥{{orderInfo.shipping_fare}}
+        </view>
+            </view>
+            <block wx:if="{{orderInfo.is_free_shipping_fare==1}}">
+                <view class="item">
+                    <view class="title">配送费</view>
+                    <view class="detail">
+            + ¥{{orderInfo.fare_shipping_free}}
+          </view>
+                </view>
+                <view class="item">
+                    <view class="title">满金额免配送费</view>
+                    <view class="detail">
+            - ¥{{orderInfo.fare_shipping_free}}
+          </view>
+                </view>
+            </block>
+            <view class="item" wx:if="{{orderInfo.score_for_money*1>0}}">
+                <view class="title">积分抵扣</view>
+                <view class="detail">
+          - ¥{{orderInfo.score_for_money}}
+        </view>
+            </view>
+            <view class="item" wx:if="{{disAmount>0}}">
+                <view class="title">总优惠</view>
+                <view class="detail">
+          - ¥{{disAmount}}
+        </view>
+            </view>
+            <view class="item">
+                <view class="title">商品金额</view>
+                <view class="detail">
+          + ¥{{goodsTotal}}
+        </view>
+            </view>
+        </view>
+    </view>
+    <view slot="footer">
+        <view class="footer">
+            <view>合计：</view>
+            <view class="money">
+        ¥{{orderInfo.total}}
+      </view>
+        </view>
+    </view>
+</i-card>

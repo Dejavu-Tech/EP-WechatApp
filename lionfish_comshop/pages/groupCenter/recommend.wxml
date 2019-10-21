@@ -1,0 +1,5 @@
+<view class="content">
+    <view class="img">
+        <image src="{{qrcode}}"></image>
+    </view>
+</view>

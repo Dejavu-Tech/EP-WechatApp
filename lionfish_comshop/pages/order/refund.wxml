@@ -1,0 +1,73 @@
+<view class="wrap">
+    <view class="goods">
+        <view class="goods-item">
+            <view style="goods-item-l">
+                <i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{order_goods.goods_images}}" width="60"></i-img>
+            </view>
+            <view class="goods-item-r">
+                <view class="name">{{order_goods.name}}</view>
+                <view class="mount">
+                    <block wx:if="{{order_goods.option_str}}">{{order_goods.option_str}} </block>￥{{order_goods.price}} x {{order_goods.quantity}}
+        </view>
+                <view class="price">￥{{total}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="cell-hd">售后类型：</view>
+        <view class="cell-bd">申请退款</view>
+    </view>
+    <view class="cell">
+        <view class="cell-hd">问题类型：</view>
+        <view class="cell-bd">
+            <picker bindchange="bindPickerChange" range="{{xarray}}" value="{{index}}">
+                <view class="picker">
+          {{xarray[index]}}
+        </view>
+            </picker>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="cell-hd">退款金额：</view>
+        <view class="cell-bd">
+            <input bindinput="refund_money_input" class="cell-ipt" placeholder="最高可退款 ￥{{total}}" type="text" value="{{refund_money}}"></input>
+        </view>
+    </view>
+    <view class="cell-col">
+        <view class="tit">商品问题描述：</view>
+        <textarea bindinput="wenti_input" class="cell-textarea" maxlength="500" placeholder="问题描述越详细,可以提高您的申请成功率哦~" value="{{complaint_desc}}"></textarea>
+    </view>
+    <view class="cell-col">
+        <view class="tit">上传凭证图片（最多三张）</view>
+        <view class="img-wrap">
+            <view class="image_uploader_image" wx:for="{{refund_thumb_imgs}}" wx:key="{{index}}">
+                <image class="image_uploader_image_img_portrait" src="{{item}}"></image>
+                <view bindtap="cancle_img" class="image_uploader_image_delete" data-sr="{{item}}">-</view>
+            </view>
+            <view bindtap="choseImg" class="image_uploader_selector">
+                <view class="image_uploader_indicate">+</view>
+            </view>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="cell-hd">联系人：</view>
+        <view class="cell-bd">
+            <input bindinput="name_input" class="cell-ipt" maxlength="20" placeholder="请输入联系人" type="text" value="{{complaint_name}}"></input>
+        </view>
+    </view>
+    <view class="cell">
+        <view class="cell-hd">联系方式：</view>
+        <view class="cell-bd">
+            <input bindinput="mobile_input" class="cell-ipt" maxlength="20" placeholder="请输入手机号" type="number" value="{{complaint_mobile}}"></input>
+        </view>
+    </view>
+    <view class="submit_button">
+        <view bindtap="sub_refund" class="span">提交申请</view>
+    </view>
+    <view class="note">
+        <view class="note-tit">退款须知</view>
+        <view class="article">
+            <view class="p">请按照提示关注维权进度和超时提醒并提供相应凭证。</view>
+        </view>
+    </view>
+</view>

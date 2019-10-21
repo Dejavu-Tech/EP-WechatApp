@@ -1,0 +1,37 @@
+<view>
+    <view class="basicInForm">
+        <view class="today-box">
+            <view class="today-income">今日收入（元）</view>
+            <view class="today-income-money">{{today_all_total_money}}</view>
+        </view>
+        <view class="flex other-income">
+            <view class="flex-item other-item">
+                <view class="income-title">本月收入</view>
+                <view class="income-money">{{month_pre_total_money}}</view>
+            </view>
+            <view class="flex-item other-item">
+                <view class="income-title">累计收入</view>
+                <view class="income-money">{{commission_info.mix_total_money}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="income-data">
+        <view class="common-title">
+            <view class="subtit">待确认收入</view>
+            <navigator class="common-nav" url="/lionfish_comshop/pages/groupCenter/detailsList?type=1">订单明细</navigator>
+        </view>
+        <view class="common-money">{{wait_sub_total_money}}</view>
+        <view class="common-title">
+            <view class="subtit">可提现金额</view>
+            <navigator class="common-nav" url="/lionfish_comshop/pages/groupCenter/detailsList?type=2">订单明细</navigator>
+        </view>
+        <view class="common-money">{{commission_info.money}}</view>
+        <view class="common-title">
+            <view class="subtit">已打款金额</view>
+            <navigator class="common-nav" url="/lionfish_comshop/pages/groupCenter/cashList">提现记录</navigator>
+        </view>
+        <view class="common-money">{{tixian_sucess_money}}</view>
+    </view>
+    <view bindtap="cashMoney" class="income-btn">提 现</view>
+</view>
+<i-dialog bind:cancel="cancel" bind:confirm="confirm" text="确认提现" visible="{{showDialog}}"></i-dialog>

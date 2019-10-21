@@ -1,0 +1,8 @@
+{
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTitleText": "推广明细",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "component-load-more": "../../components/load-more/index"
+    }
+}

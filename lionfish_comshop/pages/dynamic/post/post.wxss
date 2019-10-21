@@ -1,0 +1,200 @@
+@import "../../../../wuBaseWxss/0.wxss";
+
+.container {
+    padding: 20rpx 25rpx;
+    background-color: #fff;
+}
+
+.btn-area button {
+    background-color: #ff5777;
+    color: #fff;
+}
+
+.content {
+    position: relative;
+}
+
+.content .area {
+    width: 100%;
+    margin-bottom: 20rpx;
+    transition: all 500ms ease-in-out;
+}
+
+.currentWordNumber {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    color: #999;
+}
+
+.goods {
+    position: relative;
+    background: #f2f2f2;
+    padding: 10rpx;
+    align-items: center;
+    margin-bottom: 20rpx;
+}
+
+.goods-cover {
+    width: 80rpx;
+    height: 80rpx;
+    margin-right: 18rpx;
+}
+
+.goods-cover image {
+    width: 80rpx;
+    height: 80rpx;
+}
+
+.goods-name {
+    overflow: hidden;
+    padding-right: 22rpx;
+    font-size: 24rpx;
+}
+
+.goods-name .goods-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.goods-name .goods-price {
+    color: #ff5777;
+    margin-top: 5rpx;
+    font-weight: bold;
+}
+
+.menu-list {
+    margin-bottom: 20rpx;
+}
+
+.menu-list .menu-icon {
+    position: relative;
+    display: inline-block;
+    width: 120rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    color: #666;
+    font-size: 28rpx;
+    text-align: center;
+    border-radius: 30rpx;
+    background-color: #f8f8f8;
+    margin-right: 16rpx;
+}
+
+.menu-list .menu-icon image {
+    width: 30rpx;
+    height: 30rpx;
+    vertical-align: text-bottom;
+}
+
+.menu-list .menu-icon text {
+    vertical-align: middle;
+    font-size: 28rpx;
+}
+
+.img {
+    position: relative;
+    display: inline-block;
+    margin-right: 30rpx;
+}
+
+.img image {
+    width: 200rpx;
+    height: 200rpx;
+}
+
+.delete-btn {
+    position: absolute;
+    top: -15rpx;
+    right: -15rpx;
+    width: 40rpx;
+    height: 40rpx;
+    background: red;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 40rpx;
+    color: #fff;
+    font-size: 34rpx;
+}
+
+.goods_wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    transform: translate(-100%,-100%);
+    background-color: #fff;
+    overflow: hidden;
+    transition: all 600ms linear;
+    z-index: 999;
+}
+
+.goods_wrapper.visible {
+    transform: translate(0,0);
+}
+
+.guess_goods {
+    padding: 10rpx 30rpx 60rpx;
+}
+
+.iwf .title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.p_price {
+    color: #ff5777;
+}
+
+.scroll-wrapper {
+    height: 100%;
+}
+
+.item-wrap {
+    width: 48.5%;
+    margin-bottom: 15rpx;
+}
+
+.img-wrap image {
+    height: 325rpx;
+}
+
+.goods-tip {
+    padding: 10rpx 30rpx;
+}
+
+.goods-tip-name {
+    flex: 1;
+}
+
+.goods-tip-close {
+    color: #ff5777;
+}
+
+.tips {
+    clear: both;
+}
+
+.switch-btn {
+    margin: 10rpx 0 30rpx;
+    line-height: 30rpx;
+    color: #666;
+}
+
+.checkbox text {
+    vertical-align: middle;
+}
+
+.switch-btn .wx-checkbox-input {
+    width: 30rpx;
+    height: 30rpx;
+}
+
+.switch-btn .wx-checkbox-input.wx-checkbox-input-checked::before {
+    font-size: 30rpx;
+}

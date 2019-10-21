@@ -1,0 +1,24 @@
+<view class="item">
+    <view class="orderNum">
+        <text>团单日期：{{item.createTime}}</text>
+        <text class="{{item.orderStatusName=='已完成'?'black':''}} statusName">{{item.orderStatusName}}</text>
+    </view>
+    <view class="spu">
+        <i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="60" iClass="img-class" loadImage="{{item.spuImage}}" width="60"></i-img>
+        <view class="detail">
+            <view class="spuName">
+                <text>{{item.spuName}}</text>
+            </view>
+            <view class="tips">
+                <span>参团人数：{{item.joinMemberNum}}</span>
+                <span class="last">商品数量：{{item.groupOrderNum}}</span>
+            </view>
+            <view class="tips">
+                <span>商品金额：￥{{item.totalAmount?item.totalAmount/100:0}}</span>
+                <span class="last">佣金:
+          <text class="price">￥{{item.commision?item.commision/100:0}}</text>
+                </span>
+            </view>
+        </view>
+    </view>
+</view>

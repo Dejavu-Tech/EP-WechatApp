@@ -1,0 +1,9 @@
+{
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "我的团单",
+    "usingComponents": {
+        "i-group-order": "../../components/group-order/index",
+        "i-load-more": "../../components/load-more/index"
+    }
+}
