@@ -1,0 +1,21 @@
+<view class="new-comers" wx:if="{{list.length}}">
+    <view class="new-comers-title">新人专享</view>
+    <scroll-view scrollX bindscrolltolower="getMore" class="new-comers-scroll">
+        <view class="new-comers-wrap">
+            <i-router-link routerClass="new-comers-item" url="/lionfish_comshop/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="{{index}}">
+                <i-img defaultImage="../../images/placeholder-refund.png" height="200" iClass="new-img" loadImage="{{item.skuImage}}" width="180"></i-img>
+                <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+                <view class="title">{{item.spuName}}</view>
+                <view class="new-bot">
+                    <view class="price">¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+                    <i-button iClass="add-cart" wx:if="{{disabled||item.spuCanBuyNum==0}}">
+                        <image class="img" src="../../images/icon-add-shopCart-disabled.png"></image>
+                    </i-button>
+                    <i-button bind:click="openSku" data-idx="{{index}}" iClass="add-cart" wx:else>
+                        <image class="img" src="../../images/icon-add-shopCart.png"></image>
+                    </i-button>
+                </view>
+            </i-router-link>
+        </view>
+    </scroll-view>
+</view>

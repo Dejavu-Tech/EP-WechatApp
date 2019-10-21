@@ -1,0 +1,150 @@
+.search {
+    background: #fff;
+    padding: 20rpx 30rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+}
+
+.search .icon-search {
+    position: absolute;
+    left: 54rpx;
+}
+
+.search input {
+    flex: 1;
+    padding-left: 68rpx;
+    height: 56rpx;
+    background: #f8f8f8;
+    border-radius: 28rpx;
+    color: #999;
+    box-sizing: border-box;
+    line-height: 40rpx;
+}
+
+.search text {
+    color: #ff673f;
+    margin-left: 28rpx;
+}
+
+.date {
+    padding: 0 30rpx;
+    background: #fff;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 28rpx;
+    font-family: PingFangSC-Regular;
+    font-weight: 400;
+    color: #9b9b9b;
+}
+
+.date .date-value {
+    margin-left: 12rpx;
+    color: #ff673f;
+}
+
+.date .icon-date {
+    height: 36rpx;
+    width: 36rpx;
+    float: right;
+    margin: 6rpx 0 0 0;
+}
+
+.date .icon-date image {
+    height: 36rpx;
+    width: 36rpx;
+}
+
+.date .icon-clear {
+    height: 32rpx;
+    float: right;
+    color: #ff673f;
+    margin: 0 28rpx 0 0;
+    font-size: 24rpx;
+}
+
+.list-content {
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.list-header,.list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30rpx;
+}
+
+.list-header {
+    height: 84rpx;
+}
+
+.list-item {
+    background: #fff;
+    height: 116rpx;
+    margin-bottom: 2rpx;
+}
+
+.list-item .item-left {
+    display: flex;
+    align-items: center;
+}
+
+.list-item .item-left text {
+    margin-left: 12rpx;
+    font-size: 28rpx;
+    width: 400rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-item .item-left .phone {
+    margin-left: 12rpx;
+    display: flex;
+    align-items: center;
+}
+
+.list-item .item-left .icon-phone {
+    width: 28rpx;
+    height: 32rpx;
+    margin-left: 10rpx;
+}
+
+.list-item .item-right {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-align: right;
+}
+
+.list-item .item-right .text {
+    font-size: 26rpx;
+    margin-right: 18rpx;
+}
+
+.list-item .item-right .rightArrowImg {
+    width: 12rpx;
+    height: 22rpx;
+}
+
+.list-item .level {
+    margin-left: 5px;
+    color: #999;
+}
+
+.navigator-hover {
+    background-color: rgba(0,0,0,0);
+}
+
+.none-member {
+    text-align: center;
+    background: #fff;
+    height: 116rpx;
+    line-height: 116rpx;
+}

@@ -1,0 +1,40 @@
+<view>
+    <view class="nav-bar">
+        <view class="nav-bar-inner">
+            <view bindtap="switchTab" class="nav-bar-item {{currentTab==1?'current':''}}" data-type="1">
+                <view class="nav-bar-item-inner">待确认收入</view>
+            </view>
+            <view bindtap="switchTab" class="nav-bar-item {{currentTab==2?'current':''}}" data-type="2">
+                <view class="nav-bar-item-inner">可提现金额</view>
+            </view>
+        </view>
+    </view>
+    <view class="cash-list">
+        <view class="list-item" wx:for="{{order}}" wx:key="{{index}}">
+            <view class="title">
+                <text>订单单号（{{item.order_num_alias}}）</text>
+            </view>
+            <view class="main">
+                <view class="left">
+                    <view class="per">
+                        <text>订单标题：</text>
+                        <text>{{item.name}}</text>
+                    </view>
+                    <view class="per">
+                        <text>订单金额：</text>
+                        <text>￥{{item.total}}</text>
+                    </view>
+                    <view class="per">
+                        <text>佣金金额：</text>
+                        <text>￥{{item.money}}</text>
+                    </view>
+                    <view class="per">
+                        <text>下单日期：</text>
+                        <text>{{item.addtime}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+    </view>
+</view>

@@ -1,0 +1,91 @@
+.member-list {
+    background-color: #fff;
+    margin-top: 20rpx;
+}
+
+.member-list .list-item {
+    font-size: 24rpx;
+    display: flex;
+    padding: 24rpx;
+    min-height: 130rpx;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.member-list .list-item:after {
+    content: '';
+    position: absolute;
+    left: 0.16rem;
+    right: 0.16rem;
+    top: auto;
+    bottom: 0;
+    background-color: #e9e9e9;
+    height: 0.02667rem;
+    transform: scaleY(0.5);
+}
+
+image {
+    width: 100%;
+    height: 80rpx;
+}
+
+.member-list .list-item .list-item-img {
+    width: 80rpx;
+    height: 80rpx;
+    flex-shrink: 0;
+    border-radius: 100%;
+    margin-right: 16rpx;
+    overflow: hidden;
+}
+
+.member-list .list-item .list-item-mes {
+    width: 100%;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.flex-items {
+    display: flex;
+}
+
+.member-list .list-item .list-item-name {
+    color: #747474;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-bottom: 8rpx;
+    justify-content: space-between;
+}
+
+.member-list .list-item .list-item-name .name {
+    font-size: 26rpx;
+    color: #212121;
+    width: 100%;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.member-list .list-item .list-item-mes .text-right {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.member-list .list-item .list-item-submes {
+    height: 32rpx;
+    line-height: 32rpx;
+    color: #424242;
+    justify-content: space-between;
+}
+
+.member-list .list-item .icon-right {
+    flex-shrink: 0;
+    color: #bdbdbd;
+    margin-left: 24rpx;
+}
+
+.member-list .list-item .icon-right image {
+    width: 12rpx;
+    height: 22rpx;
+}

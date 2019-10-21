@@ -1,0 +1,38 @@
+.i-input-number {
+    color: #495060;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.i-input-number .i-input-number-view {
+    width: 48rpx;
+    height: 48rpx;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.i-input-number .i-input-number-view .img {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+.i-input-number-minus {
+    border-right: none;
+    border-radius: 4rpx 0 0 4rpx;
+}
+
+.i-input-number-plus {
+    border-left: none;
+    border-radius: 0 4rpx 4rpx 0;
+}
+
+.i-input-number .i-input-number-text {
+    position: relative;
+    text-align: center;
+    height: 48rpx;
+    width: 66rpx;
+    font-size: 24rpx;
+    line-height: 48rpx;
+    z-index: 0;
+}

@@ -1,0 +1,51 @@
+<i-modal bind:cancel="close" iClass="sku-content" scrollUp="{{true}}" visible="{{visible}}">
+    <view class="sku-card">
+        <view bindtap="close" class="close">
+            <image src="../../images/icon-sku-close.png"></image>
+        </view>
+        <view class="sku-header">
+            <i-img defaultImage="../../images/placeholder-refund.png" height="80" iClass="sku-img" loadImage="{{cur_sku_arr.skuImage}}" width="80"></i-img>
+            <view class="sku-desc">
+                <view class="sku-title">
+                    <span>{{cur_sku_arr.spuName}}</span>
+                </view>
+                <view class="sku-price">
+                    <view class="sale-price">
+            ¥ <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
+          </view>
+                    <view class="market-price">¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</view>
+                </view>
+                <view class="sku-switch-on">已选择：{{cur_sku_arr.spec}}</view>
+            </view>
+        </view>
+        <view class="sku-spec" wx:for="{{skuList.list}}" wx:key="{{item.id}}">
+            <view class="title">{{item.name}}</view>
+            <view class="spec-list">
+                <span bindtap="selectSku" class="{{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-idx="{{idx}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for="{{item.option_value}}" wx:for-index="idx" wx:for-item="value" wx:key="{{idx}}">{{value.name}}</span>
+            </view>
+        </view>
+        <view class="sku-num-content">
+            <view class="title">数量</view>
+            <view class="i-class i-input-number i-input-number-size-{{size}}">
+                <view bindtap="setNum" class="i-input-number-minus num-btn {{value<=min?'i-input-number-disabled':''}}" data-type="decrease">
+                    <image class="icon-btn" src="../../images/icon-input-reduce.png"></image>
+                </view>
+                <input bindblur="handleBlur" bindfocus="handleFocus" class="i-input-number-text {{min>=max?'i-input-number-disabled':''}}" disabled="true" type="number" value="{{sku_val}}"></input>
+                <view bindtap="setNum" class="i-input-number-plus num-btn {{value>=max?'i-input-number-disabled':''}}" data-type="add">
+                    <image class="icon-btn" src="../../images/icon-input-add.png"></image>
+                </view>
+            </view>
+            <view class="msg" wx:if="{{skuList[current].isLimit}}">
+                <span wx:if="{{skuList[current].limitMemberNum>-1}}">每人限{{skuList[current].limitMemberNum}}单</span>
+                <span wx:if="{{skuList[current].limitOrderNum>-1}}">每单限{{skuList[current].limitOrderNum}}份</span>
+                <span></span>
+            </view>
+            <view class="even-num" wx:elif="{{!skuList[current].isLimit&&skuList[current].canBuyNum-value<=10&&skuList[current].canBuyNum-value>-1}}">还可以购买 {{skuList[current].canBuyNum-value}} 件</view>
+        </view>
+        <form bindsubmit="gocarfrom" reportSubmit="true">
+            <button class="sku-confirm" disabled="{{cur_sku_arr.stock==0?true:false}}" formType="submit">
+                <view>{{cur_sku_arr.stock==0?'已抢光':'确定'}}</view>
+            </button>
+        </form>
+    </view>
+</i-modal>

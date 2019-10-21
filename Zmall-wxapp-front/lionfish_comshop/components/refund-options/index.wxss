@@ -1,0 +1,82 @@
+.sku-content {
+    background: transparent!important;
+}
+
+.options-card {
+    width: 750rpx;
+    box-sizing: border-box;
+    border-radius: 30rpx 30rpx 0 0;
+    background: #fff;
+    overflow: hidden;
+    padding-top: 52rpx;
+}
+
+.options-card .title {
+    font-size: 32rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    color: #444;
+    line-height: 32rpx;
+    text-align: center;
+    margin-bottom: 40rpx;
+}
+
+.options-card .item {
+    height: 90rpx;
+    padding: 0 30rpx;
+    border-bottom: 0.1rpx solid #efefef;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.options-card .item:last-of-type {
+    margin-bottom: 40rpx;
+    border-bottom: none;
+}
+
+.options-card .checkbox {
+    width: 50rpx;
+    height: 50rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.options-card .checkbox .radio-checked {
+    width: 48rpx;
+    height: 48rpx;
+}
+
+.options-card .checkbox .radio-disabled {
+    width: 48rpx;
+    height: 48rpx;
+    margin-top: 2rpx;
+}
+
+.options-card .btns {
+    height: 96rpx;
+    border-top: 0.1rpx solid #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.options-card .btns .btns-view {
+    font-size: 30rpx;
+    font-family: PingFangSC-Medium;
+    font-weight: 500;
+    line-height: 96rpx;
+    text-align: center;
+}
+
+.options-card .btns .cancel {
+    flex: 1;
+    color: #666;
+}
+
+.options-card .btns .confirm {
+    flex: 1;
+    color: #fff;
+    background: linear-gradient(90deg,#ff5041 0%,#ff695c 100%);
+}

@@ -1,0 +1,22 @@
+<i-auth bind:authSuccess="authSuccess" needAuth="{{!is_login}}">
+    <view class="content">
+        <view class="tip">邀请你成为会员</view>
+        <view class="form">
+            <view class="form-group">
+                <view class="label">你的姓名</view>
+                <view class="ipt">
+                    <input bindinput="getName" placeholder="你的姓名" type="text"></input>
+                </view>
+            </view>
+            <view class="form-group">
+                <view class="label">联系电话</view>
+                <view class="ipt">
+                    <input bindinput="getMobile" maxlength="11" placeholder="联系电话" type="number"></input>
+                </view>
+            </view>
+            <view class="form-btn">
+                <view bindtap="bindInfo" class="sub-btn">提交</view>
+            </view>
+        </view>
+    </view>
+</i-auth>

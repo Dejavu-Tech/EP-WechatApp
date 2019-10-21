@@ -1,0 +1,9 @@
+.vipprice {
+    background: linear-gradient(to right,#ffeea2,#ffe689);
+    color: #964c00;
+    font-size: 20rpx;
+    padding: 2rpx 8rpx;
+    border-radius: 6rpx;
+    font-weight: bold;
+    margin-right: 10rpx;
+}

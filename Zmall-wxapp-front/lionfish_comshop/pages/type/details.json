@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "i-new-auth": "../../components/new-auth/index",
+        "sku": "../../components/sku/index",
+        "i-cart-btn": "../../components/cartBtn/index",
+        "i-aside-btn": "../../components/asideBtn/index",
+        "i-load-more": "../../components/load-more/index",
+        "i-rush-spu": "../../components/rush-spu-col/index"
+    }
+}

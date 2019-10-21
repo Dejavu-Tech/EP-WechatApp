@@ -1,0 +1,22 @@
+<view>
+    <view class="order-status">
+        <view>申请时间：{{item.createTime}}</view>
+        <view class="{{item.returnOrderStatus===1?'status-color-pink':'status-color-gray'}}">{{item.returnOrderStatusName}}</view>
+    </view>
+    <view class="spu">
+        <view>
+            <i-img defaultImage="../images/placeholder-refund.png" height="60" iClass="sku-img" isLazy="true" loadImage="{{item.skuImage}}" width="60"></i-img>
+        </view>
+        <view class="spu-info">
+            <view class="sku-name">{{item.skuName}}</view>
+            <view class="desc">数量：{{item.skuCount}} 规格：{{item.skuDesc}}</view>
+            <view class="bottom">
+                <view class="amount">￥{{item.orderSkuPayAmount?item.orderSkuPayAmount/100:0}}</view>
+                <view>
+                    <text bindtap="cancelApplication" class="link-btn" data-returnorderno="{{item.returnOrderNo}}" wx:if="{{item.returnOrderStatus==1}}">撤销申请</text>
+                    <text bindtap="goOrderDetail" class="link-btn" data-returnorderno="{{item.returnOrderNo}}">查看详情</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,35 @@
+<view class="wrap">
+    <view class="swipe" wx:if="{{poster}}">
+        <image bindload="imageLoad" bindtap="prevImg" class="banner-img" data-src="{{poster}}" mode="widthFix" src="{{poster}}"></image>
+    </view>
+    <i-fixed-bottom>
+        <view class="share-foot">
+            <view class="share-tip" wx:if="{{need_num_update>0&&!(member_info.comsiss_flag==1&&member_info.comsiss_state==1)}}">再邀请<text class="tot">{{need_num_update}}</text>位新粉丝可升级为{{commiss_diy_name}}</view>
+            <view class="foot-btn i-flex">
+                <button bindtap="toggleShare" class="i-flex-item" type="warn">分享</button>
+            </view>
+        </view>
+    </i-fixed-bottom>
+</view>
+<view bindtap="toggleShare" class="ui-mask" hidden="{{is_share_html}}"></view>
+<view class="model-services show" hidden="{{is_share_html}}">
+    <view class="model-services-title">分享</view>
+    <view class="model-services-content">
+        <view class="service-list">
+            <view class="service-item">
+                <button class="none_btn" openType="share" plain="true">
+                    <text class="iconfont icon-weixin2 service-icon"></text>
+                    <view class="cube-text">
+                        <text>好友</text>
+                    </view>
+                </button>
+            </view>
+            <navigator class="service-item" url="/lionfish_comshop/pages/index/share?type=commiss">
+                <text class="iconfont icon-pengyouquan service-icon"></text>
+                <view class="cube-text">
+                    <text>海报</text>
+                </view>
+            </navigator>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "专题列表",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "i-new-auth": "../../components/new-auth/index",
+        "i-sku": "../../components/sku/index",
+        "i-img": "../../components/img/index",
+        "i-button": "../../components/button/index",
+        "i-router-link": "../../components/router-link/router-link"
+    }
+}

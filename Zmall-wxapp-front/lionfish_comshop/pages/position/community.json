@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+        "i-auth": "../../components/auth/index",
+        "i-router-link": "../../components/router-link/router-link",
+        "i-load-more": "../../components/load-more/index",
+        "i-community-item": "../../components/community-item/index"
+    }
+}

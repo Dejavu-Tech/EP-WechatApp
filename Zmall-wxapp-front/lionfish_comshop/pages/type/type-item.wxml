@@ -1,0 +1,42 @@
+<form bindsubmit="submit2" reportSubmit="true">
+    <button hidden formType="submit" id="formId"></button>
+</form>
+<label class="spu" for="formId">
+    <i-router-link routerClass="spu-content" url="/lionfish_comshop/pages/goods/goodsDetail?&id={{spuItem.actId}}">
+        <view class="item-left">
+            <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="170" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.skuImage}}" width="170"></i-img>
+            <view class="tag" wx:if="{{reduction.is_open_fullreduction==1&&spuItem.is_take_fullreduction==1}}">满{{reduction.full_money}}减{{reduction.full_reducemoney}}</view>
+        </view>
+        <view class="item-right">
+            <view class="item-right-top">
+                <view class="spu-title">
+                    <span>{{spuItem.spuName}}</span>
+                </view>
+                <view class="spu-desc" wx:if="{{spuItem.spuDescribe}}">
+                    <em>{{spuItem.spuDescribe}}</em>
+                </view>
+                <i-vip-price price="{{spuItem.card_price}}" wx:if="{{is_open_vipcard_buy==1&&spuItem.is_take_vipcard==1}}"></i-vip-price>
+            </view>
+            <view class="spu-price">
+                <view class="sale-price">
+                    <span>¥{{spuItem.actPrice[0]}}</span>.{{spuItem.actPrice[1]}}
+        </view>
+                <view class="market-price">¥{{spuItem.marketPrice[0]}}.{{spuItem.marketPrice[1]}}</view>
+            </view>
+        </view>
+        <block wx:if="{{!isPast}}">
+            <block wx:if="{{number<=0}}">
+                <i-button iClass="add-cart" wx:if="{{disabled||spuItem.spuCanBuyNum==0||actEnd}}">
+                    <image src="../../images/icon-add-shopCart-disabled.png"></image>
+                </i-button>
+                <i-button bind:click="openSku" iClass="add-cart" wx:else>
+                    <image src="../../images/icon-add-shopCart.png"></image>
+                </i-button>
+            </block>
+            <i-input-number addImage="../../images/icon-add-2.png" bind:change="changeNumber" bind:outOfMax="outOfMax" iClass="index-input-number" iClassNumberText="input-number-text" max="{{spuItem.spuCanBuyNum}}" min="0" reduceImage="../../images/icon-reduce-2.png" value="{{number}}" wx:else></i-input-number>
+        </block>
+        <view class="mask" wx:if="{{isPast||disabled||spuItem.spuCanBuyNum==0?'disabled':''}}"></view>
+        <view class="act-end act-out" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+        <view class="act-end" wx:elif="{{actEnd}}">团购已结束</view>
+    </i-router-link>
+</label>

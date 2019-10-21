@@ -1,0 +1,4 @@
+<view class="i-class orderNotify {{hide?'ani-out':'ani-in'}}" wx:if="{{userInfo}}">
+    <image class="orderNotifyAvatar" src="{{userInfo.avatar}}"></image>
+    <text class="orderNotifyName">{{userInfo.username}}</text>刚刚下单啦
+</view>

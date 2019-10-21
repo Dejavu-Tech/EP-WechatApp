@@ -1,0 +1,4 @@
+<view class="share-box">
+    <view class="tip">点击图片预览，长按保存图片，发送至群。</view>
+    <image bindtap="preImg" class="img" data-src="{{goodShareImg}}" mode="widthFix" src="{{goodShareImg}}"></image>
+</view>

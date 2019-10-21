@@ -1,0 +1,40 @@
+@import "../../../wuBaseWxss/0.wxss";
+
+.cart-btn {
+    position: fixed;
+    right: 30rpx;
+    bottom: 40%;
+    z-index: 100;
+}
+
+.cart-btn .icon {
+    position: relative;
+    width: 80rpx;
+    height: 80rpx;
+    margin-bottom: 20rpx;
+    background: rgba(0,0,0,0.5);
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 20rpx;
+    padding: 10rpx;
+}
+
+.cart-btn .btn.icon {
+    line-height: 1.2;
+    z-index: 100;
+}
+
+.cart-btn .iconfont {
+    font-size: 30rpx;
+    color: #fff;
+}
+
+.cart-btn .none-btn.icon .iconfont {
+    font-size: 35rpx;
+}
+
+.cart-btn .none-btn.icon .name {
+    margin-top: -3rpx;
+}

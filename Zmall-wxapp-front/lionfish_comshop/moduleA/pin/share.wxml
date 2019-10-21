@@ -1,0 +1,149 @@
+<view class="pinBox">
+    <view class="pinStatus bg-f mb10" wx:if="{{pin_info.state==1}}">
+        <view class="title">
+            <text class="iconfont icon-gou"></text> 拼团成功</view>
+        <view class="tip" wx:if="{{is_me==1}}">
+            <block wx:if="{{order_type!='ignore'}}">
+        已成功下单，可在会员中心
+        <text bindtap="goLink" data-link="/lionfish_comshop/pages/order/order?id={{order_id}}">查看订单</text>
+            </block>
+        </view>
+        <view class="tip" wx:else>团长人气太高，已拼团成功啦</view>
+    </view>
+    <view class="goodsInfo">
+        <text class="iconfont icon-pintuanzhong" wx:if="{{pin_info.state==0}}"></text>
+        <text class="iconfont icon-pintuanchenggong" wx:elif="{{pin_info.state==1}}"></text>
+        <text class="iconfont icon-pintuanshibai" wx:elif="{{pin_info.state==2}}"></text>
+        <i-goods-info goodsInfo="{{goods_info}}"></i-goods-info>
+    </view>
+    <view class="pinMember bg-f mb10">
+        <view class="status">
+            <block wx:if="{{pin_info.state==0}}">
+                <view class="title">仅剩
+          <text class="red">{{surplus}}</text>个名额，团满即可拼团成功</view>
+                <view class="time">
+                    <i-count-down countdownClass="count-down" itemClass="item-time" showDay="{{false}}" target="{{seconds}}">
+                        <span class="count-down-left-text">仅剩</span>
+                    </i-count-down>
+                </view>
+            </block>
+            <block wx:elif="{{pin_info.state==2}}">
+                <view class="failTit red">该团未能按时凑齐人数，拼团失败</view>
+                <view class="tip">退款金额将原路返回</view>
+            </block>
+        </view>
+        <view class="pinMemberList">
+            <view class="item" wx:for="{{pin_order_arr}}" wx:key="{{index}}">
+                <i-img defaultImage="../../images/placeholder-refund.png" height="200" iClass="avatar" loadImage="{{item.avatar}}" width="180"></i-img>
+                <text class="name" wx:if="{{index==0}}">团长</text>
+            </view>
+            <view class="item" wx:for="{{pin_info.need_count-pin_order_arr.length}}" wx:key="{{index}}">
+                <text class="iconfont icon-wenhao avatar"></text>
+            </view>
+        </view>
+        <block wx:if="{{pin_info.state==0}}">
+            <view bindtap="openSku" class="btn" wx:if="{{me_take_in==0}}">我要参团</view>
+            <button class="btn" openType="share" wx:elif="{{me_take_in==1}}">邀请好友参团</button>
+        </block>
+        <block wx:if="{{pin_info.state==1&&is_me==1}}">
+            <view bindtap="goLink" class="btn" data-link="/lionfish_comshop/moduleA/pin/index" wx:if="{{order_type=='ignore'}}">查看更多拼团商品</view>
+            <view bindtap="goLink" class="btn" data-link="/lionfish_comshop/pages/order/order?id={{order_id}}" wx:else>查看订单详情</view>
+        </block>
+        <view bindtap="goLink" class="btn" data-link="/lionfish_comshop/moduleA/pin/index" wx:if="{{pin_info.state==1&&is_me==0}}">查看更多拼团商品</view>
+        <view bindtap="goLink" class="btn" data-link="/lionfish_comshop/moduleA/pin/index" wx:if="{{pin_info.state==2}}">查看更多拼团商品</view>
+    </view>
+    <view bindtap="goLink" class="pinIntro bg-f" data-link="/lionfish_comshop/moduleA/pin/rule">
+        <view class="i-flex i-flex-spb pinIntro-top">
+            <view class="pinIntro-title">拼团玩法</view>
+            <view class="">查看规则<text class="iconfont icon-youjiantou"></text>
+            </view>
+        </view>
+        <view class="i-flex i-flex-spb pinIntro-bot">
+            <view class="rule-item">
+                <view class="step">1</view>
+                <view class="p">支付开团</view>
+                <view class="p">参团</view>
+            </view>
+            <view class="rule-item">
+                <view class="step">2</view>
+                <view class="p">邀请用户</view>
+                <view class="p">参团</view>
+            </view>
+            <view class="rule-item">
+                <view class="step">3</view>
+                <view class="p">拼团成功</view>
+                <view class="p">按时送达</view>
+            </view>
+            <view class="rule-item">
+                <view class="step">4</view>
+                <view class="p">逾期未成</view>
+                <view class="p">团退款</view>
+            </view>
+        </view>
+    </view>
+    <view class="guessLike" wx:if="{{is_show_order_guess_like==1&&likeList.length}}">
+        <view class="guessLikeTitle">——猜你喜欢——</view>
+        <view class="bg-f">
+            <i-spu class="item" reduction="{{reduction}}" spuItem="{{item}}" wx:for="{{likeList}}" wx:key="{{item.actId}}"></i-spu>
+        </view>
+    </view>
+</view>
+<i-aside-btn showHome="{{true}}"></i-aside-btn>
+<view bindtap="closeSku" class="mask" hidden="{{!visible}}"></view>
+<view bind:cancel="close" class="sku-content" hidden="{{!visible}}" scrollUp="{{true}}">
+    <view class="sku-card">
+        <view bindtap="closeSku" class="close">
+            <image src="../../images/icon-sku-close.png"></image>
+        </view>
+        <view class="sku-header">
+            <image class="sku-img" src="{{cur_sku_arr.skuImage}}" style="width:80px;height:80px;"></image>
+            <view class="sku-desc">
+                <view class="sku-title">
+                    <span>{{cur_sku_arr.spuName}}</span>
+                </view>
+                <view class="sku-price">
+                    <view class="sale-price" wx:if="{{buy_type=='pindan'}}">
+            ¥
+            <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
+          </view>
+                    <view class="sale-price" wx:if="{{buy_type=='pintuan'}}">
+            ¥
+            <span>{{cur_sku_arr.pinprice[0]}}</span>.{{cur_sku_arr.pinprice[1]}}
+          </view>
+                    <view class="market-price">¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</view>
+                </view>
+                <view class="sku-switch-on" wx:if="{{cur_sku_arr.spec}}">已选择：{{cur_sku_arr.spec}}</view>
+            </view>
+        </view>
+        <view class="sku-spec" wx:for="{{skuList.list}}" wx:key="{{index}}">
+            <view class="title">{{item.name}}</view>
+            <view class="spec-list">
+                <span bindtap="selectSku" class="{{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-idx="{{idx}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for="{{item.option_value}}" wx:for-index="idx" wx:for-item="value" wx:key="{{idx}}">{{value.name}}</span>
+            </view>
+        </view>
+        <view class="sku-num-content">
+            <view class="title">数量</view>
+            <view class="i-class i-input-number i-input-number-size-{{size}}">
+                <view bindtap="setNum" class="i-input-number-minus {{value<=min?'i-input-number-disabled':''}}" data-type="decrease">
+                    <image src="../../images/icon-input-reduce.png"></image>
+                </view>
+                <input bindblur="handleBlur" bindfocus="handleFocus" class="i-input-number-text {{min>=max?'i-input-number-disabled':''}}" disabled="true" type="number" value="{{sku_val}}"></input>
+                <view bindtap="setNum" class="i-input-number-plus {{value>=max?'i-input-number-disabled':''}}" data-type="add">
+                    <image src="../../images/icon-input-add.png"></image>
+                </view>
+            </view>
+            <view class="msg" wx:if="{{skuList[current].isLimit}}">
+                <span wx:if="{{skuList[current].limitMemberNum>-1}}">每人限{{skuList[current].limitMemberNum}}单</span>
+                <span wx:if="{{skuList[current].limitOrderNum>-1}}">每单限{{skuList[current].limitOrderNum}}份</span>
+                <span></span>
+            </view>
+            <view class="even-num" wx:elif="{{!skuList[current].isLimit&&skuList[current].canBuyNum-value<=10&&skuList[current].canBuyNum-value>-1}}">还可以购买 {{skuList[current].canBuyNum-value}} 件</view>
+        </view>
+        <form bindsubmit="gocarfrom" reportSubmit="true">
+            <button class="sku-confirm" disabled="{{cur_sku_arr.stock==0?true:false}}" formType="submit">
+                <view>{{cur_sku_arr.stock==0?'已抢光':'确定'}}</view>
+            </button>
+        </form>
+    </view>
+</view>
+<i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" navBackUrl="{{navBackUrl}}" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>

@@ -1,0 +1,4 @@
+<view class="i-class img-content">
+    <image class="i-class img-def" src="{{defaultImage}}"></image>
+    <image binderror="bindError" bindload="imageLoad" bindtap="preview" class="i-class img-def opacity {{isLoad?'show-img':''}}" lazyLoad="{{isLazy}}" mode="aspectFill" src="{{img}}"></image>
+</view>

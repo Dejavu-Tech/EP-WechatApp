@@ -1,0 +1,70 @@
+<view class="wrapper">
+    <view class="zr">
+        <view class="top_box">
+            <view class="total">
+                <view class="total-title">总收入</view>
+                <view class="total-money">{{distributeInfo.total_money}}</view>
+                <navigator class="qrcode" hoverClass="none" url="/lionfish_comshop/pages/groupCenter/recommend">推荐二维码</navigator>
+            </view>
+            <view class="three">
+                <view class="three-item">
+                    <view class="three-title">待确认</view>
+                    <view class="three-money">{{distributeInfo.wait_money}}</view>
+                </view>
+                <view class="three-item">
+                    <view class="three-title">已确认</view>
+                    <view class="three-money">{{distributeInfo.success_money}}</view>
+                </view>
+                <navigator class="three-item" hoverClass="none" url="/lionfish_comshop/pages/groupCenter/headlist?level={{distributeInfo.open_community_head_leve}}">
+                    <view class="three-title">{{groupInfo.owner_name}}数量<image class="rightArrowImg" src="../../images/icon-index-right-arrow.png"></image>
+                    </view>
+                    <view class="three-money" wx:if="{{distributeInfo.open_community_head_leve==1}}">{{distributeInfo.level_count1}}</view>
+                    <view class="three-money" wx:elif="{{distributeInfo.open_community_head_leve==2}}">{{distributeInfo.level_count2}}</view>
+                    <view class="three-money" wx:elif="{{distributeInfo.open_community_head_leve==3}}">{{distributeInfo.level_count3}}</view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="list">
+        <view class="list-title">佣金明细</view>
+        <view class="list-contet" wx:if="{{list.length}}">
+            <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
+                <view class="distributionNum">
+                    <text class="distributionTime">{{item.order_num_alias}}</text>
+                    <text class="statusName">{{stateName[item.state]}}</text>
+                </view>
+                <view class="details">
+                    <view class="details-item">
+                        <view class="ll-title">类型</view>
+                        <view class="ll-title">{{typeName[item.type]}}</view>
+                    </view>
+                    <view class="details-item" wx:if="{{item.type!='tuijian'}}">
+                        <view class="ll-title">{{commiss_diy_name}}等级</view>
+                        <view class="ll-title">{{item.level}}级</view>
+                    </view>
+                    <view class="details-item" wx:if="{{item.type!='tuijian'}}">
+                        <view class="ll-title">订单状态</view>
+                        <view class="ll-title">{{item.order_status}}</view>
+                    </view>
+                    <view class="details-item">
+                        <view class="ll-title">下级团长名称</view>
+                        <view class="ll-title">{{item.child_head_name}}</view>
+                    </view>
+                    <view class="details-item">
+                        <view class="ll-title">下级团长社区名称</view>
+                        <view class="ll-title">{{item.community_name}}</view>
+                    </view>
+                </view>
+                <view class="distributionCommision">
+                    <text class="distributionTime">{{item.addtime}}</text>
+                    <text class="totalCommision">奖励金额: ￥{{item.money}}</text>
+                </view>
+            </view>
+            <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+        </view>
+        <view class="noDistributionList" wx:if="{{noData===1}}">
+            <image class="noDistributionListImg" src="../../images/noData.png"></image>
+            <view class="noDistributionListTit">暂无任何明细记录</view>
+        </view>
+    </view>
+</view>

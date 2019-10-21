@@ -1,0 +1,59 @@
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+    <view>
+        <view class="groupDetail">
+            <view class="goodsDetail">
+                <view class="goods-info" wx:if="{{order.order_info.delivery!='pickup'}}">
+                    <i-order-info-express order="{{order}}" showNickname="{{true}}"></i-order-info-express>
+                </view>
+                <view class="goods-info" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
+                    <i-goods-info order="{{order}}" showNickname="{{true}}"></i-goods-info>
+                </view>
+            </view>
+            <view class="goodsDetail">
+                <view class="title">
+                    <span>商品详情</span>
+                    <span class="{{order.order_status_info.name=='已完成'?'black':''}}">{{order.order_status_info.name}}</span>
+                </view>
+                <view wx:for="{{order.order_goods_list}}" wx:for-item="goodsInfo" wx:key="key">
+                    <view class="goodsList">
+                        <i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="60" iClass="img-class" loadImage="{{goodsInfo.image}}" width="60"></i-img>
+                        <view class="goos-item">
+                            <view class="goodsTitle">{{goodsInfo.name}}</view>
+                            <view class="attribute">
+                                <span>
+                                    <block wx:if="{{goodsInfo.option_str}}">规格：{{goodsInfo.option_str}} </block>数量：{{goodsInfo.quantity}}</span>
+                            </view>
+                            <view class="attribute">
+                                <view class="price-text">￥{{goodsInfo.price}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+                <view class="end">
+                    <span>佣金合计：
+            <text>￥{{commision}}</text>
+                    </span>
+                    <span>共计 {{order.goods_count?order.goods_count:0}} 件商品</span>
+                </view>
+            </view>
+            <view class="orderComment">
+                <i-orderComment comment="{{order.order_info.comment}}" wx:if="{{order.order_info.comment}}"></i-orderComment>
+            </view>
+            <view class="orderInfor">
+                <view class="for-title">团单信息</view>
+                <view class="for-content">
+                    <view>
+                        <span>团单编号：</span>{{order.order_info.order_num_alias}}</view>
+                    <view wx:if="{{order.order_info.date_added&&order.order_info.date_added!='1970-01-01 08:00:00'}}">
+                        <span>团单日期：</span>{{order.order_info.date_added}}</view>
+                    <view wx:if="{{order.order_info.pay_time>0}}">
+                        <span>支付时间：</span>{{order.order_info.pay_date}}</view>
+                    <view wx:if="{{order.order_info.express_tuanz_date}}">
+                        <span>送达时间：</span>{{order.order_info.express_tuanz_date}}</view>
+                    <view wx:if="{{order.order_info.receive_time}}">
+                        <span>收货时间：</span>{{order.order_info.receive_date}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+</i-auth>

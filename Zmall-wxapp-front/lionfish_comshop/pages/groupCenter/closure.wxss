@@ -1,0 +1,64 @@
+.list {
+    padding: 30rpx;
+    background-color: #fff;
+}
+
+.list .item {
+    display: flex;
+    justify-content: space-between;
+    line-height: 100rpx;
+    border-bottom: 2rpx solid #ececec;
+}
+
+.list .item .avatar {
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.list .item text {
+    display: inline-block;
+    line-height: 50rpx;
+}
+
+.list .item .num {
+    font-weight: bold;
+    color: #ff5344;
+}
+
+.add-btn {
+    text-align: center;
+    padding: 10rpx 0;
+    background-color: #fff;
+}
+
+.add-btn .btn {
+    border-bottom: 1px solid #ececec;
+    border-top: 1px solid #ececec;
+    border-radius: 5px;
+    margin: 30rpx;
+    padding: 30rpx 0;
+    color: #000;
+}
+
+.noDistributionList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 100rpx 0;
+}
+
+.noDistributionList .noDistributionListImg {
+    width: 218rpx;
+    height: 218rpx;
+    margin-bottom: 32rpx;
+}
+
+.noDistributionList .noDistributionListTit {
+    font-size: 30rpx;
+    color: #666;
+    line-height: 30rpx;
+}

@@ -1,0 +1,45 @@
+<view class="content">
+    <view class="order-status">
+        <view class="user-info">
+            <image src="{{order.order_info.avatar}}"></image>
+            <span>我付款了，团长请接单！</span>
+        </view>
+    </view>
+    <view class="goods-info" wx:if="{{order.order_info.delivery!='pickup'}}">
+        <i-order-info-express order="{{order}}"></i-order-info-express>
+    </view>
+    <view class="goods-info" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
+        <i-goods-info order="{{order}}"></i-goods-info>
+    </view>
+    <view class="goods-card">
+        <i-card>
+            <view class="header" slot="header">商品详情</view>
+            <view class="middle" slot="content">
+                <block wx:for="{{order.order_goods_list}}" wx:for-item="goodsInfo" wx:key="{{ index }}">
+                    <view class="middle-line"></view>
+                    <view class="each-item">
+                        <view style="margin-right: 10px">
+                            <image class="show-img" height="60" src="{{goodsInfo.image}}" width="60"></image>
+                        </view>
+                        <view style="flex-grow: 1 ">
+                            <view class="name bold-text">{{goodsInfo.name}}</view>
+                            <view class="mount">
+                                <block wx:if="{{goodsInfo.option_str}}">规格：{{goodsInfo.option_str}} </block>数量：{{goodsInfo.quantity}}</view>
+                            <view class="bottom-info">
+                                <view class="bold-text">￥{{goodsInfo.price}}</view>
+                            </view>
+                            <view class="card-btn">
+                                <view bindtap="goGoodsDetails" class="btn-3 mar-left-8" data-id="{{goodsInfo.goods_id}}">我也买</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+            <view slot="footer"></view>
+        </i-card>
+    </view>
+    <view class="order-info">
+        <i-order-info orderInfo="{{order.order_info}}"></i-order-info>
+    </view>
+    <i-aside-btn showHome="{{true}}"></i-aside-btn>
+</view>

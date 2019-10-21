@@ -1,0 +1,7 @@
+{
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "i-new-auth": "../../components/new-auth/index"
+    }
+}

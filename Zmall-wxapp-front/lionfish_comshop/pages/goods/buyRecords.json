@@ -1,0 +1,14 @@
+{
+    "navigationBarBackgroundColor": "#FFF",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "购买记录",
+    "usingComponents": {
+        "i-new-auth": "../../components/new-auth/index",
+        "i-share-spu": "../../components/share-spu/index",
+        "i-card": "../../components/card/index",
+        "i-img": "../../components/img/index",
+        "i-load-more": "../../components/load-more/index",
+        "i-goods-bar": "../../components/goods-bar/index",
+        "i-sku": "../../components/sku/index"
+    }
+}

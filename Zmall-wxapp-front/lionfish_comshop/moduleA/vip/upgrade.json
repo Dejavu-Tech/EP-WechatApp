@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "vip会员中心",
+    "usingComponents": {
+        "i-router-link": "../../components/router-link/router-link",
+        "i-img": "../../components/img/index"
+    }
+}

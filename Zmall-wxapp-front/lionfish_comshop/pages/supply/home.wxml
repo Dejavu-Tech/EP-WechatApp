@@ -1,0 +1,29 @@
+<view class="special">
+    <image class="topic-img" mode="aspectFill" src="{{info.banner}}" wx:if="{{info.banner}}"></image>
+    <view class="like">
+        <view class="like-list" wx:if="{{list.length}}">
+            <i-router-link routerClass="new-comers-item" url="/lionfish_comshop/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="{{index}}">
+                <i-img defaultImage="../../images/placeholder-refund.png" height="200" iClass="new-img" loadImage="{{item.skuImage}}" width="180"></i-img>
+                <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+                <view class="title">{{item.spuName}}</view>
+                <view class="new-bot">
+                    <view class="price">¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+                    <block wx:if="{{item.car_count<=0}}">
+                        <i-button iClass="add-cart disabled" wx:if="{{disabled||item.spuCanBuyNum==0}}">已抢光</i-button>
+                        <i-button bind:click="openSku" data-idx="{{index}}" iClass="add-cart" wx:else>立即抢购</i-button>
+                    </block>
+                    <i-input-number addImage="../../images/icon-add-2.png" bind:change="changeNumber" bind:outOfMax="outOfMax" iClass="index-input-number" iClassNumberText="input-number-text" idx="{{index}}" max="{{item.spuCanBuyNum}}" min="0" reduceImage="../../images/icon-reduce-2.png" value="{{item.car_count}}" wx:else></i-input-number>
+                </view>
+            </i-router-link>
+        </view>
+        <view class="none-rush-list" wx:if="{{noData}}">
+            <image class="img-block" src="../../images/icon-index-empty.png"></image>
+            <view class="h1">暂时没有团购</view>
+            <view class="h2">我们正在为您准备更优惠的团购</view>
+        </view>
+    </view>
+    <i-aside-btn showHome="{{true}}" showShare="{{true}}"></i-aside-btn>
+    <i-cart-btn cartNum="{{cartNum}}" showHome="{{true}}"></i-cart-btn>
+</view>
+<i-new-auth bind:authSuccess="authSuccess" bind:cancel="authModal" navBackUrl="{{navBackUrl}}" needAuth="{{needAuth&&showAuthModal}}"></i-new-auth>
+<sku bind:cancel="closeSku" bind:changeCartNum="changeCartNum" cur_sku_arr="{{cur_sku_arr}}" goodsid="{{addCar_goodsid}}" sku="{{sku}}" skuList="{{skuList}}" sku_val="{{sku_val}}" visible="{{visible}}"></sku>

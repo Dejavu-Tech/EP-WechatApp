@@ -1,0 +1,13 @@
+<view wx:if="{{item.data}}">
+    <view class="fui-cell-group fui-cell-click" style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.margintop?'margin-top:'+item.style.margintop/2+'px;':''}}">
+        <view class="fui-cell" wx:for="{{item.data}}" wx:for-index="idx" wx:for-item="items" wx:key="menu">
+            <view class="fui-cell-icon" wx:if="{{items.iconclass}}">
+                <view class="icox {{items.iconclass}}"></view>
+            </view>
+            <view class="fui-cell-text" style="{{item.style.textcolor?'color:'+item.style.textcolor+';':''}}">{{items.text}}</view>
+            <navigator url="{{items.linkurl}}">
+                <view class="fui-cell-remark" style="{{item.style.remarkcolor?'color:'+item.style.remarkcolor+';':''}}">{{items.remark}}</view>
+            </navigator>
+        </view>
+    </view>
+</view>

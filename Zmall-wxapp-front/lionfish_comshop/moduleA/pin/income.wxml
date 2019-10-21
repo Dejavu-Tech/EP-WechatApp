@@ -1,0 +1,73 @@
+<view class="wrap">
+    <view class="zr">
+        <view class="top_box">
+            <view class="i-flex i-flex-spb top_box_head">
+                <view></view>
+                <navigator class="tx-btn" hoverClass="none" url="/lionfish_comshop/moduleA/pin/exchargeRecord">提现记录</navigator>
+            </view>
+            <view class="total">
+                <view class="total-title">可提现（元）</view>
+                <view class="total-money">{{info.money}}
+          <navigator class="qrcode" hoverClass="none" url="/lionfish_comshop/moduleA/pin/excharge">提现</navigator>
+                </view>
+            </view>
+            <view class="three">
+                <view class="three-item">
+                    <view class="three-title">待结算</view>
+                    <view class="three-money">{{info.wait_statements_money}}</view>
+                </view>
+                <view class="three-item">
+                    <view class="three-title">已结算</view>
+                    <view class="three-money">{{info.has_statements_money}}</view>
+                </view>
+                <view class="three-item">
+                    <view class="three-title">已提现</view>
+                    <view class="three-money">{{info.getmoney}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="distributionList">
+        <view class="nav">
+            <view bindtap="switchNav" class="orderList_item {{currentTab==index?'on':''}}" data-current="{{index}}" wx:for="{{navList}}" wx:key="{{index}}">{{item.name}}</view>
+        </view>
+        <view class="list">
+            <view class="noRecordCon" wx:if="{{noData==1}}">
+                <image class="noRecordImg" src="../../images/noRecord.png"></image>
+                <view class="noRecord">还没有记录 快去分享吧～</view>
+            </view>
+            <block wx:else>
+                <view class="list-item" wx:for="{{list}}" wx:key="{{index}}">
+                    <view class="item-head">
+                        <view class="time"></view>
+                        <view class="status">{{stateArr[item.state]}}</view>
+                    </view>
+                    <view class="spu">
+                        <i-goods-info goodsInfo="{{item}}" iClass="goodsInfo" iClassIdentity="identity" isOrder="{{true}}" me_is_head="true"></i-goods-info>
+                    </view>
+                    <view class="line">
+                        <view class="line-tit">订单编号</view>
+                        <view>{{item.order_num_alias}}</view>
+                    </view>
+                    <view class="line">
+                        <view class="line-tit">订单状态</view>
+                        <view>{{item.status_name}}</view>
+                    </view>
+                    <view class="line">
+                        <view class="line-tit">下单会员</view>
+                        <view>{{item.uname}}</view>
+                    </view>
+                    <view class="line">
+                        <view class="line-tit">订单时间</view>
+                        <view>{{item.date_added}}</view>
+                    </view>
+                    <view class="line">
+                        <view class="line-tit">预估佣金</view>
+                        <view>{{item.money}}</view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{loadMore}}"></i-load-more>
+    </view>
+</view>

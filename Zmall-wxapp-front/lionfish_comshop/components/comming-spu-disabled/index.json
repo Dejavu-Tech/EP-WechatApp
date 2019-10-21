@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "i-img": "../img/index",
+        "i-router-link": "../router-link/router-link"
+    }
+}

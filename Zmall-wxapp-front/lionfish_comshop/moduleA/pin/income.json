@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "拼团收益",
+    "navigationBarBackgroundColor": "#ff5344",
+    "usingComponents": {
+        "i-goods-info": "../components/pinGoodsInfo"
+    }
+}
