@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "团长",
-    "usingComponents": {
-        "i-aside-btn": "../../components/asideBtn/index"
-    }
-}

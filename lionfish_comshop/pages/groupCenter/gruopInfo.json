@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "#FE8464",
-    "usingComponents": {
-        "i-load-more": "../../components/load-more/index"
-    }
-}

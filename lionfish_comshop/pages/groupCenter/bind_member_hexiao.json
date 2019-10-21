@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "员工信息",
-    "usingComponents": {
-        "i-auth": "../../components/auth/index"
-    }
-}

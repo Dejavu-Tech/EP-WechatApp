@@ -1,6 +1,0 @@
-{
-    "usingComponents": {
-        "i-choose-image": "../../components/chooseImage/index",
-        "component-choose-image": "../../components/choose-image/index"
-    }
-}

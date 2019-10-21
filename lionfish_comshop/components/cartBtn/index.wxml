@@ -1,5 +1,0 @@
-<view bindtap="goCart" class="cart">
-    <image class="img" src="../../images/icon-tab-shop.png"></image>
-    <text>购物车</text>
-    <text class="num" wx:if="{{cartNum>0}}">{{cartNum}}</text>
-</view>
