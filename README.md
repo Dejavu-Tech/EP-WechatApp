@@ -225,7 +225,7 @@
 > 欢迎捐赠吃货星球系统，您的支持是作者开发的动力！
 
 <td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxpay.png" width="200px"/></td>
-<td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/alipay.png" width="200px"/></td> 
+<td><img src="http://pzvxl42tq.bkt.clouddn.com/alipay.png" width="200px"/></td> 
 
 
 ## 商用获取及授权
