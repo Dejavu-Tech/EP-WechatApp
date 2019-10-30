@@ -1,4 +1,4 @@
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/logo.jpg" width="80px" align="left"/>  
+<img src="https://image.ch871.com/logo.jpg" width="80px" align="left"/>  
 
 # 蒂佳芙科技-Zmall吃货星球项目仓库
 ## 区域化电商团购商城H5/微信小程序/支付宝小程序/APP/公众号  统一后台多端项目
@@ -13,7 +13,7 @@
 > 基于SOA架构的分布式前后端分离，一后台多前端电商系统
 
 > 运行于微擎或独立版后端商城管理系统
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/intro.png"  align="left"/>  
+<img src="https://image.ch871.com/intro.png"  align="left"/>  
 
 ### 系统功能
 
@@ -64,7 +64,7 @@
 > 测试网址Demo：http://wxapp.dejavu871.com
 - 微信小程序（v1.7.5）已正式运营
 > 微信扫码可体验：
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/value_img1_pc.png" width="300px"/> 
+<img src="https://image.ch871.com/value_img1_pc.png" width="300px"/> 
 
 ### 项目宣传视频
 - 霸气妖吃货星球微信小程序 [点我观看](https://www.bilibili.com/video/av69788389/)
@@ -72,15 +72,15 @@
 ### 项目截图
 - 商城管理系统前台
 
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/master0.png" />  
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/master1.png" />  
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/master2.png" />  
+<img src="https://image.ch871.com/master0.png" />  
+<img src="https://image.ch871.com/master1.png" />  
+<img src="https://image.ch871.com/master2.png" />  
 
 - 微信小程序
 
-   <td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxapp0.png" width="280px"/></td>
-   <td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxapp1.png" width="280px"/></td> 
-   <td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxapp2.png" width="280px"/></td>
+   <td><img src="https://image.ch871.com/wxapp0.png" width="280px"/></td>
+   <td><img src="https://image.ch871.com/wxapp1.png" width="280px"/></td> 
+   <td><img src="https://image.ch871.com/wxapp2.png" width="280px"/></td>
 
 
 ## 技术选型
@@ -224,8 +224,8 @@
 ## 捐赠
 > 欢迎捐赠吃货星球系统，您的支持是作者开发的动力！
 
-<td><img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxpay.png" width="200px"/></td>
-<td><img src="http://pzvxl42tq.bkt.clouddn.com/alipay.png" width="200px"/></td> 
+<td><img src="https://image.ch871.com/wxpay.png" width="200px"/></td>
+<td><img src="https://image.ch871.com/alipay.png" width="200px"/></td> 
 
 
 ## 商用获取及授权
@@ -237,7 +237,7 @@
 
 关注公众号可第一时间获取更新文档和商业运营信息
 
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/wxgzh.jpg" width="200px"/>
+<img src="https://image.ch871.com/wxgzh.jpg" width="200px"/>
 
 ## 许可证
 
@@ -245,6 +245,6 @@
 
 ## 版权所有
 
-<img src="https://github.com/zhrrobert/dejavu/blob/master/images/company.png" width="28px" align="left"/> 
+<img src="https://image.ch871.com/company.png" width="28px" align="left"/> 
 
 Copyright © 2019 Dejavu Technology (YN) Co., Ltd. [http://www.dejavu871.com](http://www.dejavu871.com)
