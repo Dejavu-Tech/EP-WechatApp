@@ -3,21 +3,21 @@
 # 蒂佳芙科技-Zmall吃货星球项目仓库
 ## 区域化电商团购商城H5/微信小程序/支付宝小程序/APP/公众号  统一后台多端项目
 [![](https://img.shields.io/badge/Author-Albert.Z-blue.svg)](http://www.dejavu871.com)
-[![](https://img.shields.io/badge/version-1.7.5-brightgreen)](https://github.com/zhrrobert/dejavu)
-[![AUR](https://img.shields.io/badge/GPL-v3-red)](https://github.com/zhrrobert/dejavu/blob/master/License)
-[![GitHub stars](https://img.shields.io/github/stars/zhrrobert/dejavu.svg?style=social&label=Stars)](https://github.com/zhrrobert/dejavu)
-[![GitHub forks](https://img.shields.io/github/forks/zhrrobert/dejavu.svg?style=social&label=Fork)](https://github.com/zhrrobert/dejavu)
+[![](https://img.shields.io/badge/version-4.0.0-brightgreen)](https://github.com/Dejavu-Tech/EP-WechatApp)
+[![AUR](https://img.shields.io/badge/GPL-v3-red)](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/License)
+[![GitHub stars](https://img.shields.io/github/stars/Dejavu-Tech/EP-WechatApp.svg?style=social&label=Stars)](https://github.com/Dejavu-Tech/EP-WechatApp)
+[![GitHub forks](https://img.shields.io/github/forks/Dejavu-Tech/EP-WechatApp.svg?style=social&label=Fork)](https://github.com/Dejavu-Tech/EP-WechatApp)
 ## 简介
 > 吃货星球S2B2C新零售团购系统
 
-> 基于SOA架构的分布式前后端分离，一后台多前端电商系统
+> 基于SOA架构的分布式前后端系统
 
 > 运行于微擎或独立版后端商城管理系统
 <img src="https://image.ch871.com/intro.png"  align="left"/>  
 
 ### 系统功能
 
-> wxapp截止1.6.8版本:
+> 微信小程序4.00版:
 - 云打印机小票自动打印
 - 前后台充值，余额支付
 - 供应商独立后台，可独立上传商品，查看财务数据
@@ -110,10 +110,8 @@
 | Mycat              | 数据库分库中间件    | [http://www.mycat.io](http://www.mycat.io) |
 | ZooKeeper              | 分布式协调工具    | [https://zookeeper.apache.org/releases.html](https://zookeeper.apache.org/releases.html) |
 | ActiveMQ               | 分布式消息队列中间件   | [http://activemq.apache.org/components/classic/download/](http://activemq.apache.org/components/classic/download/) |
-| Maven               | 项目对象模型(POM)    | [http://maven.apache.org/](http://maven.apache.org/) |
 | lombok              | 简化对象封装工具    | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok) |
 | webpack              | 模块封装工具    | [http://webpack.github.io/](http://webpack.github.io/k) |
-| layui               | 后端前台框架    | [https://www.layui.com/](https://www.layui.com/) |
 
 ### 第三方插件& SDK
 
@@ -218,11 +216,11 @@
 
 > Linux环境部署
 - 个人及企业用户请在阿里云或腾讯云可免费领取,系统在1g1核服务器CenterOs7.x可流畅运行
-- 获取各项目详细文档及交流学习请联系QQ:`142997`<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:142997:41"/></a>，`909189188`<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:142997:41"/></a>
-> 作者本科设计专业，擅长前端开发及UI设计，非专业后端开发，本项目至2019年10月耗时13个月，项目将持续优化升级，后端前台将于2020年全面升级Spring5，请各位大神多指导和建议
+- 获取各项目详细文档及交流学习请联系QQ:`142997`<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:142997:41"/></a>，
+
 
 ## 捐赠
-> 欢迎捐赠吃货星球系统，您的支持是作者开发的动力！
+> 本项目从2019年1月启动，项目将持续升级近80个版本，几乎涵盖市面上所有营销模式的电商系统。欢迎捐赠吃货星球系统，您的支持是作者开发的动力！
 
 <td><img src="https://image.ch871.com/wxpay.png" width="200px"/></td>
 <td><img src="https://image.ch871.com/alipay.png" width="200px"/></td> 
@@ -247,4 +245,4 @@
 
 <img src="https://image.ch871.com/company.png" width="28px" align="left"/> 
 
-Copyright © 2019 Dejavu Technology (YN) Co., Ltd. [http://www.dejavu871.com](http://www.dejavu871.com)
+Copyright © 2019-2021 Dejavu Technology (YN) Co., Ltd. [http://www.dejavu871.com](http://www.dejavu871.com)
