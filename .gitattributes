@@ -1,6 +1,6 @@
 *.css linguist-language=css
 *.wxss linguist-language=WeiXinStyleSheets
 *.php linguist-vendored
-*.js linguist-language=JavaScript
+*.js linguist-vendored
 *.html linguist-language=html
 *.wxml linguist-language=WeiXinMarkupLanguage
