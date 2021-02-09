@@ -1,0 +1,6 @@
+*.css linguist-language=css
+*.wxss linguist-language=WeiXin Style Sheets
+*.php linguist-language=PHP
+*.js linguist-language=JavaScript
+*.html linguist-language=html
+*.wxml linguist-language=WeiXin Markup Language
