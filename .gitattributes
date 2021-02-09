@@ -1,6 +1,6 @@
 *.css linguist-language=PHP
 *.wxss linguist-language=PHP
 *.php linguist-language=PHP
-*.js linguist-language=PHP
+*.js linguist-vendored
 *.html linguist-language=PHP
 *.wxml linguist-language=PHP
