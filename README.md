@@ -89,44 +89,34 @@
 
 | 技术                 | 说明                | 官网                                                         |
 | -------------------- | ------------------- | ------------------------------------------------------------ |
-| Spring Boot          | 容器+MVC框架        | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot) |
-| we7                  | 微擎管理框架      |  [https://www.w7.cc](https://www.w7.cc)   |
-| Nginx                  | 反向代理web服务器      |  [http://nginx.org/](http://nginx.org/)   |
-| Spring Security      | 认证和授权框架      | [https://spring.io/projects/spring-security](https://spring.io/projects/spring-security) |
-| MyBatis              | ORM框架             | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html) |
-| MyBatisGenerator     | 数据层代码生成      | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html) |
-| PageHelper           | MyBatis物理分页插件 | [http://git.oschina.net/free/Mybatis_PageHelper](http://git.oschina.net/free/Mybatis_PageHelper) |
+| thinkPHP       | 小程序开发框架        | [http://www.thinkphp.cn/](http://www.thinkphp.cn/) | 小程序后台框架 |
+| Node.js      | web及应用端开发框架        | [http://www.thinkphp.cn/](http://www.thinkphp.cn/) | web及应用端后台框架 |
+| Mysql         | 数据库    |  [https://www.mysql.com/](https://www.mysql.com/) |
 | Swagger-UI           | Api文档生产工具        | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui) |
 | Hibernator-Validator | 验证框架            | [http://hibernate.org/validator/](http://hibernate.org/validator/) |
-| Elasticsearch        | 搜索引擎            | [https://github.com/elastic/elasticsearch](https://github.com/elastic/elasticsearch) |
-| RabbitMq             | 消息队列            | [https://www.rabbitmq.com/](https://www.rabbitmq.com/)       |
 | Redis                | 分布式缓存          | [https://redis.io/](https://redis.io/)                       |
-| MongoDb              | NoSql数据库         | [https://www.mongodb.com/](https://www.mongodb.com/)         |
 | Docker               | 应用容器引擎        | [https://www.docker.com/](https://www.docker.com/)           |
-| Druid                | 数据库连接池        | [https://github.com/alibaba/druid](https://github.com/alibaba/druid) |
-| OSS                  | 对象存储            | [https://github.com/aliyun/aliyun-oss-java-sdk](https://github.com/aliyun/aliyun-oss-java-sdk) |
-| JWT                  | 独立版JWT登录支持         | [https://github.com/jwtk/jjwt](https://github.com/jwtk/jjwt) |
-| LogStash             | 日志收集工具        | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder) |
-| Mycat              | 数据库分库中间件    | [http://www.mycat.io](http://www.mycat.io) |
-| ZooKeeper              | 分布式协调工具    | [https://zookeeper.apache.org/releases.html](https://zookeeper.apache.org/releases.html) |
-| ActiveMQ               | 分布式消息队列中间件   | [http://activemq.apache.org/components/classic/download/](http://activemq.apache.org/components/classic/download/) |
-| lombok              | 简化对象封装工具    | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok) |
-| webpack              | 模块封装工具    | [http://webpack.github.io/](http://webpack.github.io/k) |
 
 ### 第三方插件& SDK
 
 | 技术                 | 说明                | 官网                                                         |
 | -------------------- | ------------------- | ------------------------------------------------------------ |
-| 七牛云          | 文件存储服务        | [https://developer.qiniu.com/kodo/sdk/1239/java](https://developer.qiniu.com/kodo/sdk/1239/java) |
+| 七牛云          | 文件存储        | [https://developer.qiniu.com/kodo/sdk/1239/java](https://developer.qiniu.com/kodo/sdk/1239/java) |
+| 阿里云OSS                  | 对象存储            | [https://github.com/aliyun/aliyun-php-sdk](https://github.com/aliyun/aliyun-php-sdk) |
+| 腾讯云COS                  | 对象存储            | [https://github.com/tencentyun/cos-js-sdk-v5](https://github.com/tencentyun/cos-js-sdk-v5) |
 | vaptcha                  | 人机验证码SDK       |  [https://www.vaptcha.com/](https://www.vaptcha.com/)   |
+| PhpSpreadsheet        | PHP电子表格生成库            | [https://github.com/PHPOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) |
 | 百度统计                  | web端统计工具      |  [https://tongji.baidu.com](https://tongji.baidu.com)   |
 | 腾讯移动统计                  | 小程序/app统计工具      |  [https://mta.qq.com/mta/ctr_index/download](https://mta.qq.com/mta/ctr_index/download)   |
 | 腾讯位置服务                 | 腾讯移动端定位SDK      |  [https://lbs.qq.com/iosgeo/index.html](https://lbs.qq.com/iosgeo/index.html)   |
-| 飞鹅云打印机                 | 云小票打印机API      |  [http://www.feieyun.com/open/index.html?name=1](http://www.feieyun.com/open/index.html?name=1)   |
+| 飞鹅打印机                 | 云小票打印机API      |  [http://www.feieyun.com/open/index.html?name=1](http://www.feieyun.com/open/index.html?name=1)   |
+| 易联云打印机                 | 云小票打印机API      |  [https://dev.yilianyun.net/](https://dev.yilianyun.net/)   |
 | Mob                 | 全国天气预报接口      |  [http://api.mob.com/#/apiwiki/weather](http://api.mob.com/#/apiwiki/weather)   |
 | Hotjar                 | web端热力图分析反馈      |  [https://www.hotjar.com/tour](https://www.hotjar.com/tour)   |
 | 253云通讯                 | 营销短信及验证码      |  [https://zz.253.com/v5.html#/api_word](https://zz.253.com/v5.html#/api_word)   |
 | UEditor               | 富文本编辑器    | [http://ueditor.baidu.com/website/thirdproject.html](https://github.com/rzwitserloot/lombok) |
+| 快递鸟               | 物流跟踪API    | [http://www.kdniao.com/api-follow](http://www.kdniao.com/api-follow) |
+| 达达配送              | 物流API    | [https://newopen.imdada.cn/](https://newopen.imdada.cn/) |
 
 > 某些插件及接口需注册生成AppKey，作者不保证其免费期限
 
