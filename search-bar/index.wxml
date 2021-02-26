@@ -1,0 +1,8 @@
+      <view id="notic" class="search-bar"  animation="{{animate}}">
+            <view class="search-box">
+                  <input bindconfirm="goResult" class="ipt" confirmType="搜索" placeholder="搜索商品" type="text"></input>
+                  <view class="search-icon">
+                        <text class="iconfont icon-sousuo1"></text>
+                  </view>
+            </view>
+      </view>

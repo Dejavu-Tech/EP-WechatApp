@@ -1,0 +1,42 @@
+<view class="spu">
+  <view class="{{width250?'w250':'new-comers-item'}}" bindtap="goDetails" data-id="{{spuItem.actId}}" data-img="{{spuItem.skuImage}}">
+    <!-- 标签 -->
+    <view wx:if="{{spuItem.label_info && spuItem.label_info.type==0}}" class='item-tag'>
+      <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+      <view class='tag-name {{spuItem.label_info.len==2?"two-word":""}}'>{{spuItem.label_info.tagcontent}}</view>
+    </view>
+    <view wx:if="{{spuItem.label_info && spuItem.label_info.type==1}}" class='item-tag' style='background:url({{spuItem.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+    <!-- 图片 -->
+    <i-img defaultImage="../../images/placeholder-refund.png" height="180" width="180" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:if="{{width250}}"></i-img>
+    <i-img defaultImage="../../images/placeholder-refund.png" height="180" width="180" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:else></i-img>
+    <!-- 限购 -->
+    <view class="spu-active" wx:if="{{reduction.is_open_fullreduction==1&&spuItem.is_take_fullreduction==1}}">
+      <view class="tag">满{{reduction.full_money}}减{{reduction.full_reducemoney}}</view>
+      <view class="tag tag-green" wx:if="{{spuItem.isLimit}}">限购</view>
+    </view>
+    <view class="spu-play" wx:if="{{spuItem.is_video}}">
+      <image class="img" src="../../images/play.png"></image>
+    </view>
+
+    <view class="act-end" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+    <view class="act-end" wx:elif="{{spuItem.actEnd||actEnd}}">已结束</view>
+    <view class='title'>{{spuItem.spuName}}</view>
+    <i-vip-price wx:if="{{is_open_vipcard_buy==1&&spuItem.is_take_vipcard==1}}" price="{{spuItem.card_price}}" class="vip"></i-vip-price>
+    <i-vip-price wx:elif="{{spuItem.is_mb_level_buy==1}}" type="1" price="{{spuItem.levelprice}}" class="vip"></i-vip-price>
+    <view class='new-bot'>
+      <view class='price'>¥{{spuItem.actPrice[0]}}.{{spuItem.actPrice[1]}}</view>
+      <block wx:if="{{!isPast}}">
+        <block wx:if="{{number<=0||notNum}}">
+          <i-button iClass="add-cart" wx:if="{{disabled||spuItem.spuCanBuyNum==0||spuItem.actEnd||actEnd}}">
+            <image class='img' src="../../images/icon-add-shopCart-disabled.png"></image>
+          </i-button>
+          <i-button bind:click="openSku" iClass="add-cart" wx:else>
+            <i-addcart iClass="img" />
+          </i-button>
+        </block>
+        <i-input-number wx:else addImage="../../images/icon-add-2.png" bind:change="changeNumber" bind:outOfMax="outOfMax" iNumberView="input-number-view" iNumberImg="input-number-img" iClassNumberText="input-number-input" max="{{(spuItem.spuCanBuyNum<spuItem.one_limit_count||spuItem.one_limit_count==0)?spuItem.spuCanBuyNum:spuItem.one_limit_count}}" min="0"
+          reduceImage="../../images/icon-reduce-2.png" value="{{number}}" class="col-input-number"></i-input-number>
+      </block>
+    </view>
+  </view>
+</view>

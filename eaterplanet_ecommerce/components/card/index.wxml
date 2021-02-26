@@ -1,0 +1,11 @@
+<view class="i-class i-card">
+  <view class="i-card-header">
+    <slot name="header"></slot>
+  </view>
+  <view class="i-card-body">
+    <slot name="content"></slot>
+  </view>
+  <view class="i-card-footer">
+    <slot name="footer"></slot>
+  </view>
+</view>

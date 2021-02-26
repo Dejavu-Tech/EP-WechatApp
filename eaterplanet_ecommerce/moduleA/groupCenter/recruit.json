@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "团长",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-aside-btn": "../../components/asideBtn/index",
+    "parser":"../../components/parser/parser"
+  }
+}

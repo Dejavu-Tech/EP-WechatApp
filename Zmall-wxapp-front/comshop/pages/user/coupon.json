@@ -1,9 +1,0 @@
-{
-    "navigationBarTitleText": "我的优惠券",
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTextStyle": "black",
-    "usingComponents": {
-        "i-auth": "../../components/auth/index",
-        "i-load-more": "../../components/load-more/index"
-    }
-}

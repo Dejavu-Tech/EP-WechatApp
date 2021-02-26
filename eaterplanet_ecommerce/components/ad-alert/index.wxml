@@ -1,0 +1,16 @@
+<view class="fixed" wx:if="{{visible&&adv_list.length>0}}">
+  <view class="mask" bindtap="close"></view>
+  <view class="cont">
+    <image wx:if="{{adv_list.length==1}}" class="img" mode="widthFix" src="{{adv_list[0].thumb}}" bindtap="popclick" data-idx='0'></image>
+    <swiper wx:else class="swiper" bindchange="bindchange" style="height:{{imgheights[current]}}rpx;" indicator-dots="true" autoplay="true" interval="3000" duration="500" indicator-active-color="#FFFFFF">
+      <block wx:for="{{adv_list}}" wx:key="id">
+        <swiper-item bindtap="popclick" data-idx='{{index}}'>
+          <image class="img" bindload="imageLoad" data-id='{{index}}' mode="widthFix" src="{{item.thumb}}"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="close">
+    <image class="close-img" src="../../images/closePoster.png" bindtap="close"></image>
+  </view>
+</view>

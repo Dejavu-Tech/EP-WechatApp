@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#4facfe",
-    "navigationBarTitleText": "我的钱包",
-    "navigationBarTextStyle": "white",
-    "usingComponents": {
-        "i-dialog": "../../components/dialog/index"
-    }
-}

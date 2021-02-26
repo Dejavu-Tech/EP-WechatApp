@@ -1,0 +1,31 @@
+<i-modal scrollUp="{{true}}" visible="{{show}}" bind:cancel="handleModal" iClass="zmodal" iClassMask="zmodal">
+  <view class="cart pb100">
+    <view class="head i-flex p30 bg-lighter i-flex-spb">
+      <view class="weight">{{stitle}}</view>
+      <view>
+        <!-- <text class="iconfont icon-shanchu1"></text> 清空 -->
+      </view>
+    </view>
+    <scroll-view scroll-y style="max-height: 750rpx;">
+      <view class="list">
+        <block wx:for="{{carts}}" wx:for-item="cart" wx:for-index="cartId" wx:key="cid">
+          <block wx:for="{{cart.shopcarts}}" wx:key="key" wx:if="{{cart.shopcarts.length}}">
+            <view class="item i-flex border-bottom">
+              <view class="fsz-30 i-flex i-flex-item w0">
+                <image class="img" src="{{item.imgurl}}"></image>
+                <view class="ml5 i-flex-item w0">
+                  <view class="text-overflow1 text-dark">{{item.title}}</view>
+                  <view class="text-overflow1 text-gray fsz-22 mb5">{{item.goodstype}}</view>
+                  <view class="red">¥{{item.currntprice}}</view>
+                </view>
+              </view>
+              <view class="fsz-30">
+                <i-input-number bind:change="changeNumber" bind:outOfMax="outOfMax" iClass="index-input-number" iClassNumberText="input-number-text" max="{{item.max_quantity}}" min="0" value="{{item.goodsnum}}" addImage="../../images/icon-add-2.png" reduceImage="../../images/icon-reduce-2.png" data-cartid="{{cartId}}" data-gidx="{{index}}"></i-input-number>
+              </view>
+            </view>
+          </block>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</i-modal>

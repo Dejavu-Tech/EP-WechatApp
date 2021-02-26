@@ -1,0 +1,4 @@
+<view class="topic">
+    <image wx:if='{{common_header_backgroundimage}}' class="topic-img"  mode="widthFix" src="{{common_header_backgroundimage}}"></image>
+
+</view>

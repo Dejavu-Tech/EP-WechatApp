@@ -1,0 +1,28 @@
+<template name="pin">
+  <!-- 拼团 -->
+  <view class='pin-spec' wx:if="{{pinList.list&&pinList.list.length&&pinList.show==1}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index">
+    <image class="pin-spec-img" mode="widthFix" src="{{pinList.img}}" wx:if="{{pinList.img}}"></image>
+    <scroll-view class='pin-spec-scroll' scroll-x>
+      <view class='pin-spec-wrap'>
+        <view class="pin-spec-item" wx:for="{{pinList.list}}" wx:key="id">
+          <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="200" iClass="pin-img" loadImage="{{item.skuImage}}"></i-img>
+          <view wx:if="{{item.label_info && item.label_info.type==0}}" class='item-tag'>
+            <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+            <view class='tag-name {{item.label_info.len==2?"two-word":""}}'>{{item.label_info.tagcontent}}</view>
+          </view>
+          <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag' style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+          <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+          <view class='title'>{{item.spuName}}</view>
+          <!-- <view class="spu-desc" wx:if="{{item.spuDescribe}}">
+            <text class="em">{{item.spuDescribe}}</text>
+          </view> -->
+          <text class="pin-tag" style="border-color:{{skin.color}};color:{{skin.color}}">{{item.pin_count}}人团</text>
+          <view class='new-bot'>
+            <view class='price'>¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+            <view class="market-price">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</template>

@@ -1,0 +1,22 @@
+<i-modal bindtap="close" class="dialog" scrollUp="{{false}}" visible="{{visible}}">
+  <view class="dialog-content">
+    <view class="text i-class" wx:if="{{text}}">{{text}}</view>
+    <view wx:el>
+      <slot></slot>
+    </view>
+    <view class="button-group">
+      <block wx:if="{{showCancel}}">
+        <i-button catchtap="cancel" iClass="left-btn">
+          <view>取消</view>
+        </i-button>
+        <view class="split-line"></view>
+        <i-button catchtap="confirm" iClass="right-btn">
+          <view>{{confirmText}}</view>
+        </i-button>
+      </block>
+      <block wx:else>
+        <view catchtap="confirm" class="r-btn i-btn">{{confirmText}}</view>
+      </block>
+    </view>
+  </view>
+</i-modal>

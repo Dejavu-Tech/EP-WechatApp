@@ -1,0 +1,33 @@
+.bold-text {
+  font-weight: 500;
+}
+
+.show-img {
+  float: left;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.name {
+  margin-top: -8rpx;
+  width: 510rpx;
+  font-size: 26rpx;
+  color: #444;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mount {
+  font-size: 22rpx;
+  color: #aaa;
+  margin-top: 10rpx;
+}
+
+.bottom-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  color: #444;
+  margin-top: 18rpx;
+}

@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "商品管理",
-    "usingComponents": {
-        "component-img": "../../components/image/index"
-    }
-}

@@ -1,0 +1,395 @@
+.noComments {
+  height: 100%;
+  background: #fff;
+}
+
+.noComments .noCommentsCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 260rpx;
+}
+
+.noComments .noCommentsCon .noCommentsImg {
+  width: 218rpx;
+  height: 218rpx;
+  margin-top: 260rpx;
+  margin-bottom: 30rpx;
+}
+
+.noComments .noCommentsCon .noCommentsTit {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.comments {
+  padding-bottom: 40rpx;
+}
+
+.comments .commentsDetail {
+  padding: 0 20rpx;
+  margin-top: 30rpx;
+  margin-bottom: 120rpx;
+}
+
+.comments .commentsDetail .commentsList {
+  margin-bottom: 20rpx;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo {
+  padding: 30rpx;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsCon {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 44rpx;
+  margin-bottom: 10rpx;
+  word-wrap: break-word;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .doubleHidden {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: normal;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsOpen {
+  height: 22rpx;
+  font-size: 22rpx;
+  color: #444;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsOpen .commentsOpenImg {
+  width: 16rpx;
+  height: 8rpx;
+  margin-left: 6rpx;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsOpen .down {
+  transform: rotate(180deg);
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsImgCon {
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsImgCon .commentsImg {
+  margin-right: 16rpx;
+  display: flex;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsImgCon .commentsImg .goodsImg {
+  width: 150rpx;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsImgCon .commentsImg .goodsImg .img-class {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 4rpx;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsImgCon .commentsImg:last-child {
+  margin: 0;
+}
+
+.comments .commentsDetail .commentsList .commentsListInfo .commentsTime {
+  font-size: 22rpx;
+  color: #aaa;
+  line-height: 22rpx;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.canvas-img {
+  position: absolute;
+  top: -20000rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.goodsInfo {
+  background: #fff;
+  padding: 30rpx;
+  border-top: 0.1rpx solid #efefef;
+  border-bottom: 0.1rpx solid #efefef;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsImg {
+  width: 180rpx;
+  margin-right: 30rpx;
+}
+
+.goodsInfo .goodsImg .img-class {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.goodsInfo .goodsDetail {
+  width: 480rpx;
+  min-height: 180rpx;
+}
+
+.goodsInfo .goodsDetail .detailTop {
+  min-height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo {
+  width: 380rpx;
+  padding-right: 20rpx;
+  border-right: 2rpx dashed #aaa;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .goodsName {
+  width: 380rpx;
+  font-size: 26rpx;
+  color: #444;
+  font-weight: bold;
+  line-height: 32rpx;
+  margin-bottom: 6rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: normal;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .purchasing,
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .saleNum {
+  font-size: 22rpx;
+  color: #aaa;
+}
+
+.goodsInfo .goodsDetail .detailTop .shareBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 0;
+  margin-right: 4rpx;
+}
+
+.goodsInfo .goodsDetail .detailTop .shareBtn .shareImg {
+  width: 42rpx;
+  height: 36rpx;
+}
+
+.goodsInfo .goodsDetail .detailBottom {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsDetail .detailBottom .price {
+    font-size: 20rpx;
+    color: #ff758c;
+}
+
+.goodsInfo .goodsDetail .detailBottom .price text {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time {
+  width: 290rpx;
+  font-size: 26rpx;
+  color: #444;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time .countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time .countdown .itemTime {
+  width: 38rpx;
+  height: 32rpx;
+  background: #444;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/***商品底部按钮begin **/
+
+.goods-bottom-bar {
+  height: 96rpx;
+  display: flex;
+}
+
+.goods-bottom-bar .leftBtn {
+  height: 94rpx;
+  display: flex;
+  border-top: 2rpx solid #efefef;
+}
+
+.goods-bottom-bar .leftBtn .bar-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.goods-bottom-bar .leftBtn .back-to-index {
+  width: 132rpx;
+  height: 94rpx;
+  font-size: 20rpx;
+  color: #707070;
+}
+
+.goods-bottom-bar .leftBtn .back-to-index image {
+  width: 54rpx;
+  height: 54rpx;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart {
+  width: 132rpx;
+  height: 96rpx;
+  font-size: 20rpx;
+  color: #707070;
+  position: relative;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart .icon {
+  width: 54rpx;
+  height: 54rpx;
+  position: relative;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart .icon image {
+  width: 100%;
+  height: 100%;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart .icon .cart-num {
+    position: absolute;
+    right: -16rpx;
+    top: -4rpx;
+    width: 36rpx;
+    height: 36rpx;
+    background: #ff758c;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 22rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods-bottom-bar .goodsStatus {
+  width: 100%;
+  height: 96rpx;
+  background: #dcdcdc;
+  font-size: 30rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goods-bottom-bar .gobuy {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+}
+
+.goods-bottom-bar .gobuy .add-to-cart {
+    width: 240rpx;
+    height: 96rpx;
+    background: linear-gradient(270deg,#4facfe 0%,#00f2fe 100%);
+    color: #fff;
+    font-size: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods-bottom-bar .gobuy .btn {
+  width: 208rpx;
+  height: 96rpx;
+  position: absolute;
+  opacity: 0;
+  z-index: 9;
+  top: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.goods-bottom-bar .gobuy .balanceBtn {
+  display: flex;
+  flex: 1;
+}
+
+.goods-bottom-bar .gobuy .balanceBtn .balance {
+    height: 96rpx;
+    flex: 1;
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    color: #fff;
+    font-size: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.i-fixed-bottom {
+  position: fixed;
+  bottom: 0px;
+  z-index: 100;
+  width: 100%;
+  background-color: #fff;
+}
+
+/***商品底部按钮end **/
+
+.comment-user {
+  line-height: 60rpx;
+  display: flex;
+  margin-bottom: 10rpx
+}
+
+.comment-user image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 14rpx;
+  background-color: #f0f0f0;
+}
+
+.comment-user text {
+  font-size: 26rpx;
+}

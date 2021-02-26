@@ -1,0 +1,5 @@
+<view class="article">
+  <view class="wxParse">
+    <parser html="{{article}}" />
+  </view>
+</view>

@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "接龙详情",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-solitaire-good": "../components/solitaireGood",
+    "i-solitaire-head": "../components/solitaireHead",
+    "i-count-down": "../../components/count-down/index",
+    "i-painter": "../../components/painter/painter",
+    "i-modal": "../../components/modal/index",
+    "i-load-more": "../../components/load-more/index",
+    "parser":"../../components/parser/parser"
+  }
+}

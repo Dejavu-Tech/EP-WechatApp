@@ -1,0 +1,22 @@
+<import src="tabbar.wxml"></import>
+<navBar title="配送单统计" background='#FED206' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="bg-f p30 i-flex box text-center">
+  <view class="item">
+    <view class="fsz-60 red weight">{{total_getorder_count}}</view>
+    <view class="fsz-28">累计抢单数</view>
+  </view>
+  <view class="item">
+    <view class="fsz-60 red weight">{{system_send_ordercount}}</view>
+    <view class="fsz-28">系统分配订单数</view>
+  </view>
+  <view class="item">
+    <view class="fsz-60 red weight">{{has_send_count}}</view>
+    <view class="fsz-28">累计完成数量</view>
+  </view>
+  <view class="item">
+    <view class="fsz-60 red weight">{{total_commiss_money}}</view>
+    <view class="fsz-28">配送费收入</view>
+  </view>
+</view>
+
+<template is="tabbar" data="{{data:2}}"></template>

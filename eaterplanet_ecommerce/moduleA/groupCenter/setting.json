@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#4facfe",
+  "usingComponents": {
+"navBar": "miniprograms-navigation-bar/index",
+    "i-modal": "../../components/modal/index"
+  }
+}

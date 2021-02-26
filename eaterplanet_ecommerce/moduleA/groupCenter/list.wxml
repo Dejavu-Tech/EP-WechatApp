@@ -1,0 +1,72 @@
+<navBar title="配送单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+  <!-- <view class="search">
+    <icon class="icon-search" size="14" type="search"></icon>
+    <input bindinput="bindSearchChange" bindconfirm="searchByKey" placeholder="清单编号" type="text" value="{{searchKey}}" confirm-type="done" ></input>
+    <text bindtap="searchByKey">搜索</text>
+    <text bindtap="cancel">取消</text>
+  </view>
+  <view class="date">
+    <text>生成时间</text>
+    <text class="date-value">{{date}}</text>
+    <picker bindchange="bindDateChange" class="icon-date" end="{{maxDate}}" mode="date" start="2018-08-01" value="{{date}}">
+      <image bindchange="bindDateChange" src="../../images/date.png"></image>
+    </picker>
+    <text bindtap="clearDate" class="icon-clear">全部时间</text>
+  </view> -->
+  <view class='list-box'>
+    <view class="noRecordCon" wx:if="{{list.length <= 0}}">
+      <image class="noRecordImg" src="../../images/noRecord.png"></image>
+      <view class="noRecord">您还没有相关的清单～</view>
+    </view>
+    <view class="list-info" wx:else>
+      <view class="i-card" bindtap='goDetails' wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" data-state="{{item.state}}">
+        <view class="header">
+          <view class='headerTitle'>配送单：{{item.list_sn}}</view>
+          <image class="rightArrowImg" src="../../images/rightArrowImg.png"></image>
+        </view>
+        <view slot="content">
+          <view class="content-wrap">
+            <view class="item">
+              <view class="title">配送员</view>
+              <view class="detail">{{item.clerk_name}} <view class='item-phone' catchtap="callTelphone" data-phone="{{item.clerk_mobile}}"><image class="icon-phone" src="../../images/phone.png"></image>联系配送员</view></view>
+            </view>
+            <view class="item">
+              <view class="title">配送状态</view>
+              <view class="detail">
+                <text>{{status[item.state]}}</text>
+              </view>
+            </view>
+            <view class="item">
+              <view class="title">商品数量</view>
+              <view class="detail">
+                <text>{{item.goods_count}}</text>
+              </view>
+            </view>
+            <view class="item" wx:if="{{item.express_time && item.express_time!=0}}">
+              <view class="title">开始配送时间</view>
+              <view class="detail">
+                <text>{{item.express_time}}</text>
+              </view>
+            </view>
+            <view class="item" wx:if="{{item.head_get_time && item.head_get_time!=0}}">
+              <view class="title">团长取货时间</view>
+              <view class="detail">
+                <text>{{item.head_get_time}}</text>
+              </view>
+            </view>
+            <!-- <view class="item">
+              <view class="title">配送单创建时间</view>
+              <view class="detail">
+                <text>{{item.create_time}}</text>
+              </view>
+            </view> -->
+          </view>
+        </view>
+      </view>
+
+      <i-load-more iClass="loadMore" loading="{{!isHideLoadMore}}" tip="{{loadText}}" wx:if="{{!isHideLoadMore}}"></i-load-more>
+    </view>
+  </view>
+
+</i-auth>

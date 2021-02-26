@@ -1,0 +1,7 @@
+<navBar title="平台管理中心" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="i-flex-col i-flex-alc">
+  <view class="text-center" style="padding-top:150rpx;">
+    <image style="width:320rpx;height:320rpx;" src="../images/authority.png"></image>
+    <view class="fsz-26 text-6 mt20">您好，您暂无浏览此页面权限！</view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+<navBar title="我的粉丝" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="search">
+    <icon class="icon-search" size="14" type="search"></icon>
+    <input bindinput="bindSearchChange" bindconfirm="searchByKey" placeholder="微信昵称/手机号" type="text" value="{{searchKey}}" confirm-type="done"></input>
+    <!-- <text bindtap="searchByKey">搜索</text>
+    <text bindtap="cancel">取消</text> -->
+  </view>
+  <view class="list-header">
+    <view>粉丝</view><view>关注时间</view>
+  </view>
+  <scroll-view scrollY bindscrolltolower="getMore" class="list-content" style="height:{{containerHeight}}px" wx:if="{{order.length}}">
+    <view class="list">
+      <navigator class="list-item" wx:for="{{order}}" wx:key="id" url="/eaterplanet_ecommerce/distributionCenter/pages/memberInfo?memberId={{item.member_id}}">
+        <view class="item-left">
+          <component-img defaultImage="../../images/placeholder-refund.png" height="36" isCircle="true" loadImage="{{item.avatar}}" width="36"></component-img>
+          <view class="text-overflow1" style="width:280rpx">
+            <text>{{item.username}}</text>
+          </view>
+        </view>
+        <view class="item-right">
+          {{item.create_time}}
+          <!-- <image class="iconfont icon-right-arrow rightArrowImg" src="../../images/rightArrowImg.png"></image> -->
+        </view>
+      </navigator>
+    </view>
+    <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+  </scroll-view>
+  <view class="none-member" wx:else>暂无粉丝</view>
+</view>

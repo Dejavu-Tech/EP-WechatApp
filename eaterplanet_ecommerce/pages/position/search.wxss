@@ -1,0 +1,79 @@
+page {
+  background: #fff;
+}
+
+.no-result {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #666;
+  font-size: 30rpx;
+  padding-top: 394rpx;
+}
+
+.no-result image {
+  width: 218rpx;
+  height: 218rpx;
+  margin-bottom: 30rpx;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 104rpx;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.1);
+}
+
+.search-content {
+  width: 670rpx;
+  height: 64rpx;
+  border-radius: 64rpx;
+  background: #f8f8f8;
+  position: relative;
+  display: flex;
+}
+
+.search-content .city-content {
+  height: 64rpx;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  color: #444;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.search-content .city-content .search-icon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 20rpx;
+  margin-top: -2rpx;
+}
+
+.search-content .city-content .bottom-arrow {
+  width: 12rpx;
+  height: 6rpx;
+  margin-left: 8rpx;
+}
+
+.search-content .search-ipt {
+  flex: 1;
+}
+
+.search-content .ipt-class {
+  line-height: 64rpx;
+  height: 64rpx;
+  font-size: 26rpx;
+  color: #444;
+}
+
+.search-content .input-placeholder {
+  color: #999;
+}
+
+.load-more {
+  padding: 40rpx 0;
+}

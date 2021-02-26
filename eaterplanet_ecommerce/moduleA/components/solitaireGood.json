@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-img": "../../components/img/index",
+    "i-input-number": "../../components/input-number/index"
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "添加核销人员",
+  "navigationBarBackgroundColor": "#FFFFFF",
+    "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index"
+    }
+}

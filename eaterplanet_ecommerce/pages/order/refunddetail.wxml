@@ -1,0 +1,58 @@
+<navBar title="售后进度" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='wrap'>
+  <view class='details'>
+    <view class='tit'>审核进度：</view>
+    <view class="timeline" wx:if="{{order_refund_historylist.length}}">
+      <!-- timeline-first-item timeline-last-item -->
+      <view class="timeline-item timeline-first-item" wx:for="{{order_refund_historylist}}" wx:key="index">
+        <view class="timeline-item-divider"></view>
+        <view class="timeline-item-content">
+          <view>{{item.message}}</view>
+          <view class="datetime">{{item.addtime}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="noplan" wx:else>暂无记录</view>
+  </view>
+  <view class="details" style="display:none;">
+    <view class='tit'>审核留言：</view>
+    <view class="content">审核成功</view>
+  </view>
+  <view class="details">
+    <view class='tit'>审核详情：</view>
+    <view class="goods">
+      <view class="goods-item">
+        <view style="goods-item-l">
+          <i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{order_goods.goods_images}}" width="60"></i-img>
+        </view>
+        <view class="goods-item-r">
+          <view class="name">{{order_goods.name}}</view>
+          <view class="mount">
+            <block wx:if="{{order_goods.option_str}}">{{order_goods.option_str}} </block>￥{{order_goods.price}} x {{order_goods.quantity}}
+          </view>
+          <view class="price">￥{{order_goods.total}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="ll">实际退款金额：<text>￥{{order_refund.ref_money}}</text></view>
+    <view class="ll">问题类型：<text>{{order_refund.ref_name}}</text></view>
+    <view class="ll" wx:if="{{order_refund.complaint_name}}">联系人： <text>{{order_refund.complaint_name}}</text></view>
+    <view class="ll">联系方式： <text>{{order_refund.ref_mobile}}</text></view>
+    <!-- <view class="ll">问题商品占比：<text>100%</text></view> -->
+  </view>
+  <view class="details" wx:if="{{refund_images.length}}">
+    <view class='tit'>商品图片：</view>
+    <view class="img-list">
+      <i-img iClass="img" lazyLoad="true" loadImage="{{item.thumb_image}}" width="100" height="100" wx:for="{{refund_images}}" wx:key="{{index}}"></i-img>
+    </view>
+  </view>
+  <view class="details">
+    <view class='tit'>问题描述：</view>
+    <view class="content">{{order_refund.ref_description}}</view>
+  </view>
+
+  <view class="btn" wx:if="{{order_refund.state==0}}">
+    <view class="btn-item bule" bindtap='cancelApply'>撤销申请</view>
+    <view class="btn-item red" bindtap='editApply'>修改申请</view>
+  </view>
+</view>

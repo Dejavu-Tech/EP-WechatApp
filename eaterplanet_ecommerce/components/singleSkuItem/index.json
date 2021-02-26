@@ -1,0 +1,9 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-dialog": "../dialog/index",
+    "i-money": "../moneyFormat/index",
+    "i-operation": "../operation/index",
+    "i-img": "../img/index"
+  }
+}

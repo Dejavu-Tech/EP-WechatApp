@@ -1,0 +1,16 @@
+<navBar title="核销管理" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class='add-btn'>
+    <view class='btn' bindtap='goQrcode'>+添加核销人员</view>
+  </view>
+  <view class='list'>
+    <view class='item' wx:for="{{list}}" wx:key="id" wx:if="{{list.length>0}}">
+      <view><image class='avatar' src='{{item.avatar}}'></image><text class='nickname'>{{item.username}}</text></view>
+      <view>已核销订单：<text class='num'>{{item.member_record_count}}</text></view>
+    </view>
+    <view class="noDistributionList" wx:if="{{list.length<=0}}">
+      <image class="noDistributionListImg" src="../../images/noData.png"></image>
+      <view class="noDistributionListTit">暂时没有核销人员</view>
+    </view>
+  </view>
+</view>

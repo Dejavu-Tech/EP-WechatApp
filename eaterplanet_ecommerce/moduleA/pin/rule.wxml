@@ -1,0 +1,7 @@
+<navBar title="分销说明" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<import src="../../wxParse/wxParse.wxml"></import>
+<view class="article">
+  <view class="wxParse">
+    <parser html="{{pintuan_publish}}" />
+  </view>
+</view>

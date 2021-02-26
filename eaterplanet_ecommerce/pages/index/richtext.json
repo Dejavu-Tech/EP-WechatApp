@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "parser":"../../components/parser/parser"
+  }
+}

@@ -1,0 +1,134 @@
+<wxs module="m1">
+var getPrice = function(a, b) {
+  b = b?b:0;
+  var c = a*1+b*1;
+  return c.toFixed(2);
+}
+module.exports.getPrice = getPrice;
+</wxs>
+
+<i-card showModal="true">
+  <view slot="header">
+    <view class="header">{{ordername}}信息</view>
+  </view>
+  <view slot="content">
+    <view class="content-wrap">
+      <view class="item">
+        <view class="title">{{ordername}}编号</view>
+        <view class="detail">{{orderInfo.order_num_alias}}</view>
+      </view>
+      <view class="item">
+        <view class="title">下单时间</view>
+        <view class="detail">
+          <text>{{orderInfo.date_added}}</text>
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.pay_time >0}}">
+        <view class="title">支付时间</view>
+        <view class="detail">
+          <text>{{orderInfo.pay_date}}</text>
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.express_tuanz_time}}">
+        <view class="title">送达时间</view>
+        <view class="detail">
+          <text>{{orderInfo.express_tuanz_date}}</text>
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.receive_time}}">
+        <view class="title">收货时间</view>
+        <view class="detail">
+          <text>{{orderInfo.receive_date}}</text>
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.shipping_fare>0}}">
+        <block wx:if="{{orderInfo.delivery=='localtown_delivery'}}">
+          <view class="title">同城配送费</view>
+        </block>
+        <block wx:else>
+          <view class="title" wx:if="{{orderInfo.type=='integral'}}">{{groupInfo.placeorder_trans_name}}</view>
+          <view class="title" wx:else>{{diyshipname}}</view>
+        </block>
+        <view class="detail">
+          + ¥{{orderInfo.shipping_fare}}
+        </view>
+      </view>
+      <block wx:if="{{orderInfo.is_free_shipping_fare==1}}">
+        <!-- <view class="item">
+          <view class="title">{{diyshipname}}</view>
+          <view class="detail">
+            + ¥{{orderInfo.fare_shipping_free}}
+          </view>
+        </view> -->
+        <view class="item">
+          <view class="title">满金额免{{diyshipname}}</view>
+          <view class="detail">
+            - ¥{{orderInfo.fare_shipping_free}}
+          </view>
+        </view>
+      </block>
+      <view class="item" wx:if="{{(orderInfo.score_for_money*1)>0}}">
+        <view class="title">积分抵扣</view>
+        <view class="detail">
+          - ¥{{orderInfo.score_for_money}}
+        </view>
+      </view>
+      <view class="item" wx:if="{{is_vipcard_buy==1&&levelAmount>0}}">
+        <view class="title">会员优惠</view>
+        <view class="detail">
+          - ¥{{m1.getPrice(levelAmount, orderInfo.admin_change_price)}}
+        </view>
+      </view>
+      <view class="item" wx:if="{{is_level_buy==1&&is_vipcard_buy!=1&&levelAmount>0}}">
+        <view class="title">等级折扣</view>
+        <view class="detail">
+          - ¥{{m1.getPrice(levelAmount, orderInfo.admin_change_price)}}
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.voucher_credit>0}}">
+        <view class="title">优惠券</view>
+        <view class="detail">
+          - ¥{{orderInfo.voucher_credit}}
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.fullreduction_money>0}}">
+        <view class="title">满减</view>
+        <view class="detail">
+          - ¥{{orderInfo.fullreduction_money}}
+        </view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.packing_fare>0}}">
+        <view class="title">{{groupInfo.localtown_modifypickingname}}</view>
+        <view class="detail">+ ¥{{orderInfo.packing_fare}}</view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.localtown_add_shipping_fare>0}}">
+        <view class="title">加价配送费</view>
+        <view class="detail">+ ¥{{orderInfo.localtown_add_shipping_fare}}</view>
+      </view>
+      <view class="item" wx:if="{{orderInfo.is_change_price==1&&changePrice>0}}">
+        <view class="title">商家改价</view>
+        <view class="detail">{{orderInfo.total>orderInfo.old_price?'+':'-'}} ¥{{changePrice}}</view>
+      </view>
+      <view class="item">
+        <view class="title">商品金额</view>
+        <view class="detail">
+          + <block wx:if="{{orderInfo.type!='integral'}}">¥</block>{{goodsTotal}}<block wx:if="{{orderInfo.type=='integral'}}">积分</block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view slot="footer">
+    <view class="footer" wx:if="{{orderInfo.type=='integral'}}">
+      <view>实付：</view>
+      <view class="money">
+        <block wx:if="{{orderInfo.shipping_fare>0}}">¥{{orderInfo.shipping_fare}} + </block>{{orderInfo.score}}积分
+      </view>
+    </view>
+    <view class="footer" wx:else>
+      <view>合计：</view>
+      <view class="money">
+        ¥{{orderInfo.total}}
+      </view>
+    </view>
+  </view>
+</i-card>

@@ -1,0 +1,15 @@
+@import "/icon.wxss";
+
+.img {
+  width: 640rpx;
+}
+
+.close {
+  color: #fff;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.close .iconfont {
+  font-size: 60rpx;
+}

@@ -1,0 +1,384 @@
+.noBuyList {
+  background: #fff;
+}
+
+.noBuyList .noBuyListCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 100rpx;
+}
+
+.noBuyList .noBuyListCon .noBuyListImg {
+  width: 218rpx;
+  height: 218rpx;
+  margin-top: 200rpx;
+  margin-bottom: 30rpx;
+}
+
+.noBuyList .noBuyListCon .noBuyListTit {
+  font-size: 30rpx;
+  color: #666;
+}
+
+.buyRecords {
+  padding-bottom: 40rpx;
+}
+
+.buyRecords .buyListCon {
+  padding: 0 20rpx;
+  margin-top: 30rpx;
+  margin-bottom: 120rpx;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo {
+  height: 120rpx;
+  padding-left: 30rpx;
+  border-bottom: 1rpx solid #efefef;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo:last-child {
+  border: none;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo .userImg {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 36rpx;
+  margin-right: 20rpx;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo .userName {
+  max-width: 200rpx;
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo .buyNum {
+  font-size: 28rpx;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo .buyNum text {
+    color: #ff758c;
+}
+
+.buyRecords .buyListCon .buyList .buyListInfo .buyTime {
+  font-size: 22rpx;
+  color: #aaa;
+}
+
+.canvas-img {
+  position: absolute;
+  top: -20000rpx;
+}
+
+button::after {
+  border: none;
+}
+
+.goodsInfo {
+  background: #fff;
+  padding: 30rpx;
+  border-top: 0.1rpx solid #efefef;
+  border-bottom: 0.1rpx solid #efefef;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsImg {
+  width: 180rpx;
+  margin-right: 30rpx;
+}
+
+.goodsInfo .goodsImg .img-class {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.goodsInfo .goodsDetail {
+  width: 480rpx;
+  min-height: 180rpx;
+}
+
+.goodsInfo .goodsDetail .detailTop {
+  min-height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo {
+  width: 380rpx;
+  padding-right: 20rpx;
+  border-right: 2rpx dashed #aaa;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .goodsName {
+  width: 380rpx;
+  font-size: 26rpx;
+  color: #444;
+  font-weight: bold;
+  line-height: 32rpx;
+  margin-bottom: 6rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: normal;
+}
+
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .purchasing,
+.goodsInfo .goodsDetail .detailTop .detailTopInfo .saleNum {
+  font-size: 22rpx;
+  color: #aaa;
+}
+
+.goodsInfo .goodsDetail .detailTop .shareBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 0;
+  margin-right: 4rpx;
+}
+
+.goodsInfo .goodsDetail .detailTop .shareBtn .shareImg {
+  width: 42rpx;
+  height: 36rpx;
+}
+
+.goodsInfo .goodsDetail .detailBottom {
+  margin-top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.goodsInfo .goodsDetail .detailBottom .price {
+    font-size: 20rpx;
+    color: #ff758c;
+}
+
+.goodsInfo .goodsDetail .detailBottom .price text {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time {
+  width: 290rpx;
+  font-size: 26rpx;
+  color: #444;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time .countdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goodsInfo .goodsDetail .detailBottom .time .countdown .itemTime {
+  width: 38rpx;
+  height: 32rpx;
+  background: #444;
+  border-radius: 4rpx;
+  font-size: 26rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/***商品底部按钮begin **/
+.goods-bottom-bar {
+    border-radius: 30rpx 30rpx 30rpx 30rpx;
+    height: 96rpx;
+    display: flex;
+}
+
+.goods-bottom-bar .leftBtn {
+    height: 96rpx;
+    display: flex;
+    
+}
+
+.goods-bottom-bar .leftBtn .bar-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.goods-bottom-bar .leftBtn .back-to-index {
+  background-color: #36362D;
+  border-radius: 0rpx 8rpx 8rpx 0rpx;
+    width: 125rpx;
+    height: 96rpx;
+    font-size: 18rpx;
+    color: #fff;
+}
+.goods-bottom-bar .leftBtn .back-to-index image {
+    width: 50rpx;
+    height: 50rpx;
+}
+.goods-bottom-bar .leftBtn .shop-cart {
+
+   border-radius: 8rpx 0rpx 0rpx 8rpx;
+   margin-left: 6rpx;
+   background-color: #36362D;
+    width: 125rpx;
+    height: 96rpx;
+    font-size: 18rpx;
+    color: #fff;
+    position: relative;
+}
+.goods-bottom-bar .leftBtn .shop-cart .icon {
+
+    width: 50rpx;
+    height: 50rpx;
+    position: relative;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart .icon image {
+    
+    padding-right: 40rpx;
+    width: 100%;
+    height: 100%;
+}
+
+.goods-bottom-bar .leftBtn .shop-cart .icon .cart-num {
+    position: absolute;
+    right: -16rpx;
+    top: -4rpx;
+    width: 36rpx;
+    height: 36rpx;
+    background: #ff758c;
+    border-radius: 36rpx;
+    color: #fff;
+    font-size: 22rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods-bottom-bar .goodsStatus {
+    width: 100%;
+    height: 96rpx;
+    background: #dcdcdc;
+    font-size: 30rpx;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods-bottom-bar .gobuy {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    /**background-color: #1c1819;**/
+    overflow: hidden;
+    border-radius: 0rpx 40rpx 40rpx 0rpx;
+
+}
+.bar-item add-to-cart {
+    background: rgb(247, 112, 98);
+}
+
+
+.goods-bottom-bar .gobuy .add-to-cart {
+    width: 270rpx;
+    height: 96rpx;
+    background: #36362D!important;
+    border-left:2rpx solid #666;
+    color: #fff;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.goods-bottom-bar .gobuy .btn {
+    width: 270rpx;
+    height: 96rpx;
+    position: absolute;
+    opacity: 0;
+    z-index: 9;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    box-shadow: 20rpx 20rpx 20rpx 0rpx rgba(0,0,0,0.8);  
+}
+
+.goods-bottom-bar .gobuy .balanceBtn {
+    display: flex;
+    flex: 1;
+}
+
+.goods-bottom-bar .gobuy .balanceBtn .balance {
+    height: 96rpx;
+    flex: 1;
+    background: linear-gradient(270deg,rgb(253, 35, 70) 0%,#feb600 100%)!important;
+    color: #fff;
+    font-size: 28rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0rpx 0px 0px 0rpx;
+}
+
+.i-fixed-bottom {
+  background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    bottom: 40rpx;
+    z-index: 100;
+    overflow: hidden;
+    left: 30rpx;
+        right:30rpx;
+    border-radius: 48rpx 48rpx 48rpx 48rpx;
+    box-shadow: 0rpx 10rpx 20rpx 10rpx rgba(0,0,0,0.4);
+    
+}
+ .filter {
+   background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 40rpx;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 96rpx;
+    backdrop-filter: blur(30rpx) ; 
+    border-radius: 30rpx 30rpx 30rpx 30rpx;
+        margin-left: 20rpx;
+    margin-right: 20rpx;
+    overflow: hidden;
+}
+
+.i-fixed-bottom.iphoneX-height {
+    padding-bottom: 48rpx;
+}
+
+.i-fixed-bottom.pb20 {
+    padding-bottom: 40rpx;
+}
+
+
+
+

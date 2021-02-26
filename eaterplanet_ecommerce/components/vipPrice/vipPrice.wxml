@@ -1,0 +1,2 @@
+<text class="vipprice" wx:if="{{type==0}}">会员价:￥{{prePrice}}</text>
+<text class="vipprice level" wx:if="{{type==1}}">等级折扣价:￥{{prePrice}}</text>

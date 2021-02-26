@@ -1,0 +1,139 @@
+.nav-bar {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-bar .nav-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  background-color: white;
+  box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,255,255,0.25);
+}
+
+.nav-bar .nav-bar-item {
+  position: relative;
+  word-break: keep-all;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+  padding: 20rpx 0;
+}
+
+.nav-bar .current.nav-bar-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,#ff4936 0%,#ff6e3c 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    border-radius: 24rpx;
+}
+
+.nav-bar-content {
+  margin-top:49px;
+  padding-bottom: 30rpx;
+}
+
+.empty-wrap {
+  padding-top: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.empty-wrap .empty-img {
+  width: 218rpx;
+  height: 218rpx;
+}
+
+.empty-wrap .empty-txt {
+  font-size: 30rpx;
+  font-weight: 400;
+  color: #777;
+  margin-top: 32rpx;
+}
+
+.list {
+  padding-top: 100rpx;
+  padding-bottom: 50rpx;
+}
+
+.list .item {
+  margin: 0 auto 20rpx;
+}
+
+.list .suppy {
+  line-height: 40rpx;
+}
+
+.list .suppy .logo {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 2rpx;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 5rpx;
+}
+
+.list .suppy .name {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.list .header {
+  padding: 20rpx 30rpx;
+  color: #444;
+  font-size: 24rpx;
+  border-bottom: 0.1rpx solid #efefef;
+}
+
+.list .content-wrap {
+  padding-bottom: 20rpx;
+}
+
+.list .footer {
+  padding: 20rpx 30rpx;
+  color: #444;
+  font-size: 24rpx;
+  border-top: 0.1rpx solid #efefef;
+}
+
+.footer .btn {
+  min-width: 136rpx;
+  box-sizing: border-box;
+  text-align: center;
+  padding: 10rpx 20rpx;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+
+.footer .btn.hollow {
+  border: 1rpx solid #999;
+  padding: 10rpx 20rpx;
+}
+
+.footer .btn.solid {
+  color: #fff;
+  background-color: #ff5344;
+}
+
+.redBtn {
+  width: 320rpx;
+  background: linear-gradient(90deg, #ff5041 0%, #ff695c 100%);
+  color: #fff;
+  margin: 0 30rpx 10rpx;
+  height: 84rpx;
+  line-height: 84rpx;
+  font-size: 32rpx;
+  border-radius: 10rpx;
+  text-align: center;
+  margin-top: 30rpx;
+}

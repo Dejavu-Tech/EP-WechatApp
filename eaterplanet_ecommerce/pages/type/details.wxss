@@ -1,0 +1,78 @@
+page {
+    background: #fff;
+}
+
+.wrap {
+    padding-bottom: 100rpx;
+}
+
+.topic-img {
+  width: 100%;
+}
+
+.cate-title {
+  text-align: center;
+  margin: 20rpx 0;
+}
+
+.title-img {
+  max-width: 100%;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.none-rush-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 140rpx;
+  padding-top: 140rpx;
+}
+
+.none-rush-list .img-block {
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 30rpx;
+}
+
+.none-rush-list .h1 {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #444;
+  margin-bottom: 20rpx;
+}
+
+.none-rush-list .h2 {
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #aaa;
+}
+
+.cartBtn {
+  bottom: 180rpx !important;
+}
+
+.comming-list {
+  padding: 10rpx 24rpx 20rpx;
+}
+
+.comming-list .comming-spu-item {
+  width: 340rpx;
+  height: 526rpx;
+  height: 460rpx;
+  margin-bottom: 5rpx;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.themeTwo.comming-list .comming-spu-item {
+  height: 526rpx;
+}
+
+.comming-list .comming-spu-item:nth-child(odd) {
+  margin-right: 20rpx;
+}

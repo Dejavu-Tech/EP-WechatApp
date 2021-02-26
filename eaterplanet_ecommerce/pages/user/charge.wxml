@@ -1,0 +1,35 @@
+<navBar title="我的钱包" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view class='wrap'>
+  <view class='charge-form'>
+    <view class='tit'>
+      <view>余额:</view>
+      <navigator class='details' hover-class='none' url='/eaterplanet_ecommerce/pages/user/rechargeDetails'>明细</navigator>
+    </view>
+    <view class='charge-yue'>{{accountMoney}}</view>
+  </view>
+  <view class='charge-form'>
+    <view class='tit'>
+      <view>金额:</view>
+    </view>
+    <view class='list' wx:if="{{chargetype_list.length}}">
+      <view class="list-item {{activeTypeId==item.id?'item-hover':''}}" wx:for="{{chargetype_list}}" wx:key="id" data-idx="{{index}}" bindtap="selChargeType">
+        <view class='item-tit'>{{item.money}}元</view>
+        <view class='item-subtit' wx:if="{{item.send_money>0}}">充{{item.money}}送{{item.send_money}}</view>
+      </view>
+      <view class='list-item_empty'></view>
+      <view class='list-item_empty'></view>
+      <view class='list-item_empty'></view>
+    </view>
+    <view class='flex-ipt'>
+      <input class='money' min="0" step="0.01" type="digit" placeholder="输入金额" maxlength="15" bindinput="getMoney" bindfocus="bindIptFocus" bindblur="bindIptBlur" value="{{money}}"></input>
+      <view class='bottom-line {{onFocus?"ipt-focus":""}}'></view>
+    </view>
+  </view>
+  <view class='btn {{canPay?"":"disable"}}' bindtap='wxcharge' style="{{canPay?'background:'+skin.color:'background:'+skin.lighter}}">确认</view>
+  <view class='desc'>
+    <view class='h2'>说明：</view>
+    <view class="wxParse">
+      <parser html="{{member_charge_publish}}" />
+    </view>
+  </view>
+</view>

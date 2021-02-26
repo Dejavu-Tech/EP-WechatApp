@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "订单管理",
+  "navigationBarBackgroundColor": "#FE8464",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-img": "../../components/img/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-empty": "../../components/empty/index",
+    "i-fixed-bottom": "../../components/fixed-bottom/index",
+    "i-modal": "../../components/modal/index",
+    "i-card": "../../components/card/index",
+    "i-select-rider": "components/selectRider"
+  }
+}

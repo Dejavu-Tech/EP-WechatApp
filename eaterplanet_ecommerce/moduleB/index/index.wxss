@@ -1,0 +1,13 @@
+.list {
+  padding-top: 30rpx;
+}
+
+.list .item {
+  width: 25%;
+  margin: 10rpx 0;
+}
+
+.list .item .icon {
+  width: 120rpx;
+  height: 120rpx;
+}

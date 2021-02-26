@@ -1,0 +1,16 @@
+<view class="i-class i-input-number i-input-number-size-{{size}}">
+  <view class="i-input-number-minus i-input-number-view i-number-view {{value<=min?'i-input-number-disabled':''}}" wx:if="{{value==0}}">
+    <image class='img i-number-img' src="../../images/icon-spu-reduce-disabled.png"></image>
+  </view>
+  <view catchtap="handleMinus" class="i-input-number-minus i-input-number-view i-number-view {{value<=min?'i-input-number-disabled':''}}" wx:else>
+    <text class="iconfont icon-jian img i-number-img" style="color:{{skin.color}}"></text>
+  </view>
+  <input bindblur="handleBlur" bindfocus="handleFocus" catchtap="returnTap" class="i-class-number-text i-input-number-text {{min>=max?'i-input-number-disabled':''}}" disabled="{{min>=max}}" type="number" value="{{value}}" disabled></input>
+  <view wx:if="{{max==0}}" class="i-input-number-plus i-input-number-view i-number-view {{value>=max?'i-input-number-disabled':''}}">
+    <image class='img i-number-img' src="../../images/icon-spu-add-disabled.png"></image>
+  </view>
+  <view wx:else catchtap="handlePlus" class="i-input-number-plus i-input-number-view i-number-view {{value>=max?'i-input-number-disabled':''}}">
+    <text class="iconfont icon-jia img i-number-img" style="color:{{skin.color}}"></text>
+    <!-- <image class='img i-number-img' src="{{addImage}}"></image> -->
+  </view>
+</view>

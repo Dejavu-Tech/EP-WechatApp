@@ -1,0 +1,15 @@
+
+<i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}&type=integral">
+  <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="180" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
+  <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+  <view class='title'>{{item.spuName}}</view>
+  <view class='new-bot'>
+    <view class='price'>{{item.actPrice[0]}}积分</view>
+    <view class="add-cart disabled" wx:if="{{disabled||item.spuCanBuyNum==0}}">
+      已抢光
+    </view>
+    <i-button bind:click="openSku" data-idx="{{index}}" iClass="add-cart" wx:else>
+      立即兑换
+    </i-button>
+  </view>
+</i-router-link>

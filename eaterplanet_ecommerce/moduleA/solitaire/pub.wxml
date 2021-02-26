@@ -1,0 +1,50 @@
+<navBar title="发布群接龙" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap pb10">
+  <i-solitaire-head class="mb10" community="{{community}}"></i-solitaire-head>
+  <view class="form mb10">
+    <view class="cell">
+      <view class="cell-hd">标题：</view>
+      <view class="cell-bd">
+        <input class='cell-ipt' value="" bindinput="titleInput" type="text" placeholder="请输入标题"></input>
+      </view>
+    </view>
+    <view class="cell-col">
+      <text class="wordLimit text-gray">{{currentNoteLen|0}}/{{noteMaxLen}}</text>
+      <textarea class='cell-textarea' bindinput="contentInput" maxlength="500" placeholder="内容" value=""></textarea>
+    </view>
+    <view class='cell-col'>
+      <view class="tit">上传接龙图片（最多10张）</view>
+      <view class='img-wrap'>
+        <chooseImage imgMax="10" bind:on-changeImage="changeImg" bind:onChooseImage="chooseImage" token="{{token}}"></chooseImage>
+      </view>
+    </view>
+    <view class="sub-tit weight fsz-30 p30">商品项目</view>
+    <view class='cell-col'>
+      <view class='video-wrap'>
+        <view class="item" wx:for="{{goods}}" wx:key="id" wx:if="{{goods.length}}">
+          <i-solitaire-good spuItem="{{item}}" type="2" bind:onSelect="deleteGoods" idx="{{index}}"></i-solitaire-good>
+        </view>
+        <navigator class="addBtn fsz-24" url="/eaterplanet_ecommerce/moduleA/solitaire/addGood">
+          <text class="iconfont icon-tubiaozhizuomoban fsz-28"></text> 添加商品
+        </navigator>
+      </view>
+    </view>
+    <view class="sub-tit weight fsz-30 p30">活动设置</view>
+    <view class="cell">
+      <view class="cell-hd">开始时间：</view>
+      <view class="cell-bd">
+        <DateTimePicker bind:dateTimePicker="beginTimePicker" name='begintime' format='yyyy-MM-dd HH:mm:ss' placeholder="选择开始时间" />
+      </view>
+    </view>
+    <view class="cell">
+      <view class="cell-hd">结束时间：</view>
+      <view class="cell-bd">
+        <DateTimePicker bind:dateTimePicker="endTimePicker" name='endtime' format='yyyy-MM-dd HH:mm:ss' placeholder="选择结束时间" />
+      </view>
+    </view>
+  </view>
+
+  <view class="submit_button">
+    <view class="span" bindtap='subForm'>发布接龙</view>
+  </view>
+</view>

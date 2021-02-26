@@ -1,1 +1,0 @@
-<web-view binderror="onPageError" bindload="onPageLoad" bindmessage="getPostMessage" src="{{url}}"></web-view>

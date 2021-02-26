@@ -1,0 +1,29 @@
+<template name="seckill">
+  <view class="seckill-bg">
+  <view class="seckill">
+    <view class="seckill-head i-flex" style="background:{{seckill_bg_color}}">
+      <view class="tit">
+        <view>整点</view>
+        <view>秒杀</view>
+      </view>
+      <view class="i-flex-item i-flex">
+        <view class="seckill-head-item {{secKillActiveIdx==index?'active':''}}" wx:for="{{scekillTimeList}}" wx:key="id" data-time="{{item.seckillTime}}" data-idx="{{index}}" bindtap="changeSecKillTime">
+          <view class="time">{{item.timeStr}}</view>
+          <view class="desc" style="{{secKillActiveIdx==index?('color:'+seckill_bg_color):''}}">{{item.desc}}</view>
+        </view>
+      </view>
+      <view class="more" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/seckill/list?time={{scekillTimeList[secKillActiveIdx].seckillTime}}">
+        更多 <text class="iconfont icon-gengduo"></text>
+      </view>
+    </view>
+    <view class="seckill-list" wx:if="{{secRushList.length}}">
+      <swiper indicatorDots class="sec-swiper-content" autoplay duration="400" circular indicator-dots="{{false}}" bindchange="scrollSecKillGoodsChange">
+        <swiper-item wx:for="{{secRushList}}" wx:key="id">
+          <i-seckill-spu spuItem="{{item}}" begin="{{scekillTimeList[secKillActiveIdx].state==2?1:0}}" needAuth="{{needAuth}}"></i-seckill-spu>
+        </swiper-item>
+      </swiper>
+      <text class="current" wx:if="{{secRushList.length}}">{{secKillGoodsIndex}}/{{secRushList.length}}</text>
+    </view>
+  </view>
+</view>
+</template>

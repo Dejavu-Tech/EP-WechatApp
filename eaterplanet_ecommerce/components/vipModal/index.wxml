@@ -1,0 +1,9 @@
+
+<i-modal scrollUp="{{false}}" visible="{{visible}}">
+  <view class="modal">
+    <image class="img" bindtap="goUrl" mode="widthFix" src="{{imgUrl}}"></image>
+    <view class="close">
+      <text bindtap="closeModal" class="iconfont icon-guanbi"></text>
+    </view>
+  </view>
+</i-modal>

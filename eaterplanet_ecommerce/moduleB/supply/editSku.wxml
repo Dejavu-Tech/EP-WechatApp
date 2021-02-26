@@ -1,0 +1,23 @@
+<navBar title="修改库存" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="text-center">
+  <view class="bg-f head i-flex weight fsz-28 py10 border-bottom">
+    <view class="i-flex-item">名称</view>
+    <view class="w100">剩余库存</view>
+    <view class="w100">修改库存</view>
+  </view>
+  <view class="list" wx:if="{{need_data.length}}">
+    <form bindsubmit="formSubmit">
+      <view class="item bg-f i-flex py10 border-bottom" wx:for="{{need_data}}" wx:key="id">
+        <view class="i-flex-item">{{item.title}}</view>
+        <view class="item-num w100 {{item.stock<goods_stock_notice?'red':''}}">{{item.stock}}</view>
+        <view class="item-edit w100">
+          <input type="number" placeholder="请填写数量" name="ipt_{{item.id}}"></input>
+        </view>
+      </view>
+
+      <view class="btn-area p15">
+        <button formType="submit">保存</button>
+      </view>
+    </form>
+  </view>
+</view>

@@ -1,0 +1,7 @@
+{
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "推荐二维码",
+    "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index"
+    }
+}

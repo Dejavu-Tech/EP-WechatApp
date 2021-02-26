@@ -1,0 +1,61 @@
+@import 'tabbar.wxss';
+@import 'goodsManage.wxss';
+
+.orderItem {
+  margin: 20rpx auto;
+  font-size: 28rpx;
+}
+
+.red {
+  font-weight: 500;
+}
+
+.red.black {
+  color: #aaa;
+}
+
+.call {
+  padding: 5rpx 15rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+
+.footer {
+  justify-content: flex-end;
+}
+
+.footer .btn {
+  padding: 4rpx 15rpx;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  color: #fff;
+}
+
+.exp-modal {
+  width: 80%;
+  overflow: hidden;
+}
+
+.btn {
+  position: relative;
+}
+
+.btn:last-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  border-left: 1px solid #e5e5e5;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+.exp-modal .ipt {
+  border: 1rpx solid #e5e5e5;
+  padding: 10rpx;
+}
+
+.search-bar {
+  font-size: 28rpx;
+}

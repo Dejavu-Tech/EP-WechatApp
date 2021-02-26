@@ -1,0 +1,35 @@
+<navBar title="查看物流" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="dialog-content">
+	<view class="express-title flex">
+		<view class="goods-express-icon" >
+			<image src="{{goods_info.image}}"></image>
+		</view>
+		<view class='flex-item'>
+      <view class="express-header">
+        物流公司: <text class="span">{{seller_express.name}}</text>
+      </view>
+      <view class="express-shipper">
+        运单编号: <text class="tracking-number span">{{order_info.shipping_no}}</text>
+      </view>
+      <view class="express-tel"></view>
+      <div class="express-copy" style="display: none;"></div>
+    </view>
+	</view>
+	<view class="express-main">
+		<view class="express-main-title">
+			订单跟踪
+		</view>
+		<view  class="express-ui ul" wx:if="{{shipping_traces}}">
+			<view class="one-expre li" wx:for="{{shipping_traces}}" wx:key="{{index}}">
+				<view class="express-trace-info-dot express-trace-info-dot-green"></view>
+				<view class="express-trace-info">
+					<view class="_trace-info">
+						<view class="trace-detail">{{item.AcceptStation}}</view>
+						<view class="trace-time ">{{item.AcceptTime}}</view>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="p30 fsz-30 text-center" wx:else>暂无记录</view>
+	</view>
+</view>

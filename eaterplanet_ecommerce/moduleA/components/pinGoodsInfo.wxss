@@ -1,0 +1,79 @@
+.goodsBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 30rpx;
+  margin-bottom: 10rpx;
+  background-color: #fff;
+}
+
+.goodsImg {
+  width: 185rpx;
+  height: 185rpx;
+  border-radius: 5px;
+  margin-right: 20rpx;
+}
+
+.goodsInfo {
+  flex: 1;
+}
+
+.goodsInfo .title {
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.goodsInfo .price {
+  font-size: 24rpx;
+  color: #ff5344;
+  font-weight: bold;
+  margin-top: 20rpx;
+}
+
+.goodsInfo .price .big {
+  font-size: 32rpx;
+  margin-left: 2px;
+}
+
+.goodsInfo .tag,
+.identity {
+  color: #fff;
+  font-weight: normal;
+  background-color: #ff5344;
+  padding: 2rpx 15rpx 2rpx 10rpx;
+  border-radius: 0 20rpx 20rpx 0;
+  line-height: 1;
+  font-size: 20rpx;
+}
+
+.goodsInfo .marked-price {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+  text-decoration: line-through;
+  font-weight: normal;
+  margin-left: 6rpx;
+}
+
+.goodsInfo .price .num {
+  font-weight: normal;
+  color: #999;
+}
+
+.goodsInfo .price .tag {
+  margin-left: 20rpx;
+}
+
+.identity {
+  position: absolute;
+  left: 30rpx;
+  top: 50rpx;
+  padding: 4rpx 10rpx 4rpx 8rpx;
+  width: 45rpx;
+  line-height: 1.1;
+  border-radius: 0 40rpx 40rpx 0;
+}

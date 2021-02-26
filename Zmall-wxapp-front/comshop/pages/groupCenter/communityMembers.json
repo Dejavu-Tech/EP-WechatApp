@@ -1,9 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "社区用户",
-    "navigationBarTextStyle": "black",
-    "usingComponents": {
-        "component-img": "../../components/image/index",
-        "component-load-more": "../../components/load-more/index"
-    }
-}

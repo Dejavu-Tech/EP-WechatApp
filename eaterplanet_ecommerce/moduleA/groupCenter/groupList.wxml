@@ -1,0 +1,126 @@
+<navBar title="我的团单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="groupList">
+    <view class="fixed-top">
+      <view class="nav-bar">
+        <view class="nav-bar-inner">
+          <view bindtap="switchNav" wx:for="{{navList}}" wx:key="id" data-id='{{item.id}}' class="nav-bar-item {{currentTab == index ? 'current' : ''}}">{{item.name}}</view>
+        </view>
+      </view>
+      <view class="search-box i-flex">
+        <view class="filed">
+          <picker bindchange="bindFiledChange" value="{{fieldIdx}}" range="{{searchfield}}" range-key="{{'name'}}">
+            <view class="picker">{{searchfield[fieldIdx].name}} <text class="iconfont icon-xiatiao"></text></view>
+          </picker>
+        </view>
+        <view class="search">
+          <icon class="icon-search" size="14" type="search"></icon>
+          <input bindconfirm="searchByKey" placeholder="请输入关键词" type="text" value="{{keyword}}" confirm-type="done"></input>
+        </view>
+      </view>
+    </view>
+    <view class='content-list'>
+      <view class="noRecordCon" wx:if="{{order.length <= 0}}">
+        <image class="noRecordImg" src="../../images/noRecord.png"></image>
+        <view class="noRecord">您还没有相关的订单～</view>
+        <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
+          <view class="goIndex">去购物</view>
+        </navigator>
+      </view>
+      <block wx:else>
+        <view class="item" wx:for="{{order}}" wx:key="order_id">
+          <view class="" wx:for="{{item.goods_list}}" wx:for-item="goods" wx:key="order_goods_id">
+            <view class="orderNum">
+              <text>团单日期：{{item.createTime}}</text>
+              <text class="{{item.order_status_id==11?'black':''}} statusName">{{item.status_name}}</text>
+            </view>
+            <view class="spu">
+              <image src='{{goods.goods_images}}' class='i-class goodsImg' mode='widthFix'></image>
+              <view class="detail">
+                <view class="spuName">
+                  <text>{{goods.name}}</text>
+                </view>
+                <view class="tips">
+                  <span>商品数量：{{goods.quantity}}</span>
+                  <span wx:if="{{goods.option_str !=''}}" class="last">规格：{{goods.option_str}}</span>
+                </view>
+                <view class="tips">
+                  <span>商品金额：￥{{goods.total}}</span>
+                </view>
+                <view class="tips i-flex i-flex-spb">
+                  <view>有效金额: <text class="red">￥{{goods.order_jishu}}</text></view>
+                  <view wx:if="{{goods.fen_type==1}}">佣金固定金额: <text class="red">{{goods.fen_gumoney}}</text></view>
+                  <view wx:if="{{goods.fen_type==0}}">佣金比例: <text class="red">{{goods.fen_bili}}%</text></view>
+                </view>
+                <view class="tips i-flex i-flex-spb">
+                  <view>团长配送费: <text class="red">￥{{goods.head_shipping_fare||0.00}}</text></view>
+                  <view bindtap="handleTipDialog" data-type="{{goods.fen_type==1}}">
+                    实际佣金: <text class="red">￥{{goods.commision}}</text>
+                    <text class="iconfont icon-shuoming text-dark fsz-28" style="margin-left:10rpx;"></text>
+                  </view>
+                </view>
+                <!-- 维权 -->
+                <view class="tips">
+                  <view class="red" wx:if="{{item.order_status_id==7}}">已退款</view>
+                  <view wx:elif="{{goods.is_refund_state==1&&goods.refund_info}}">
+                    退款金额：<text class="red">￥{{goods.refund_info.ref_money}} </text>
+                    <text wx:if="{{goods.refund_info.state==0}}" class="bg-primary text-white tag">{{goods.refund_info.real_refund_quantity}}个 申请中</text>
+                    <text wx:if="{{goods.refund_info.state==3}}" class="bg-sucess text-white tag">{{goods.refund_info.real_refund_quantity}}个 退款成功</text>
+                    <text wx:if="{{goods.refund_info.state==4}}" class="bg-warning text-white tag">{{goods.refund_info.real_refund_quantity}}个 退款失败</text>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="song_button">
+            <view class="goods-sign-btn" data-phone="{{item.shipping_tel}}" bindtap='callPhone'>
+              <image src='../../images/phone.png'></image> {{item.shipping_name}}
+            </view>
+            <view class='song_button_item'>
+              <view wx:if="{{currentTab==2}}" class="goods-sign-btn" data-order_id="{{item.order_id}}" bindtap='sign_one'>确认签收</view>
+              <view class="goods-sign-btn gray" data-order_id="{{item.order_id}}" bindtap='goOrderDetail'>查看详情</view>
+            </view>
+          </view>
+        </view>
+        <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+      </block>
+    </view>
+  </view>
+
+  <i-modal scrollUp="{{false}}" visible="{{showTipDialog}}">
+    <view class="rule-modal bg-f w90p rounded">
+      <view class="fsz-30 weight border-bottom text-center py10">佣金计算规则</view>
+      <view class="p15 border-bottom fsz-24 line-height">
+        <view class="mb5 i-flex"><view class="text-gray">佣金结算前：</view>有效金额=商品金额-退款金额</view>
+        <view class="mb5 i-flex"><view class="text-gray">佣金结算后：</view>有效金额=商品金额</view>
+        <view class="mb5 i-flex">
+          <view class="text-gray">佣金固定金额：</view>
+          <view class="i-flex-item">实际佣金（有效金额-退款金额）/有效金额*佣金固定金额</view>
+        </view>
+        <view class="mb5 i-flex" wx:if="{{fen_type==0}}">
+          <view class="text-gray">商品配送费：</view>
+          <view class="i-flex-item">商品配送费收入=有效金额/订单总金额*总配送费</view>
+        </view>
+        <block wx:else>
+          <view class="mb5 i-flex">
+            <view class="text-gray">商品配送费：</view>
+            <view class="i-flex-item">
+              <view>1. 商品配送费收入=有效金额/订单总金额*总配送费</view>
+              <view>2. 退商品配送费=退款金额/有效金额*配送费</view>
+            </view>
+          </view>
+          <view class="mb5 i-flex">
+            <view class="text-gray">配送费结算时间：</view>
+            <view class="i-flex-item">从确认收货或核销后开始，直到售后期<block wx:if="{{open_aftersale}}">{{open_aftersale_time||0}}天</block>结束，系统自动结算</view>
+          </view>
+        </block>
+        <view class="mb5 i-flex">
+          <view class="text-gray">佣金结算时间：</view>
+          <view class="i-flex-item">从确认收货或核销后开始，直到售后期<block wx:if="{{open_aftersale}}">{{open_aftersale_time||0}}天</block>结束，系统自动结算</view>
+        </view>
+        <view class="mb5 red">最终可得佣金以实际计算结果为准</view>
+      </view>
+      <view class="fsz-30 bule text-center py10" bindtap="handleTipDialog">知道了</view>
+    </view>
+  </i-modal>
+</view>

@@ -1,0 +1,18 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
+.cart .list .item {
+  position: relative;
+  padding: 30rpx 30rpx 30rpx 0;
+  margin-left: 30rpx;
+  align-items: center;
+}
+
+.cart .list .item .img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.zmodal {
+  z-index: 799!important;
+}

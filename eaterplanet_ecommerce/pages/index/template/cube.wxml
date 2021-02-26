@@ -1,0 +1,102 @@
+<!-- 魔方图 -->
+<template name="cube">
+  <view class="cube" wx:if="{{data.length}}">
+    <block wx:for="{{data}}" wx:key="id">
+      <!-- 1张 -->
+      <view class='cube-item' wx:if="{{item.type==1}}">
+        <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[0]==7}}">
+          <image src="{{item.thumb.cover[0]}}" class="cube-one rounded" mode="widthFix"></image>
+        </button>
+        <image wx:else src="{{item.thumb.cover[0]}}" class="cube-one rounded" mode="widthFix" data-index="{{index}}" data-idx="0" bindtap="goCube"></image>
+      </view>
+      <!-- 2张 -->
+      <view class='cube-item' wx:if="{{item.type==2}}">
+        <button class="cube-left nav-contact" openType="contact" wx:if="{{item.thumb.linktype[0]==7}}">
+          <i-img iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="295" height="365"></i-img>
+        </button>
+        <i-img wx:else iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="295" height="365" data-index="{{index}}" data-idx="0" bindtap="goCube"></i-img>
+        <button class="cube-two nav-contact" openType="contact" wx:if="{{item.thumb.linktype[1]==7}}">
+          <i-img iClass="cube-two rounded" loadImage="{{item.thumb.cover[1]}}" width="450" height="365"></i-img>
+        </button>
+        <i-img wx:else iClass="cube-two rounded" loadImage="{{item.thumb.cover[1]}}" width="450" height="365" data-index="{{index}}" data-idx="1" bindtap="goCube"></i-img>
+      </view>
+      <!-- 3张 -->
+      <view class='cube-item' wx:if="{{item.type==3}}">
+        <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[0]==7}}">
+          <i-img iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="275" height="365"></i-img>
+        </button>
+        <i-img wx:else iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="275" height="365" data-index="{{index}}" data-idx="0" bindtap="goCube"></i-img>
+        <view class="i-flex-col i-flex-spb">
+          <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[1]==7}}">
+            <i-img iClass="cube-three rounded" loadImage="{{item.thumb.cover[1]}}" width="430" height="180"></i-img>
+          </button>
+          <i-img wx:else iClass="cube-three rounded" loadImage="{{item.thumb.cover[1]}}" width="430" height="180" data-index="{{index}}" data-idx="1" bindtap="goCube"></i-img>
+          <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[2]==7}}">
+            <i-img iClass="cube-three rounded" loadImage="{{item.thumb.cover[2]}}" width="430" height="180"></i-img>
+          </button>
+          <i-img wx:else iClass="cube-three rounded" loadImage="{{item.thumb.cover[2]}}" width="430" height="180" data-index="{{index}}" data-idx="2" bindtap="goCube"></i-img>
+        </view>
+      </view>
+      <!-- 4张 -->
+      <view class='cube-item' wx:if="{{item.type==4}}">
+        <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[0]==7}}">
+          <i-img iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="275" height="365"></i-img>
+        </button>
+        <i-img wx:else iClass="cube-left rounded" loadImage="{{item.thumb.cover[0]}}" width="275" height="365" data-index="{{index}}" data-idx="0" bindtap="goCube"></i-img>
+        <view class="i-flex-col i-flex-spb">
+          <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[1]==7}}">
+            <i-img iClass="cube-three rounded" loadImage="{{item.thumb.cover[1]}}" width="430" height="180"></i-img>
+          </button>
+          <i-img wx:else iClass="cube-three rounded" loadImage="{{item.thumb.cover[1]}}" width="430" height="180" data-index="{{index}}" data-idx="1" bindtap="goCube"></i-img>
+          <view class="i-flex i-flex-spb w450">
+            <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[2]==7}}">
+              <i-img iClass="cube-four rounded" loadImage="{{item.thumb.cover[2]}}" width="212.5" height="180"></i-img>
+            </button>
+            <i-img wx:else iClass="cube-four rounded" loadImage="{{item.thumb.cover[2]}}" width="212.5" height="180" data-index="{{index}}" data-idx="2" bindtap="goCube"></i-img>
+            <button class="nav-contact" openType="contact" wx:if="{{item.thumb.linktype[3]==7}}">
+              <i-img iClass="cube-four rounded" loadImage="{{item.thumb.cover[3]}}" width="212.5" height="180"></i-img>
+            </button>
+            <i-img wx:else iClass="cube-four rounded" loadImage="{{item.thumb.cover[3]}}" width="212.5" height="180" data-index="{{index}}" data-idx="3" bindtap="goCube"></i-img>
+          </view>
+        </view>
+      </view>
+      <!-- 均分 -->
+      <!-- 2张 -->
+      <view class='cube-item' wx:if="{{item.type==5}}">
+        <block wx:for="{{item.thumb.cover}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="idx">
+          <button class="cube-w nav-contact" openType="contact" wx:if="{{item.thumb.linktype[idx]==7}}">
+            <image src="{{imgItem}}" class="w100p" mode="widthFix"></image>
+          </button>
+          <image wx:else src="{{imgItem}}" class="cube-w" mode="widthFix" data-index="{{index}}" data-idx="{{idx}}" bindtap="goCube"></image>
+        </block>
+      </view>
+      <!-- 3张 -->
+      <view class='cube-item' wx:if="{{item.type==6}}">
+        <block wx:for="{{item.thumb.cover}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="idx">
+          <button class="cube-w nav-contact" openType="contact" wx:if="{{item.thumb.linktype[idx]==7}}">
+            <image src="{{imgItem}}" class="w100p" mode="widthFix"></image>
+          </button>
+          <image wx:else src="{{imgItem}}" class="cube-w" mode="widthFix" data-index="{{index}}" data-idx="{{idx}}" bindtap="goCube"></image>
+        </block>
+      </view>
+      <!-- 1*4张 -->
+      <view class='cube-item' wx:if="{{item.type==7}}">
+        <block wx:for="{{item.thumb.cover}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="idx">
+          <button class="cube-w4 nav-contact" openType="contact" wx:if="{{item.thumb.linktype[idx]==7}}">
+            <image src="{{imgItem}}" class="w100p" mode="widthFix"></image>
+          </button>
+          <image wx:else src="{{imgItem}}" class="cube-w" mode="widthFix" data-index="{{index}}" data-idx="{{idx}}" bindtap="goCube"></image>
+        </block>
+      </view>
+      <!-- 2*2 -->
+      <view class='cube-item two-row' wx:if="{{item.type==8}}">
+        <block wx:for="{{item.thumb.cover}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="idx">
+          <button class="cube-w nav-contact" openType="contact" wx:if="{{item.thumb.linktype[idx]==7}}">
+            <image src="{{imgItem}}" class="w100p" mode="widthFix"></image>
+          </button>
+          <image wx:else src="{{imgItem}}" class="cube-w" mode="widthFix" data-index="{{index}}" data-idx="{{idx}}" bindtap="goCube"></image>
+        </block>
+      </view>
+    </block>
+  </view>
+</template>

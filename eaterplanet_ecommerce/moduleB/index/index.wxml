@@ -1,0 +1,9 @@
+<navBar title="平台管理中心" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="bg-f pb20">
+  <view class="list i-flex i-flex-wrap">
+    <navigator url="/eaterplanet_ecommerce/moduleB/writeoff/index" hover-class="none" class="item text-center">
+      <image class="icon" src="../images/writeoff.png"></image>
+      <view class="fsz-24 text-6">核销管理</view>
+    </navigator>
+  </view>
+</view>

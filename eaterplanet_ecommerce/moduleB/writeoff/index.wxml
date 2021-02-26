@@ -1,0 +1,93 @@
+<navBar title="核销管理" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="i-flex i-aic bg-f p15 m15 rounded shadow">
+    <image class="avatar" src="{{salesroom_list[salesroomIdx].room_logo?salesroom_list[salesroomIdx].room_logo:'../../images/icon-tab-me.png'}}"></image>
+    <text class="i-flex-item mx10 fsz-28">{{salesroom_list[salesroomIdx].room_name}}</text>
+    <view bindtap="handleHexiaoModal" class="bule fsz-24">切换店铺 <text class="iconfont icon-youjiantou fsz-24"></text></view>
+  </view>
+
+  <view class='three py15 bg-f m15 rounded shadow' wx:if="{{false}}">
+    <view class='three-item'>
+      <view class='three-title'>今日核销(次)</view>
+      <view class='three-money'>10</view>
+    </view>
+    <view class='three-item'>
+      <view class='three-title'>累计核销(次)</view>
+      <view class='three-money'>100</view>
+    </view>
+  </view>
+
+  <view class='menu bg-f m15 rounded shadow' wx:if="{{false}}">
+    <navigator class="border-bottom" url='/eaterplanet_ecommerce/moduleB/writeoff/member'>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">核销人员</view>
+        <view class="tool-right">
+          <text class="text-gray">5</text><image class="icon-right ml5" src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </navigator>
+    <navigator url=''>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">商品核销</view>
+        <view class="tool-right">
+          <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </navigator>
+  </view>
+
+  <!-- 核销方式 -->
+  <view class="bg-f p15 m15 rounded shadow">
+    <view class="fsz-28">选择核销方式</view>
+    <form catchsubmit="preFormSubmit">
+      <view class="i-flex i-aic mt10">
+        <input class="i-flex-item ipt" name="code" placeholder="请输入券码"></input>
+        <button type="primary" formType="submit" class="btn">查询</button>
+      </view>
+    </form>
+    <view class="scan i-flex-col i-flex-alc" bindtap="goScan">
+      <text class="iconfont icon-erweima1"></text>
+      <view class="fsz-30 mt10">扫码核销</view>
+    </view>
+  </view>
+</view>
+
+<!-- 核销方式 -->
+<view class="bg-f p15 m15 rounded shadow">
+  <view class="fsz32 weight">今日核销记录({{today_saleshexiao_count}}个)</view>
+  <view class="list mt10 border-top pt10">
+    <block wx:if="{{saleshexiao_record_list&&saleshexiao_record_list.length}}">
+      <view class="item border-bottom fsz-24" wx:for="{{saleshexiao_record_list}}" wx:key="id">
+        <view>操作员：{{item.smember_name}}</view>
+        <view class="mt5">订单编号：{{item.order_num_alias}}</view>
+        <view class="mt5">用户手机号：{{item.shipping_tel}}</view>
+        <view class="mt5">核销时间：{{item.hx_time}}</view>
+        <view class="i-flex mt10">
+          <image src="{{item.goods_images}}" class="goodsimg"></image>
+          <view>
+            <view class="fsz-28">{{item.goods_name}}</view>
+            <view class="fsz-24 text-gray mt10">共 <text class="red">{{item.hexiao_count}}</text> 次</view>
+          </view>
+        </view>
+        <view class="state mt10 bg-sucess fsz-28">已核销</view>
+      </view>
+    </block>
+    <view class="empty fsz32 text-center" wx:else>暂无记录~</view>
+  </view>
+</view>
+
+<!-- 核销弹窗 -->
+<i-modal scrollUp="{{true}}" visible="{{showHexiaoModal}}" bind:cancel="handleHexiaoModal">
+  <view class="sku-card">
+    <view class="weight fsz-32 pb10 text-center">门店选择</view>
+    <scroll-view scroll-y style="height: 60vh;">
+      <view class="border-bottom i-flex i-aic py10" wx:for="{{salesroom_list}}" wx:key="index" bindtap="changeMendian" data-idx="{{index}}">
+        <view class="i-flex-item">
+          <view class="fsz-28 weight mb5">{{item.room_name}}</view>
+          <view class="fsz-22">{{item.room_address}}</view>
+        </view>
+        <text class="iconfont icon-youjiantou fsz-28"></text>
+      </view>
+    </scroll-view>
+  </view>
+</i-modal>

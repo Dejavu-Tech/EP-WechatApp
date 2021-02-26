@@ -1,0 +1,62 @@
+.header {
+  padding: 20rpx 30rpx;
+  color: #444;
+  font-size: 28rpx;
+  font-weight: 500;
+}
+
+.content-wrap {
+  border-top: 0.1rpx solid #efefef;
+  padding-bottom: 20rpx;
+}
+
+.content-wrap .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  padding: 16rpx 30rpx 0;
+}
+
+.content-wrap .item .title {
+  word-break: keep-all;
+  color: #aaa;
+}
+
+.content-wrap .item .detail {
+  color: #444;
+  text-align: right;
+  display: flex;
+  align-items: center;
+}
+
+.content-wrap .item .detail .phone {
+  margin-left: 20rpx;
+  padding: 0 20rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  border: 0.1rpx solid #efefef;
+  border-radius: 26rpx;
+}
+
+.content-wrap .item .detail .phone .icon-phone {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 10rpx;
+}
+
+.footer {
+  border-top: 0.1rpx solid #efefef;
+  padding: 42rpx 30rpx 32rpx 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.footer .money {
+    color: #4facfe;
+    font-size: 40rpx;
+}

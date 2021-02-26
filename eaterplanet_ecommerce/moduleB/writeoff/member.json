@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "到店核销",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index"
+  }
+}

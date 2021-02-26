@@ -1,0 +1,38 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
+.notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 5px #ccc;
+  padding: 15rpx 30rpx;
+  background: rgba(255, 255, 255, 0.9);
+  transition: all 0.2s ease-in-out;
+  visibility: hidden;
+  transform: translate3d(0, -100%, 0);
+}
+
+.i-as-show {
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.notice .btn {
+  padding: 6rpx 20rpx;
+}
+
+.hithere {
+  display: inline-block;
+  animation: hithere 1.2s ease infinite;
+}
+
+@keyframes hithere {
+  30% { transform: scale(1.1); }
+  40%, 60% { transform: rotate(-20deg) scale(1.1); }
+  50% { transform: rotate(20deg) scale(1.1); }
+  70% { transform: rotate(0deg) scale(1.1); }
+  100% { transform: scale(1); }
+}

@@ -1,0 +1,58 @@
+<navBar background='#fff' title="我的拼团" back="{{true}}"  bindback="handlerGobackClick"/>
+<view class="wrap">
+  <view class="nav-bar">
+    <view class="nav-bar-inner">
+      <view bindtap="changeTabs" wx:for="{{tabs}}" wx:key="id" class="nav-bar-item {{order_status==item.id?'current':''}}" data-type="{{item.id}}" style="{{order_status==item.id?'border-color:'+skin.color:''}}">{{item.name}}</view>
+    </view>
+  </view>
+  <view class="list">
+    <view wx:if="{{list.length>0}}">
+      <i-card iClass="item" wx:for="{{list}}" wx:key="id" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/order/order?id={{item.order_id}}" data-type="{{item.type}}" data-id="{{item.order_id}}">
+        <view slot="header">
+          <view class="header i-flex i-flex-spb">
+            <view class="suppy">
+              <!-- <image class="logo" src="https://mall.shiziyu888.com/dan//Uploads/image/shop/2018-04-02/5ac1294430a78.png"></image>
+              <text class="name">狮子鱼旗舰店</text> -->
+            </view>
+            <view class="status red" style="color:{{skin.color}}">{{item.status_name}}</view>
+          </view>
+        </view>
+        <view slot="content">
+          <view class="content-wrap">
+            <i-goods-info isOrder="{{true}}" goodsInfo="{{item}}" skin="{{skin}}"></i-goods-info>
+          </view>
+        </view>
+        <view slot="footer">
+          <view class="footer i-flex i-flex-spb">
+            <view class="footer-l">{{item.shipping_fare}}，合计：<text class="red">¥{{item.total}}</text></view>
+            <view class="footer-r i-flex">
+              <block wx:if="{{item.order_status_id==3}}">
+                <view catchtap="cancelOrder" data-type="{{item.order_id}}" class="btn hollow">取消订单</view>
+                <view catchtap="orderPay" data-type="{{item.order_id}}" class="btn solid" style="background:{{skin.color}}">
+                  付款
+                </view>
+              </block>
+              <block wx:if="{{item.order_status_id!=3}}">
+                <view catchtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/share?id={{item.order_id}}" class="btn hollow">拼团详情</view>
+                <view wx:if="{{item.order_status_id==2&&state==0}}" catchtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/share?id={{item.order_id}}" class="btn solid" style="background:{{skin.color}}">邀请好友</view>
+                <block wx:else>
+                  <view wx:if="{{item.type!='ignore'}}" catchtap="goLink" data-link="/eaterplanet_ecommerce/pages/order/order?id={{item.order_id}}" class="btn solid" style="background:{{skin.color}}">订单详情</view>
+                </block>
+              </block>
+            </view>
+          </view>
+        </view>
+      </i-card>
+      <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!loadOver&&!showEmpty&&loadMore}}"></i-load-more>
+    </view>
+    <view class="empty-wrap" wx:if="{{showEmpty}}">
+      <image class="empty-img" src="../../images/noData.png"></image>
+      <view class="empty-txt">你还没有参加任何团购，快与小伙伴拼团吧！</view>
+      <view class="redBtn" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index" style="background:{{skin.color}}">
+        去开团
+      </view>
+    </view>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" navBackUrl="{{navBackUrl}}"></i-new-auth>

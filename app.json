@@ -1,0 +1,210 @@
+{
+  "pages": [
+"eaterplanet_ecommerce/pages/index/guanggao",
+    "eaterplanet_ecommerce/pages/index/index",
+    "eaterplanet_ecommerce/pages/goods/goodsDetail",
+    "eaterplanet_ecommerce/pages/order/shopCart",
+    "eaterplanet_ecommerce/pages/user/me",
+    "eaterplanet_ecommerce/pages/position/community",
+    "eaterplanet_ecommerce/pages/position/search",
+    "eaterplanet_ecommerce/pages/order/index",
+    "eaterplanet_ecommerce/pages/order/order",
+    "eaterplanet_ecommerce/pages/order/refunddetail",
+    "eaterplanet_ecommerce/pages/user/protocol",
+    "eaterplanet_ecommerce/pages/user/articleProtocol",
+    "eaterplanet_ecommerce/pages/order/refund",
+    "eaterplanet_ecommerce/pages/order/evaluate",
+    "eaterplanet_ecommerce/pages/position/cities",
+    "eaterplanet_ecommerce/pages/order/placeOrder",
+    "eaterplanet_ecommerce/pages/goods/buyRecords",
+    "eaterplanet_ecommerce/pages/goods/comment",
+    "eaterplanet_ecommerce/pages/supply/recruit",
+    "eaterplanet_ecommerce/pages/supply/apply",
+    "eaterplanet_ecommerce/pages/web-view",
+    "eaterplanet_ecommerce/pages/order/goods_express",
+    "eaterplanet_ecommerce/pages/order/shareOrderInfo",
+    "eaterplanet_ecommerce/pages/user/coupon",
+    "eaterplanet_ecommerce/pages/index/share",
+    "eaterplanet_ecommerce/pages/type/index",
+    "eaterplanet_ecommerce/pages/user/rechargeDetails",
+    "eaterplanet_ecommerce/pages/user/charge",
+    "eaterplanet_ecommerce/pages/type/search",
+    "eaterplanet_ecommerce/pages/type/result",
+    "eaterplanet_ecommerce/pages/goods/industrial",
+    "eaterplanet_ecommerce/pages/supply/index",
+    "eaterplanet_ecommerce/pages/supply/home",
+    "eaterplanet_ecommerce/pages/refund/refundList",
+    "eaterplanet_ecommerce/pages/type/details",
+    "eaterplanet_ecommerce/pages/user/rule",
+    "eaterplanet_ecommerce/pages/weather/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#007FAF",
+    "backgroundColor": "#fff"
+
+  },
+  "tabBar": {
+    "list": [
+
+      {
+        "pagePath": "eaterplanet_ecommerce/pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "eaterplanet_ecommerce/pages/type/index",
+        "text": "分类"
+      },
+      {
+        "pagePath": "eaterplanet_ecommerce/pages/order/shopCart",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "eaterplanet_ecommerce/pages/user/me",
+        "text": "我的"
+      }
+    ],
+    "color": "#fff",
+    "selectedColor": "#fff",
+    "backgroundColor": "#fff",
+    "borderStyle": "white"
+  },
+  "networkTimeout": {
+    "request": 20000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为了更好的服务您，请授权允许"
+    }
+  },
+  "subPackages": [
+    {
+      "name": "distributionCenter",
+      "root": "eaterplanet_ecommerce/distributionCenter",
+      "pages": [
+        "pages/share",
+        "pages/member",
+        "pages/memberInfo",
+        "pages/details",
+        "pages/me",
+        "pages/recruit",
+        "pages/apply",
+        "pages/excharge",
+        "pages/exchargeRecord",
+        "pages/goodsDetails",
+        "pages/fans"
+      ]
+    },
+    {
+      "name": "moduleA",
+      "root": "eaterplanet_ecommerce/moduleA",
+      "pages": [
+        "special/index",
+        "special/list",
+        "pin/goodsDetail",
+        "pin/share",
+        "pin/me",
+        "pin/index",
+        "pin/income",
+        "pin/excharge",
+        "pin/exchargeRecord",
+        "vip/upgrade",
+        "score/signin",
+        "score/scoreDetails",
+        "menu/index",
+        "menu/fav",
+        "menu/subcate",
+        "menu/list",
+        "menu/details",
+        "seckill/list",
+        "solitaire/pub",
+        "solitaire/index",
+        "solitaire/details",
+        "video/index",
+        "video/detail",
+        "solitaire/me",
+        "solitaire/groupIndex",
+        "solitaire/addGood",
+        "solitaire/groupDetails",
+        "groupCenter/index",
+        "groupCenter/recruit",
+        "groupCenter/apply",
+        "groupCenter/communityMembers",
+        "groupCenter/distributionList",
+        "groupCenter/settlementList",
+        "groupCenter/settlementDetail",
+        "groupCenter/editInfo",
+        "groupCenter/groupList",
+        "groupCenter/groupDetail",
+        "groupCenter/buyHistory",
+        "groupCenter/pendingDeliveryOrders",
+        "groupCenter/wallet",
+        "groupCenter/cashList",
+        "groupCenter/detailsList",
+        "groupCenter/list",
+        "groupCenter/listDetails",
+        "groupCenter/memberList",
+        "groupCenter/setting",
+        "groupCenter/closure",
+        "groupCenter/addHexiao",
+        "groupCenter/bind_member_hexiao",
+        "groupCenter/goodsManage",
+        "groupCenter/gruopInfo",
+        "groupCenter/headlist",
+        "groupCenter/recommend",
+        "groupCenter/ranking",
+        "coupon/getCoupon"
+      ]
+    },
+    {
+      "name": "moduleB",
+      "root": "eaterplanet_ecommerce/moduleB",
+      "pages": [
+        "index/index",
+        "writeoff/index",
+        "index/auth",
+        "live/index",
+        "writeoff/member",
+        "rider/index",
+        "rider/order",
+        "rider/grab",
+        "supply/index",
+        "live/replay",
+        "supply/goodsManage",
+        "supply/orderManage",
+        "generalmall/index",
+        "supply/moneyManage",
+        "supply/excharge",
+        "supply/exchargeRecord",
+        "supply/orderDetails",
+        "supply/editSku",
+        "rider/census",
+        "rider/me",
+        "rider/excharge",
+        "rider/exchargeRecord",
+        "rider/accountRecord",
+        "writeoff/details",
+        "supply/changePrice"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "eaterplanet_ecommerce/pages/user/me": {
+      "network": "all",
+      "packages": [
+        "moduleA",
+        "distributionCenter",
+        "moduleB"
+      ]
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "i-vip-modal": "/eaterplanet_ecommerce/components/vipModal/index"
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ]
+}

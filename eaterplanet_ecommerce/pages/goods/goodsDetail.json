@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "商品详情",
+    "navigationBarBackgroundColor": "#007FAF",
+  "usingComponents": {
+      "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-order-notify": "../../components/order-notify/index",
+    "i-relative-goods-list": "./relativeGoodsList",
+    "i-change-community": "../../components/changeCommunity/index",
+    "guess-like": "../../components/guess-like/index",
+    "i-vip-price": "../../components/vipPrice/vipPrice",
+    "i-sub-notice": "../../components/subNotice/index",
+    "parser":"../../components/parser/parser",
+    "i-img": "../../components/img/index",
+    "i-modal": "../../components/modal/index",
+    "advimg": "../../components/advimg/index"
+  }
+}

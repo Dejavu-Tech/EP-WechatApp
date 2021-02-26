@@ -1,0 +1,134 @@
+<view class="spu" wx:if="{{type==0}}">
+  <view class="thumb">
+    <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" width="160" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.skuImage}}"></i-img>
+    <view class="mask" wx:if="{{isPast||disabled||spuItem.spuCanBuyNum==0?'disabled':''}}"></view>
+    <view class="act-end" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+    <view class="act-end" wx:elif="{{actEnd}}">已结束</view>
+  </view>
+  <view class="item-m">
+    <view class="spu-title">
+      <text class='span'>{{spuItem.spuName}}</text>
+    </view>
+    <view class="spu-desc" wx:if="{{spuItem.spuDescribe}}">
+      <text class="em">{{spuItem.spuDescribe}}</text>
+    </view>
+    <view class="spu-price">
+      <view class="sale-price">
+        <text class='span'>¥{{spuItem.actPrice[0]}}.{{spuItem.actPrice[1]}}</text>
+      </view>
+      <view class="market-price">¥{{spuItem.marketPrice[0]}}.{{spuItem.marketPrice[1]}}</view>
+    </view>
+  </view>
+  <view class="item-r" wx:if="{{hasIpt}}">
+    <view class="count">已售{{spuItem.soldNum}}</view>
+    <block wx:if="{{state==1}}">
+      <view class="num" style="margin-top:auto;">
+        <!-- 单规格 -->
+        <block wx:if="{{specs==0}}">
+          <!-- wx:if="{{number>0}}" -->
+          <i-input-number value="{{number}}" bind:change="changeNumber" bind:outOfMax="outOfMax" addImage="../../images/icon-add-2.png" reduceImage="../../images/icon-reduce-2.png" max="{{spuItem.spuCanBuyNum}}" iClassNumberText="input-number-text"></i-input-number>
+          <!-- <view class="addBtn" wx:else>
+            <image class="img" src="../../images/icon-add-shopCart-disabled.png" wx:if="{{disabled||spuItem.spuCanBuyNum==0}}"></image>
+            <image class="img" src="../../images/icon-add-shopCart.png" wx:else catchtap="openSku"></image>
+          </view> -->
+        </block>
+        <view wx:else>
+          <!-- 多规格 -->
+          <view wx:if="{{number>0}}" class="i-flex-center">
+            <view class="addBtn" catchtap="showTip">
+              <image class="img" src="../../images/icon-input-reduce.png"></image>
+            </view>
+            <view class="cartNum">{{number|0}}</view>
+            <view class="addBtn" wx:if="{{spuItem.spuCanBuyNum==0}}">
+              <image class="img" src="../../images/icon-spu-add-disabled.png"></image>
+            </view>
+            <view class="addBtn" catchtap="openSku" wx:else>
+              <image class="img" src="../../images/icon-spu-add.png"></image>
+            </view>
+          </view>
+          <view class="addBtn" wx:else>
+            <view class="optBtn disabled" wx:if="{{disabled||spuItem.spuCanBuyNum==0}}">选购</view>
+            <view class="optBtn" wx:else catchtap="openSku">选购</view>
+            <!-- <image class="img" src="../../images/icon-add-shopCart-disabled.png" wx:if="{{disabled||spuItem.spuCanBuyNum==0}}"></image>
+            <image class="img" src="../../images/icon-add-shopCart.png" wx:else catchtap="openSku"></image> -->
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 订单列表 -->
+<view class="spu" wx:elif="{{type==3}}">
+  <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" width="160" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.goods_images}}"></i-img>
+  <view class="item-m">
+    <view class="spu-title">
+      <text class='span'>{{spuItem.name}}</text>
+    </view>
+    <view class="spu-desc">
+      <text class="em"><block wx:if="{{spuItem.option_str}}">{{spuItem.option_str}} </block>x{{spuItem.quantity}}</text>
+    </view>
+    <view class="spu-price">
+      <view class="sale-price">
+        <text class='span'>¥{{spuItem.price}}</text>
+      </view>
+      <view class="market-price">¥{{spuItem.orign_price}}</view>
+    </view>
+  </view>
+  <view class="item-r" wx:if="{{hasIpt}}">
+    <view class="count">已售{{spuItem.soldNum}}</view>
+    <block wx:if="{{state==1}}">
+      <view class="num" style="margin-top:auto;">
+        <!-- 单规格 -->
+        <block wx:if="{{specs==0}}">
+          <i-input-number wx:if="{{number>0}}" value="{{number}}" bind:change="changeNumber" bind:outOfMax="outOfMax" addImage="../../images/icon-add-2.png" reduceImage="../../images/icon-reduce-2.png" max="{{spuItem.spuCanBuyNum}}" iClassNumberText="input-number-text"></i-input-number>
+          <view class="addBtn" wx:else>
+            <image class="img" src="../../images/icon-add-shopCart-disabled.png" wx:if="{{disabled||spuItem.spuCanBuyNum==0}}"></image>
+            <image class="img" src="../../images/icon-add-shopCart.png" wx:else catchtap="openSku"></image>
+          </view>
+        </block>
+        <view wx:else>
+          <!-- 多规格 -->
+          <view wx:if="{{number>0}}" class="i-flex-center">
+            <view class="addBtn" catchtap="showTip">
+              <image class="img" src="../../images/icon-input-reduce.png"></image>
+            </view>
+            <view class="cartNum">{{number|0}}</view>
+            <view class="addBtn" catchtap="openSku">
+              <image class="img" src="../../images/icon-spu-add.png"></image>
+            </view>
+          </view>
+          <view class="addBtn" wx:else>
+            <image class="img" src="../../images/icon-add-shopCart-disabled.png" wx:if="{{disabled||spuItem.spuCanBuyNum==0}}"></image>
+            <image class="img" src="../../images/icon-add-shopCart.png" wx:else catchtap="openSku"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="spu" wx:else>
+  <view class="thumb">
+    <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" width="160" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.thumb}}"></i-img>
+    <view class="mask" wx:if="{{spuItem.is_over==1||disabled||spuItem.total==0?'disabled':''}}"></view>
+    <view class="act-end" wx:if="{{spuItem.total==0}}">已抢光</view>
+    <view class="act-end" wx:elif="{{spuItem.is_over==1}}">已结束</view>
+  </view>
+  <view class="item-m" style="width:0;">
+    <view class="spu-title">
+      <text class='span'>{{spuItem.goodsname}}</text>
+    </view>
+    <view class="spu-desc" wx:if="{{spuItem.subtitle}}">
+      <text class="em">{{spuItem.subtitle}}</text>
+    </view>
+    <view class="spu-price">
+      <view class="sale-price">
+        <text class='span'>¥{{spuItem.price}}</text>
+      </view>
+      <view class="market-price">¥{{spuItem.productprice}}</view>
+    </view>
+  </view>
+  <view class="item-r">
+    <view class="btn" wx:if="{{type==1}}" bindtap="handleSelect">选择</view>
+    <view class="btn" wx:elif="{{type==2}}" bindtap="handleDelete">删除</view>
+  </view>
+</view>

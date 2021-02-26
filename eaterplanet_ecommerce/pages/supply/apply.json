@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index"
+  }
+}

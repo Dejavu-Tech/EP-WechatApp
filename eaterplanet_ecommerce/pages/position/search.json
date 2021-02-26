@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "社区搜索",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-community-item": "../../components/community-item/index",
+    "i-router-link": "../../components/router-link/router-link"
+  }
+}

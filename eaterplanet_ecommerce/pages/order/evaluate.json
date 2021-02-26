@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "评价",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "parser":"../../components/parser/parser"
+  }
+}

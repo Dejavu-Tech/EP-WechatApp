@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "推广收益",
+    "navigationBarBackgroundColor": "#4facfe",
+    "navigationBarTextStyle": "white",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-dialog": "../../components/dialog/index"
+  }
+}

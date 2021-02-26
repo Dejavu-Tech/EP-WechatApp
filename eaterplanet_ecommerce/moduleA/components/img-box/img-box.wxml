@@ -1,0 +1,14 @@
+<view class="img-box" bindtap="goDetails" data-id="{{item.id}}">
+  <text class="iconfont icon-bofang play" wx:if="{{item.is_pic_or_video==2}}"></text>
+  <image class="img" src="{{item.images}}" mode="widthFix" lazy-load="true"></image>
+  <view class="cont">
+    <view class="title">{{item.recipe_name}}</view>
+    <view class="user">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <text class="nickname" wx:if="{{item.username}}">{{item.username}}</text>
+      <view catchtap="agree" style="margin-left: auto;">
+        <text class="iconfont icon-xinaixin {{item.has_fav?'active':''}}"></text> {{item.fav_count}}
+      </view>
+    </view>
+  </view>
+</view>

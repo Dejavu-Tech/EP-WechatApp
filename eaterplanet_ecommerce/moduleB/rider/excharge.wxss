@@ -1,0 +1,5 @@
+@import "/eaterplanet_ecommerce/resource/css/excharge.wxss";
+
+page {
+  font-size: 28rpx;
+}

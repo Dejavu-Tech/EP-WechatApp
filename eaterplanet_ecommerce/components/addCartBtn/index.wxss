@@ -1,0 +1,11 @@
+@import "/icon.wxss";
+
+.btn {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: linear-gradient(to top, #ff5345, #ff8379);
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+}

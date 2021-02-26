@@ -1,0 +1,69 @@
+<i-modal bind:cancel="close" iClass="sku-content" scrollUp="{{true}}" visible="{{visible}}">
+  <view class="sku-card safebottom">
+    <view bindtap="close" class="close">
+      <image class="image" src="../../images/icon-sku-close.png"></image>
+    </view>
+    <view class="sku-header">
+      <i-img defaultImage="../../images/placeholder-refund.png" height="80" iClass="sku-img" loadImage="{{cur_sku_arr.skuImage}}" width="80"></i-img>
+      <view class="sku-desc">
+        <view class="sku-title">
+          <text class='span'>{{cur_sku_arr.spuName}}</text>
+        </view>
+        <view class="sku-price">
+          <view class="sale-price">
+            <block wx:if="{{buyType=='integral'}}"><text class='span'>{{cur_sku_arr.actPrice[0]}}</text>积分</block>
+            <block wx:else>¥ <text class='span'>{{cur_sku_arr.actPrice[0]}}</text>.{{cur_sku_arr.actPrice[1]}}</block>
+          </view>
+          <view class="market-price" wx:if="{{buyType=='integral'}}">¥{{cur_sku_arr.marketPrice[0]}}</view>
+          <view class="market-price" wx:else>¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</view>
+          <!-- 会员价 -->
+          <block wx:if="{{buyType!='integral'}}">
+            <i-vip-price wx:if="{{vipInfo.is_open_vipcard_buy==1&&vipInfo.is_vip_card_member==1&&cur_sku_arr.is_take_vipcard==1}}" price="{{cur_sku_arr.card_price}}"></i-vip-price>
+            <block wx:elif="{{vipInfo.is_member_level_buy==1&&cur_sku_arr.is_mb_level_buy==1}}">
+              <i-vip-price wx:if="{{vipInfo.is_open_vipcard_buy==1&&vipInfo.is_vip_card_member!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+              <i-vip-price wx:if="{{vipInfo.is_open_vipcard_buy!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+            </block>
+          </block>
+        </view>
+        <view class="sku-switch-on">已选择：{{cur_sku_arr.spec}}</view>
+      </view>
+    </view>
+    <view class="sku-spec" wx:for="{{skuList.list}}" wx:key="id">
+      <view class="title">{{item.name}}</view>
+      <view class="spec-list">
+        <text bindtap="selectSku" class="span {{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for-index="idx" data-idx="{{idx}}" wx:for="{{item.option_value}}"
+          wx:for-item="value" wx:key="idx" style="{{idx==sku[index]['idx']?'color:'+skin.color+';border-color:'+skin.color:''}}">{{value.name}}</text>
+      </view>
+    </view>
+    <view class="sku-num-content">
+      <view class="title">数量</view>
+      <view class="i-class i-input-number i-input-number-size-{{size}}">
+        <view bindtap="setNum" data-type="decrease" class="i-input-number-minus num-btn {{value<=min?'i-input-number-disabled':''}}">
+          <image class='icon-btn' src="../../images/icon-input-reduce.png"></image>
+        </view>
+        <input wx:if="{{visible}}" bindblur="handleBlur" bindfocus="handleFocus" class="i-input-number-text {{min>=max?'i-input-number-disabled':''}}" bindinput="changeNumber" type="number" value="{{sku_val}}"></input>
+        <view bindtap="setNum" data-type="add" class="i-input-number-plus num-btn {{value>=max?'i-input-number-disabled':''}}">
+          <image class='icon-btn' src="../../images/icon-input-add.png"></image>
+        </view>
+      </view>
+      <view class="msg" wx:if="{{cur_sku_arr.one_limit_count>0||cur_sku_arr.total_limit_count>0||cur_sku_arr.oneday_limit_count>0}}">
+        <span wx:if="{{cur_sku_arr.one_limit_count>0}}">每单限{{cur_sku_arr.one_limit_count}}份</span>
+        <span style="margin-left:8rpx;" wx:if="{{cur_sku_arr.total_limit_count>0}}">每人限购{{cur_sku_arr.total_limit_count}}份</span>
+        <span></span>
+      </view>
+    </view>
+    <view class="sku-num-content">
+      <view class="even-num" wx:if="{{showLimitTip}}">
+        购物车总数已满或超出{{showLimitType==1?'每次':(showLimitType==2?'每天':'最多')}}购买数量
+      </view>
+    </view>
+    <form bindsubmit="gocarfrom" report-submit="true">
+      <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
+        <view>库存不足</view>
+      </button>
+      <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="background:{{skin.color}}">
+        <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
+      </button>
+    </form>
+  </view>
+</i-modal>

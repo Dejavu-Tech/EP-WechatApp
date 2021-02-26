@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "吃货天气",
+  "backgroundTextStyle": "light",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index"
+  }
+}

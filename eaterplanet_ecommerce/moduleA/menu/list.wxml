@@ -1,0 +1,5 @@
+<navBar title="" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="container">
+  <masonry generic:masonry-item="img-box" id="masonry" interval-width="20rpx" bind:needAuth="noLogin"></masonry>
+</view>
+<i-empty wx:if="{{showEmpty}}">暂无结果~</i-empty>

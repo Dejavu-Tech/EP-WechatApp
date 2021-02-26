@@ -1,0 +1,27 @@
+<!-- 快递信息 -->
+<i-modal scrollUp="{{true}}" visible="{{show}}" bind:cancel="close">
+	<view class="bg-f rounded">
+		<view class="p15 text-dark weight fsz-30 text-center">选择配送员</view>
+		<!--搜索框begin-->
+    <view class='search-bar'>
+      <view class='search-box'>
+        <input class='ipt' placeholder="搜索" confirm-type="搜索" type="text" bindconfirm="goResult"></input>
+        <view class='search-icon'>
+          <text class="iconfont icon-sousuo1"></text>
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y style="max-height:60vh;" bindscrolltolower="toLower">
+      <view class="item p15 border-bottom i-flex i-flex-alc" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="selectItem">
+        <view class="i-flex-item">
+          <view class="fsz-32">{{item.username}}</view>
+          <view class="text-6 fsz-26 mt5">{{item.mobile}}</view>
+        </view>
+        <view class="btn fsz-24">
+          选择 <text class="iconfont icon-youjiantou text-gray" style="font-size: 28rpx;"></text>
+        </view>
+      </view>
+      <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+    </scroll-view>
+	</view>
+</i-modal>

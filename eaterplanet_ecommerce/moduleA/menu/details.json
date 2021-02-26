@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "详情",
+  "navigationStyle": "custom",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-goods-item": "../components/menuGoodsItem",
+    "sku": "../../components/sku/index",
+    "parser":"../../components/parser/parser",
+    "i-navigation-bar": "../../components/navigation-bar/navigation-bar"
+  }
+}

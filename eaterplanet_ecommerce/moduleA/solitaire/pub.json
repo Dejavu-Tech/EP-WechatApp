@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "发布群接龙",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "DateTimePicker": "../../components/datetimepicker/datetimepicker",
+    "chooseImage": "../../components/chooseImage/index",
+    "i-solitaire-good": "../components/solitaireGood",
+    "i-solitaire-head": "../components/solitaireHead"
+  }
+}

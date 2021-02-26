@@ -1,0 +1,79 @@
+@import 'tabbar.wxss';
+
+.nav {
+  left: 0;
+  right: 0;
+  transition: top 0.3s;
+  z-index: 10;
+  background: #fff;
+  height: 92rpx;
+  border-bottom: 2rpx solid #f2f2f2;
+  padding: 0 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav .orderList_item {
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: #666;
+  position: relative;
+  height: 94rpx;
+  line-height: 94rpx;
+}
+
+.nav .on {
+  position: relative;
+  color: #fe8464;
+  border-bottom: 4rpx solid #fe8464;
+}
+
+/* 搜索 */
+.search-bar {
+  padding: 12rpx 25rpx;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-box {
+  background-color: #f0f0f0;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  color: #acacac;
+  display: flex;
+  align-content: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20rpx;
+  margin-left: 25rpx;
+  margin-right: 12rpx;
+}
+
+.search-icon .iconfont {
+  font-size: 34rpx;
+  padding-top: 10rpx;
+}
+
+.search-box .ipt {
+  padding: 0 30rpx 0 60rpx;
+  line-height: 56rpx;
+  height: 56rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.item .img-class {
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+}
+
+.search-bar {
+  font-size: 28rpx;
+}

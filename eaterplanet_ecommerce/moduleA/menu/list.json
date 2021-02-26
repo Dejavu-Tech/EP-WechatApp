@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": false,
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "masonry": "../components/masonry/masonry",
+    "img-box": "../components/img-box/img-box",
+    "i-empty": "../../components/empty/index"
+  }
+}

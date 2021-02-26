@@ -1,0 +1,95 @@
+/* 搜索 S */
+.search-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 100;
+  padding: 12rpx 25rpx;
+  background-color: #fff;
+  padding-bottom: 20rpx;
+}
+
+.search-box {
+  background-color: #f0f0f0;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  color: #acacac;
+  display: flex;
+  align-content: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20rpx;
+  margin-left: 25rpx;
+  margin-right: 12rpx;
+}
+
+.search-icon .iconfont {
+  font-size: 34rpx;
+  padding-top: 10rpx;
+}
+
+.search-box .ipt {
+  padding: 0 30rpx 0 60rpx;
+  line-height: 56rpx;
+  height: 56rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 搜索 E */
+
+.list {
+  padding-top: 88rpx;
+}
+
+.list .item {
+  width: 710rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  box-shadow: 0 0 40rpx 0 rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin: 20rpx 20rpx 0;
+}
+
+.header {
+  padding: 20rpx 30rpx;
+  color: #444;
+  font-size: 28rpx;
+  border-bottom: 0.1rpx solid #efefef;
+}
+
+.middle {
+  padding: 20rpx 30rpx;
+  font-size: 26rpx;
+}
+
+.middle .btn {
+  color: #fff;
+  padding: 10rpx 15rpx;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+}
+
+.pub {
+  position: fixed;
+  right: 20rpx;
+  bottom: 20%;
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(90deg, #ff5041 0%, #ff695c 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 5px #ccc;
+  z-index: 100;
+  color: #fff;
+  font-size: 22rpx;
+}
+
+.pub .iconfont {
+  font-size: 44rpx;
+}

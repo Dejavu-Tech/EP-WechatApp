@@ -1,0 +1,37 @@
+<navBar title="团长排行" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="top">
+  <image src="../static/tzph-top.png" style="width:100%;height:424rpx;vertical-align: top;"></image>
+</view>
+<view class="nav i-flex">
+  <view class="i-flex-item item {{type==1?'active':''}}" bindtap="changeType" data-type="1">今日</view>
+  <view class="i-flex-item item {{type==2?'active':''}}" bindtap="changeType" data-type="2">昨日</view>
+  <view class="i-flex-item item {{type==3?'active':''}}" bindtap="changeType" data-type="3">上周</view>
+  <view class="i-flex-item item {{type==4?'active':''}}" bindtap="changeType" data-type="4">上月</view>
+</view>
+
+<view class="list bg-f text-center" wx:if="{{list.length}}">
+  <view class="th i-flex">
+    <view class="item" style="flex:2;">排名</view>
+    <view class="item" style="flex:3;">社区信息</view>
+    <view class="item" style="flex:2;">订单数</view>
+    <view class="item" style="flex:3;">收入金额</view>
+  </view>
+  <view class="td i-flex i-flex-alc" wx:for="{{list}}" wx:key="index">
+    <view class="item" style="flex:2;">
+      <image src="../static/1.png" class="icon" wx:if="{{index==0}}"></image>
+      <image src="../static/2.png" class="icon" wx:elif="{{index==1}}"></image>
+      <image src="../static/3.png" class="icon" wx:elif="{{index==2}}"></image>
+      <text class="num" wx:else>{{index<9?'0':''}}{{index+1}}</text>
+    </view>
+    <view class="item i-flex" style="flex:3;">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <text class="i-flex-item text-overflow2 name">{{item.community_name}}</text>
+    </view>
+    <view class="item order" style="flex:2;">{{item.order_count}}</view>
+    <view class="item order" style="flex:3;">¥ {{item.money}}</view>
+  </view>
+</view>
+
+<view class="list bg-f text-center" wx:else>
+  <view class="empty">暂无记录~</view>
+</view>

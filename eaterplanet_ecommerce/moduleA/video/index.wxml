@@ -1,0 +1,27 @@
+<navBar title="" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap">
+  <block wx:if="{{rushList.length}}">
+    <view class="list">
+      <view class="item" wx:for="{{rushList}}" wx:key="id">
+        <i-router-link url="/eaterplanet_ecommerce/moduleA/video/detail?id={{item.actId}}&idx={{index}}">
+          <i-img defaultImage="../../images/placeholder-refund.png" iClass="img" loadImage="{{item.skuImage}}"></i-img>
+          <image class="spu-play" src="../../images/play.png"></image>
+          <view class="cont">
+            <view class="tit">{{item.spuName}}</view>
+            <view class="spu-price">
+              <view class="sale-price">
+                <text class='span'>¥{{item.actPrice[0]}}</text>.{{item.actPrice[1]}}
+              </view>
+              <view class="market-price">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</view>
+            </view>
+          </view>
+        </i-router-link>
+      </view>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+  </block>
+  <i-empty wx:if="{{noData}}">暂时没有商品~</i-empty>
+
+  <view class="pb100"></view>
+  <i-tabbar currentIdx='2' cartNum='{{cartNum}}' class="tabbar {{isIpx?'pb20':''}}" />
+</view>

@@ -1,0 +1,32 @@
+.tabbar {
+  line-height: 1;
+}
+
+.tabbar.active {
+  color: #fe8464;
+}
+
+.tabbar .iconfont {
+  font-size: 44rpx;
+}
+
+.tabbar-home {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.tabbar-home .iconfont {
+  display: inline-block;
+  position: absolute;
+  background: #fe8464;
+  border-radius: 50%;
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 10rpx solid #fff;
+  top: -50rpx;
+  left: 50%;
+  margin-left: -60rpx;
+  color: #fff;
+}

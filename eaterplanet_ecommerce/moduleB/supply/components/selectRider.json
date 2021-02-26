@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-load-more": "../../../components/load-more/index",
+    "i-modal": "../../../components/modal/index"
+  }
+}

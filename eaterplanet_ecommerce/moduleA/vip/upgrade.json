@@ -1,0 +1,15 @@
+{
+    "navigationBarTextStyle": "white",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-router-link": "../../components/router-link/router-link",
+    "i-img": "../../components/img/index",
+    "i-tabs": "../../components/tabs/index",
+    "i-type-item": "../../pages/type/type-item",
+    "sku": "../../components/sku/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-vip-modal": "../../components/vipModal/index",
+    "i-cart-btn": "../../components/cartBtn/index"
+  }
+}

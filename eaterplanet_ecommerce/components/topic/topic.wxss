@@ -1,0 +1,28 @@
+@import '../new-comer/index.wxss';
+
+.topic {
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.topic-img {
+  width: 100%;
+  vertical-align: top;
+  border-radius: 10rpx 10rpx 0 0;
+}
+
+.blank10 {
+  height: 20rpx;
+  background-color: #f8f8f8;
+}
+
+.onlyThree .new-comers-item {
+  width: 226rpx!important;
+}
+
+.onlyThree .new-comers-item .new-img {
+  width: 186rpx!important;
+  height: 186rpx!important;
+}

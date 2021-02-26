@@ -1,0 +1,94 @@
+<navBar title="待核销订单" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+  <view>
+    <view class="container {{isIpx?'pb80':''}}">
+      <view wx:if="{{order.length}}">
+        <view class="order-item" wx:for="{{order}}" wx:key="index">
+          <view class="order-title">
+            <label class="check-box-content">
+              <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-type="order">
+                <view class="check-box">
+                  <image class="checkbox-checked" src="../../images/checkbox-checked.png" wx:if="{{item.checked}}"></image>
+                  <image class="checkbox-disabled" src="../../images/checkbox-disabled.png" wx:else></image>
+                  <checkbox hidden checked="{{item.checked}}" value="{{index}}"></checkbox>
+                </view>
+              </checkbox-group>
+            </label>
+            <view class="order-msg">
+              <span>订单编号：{{item.order_num_alias}}</span>
+              <view class="fsz-24">提货人：{{item.shipping_name}}<text class="ml30">手机号：{{item.shipping_tel}}</text></view>
+              <em class="fsz-24 mt5">{{item.createTime}}</em>
+            </view>
+            <view class="order-status">{{item.status_name}}</view>
+          </view>
+          <checkbox-group bindchange="checkboxChange" data-index="{{index}}" data-type="goods">
+            <block wx:for="{{item.goods_list}}" wx:for-index="idx" wx:for-item="skuItem" wx:key="order_id">
+              <view class="goods-item">
+                <label class="check-box-content">
+                  <view class="check-box">
+                    <checkbox hidden checked="{{skuItem.checked}}" value="{{idx}}"></checkbox>
+                  </view>
+                </label>
+                <view class="goods-img">
+                  <component-img defaultImage="../../images/placeholder-refund.png" height="60" loadImage="{{skuItem.goods_images}}" width="60"></component-img>
+                </view>
+                <view class="goods-detail">
+                  <view class="goods-title">{{skuItem.name}}</view>
+                  <view class="goods-desc"><text wx:if="{{skuItem.option_str}}">{{skuItem.option_str}};</text> 共{{skuItem.quantity}}件</view>
+                </view>
+                <view class="goods-sign-btn goods-sign-btn-disabled" style="display:none;" wx:if="{{skuItem.orderSkuStatus===-1}}">提货确认</view>
+                <label class="goods-sign-btn" wx:elif="{{skuItem.orderSkuStatus===0}}">提货确认
+                  <button hidden bindtap="sign" data-idx="{{index}},{{idx}}" data-orderNo="{{item.orderNo}}" data-orderSkuId="{{skuItem.orderSkuId}}"></button>
+                </label>
+                <view class="goods-sign-btn goods-sign-btn-disabled" wx:elif="{{skuItem.orderSkuStatus===1||skuItem.orderSkuStatus===2}}">已签
+                </view>
+              </view>
+              <!-- 维权 -->
+              <view class="tips bg-f fsz-24" style="padding-left:84rpx;">
+                <view class="red pb10" wx:if="{{item.order_status_id==7}}">已退款</view>
+                <view class="pb10" wx:elif="{{skuItem.is_refund_state==1&&skuItem.refund_info}}">
+                  退款金额：<text class="red">￥{{skuItem.refund_info.ref_money}} </text> 
+                  <text wx:if="{{skuItem.refund_info.state==0}}" class="bg-primary text-white tag">{{skuItem.refund_info.real_refund_quantity}}个 申请中</text>
+                  <text wx:if="{{skuItem.refund_info.state==3}}" class="bg-sucess text-white tag">{{skuItem.refund_info.real_refund_quantity}}个 退款成功</text>
+                  <text wx:if="{{skuItem.refund_info.state==4}}" class="bg-warning text-white tag">{{skuItem.refund_info.real_refund_quantity}}个 退款失败</text>
+                </view>
+              </view>
+            </block>
+          </checkbox-group>
+        </view>
+      </view>
+      <view class="no-list" wx:else>
+        暂无数据
+      </view>
+    </view>
+    <view class="bottom-bar {{isIpx?'pb20':''}}" wx:if="{{order.length}}">
+      <label class="check-box-content">
+        <checkbox-group bindchange="checkboxChange" data-type="all">
+          <view class="check-box">
+            <image class="checkbox-checked" src="../../images/checkbox-checked.png" wx:if="{{checkedAll && order.length>0}}"></image>
+            <image class="checkbox-disabled" src="../../images/checkbox-disabled.png" wx:else></image>
+            <checkbox hidden checked="{{checkedAll && order.length>0}}" value="{{index}}"></checkbox>
+          </view>
+        </checkbox-group>
+        全选
+      </label>
+      <view class="flex">
+        <view class="total">
+          合计：
+          <span>{{checkedCount}}条</span>
+        </view>
+        <label class="btn" style="display:none;">
+          复制商品信息
+          <button hidden bindtap="copyGoodsMsg"></button>
+        </label>
+        <label class="btn" wx:if="{{checkedCount >0}}">
+          确认签收 
+          <button hidden bindtap="signAll"></button>
+        </label>
+        <view class="btn btn-disabled" wx:else>确认签收</view>
+      </view>
+    </view> 
+
+    <i-aside-btn showHome="{{true}}"></i-aside-btn>
+  </view>
+</i-auth>

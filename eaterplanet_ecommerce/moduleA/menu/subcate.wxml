@@ -1,0 +1,12 @@
+<!-- 子分类 -->
+<view class="cate bg-f">
+  <block wx:for="{{subCate}}" wx:key="id">
+    <view class="sub-tit weight">{{item.name}}</view>
+    <view class="sub-list i-flex" wx:if="{{item.sub_cate.length}}">
+      <view class="item" wx:for="{{item.sub_cate}}" wx:key="{{idx}}" wx:for-item="sub" wx:for-index="idx" data-name="{{item.name}}" data-id="{{sub.id}}" bindtap="goList">
+        <i-img defaultImage="../../images/placeholder-refund.png" height="122" iClass="img" loadImage="{{sub.logo}}" width="122"></i-img>
+        <text class="name text-overflow1">{{sub.name}}</text>
+      </view>
+    </view>
+  </block>
+</view>

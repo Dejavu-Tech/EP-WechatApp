@@ -1,0 +1,45 @@
+<navBar title="吃货菜谱" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap">
+  <!-- 搜索 -->
+  <view class="i-flex i-flex-spb bg-ff search-box">
+    <view class="ipt-box">
+      <text class="iconfont icon-sousuo1"></text>
+      <input class="ipt" placeholder="搜索" bindconfirm="goResult" type="text" placeholder-style="color:#bfbfbf;"></input>
+    </view>
+    <view class="search-fav" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/menu/fav">
+      <view class="iconfont icon-xinaixin"></view>
+      <view style="font-size:18rpx;margin-top:5rpx;">喜欢</view>
+    </view>
+  </view>
+  <view class="pb100"></view>
+  <!-- 幻灯片 -->
+  <view class="swipe bg-ff" wx:if="{{adv_arr.length>0}}">
+    <swiper indicatorDots class="swiper-content" duration="400" autoplay indicatorActiveColor="{{skin.color}}" indicatorColor="#FF5344" interval="5000" circular>
+      <swiper-item wx:for="{{adv_arr}}" wx:key="id">
+        <view class='banner' bindtap='goBannerUrl' data-idx="{{index}}">
+          <i-img iClass="banner-img" loadImage="{{item.thumb}}"></i-img>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 导航 -->
+  <view class="cate bg-ff">
+    <view class="cate-title weight">今日推荐</view>
+    <view id="tab" style="{{oneFixed=='Fixed'?'height: 90rpx;':'height: 0;'}}"></view>
+    <view class="sticky-content i-flex i-flex-spb bg-ff {{oneFixed}}" wx:if="{{classification.tabs.length}}">
+      <view class="i-flex-item" style="width: 0;">
+        <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+      </view>
+      <navigator url="/eaterplanet_ecommerce/moduleA/menu/subcate" hover-class="none" class="iconfont icon-fenlei_"></navigator>
+    </view>
+  </view>
+  <!-- 列表 -->
+  <view class="container">
+    <masonry generic:masonry-item="img-box" id="masonry" interval-width="20rpx" bind:needAuth="noLogin"></masonry>
+  </view>
+  <i-empty wx:if="{{showEmpty}}">暂时没有{{modify_recipe_name}}</i-empty>
+</view>
+
+<view class="pb100"></view>
+<i-tabbar currentIdx='2' cartNum='{{cartNum}}' class="tabbar {{isIpx?'pb20':''}}" />
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{true}}"></i-new-auth>

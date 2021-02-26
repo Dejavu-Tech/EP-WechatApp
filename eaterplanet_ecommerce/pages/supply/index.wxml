@@ -1,0 +1,42 @@
+<navBar title="商户列表" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='wrap'>
+  <view class="topic" bindtap='goDetails' wx:if="{{supplyList.length}}" wx:for="{{supplyList}}" wx:key="id" wx:for-index="idx" wx:for-item="shop" data-id="{{shop.id}}">
+    <view class='supply'>
+      <view class='supply-l'>
+        <view class="avatar">
+          <image src="{{shop.logo}}" wx:if="{{shop.logo}}"></image>
+        </view>
+        <view class='name'>{{shop.storename?shop.storename:shop.shopname}}</view>
+      </view>
+      <view class='supply-r'>
+        <text>{{shop.goods_count}}</text>
+        <image class='icon-right' src='../../images/rightArrowImg.png'></image>
+      </view>
+    </view>
+    <view class='new-comers' wx:if="{{shop.goods_list.length}}">
+      <scroll-view class='new-comers-scroll' scroll-x>
+        <view class='new-comers-wrap'>
+          <i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{shop.goods_list}}" wx:key="id">
+            <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="180" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
+            <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+            <view class='title'>{{item.spuName}}</view>
+            <view class='new-bot'>
+              <view class='price'>¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+              <i-button iClass="add-cart disabled" wx:if="{{disabled||item.spuCanBuyNum==0}}">
+                <image class='img' src="../../images/icon-add-shopCart-disabled.png"></image>
+              </i-button>
+              <i-button bind:click="openSku" data-idx="{{index}}" data-shopidx="{{idx}}" iClass="add-cart" wx:else>
+                <i-addcart iClass='img' />
+              </i-button>
+            </view>
+          </i-router-link>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <i-empty wx:if="{{supplyList.length==0}}">暂无{{supply_diy_name}}~</i-empty>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" navBackUrl="{{navBackUrl}}"></i-new-auth>
+<sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:vipModal="vipModal"></sku>
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />

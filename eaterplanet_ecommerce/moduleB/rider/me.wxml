@@ -1,0 +1,30 @@
+<import src="tabbar.wxml"></import>
+<navBar title="配送员详情" background='#FED206' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="i-flex i-flex-alc p30 bg-f border-bottom">
+  <image class="avatar-md mx10" src="{{orderdistribution_info.avatar}}"></image>
+  <view class="i-flex-item">
+    <view class="fsz-38 weight">{{orderdistribution_info.username}}</view>
+    <view class="fsz-28 mt5 text-6">{{orderdistribution_info.mobile}}</view>
+  </view>
+</view>
+<view class='money i-flex i-flex-alc border-bottom bg-f'>
+  <view class='i-flex-item'>小程序来单语音通知</view>
+  <view>
+    <switch checked="{{orderdistribution_info.is_new_notice==1}}" bindchange="switchNotice"/>
+  </view>
+</view>
+<view class='money i-flex i-flex-alc border-bottom bg-f'>
+  <view class='i-flex-item'>
+    <view class="recharge-money">{{can_tixian_money}}</view>
+    <view class="recharge-tip">可提现金额（元）</view>
+  </view>
+  <view class='btn' bindtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/rider/excharge'>
+    <button type='warn' size='mini'>提现</button>
+  </view>
+</view>
+<view class='money i-flex i-flex-alc border-bottom bg-f' bindtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/rider/accountRecord'>
+  <view class='i-flex-item'>账户明细</view>
+  <text class="iconfont icon-youjiantou fsz-24 text-gray"></text>
+</view>
+
+<template is="tabbar" data="{{data:3}}"></template>

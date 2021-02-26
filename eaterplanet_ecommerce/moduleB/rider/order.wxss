@@ -1,0 +1,50 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
+.nav-bar {
+  width: 100%;
+  left: 0;
+  z-index: 10;
+}
+
+.nav-bar .nav-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  background-color: white;
+  box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255, 255, 255, 0.25);
+}
+
+.nav-bar .nav-bar-item {
+  position: relative;
+  word-break: keep-all;
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+  padding: 20rpx 0;
+}
+
+.nav-bar .current.nav-bar-item {
+  border-bottom: 3px solid #FED206;
+}
+
+.nav-bar-content {
+  margin-top: 49px;
+  padding-bottom: 30rpx;
+}
+
+.footer .btn {
+  background: #FED206;
+  padding: 12rpx 0;
+  text-align: center;
+  border-radius: 10rpx;
+  color: #000;
+  flex: 1;
+  margin: 0 30rpx;
+}
+
+.goods .img {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 10rpx;
+}

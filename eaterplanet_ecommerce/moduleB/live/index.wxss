@@ -1,0 +1,226 @@
+.empty-list {
+  padding: 260rpx 150rpx;
+  font-size: 34rpx;
+}
+
+.empty-list .btn {
+  margin: 0;
+  border-radius: 100rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  width: 280rpx;
+  font-size: 30rpx;
+  padding: 0;
+}
+
+.empty-list .light {
+  height: 240rpx;
+  width: 240rpx;
+}
+
+.empty-list .text-cancel {
+  padding: 10rpx;
+  margin-bottom: 30rpx;
+  margin-top: 25rpx;
+  font-size: 30rpx;
+}
+
+.fui-live-list {
+  padding: 24rpx;
+}
+
+.fui-live-item {
+  margin-bottom: 24rpx;
+  border-radius: 24rpx;
+  background: #fff;
+  display: flex;
+  overflow: hidden;
+}
+
+.fui-live-item>.cover,.fui-live-item>.cover>image {
+  width: 400rpx;
+  height: 400rpx;
+  background: #f2f2f2;
+  position: relative;
+}
+
+.fui-live-item>.cover>.status {
+  position: absolute;
+  left: 8rpx;
+  top: 8rpx;
+  width: auto;
+  height: 48rpx;
+  border-radius: 24rpx;
+  background: rgba(0,0,0,0.2);
+  line-height: 48rpx;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  display: flex;
+}
+
+.fui-live-item>.cover>.status .notice {
+  height: 48rpx;
+  background: #3DC637;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  padding: 0 16rpx;
+  border-radius: 24rpx;
+  font-weight: 500;
+}
+
+.fui-live-item>.cover>.status>image {
+  height: 48rpx;
+  width: 48rpx;
+}
+
+.fui-live-item>.cover>.status text {
+  padding: 0 20rpx 0 12rpx;
+  font-weight: 400;
+}
+
+.fui-live-item>.cover>.status text.b {
+  font-weight: 700;
+}
+
+.fui-live-item>.cover>.top {
+  position: absolute;
+  left: 8rpx;
+  bottom: 8rpx;
+  height: 36rpx;
+  border-radius: 18rpx;
+  background: #FF661A;
+  padding: 0 16rpx;
+  line-height: 36rpx;
+  font-weight: 500;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.fui-live-item>.cover>.recommend {
+  position: absolute;
+  right: 8rpx;
+  bottom: 8rpx;
+  height: 36rpx;
+  border-radius: 18rpx;
+  background: #FB1732;
+  padding: 0 8rpx;
+  line-height: 30rpx;
+}
+
+.fui-live-item>.cover>.recommend>image {
+  width: 20rpx;
+  height: 20rpx;
+  display: inline-block;
+}
+
+.fui-live-item>.cover>.recommend>text {
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 20rpx;
+}
+
+.fui-live-item>.info {
+  flex: 1;
+  padding: 36rpx 24rpx 0 24rpx;
+}
+
+.fui-live-item>.info>.title {
+  height: 80rpx;
+  font-size: 28rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  align-content: center;
+  font-weight: 700;
+  line-height: 40rpx;
+}
+
+.fui-live-item>.info>.anchor {
+  height: 60rpx;
+  width: 100%;
+  padding: 24rpx 0;
+  display: flex;
+  flex-direction: row;
+}
+
+.fui-live-item>.info>.anchor>.avatar,.fui-live-item>.info>.anchor>.avatar>image {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+}
+
+.fui-live-item>.info>.anchor>.nickname {
+  flex: 1;
+  font-size: 24rpx;
+  color: #56595B;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 8rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  align-content: center;
+}
+
+.fui-live-item>.info>.goods-list {
+  height: 120rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fui-live-item>.info>.goods-list>.row,.fui-live-item>.info>.goods-list>.row>image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  background: #eee;
+}
+
+.fui-live-item>.info>.goods-list>.row {
+  position: relative;
+}
+
+.fui-live-item>.info>.goods-list>.row>.cover {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  position: absolute;
+  padding-top: 86rpx;
+  text-align: center;
+  font-weight: 500;
+  font-size: 22rpx;
+  color: #fff;
+  border-radius: 8rpx;
+}
+
+.fui-live-item>.info>.goods-list>.row>.cover.br {
+  padding-top: 26rpx;
+  color: #fff;
+  font-weight: 500;
+  font-size: 24rpx;
+  line-height: 38rpx;
+}
+
+.replayImg {
+  width: 400rpx;
+  height: 400rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.replayImg image {
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  margin-left: -64rpx;
+  top: 136rpx;
+}

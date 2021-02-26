@@ -1,0 +1,9 @@
+<view class="tabs i-class">
+  <scroll-view scrollWithAnimation scroll-x="true" scroll-y="false" class="tabs__navs" scrollLeft="{{scrollLeft}}">
+    <view class="tabs__navs__wrap">
+      <view bindtap="handleTabItemTap" class="tabs__nav tav__nav__{{index}} {{index===activeIndex?'active':''}}" data-id="{{tabItem.id}}" data-index="{{index}}" style="color: {{index===activeIndex?fontColor:'#FFF'}}" wx:for="{{tabs}}" wx:for-item="tabItem" wx:key="id">{{tabItem.name}}</view>
+      <view animation="{{indicatorAnamationData}}" class="activeIndicator" style="{{lineBgColor}}"></view>
+    </view>
+  </scroll-view>
+    <view  class="gototype" bindtap="goLink"><view  class="image"> </view>分类</view>
+</view>

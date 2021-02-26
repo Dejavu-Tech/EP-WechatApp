@@ -1,0 +1,34 @@
+<navBar title="群接龙" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' home="{{true}}" iconTheme='white' color='#fff' bindhome="handlerGohomeClick"/>
+<view>
+  <i-solitaire-head class="mb10" community="{{head_data}}" showShare="{{false}}"></i-solitaire-head>
+  <view class="bg-f" wx:if="{{list.length}}">
+    <view class="p30 border-bottom" wx:for="{{list}}" wx:key="id" wx:for-item="solitaire" bindtap="goDetails" data-id="{{solitaire.id}}">
+      <view class="fsz-30 mb5 i-flex i-flex-spb">
+        <view class="text-overflow1 weight i-flex-item">{{solitaire.solitaire_name}}</view>
+        <view class="red fsz-24" style="color:{{skin.color}}">{{solitaire.state_str}}</view>
+      </view>
+      <view class="fsz-24 text-gray mb10">接龙时间：{{solitaire.begin_time}}~{{solitaire.end_time}}</view>
+      <view class="img-list i-flex i-flex-wrap" wx:if="{{solitaire.images_list.length}}">
+        <image class="img-item" src="{{item}}" lazy-load mode="aspectFill" wx:for="{{solitaire.images_list}}" wx:key="id" wx:for-index="idx" data-sidx="{{index}}" data-idx="{{idx}}"></image>
+      </view>
+      <view class="i-flex i-flex-spb" wx:if="{{solitaire.state>0}}">
+        <view class="member-list">
+          <block wx:for="{{solitaire.invite_list}}" wx:for-index="idx" wx:for-item="memItem" wx:key="id">
+            <image src="{{memItem.avatar}}" class="avatar"></image>
+          </block>
+        </view>
+        <view class="fsz-24 text-gray">
+          <block wx:if="{{solitaire.invite_count>0}}">{{solitaire.invite_count}}次浏览</block><block wx:if="{{solitaire.order_count>0}}">，{{solitaire.order_count}}次接龙</block>
+        </view>
+      </view>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+  </view>
+  <i-empty wx:if="{{noData}}">暂无接龙~</i-empty>
+</view>
+
+<i-tabbar currentIdx='2' cartNum='{{cartNum}}' wx:if="{{showTabbar}}" class="tabbar {{isIpx?'pb20':''}}" />
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{true}}"></i-new-auth>
+
+<!-- 团长切换 -->
+<i-change-community wx:if="{{showChangeCommunity}}" visible="{{showChangeCommunity}}" changeCommunity="{{changeCommunity}}" community="{{currentCommunity}}" bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" groupInfo="{{groupInfo}}" bind:noChange="cancelChangeCommunity" cancelFn="{{true}}"></i-change-community>

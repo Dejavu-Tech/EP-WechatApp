@@ -1,0 +1,179 @@
+.spu {
+  display: flex;
+}
+
+.img-class {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.item-m {
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  margin-left: 20rpx;
+  width: 0;
+}
+
+.item-r {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.spu-title {
+  color: #333;
+  font-size: 30rpx;
+  height: 32rpx;
+  margin-bottom: 12rpx;
+  margin-top: 10rpx;
+  font-weight: bold;
+  position: relative;
+}
+
+.spu-title .span {
+  width: 100%;
+  height: 40rpx;
+  position: absolute;
+  left: 0;
+  top: -4rpx;
+  line-height: 40rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.spu-desc {
+  font-size: 26rpx;
+  line-height: 26rpx;
+  color: #999;
+  position: relative;
+  height: 26rpx;
+  margin-bottom: 12rpx;
+}
+
+.spu-desc .em {
+  display: block;
+  width: 100%;
+  height: 32rpx;
+  position: absolute;
+  left: 0;
+  top: -2rpx;
+  line-height: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spu-price {
+  font-size: 26rpx;
+  line-height: 26rpx;
+  overflow: hidden;
+  margin-top: auto;
+}
+
+.spu-price .sale-price {
+  color: #ff5344;
+  margin-right: 12rpx;
+}
+
+.spu-price .sale-price .span {
+  font-size: 40rpx;
+  line-height: 42rpx;
+  margin: 0;
+  font-weight: bold;
+}
+
+.spu-price .market-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.btn {
+  display: inline-block;
+  color: #fff;
+  border-radius: 8rpx;
+  background: linear-gradient(90deg, #ff5041 0%, #ff695c 100%);
+  padding: 8rpx 30rpx;
+  font-size: 24rpx;
+}
+
+.count {
+  width: 100%;
+  font-size: 28rpx;
+  color: #999;
+  text-align: right;
+}
+
+.addBtn .img {
+  width: 48rpx;
+  height: 48rpx;
+}
+
+.input-number-text {
+  font-size: 26rpx!important;
+}
+
+.i-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cartNum {
+  position: relative;
+  text-align: center;
+  height: 48rpx;
+  width: 66rpx;
+  font-size: 26rpx;
+  line-height: 48rpx;
+  z-index: 0;
+}
+
+.optBtn {
+  display: inline-block;
+  color: #fff;
+  border-radius: 30rpx;
+  background: linear-gradient(90deg, #ff5041 0%, #ff695c 100%);
+  padding: 8rpx 30rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.optBtn.disabled {
+  background: #ccc;
+}
+
+.thumb {
+  position: relative;
+}
+
+.spu .mask {
+  background: rgba(255, 255, 255, 0.5);
+  width: 160rpx;
+  height: 160rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.spu .act-end {
+  position: absolute;
+  height: 50rpx;
+  border-radius: 10rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 50rpx;
+  left: 50%;
+  top: 50%;
+  width: 100rpx;
+  transform: translate(-50%, -50%);
+}

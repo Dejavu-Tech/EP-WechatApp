@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "视频",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-img": "../../components/img/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-router-link": "../../components/router-link/router-link",
+    "i-empty": "../../components/empty/index",
+    "i-tabbar": "../../components/tabbar/index"
+  }
+}

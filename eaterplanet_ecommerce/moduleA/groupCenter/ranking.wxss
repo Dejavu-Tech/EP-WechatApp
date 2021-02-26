@@ -1,0 +1,83 @@
+page {
+  background: #FF7256;
+}
+
+.nav {
+  position: relative;
+  margin: -88rpx 36rpx 0;
+  text-align: center;
+  border: 2rpx solid #FA853E;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.nav .item {
+  line-height: 66rpx;
+  background-color: #ffffff;
+  color: #FA853E;
+  border-left: 2rpx solid #FA853E;
+}
+
+.nav .item:first-child {
+  border: 0;
+}
+
+.nav .item.active {
+  background: linear-gradient(0deg, #FD6F3D 0%, #FE8E4A 100%);
+  color: #ffffff;
+}
+
+.list {
+  margin: 20rpx 20rpx 80rpx;
+  border-radius: 20rpx;
+}
+
+.th {
+  font-weight: 400;
+  color: #4D4D4D;
+  font-size: 30rpx;
+}
+
+.th .item {
+  padding: 30rpx 0;
+}
+
+.td {
+  padding: 25rpx 0;
+}
+
+.num {
+  font-size: 32rpx;
+  color: #AFB9D7;
+  font-weight: bold;
+}
+
+.icon {
+  width:58rpx;
+  height:58rpx;
+}
+
+.avatar {
+  width:72rpx;
+  height:72rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+.name {
+  color: #333333;
+  font-size: 30rpx;
+}
+
+.order {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFB847;
+}
+
+.empty {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 300rpx;
+  color: #666666;
+}

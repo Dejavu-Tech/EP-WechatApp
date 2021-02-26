@@ -1,0 +1,126 @@
+<view wx:if='{{cityDatas.now.cond_code}}' style="background-image: url({{weatherBackgroundUrl}}{{cityDatas.now.cond_code}}{{bh}}.png);background-repeat: repeat;position: absolute;width: 100%;height:200%;"></view>
+<navBar ref='' title="吃货天气"  color='#fff'  iconTheme='white' back="{{true}}" bindback="handlerGobackClick"   ></navBar>
+
+<view class="container {{isIPhoneX ? 'iphonex-padding' : ''}}" catchtap='menuHide'>
+
+
+
+  <view class='content' >
+
+    <view class='info'>
+      <view class='city'>
+        <view class='name'>
+          <image wx:if='{{located}}' class='icon' src='../../img/location_s_w.png'></image>
+          <view class='val'>{{cityDatas.basic.location || '定位中'}}</view>
+          
+        </view>
+        <text class='time' wx:if='{{cityDatas.updateTimeFormat}}'>{{cityDatas.updateTimeFormat}} 更新</text>
+      </view>
+
+      <view class='temp num' decode='true'>{{cityDatas.now.tmp || '-'}}<text style='font-size:50rpx;position:relative;top:-20px;'>℃</text></view>
+      <view class='bigIcon1' wx:if='{{cityDatas.now.cond_code}}'><image class='bigIcon' src='{{weatherIconUrl1}}{{cityDatas.now.cond_code}}{{bh}}.png'></image></view>
+      <view class='weather'>{{cityDatas.now.cond_txt || '--'}}</view>
+      <view class='pm'>
+        <text>能见度 {{cityDatas.now.vis}}</text>
+      </view>
+    </view>
+    <view class='guide' wx:if='{{cityDatas.daily_forecast}}'>
+      <view class='title'>7 天预报</view>
+      <view class='guides'>
+        <view class='item' wx:for='{{cityDatas.daily_forecast}}' wx:key='index'>
+          <view class='date i'>{{item.date}}</view>
+          <view class='temperature i'>{{item.tmp_max}}~{{item.tmp_min}}℃</view>
+          <view class='weather i'>
+            <text>{{item.cond_txt_d}}</text>
+            <image mode='widthFix' src='{{weatherIconUrl}}{{item.cond_code_d}}.png'></image>
+          </view>
+          <view class='wind i'>{{item.wind_dir}}{{item.wind_sc}}级</view>
+        </view>
+      </view>
+    </view>
+    <view class='details'>
+      <view class='detail' wx:for='{{detailsDic.key}}' wx:key='index'>
+        <view>{{detailsDic.val[item]}}</view>
+        <view>{{cityDatas.now[item]}}</view>
+      </view>
+    </view>
+    <view class='hourly' wx:if='{{hourlyDatas.length}}'>
+      <view class='title'>24 小时逐 3 小时预报</view>
+      <view class='hours'>
+        <swiper style='height:360rpx;' indicator-dots="{{false}}" autoplay="{{false}}" circular="{{false}}" duration="300" next-margin="50rpx">
+          <block wx:for="{{hourlyDatas}}" wx:key="{{index}}">
+            <swiper-item>
+              <view class='hour'>
+                <view class='detail'>
+                  <view>温度(℃)</view>
+                  <view>{{item.tmp}}</view>
+                </view>
+                <view class='detail'>
+                  <view>天气</view>
+                  <view class='weather'>
+                    <text>{{item.cond_txt}}</text>
+                    <image mode='widthFix' src='{{weatherIconUrl}}{{item.cond_code}}.png'></image>
+                  </view>
+                </view>
+                <view class='detail'>
+                  <view>相对湿度(%)</view>
+                  <view>{{item.hum}}</view>
+                </view>
+                <view class='detail'>
+                  <view>露点温度(℃)</view>
+                  <view>{{item.dew}}</view>
+                </view>
+                <view class='detail'>
+                  <view>降水概率</view>
+                  <view>{{item.pop}}</view>
+                </view>
+                <view class='detail'>
+                  <view>风向</view>
+                  <view>{{item.wind_dir}}</view>
+                </view>
+                <view class='detail'>
+                  <view>风向角度(deg)</view>
+                  <view>{{item.wind_deg}}</view>
+                </view>
+                <view class='detail'>
+                  <view>风力(级)</view>
+                  <view>{{item.wind_sc}}</view>
+                </view>
+                <view class='detail'>
+                  <view>风速(mk/h)</view>
+                  <view>{{item.wind_spd}}</view>
+                </view>
+                <view class='detail'>
+                  <view>气压(mb)</view>
+                  <view>{{item.pres}}</view>
+                </view>
+                <view class='detail'>
+                  <view>云量</view>
+                  <view>{{item.cloud}}</view>
+                </view>
+              </view>
+              <view class='time'>{{item.time}}</view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- <ad unit-id="adunit-785cc3f710cc3d4c"></ad> -->
+    <view class='livingIndex' wx:if='{{!setting.hiddenIndex}}'>
+      <view class='item' wx:for='{{cityDatas.lifestyle}}' wx:key='index'>
+        <image class='icon' src='../../img/lifestyle_{{item.type}}.png'></image>
+        <view class='right'>
+          <view class='key'>{{lifestyles[item.type]}} {{item.brf}}</view>
+          <view class='value'>{{item.txt}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='footer'>天气API.Developer：Dejavu871.Tech.</view>
+  </view>
+  <view wx:if='{{openSettingButtonShow}}' class='openSettingButton'>
+    <image src='/img/unlock.png'></image>
+    <button open-type='openSetting'></button>
+  </view>
+
+
+</view>

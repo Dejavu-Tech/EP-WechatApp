@@ -1,0 +1,112 @@
+.three {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.three-item {
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+
+.three-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1rpx;
+  border-left: 1rpx solid #cfcfcf;
+}
+
+.three-item:first-child::before {
+  content: none;
+}
+
+.three-title {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.three-money {
+  margin-top: 15rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+.item-main {
+  padding: 32rpx 40rpx;
+}
+
+.item-title {
+  height: 40rpx;
+  width: 400rpx;
+  color: #444;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.icon-right {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.ipt {
+  border: 1rpx solid #e5e5e5;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.btn {
+  line-height: 72rpx;
+  border: 0;
+  border-radius: 0;
+  font-size: 32rpx;
+}
+
+button.btn::after {
+  content: none;
+}
+
+.scan {
+  margin-top: 30rpx;
+  height: 300rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 20rpx;
+}
+
+.icon-erweima1 {
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: #f5f5f5;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 44rpx;
+}
+
+.list .item {
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.state {
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  color: #ffffff;
+}
+
+.empty {
+  padding: 50rpx 0;
+}
+
+.goodsimg {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}

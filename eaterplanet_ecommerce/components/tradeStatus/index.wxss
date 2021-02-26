@@ -1,0 +1,65 @@
+.font-bold-30 {
+  font-size: 60rpx;
+}
+
+.font-bold-20 {
+  font-size: 40rpx;
+  font-weight: 500;
+}
+
+.font-12 {
+  font-size: 24rpx;
+}
+
+.head .little-img {
+  width: 230rpx;
+  height: 120rpx;
+}
+
+.back-img-wrap {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.back-img-wrap .back-img {
+  width: 100%;
+  height: 340rpx;
+}
+
+.to-pay-wrap {
+  text-align: center;
+  padding: 46rpx 0;
+  color: white;
+}
+
+.to-get-wrap {
+  display: flex;
+  justify-content: space-between;
+  padding: 50rpx 50rpx 0 50rpx;
+  color: white;
+}
+
+.trade-cancel-wrap {
+  padding: 50rpx 76rpx;
+  color: white;
+  text-align: center;
+}
+
+.cancel-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cancel-img {
+  margin-right: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.count-down {
+  font-weight: 500;
+}

@@ -1,0 +1,27 @@
+<navBar title="分享达人" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="section">
+    <view class="wxParse">
+      <parser html="{{article}}" />
+    </view>
+  </view>
+  <view class="fixed-bottom">
+    <view class="tip" wx:if="{{comsissStatus!=0&&comsissStatus!=1&&comsissStatus!=3&&comsissStatus!=6}}">
+      <view wx:if="{{comsissStatus==2}}">
+        <text wx:if="{{share_member_count!=0}}">再</text>分享<text class='tot' style="color:{{skin.color}}">{{need_num_update}}</text>位新粉丝可升级为{{commiss_diy_name}}
+      </view>
+      <view class='btn' bindtap='goNext' data-type='share' wx:if="{{comsissStatus==2}}" style="color:{{skin.color}}">
+        立即分享>
+      </view>
+    </view>
+    <view class="apply-btn {{isIpx?'pb20':''}}" bindtap='goNext' data-type="commiss" wx:if="{{comsissStatus==1}}" style="background:{{skin.color}}">
+      进入{{commiss_diy_name}}
+    </view>
+    <view class="apply-btn {{isIpx?'pb20':''}}" bindtap='subCommis' wx:elif="{{canApply}}" style="background:{{skin.color}}">
+      点击申请
+    </view>
+    <view class="apply-btn {{isIpx?'pb20':''}} disabled" wx:else>点击申请</view>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>

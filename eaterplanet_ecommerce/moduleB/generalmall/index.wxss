@@ -1,0 +1,8 @@
+@import "/eaterplanet_ecommerce/pages/index/index.wxss";
+
+.rush-list-title {
+  width: 336rpx;
+  height: 88rpx;
+  display: block;
+  margin: 20rpx auto;
+}

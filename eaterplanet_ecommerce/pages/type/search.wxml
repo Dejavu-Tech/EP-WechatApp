@@ -1,0 +1,17 @@
+<navBar title="搜索商品" background='linear-gradient(90deg, #e7614d  0%, #eb8a7b 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='search-wrap'>
+  <view class='search-bar'>
+    <view class='search-box'>
+      <input class='ipt' placeholder="搜索商品" auto-focus confirm-type="搜索" type="text" bindconfirm="goResult"></input>
+      <view class='search-icon'>
+        <text class="iconfont icon-sousuo1"></text>
+      </view>
+    </view>
+  </view>
+  <view class='tag-wrap' wx:if="{{wxSearchData.length>0}}">
+    <view class='tag-title'><text>搜索历史</text><text class="iconfont icon-shanchu1 icon-del" bindtap='clearHis'></text></view>
+    <view class='tag-list'>
+      <view class='item' wx:for="{{wxSearchData}}" wx:key="index" data-name='{{item.name}}' bindtap='goResultName'>{{item.name}}</view>
+    </view>
+  </view>
+</view>

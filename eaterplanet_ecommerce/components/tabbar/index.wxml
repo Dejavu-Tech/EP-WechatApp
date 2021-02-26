@@ -1,0 +1,19 @@
+<view class="tabbar_outbox  {{isIpx?'pb20':''}}" >
+  <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}">
+  <block wx:for="{{tabbar.list}}" wx:key="id">
+    <navigator wx:if="{{index!=2}}" class="tabbar_nav" hidden="{{open_tabbar_type==0&&index==1}}" hover-class="none" url="{{item.pagePath}}" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="switchTab">
+      <view class='tabbar_icon' data-num="{{cartNum}}">
+        <image class='img' src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+        <view class="cart-num" wx:if="{{cartNum && index==3}}">{{cartNum}}</view>
+      </view>
+      <text>{{item.text}}</text>
+    </navigator>
+    <view wx:else class="tabbar_nav" hidden="{{open_tabbar_out_weapp==0&&index==2}}" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" bindtap='goWeapp'>
+        <view class='tabbar_icon'>
+          <image class='img' src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
+        </view>
+        <text>{{item.text}}</text>
+      </view>
+  </block>
+</view>
+</view>

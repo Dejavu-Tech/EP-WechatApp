@@ -1,0 +1,11 @@
+{
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "我的团单",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-group-order": "../../components/group-order/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-modal": "../../components/modal/index"
+  }
+}

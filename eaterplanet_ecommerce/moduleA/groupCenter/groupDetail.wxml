@@ -1,0 +1,107 @@
+<navBar title="团单详情" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+	<view>
+		<view class="groupDetail">
+			<view class="goodsDetail">
+				<view class="goods-info" wx:if="{{order.order_info.delivery!='pickup'}}">
+					<i-order-info-express order="{{order}}" showNickname="{{true}}" wx:if="{{order.order_info}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}"></i-order-info-express>
+				</view>
+				<view class="goods-info" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
+					<i-goods-info order="{{order}}" showNickname="{{true}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}"></i-goods-info>
+				</view>
+			</view>
+			<view class="goodsDetail">
+				<view class="title">
+					<view>商品详情（共计<text class="red">{{order.goods_count?order.goods_count:0}}</text>件商品）</view>
+					<span class="{{order.order_status_info.name=='已完成'?'black':''}} text-right">{{order.order_status_info.name}}</span>
+				</view>
+				<view class="border-bottom" wx:for="{{order.order_goods_list}}" wx:for-item="goodsInfo" wx:key="key">
+					<view class="goodsList">
+						<i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="60" iClass="img-class" loadImage="{{goodsInfo.image}}" width="60"></i-img>
+						<view class="goos-item">
+							<view class="goodsTitle">{{goodsInfo.name}}</view>
+							<view class="attribute">
+								<span>
+									<block wx:if="{{goodsInfo.option_str}}">规格：{{goodsInfo.option_str}} </block>数量：{{goodsInfo.quantity}}
+								</span>
+							</view>
+							<view class="attribute">
+								<view class='price-text'>￥{{goodsInfo.price}}</view>
+							</view>
+						</view>
+					</view>
+					<view class="px15 pb10 fsz-26 text-gray">
+						<view class="tips i-flex i-flex-spb mb5">
+							<view>商品金额: <text class="red">￥{{goodsInfo.old_total}}</text></view>
+							<view>退款金额: <text class="red">￥{{goodsInfo.has_refund_money}}</text>
+								<block wx:if="{{goodsInfo.is_refund_state==1&&goodsInfo.refund_info}}">
+									<text wx:if="{{goodsInfo.refund_info.state==0}}" class="bg-primary text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 申请中</text>
+									<text wx:if="{{goodsInfo.refund_info.state==3}}" class="bg-sucess text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款成功</text>
+									<text wx:if="{{goodsInfo.refund_info.state==4}}" class="bg-warning text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款失败</text>
+								</block>
+							</view>
+						</view>
+						<view class="tips i-flex i-flex-spb">
+							<view>有效金额: <text class="red">￥{{goodsInfo.order_jishu}}</text></view>
+							<view wx:if="{{goodsInfo.fen_type==0}}">佣金比例: <text class="red">{{goodsInfo.fen_bili}}%</text></view>
+							<view wx:if="{{goodsInfo.fen_type==1}}">佣金固定金额: <text class="red">{{goodsInfo.fen_gumoney}}</text></view>
+						</view>
+					</view>
+				</view>
+				<view class="px15 py10 text-right">
+					<view class="mb5" wx:if="{{head_shipping_fare}}">
+						团长配送费:<text class="red weight">￥{{head_shipping_fare}} </text><text class="fsz-24 text-gray">(归团长收入)</text>
+					</view>
+					<view bindtap="handleTipDialog">
+						实际佣金:<text class="red weight">￥{{commision}} </text>
+						<text class="iconfont icon-shuoming text-dark fsz-28"></text>
+						<text class="fsz-24 text-gray"> ({{is_statements_state==1?'已结算':'待结算'}}<block wx:if="{{is_statements_state==1&&statements_end_date}}"> {{statements_end_date}}</block>)</text>
+					</view>
+				</view>
+			</view>
+			<view class="orderComment">
+				<i-orderComment wx:if="{{order.order_info.comment}}" comment="{{order.order_info.comment}}" />
+			</view>
+			<view class="orderInfor">
+				<i-order-info orderInfo="{{order.order_info}}" order_goods_list="{{order.order_goods_list}}" ordername="团单" groupInfo="{{groupInfo}}"></i-order-info>
+			</view>
+		</view>
+	</view>
+</i-auth>
+
+<i-modal scrollUp="{{false}}" visible="{{showTipDialog}}">
+  <view class="rule-modal bg-f w90p rounded">
+    <view class="fsz-30 weight border-bottom text-center py10">佣金计算规则</view>
+		<view class="p15 border-bottom fsz-24 line-height">
+			<view class="mb5 i-flex"><view class="text-gray">佣金结算前：</view>有效金额=商品金额-退款金额</view>
+			<view class="mb5 i-flex"><view class="text-gray">佣金结算后：</view>有效金额=商品金额</view>
+			<view class="mb5 i-flex">
+				<view class="text-gray">佣金固定金额：</view>
+				<view class="i-flex-item">实际佣金（有效金额-退款金额）/有效金额*佣金固定金额</view>
+			</view>
+			<view class="mb5 i-flex" wx:if="{{order.order_goods_list[0].fen_type==0}}">
+				<view class="text-gray">商品配送费：</view>
+				<view class="i-flex-item">商品配送费收入=有效金额/订单总金额*总配送费</view>
+			</view>
+			<block wx:else>
+				<view class="mb5 i-flex">
+					<view class="text-gray">商品配送费：</view>
+					<view class="i-flex-item">
+						<view>1. 商品配送费收入=有效金额/订单总金额*总配送费</view>
+						<view>2. 退商品配送费=退款金额/有效金额*配送费</view>
+					</view>
+				</view>
+				<view class="mb5 i-flex">
+					<view class="text-gray">配送费结算时间：</view>
+					<view class="i-flex-item">从确认收货或核销后开始，直到售后期<block wx:if="{{open_aftersale}}">{{open_aftersale_time||0}}天</block>结束，系统自动结算</view>
+				</view>
+			</block>
+			<view class="mb5 i-flex">
+				<view class="text-gray">佣金结算时间：</view>
+				<view class="i-flex-item">从确认收货或核销后开始，直到售后期<block wx:if="{{open_aftersale}}">{{open_aftersale_time||0}}天</block>结束，系统自动结算</view>
+			</view>
+			<view class="mb5 red">最终可得佣金以实际计算结果为准</view>
+		</view>
+    <view class="fsz-30 bule text-center py10" bindtap="handleTipDialog">知道了</view>
+  </view>
+</i-modal>

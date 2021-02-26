@@ -1,0 +1,10 @@
+.content {
+  background-color: #fff;
+  padding: 50rpx 30rpx;
+  text-align: center;
+}
+
+.img image {
+  width: 300rpx;
+  height: 300rpx;
+}

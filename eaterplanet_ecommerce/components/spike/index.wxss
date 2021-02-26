@@ -1,0 +1,36 @@
+@import "../new-comer/index.wxss";
+
+.new-comers-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count-down {
+  height: 68rpx;
+  line-height: 68rpx;
+  color: #444;
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-right: 20rpx;
+}
+
+.count-down .item-time {
+  width: 34rpx;
+  height: 32rpx;
+  line-height: 32rpx;
+  color: #fff;
+  text-align: center;
+  background: #444;
+  border-radius: 4rpx;
+  padding: 0 2rpx;
+  font-weight: normal;
+}
+
+.count-down-left-text {
+  font-size: 24rpx;
+  margin-right: 10rpx;
+  font-weight: normal;
+}

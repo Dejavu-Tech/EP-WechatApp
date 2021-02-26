@@ -1,0 +1,5 @@
+.item-value {
+  text-align: right;
+  font-size: 26rpx;
+  position: relative;
+}

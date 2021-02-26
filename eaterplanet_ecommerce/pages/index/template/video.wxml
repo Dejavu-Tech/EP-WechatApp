@@ -1,0 +1,9 @@
+<template name="video">
+  <view class="index-video">
+    <view class="poster" bindtap="btnPlay" wx:if="{{fmShow}}">
+      <image class="img" src="{{data.poster}}" mode="widthFix" bindload="imageLoad" lazy-load></image>
+      <image class="play-img" src="../../images/play.png"></image>
+    </view>
+    <video wx:else src="{{data.url}}" controls style="height:{{imageSize.imageHeight}}px;width:100%;border-radius: 20rpx;" id="myVideo" bindended="videEnd"></video>
+  </view>
+</template>

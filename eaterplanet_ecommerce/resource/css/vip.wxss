@@ -1,0 +1,22 @@
+.vip {
+  background: linear-gradient(to right, #e3c28c, #fdd2a7);
+  height: 76rpx;
+  padding: 0 20rpx;
+  font-size: 24rpx;
+  color: #72491d;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+}
+
+.vip .goright.iconfont {
+  font-size: 24rpx;
+}
+
+.vip-logo {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.vip-name {
+  align-items: center;
+}

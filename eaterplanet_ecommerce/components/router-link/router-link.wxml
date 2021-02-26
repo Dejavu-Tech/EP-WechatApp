@@ -1,0 +1,3 @@
+<view bindtap="routerLink" class="i-router-class router-class" hoverClass="i-router-hover">
+  <slot></slot>
+</view>

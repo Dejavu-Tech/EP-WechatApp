@@ -1,0 +1,334 @@
+<navBar backgroundColorTop='#ffbad2' color='#fff' titleimg="{{true}}" background='#ffbad2' iconTheme='white' title="购物车" />
+<view class='pb100'>
+	<!-- <block wx:if="{{!cartsNull}}"> -->
+		<view class="cart-tabs {{(is_open_vipcard_buy==1&&is_vip_card_member!=1)?'hasVip':''}}" wx:if="{{showTab}}">
+			<view wx:for="{{tabList}}" wx:key='id' wx:if="{{item.enabled}}" class="cart-tabs-item {{tabIdx==index?'active':''}}" bindtap="changeTabs" data-idx="{{item.id}}" style="{{tabIdx==index?'color:'+skin.color+';border-color:'+skin.color:''}}">
+				{{item.name}}
+			</view>
+		</view>
+		<view class="cart-tabs {{(is_open_vipcard_buy==1&&is_vip_card_member!=1)?'hasVip':''}}" wx:elif="{{tabIdx==3}}">
+			<view class="cart-tabs-item active" style="{{tabIdx==index?'color:'+skin.color+';border-color:'+skin.color:''}}">
+				{{tabList[3].name}}
+			</view>
+		</view>
+	<!-- </block> -->
+	<!-- 开卡提示 -->
+	<view class="fixed-vip {{(showTab||(!showTab&&tabIdx==3))?'hasVip':''}}" wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member!=1}}">
+		<view class="vip i-flex i-flex-spb">
+			<view class="i-flex vip-name">
+				<image src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}" class="vip-logo"></image>
+				<text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text>
+				<block wx:if="{{vipFee>0}}">开通“{{modify_vipcard_name}}”所选商品预计可省{{vipFee}}元</block>
+				<block wx:else>“{{modify_vipcard_name}}” 尊享特权·会员专享价</block>
+			</view>
+			<view bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">立即开通
+				<text class="iconfont icon-youjiantou goright"></text>
+			</view>
+		</view>
+	</view>
+	<view class="h88" wx:if="{{(is_open_vipcard_buy==1&&is_vip_card_member!=1)}}"></view>
+	<view class="h72" wx:if="{{showTab||(!showTab&&tabIdx==3)}}"></view>
+
+	<view class="empty {{is_show_guess_like==1?'':'pos-a'}}" wx:if="{{isEmpty}}">
+		<image src="../../images/icon-index-empty.png"></image>
+		<block wx:if="{{needAuth}}">
+			<view class="h1" bindtap="authModal">点击<text style="color:{{skin.color}}">“去登录”</text>查看购物车商品</view>
+			<view bindtap="authModal" class="btn">去登录</view>
+		</block>
+		<block wx:else>
+			<view class="h1">购物车空空如也，赶紧去逛逛吧~</view>
+			<view bindtap="goindex" class="btn">去购物</view>
+		</block>
+	</view>
+	<view class="shop-cart-content" wx:else>
+		<!--购物车商品循环begin -->
+		<i-card iClass="card-group" wx:for="{{carts}}" wx:key="index">
+			<view class="fsz-22 theader" slot="header" wx:if="{{tabIdx==3}}">
+				<view class="store-name fsz-24 weight">{{item.localtown_fixed_list.store_name}}</view>
+				<view class="i-flex i-flex-spb" wx:if="{{localtown_fee_list[index].localtownCanBuy>0||localtown_fee_list[index].localtownManJian>0}}">
+					<view class="store-localtown text-6">
+						<block wx:if="{{localtown_fee_list[index].localtownCanBuy>0}}">还差<text style="color:{{skin.color}}">{{localtown_fee_list[index].localtownCanBuy}}</text>元就能起送</block>
+						<block wx:if="{{localtown_fee_list[index].localtownCanBuy>0&&localtown_fee_list[index].localtownManJian>0}}">，</block>
+						<block wx:if="{{localtown_fee_list[index].localtownManJian>0}}">再买<text style="color:{{skin.color}}">{{localtown_fee_list[index].localtownManJian}}</text>元可免费配送</block>
+					</view>
+					<block wx:if="{{localtown_fee_list[index].localtownCanBuy>0||localtown_fee_list[index].localtownManJian>0}}">
+						<i-router-link url="{{index==0?'/eaterplanet_ecommerce/pages/index/index':'/eaterplanet_ecommerce/pages/supply/home?is_only_distribution=1&id='+index}}" style="color:{{skin.color}}">
+							<view class="i-link">去凑单 <text class="iconfont icon-youjiantou fsz-22"></text></view>
+						</i-router-link>
+					</block>
+				</view>
+			</view>
+			<view class="fsz-22 theader" slot="header" wx:if="{{tabIdx==2}}">
+				<view class="store-name fsz-24 weight">{{item.localtown_fixed_list.store_name}}</view>
+			</view>
+			<view class="card-body" slot="content">
+				<!--循环具体商品bg-->
+				<view>
+					<block wx:for="{{item.shopcarts}}" wx:for-item="shopcarts" wx:for-index="idx" wx:key="key">
+						<view class='reduce-item' wx:if="{{shopcarts.can_man_jian==1}}">
+							<view class="cart-item" slot="content">
+								<label class="cart-item-checkbox {{item.isselect?'selected':''}}">
+									<checkbox-group wx:if="{{shopcarts.can_buy==1&&shopcarts.option_can_buy==1}}" bindchange="goodsselect" data-parentid="{{index}}" data-index="{{idx}}" data-id="{{shopcarts.id}}" data-value="{{shopcarts.isselect}}">
+										<view class="checkbox">
+                      <text class="iconfont icon-selected checkbox-checked" style="color:{{skin.color}}" wx:if="{{shopcarts.isselect}}"></text>
+											<image class="checkbox-disabled" src="../../images/checkbox-disabled.png" wx:else></image>
+											<checkbox hidden checked="{{shopcarts.isselect}}" value="{{shopcarts.isselect}}"></checkbox>
+										</view>
+									</checkbox-group>
+									<view class="checkbox" wx:else>
+										<image class="checkbox-disabled" src="../../images/checkbox-disabled.png"></image>
+									</view>
+								</label>
+								<view class="cart-item-img">
+									<i-img defaultImage="../../images/placeholder-refund.png" height="90" iClass="i-class" lazyLoad="true" loadImage="{{shopcarts.imgurl}}" width="90"></i-img>
+									<view wx:if="{{shopcarts.can_buy==0||shopcarts.option_can_buy==0}}" class='tip'>已失效</view>
+									<view wx:if="{{shopcarts.can_man_jian&&is_open_fullreduction&&shopcarts.can_buy!=0}}" class='tag'>满{{full_money}}减{{full_list[0].full_reducemoney}}</view>
+									<view class='tag pos-top' wx:if="{{shopcarts.is_new_buy==1}}">新人专享</view>
+								</view>
+								<view class="cart-item-content">
+									<view>
+										<view class="title"><text class="tag" wx:if="{{shopcarts.store_id==0}}">自营</text> {{shopcarts.title}}</view>
+										<view class="spec">{{shopcarts.goodstype}}</view>
+									</view>
+									<i-vip-price wx:if="{{is_open_vipcard_buy==1&&shopcarts.is_take_vipcard==1&&is_vip_card_member==1}}" price="{{shopcarts.card_price}}"></i-vip-price>
+									<i-vip-price wx:elif="{{shopcarts.is_mb_level_buy}}" price="{{shopcarts.levelprice}}" type="1"></i-vip-price>
+									<view class="cart-item-content-bottom">
+										<view class="sale-price">
+											¥<span>{{shopcarts.currntprice}}</span>
+										</view>
+										<view wx:if="{{shopcarts.can_buy==1&&shopcarts.option_can_buy==1}}" class="i-class i-input-number i-input-number-size-{{size}}">
+											<view class="i-input-number-minus " data-index="{{idx}}" data-parentid="{{index}}" bindtap="regoodsnum" data-gid="{{shopcarts.id}}">
+												<image src="../../images/icon-input-reduce.png"></image>
+											</view>
+											<input bind:change="changeNumber" max="{{shopcarts.max_quantity}}" min="0" class="i-input-number-text " type="number" value="{{shopcarts.goodsnum}}" data-index="{{idx}}" data-parentid="{{index}}"></input>
+											<view id="tapTest{{idx}}" class="i-input-number-plus " data-index="{{idx}}" data-parentid="{{index}}" bindtap="addgoodsnum" data-gid="{{shopcarts.id}}">
+												<image src="../../images/icon-input-add.png"></image>
+											</view>
+										</view>
+										<view wx:else bindtap="delete" class="delete-icon" data-parentid="{{index}}" data-index="{{idx}}" data-gid="{{shopcarts.id}}">
+											<image src="../../images/icon-shop-delete.png"></image>删除
+										</view>
+									</view>
+								</view>
+								<view class="piece-reduce" wx:if="{{shopcarts.can_man_jian && item.is_open_fullreduction==1}}" style='display:none;'>
+									<view class="tag-content">
+										<view class="tag">满减</view>
+									</view>满{{item.full_money}}减{{item.full_reducemoney}}
+								</view>
+							</view>
+							<view class="swiper-out-button-content" slot="button" style="display:none;">
+								<view bindtap="delete" class="delete-btn">删除</view>
+							</view>
+						</view>
+						<view class='normal-item' wx:else>
+							<view class="cart-item" slot="content">
+								<label class="cart-item-checkbox {{item.isselect?'selected':''}}">
+									<checkbox-group wx:if="{{shopcarts.can_buy==1&&shopcarts.option_can_buy==1}}" bindchange="goodsselect" data-parentid="{{index}}" data-index="{{idx}}" data-id="{{shopcarts.id}}" data-value="{{shopcarts.isselect}}">
+										<view class="checkbox">
+											<text class="iconfont icon-selected checkbox-checked" style="color:{{skin.color}}" wx:if="{{shopcarts.isselect}}"></text>
+											<image class="checkbox-disabled" src="../../images/checkbox-disabled.png" wx:else></image>
+											<checkbox hidden checked="{{shopcarts.isselect}}" value="{{shopcarts.isselect}}"></checkbox>
+										</view>
+									</checkbox-group>
+									<view class="checkbox" wx:else>
+										<image class="checkbox-disabled" src="../../images/checkbox-disabled.png"></image>
+									</view>
+								</label>
+								<view class="cart-item-img">
+									<i-img defaultImage="../../images/placeholder-refund.png" height="90" iClass="i-class" lazyLoad="true" loadImage="{{shopcarts.imgurl}}" width="90"></i-img>
+									<view wx:if="{{shopcarts.can_buy==0||shopcarts.option_can_buy==0}}" class='tip'>已失效</view>
+									<view class='tag pos-top' wx:if="{{shopcarts.is_new_buy==1}}">新人专享</view>
+								</view>
+								<view class="cart-item-content">
+									<view>
+										<view class="title"><text class="tag" wx:if="{{shopcarts.store_id==0}}">自营</text> {{shopcarts.title}}</view>
+										<view class="spec">{{shopcarts.goodstype}}</view>
+									</view>
+									<i-vip-price wx:if="{{is_open_vipcard_buy==1&&shopcarts.is_take_vipcard==1&&is_vip_card_member==1}}" price="{{shopcarts.card_price}}"></i-vip-price>
+									<i-vip-price wx:elif="{{shopcarts.is_mb_level_buy}}" price="{{shopcarts.levelprice}}" type="1"></i-vip-price>
+									<view class="cart-item-content-bottom">
+										<view class="sale-price">
+											¥<span>{{shopcarts.currntprice}}</span>
+										</view>
+										<view wx:if="{{shopcarts.can_buy==1&&shopcarts.option_can_buy==1}}" class="i-class i-input-number i-input-number-size-{{size}}">
+											<view class="i-input-number-minus " data-index="{{idx}}" data-parentid="{{index}}" bindtap="regoodsnum" data-gid="{{shopcarts.id}}">
+												<image src="../../images/icon-input-reduce.png"></image>
+											</view>
+											<input bind:change="changeNumber" max="{{shopcarts.max_quantity}}" min="0" class="i-input-number-text " type="number" value="{{shopcarts.goodsnum}}" data-index="{{idx}}" data-parentid="{{index}}"></input>
+											<view id="tapTest{{idx}}" class="i-input-number-plus " data-index="{{idx}}" data-parentid="{{index}}" bindtap="addgoodsnum" data-gid="{{shopcarts.id}}">
+												<image src="../../images/icon-input-add.png"></image>
+											</view>
+										</view>
+										<view wx:else bindtap="delete" class="delete-icon" data-parentid="{{index}}" data-index="{{idx}}" data-id="{{shopcarts.id}}">
+											<image src="../../images/icon-shop-delete.png"></image>删除
+										</view>
+									</view>
+								</view>
+								<view class="piece-reduce" wx:if="{{shopcarts.can_man_jian && item.is_open_fullreduction==1}}" style='display:none;'>
+									<view class="tag-content">
+										<view class="tag">满减</view>
+									</view>满{{item.full_money}}减{{item.full_reducemoney}}
+								</view>
+							</view>
+							<view class="swiper-out-button-content" slot="button" style="display:none;">
+								<view bindtap="delete" class="delete-btn">删除</view>
+							</view>
+						</view>
+					</block>
+				</view>
+				<!--循环具体商品end--->
+			</view>
+		</i-card>
+		<!--购物车商品循环结束-->
+
+		<!-- 失效 -->
+		<i-card wx:if="{{hasInvalid>0}}">
+			<view slot="header">
+				<view class="i-flex i-flex-spb invalid-head">
+					<view></view>
+					<view bindtap="clearlose">清空 <text class="iconfont icon-shanchu1"></text></view>
+				</view>
+			</view>
+			<view slot="content">
+				<i-card iClass="invalid-card-group" wx:for="{{invalidCarts}}" wx:key="id">
+					<view class="card-body" slot="content">
+						<!--循环具体商品bg-->
+						<view>
+							<view class='normal-item' wx:for="{{item.shopcarts}}" wx:for-item="shopcarts" wx:for-index="idx" wx:key="key">
+								<view class="cart-item" slot="content">
+									<label class="cart-item-checkbox">
+										<text class="invalid-tip" wx:if="{{shopcarts.can_buy==0}}">售罄</text>
+										<text class="invalid-tip" wx:elif="{{shopcarts.option_can_buy==0}}">失效</text>
+										<view class="checkbox" wx:else>
+											<image class="checkbox-disabled" src="../../images/checkbox-disabled.png"></image>
+										</view>
+									</label>
+									<view class="cart-item-img">
+										<i-img defaultImage="../../images/placeholder-refund.png" height="90" iClass="i-class" lazyLoad="true" loadImage="{{shopcarts.imgurl}}" width="90"></i-img>
+									</view>
+									<view class="cart-item-content">
+										<view>
+											<view class="title">{{shopcarts.title}}</view>
+											<view class="spec">{{shopcarts.goodstype}}</view>
+										</view>
+										<view class="cart-item-content-bottom">
+											<view wx:if="{{shopcarts.can_buy==0}}">已售罄</view>
+											<view wx:if="{{shopcarts.option_can_buy==0}}">规格失效</view>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+						<!--循环具体商品end--->
+					</view>
+				</i-card>
+			</view>
+		</i-card>
+	</view>
+	<view class="fixed-bar safebottom" wx:if="{{!isEmpty}}">
+		<!-- 免邮 -->
+		<view class="fullreductionInfo" wx:if="{{man_free_tuanzshipping>0&&delivery_tuanz_money>0&&tabIdx==0&&open_tuan_ship==1}}">
+			<view class="fr-left">
+				<view class="active-msg diff-money" wx:if="{{diffDeliveryMoney>0}}">
+					自营满{{man_free_tuanzshipping}}免配送费{{delivery_tuanz_money}}，还差<text style="color:{{skin.color}}">{{diffDeliveryMoney}}</text>元
+				</view>
+				<view class="active-msg" wx:else>自营满¥{{man_free_tuanzshipping}}免配送费¥{{delivery_tuanz_money}}</view>
+			</view>
+			<i-router-link url="/eaterplanet_ecommerce/pages/index/index" wx:if="{{diffDeliveryMoney<0&&man_free_tuanzshipping>0&&delivery_tuanz_money>0}}" style="color:{{skin.color}}">
+				<view class="i-link">去凑单 <text class="iconfont icon-youjiantou"></text>
+				</view>
+			</i-router-link>
+		</view>
+		<!-- 优惠信息 -->
+		<view class="fullreductionInfo" wx:if="{{is_open_fullreduction==1}}">
+			<view class="i-flex-item full_list text-center" style="width: 0;" wx:if="{{allcount==0||isCanManJian==0}}">
+				<scroll-view scroll-x>
+					<view class="scroll-full" wx:if="{{full_list.length>0}}">
+						<view class="fr-left" wx:for="{{full_list}}" wx:key="index" wx:if="{{!item.disable}}">
+							<view class="active-msg">
+								满<text style="color:{{skin.color}}">{{item.full_money}}</text>减<text style="color:{{skin.color}}">{{item.full_reducemoney}}</text><block wx:if="{{(index+1)<full_list.length}}">,</block>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+			<view class="i-flex-item i-flex i-flex-alc" wx:else>
+				<view class="active-msg" wx:if="{{sucess_full_item}}">
+					已享<text style="color:{{skin.color}}">{{sucess_full_item.full_money}}</text>减<text style="color:{{skin.color}}">{{sucess_full_item.full_reducemoney}}</text><block wx:if="{{cur_full_item}}">,</block>
+				</view>
+				<block wx:if="{{cur_full_item&&nextDiffMoney&&nextDiffMoney!='0.00'}}">
+					<view class="active-msg">
+						再买<text style="color:{{skin.color}}">{{nextDiffMoney}}</text>元,可享<text style="color:{{skin.color}}">{{cur_full_item.full_money}}</text>减<text style="color:{{skin.color}}">{{cur_full_item.full_reducemoney}}</text>
+					</view>
+					<i-router-link url="/eaterplanet_ecommerce/pages/index/index" wx:if="{{is_open_fullreduction==1}}">
+						<view class="i-link ml10" style="color:{{skin.color}}">
+							去凑单 <text class="iconfont icon-youjiantou"></text>
+						</view>
+					</i-router-link>
+				</block>
+			</view>
+		</view>
+		<view class='cart-bar'>
+			<label class="cart-item-checkbox">
+				<checkbox-group bindchange="allselect" data-value="{{allselect}}">
+					<view class="checkbox">
+            <text class="iconfont icon-selected checkbox-checked" style="color:{{skin.color}}" wx:if="{{allselect}}"></text>
+						<image class="checkbox-disabled" src="../../images/checkbox-disabled.png" wx:else></image>
+						<checkbox hidden checked="{{allselect}}" value="{{allselect}}"></checkbox>
+					</view>
+				</checkbox-group>
+				全选
+			</label>
+			<view class="fixed-bar-center">
+				<view class="total">
+					合计：
+					<span>¥{{totalAmount}}</span>
+				</view>
+				<view class="total-detail">
+					<span>总额:¥{{allcount}}</span>
+					<span>优惠:¥{{disAmount}}</span>
+				</view>
+			</view>
+			<button class='fixed-bar-btn' wx:if="{{is_comunity_rest==1}}" style='background:#dcdcdc;'>{{groupInfo.owner_name}}休息中</button>
+			<block wx:elif="{{open_man_orderbuy==1}}">
+				<button class='fixed-bar-btn' bindtap="toorder" wx:if="{{canbuy_other>=0}}">去结算({{allnum}})</button>
+				<button class='fixed-bar-btn' bindtap="toorder" disabled wx:else>
+					<text wx:if="{{canbuy_tot!=0}}">差</text>
+					<text wx:else>满</text>¥{{-canbuy_other}}下单</button>
+			</block>
+			<block wx:elif="{{tabIdx==3&&!localtownCanBuy}}">
+				<button class='fixed-bar-btn' disabled>去结算</button>
+			</block>
+			<button class='fixed-bar-btn' bindtap="toorder" style="background:{{skin.color}}" wx:else>去结算({{allnum}})</button>
+		</view>
+	</view>
+	<view class="fixed-bar safebottom" wx:if="{{isEmpty&&is_open_fullreduction==1&&full_list.length>0}}">
+		<view class="fullreductionInfo">
+			<view class="i-flex-item full_list text-center" style="width: 0;">
+				<scroll-view scroll-x>
+					<view class="scroll-full">
+						<view class="fr-left" wx:for="{{full_list}}" wx:key="index" wx:if="{{!item.disable}}">
+							<view class="active-msg">
+								满<text style="color:{{skin.color}}">{{item.full_money}}</text>减<text style="color:{{skin.color}}">{{item.full_reducemoney}}</text><block wx:if="{{(index+1)<full_list.length}}">,</block>
+							</view>
+						</view>
+					</view>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<!-- 猜你喜欢 -->
+	<guess-like bind:openSku="openSku" wx:if="{{is_show_guess_like==1}}" bind:changeCartNum="showCartGoods" updateCart="{{updateCart}}" bind:vipModal="vipModal"></guess-like>
+	<i-tabbar currentIdx='3' cartNum='{{cartNum}}' tabbarRefresh="{{tabbarRefresh}}" needAuth="{{needAuth}}" bind:authModal="authModal" />
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>
+
+<!---规格选择begin-->
+<i-sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></i-sku>
+<!---规格选择end-->
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+
+<!-- 弹窗广告 -->
+<ad-alert pop_page="2" />

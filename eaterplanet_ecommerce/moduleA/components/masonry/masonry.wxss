@@ -1,0 +1,13 @@
+.masonry-list {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.masonry-list-left, .masonry-list-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 0;
+}

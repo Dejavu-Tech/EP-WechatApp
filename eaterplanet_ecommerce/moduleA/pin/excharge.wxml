@@ -1,0 +1,58 @@
+<navBar title="提现" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='wrap'>
+  <view class='top'>
+    <view class='money'>
+      <view class='yue'>{{info.money}}</view>
+      <view class='tip'>可提现金额（元）</view>
+    </view>
+    <navigator class='record' hover-class='none' url='/eaterplanet_ecommerce/moduleA/pin/exchargeRecord'>提现记录</navigator>
+  </view>
+  <form bindsubmit="formSubmit">
+    <view class='card'>
+      <view class='flex-ipt'>
+        <input class='money' min="0" type="digit" placeholder="请输入提现金额" maxlength="15" bindfocus="bindIptFocus" bindblur="bindIptBlur" name="money" value="{{tixian_money}}" max="{{info.total_money}}" bindinput="bindTixianMoneyInput"></input>
+        <view class="getall" bindtap='getAll'>全部提现</view>
+        <view class='bottom-line {{onFocus?"ipt-focus":""}}'></view>
+      </view>
+      <view class='tip'>手续费：{{info.commiss_tixian_bili}}% <text style="margin-left:10rpx;">最终到账：{{final_money}}</text></view>
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}" wx:key="id" wx:if="{{item.show}}">
+          <radio value="{{item.name}}" checked="{{item.checked}}" /><text>{{item.value}}</text>
+        </label>
+      </radio-group>
+      <view class='form-box' wx:if="{{type==2}}">
+        <view class='form-group'>
+          <label>微信真实姓名：<input class='form-ipt' type='text' name="bankusername" value='{{info.last_weixin_realname}}'></input></label>
+        </view>
+      </view>
+      <view class='form-box' wx:if="{{type==3}}">
+        <view class='form-group' wx:if="{{type!=2}}">
+          <label>支付宝账户：<input class='form-ipt' type='text' name="bankaccount" value='{{info.last_alipay_account}}'></input></label>
+        </view>
+        <view class='form-group'>
+          <label>支付宝真实姓名：<input class='form-ipt' type='text' name="bankusername" value='{{info.last_alipay_name}}'></input></label>
+        </view>
+      </view>
+      <view class='form-box' wx:if="{{type==4}}">
+        <view class='form-group'>
+          <label>银行卡名称：<input class='form-ipt' type='text' name="bankname" value='{{info.last_bank_bankname}}'></input></label>
+        </view>
+        <view class='form-group'>
+          <label>持卡人姓名：<input class='form-ipt' type='text' name="bankusername" value='{{info.last_bank_name}}'></input></label>
+        </view>
+        <view class='form-group' wx:if="{{type!=2}}">
+          <label>银行卡账户：<input class='form-ipt' type='text' name="bankaccount" value='{{info.last_bank_account}}'></input></label>
+        </view>
+      </view>
+    </view>
+    <button class='btn' disabled='{{canPay?false:true}}' form-type="submit">提交</button>
+  </form>
+  <view class='desc' wx:if="{{commiss_tixian_publish}}">
+    <view class='h2'>提现规则：</view>
+    <view class="wxParse">
+      <parser html="{{commiss_tixian_publish}}" />
+    </view>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>

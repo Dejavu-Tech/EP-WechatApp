@@ -1,0 +1,12 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+@import 'tabbar.wxss';
+
+.box {
+  flex-wrap: wrap;
+}
+
+.box .item {
+  width: 50%;
+  margin: 30rpx 0;
+}

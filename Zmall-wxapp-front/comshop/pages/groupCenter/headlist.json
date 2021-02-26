@@ -1,6 +1,0 @@
-{
-    "navigationBarTitleText": "团长列表",
-    "usingComponents": {
-        "i-load-more": "../../components/load-more/index"
-    }
-}

@@ -1,0 +1,19 @@
+.item .img-class {
+  width: 160rpx;
+  height: 160rpx;
+  overflow: hidden;
+}
+
+.btn {
+  color: #ffffff;
+  padding: 25rpx 40rpx;
+  font-size: 30rpx;
+}
+
+.iptbtn {
+  font-size: 44rpx;
+}
+
+.iptnum {
+  width: 120rpx;
+}

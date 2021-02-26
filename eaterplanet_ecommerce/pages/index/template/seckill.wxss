@@ -1,0 +1,81 @@
+.seckill-bg {
+  background: #94cefe;
+}
+.seckill {
+    position: relative;
+    padding: 20rpx 20rpx 20rpx 20rpx;
+    
+    overflow: hidden;
+}
+
+.seckill-head {
+  color: #fff;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+  align-items: center;
+  height: 100rpx;
+  background: linear-gradient(90deg, #ea404b 0%, #ed745d 100%);
+  line-height: 1.2;
+}
+
+.seckill-head .tit {
+  font-size: 30rpx;
+  font-weight: bold;
+  padding-right: 20rpx;
+  border-right: 1px solid #fff;
+  margin-right: 20rpx;
+}
+
+.seckill .more {
+  font-size: 26rpx;
+}
+
+.seckill .more .iconfont {
+  font-size: 28rpx;
+}
+
+.seckill-list {
+  position: relative;
+}
+
+.sec-swiper-content {
+  width: 100%;
+  height: 290rpx;
+}
+
+.seckill-head-item {
+  margin: 0 19rpx;
+  text-align: center;
+}
+
+.seckill-head-item .time{
+  font-size: 26rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.seckill-head-item .desc{
+  font-size: 22rpx;
+}
+
+.seckill-head-item.active .desc {
+  color: #ea474e;
+  padding: 2rpx 10rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+}
+
+.seckill .current {
+  height: 32rpx;
+  line-height: 32rpx;
+  text-align: center;
+  border-radius: 24rpx;
+  background-color: #f8f8f8;
+  font-size: 24rpx;
+  color: #c8c8c8;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  z-index: 1;
+  padding: 0 10rpx;
+}

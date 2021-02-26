@@ -1,0 +1,13 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+@import 'tabbar.wxss';
+
+.footer .btn {
+    background: #FED206;
+    padding: 12rpx 0;
+    text-align: center;
+    border-radius: 10rpx;
+    color: #000;
+    flex: 1;
+    margin: 0 30rpx;
+}

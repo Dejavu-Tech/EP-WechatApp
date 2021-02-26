@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-img": "../../../components/img/index",
+    "i-button": "../../../components/button/index",
+    "i-router-link": "../../../components/router-link/router-link"
+  }
+}

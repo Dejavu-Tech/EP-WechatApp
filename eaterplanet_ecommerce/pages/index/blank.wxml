@@ -1,0 +1,2 @@
+<view style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.height?'height:'+item.style.height/2+'px;':''}}">
+</view>

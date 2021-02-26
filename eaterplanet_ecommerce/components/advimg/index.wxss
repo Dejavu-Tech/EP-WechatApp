@@ -1,0 +1,24 @@
+.wrap {
+  padding: 0 20rpx;
+  margin: 10rpx 0;
+  filter: drop-shadow(0 10rpx 15rpx rgb(0, 0, 0, 0.4));
+}
+
+.wrap .img {
+  width: 100%;
+  border-radius: 20rpx;
+  
+}
+
+.contact {
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.contact::after {
+  content: none;
+}

@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "接龙中心",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-card": "../../components/card/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-empty": "../../components/empty/index"
+  }
+}

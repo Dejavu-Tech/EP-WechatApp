@@ -1,0 +1,27 @@
+<!-- 秒杀 -->
+<view class='new-comers' wx:if="{{list.length}}">
+	<view class='new-comers-title'>
+		<view><text class="leftBorder" style="border-color: {{skin.color}}"></text>限时秒杀</view>
+		<i-count-down countdownClass="count-down" itemClass="item-time" showDay="true" target="{{rushEndTime}}" clearTimer="{{clearTimer}}" wx:if="{{rushEndTime&&is_show_spike_buy_time!=0}}">
+			<span class="count-down-left-text">仅剩</span>
+		</i-count-down>
+	</view>
+	<scroll-view class='new-comers-scroll' scroll-x bindscrolltolower="getMore">
+		<view class='new-comers-wrap {{list.length<=3?"onlyThree":""}}'>
+			<i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="id">
+				<i-img defaultImage="../../images/placeholder-refund.png" height="220" width="220" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
+				<view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+				<view class='title'>{{item.spuName}}</view>
+				<view class='new-bot'>
+					<view class='price'>¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+					<i-button iClass="add-cart" wx:if="{{disabled||item.spuCanBuyNum==0}}">
+						<image class='img' src="../../images/icon-add-shopCart-disabled.png"></image>
+					</i-button>
+					<i-button bind:click="openSku" data-idx="{{index}}" iClass="add-cart" wx:else>
+						<i-addcart iClass='img' />
+					</i-button>
+				</view>
+			</i-router-link>
+		</view>
+	</scroll-view>
+</view>

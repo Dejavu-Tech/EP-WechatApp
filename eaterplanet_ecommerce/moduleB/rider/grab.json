@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "抢单",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-fixed-bottom": "../../components/fixed-bottom/index",
+    "i-empty": "../../components/empty/index"
+  }
+}

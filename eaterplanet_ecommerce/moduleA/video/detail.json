@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "i-auth": "../../components/new-auth/index",
+    "i-navigation-bar": "../../components/navigation-bar/navigation-bar"
+  }
+}

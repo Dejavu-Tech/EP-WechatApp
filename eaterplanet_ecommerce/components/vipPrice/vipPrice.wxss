@@ -1,0 +1,14 @@
+.vipprice {
+    background: linear-gradient(to right,#ffeea2,#ffe689);
+    font-family: DIN;
+    color: #964c00;
+    font-size: 20rpx;
+    padding: 2rpx 8rpx;
+    border-radius: 6rpx;
+    margin-right: 10rpx;
+}
+
+.level {
+  background: linear-gradient(to right, #fd634f, #fd7967);
+  color: #fff;
+}

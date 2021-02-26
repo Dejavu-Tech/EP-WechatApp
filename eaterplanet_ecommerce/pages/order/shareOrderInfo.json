@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "订单详情",
+    "navigationBarBackgroundColor": "#4facfe",
+    "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-order-info-express": "../../components/order/orderInfoExpress",
+    "i-goods-info": "../../components/goodsInfo/index",
+    "i-order-info": "../../components/orderInfo/index",
+    "i-card": "../../components/card/index",
+    "i-aside-btn": "../../components/asideBtn/index"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "提现记录",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-load-more": "../../components/load-more/index"
+  }
+}

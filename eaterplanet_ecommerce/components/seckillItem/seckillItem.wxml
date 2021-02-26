@@ -1,0 +1,37 @@
+<form bindsubmit="submit2" reportSubmit="true">
+  <button hidden formType="submit" id="formId"></button>
+</form>
+<label class="spu" for="formId">
+  <i-router-link routerClass="seckill-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{spuItem.actId}}">
+    <view class='img'>
+      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="120" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.skuImage}}" width="120"></i-img>
+    </view>
+    <view class="item-right">
+      <view class="item-right-top">
+        <view class="title">{{spuItem.spuName}}</view>
+        <view class="desc" wx:if="{{spuItem.spuDescribe}}">{{spuItem.spuDescribe}}</view>
+      </view>
+      <view class="progress-box" wx:if="{{theme==0}}">
+        <progress class="progress-wrap" percent="{{precent}}" stroke-width="10" border-radius="5" backgroundColor="#fba29b" activeColor="#ff5041" />
+        <view>已抢{{spuItem.soldNum}}{{goods_sale_unit}}</view>
+      </view>
+      <view class="progress-box flex" wx:else>
+        <progress class="progress-wrap" percent="{{precent}}" stroke-width="10" border-radius="5" backgroundColor="#fba29b" activeColor="#ff5041" />
+        <view>仅剩{{spuItem.spuCanBuyNum}}{{goods_sale_unit}}</view>
+      </view>
+      <view class="spu-price">
+        <view class="sale-price">
+          <text class='span'>¥{{spuItem.actPrice[0]}}</text>.{{spuItem.actPrice[1]}}
+        </view>
+        <view class="market-price">¥{{spuItem.marketPrice[0]}}.{{spuItem.marketPrice[1]}}</view>
+      </view>
+    </view>
+    <view class="add-cart disabled" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+    <view class="add-cart disabled" wx:elif="{{begin==1}}">即将开始</view>
+    <view class="act-end" wx:elif="{{actEnd}}">已结束</view>
+    <i-button bind:click="openSku" iClass="add-cart" style="background: linear-gradient(90deg, {{skin.color}} 0%, {{skin.light}} 100%);" wx:else>马上抢</i-button>
+    <view class="mask" wx:if="{{isPast||disabled||spuItem.spuCanBuyNum==0?'disabled':''}}"></view>
+    <view class="act-end act-out" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+    <view class="act-end" wx:elif="{{actEnd}}">已结束</view>
+  </i-router-link>
+</label>

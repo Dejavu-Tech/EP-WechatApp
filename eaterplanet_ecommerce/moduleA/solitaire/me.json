@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "我的接龙",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-empty": "../../components/empty/index"
+  }
+}

@@ -1,0 +1,22 @@
+<template name="tabbar">
+  <i-fixed-bottom>
+    <view class="tabbar-box py10 i-flex text-center shadow-top fsz-24 {{isIpx?'pb20':''}}">
+      <navigator class="tabbar i-flex-item {{data==0?'active':''}}" hover-class="none" url="/eaterplanet_ecommerce/moduleB/rider/index" open-type="redirect">
+        <text class="iconfont icon-shouye"></text>
+        <view class="mt5">首页</view>
+      </navigator>
+      <navigator class="tabbar i-flex-item {{data==1?'active':''}}" hover-class="none" url="/eaterplanet_ecommerce/moduleB/rider/grab" open-type="redirect">
+        <text class="iconfont icon-jielongguanli"></text>
+        <view class="mt5">抢单</view>
+      </navigator>
+      <navigator class="tabbar i-flex-item {{data==2?'active':''}}" hover-class="none" url="/eaterplanet_ecommerce/moduleB/rider/census" open-type="redirect">
+        <text class="iconfont icon-order-manage"></text>
+        <view class="mt5">统计</view>
+      </navigator>
+      <navigator class="tabbar i-flex-item {{data==3?'active':''}}" hover-class="none" url="/eaterplanet_ecommerce/moduleB/rider/me" open-type="redirect">
+        <text class="iconfont icon-jiaru"></text>
+        <view class="mt5">我的</view>
+      </navigator>
+    </view>
+  </i-fixed-bottom>
+</template>

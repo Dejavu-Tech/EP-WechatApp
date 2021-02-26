@@ -1,0 +1,47 @@
+<import src="tabbar.wxml"></import>
+<navBar title="资金管理" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap bg-f">
+  <view class='user-info p15 i-flex i-flex-alc bor-bottom'>
+    <image class='avatar' src='{{member_info.avatar}}'></image>
+    <view class='i-flex-item'>
+      <view class='nickname'>{{member_info.username}}</view>
+    </view>
+  </view>
+  <view class='money i-flex i-flex-alc bor-bottom'>
+    <view class='i-flex-item'>
+      <view class="recharge-money">{{supply_commiss.money}}</view>
+      <view class="recharge-tip">可提现金额（元）</view>
+    </view>
+    <view class='btn' bindtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/excharge'>
+      <button type='warn' size='mini'>提现</button>
+    </view>
+  </view>
+  <view class='menu'>
+    <!-- <view bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/member'>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">收支记录</view>
+        <view class="tool-right">
+          <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </view> -->
+    <view>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">未结算金额</view>
+        <view class="tool-right">
+          ¥{{supply_commiss.dongmoney}}
+        </view>
+      </view>
+    </view>
+    <view>
+      <view class="item-main i-flex i-flex-alc">
+        <view class="item-title i-flex-item">已结算金额</view>
+        <view class="tool-right">
+          ¥{{supply_commiss.getmoney}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<template is="tabbar" data="{{data:4}}"></template>

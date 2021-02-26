@@ -1,0 +1,17 @@
+@import "/eaterplanet_ecommerce/resource/css/excharge.wxss";
+
+.wrap {
+  font-size: 28rpx;
+}
+
+.form-group label {
+  display: flex;
+  font-size: 26rpx;
+  align-items: center;
+  padding: 5rpx 0 15rpx;
+}
+
+.form-group label input {
+  flex: 1;
+  border: 0;
+}

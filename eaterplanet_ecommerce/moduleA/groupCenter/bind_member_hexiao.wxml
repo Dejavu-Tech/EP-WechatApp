@@ -1,0 +1,21 @@
+<navBar title="员工信息" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<i-auth bind:authSuccess="authSuccess" needAuth="{{!is_login}}">
+  <view class="content">
+    <view class='tip'>邀请你成为会员</view>
+    <view class='form'>
+      <view class='form-group'>
+        <view class='label'>你的姓名</view>
+        <view class='ipt'><input placeholder='你的姓名' bindinput='getName' type='text'></input>
+      </view>
+      </view>
+      <view class='form-group'>
+        <view class='label'>联系电话</view>
+        <view class='ipt'><input placeholder='联系电话' type='number' maxlength="11" bindinput='getMobile'></input>
+      </view>
+      </view>
+      <view class='form-btn'>
+        <view class='sub-btn' bindtap='bindInfo'>提交</view>
+      </view>
+    </view>
+  </view>
+</i-auth>

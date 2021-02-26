@@ -1,0 +1,497 @@
+<!--<recycle-view bindscroll="{{test.funcA}}" batch="{{batchSetRecycleData}}">-->
+<wxs module="test" src="./test.wxs"></wxs>
+<page-meta bindscroll="{{test.funcA}}">
+<view class="containermini" style="{{'top: ' + searchBarHeight}};right:180rpx" bindtap='goweather'>
+  <view class='content'>
+
+    <view class='info'>
+      <view class='city'>
+        <view class='name'>
+
+          <view class='val'>{{cityDatas.basic.location || '定位中'}}</view>
+
+        </view>
+
+      </view>
+
+      <view style="margin-top:5rpx;">
+        <view class='temp num' decode='true'>{{cityDatas.now.tmp || '-'}}<text style='font-size:18rpx;position:relative;'>℃</text></view>
+        <view class='weather'>{{cityDatas.now.cond_txt || '--'}}</view>
+      </view>
+      <view class='bigIcon1'wx:if='{{cityDatas.now.cond_code}}'><image class='bigIcon' src='{{weatherIconUrl1}}{{cityDatas.now.cond_code}}{{bh}}.png'></image></view>
+    </view>
+  </view>
+</view>
+                <image class="header-bg" src="{{shop_info.common_header_backgroundimage?shop_info.common_header_backgroundimage:'../../images/TOP_background@2x.png'}}" wx:if="{{shop_info.index_top_img_bg_open==0}}"></image>
+<navBar ref=''  background='{{background}}'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgindex="{{true}}" ></navBar>
+
+<view class="group"  style="background-color:rgba(00, 00, 00, 0);height:{{statusBarHeight}}"></view>
+<movable-area>
+<view class='index-box pb100 {{showNewCoupon?"preventTouchMove":""}}' wx:if="{{loadOver&&isblack!=1&&isparse_formdata!=1}}">
+  <import src="template/pin.wxml"></import>
+  <import src="template/pinrow.wxml"></import>
+  <import src="template/cube.wxml"></import>
+  <import src="template/seckill.wxml"></import>
+  <import src="template/video.wxml"></import>
+  <import src="template/navlist.wxml"></import>
+  <view class="miniAppTip" wx:if="{{isTipShow}}">
+    <view bindtap="handleProxy" class="add-myapp" style="{{'top: ' + searchBarHeight + 92}}">
+      <text>添加到「我的小程序」团购更方便</text>
+    </view>
+  </view>
+  <view bindtap="handleHideProxy" class="guide" wx:if="{{isShowGuide}}">
+    <image mode="widthFix" src="{{index_lead_image}}"></image>
+  </view>
+        <view  class="bg-ff">
+    <view class="header-content" wx:if="{{hide_top_community==0}}">
+            <view class="header-logoimg">
+            <image  class="header-logoimage" src="../../images/logoimg.png"></image>
+            </view>
+      <view class="location" style='color: {{shop_info.index_top_font_color}}' wx:if="{{shop_info.index_communityinfo_showtype!=1}}">
+        <view class="location-left" wx:if="{{community&&community.communityName}}">
+          <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community" wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}">
+            <view class="community-title">
+              <view class="text-overflow1" style="max-width: 360rpx;">{{community.communityName}}</view>
+              <text class='community-change' wx:if="{{hide_community_change_word==0}}">切换</text>
+              <text class="iconfont icon-youjiantou"></text>
+            </view>
+          </navigator>
+          <view wx:else>
+            <view class="community-title">
+              <span>{{community.communityName}}</span>
+            </view>
+          </view>
+          <view class="community-address" bindtap='gotoMap' wx:if="{{index_hide_headdetail_address==0}}">
+            <text class="iconfont icon-weizhi-tianchong"></text>{{community.address||community.communityAddress||community.fullAddress}}
+          </view>
+        </view>
+        <view class="location-left" wx:else>
+          <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community">
+            您还没有选择{{groupInfo.owner_name}}，轻触去选择 <text class="iconfont icon-weizhi-tianchong"></text>
+          </navigator>
+        </view>
+        <view class="location-right">
+          <image src='{{community.headImg ? community.headImg: community.disUserHeadImg}}' class='img'></image>
+          <text>{{community.disUserName}}</text>
+        </view>
+      </view>
+      <view class="location-theme2" style='color: {{shop_info.index_top_font_color}}' wx:else>
+        <block wx:if="{{community&&community.communityName}}">
+
+          <view class="loc-m" wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/position/community">
+            {{community.communityName}} <text style='font-size:12px;' wx:if="{{hide_community_change_word==0}}">切换</text><text class="iconfont icon-youjiantou" style='font-size:12px;'></text>
+          </view>
+          <view class="loc-m" wx:else>{{community.communityName}}</view>
+          <view class="loc-l">
+            <image src='{{community.headImg ? community.headImg: community.disUserHeadImg}}' class='img'></image>
+          </view>
+        </block>
+        <view class="loc-l" wx:else>
+          <navigator hoverClass="router-hover" style="margin-top: 16rpx" url="/eaterplanet_ecommerce/pages/position/community">
+            您还没有选择{{groupInfo.owner_name}}，轻触去选择 <text class="iconfont icon-weizhi-tianchong"></text>
+          </navigator>
+        </view>
+
+      </view>
+    </view>
+
+    <!-- 幻灯片 -->
+    <view class="swipe" wx:if="{{slider_list.length>0}}">
+      <swiper indicatorDots class="swiper-content" duration="400" autoplay indicatorActiveColor="#4facfe" indicatorColor="#fff" interval="5000" circular>
+        <swiper-item wx:for="{{slider_list}}" wx:key="id">
+          <button class="banner nav-contact" openType="contact" wx:if="{{item.linktype==5}}">
+            <i-img iClass="banner-img" loadImage="{{item.image}}"></i-img>
+          </button>
+          <view class='banner' bindtap='goBannerUrl' data-idx="{{index}}" wx:else>
+            <i-img iClass="banner-img" loadImage="{{item.image}}"></i-img>
+          </view>
+        </swiper-item>
+      </swiper>
+    </view>
+    <!-- 导航列表 -->
+    <template is="navlist" data="{{navigat, navigatEmpty, navigatSwiper, skin}}"></template>
+
+    <!-- 弹窗广告 -->
+    <view style="position: relative;z-index: 3">
+    <advimg pos="0" bind:switchType="goIndexType" />
+    </view>
+    <!-- 优惠券 -->
+    <view wx:if="{{hasCoupon}}" class="promotion">
+      <view class="slider">
+        <view class="slider-wraper">
+          <view class="list">
+            <view bindtap='receiveCoupon' wx:for="{{quan}}" wx:key="id" data-quan_id="{{item.id}}" class="card-content list-item {{(item.is_get==1&&item.is_hide>0)? 'get':''}}">
+              <view class="card">
+                <view class="card-price span">
+                  <view class="card-price--unit span">¥</view>
+                  <view class="card-price--num span">{{item.credit}}</view>
+                </view>
+                <view class="card-desc span" wx:if="{{item.limit_money >0}}">
+                  满{{item.limit_money}}元可用</view>
+                <view class='card-desc span fsz-16' wx:if="{{item.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+                <view class='card-desc span fsz-16' wx:elif="{{item.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+                <view class='card-desc span fsz-16' wx:elif="{{item.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+                <view class="card-tag span {{(item.is_get==1&&item.is_hide>0)? 'card-tag--get':''}}">
+                  <view class="card-tag--text span">已领取</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 公告 -->
+    <view style="padding-bottom:20rpx;" wx:if="{{notice_list.length>0}}">
+      <view class="top-msg" style="color: {{notice_setting.font_color}};background:{{notice_setting.background_color}};">
+        <image wx:if="{{notice_setting.horn}}" src="{{notice_setting.horn}}"></image>
+        <text wx:else class="iconfont icon-laba"></text>
+        <swiper class='notice-swipe' autoplay interval="3000" vertical circular>
+          <block wx:for="{{notice_list}}" wx:key="id">
+            <swiper-item class='notice-swipe-item' bindtap='showNoticeTextHandle' data-status="{{true}}" data-idx="{{index}}">
+              {{item.content}}
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+
+    <!-- 魔方图 -->
+    <template is="cube" data="{{data:cube}}"></template>
+  </view>
+
+  <!-- 列表 Start -->
+  <view class="list-content">
+
+    <!-- 新人专享 -->
+    <i-new-comer bind:openSku="openSku" refresh="{{newComerRefresh}}" wx:if="{{is_show_new_buy==1}}" skin="{{skin}}" />
+
+    <!-- 拼团 -->
+    <template is="pin" data="{{pinList:pinList,skin}}"></template>
+
+    <!-- 限时秒杀 -->
+    <i-spike bind:openSku="openSku" refresh="{{newComerRefresh}}" wx:if="{{is_show_spike_buy==1}}" skin="{{skin}}" />
+
+    <!-- 多时段限时秒杀 -->
+    <template is="seckill" style="background: linear-gradient(180deg,#94cefe 0%, #4d9ee9 100%)" data="{{secRushList:secRushList,skin,scekillTimeList,secKillActiveIdx,secKillGoodsIndex,needAuth,seckill_bg_color}}" wx:if="{{seckill_is_open==1&&seckill_is_show_index==1}}"></template>
+
+    <!-- 专题 -->
+    <i-topic refresh="{{couponRefresh}}" bind:openSku="openSku" showPos="0" />
+
+    <!-- 分类专题 -->
+    <view class="theme3 bg-ff" wx:if="{{typeTopicList.length&&(typeItem.banner||typeItem.list.length)}}" wx:for="{{typeTopicList}}" wx:key="id" wx:for-index="idx" wx:for-item="typeItem">
+      <image class='topic-img' src="{{typeItem.banner}}" mode="widthFix" wx:if="{{typeItem.banner}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/details?id={{typeItem.id}}"></image>
+      <i-rush-spu class="item" wx:for="{{typeItem.list}}" wx:if="{{typeItem.list.length}}" wx:for-item="item" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeNotListCartNum" notNum="{{true}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"></i-rush-spu>
+      <view class="theme3-more" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/details?id={{typeItem.id}}" wx:if="{{typeItem.list.length}}">
+        查看全部 <text class="iconfont icon-youjiantou"></text>
+      </view>
+    </view>
+
+    <!-- 拼团展示2 -->
+    <template is="pinrow" data="{{pinList:pinList,skin,goods_sale_unit}}"></template>
+
+    <!-- 视频 -->
+    <template is="video" data="{{data:index_video_arr,fmShow,imageSize}}" wx:if="{{index_video_arr&&index_video_arr.enabled==1}}"></template>
+
+    <image id='rush-title' wx:if="{{shop_info.index_list_top_image&&shop_info.index_list_top_image_on!=1}}" class="rush-list-title" src="{{shop_info.index_list_top_image}}"></image>
+
+    <!--搜索框begin-->
+    <form bindsubmit="goResult" style="display: block;width: 100%;padding-bottom: 16rpx;background: linear-gradient(180deg,#94cefe 0%, #4d9ee9 100%)" wx:if="{{index_switch_search==1}}">
+      <view class='search-bar'>
+        <view class='search-box'>
+          <input class='ipt' placeholder="搜索商品" confirm-type="搜索" type="text" name="keyword"></input>
+          <view class='search-icon'>
+            <text class="iconfont icon-sousuo1"></text>
+          </view>
+        </view>
+      </view>
+    </form>
+    <!--搜索框end-->
+
+    <!-- 分类导航 Start -->
+    <block wx:if="{{ishide_index_goodslist!=1}}">
+      <view class='sticky-cate' wx:if="{{index_change_cate_btn==1}}" background='{{background}}' style="{{'top: ' + statusBarHeight}}">
+        <block wx:if="{{hide_index_type!=1}}">
+          <view hidden="{{!isShowClassification||tabIdx!==0}}">
+            <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#FFF" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+          </view>
+          <view class="tab-nav-query"></view>
+        </block>
+      </view>
+      <view wx:else class="sticky-content {{isSticky?'sticky-top':''}} {{scrollDirect==='up'&&isSticky?'tab-nav-sticky':''}}" background='{{background}}' style="{{'top: ' + searchBarHeight}}">
+        <view class="tab-nav tab-nav-query" style='border-color:{{qgtab.bottom_color?qgtab.bottom_color:"#4facfe"}}'>
+          <view bindtap="tabSwitch" class="tab-nav-item {{tabIdx===0?'active':''}}" data-idx="0">
+            <image wx:if="{{tabIdx===0}}" src="{{qgtab.one_select?qgtab.one_select:'../../images/index-tab-left-active.png'}}"></image>
+            <image wx:else src="{{qgtab.one_selected?qgtab.one_selected:'../../images/index-tab-left-disabled.png'}}"></image>
+            <span>{{index_qgtab_text[0]?index_qgtab_text[0]:'正在抢购'}}</span>
+          </view>
+          <view bindtap="tabSwitch" class="tab-nav-item {{tabIdx===1?'active':''}}" data-idx="1">
+            <image wx:if="{{tabIdx===1}}" src="{{qgtab.two_select?qgtab.two_select:'../../images/index-tab-right-active.png'}}"></image>
+            <image wx:else src="{{qgtab.two_selected?qgtab.two_selected:'../../images/index-tab-right-disabled.png'}}"></image>
+            <span>{{index_qgtab_text[1]?index_qgtab_text[1]:'即将开抢'}}
+            </span>
+          </view>
+          <view class="count-down-content" wx:if="{{tabIdx===0}}">
+            <i-count-down countdownClass="count-down" itemClass="item-time" showDay="true" target="{{rushEndTime}}" wx:if="{{rushEndTime&&!stopNotify&&index_qgtab_counttime!=1}}" clearTimer="{{stopNotify}}">
+              <span class="count-down-left-text">仅剩</span>
+            </i-count-down>
+          </view>
+        </view>
+        <block wx:if="{{hide_index_type!=1}}">
+          <view hidden="{{!isShowClassification||tabIdx!==0}}">
+            <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#FFF" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+          </view>
+          <view hidden="{{!isShowCommingClassification||tabIdx!==1}}">
+            <i-tabs activeIndex="{{commingClassification.activeIndex}}" bind:activeIndexChange="commingClassificationChange" data-idx="2" fontColor="#FFF" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+          </view>
+        </block>
+      </view>
+      <!-- 分类导航 End -->
+      <view class='rush-list-box'>
+        <!-- <view wx:if="{{hide_index_type!=1}}" style="height: {{isSticky?'70rpx':'0'}}"></view> -->
+        <block wx:if="{{rushList.length>0 && tabIdx===0}}">
+          <!-- 样式一 Start -->
+          <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx" wx:if="{{rushList.length>0 && theme==0}}">
+            <skeleton wx:for="{{rush}}" wx:key="id">
+              <view class="active-item">
+                <view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+                  <view class="empty-1"></view>
+                  <view class="empty-2" wx:if="{{item.spuDescribe}}"></view>
+                  <view class="empty-3"></view>
+                  <view class="list-item-count-down" style="color:{{skin.color}}" wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}" data-xx="{{item.spuCanBuyNum}}">
+                    仅剩
+                    <em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+                    <span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+                    <span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+                    <span class="item-class">{{countDownMap[item.end_time].second}}</span>
+                  </view>
+                </view>
+                <i-new-rush-spu actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}"></i-new-rush-spu>
+              </view>
+            </skeleton>
+          </block>
+          <!-- 样式一 End -->
+          <!-- 样式二 Start -->
+          <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx" wx:if="{{rushList.length>0&&theme==1}}">
+            <skeleton wx:for="{{rush}}" wx:key="id">
+              <view class="active-item-two">
+                <view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+                  <view class="list-item-count-down type-two" style="background:{{skin.color}}" wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}">
+                    仅剩
+                    <em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+                    <span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+                    <span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+                    <span class="item-class">{{countDownMap[item.end_time].second}}</span>
+                  </view>
+                </view>
+                <i-rush-spu-big actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}"></i-rush-spu-big>
+              </view>
+            </skeleton>
+          </block>
+          <!-- 样式二 End -->
+          <!-- 样式三 Start -->
+          <view class="theme3" wx:if="{{rushList.length>0 && theme==2}}">
+            <image class='topic-img' src="{{cate_info.banner}}" mode="widthFix" wx:if="{{cate_info.banner}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/details?id={{classificationId}}"></image>
+            <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx">
+              <block class="item" wx:for="{{rush}}" wx:key="actId">
+                <i-rush-spu spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" bind:vipModal="vipModal" actEnd="{{actEndMap[item.end_time]}}"></i-rush-spu>
+              </block>
+            </block>
+          </view>
+          <!-- 样式三 End -->
+          <!-- 样式4 Start -->
+          <view class="comming-list themeTwo" wx:if="{{rushList.length>0&&theme==3}}">
+            <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx">
+              <skeleton wx:for="{{rush}}" wx:key="id" class="comming-spu-item">
+                <i-tworow actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}"></i-tworow>
+              </skeleton>
+            </block>
+          </view>
+          <!-- 样式4 End -->
+          <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{loadMore}}"></i-load-more>
+        </block>
+        <block wx:if="{{tabIdx===1}}">
+          <view class="comming-list" wx:if="{{commingList.length}}">
+            <i-comming-spu category="{{commingClassification.tabs[commingClassification.activeIndex].name}}" class="comming-spu-item" spuItem="{{item}}" wx:if="{{commingList.length}}" wx:for="{{commingList}}" wx:key="id"></i-comming-spu>
+            <i-load-more iClass="loadMore" loading="{{commigLoadMore}}" tip="{{commigTip}}" wx:if="{{commigLoadMore}}"></i-load-more>
+          </view>
+          <view class="none-rush-list" wx:if="{{showCommingEmpty}}">
+            <image class="img-block" src="../../images/icon-index-empty.png"></image>
+            <view class="h1">本类商品暂时没有了哦</view>
+            <view class="h2">我们正在为您加紧准备中</view>
+          </view>
+          <view class="slogan" wx:if="{{!commigLoadMore&&commingList.length}}">
+            <image src="{{indexBottomImage?indexBottomImage:'../../images/icon-index-slogan.png'}}"></image>
+          </view>
+        </block>
+        <block wx:if="{{tabIdx===0}}">
+          <view class="none-rush-list" wx:if="{{showEmpty}}">
+            <image class="img-block" src="../../images/icon-index-empty.png"></image>
+            <view class="h1">本类商品暂时没有了哦</view>
+            <view class="h2">我们正在为您加紧准备中</view>
+          </view>
+          <view class="slogan" wx:if="{{!loadMore&&rushList.length}}">
+            <image src="{{indexBottomImage?indexBottomImage:'../../images/icon-index-slogan.png'}}"></image>
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <!-- 专题 -->
+    <i-topic refresh="{{couponRefresh}}" bind:openSku="openSku" showPos="1" />
+  </view>
+  <!-- 列表 End -->
+
+
+  <view class="fixed-aside">
+            <movable-view y="770rpx" direction="vertical" bindtap='showCopyTextHandle' data-status="{{true}}" class="fixed-copytext" wx:if="{{ishow_index_copy_text==1}}">
+           
+           <view>一键复制</view>
+          
+          </movable-view>
+            <movable-view y="860rpx" direction="vertical" bindtap="share_handler" class="fixed-share" wx:if="{{isShowShareBtn==1}}">
+                <text class="iconfont icon-fenxiang"></text>
+                <view>分享</view>
+
+            </movable-view>
+
+            <movable-view y="950rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
+                <text class="iconfont icon-kefu"></text>
+                <view>客服</view>
+
+            </movable-view>
+
+            <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">
+                <text class="iconfont icon-fanhuidingbu"></text>
+                <view>顶部</view>
+
+            </movable-view>
+  </view>
+
+  <i-tabbar currentIdx='0' cartNum='{{cartNum}}' needAuth="{{needAuth}}" tabbarRefresh="{{tabbarRefresh}}" bind:authModal="authModal" />
+  <i-order-notify i-class="order-notify" wx:if="{{shop_info.order_notify_switch==1}}" stopNotify="{{stopNotify}}" />
+
+  <i-change-community wx:if="{{showChangeCommunity}}" wx:if="{{showChangeCommunity}}" visible="{{showChangeCommunity}}" changeCommunity="{{changeCommunity}}" community="{{community}}" bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" groupInfo="{{groupInfo}}"></i-change-community>
+
+  <!-- 弹窗优惠券begin -->
+  <view class='new-coupou' wx:if="{{showCouponModal && hasAlertCoupon && !showChangeCommunity}}">
+    <view class='new-coupou-content'>
+      <view class='new-coupou-body'>
+        <view class='new-coupou-body-head'>恭喜你获得{{totalAlertMoney}}元红包券</view>
+        <view class='new-coupou-body-scroll'>
+          <scroll-view scroll-y style='max-height:580rpx;'>
+            <view class='new-coupou-item' wx:for="{{alert_quan_list}}" wx:key="id">
+              <view class="m-coupon-l"><view class='m-coupou-price'><text>¥</text>{{item.credit}}</view></view>
+              <view class='m-coupou-m'>
+                <view class='m-coupou-name'>{{item.voucher_title}}</view>
+                <view class='m-coupou-title' wx:if="{{item.limit_money >0}}">满{{item.limit_money}}元可用</view>
+                <view class='m-coupou-title' wx:if="{{item.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+                <view class='m-coupou-title' wx:elif="{{item.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+                <view class='m-coupou-title' wx:elif="{{item.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+              </view>
+              <view class='m-coupou-r'>
+                <view class='new-coupou-use kong' bindtap='goUse' data-idx='{{index}}'>去使用</view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        <view class='new-coupou-body-foot'>
+          <view class='new-coupou-body-btn' bindtap='toggleCoupon' data-auth="true">立即使用</view>
+        </view>
+      </view>
+      <view class='new-coupou-foot'>
+        <text class="iconfont icon-guanbi" bindtap='toggleCoupon'></text>
+      </view>
+    </view>
+  </view>
+  <!-- 弹窗优惠券end -->
+  <!-- 弹窗广告 -->
+  <ad-alert pop_page="0" wx:else />
+</view>
+
+<!-- 禁用界面 -->
+<view class="forbid i-flex-col i-flex-alc" wx:if="{{isblack==1}}">
+  <text class="iconfont icon-icon-test1"></text>
+  <view class="h1">您已被禁止访问</view>
+  <view class="h2">请联系管理员</view>
+</view>
+
+<!---规格选择begin-->
+<i-sku visible="{{visible}}" skin="{{skin}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></i-sku>
+<!---规格选择end-->
+
+<!-- 会员表单申请 -->
+<form-apply wx:if="{{isparse_formdata==1}}"></form-apply>
+
+<!-- 分享 -->
+<view class='ui-mask' bindtap='hide_share_handler' hidden='{{is_share_html}}'></view>
+<view class="model-services show" hidden='{{is_share_html}}'>
+  <view class="model-services-title">分享</view>
+  <view class="model-services-content">
+    <view class="service-list">
+      <view class="service-item">
+        <button open-type="share" class='none_btn' plain="true">
+          <text class="iconfont icon-weixin2 service-icon"></text>
+          <view class="cube-text">
+            <text>好友</text>
+          </view>
+        </button>
+      </view>
+      <view class="service-item" bindtap="goLink" data-link='/eaterplanet_ecommerce/pages/index/share' data-needauth="{{true}}">
+        <text class="iconfont icon-pengyouquan service-icon"></text>
+        <view class="cube-text">
+          <text>海报</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 分享 End -->
+
+<!-- 文本复制 Begin -->
+<i-modal scrollUp="{{false}}" visible="{{showCopyText}}">
+  <view class="copytext">
+    <view class="copytext-title" style="background:{{skin.color}}">
+      - 团长信息 -
+      <text class="iconfont icon-guanbi copytext-close" bindtap='showCopyTextHandle' data-status="{{false}}"></text>
+    </view>
+    <view class="copytext-p">小区：{{community.communityName}}</view>
+    <view class="copytext-p">团长：{{community.disUserName}}</view>
+    <view class="copytext-p">自提点：{{community.address||community.communityAddress||community.fullAddress}}</view>
+    <view class="copytext-h3">今日推荐</view>
+    <scroll-view class="copytext-content" scroll-y>
+      <view class="copytext-item" wx:for="{{copy_text_arr}}" wx:key="id" wx:if="{{copy_text_arr.length}}">
+        {{index+1}}. 【{{item.goods_name}}】 <text>团购价{{item.price}}元</text>
+      </view>
+    </scroll-view>
+    <i-button class="community-content-btn" iClass="btn" bindtap="copyText" style="background:{{skin.color}}">一键复制</i-button>
+  </view>
+</i-modal>
+<!-- 文本复制 End -->
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+
+<!-- 公众号关注组件 -->
+<view class="mp-account safebottom" wx:if="{{show_index_wechat_oa==1&&!hideMpAccount}}">
+  <text class="iconfont icon-guanbi" bindtap="closeMpaccount"></text>
+  <official-account binderror="binderror" bindload="bindload"></official-account>
+</view>
+
+<!-- 公告弹窗 Begin -->
+<i-modal scrollUp="{{false}}" visible="{{showNoticeText}}">
+  <view class="copytext">
+    <view class="copytext-title" style="background:{{skin.color}}">
+      - 公告 -
+      <text class="iconfont icon-guanbi copytext-close" bindtap='showNoticeTextHandle' data-status="{{false}}"></text>
+    </view>
+    <scroll-view class="copytext-content" scroll-y>
+      <view class="copytext-item" wx:if="{{noticeIdx>=0}}">
+        {{notice_list[noticeIdx].content}}
+      </view>
+    </scroll-view>
+  </view>
+</i-modal>
+<!-- 公告弹窗 End -->
+</movable-area></page-meta>

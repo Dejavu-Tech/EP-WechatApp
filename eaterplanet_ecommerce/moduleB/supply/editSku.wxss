@@ -1,0 +1,15 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
+.w100 {
+  width:200rpx;
+}
+
+.btn-area {
+  margin-top: 30rpx;
+}
+
+.btn-area button {
+  background: #fe8464;
+  color: #fff;
+}

@@ -1,0 +1,175 @@
+<navBar title="接龙详情" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <i-solitaire-head class="mb10" community="{{community}}" showShare="{{soli_info.appstate!=0}}" bind:share="handleShareModal"></i-solitaire-head>
+  <view class="mb10 bg-f p30">
+    <view class="weight fsz-30 mb5">{{soli_info.solitaire_name}}</view>
+    <view class="fsz-26 mb10">
+      <parser html="{{soli_info.content}}" />
+    </view>
+    <view class="fsz-24 text-gray mb10">接龙时间：{{soli_info.begin_time_str}}~{{soli_info.end_time_str}}</view>
+    <view class="img-list i-flex i-flex-wrap" wx:if="{{soli_info.images_list.length}}">
+      <image class="img-item" bindtap="showImgPrev" src="{{item}}" lazy-load mode="aspectFill" wx:for="{{soli_info.images_list}}" wx:key="id" data-idx="{{index}}"></image>
+    </view>
+  </view>
+  <view class="bg-f mb10" wx:if="{{soli_info.goods_list.length}}">
+    <view class="fsz-30 weight text-dark border-bottom p30">商品信息</view>
+    <view class="goods-list">
+      <view class="item border-bottom p30" wx:for="{{soli_info.goods_list}}" wx:key="id">
+        <i-solitaire-good spuItem="{{item}}" idx="{{index}}"></i-solitaire-good>
+      </view>
+    </view>
+  </view>
+  <view class="bg-f mb10">
+    <view class="fsz-30 weight text-dark border-bottom p30">活动统计</view>
+    <view class='three'>
+      <view class='three-item'>
+        <view class='three-money'>{{soli_info.invite_count|0}}</view>
+        <view class='three-title'>浏览(人)</view>
+      </view>
+      <view class='three-item'>
+        <view class='three-money'>{{soli_info.order_count|0}}</view>
+        <view class='three-title'>参与接龙(人)</view>
+      </view>
+      <view class='three-item'>
+        <view class='three-money'>{{soli_info.soli_total_money|0}}</view>
+        <view class='three-title'>接龙金额(元)</view>
+      </view>
+    </view>
+  </view>
+  <view class="bg-f">
+    <view class="fsz-30 weight text-dark border-bottom p30">接龙记录</view>
+    <view class="list order" wx:if="{{orderList.length}}">
+      <view class="item border-bottom" wx:for="{{orderList}}" wx:key="order_id">
+        <view class="i-flex i-aic">
+          <image class="avatar" src="{{item.avatar}}"></image>
+          <view class="username i-flex-item fsz-28 weight">{{item.username}}</view>
+          <view class="fsz-24 text-gray">{{item.addtime}}</view>
+        </view>
+        <view class="order-goods i-flex i-aic" wx:if="{{item.goodslist.length}}">
+          <image wx:for="{{item.goodslist}}" wx:for-item="goods" wx:for-index="idx" wx:key="goods_id" wx:if="{{idx<4}}" src="{{goods.goods_images}}" class="order-goods-img" mode="aspectFill" lazy-load></image>
+          <image src="../../images/moreBuyer.png" class="order-goods-img" wx:if="{{item.goodslist.length>=4}}" bindtap="handleGoodsModal" data-idx="{{index}}"></image>
+          <view class="fsz-24 i-flex-item text-right" bindtap="handleGoodsModal" data-idx="{{index}}">
+            共<text class="red">{{item.goodsnum}}</text>件</view>
+        </view>
+      </view>
+      <view class="more fsz-26 text-center bule" wx:if="{{!noOrderMore}}" bindtap="getMoreOrder">查看更多订单信息
+        <text class="iconfont icon-zhankai fsz-24"></text>
+      </view>
+    </view>
+    <view wx:if="{{noOrderData}}" class="list order">
+      <view class="no-comment text-center text-gray p15">暂无订单记录~</view>
+    </view>
+  </view>
+  <view class="bg-f p30 mb10 text-center" wx:if="{{soli_info.end==0}}">
+    <block wx:if="{{soli_info.activity_state==1}}">
+      <view class="text-center mb10 fsz-24" wx:if="{{solitaire_target_type==0}}">
+        <block wx:if="{{diffMember>0}}">
+          预计接龙完成还差<text class="red">{{diffMember}}</text>人，分享邀请尽快完成目标！
+        </block>
+        <block wx:else>已完成目标人数</block>
+      </view>
+      <view class="text-center mb10 fsz-24" wx:if="{{solitaire_target_type==1}}">
+        <block wx:if="{{diffMoney>0}}">
+          还差<text class="red">{{diffMoney}}</text>元订单金额完成接龙，分享邀请尽快完成目标
+        </block>
+        <block wx:else>已完成目标金额</block>
+      </view>
+    </block>
+    <block wx:if="{{soli_info.activity_state==0}}">
+			<view class="i-flex i-flex-alc mb10">开始倒计时：<i-count-down itemClass="item-time" showDay="{{true}}" target="{{(soli_info.begin_time)*1000}}" clearTimer="{{clearTime}}" wx:if="{{!clearTime}}" bind:callback="initFn"></i-count-down>
+			</view>
+			<view class="btn mb10 text-white">
+				<view class="fsz-32 weight">接龙未开始</view>
+			</view>
+		</block>
+    <view class="btn mb10 text-white" wx:elif="{{soli_info.activity_state==1}}">
+      <view class="i-flex i-flex-alc">接龙倒计时：<i-count-down showDay="{{true}}" target="{{(soli_info.end_time)*1000}}" clearTimer="{{clearTime}}" wx:if="{{!clearTime}}"></i-count-down></view>
+      <!-- <view>立即接龙</view> -->
+    </view>
+    <view class="btn mb10 text-white" wx:else>已结束</view>
+    <view class="end-btn text-white" wx:if="{{soli_info.activity_state==1}}" bindtap="endSolitaire">终止活动</view>
+  </view>
+  <view class="bg-f p30 mb10 text-center" wx:else>
+    <view class="btn mb10 text-white">已结束</view>
+  </view>
+
+  <!-- 留言 -->
+  <view class="bg-f" wx:if="{{solitaire_is_message==1}}">
+    <view class="text-center p30" style="padding-bottom:0;">
+      <view class="comment text-gray" bindtap="handleCommentModal">
+        <text class="iconfont icon-shuru"></text>
+        <block wx:if="{{soli_info.comment_total}}"> 已有{{soli_info.comment_total}}条留言，</block>快来说说您的感想！</view>
+    </view>
+    <view class="fsz-30 weight text-dark border-bottom p30">接龙留言</view>
+    <view class="msg order" wx:if="{{list.length}}">
+      <view class="item border-bottom i-flex" wx:for="{{list}}" wx:key="id">
+        <image class="avatar" src="{{item.avatar}}"></image>
+        <view class="i-flex-item">
+          <view class="i-flex i-aic">
+            <view class="i-flex-item">
+              <view class="username fsz-28 weight">{{item.username}}</view>
+              <view class="fsz-24 text-gray my10">{{item.addtime}}</view>
+            </view>
+            <view class="fsz-26 text-gray" bindtap="favComment" data-idx="{{index}}" data-post_id="{{item.id}}">
+              <text class="iconfont fsz-30 {{item.is_agree?'icon-good-fill bule':'icon-good'}}"></text> {{item.fav_count}}
+            </view>
+          </view>
+          <view class="content my10">{{item.content}}</view>
+          <view class="my10 text-right">
+            <text class="handled text-gray" bindtap="deleteComment" data-id="{{item.id}}" data-idx="{{index}}">删除</text>
+            <text class="handled bule" wx:if="{{item.reply.length==0}}" bindtap="replyComment" data-id="{{item.id}}">回复</text>
+          </view>
+          <view class="reply" wx:if="{{item.reply.length}}">
+            <text class="text-gray">{{community.head_name}}：</text>{{item.reply[0].content}}
+          </view>
+        </view>
+      </view>
+      <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+    </view>
+    <view class="msg order" wx:if="{{noData}}">
+      <view class="no-comment text-center text-gray p15">暂无留言~</view>
+    </view>
+  </view>
+
+  <!-- 留言弹窗 -->
+  <i-modal scrollUp="{{true}}" visible="{{showCommentModal}}" bind:cancel="handleCommentModal">
+    <view class="comment-modal p30">
+      <form bindsubmit="subComment">
+        <view class="i-flex i-flex-spb mb10">
+          <view class="bule" bindtap="handleCommentModal">取消</view>
+          <view>
+            <button class="send bg-blue text-white" formType="submit"><text class="iconfont icon-fabu"></text> 发送</button>
+          </view>
+        </view>
+        <view>
+          <textarea hidden="{{!showCommentModal}}" class="textarea" name="content" placeholder="内容" auto-focus="{{false}}" value="{{content}}"></textarea>
+        </view>
+      </form>
+    </view>
+  </i-modal>
+
+  <!-- 商品弹窗 -->
+  <i-modal scrollUp="{{false}}" visible="{{showGoodsModal}}">
+    <view class="goods-modal">
+      <view class="bg-f rounded">
+        <scroll-view class="goods-modal-body" scroll-y>
+          <view class="item border-bottom p30" wx:if="{{goodsModalList.length}}" wx:for="{{goodsModalList}}" wx:key="id">
+            <i-solitaire-good spuItem="{{item}}" type="3" idx="{{index}}" hasIpt="{{false}}"></i-solitaire-good>
+          </view>
+        </scroll-view>
+      </view>
+      <view class="text-center text-white modal-close" bindtap="handleGoodsModal"><text class="iconfont icon-guanbi"></text></view>
+    </view>
+  </i-modal>
+</view>
+
+<!-- 分享弹窗 -->
+<i-modal scrollUp="{{true}}" iClass="shareModal-box" visible="{{showShareModal}}" maskClosable="{{true}}" bind:cancel="handleShareModal">
+  <view class="i-flex-col shareModal">
+    <image src="{{image}}" mode="widthFix" class="mb10" style="width: 100%;"/>
+    <view class="shareBtn fsz-32 bg-primary text-white rounded text-center" bindtap="saveImage">
+      <text class="iconfont icon-fenxiang fsz-30"></text> 保存图片</view>
+  </view>
+</i-modal>
+
+<i-painter customStyle='position: absolute; left: -9999rpx;' palette="{{template}}" bind:imgOK="onImgOK"/>

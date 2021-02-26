@@ -1,0 +1,35 @@
+<navBar title="商户首页" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="special">
+  <image class='topic-img' src="{{info.banner}}" mode="aspectFill" wx:if="{{info.banner}}"></image>
+  <view class='like'>
+    <view class='like-list' wx:if="{{list.length}}">
+      <i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="actId">
+        <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="180" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
+        <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+        <view class='title'>{{item.spuName}}</view>
+        <view class='new-bot'>
+          <view class='price'>¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+          <block wx:if="{{item.car_count<=0}}">
+            <i-button iClass="add-cart disabled" wx:if="{{disabled||item.spuCanBuyNum==0}}">已抢光</i-button>
+            <view catchtap="openSku" data-idx="{{index}}" class="add-cart" style="background:{{skin.color}}" wx:else>立即抢购</view>
+          </block>
+          <i-input-number wx:else addImage="../../images/icon-add-2.png" bind:change="changeNumber" bind:outOfMax="outOfMax" iClass="index-input-number" iClassNumberText="input-number-text" max="{{item.spuCanBuyNum}}" min="0" reduceImage="../../images/icon-reduce-2.png" value="{{item.car_count}}" idx="{{index}}"></i-input-number>
+        </view>
+      </i-router-link>
+    </view>
+    <view class="none-rush-list" wx:if="{{noData}}">
+      <image class="img-block" src="../../images/icon-index-empty.png"></image>
+      <view class="h1">暂时没有商品</view>
+      <view class="h2">我们正在为您准备更优惠的商品</view>
+    </view>
+  </view>
+
+  <i-aside-btn showShare="{{true}}" showHome="{{true}}"></i-aside-btn>
+  <i-cart-btn cartNum="{{cartNum}}" showHome="{{true}}"></i-cart-btn>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" navBackUrl="{{navBackUrl}}"></i-new-auth>
+
+<sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></sku>
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />

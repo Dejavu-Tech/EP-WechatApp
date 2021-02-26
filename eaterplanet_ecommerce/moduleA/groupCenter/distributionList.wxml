@@ -1,0 +1,80 @@
+<navBar title="分销记录" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="section">
+    <image class="groupDay" src="../../images/groupDay.png"></image>
+    <view class="picker">
+      <picker bindchange="bindDateChange" fields="month" mode="date" value="{{date}}">
+        <view class="choose-day">
+          <text>{{chooseDate}}</text>
+          <text class="iconfont icon-xiatiao"></text>
+        </view>
+      </picker>
+    </view>
+    <view class="income">
+      <text>预计佣金：￥{{permoney}}</text>
+    </view>
+  </view>
+  <view class="distributionList">
+    <view class="nav">
+      <view bindtap="switchNav" class="orderList_item {{currentTab==item.status?'on':''}}" data-current="{{item.status}}" wx:for="{{navList}}" wx:key="id">{{item.name}}</view>
+    </view>
+    <swiper bindchange="bindChange" class="swiper-box" current="{{currentTab}}" duration="300" style="height:{{containerHeight}}px">
+      <swiper-item wx:for="{{navList}}" wx:for-item="navItem" wx:key="id">
+        <scroll-view scrollY bindscrolltolower="getCurrentList" class="order-scroll-view" scrollTop="{{scrollTop}}" style="height: {{containerHeight}}px"> 
+          <view class="noRecordCon" wx:if="{{order.length===0}}">
+            <image class="noRecordImg" src="../../images/noRecord.png"></image>
+            <view class="noRecord">还没有记录 快去分享吧～</view>
+          </view>
+          <block wx:else>
+            <view class="item" wx:for="{{order}}" wx:key="id">
+              <view class="distributionNum">
+                <text class="distributionTime">{{item.order_num_alias}}</text>
+                <text class="statusName">{{item.status_name}}</text>
+              </view>
+              <block wx:for="{{item.goods_list}}" wx:for-item="goods" wx:key="order_goods_id">
+                <view class="spu">
+                  <image src='{{goods.goods_images}}' style="width:60px;height:60px;" class='i-class goodsImg' mode='widthFix'></image>
+                  <view class="detail">
+                    <view class="goodsName">{{goods.name}}</view>
+                    <view class="commission text-right">团单金额 ￥{{goods.total}} |
+                      <text wx:if="{{item.order_status_id!=11 && item.order_status_id!=6}}">预估</text>佣金 ￥{{goods.commision}}</view>
+                    <view class="i-flex i-flex-spb text-right text-gray fsz-26 mt5" wx:if="{{goods.has_refund_quantity>0}}">
+                      <span class="i-flex-item" bindtap="handleTipDialog">
+                        佣金变化:<text class="red">￥{{goods.del_commision}}</text>
+                        <text class="iconfont icon-shuoming text-dark fsz-26" style="margin-left:10rpx;"></text>
+                      </span>
+                    </view>
+                  </view>
+                </view>
+                <!-- 维权 -->
+                <view class="tips px15">
+                  <view class="red fsz-24 pb10" wx:if="{{item.order_status_id==7}}">已退款</view>
+                  <view wx:elif="{{goods.is_refund_state==1&&goods.refund_info}}">
+                    退款金额：<text class="red" style="margin-right:5rpx;">￥{{goods.refund_info.ref_money}}</text> 
+                    <text wx:if="{{goods.refund_info.state==0}}" class="bg-primary text-white tag">{{goods.refund_info.real_refund_quantity}}个 申请中</text>
+                    <text wx:if="{{goods.refund_info.state==3}}" class="bg-sucess text-white tag">{{goods.refund_info.real_refund_quantity}}个 退款成功</text>
+                    <text wx:if="{{goods.refund_info.state==4}}" class="bg-warning text-white tag">{{goods.refund_info.real_refund_quantity}}个 退款失败</text>
+                  </view>
+                </view>
+              </block>
+              <view class="distributionCommision" wx:if="{{item.shipping_fare!='免运费' && item.delivery == 'tuanz_send'}}">
+                <text class="fareCommision">配送收入: ￥{{item.shipping_fare}}</text>
+                <text class="totalCommision">合计佣金: ￥{{item.total_commision}}（含配送）</text>
+              </view>
+              <view class="distributionCommision" wx:else>
+                <text class="totalCommision" wx:if="{{item.order_status_id!=5&&item.order_status_id!=7}}">合计佣金: ￥{{item.total_commision}}</text>
+              </view>
+            </view>
+            <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view bindtap="refresh" class="refresh">
+    <text class="iconfont icon-shuaxin refreshImg"></text>
+    <span>刷新</span>
+  </view>
+
+  <i-dialog visible="{{showTipDialog}}" text="您的”粉丝“购买的商品进行了申请售后，售后成功部分商品进行退款佣金发生变化。" confirmText="知道了" bind:confirm="handleTipDialog" bind:cancel="handleTipDialog" showCancel="{{false}}" iClass="dialogText" iBtn="dialogBtn" />
+</view>

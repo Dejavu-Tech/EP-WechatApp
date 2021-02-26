@@ -1,0 +1,71 @@
+<navBar title="订单改价" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="goodsBox">
+    <block wx:for="{{order_goods}}" wx:for-item="goods" wx:if="{{order_goods.length}}" wx:key="order_goods_id">
+      <view class="border-bottom bg-f p15">
+        <view class="item i-flex border-bottom pb15 mb10">
+          <i-img defaultImage="../../images/placeholder-refund.png" height="160" iClass="img-class" lazyLoad="true" loadImage="{{goods.goods_img_url}}" width="160"></i-img>
+          <view class="i-flex-item ml10 i-flex-col jcontent-c">
+            <view class="fsz-28 weight">{{goods.name}}</view>
+            <view class="price mt10 fsz-22 text-gray">¥{{goods.price}} x{{goods.quantity}}</view>
+            <view class="fsz-24 mt-auto">小计：<text class="red">{{goods.old_total}}</text></view>
+          </view>
+        </view>
+        <view class="i-flex i-flex-spb mt5">
+          <view>最多可减金额</view>
+          <view class="red weight">¥{{goods.max_total}}</view>
+        </view>
+        <view class="i-flex i-flex-spb mt10">
+          <view>涨价或减价</view>
+          <view>
+            <view class="i-flex i-flex-alc">
+              <text class="iconfont icon-jian red iptbtn" bindtap="reduceIpt" data-type="reduce" data-idx="{{index}}"></text>
+              <input class="text-center iptnum" type="text" bindblur="changeNumber" value="{{priceArr[index]}}" data-idx="{{index}}"></input>
+              <text class="iconfont icon-jia red iptbtn" bindtap="reduceIpt" data-type="add" data-idx="{{index}}"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="bg-f p15 mt10" wx:if="orders">
+    <view>注：只有在订单未付款时才支持改价，商品改价后价格不能小于 0 元，订单修改的价格不包含优惠信息，运费价格是 0 的时候商品免运费</view>
+    <view class="mt5 red">买家实付 = 原价 + 运费 + 涨价或减价 - 优惠  </view>
+    <view class="fsz-26">
+      <view class="i-flex i-flex-spb mt10">
+        <view class="text-6">原价</view>
+        <view>+ ¥{{orders.old_price}}</view>
+      </view>
+      <view class="i-flex i-flex-spb mt10">
+        <view class="text-6">运费</view>
+        <view>+ ¥{{orders.shipping_fare}}</view>
+      </view>
+      <view class="i-flex i-flex-spb mt10">
+        <view class="text-6">涨价或减价</view>
+        <view>{{changePrice>=0?'+':'-'}} ¥{{changePrice>=0?changePrice:-changePrice}}</view>
+      </view>
+      <view class="i-flex i-flex-spb mt10 border-bottom pb15">
+        <view class="text-6">优惠</view>
+        <view>- ¥{{orders.youhui_total}}</view>
+      </view>
+      <view class="i-flex i-flex-spb mt10">
+        <view class="text-6"></view>
+        <view class="fsz-28">买家实付: <text class="red weight fsz-34">¥{{buyer_total}}</text></view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height:120rpx;"></view>
+  <view class="safebottom"></view>
+  <i-fixed-bottom>
+    <view class="fixed-bottom i-flex i-flex-spb shadow-top">
+      <view style="padding-left:30rpx;">
+        商品改价：
+        <text class="red weight fsz-34" wx:if="{{changePrice>=0}}">+¥{{changePrice}}</text>
+        <text class="red weight fsz-34" wx:else>-¥{{-changePrice}}</text>
+      </view>
+      <view class="bg-primary btn" bindtap="subChange">确认改价</view>
+    </view>
+  </i-fixed-bottom>
+</view>

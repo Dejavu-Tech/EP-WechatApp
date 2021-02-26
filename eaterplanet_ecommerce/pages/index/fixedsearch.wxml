@@ -1,0 +1,22 @@
+<view class="diy-fixedsearch">
+  <view class="background" style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.opacity?'opacity:'+item.style.opacity+';':''}}"></view>
+  <view class="inner">
+    <view wx:if="{{item.params.leftnav!=0}}" class="leftnav">
+       <navigator hoverClass='none' url='{{item.params.leftnavlink}}'>
+      <image wx:if="{{item.params.leftnavimg}}" src="{{item.params.leftnavimg}}"></image>
+      <span wx:elif="{{item.params.leftnavicon}}" class="icox {{item.params.leftnavicon}} fz20" style="{{item.style.leftnavcolor?'color:'+item.style.leftnavcolor+';':''}} "></span>
+      </navigator>
+    </view>
+    <view class="center {{item.params.searchstyle}}">
+    <navigator hoverClass='none' url='/Snailfish_shop/pages/goods/search?fromsearch=1'>
+      <text style="{{item.style.searchbackground?'background:'+item.style.searchbackground+';':''}}text-align:{{item.style.textalign?''+item.style.textalign:'left'}};{{item.style.searchtextcolor?'color:'+item.style.searchtextcolor+';':''}}{{item.style.opacityinput?'opacity:'+item.style.opacityinput+';':''}}">　{{item.params.placeholder?item.params.placeholder:'输入关键字进行搜索'}}</text>
+      </navigator>
+    </view>
+    <view wx:if="{{item.params.rightnav!=0}}" class="rightnav">
+    <navigator hoverClass='none' url='{{item.params.rightnavlink}}'>
+      <image wx:if="{{item.params.rightnavimg}}" src="{{item.params.rightnavimg}}"></image>
+      <view wx:elif="{{item.params.rightnavicon}}" class="icox {{item.params.rightnavicon}} fz20" style="{{item.style.rightnavcolor?'color:'+item.style.rightnavcolor+';':''}} "></view>
+      </navigator>
+    </view>
+  </view>
+</view>

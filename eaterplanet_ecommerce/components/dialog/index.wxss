@@ -1,0 +1,46 @@
+.dialog-content {
+  width: 540rpx;
+  height: 208rpx;
+  border-radius: 30rpx;
+  background: #fff;
+}
+
+.dialog-content .text {
+  height: 120rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2rpx solid #d2d2d2;
+}
+
+.dialog-content .button-group {
+  display: flex;
+}
+
+.dialog-content .left-btn, .dialog-content .right-btn {
+  width: 270rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  color: #0076ff;
+  margin: 0;
+  padding: 0;
+}
+
+.dialog-content .split-line {
+  width: 0;
+  height: 88rpx;
+  border-right: 2rpx solid #d2d2d2;
+}
+
+.dialog-content .r-btn {
+  width: 540rpx;
+  height: 88rpx;
+  text-align: center;
+  line-height: 88rpx;
+  font-size: 36rpx;
+  color: #0076ff;
+  margin: 0;
+  padding: 0;
+}

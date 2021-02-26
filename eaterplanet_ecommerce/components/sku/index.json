@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-modal": "../modal/index",
+    "i-img": "../img/index",
+    "i-input-number": "../input-number/index",
+    "i-button": "../button/index",
+    "i-vip-price": "../vipPrice/vipPrice"
+  }
+}

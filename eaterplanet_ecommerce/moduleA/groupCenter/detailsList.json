@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "订单明细",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-load-more": "../../components/load-more/index"
+  }
+}

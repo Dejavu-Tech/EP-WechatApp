@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-img": "../img/index",
+    "i-button": "../button/index",
+    "i-router-link": "../router-link/router-link",
+    "i-input-number": "../input-number/index",
+    "i-vip-price": "../vipPrice/vipPrice",
+    "i-addcart": "../addCartBtn/index"
+  }
+}

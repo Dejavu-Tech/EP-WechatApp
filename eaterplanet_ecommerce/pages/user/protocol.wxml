@@ -1,0 +1,7 @@
+<view wx:if="{{list.length}}">
+    <navigator class="list-item" wx:for="{{list}}" wx:key="id" url="/eaterplanet_ecommerce/pages/user/articleProtocol?id={{item.id}}">
+        <span>{{item.title}}</span>
+        <image class="icon-right right-arrow" src="../../images/rightArrowImg.png"></image>
+    </navigator>
+</view>
+<i-empty wx:if="{{noData}}">暂无内容~</i-empty>

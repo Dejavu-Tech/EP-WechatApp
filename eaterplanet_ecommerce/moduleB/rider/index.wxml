@@ -1,0 +1,50 @@
+<import src="tabbar.wxml"></import>
+<navBar title="配送员中心" background='#FED206' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="i-flex p30 bg-f">
+  <image class="avatar-md mx10" src="{{orderdistribution_info.avatar}}"></image>
+  <view class="i-flex-item">
+    <view class="fsz-38 weight">{{orderdistribution_info.username}}</view>
+    <view class="fsz-28 mt5 text-6">{{orderdistribution_info.mobile}}</view>
+  </view>
+  <!-- <view class="text-center">
+    <view>接单</view>
+    <view class="mt5"><switch class="wx-switch-input" checked="{{orderdistribution_info.state==1}}" bindchange="switchState"/></view>
+  </view> -->
+</view>
+
+<view class="i-flex p30 bg-f text-center">
+  <view class="i-flex-item" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/rider/order?status=2">
+    <view class="fsz-60 red weight">{{waite_get_count}}</view>
+    <view class="fsz-28">待取货</view>
+  </view>
+  <view class="i-flex-item" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/rider/order?status=3">
+    <view class="fsz-60 red weight">{{sending_count}}</view>
+    <view class="fsz-28">配送中</view>
+  </view>
+  <view class="i-flex-item" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/rider/order?status=4">
+    <view class="fsz-60 red weight">{{sended_count}}</view>
+    <view class="fsz-28">已送达</view>
+  </view>
+</view>
+
+<view class="py15">
+  <map id="map"
+    scale="{{scale}}"
+    bindcontroltap="controltap"
+    markers="{{markers}}"
+    bindmarkertap="markertap"
+    latitude="{{latitude}}"
+    longitude ="{{longitude}}"
+    controls="{{controls}}"
+    show-location
+    bindregionchange="regionchange"
+    style="width: 100%; height: 300px;">
+  </map>
+</view>
+<view class="map-tip i-flex px15 py10">
+  <view class="weight">备注:</view>
+  <view class="i-flex ml10"><image class="map-tip-img" src="../images/location-red.png"></image> <text>待取货</text></view>
+  <view class="i-flex ml10"><image class="map-tip-img" src="../images/location-green.png"></image> <text>配送中</text></view>
+</view>
+
+<template is="tabbar" data="{{data:0}}"></template>

@@ -1,0 +1,65 @@
+.coder-content {
+  position: relative;
+  height: 650rpx;
+  width: 630rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+}
+
+.coder-content .t1 {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #444;
+  line-height: 36rpx;
+  margin-bottom: 60rpx;
+  margin-top: 60rpx;
+}
+
+.coder-content .t2 {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #bababa;
+  line-height: 24rpx;
+  margin-top: 40rpx;
+}
+
+.coder-content .item {
+  display: inline-block;
+  margin-left: 20rpx;
+  width: 68rpx;
+  height: 68rpx;
+  line-height: 68rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  border: 2rpx solid #444;
+  font-size: 40rpx;
+  font-family: PingFangSC-Regular;
+  font-weight: 400;
+  color: #444;
+}
+
+.coder-content .item:first-of-type {
+  margin-left: 0;
+}
+
+.coder-content .icon-wrap {
+  height: 60rpx;
+  width: 60rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coder-content .icon-close {
+  height: 24rpx;
+  width: 24rpx;
+}
+
+.coder-content .code-img .img {
+  width: 60%;
+}

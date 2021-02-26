@@ -1,7 +1,0 @@
-{
-    "navigationBarTitleText": "",
-    "navigationBarBackgroundColor": "#4facfe",
-    "usingComponents": {
-        "i-modal": "../../components/modal/index"
-    }
-}

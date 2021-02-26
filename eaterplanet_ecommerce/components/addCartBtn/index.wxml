@@ -1,0 +1,3 @@
+<view class="btn i-class" style="background: linear-gradient(to top, {{skin.color}}, {{skin.light}});">
+  <text class="iconfont icon-gouwuche" style="color:#fff;font-size:{{fontsize}}rpx;"></text>
+</view>

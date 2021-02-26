@@ -1,0 +1,37 @@
+
+.search-bar {
+  padding: 12rpx 25rpx;
+  background-color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-box {
+  background-color: #f0f0f0;
+  height: 56rpx;
+  line-height: 56rpx;
+  border-radius: 28rpx;
+  color: #acacac;
+  display: flex;
+  align-content: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 20rpx;
+  margin-left: 25rpx;
+  margin-right: 12rpx;
+}
+
+.search-icon .iconfont {
+  font-size: 34rpx;
+  padding-top: 10rpx;
+}
+
+.search-box .ipt {
+  padding: 0 30rpx 0 60rpx;
+  line-height: 56rpx;
+  height: 56rpx;
+  width: 100%;
+  box-sizing: border-box;
+}

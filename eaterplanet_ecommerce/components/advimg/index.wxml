@@ -1,0 +1,6 @@
+<view class="wrap" wx:if="{{info&&ishow}}">
+  <button class="contact" openType="contact" wx:if="{{info.linktype==5}}">
+    <image class="img" src="{{info.thumb}}" mode="widthFix"></image>
+  </button>
+  <image bindtap="goNav" class="img" src="{{info.thumb}}" mode="widthFix" wx:else></image>
+</view>

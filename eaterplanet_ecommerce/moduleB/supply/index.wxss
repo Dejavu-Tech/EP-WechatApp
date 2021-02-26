@@ -1,0 +1,240 @@
+@import 'tabbar.wxss';
+
+.groupCenter {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.groupCenter .basicInform {
+  width: 100%;
+  height: 226rpx;
+  background: #fe8464;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.groupCenter .basicInform .user-avatar {
+  width: 144rpx;
+  height: 144rpx;
+  margin: 10rpx 30rpx 0;
+}
+
+.groupCenter .basicInform .user-avatar .userAvatarUrl {
+  border-radius: 50%;
+  width: 140rpx;
+  height: 140rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.24);
+  overflow: hidden;
+  display: flex;
+}
+
+.groupCenter .basicInform .userInfo {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10rpx;
+}
+
+.groupCenter .basicInform .userInfo .user-name {
+  height: 40rpx;
+  line-height: 40rpx;
+  color: #fff;
+  font-size: 40rpx;
+  margin-top: 45rpx;
+}
+
+.groupCenter .distributionCon {
+  width: 100%;
+  margin-top: -30rpx;
+  z-index: 9;
+}
+
+.groupCenter .distributionCon .distribution {
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 24rpx 0;
+}
+
+.groupCenter .distributionCon .distribution .myDistribution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.groupCenter .distributionCon .distribution .incomeCon {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.groupCenter .distributionCon .distribution .incomeCon .income {
+  width: 33.3%;
+  padding: 20rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groupCenter .distributionCon .distribution .incomeCon .income:last-child {
+  border: none;
+}
+
+.groupCenter .distributionCon .distribution .incomeCon .income .incomeTop {
+  font-size: 36rpx;
+  color: #ff673f;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.groupCenter .distributionCon .distribution .incomeCon .income .incomeBottom {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.groupCenter .effectData {
+  width: 100%;
+  margin-top: 30rpx;
+}
+
+.groupCenter .effectData .effect {
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 24rpx 0;
+  margin: 0 20rpx;
+}
+
+.groupCenter .effectData .effect .incomeCon {
+  margin-top: 30rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.groupCenter .effectData .effect .incomeCon .income {
+  width: 33.3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groupCenter .effectData .effect .incomeCon .income:last-child {
+  border: none;
+}
+
+.groupCenter .effectData .effect .incomeCon .income .incomeTop {
+  font-size: 36rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+  font-weight: 500;
+}
+
+.groupCenter .effectData .effect .incomeCon .income .incomeBottom {
+  font-size: 24rpx;
+  color: #999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.groupCenter .effectData .effect .incomeCon .income .incomeBottom .distributionInstrIcon {
+  width: 28rpx;
+  height: 28rpx;
+  margin-right: 8rpx;
+}
+
+.groupCenter .groupCenterCon {
+  margin-top: 30rpx;
+}
+
+.groupCenter .groupCenterCon .order .myOrders {
+  height: 90rpx;
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+  background: #fff;
+  border-bottom: 0.1rpx solid #e4e4e4;
+  padding: 0 30rpx;
+  font-size: 30rpx;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.groupCenter .groupCenterCon .order .myOrders .allGroupOrder {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.groupCenter .groupCenterCon .order .myOrders .allGroupOrder .rightArrowImg {
+  width: 12rpx;
+  height: 22rpx;
+  color: #a7a7a7;
+  margin-left: 14rpx;
+  margin-bottom: -2rpx;
+}
+
+.groupCenter .groupCenterCon .order .orderTab {
+  padding: 30rpx 52rpx;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status {
+  position: relative;
+  color: #58595b;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status .num {
+  width: 34rpx;
+  height: 34rpx;
+  background: #fff;
+  font-size: 22rpx;
+  color: #fff;
+  background: #ff6557;
+  border-radius: 50%;
+  position: absolute;
+  right: 0;
+  top: -14rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status .distributionIcon {
+  width: 60rpx;
+  height: 50rpx;
+  margin-bottom: 16rpx;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status .receiveIcon {
+  margin-bottom: 16rpx;
+  width: 54rpx;
+  height: 50rpx;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status .completeIcon {
+  margin-bottom: 16rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.groupCenter .groupCenterCon .order .orderTab .order_status .needPickIcon {
+  margin-bottom: 16rpx;
+  margin-left: 10rpx;
+  width: 58rpx;
+  height: 54rpx;
+}

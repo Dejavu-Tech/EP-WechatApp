@@ -1,9 +1,0 @@
-<view class="cart-btn i-class">
-    <view bindtap="goLink" class="icon" data-link="/lionfish_comshop/pages/order/shopCart">
-        <text class="num" wx:if="{{cartNum>0}}">{{cartNum}}</text>
-        <image class="img" src="../../images/icon-return-shopCart.png"></image>
-    </view>
-    <view bindtap="goLink" class="icon" data-link="/lionfish_comshop/pages/index/index" wx:if="{{showHome}}">
-        <image class="img" src="../../images/back_to_home@2x.png"></image>
-    </view>
-</view>

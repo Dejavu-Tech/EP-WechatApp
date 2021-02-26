@@ -1,0 +1,74 @@
+.list {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx 10rpx;
+}
+
+.list .item {
+  position: relative;
+  width: 345rpx;
+  margin: 0 10rpx 20rpx;
+  border-radius: 10rpx;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 0 3px #ccc;
+}
+
+.list .item .img {
+  width: 345rpx;
+  height: 345rpx;
+}
+
+.spu-play {
+  position: absolute;
+  left: 50%;
+  width: 150rpx;
+  height: 150rpx;
+  z-index: 1;
+  top: 98rpx;
+  margin-left: -75rpx;
+}
+
+.list .item .cont {
+  padding: 20rpx;
+}
+
+.list .item .tit {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 15rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-all;
+}
+
+.spu-price {
+  display: flex;
+  align-items: flex-end;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  overflow: hidden;
+  margin-top: 10rpx;
+}
+
+.spu-price .sale-price {
+  color: #ff5344;
+  margin-right: 12rpx;
+}
+
+.spu-price .sale-price .span {
+  font-size: 46rpx;
+  line-height: 42rpx;
+  margin: 0;
+  font-weight: bold;
+}
+
+.spu-price .market-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 20rpx;
+}

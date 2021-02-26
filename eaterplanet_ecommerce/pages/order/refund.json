@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-img": "../../components/img/index"
+  }
+}

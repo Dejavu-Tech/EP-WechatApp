@@ -1,0 +1,19 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-tabs": "../../components/tabs/index",
+    "i-img": "../../components/img/index",
+    "i-rush-spu-big": "../../components/rush-spu-big/index",
+    "i-sku": "../../components/sku/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-new-rush-spu": "../../components/new-rush-spu/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-rush-spu": "../../components/rush-spu-col/index",
+    "i-vip-price": "../../components/vipPrice/vipPrice",
+    "i-vip-modal": "../../components/vipModal/index",
+    "i-tabbar": "../../components/tabbar/index",
+    "i-tworow": "../../components/tworow/index",
+    "skeleton": "../../components/skeleton/skeleton"
+  }
+}

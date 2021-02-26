@@ -1,0 +1,65 @@
+<!--eaterplanet_ecommerce/pages/position/community.wxml-->
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+<navBar title="社区选择" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+  <view>
+    <view class="header-content">
+      <view class="search-content">
+        <i-router-link openType="redirect" url="/eaterplanet_ecommerce/pages/position/cities">
+          <view class="city-content">
+            <image class="search-icon" src="../../images/icon-search.png"></image>
+            {{city.districtName}}
+            <image class="bottom-arrow" src="../../images/icon-bottom-arrow.png"></image>
+          </view>
+        </i-router-link>
+        <view bindtap="linkSearch" class="search-ipt">
+          <view class="ipt-class">请输入{{groupInfo.group_name}}名称</view>
+        </view>
+      </view>
+      <block wx:if="{{!community.communityId}}">
+        <view class="location-title">当前地址</view>
+        <view class="location-msg">{{city.districtName}}</view>
+        <view class="switch-btn">请选择您的{{groupInfo.group_name}}</view>
+      </block>
+      <block wx:else>
+        <view class="location-title location-title-pad">当前{{groupInfo.group_name}}</view>
+        <navigator class="local-community-card" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
+          <image class="card-bg" src="../../images/community-desc-bg.png"></image>
+          <view class="head-pic">
+            <image class="head-pic-content" src="{{community.disUserHeadImg||community.headImg}}" wx:if="{{community.disUserHeadImg||community.headImg}}"></image>
+            <image class="head-pic-content" src="../../images/head-bitmap.png" wx:else></image>
+          </view>
+          <view class="card-msg">
+            <view class="group-master">{{groupInfo.owner_name}}：{{community.disUserName||community.realName}}</view>
+            <view class="community-name">{{community.communityName}}</view>
+            <view class="community-address">{{community.communityAddress||community.fullAddress}}</view>
+          </view>
+        </navigator>
+      </block>
+    </view>
+
+    <!-- 曾用社区 -->
+    <view class="community-list history-communities" style="display:none;" wx:if="{{!isNotHistory}}">
+      <view class="title">曾用{{groupInfo.group_name}}</view>
+      <i-community-item city="{{city}}" class="item-border" isOld="true" item="{{historyCommunity}}"></i-community-item>
+    </view>
+
+    <!-- 附近社区 -->
+    <view class="community-list around-communities">
+      <view class="title">附近{{groupInfo.group_name}}</view>
+      <i-community-item wx:if="{{communities.length}}" city="{{city}}" class="item-border" item="{{item}}" wx:for="{{communities}}" wx:key="id" groupInfo="{{groupInfo}}" hiddenDetails="{{index_hide_headdetail_address}}" skin="{{skin}}"></i-community-item>
+      <view class='no-community' wx:if="{{isEmpty}}">
+        <view class='flex-align' bindtap="openSetting" wx:if="{{!canGetGPS}}">
+          <image src='../../images/noData.png'></image>
+          <view>未获得您的位置信息，点击开启</view>
+        </view>
+        <block wx:else>
+          <image src='../../images/noData.png'></image>
+          <view>当前城市暂未开通服务，请更换城市或<navigator class='link-apply' url="/eaterplanet_ecommerce/moduleA/groupCenter/recruit">申请开通></navigator></view>
+        </block>
+      </view>
+      <i-load-more loading="{{loadMore}}" tip="{{tip}}"></i-load-more>
+    </view>
+    <!-- 未打开定位 -->
+    <!-- <view bindtap="openSetting" class="mars-mask" wx:if="{{!canGetGPS}}"></view> -->
+  </view>
+</i-auth>

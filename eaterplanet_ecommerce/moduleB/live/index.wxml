@@ -1,0 +1,66 @@
+<navBar title="" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="pb100">
+	<view class="fui-live-list" wx:if="{{roomInfo.length}}">
+		<navigator class="fui-live-item" url="{{'plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id='+item.roomid}}" wx:for="{{roomInfo}}" wx:for-index="idx" wx:key="idx">
+			<view class="cover">
+				<view style="height:400rpx;width:400rpx;" wx:if="{{item.has_replay==1}}">
+					<image mode="aspectFill" src="{{item.share_img}}" style="width:100%;height:100%;"></image>
+					<view class="replayImg">
+						<image src="../images/play.png"></image>
+					</view>
+				</view>
+				<image mode="aspectFill" src="{{item.share_img}}" wx:else></image>
+				<view class="status" wx:if="{{item.live_status==101}}">
+					<image src="../images/live_ing.gif"></image>
+					<text class="b">直播中</text>
+				</view>
+				<view class="status" wx:elif="{{item.live_status==102}}">
+					<view class="notice">预告</view>
+					<text>{{item.date_text}}开播</text>
+				</view>
+				<view class="status" wx:elif="{{item.live_status==103}}">
+					<image src="../images/live_end.png"></image>
+					<text>直播结束</text>
+				</view>
+				<view class="status" wx:else>
+					<image src="../images/live_end.png"></image>
+					<text>{{live_status_tip[item.live_status]}}</text>
+				</view>
+				<view class="top" wx:if="{{item.is_top==1&&item.is_top!=2}}">置顶</view>
+				<view class="recommend" wx:if="{{item.is_recommend==1}}">
+					<image src="../images/live_star.png"></image>
+					<text>推荐</text>
+				</view>
+			</view>
+			<view class="fui-live-item">
+				<view class="info">
+					<view class="title">{{item.name}}</view>
+					<view class="anchor">
+						<view class="avatar">
+							<image src="{{item.anchor_img}}"></image>
+						</view>
+						<view class="nickname">{{item.anchor_name}}</view>
+					</view>
+					<view class="goods-list" wx:if="{{item.goods_list.length>0}}">
+						<view class="row">
+							<image src="{{item.goods_list[0].cover_img}}"></image>
+							<view class="cover" wx:if="{{item.goods_list[0].price_type==1}}">￥{{item.goods_list[0].price/100}}</view>
+							<view class="cover" wx:if="{{item.goods_list[0].price_type==2}}">￥{{item.goods_list[0].price/100}}~{{item.goods_list[0].price2/100}}</view>
+							<view class="cover" wx:if="{{item.goods_list[0].price_type==3}}">￥{{item.goods_list[0].price2/100}}</view>
+						</view>
+						<view class="row" wx:if="{{item.goods_list.length>1}}">
+							<image src="{{item.goods_list[1].cover_img}}"></image>
+							<view class="cover br">
+								<view>{{item.goods_list.length}}</view>
+								<view>商品</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</navigator>
+	</view>
+	<i-empty wx:if="{{noData}}">暂无内容~</i-empty>
+</view>
+
+<i-tabbar currentIdx='2' cartNum='{{cartNum}}' wx:if="{{showTabbar}}" class="tabbar {{isIpx?'pb20':''}}" />

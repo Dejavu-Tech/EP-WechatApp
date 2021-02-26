@@ -1,0 +1,21 @@
+.none-rush-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 140rpx;
+  padding-top: 140rpx;
+}
+
+.none-rush-list .img-block {
+  width: 240rpx;
+  height: 240rpx;
+  margin-bottom: 30rpx;
+}
+
+.none-rush-list .h1 {
+  font-size: 32rpx;
+  line-height: 32rpx;
+  color: #444;
+  margin-bottom: 20rpx;
+}

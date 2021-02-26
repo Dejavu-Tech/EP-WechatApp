@@ -1,0 +1,30 @@
+<navBar title="配送单详情" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='list-box' wx:if="{{list.length}}">
+  <view class="item" wx:for="{{list}}" wx:key="id">
+    <view class="spu">
+      <image src='{{item.goods_image?item.goods_image:"../../images/index-comming-goods-bitmap.png"}}' class='i-class goodsImg' mode='aspectFill'></image>
+      <view class="detail i-flex-item">
+        <view class="spuName">
+          <text>{{item.goods_name}}</text>
+        </view>
+        <view class="tips">
+          <span> 商品数量：{{item.goods_count}}</span>
+          <span class="last" wx:if="{{item.sku_str}}">规格：{{item.sku_str}}</span>
+        </view>
+      </view>
+    </view>
+  </view>
+  <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+</view>
+<i-empty wx:if="{{noData}}">暂无记录~</i-empty>
+
+<view class="bottom-bar {{isIpx?'pb20':''}}">
+  <view class="flex">
+    <label class="btn" wx:if="{{list.length >0 && state==1}}">
+      确认收货
+      <button hidden bindtap="signAll"></button>
+    </label>
+    <view class="btn btn-disabled" wx:elif="{{state==0}}">待配送</view>
+    <view class="btn btn-disabled" wx:else>已送达</view>
+  </view>
+</view>

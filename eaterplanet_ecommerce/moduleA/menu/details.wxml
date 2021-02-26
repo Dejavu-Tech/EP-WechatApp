@@ -1,0 +1,161 @@
+<view class="wrap" wx:if="{{!showCoverVideo}}">
+	<i-navigation-bar back="{{showBackBtn}}" background="#ffffff" title="详情" style="z-index:1000;">
+		<view slot="left">
+			<view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
+				<image class="img" src="/eaterplanet_ecommerce/images/zhuye-b.png"></image>
+			</view>
+		</view>
+	</i-navigation-bar>
+	<view class="media-box" wx:if="{{info.images}}">
+		<!-- 图片 -->
+		<view class='video-wrap' wx:if="{{info.video!=''&&info.video!=null}}">
+			<view wx:if="{{fmShow==true}}">
+				<view class='btn_view centerboth' wx:if="{{info.video==''}}"></view>
+				<view class='btn_view centerboth' wx:else bindtap='btnPlay'>
+					<image src='../../images/play.png'></image>
+				</view>
+				<image class="topImg" src="{{info.images}}" mode="widthFix" bindload="imageLoad" lazy-load="true"></image>
+			</view>
+			<video class='swiper-video' hidden="{{fmShow}}" id="myVideo" src="{{info.video}}" bindended="videEnd" style="min-height:{{imageSize.imageHeight}}px" object-fit="contain"></video>
+		</view>
+		<image wx:else="{{info.images}}" class="topImg" src="{{info.images}}" mode="widthFix"></image>
+	</view>
+	<view hidden="{{fmShow}}" class='end-play' bindtap='endPlay'>
+		<text class='btn'>退出播放</text>
+	</view>
+	<!-- 只有视频 -->
+	<view>
+		<video wx:if="{{info.video&&!info.images}}" id="myVideo" src="{{info.video}}" autoplay controls style="width:100%;"></video>
+	</view>
+	<!-- 信息 -->
+	<view class="bg-f mb10 p15">
+		<view class="title weight">{{info.recipe_name}}</view>
+		<view class="desc" wx:if="{{info.make_time||info.diff_name}}">
+			<text wx:if="{{info.make_time}}">制作时间：{{info.make_time}} |</text>
+			<text wx:if="{{info.diff_name}}"> 难度：{{info.diff_name}}</text>
+		</view>
+		<view class="userinfo">
+			<view class="i-flex i-aic">
+				<image wx:if="{{info.avatar}}" class="avatar" src="{{info.avatar}}"></image>
+				<text wx:if="{{info.username}}" class="weight" style="font-size:26rpx;">{{info.username}}</text>
+			</view>
+			<view class="p" wx:if="{{info.sub_name}}">{{info.sub_name}}</view>
+		</view>
+	</view>
+
+	<!-- 食材 -->
+	<view class="list bg-f mb10 pb15" wx:if="{{info.recipe_ingredients.length}}">
+		<view class="com-tit weight p15" style="padding-bottom:0;">清单</view>
+		<view wx:for="{{info.recipe_ingredients}}" wx:key="index">
+			<view class="list-tit p15" wx:if="{{item.ingredients_title}}">
+				<text class="weight">·</text> {{item.ingredients_title}}</view>
+			<view class="list-box" wx:if="{{item.goods}}">
+				<block wx:for="{{item.goods}}" wx:key="idx" wx:for-item="good" wx:for-index="idx">
+					<i-goods-item spuItem="{{good}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></i-goods-item>
+				</block>
+			</view>
+		</view>
+	</view>
+
+	<!-- 步骤 -->
+	<view class="details bg-f p15" wx:if="{{info.content}}">
+		<view class="com-tit weight">详情</view>
+		<view class="wxParse">
+			<parser html="{{info.content}}" />
+		</view>
+	</view>
+
+	<view class="pb100"></view>
+	<!-- 底部 -->
+	<view class="foot i-flex i-flex-alc bg-f">
+		<view class="i-flex-item foot-item" bindtap="goLink" data-link="switchTo:/eaterplanet_ecommerce/pages/order/shopCart">
+			<view style="position: relative; display:inline-block;">
+				<text class="cart-num" wx:if="{{cartNum>0}}">{{cartNum}}</text>
+				<text class="iconfont icon-gouwuche"></text>
+			</view>
+			<view>购物车</view>
+		</view>
+		<view class="i-flex-item foot-item" bindtap="agree">
+			<text class="iconfont icon-xinaixin {{info.has_fav==1?'active':''}}" style="color:#d1d2d2;"></text>
+			<view>喜欢 {{info.fav_count}}</view>
+		</view>
+		<view class="i-flex-item foot-item">
+			<button class="btn" open-type="share">
+				<text class="iconfont icon-fenxiang"></text>
+				<view class="name">分享</view>
+			</button>
+		</view>
+	</view>
+</view>
+
+<!-- 视频展示 -->
+<view class="livepage" wx:else>
+	<view class="livepage1">
+		<video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="myVideo1" objectFit="contain" showFullscreenBtn="{{false}}" src="{{info.video}}" bindended="coverVideoEnd"></video>
+	</view>
+	<view class="livepage2">
+		<i-navigation-bar back="{{showBackBtn}}" color="#ffffff" style="position:absolute;z-index:10000;top:0;">
+			<view slot="left">
+				<view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
+					<image class="img" src="/eaterplanet_ecommerce/images/zhuye-b.png"></image>
+				</view>
+			</view>
+		</i-navigation-bar>
+		<view class="operation i-flex-col" hidden="{{showStore}}">
+			<button class="item i-flex i-flex-alc operation--mode-filter-black" open-type="share">
+				<text class="iconfont icon-fenxiang3"></text>
+			</button>
+			<view class="item i-flex i-flex-alc operation--mode-filter-black" bindtap="agree">
+				<text class="iconfont icon-xinaixin {{info.has_fav==1?'active':''}}"></text>
+			</view>
+			<view class="item i-flex i-flex-alc" bindtap="clickStore">
+				<text class="iconfont icon-gouwudai"></text>
+			</view>
+		</view>
+		<!-- 商品 -->
+		<view class="store">
+			<view class="store-list {{showStore?'fadeIn':''}}">
+				<view class="store__mask" bindtap="clickStore" hidden="{{!showStore}}"></view>
+				<view class="mode-filter-black">
+					<view class="store-list__inner" style="max-height: 287px">
+						<view class="store-list__header">
+							<view class="store-list__title">清单</view>
+						</view>
+						<view class="store-list__body">
+							<scroll-view class="store-list__body__inner" style="max-height:230px;" scroll-y wx:if="{{info.recipe_ingredients.length}}">
+								<block wx:for="{{info.recipe_ingredients}}" wx:key="id" wx:for-item="list" wx:for-index="idx">
+									<view class="list-tit text-white mb5" wx:if="{{list.ingredients_title}}">
+										<text class="weight">·</text> {{list.ingredients_title}}
+									</view>
+									<view class="store-list__item" wx:for="{{list.goods}}" wx:key="actId">
+										<navigator url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" class="store-list__item__inner" hover-class="none">
+											<view class="store-list__item__header">
+												<image class="store-list__item__avatar" mode="aspectFill" src="{{item.skuImage}}"></image>
+												<view class="store-list__item__index">{{index+1}}</view>
+											</view>
+											<view class="store-list__item__body i-flex-item">
+												<view class="store-list__item__title">{{item.spuName}}</view>
+												<view class="store-list__item__price__container">
+													<text class="store-list__item__price">¥{{item.actPrice[0]}}.{{item.actPrice[1]}} </text>
+													<text class="store-list__item__price store-list__item__price-before">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</text>
+												</view>
+											</view>
+										</navigator>
+									</view>
+								</block>
+							</scroll-view>
+							<view class="store-list__empty" wx:else>暂无清单</view>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>
+
+<canvas canvasId="myCanvas" class="canvas-img" style="width: {{canvasWidth}}px;height: {{canvasHeight}}px;"></canvas>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{true}}"></i-new-auth>
+<sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></sku>
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />

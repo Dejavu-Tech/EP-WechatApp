@@ -1,0 +1,4 @@
+<view class="none-rush-list">
+  <image class="img-block" src="../../images/icon-index-empty.png"></image>
+  <view class="h1"><slot></slot></view>
+</view>

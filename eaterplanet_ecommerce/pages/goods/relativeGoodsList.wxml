@@ -1,0 +1,22 @@
+<!-- 关联商品 -->
+<view class='new-comers' wx:if="{{list.length}}">
+  <view class='new-comers-title'>大家常买</view>
+  <scroll-view class='new-comers-scroll' scroll-x>
+    <view class='new-comers-wrap'>
+      <i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="id">
+        <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="180" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
+        <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+        <view class='title'>{{item.spuName}}</view>
+        <view class='new-bot'>
+          <view class='price'>¥{{item.actPrice[0]}}.{{item.actPrice[1]}}</view>
+          <i-button iClass="add-cart" wx:if="{{disabled||item.spuCanBuyNum==0}}">
+            <image class='img' src="../../images/icon-add-shopCart-disabled.png"></image>
+          </i-button>
+          <i-button bind:click="openSku" data-idx="{{index}}" iClass="add-cart" wx:else>
+            <image class='img' src="../../images/icon-add-shopCart.png"></image>
+          </i-button>
+        </view>
+      </i-router-link>
+    </view>
+  </scroll-view>
+</view>

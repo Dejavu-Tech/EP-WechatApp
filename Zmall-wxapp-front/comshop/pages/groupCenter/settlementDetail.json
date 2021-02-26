@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "结算单详情",
-    "navigationBarTextStyle": "black",
-    "usingComponents": {
-        "component-load-more": "../../components/load-more/index"
-    }
-}

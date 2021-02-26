@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "i-input-number": "../../components/input-number/index",
+    "i-modal": "../../components/modal/index"
+  }
+}

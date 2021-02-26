@@ -1,0 +1,49 @@
+<navBar title="我的用户" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="search">
+    <icon class="icon-search" size="14" type="search"></icon>
+    <input bindinput="bindSearchChange" bindconfirm="searchByKey" placeholder="联系人/手机号" type="text" value="{{searchKey}}" confirm-type="done" ></input>
+    <text bindtap="searchByKey">搜索</text>
+    <text bindtap="cancel">取消</text>
+  </view>
+  <!-- <view class="date">
+    <text>订单时间</text>
+    <text class="date-value">{{date}}</text>
+    <picker bindchange="bindDateChange" class="icon-date" end="{{maxDate}}" mode="date" start="2018-08-01" value="{{date}}">
+      <image bindchange="bindDateChange" src="../../images/date.png"></image>
+    </picker>
+    <text bindtap="clearDate" class="icon-clear">全部时间</text>
+  </view> -->
+  <view class="list-header">
+    <view>社区用户</view>
+    <view>待核销订单</view>
+  </view>
+  <scroll-view scrollY bindscrolltolower="getMore" class="list-content" style="height:{{containerHeight}}px" wx:if="{{order.length}}">
+    <view class="list">
+      <view class="list-item" bindtap="goLink" wx:for="{{order}}" wx:key="index" data-link="/eaterplanet_ecommerce/moduleA/groupCenter/pendingDeliveryOrders?memberId={{item.member_id}}">
+        <view class="item-left">
+          <component-img defaultImage="../../images/placeholder-refund.png" height="36" isCircle="true" loadImage="{{item.avatar}}" width="36"></component-img>
+          <view>
+            <text>{{item.username}}</text>
+            <view catchtap="callTelphone" class="phone" data-phone="{{item.mobile}}">
+              <view wx:if="{{item.shipping_name}}" style='margin-right:8rpx;'>{{item.shipping_name}}</view>
+              <block wx:if="{{item.mobile=='未下单'}}">
+                <view style="color:#999;">{{item.mobile}}</view>
+              </block>
+              <block wx:else>
+                <image class="icon-phone" src="../../images/phone.png"></image>
+                <view>{{item.mobile}}</view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <view class="item-right">
+          <text class="text">{{item.order_count}}个</text>
+          <image class="iconfont icon-right-arrow rightArrowImg" src="../../images/rightArrowImg.png" wx:if="{{close_community_delivery_orders!=1}}"></image>
+        </view>
+      </view>
+    </view>
+    <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+  </scroll-view>
+  <view class="none-member" wx:else>暂无社区用户</view>
+</view>

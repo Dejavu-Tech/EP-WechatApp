@@ -1,0 +1,41 @@
+<template name="navlist">
+  <view>
+    <block wx:if="{{navigatSwiper.totnav>10}}">
+      <swiper class="navswiper" style="height:{{navigatSwiper.totnav>5?'304':'152'}}rpx;" duration="400" wx:if="{{navigatSwiper.totnav>0}}" bindchange="navigatSwiperChange">
+        <swiper-item wx:for="{{navigat}}" wx:for-item="navItem" wx:key="index">
+          <view class='nav-list'>
+            <block wx:for="{{navItem}}" wx:key="id">
+              <view class='nav-list-item' bindtap='goNavUrl' data-idx="{{index}}" wx:if="{{item.type!=5}}">
+                <i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+                <view class='nav-list-text'>{{item.navname}}</view>
+              </view>
+              <button class="nav-list-item nav-contact" openType="contact" wx:else>
+                <i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+                <view class='nav-list-text'>{{item.navname}}</view>
+              </button>
+            </block>
+            <div style="width:20%;" wx:for="{{navigatEmpty}}" wx:if="{{navigatEmpty.length}}" wx:key="id"></div>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="text-center navpage" wx:if="{{navigatSwiper.page>1}}">
+        <text class="item" style="{{navigatSwiper.current==index?'background:'+skin.color:''}}" wx:for="{{navigat}}" wx:key="index"></text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='nav-list' wx:for="{{navigat}}" wx:for-item="navItem" wx:key="index">
+        <block wx:for="{{navItem}}" wx:key="id">
+          <view class='nav-list-item' bindtap='goNavUrl' data-idx="{{index}}" wx:if="{{item.type!=5}}">
+            <i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+            <view class='nav-list-text'>{{item.navname}}</view>
+          </view>
+          <button class="nav-list-item nav-contact" openType="contact" wx:else>
+            <i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+            <view class='nav-list-text'>{{item.navname}}</view>
+          </button>
+        </block>
+        <div style="width:20%;" wx:for="{{navigatEmpty}}" wx:if="{{navigatEmpty.length}}" wx:key="id"></div>
+      </view>
+    </block>
+  </view>
+</template>

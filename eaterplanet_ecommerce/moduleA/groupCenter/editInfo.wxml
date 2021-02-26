@@ -1,0 +1,61 @@
+<navBar title="申请提现" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="edit-info">
+  <form bindsubmit="formSubmit">
+    <view class="main">
+      <view class="li">
+        <text class="left">提现金额</text>
+        <view class="right">
+          <input bindinput="bindTixianMoneyInput" type='digit' name="tixian_money" placeholder="请输入提现金额" placeholderStyle="color:#999999" value="{{tixian_money}}" min="0" max="{{commission_info.money}}"></input>
+        </view>
+      </view>
+      <view class='li-tip'>
+        <view class='left'>最多可提现{{commission_info.money}}元，最小提现{{community_min_money}}元</view><view class='get-all' bindtap='getAll'>全部提现</view>
+      </view>
+      <view class="li">
+        <text class="left" style="width:400rpx;">提现手续费为：{{community_tixian_fee}}% ({{sxfee}}元)</text>
+      </view>
+      <view class="li">
+        <text class="left" style="width:400rpx;">最终到账金额：{{final_money}}元</text>
+      </view>
+      <!-- 提现方式 -->
+      <view class="type-wrap">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{items}}" wx:key="id" wx:if="{{item.show}}">
+            <radio value="{{item.name}}" checked="{{item.checked}}" /><text>{{item.value}}</text>
+          </label>
+        </radio-group>
+        <view class='form-box' wx:if="{{type==2}}">
+          <view class='form-group'>
+            <label>微信真实姓名：<input class='form-ipt' type='text' name="bankusername" value='{{community_info.last_weixin_realname}}'></input></label>
+          </view>
+        </view>
+        <view class='form-box' wx:if="{{type==3}}">
+          <view class='form-group' wx:if="{{type!=2}}">
+            <label>支付宝账户：<input class='form-ipt' type='text' name="bankaccount" value='{{community_info.last_alipay_account}}'></input></label>
+          </view>
+          <view class='form-group'>
+            <label>支付宝真实姓名：<input class='form-ipt' type='text' name="bankusername" value='{{community_info.last_alipay_name}}'></input></label>
+          </view>
+        </view>
+        <view class='form-box' wx:if="{{type==4}}">
+          <view class='form-group'>
+            <label>银行卡名称：<input class='form-ipt' type='text' name="bankname" value='{{community_info.last_bank_bankname}}'></input></label>
+          </view>
+          <view class='form-group'>
+            <label>持卡人姓名：<input class='form-ipt' type='text' name="bankusername" value='{{community_info.last_bank_name}}'></input></label>
+          </view>
+          <view class='form-group' wx:if="{{type!=2}}">
+            <label>银行卡账户：<input class='form-ipt' type='text' name="bankaccount" value='{{community_info.last_bank_account}}'></input></label>
+          </view>
+        </view>
+      </view>
+    </view>
+    <button class="btn-submit" formType="submit">确认提现</button>
+  </form>
+  <view class='desc' wx:if="{{hasTixianPublish}}">
+    <view class='h2'>提现规则：</view>
+    <view class="wxParse">
+      <parser html="{{head_commiss_tixian_publish}}"></parser>
+    </view>
+  </view>
+</view>

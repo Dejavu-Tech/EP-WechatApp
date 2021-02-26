@@ -1,0 +1,69 @@
+<wxs module="price">
+  var caclPrice = function (d) {
+    var str = d;
+    if(d) {
+      d = d.toString();
+      var len = d.length;
+      str = d.slice(0, len-2) + '.' + d.slice(-2);
+    }
+    return str;
+  }
+  module.exports = {
+    caclPrice : caclPrice,
+  }
+</wxs>
+
+<i-navigation-bar back="{{showBackBtn}}" color="#FFFFFF" background="transparent" style="position:absolute;z-index:10000;top:0;">
+  <view slot="left">
+    <view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
+      <image class="img" src="/eaterplanet_ecommerce/images/zhuye.png"></image>
+    </view>
+  </view>
+</i-navigation-bar>
+
+<view class="main">
+  <video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="myVideo" objectFit="contain" showFullscreenBtn="{{false}}" src="{{replayInfo[0].media_url}}"></video>
+</view>
+
+<view class="live-page">
+  <view class="operation i-flex-col" hidden="{{showStore}}">
+    <button class="item i-flex i-flex-alc operation--mode-filter-black" open-type="share">
+      <text class="iconfont icon-fenxiang3"></text>
+    </button>
+    <view class="item i-flex i-flex-alc" bindtap="clickStore">
+      <text class="iconfont icon-gouwudai"></text>
+    </view>
+  </view>
+
+  <view class="store__mask" bindtap="clickStore" hidden="{{!showStore}}"></view>
+  <view class="store">
+    <view class="store-list {{showStore?'fadeIn':''}}">
+      <view class="mode-filter-black">
+        <view class="store-list__inner" style="max-height: 287px">
+          <view class="store-list__header">
+            <view class="store-list__title">直播商品</view>
+          </view>
+          <view class="store-list__body">
+            <scroll-view class="store-list__body__inner" style="max-height:230px;" scroll-y wx:if="{{roominfo.goods_list.length}}">
+              <view class="store-list__item" wx:for="{{roominfo.goods_list}}" wx:key="id">
+                <view data-link="/{{item.url}}" class="store-list__item__inner" bindtap="goDetails">
+                  <view class="store-list__item__header">
+                    <image class="store-list__item__avatar" mode="aspectFill" src="{{item.cover_img}}"></image>
+                    <view class="store-list__item__index">{{index+1}}</view>
+                  </view>
+                  <view class="store-list__item__body">
+                    <view class="store-list__item__title">{{item.name}}</view>
+                    <view class="store-list__item__price__container">
+                      <view class="store-list__item__price" wx:if="{{item.price}}">¥ {{price.caclPrice(item.price)}}</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </scroll-view>
+            <view class="store-list__empty" wx:else>暂无商品</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

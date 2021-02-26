@@ -1,0 +1,86 @@
+<navBar title="推广收益" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='wrap'>
+  <view class="zr">
+    <view class='top_box'>
+      <view class="i-flex i-flex-spb top_box_head">
+        <view></view>
+        <navigator url='/eaterplanet_ecommerce/distributionCenter/pages/share' hover-class='none' class='tx-btn'>推荐二维码</navigator>
+      </view>
+      <view class='total'>
+        <view class="total-title">可提现（元）</view>
+        <view class='total-money'>{{info.money}}
+          <navigator url='/eaterplanet_ecommerce/distributionCenter/pages/excharge' hover-class='none' class='qrcode'>提现</navigator>
+        </view>
+      </view>
+      <view class='three'>
+        <view class='three-item'>
+          <view class='three-title'>订单数</view>
+          <view class='three-money'>{{info.order_count}}</view>
+        </view>
+        <navigator hover-class='none' url='/eaterplanet_ecommerce/distributionCenter/pages/member' class='three-item'>
+          <view class='three-title'>
+            粉丝数量 <text class="iconfont icon-youjiantou rightArrow"></text>
+          </view>
+          <view class='three-money'>{{info.member_count}}</view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="distributionList">
+    <view class="nav">
+      <view bindtap="switchNav" class="orderList_item {{currentTab==index?'on':''}}" data-current="{{index}}" wx:for="{{navList}}" wx:key="id">{{item.name}}</view>
+    </view>
+    <view class="list">
+      <view class="noRecordCon" wx:if="{{noData==1}}">
+        <image class="noRecordImg" src="../../images/noRecord.png"></image>
+        <view class="noRecord">还没有记录 快去分享吧～</view>
+      </view>
+      <block wx:else>
+        <view class='list-item' wx:for="{{list}}" wx:key="id">
+          <view class='item-head'>
+            <view class='time'>订单编号：{{item.order_num_alias}}</view>
+            <view class='status'>{{stateArr[item.state]}}</view>
+          </view>
+          <view class="spu">
+            <image src='{{item.goods_images}}' class='i-class goodsImg' mode='widthFix'></image>
+            <view class="detail">
+              <view class="spuName">
+                <text>{{item.name}}</text>
+              </view>
+              <view class="tips">
+                <text>￥{{item.price}}</text> x {{item.quantity}} {{item.option_str}}
+              </view>
+            </view>
+          </view>
+          <view class="line">
+            <view>会员名称</view>
+            <view>{{item.uname}}</view>
+          </view>
+          <view class="line">
+            <view>粉丝等级</view>
+            <view>{{item.level}}</view>
+          </view>
+          <view class="line">
+            <view>下单时间</view>
+            <view>{{item.addtime}}</view>
+          </view>
+          <view class="line">
+            <view>订单状态</view>
+            <view>{{item.status_name}}</view>
+          </view>
+          <view class="line" wx:if="{{item.has_refund_quantity>0}}" bindtap="handleTipDialog">
+            <view>预估佣金变化<text class="iconfont icon-shuoming text-dark fsz-26 red" style="margin-left:10rpx;"></text></view>
+            <view>{{item.money}}</view>
+          </view>
+          <view class="line" wx:else>
+            <view>预估佣金</view>
+            <view>{{item.money}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+  </view>
+
+  <i-dialog visible="{{showTipDialog}}" text="您的”粉丝“购买的商品进行了申请售后，售后成功部分商品进行退款佣金发生变化。" confirmText="知道了" bind:confirm="handleTipDialog" bind:cancel="handleTipDialog" showCancel="{{false}}" iClass="dialogText" iBtn="dialogBtn" />
+</view>

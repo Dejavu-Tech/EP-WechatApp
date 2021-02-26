@@ -1,8 +1,0 @@
-<view class="tabs i-class">
-    <scroll-view scrollWithAnimation class="tabs__navs" scrollX="true" scrollY="false" scrollLeft="{{scrollLeft}}">
-        <view class="tabs__navs__wrap">
-            <view bindtap="handleTabItemTap" class="tabs__nav tav__nav__{{index}} {{index===activeIndex?'active':''}}" data-id="{{tabItem.id}}" data-index="{{index}}" style="color: {{index===activeIndex?fontColor:''}}" wx:for="{{tabs}}" wx:for-item="tabItem" wx:key="{{index}}">{{tabItem.name}}</view>
-            <view animation="{{indicatorAnamationData}}" class="activeIndicator" style="{{lineBgColor}}"></view>
-        </view>
-    </scroll-view>
-</view>

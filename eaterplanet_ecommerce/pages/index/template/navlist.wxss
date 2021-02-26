@@ -1,0 +1,63 @@
+/* 导航列表 S */
+.navswiper {
+  margin: 30rpx 0 10rpx;
+}
+
+.nav-list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  padding: 0 20rpx;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.nav-list-item {
+  width: 20%;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.nav-list-item .nav-list-img {
+  width: 86rpx;
+  height: 86rpx;
+  margin: 0 auto;
+}
+
+.nav-list-item .nav-list-text {
+  text-align: center;
+  margin-top: 8rpx;
+}
+
+.nav-contact {
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+.nav-contact::after {
+  content: none;
+}
+
+.nav-list-item.nav-contact .nav-list-img {
+  left: 0;
+}
+
+.navpage {
+  line-height: 6rpx;
+  padding-bottom: 10rpx;
+}
+
+.navpage .item{
+  display: inline-block;
+  width: 30rpx;
+  height: 6rpx;
+  background-color: #e5e5e5;
+  margin: 0 5rpx;
+  line-height: 6rpx;
+}
+
+/* 导航列表 E */

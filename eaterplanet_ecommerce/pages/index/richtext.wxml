@@ -1,0 +1,3 @@
+<view class='wxParse' style='margin:0px;padding:{{item.style.padding? item.style.padding/2:0}}px;{{item.style.background?"background: " + item.style.background+";":""}}'>
+<parser html="{{item.params.htmlindex}}" />
+</view>

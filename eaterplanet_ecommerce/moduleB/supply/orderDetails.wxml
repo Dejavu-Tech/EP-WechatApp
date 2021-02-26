@@ -1,0 +1,335 @@
+<navBar title="订单详情" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap">
+	<view class="head">
+		<view class="back-img-wrap">
+			<image class="back-img" src="{{common_header_backgroundimage?common_header_backgroundimage:'../../images/TOP_background@2x.png'}}"></image>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==1}}">
+			<view class="font-bold-20">备货中</view>
+			<image class="little-img" src="../../images/img_delivery@2x.png"></image>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==2}}">
+			<view class="font-bold-20">拼团中，已付款</view>
+			<image class="little-img" src="../../images/img_delivery@2x.png"></image>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==14}}">
+			<view class="font-bold-20">配送中</view>
+			<image class="little-img" src="../../images/img_delivery@2x.png"></image>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==4}}">
+			<view class="font-bold-20">{{order.order_status_info.name?order.order_status_info.name:"可提货"}}</view>
+			<image class="little-img" src="../../images/img_ready_to_get@2x.png"></image>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==6}}">
+			<view class="font-bold-20">已签收</view>
+			<image class="little-img" src="../../images/img_trade_succeed@2x.png"></image>
+		</view>
+		<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==10}}">
+			<view class="font-bold-20 cancel-box">
+				<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>等待退款
+			</view>
+		</view>
+		<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==11}}">
+			<view class="font-bold-20">交易完成</view>
+			<image class="little-img" src="../../images/img_trade_succeed@2x.png"></image>
+		</view>
+		<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==12}}">
+			<view class="font-bold-20 cancel-box">
+				<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>售后中
+			</view>
+		</view>
+		<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==5 || changeState==1}}">
+			<view class="font-bold-20 cancel-box">
+				<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>交易取消
+			</view>
+		</view>
+		<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==7}}">
+			<view class="font-bold-20 cancel-box">
+				<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>已退款
+			</view>
+		</view>
+	</view>
+	<view class="content">
+		<!-- 订单信息 -->
+		<view class="mb10">
+			<i-card>
+				<view class="header border-bottom" slot="header">订单信息</view>
+				<view slot="content">
+					<view class="content-wrap">
+						<view class="item">
+							<view class="title">下单时间</view>
+							<view class="detail">
+								<text>{{order.order_info.date_added}}</text>
+							</view>
+						</view>
+						<view class="item">
+							<view class="title">订单编号</view>
+							<view class="detail">{{order.order_info.order_num_alias}}</view>
+						</view>
+						<view class="item">
+							<view class="title">买家</view>
+							<view class="detail">{{order.order_info.name}}</view>
+						</view>
+						<view class="item">
+							<view class="title">支付方式</view>
+							<view class="detail">{{order.order_info.transaction_id}}</view>
+						</view>
+					</view>
+				</view>
+			</i-card>
+		</view>
+		<!-- 提货信息 -->
+		<view class="mb10" wx:if="{{order.order_info.delivery!='pickup'}}">
+			<i-card>
+				<view class="header border-bottom" slot="header">{{order.order_info.delivery=='localtown_delivery'?'提货':'收货'}}信息</view>
+				<view slot="content">
+					<view class="content-wrap">
+						<block wx:if="{{order.order_info.delivery=='express'}}">
+							<view class='item' wx:if="{{order.order_info.dispatchname}}">
+								<view class='title'>配送方式</view>
+								<view class='detail i-flex i-aic'>{{groupInfo.delivery_express_name}}({{order.order_info.dispatchname}})
+									<view bindtap="goExpress" class="phone">
+										<text>查看物流</text>
+									</view>
+								</view>
+							</view>
+							<view class='item' wx:if="{{order.order_info.shipping_no!=0}}">
+								<view class='title'>快递单号</view>
+								<view class='detail'>{{order.order_info.shipping_no}}</view>
+							</view>
+						</block>
+						<view class='item' wx:if="{{order.order_info.delivery=='localtown_delivery'}}">
+							<view class='title'>配送方式</view>
+							<view class='detail'>同城配送</view>
+						</view>
+						<view class='item' wx:else>
+							<view class='title'>配送方式</view>
+							<view class='detail'>{{groupInfo.delivery_tuanzshipping_name}}</view>
+						</view>
+						<view class="item" wx:if="{{order.order_info.delivery=='localtown_delivery'}}">
+							<view class="title">期望送达时间</view>
+							<view class="detail">
+								<text>{{order.order_info.expected_delivery_time}}</text>
+							</view>
+						</view>
+						<view class="item">
+							<view class="title">收货人</view>
+							<view class="detail i-flex i-aic">
+								{{order.order_info.ziti_name}}
+								<view bindtap="callTelphone" class="phone" data-phone="{{order.order_info.ziti_mobile}}" wx:if="{{is_hidden_orderlist_phone==0}}">
+									<image class="icon-phone" src="../../images/phone2.png"></image>
+									<text>联系收货人</text>
+								</view>
+							</view>
+						</view>
+						<view class="item" wx:if="{{order.order_info.delivery=='express' || order.order_info.delivery=='localtown_delivery'}}">
+							<view class="title">收货地址</view>
+							<view class="detail">{{order.shipping_province.name}}{{order.shipping_city.name}}{{order.shipping_country.name}}{{order.order_info.shipping_address}}</view>
+						</view>
+						<view class="item" wx:else>
+							<view class="title">收货地址</view>
+							<view class="detail">{{order.order_info.tuan_send_address}}</view>
+						</view>
+					</view>
+				</view>
+			</i-card>
+		</view>
+		<view class="mb10" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
+			<i-card>
+				<view class="header border-bottom" slot="header">提货信息</view>
+				<view slot="content">
+					<view class="content-wrap">
+						<view class="item">
+							<view class="title">配送方式</view>
+							<view class="detail">
+								<text>{{order.order_info.delivery_name}}</text>
+							</view>
+						</view>
+						<view class="item">
+							<view class="title">收货人</view>
+							<view class="detail i-flex i-aic">
+								{{order.order_info.ziti_name}}
+								<view bindtap="callTelphone" class="phone" data-phone="{{order.order_info.ziti_mobile}}" wx:if="{{is_hidden_orderlist_phone==0}}">
+									<image class="icon-phone" src="../../images/phone2.png"></image>
+									<text>联系{{groupInfo.owner_name}}</text>
+								</view>
+							</view>
+						</view>
+						<view class="item">
+							<view class="title">取货地址</view>
+							<view class="detail">{{order.order_info.shipping_address}}</view>
+						</view>
+					</view>
+				</view>
+			</i-card>
+		</view>
+
+		<!-- 商品信息 -->
+		<view class="goods-card">
+			<i-card>
+				<view class="header" slot="header">
+					<view class="goods-cancel bold-text" wx:if="{{order.order_info.order_status_id==5}}">已取消</view>
+					<view class="goods-ready bold-text" wx:if="{{order.order_info.order_status_id==1||order.order_info.order_status_id==14}}">
+						<block wx:if="{{order.order_info.delivery=='pickup'}}">预计{{order.order_info.pick_up_time}}可提货</block>
+						<block wx:elif="{{order.order_info.delivery=='tuanz_send'}}">预计{{order.order_info.pick_up_time}}{{groupInfo.owner_name}}配送</block>
+						<block wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">商品信息</block>
+						<block wx:else>快递配送</block>
+					</view>
+					<view class="goods-done bold-text" wx:if="{{order.order_info.order_status_id==6||order.order_info.order_status_id==11}}">{{showRealPickUpTime}}提货完成</view>
+					<view class="goods-num">{{order.goods_count}}件商品</view>
+				</view>
+				<view class="middle" slot="content">
+					<block wx:for="{{order.order_goods_list}}" wx:for-item="goodsInfo" wx:key="id">
+						<view class="middle-line"></view>
+						<view class='each-item' bindtap="showRefundInfo" data-idx="{{index}}" data-hasrefund="{{goodsInfo.has_refund_quantity}}">
+							<view style="margin-right: 10px">
+								<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{goodsInfo.image}}" width="60"></i-img>
+							</view>
+							<view style="flex-grow: 1">
+								<view class="name bold-text"><text class="pintag" wx:if="{{order.order_info.is_pin==1}}">拼团</text> {{goodsInfo.name}}</view>
+								<view class="mount">
+									<block wx:if="{{goodsInfo.option_str}}">{{goodsInfo.option_str}} </block>
+									<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.price}}
+									<block wx:if="{{order.order_info.type=='integral'}}">积分</block> x {{goodsInfo.quantity}}
+								</view>
+								<view class="bottom-info">
+									<view class='bold-text'>
+										小计：<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.real_total}}
+										<block wx:if="{{order.order_info.type=='integral'}}">积分</block>
+									</view>
+								</view>
+							</view>
+						</view>
+					</block>
+					<view slot="footer">
+						<view class="content-wrap border-top pt10">
+							<view class="item">
+								<view class="title">商品合计</view>
+								<view class="detail">
+									<text>+ ¥{{goodsTotal}}</text>
+								</view>
+							</view>
+							<view class="item" wx:if="{{order.order_info.shipping_fare>0}}">
+								<view class="title" wx:if="{{orderInfo.type=='integral'}}">快递费</view>
+								<view class="title" wx:else>配送费</view>
+								<view class="detail">
+									+ ¥{{order.order_info.shipping_fare}}
+								</view>
+							</view>
+							<block wx:if="{{order.order_info.is_free_shipping_fare==1}}">
+								<view class="item">
+									<view class="title">配送费</view>
+									<view class="detail">
+										+ ¥{{order.order_info.fare_shipping_free}}
+									</view>
+								</view>
+								<view class="item">
+									<view class="title">满金额免配送费</view>
+									<view class="detail">
+										- ¥{{order.order_info.fare_shipping_free}}
+									</view>
+								</view>
+							</block>
+							<view class="item" wx:if="{{(order.order_info.score_for_money*1)>0}}">
+								<view class="title">积分抵扣</view>
+								<view class="detail">
+									- ¥{{orderInfo.score_for_money}}
+								</view>
+							</view>
+							<view class="item" wx:if="{{order.order_info.is_vipcard_buy==1&&levelAmount>0}}">
+								<view class="title">会员优惠</view>
+								<view class="detail">
+									- ¥{{levelAmount}}
+								</view>
+							</view>
+							<view class="item" wx:if="{{order.order_info.is_level_buy==1&&order.order_info.is_vipcard_buy!=1&&levelAmount>0}}">
+								<view class="title">等级折扣</view>
+								<view class="detail">
+									- ¥{{levelAmount}}
+								</view>
+							</view>
+							<view class="item" wx:if="{{disAmount>0}}">
+								<view class="title">总优惠</view>
+								<view class="detail">
+									- ¥{{disAmount}}
+								</view>
+							</view>
+							<view class="item" wx:if="{{changePrice>0}}">
+								<view class="title">订单改价</view>
+								<view class="detail">
+									{{order.order_info.admin_change_price>0?'+':'-'}} ¥{{changePrice}}
+								</view>
+							</view>
+							<view class="item border-top pt10 mt10">
+								<view></view>
+								<view class="detail">
+									实付款：<text class="red weight fsz-32">¥{{order.order_info.total}}</text>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</i-card>
+		</view>
+
+		<!-- 评论 -->
+		<i-orderComment wx:if="{{order.order_info.comment}}" comment="{{order.order_info.comment}}" />
+
+		<view class="i-flex footerContorl p10">
+			<!-- <view class="btn bg-ccc text-3" data-id="{{order.order_info.order_id}}">备注</view> -->
+			<!-- <view class="btn bg-warning" data-id="{{order.order_info.order_id}}">订单退款</view> -->
+			<block wx:if="{{order.order_info.order_status_id==4}}">
+				<!-- 同城配送指定配送员 -->
+				<view class="btn bg-primary" catchtap="chooseRider" data-id="{{order.order_info.order_id}}" wx:if="{{order.order_info.delivery=='localtown_delivery'&&order.order_info.orderdistribution_order.state==1&&!order.order_info.third_distribution_type}}">指定配送员配送</view>
+				<!-- <view class="btn bg-sucess" wx:if="{{order.order_info.delivery=='express'}}" data-id="{{order.order_info.order_id}}" catchtap="getExpList">修改物流</view> -->
+				<view class="btn bg-blue" data-id="{{order.order_info.order_id}}" catchtap="opreceive">确认收货</view>
+			</block>
+			<block wx:if="{{order.order_info.order_status_id==1}}">
+				<!-- 快递发货 -->
+				<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='express'}}" catchtap="getExpList" data-id="{{order.order_info.order_id}}">确认发货</view>
+				<!-- 团长配送 -->
+				<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='tuanz_send'||order.order_info.delivery=='pickup'}}" catchtap="tuanSend" data-id="{{order.order_info.order_id}}">确认配送</view>
+				<!-- 同城配送 -->
+					<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='localtown_delivery'}}" catchtap="localtownSend" data-id="{{order.order_info.order_id}}">确认配送</view>
+			</block>
+			<block wx:if="{{order.order_info.order_status_id==14}}">
+				<!-- 快递确认收货 -->
+				<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='express'}}" data-id="{{order.order_info.order_id}}" catchtap="opreceive">确认收货</view>
+				<!-- 团长确认收货 -->
+				<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='tuanz_send'||order.order_info.delivery=='pickup'}}" data-id="{{order.order_info.order_id}}" catchtap="tuanOver">确认送达团长</view>
+			</block>
+			<block wx:if="{{order.order_info.order_status_id==3}}">
+				<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{order.order_info.order_id}}'>订单改价</view>
+				<view class="btn bg-blue" catchtap="confirmPay" data-id="{{order.order_info.order_id}}">确认付款</view>
+			</block>
+		</view>
+	</view>
+</view>
+
+<!-- 快递信息 -->
+<i-modal scrollUp="{{false}}" visible="{{showExpModal}}">
+	<view class="exp-modal bg-f rounded">
+		<view class="p10 border-bottom bg-lighter text-dark weight fsz-30">订单发货</view>
+		<view class="p15 border-bottom fsz-24">
+			<view class="mb5">联系人：{{expInfo.shipping_name}}</view>
+			<view class="mb10">收货地址：{{expInfo.shipping_name}}</view>
+			<view class="mb10 i-flex i-aic">
+				<picker class="i-flex-item" bindchange="bindPickerChange" value="{{index}}" range="{{expInfo.express_list}}" range-key="name">
+					<view class="picker">
+						物流公司：{{expInfo.express_list[index].name}} <text class="iconfont icon-xia fsz-24 text-gray"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="i-flex i-aic">
+				物流单号：
+				<input class="ipt i-flex-item" type="text" placeholder="请输入物流单号" bindinput="bindKeyInput"></input>
+			</view>
+		</view>
+		<view class="i-flex jcontent-sa text-center weight fsz-30">
+			<view class="btn p10 i-flex-item text-gray" bindtap="hideExpModal">取消</view>
+			<view class="btn p10 i-flex-item bule" data-id="{{expInfo.order_id}}" bindtap="expSend">确认发货</view>
+		</view>
+	</view>
+</i-modal>
+
+<i-select-rider order_id="{{selectOrderId}}" bind:update="initFn" bind:close="closeRiderList" show="{{showRaderList}}" wx:if="{{showRaderList}}" />

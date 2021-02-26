@@ -1,0 +1,103 @@
+<import src="tabbar.wxml"></import>
+<navBar title="订单管理" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap pb100">
+	<view class="nav">
+		<view bindtap="switchNav" class="orderList_item {{currentTab==item.status?'on':''}}" data-current="{{item.status}}" wx:for="{{navList}}" wx:key="status">{{item.name}}</view>
+	</view>
+	<!--搜索框begin-->
+	<view class='search-bar'>
+		<view class='search-box'>
+			<input class='ipt' placeholder="搜索" confirm-type="搜索" type="text" bindconfirm="goResult"></input>
+			<view class='search-icon'>
+				<text class="iconfont icon-sousuo1"></text>
+			</view>
+		</view>
+	</view>
+	<view class="list" wx:if="{{list.length>0}}">
+		<i-card wx:for="{{list}}" wx:key="id" iClass="orderItem" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/supply/orderDetails?id={{item.order_id}}">
+			<view slot="header" class="i-flex i-flex-spb p10 border-bottom">
+				<text>订单编号：{{item.order_num_alias}}</text>
+				<text class="{{item.order_status_id==11?'black':''}} red">{{item.status_name}}</text>
+			</view>
+			<view slot="content">
+				<view class="userinfo i-flex p10">
+					<view>收货人信息：{{item.shipping_name}} {{item.shipping_tel}}</view>
+					<view class="call ml5 bg-primary text-white" data-phone="{{item.shipping_tel}}" catchtap='callPhone'>联系收货人</view>
+				</view>
+				<view class="goodsBox">
+					<block wx:for="{{item.goods_list}}" wx:for-item="goods" wx:if="{{item.goods_list.length}}" wx:key="order_goods_id">
+						<view class="item p15 bg-f border-bottom i-flex">
+							<i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" iClass="img-class" lazyLoad="true" loadImage="{{goods.goods_images}}" width="160"></i-img>
+							<view class="i-flex-item ml10 i-flex-col jcontent-c">
+								<view class="fsz-28 weight">{{goods.name}}</view>
+								<view class="price mt10 fsz-22 text-gray">¥{{goods.price}} x{{goods.quantity}}</view>
+								<view class="fsz-24 mt-auto">小计：<text class="red">{{goods.total}}</text></view>
+							</view>
+						</view>
+					</block>
+				</view>
+			</view>
+			<view slot="footer" class="i-flex footer p10">
+				<!-- <view class="btn bg-ccc text-3" data-id="{{item.order_id}}">备注</view> -->
+				<!-- <view class="btn bg-warning" data-id="{{item.order_id}}">订单退款</view> -->
+				<block wx:if="{{item.order_status_id==4}}">
+					<!-- 同城配送指定配送员 -->
+					<view class="btn bg-primary" catchtap="chooseRider" data-id="{{item.order_id}}" wx:if="{{item.delivery=='localtown_delivery'&&item.orderdistribution_order.state==1&&!item.third_distribution_type}}">指定配送员配送</view>
+					<!-- <view class="btn bg-sucess" wx:if="{{item.delivery=='express'}}" data-id="{{item.order_id}}" catchtap="getExpList">修改物流</view> -->
+					<view class="btn bg-blue" data-id="{{item.order_id}}" catchtap="opreceive">确认收货</view>
+				</block>
+				<block wx:if="{{item.order_status_id==1}}">
+					<!-- 快递发货 -->
+					<view class="btn bg-blue" wx:if="{{item.delivery=='express'}}" catchtap="getExpList" data-id="{{item.order_id}}">确认发货</view>
+					<!-- 团长配送 -->
+					<view class="btn bg-blue" wx:if="{{item.delivery=='tuanz_send'||item.delivery=='pickup'}}" catchtap="tuanSend" data-id="{{item.order_id}}">确认配送</view>
+					<!-- 同城配送 -->
+					<view class="btn bg-blue" wx:if="{{item.delivery=='localtown_delivery'}}" catchtap="localtownSend" data-id="{{item.order_id}}">确认配送</view>
+				</block>
+				<block wx:if="{{item.order_status_id==14}}">
+					<!-- 快递确认收货 -->
+					<view class="btn bg-blue" wx:if="{{item.delivery=='express'}}" data-id="{{item.order_id}}" catchtap="opreceive">确认收货</view>
+					<!-- 团长确认收货 -->
+					<view class="btn bg-blue" wx:if="{{item.delivery=='tuanz_send'||item.delivery=='pickup'}}" data-id="{{item.order_id}}" catchtap="tuanOver">确认送达团长</view>
+				</block>
+				<block wx:if="{{item.order_status_id==3}}">
+					<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{item.order_id}}'>订单改价</view>
+					<view class="btn bg-blue" catchtap="confirmPay" data-id="{{item.order_id}}">确认付款</view>
+				</block>
+			</view>
+		</i-card>
+
+		<i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+	</view>
+	<i-empty wx:if="{{noData}}">暂无订单~</i-empty>
+</view>
+
+<template is="tabbar" data="{{data:1}}"></template>
+
+<!-- 快递信息 -->
+<i-modal scrollUp="{{false}}" visible="{{showExpModal}}" wx:if="{{showExpModal}}">
+	<view class="exp-modal bg-f rounded">
+		<view class="p10 border-bottom bg-lighter text-dark weight fsz-30">订单发货</view>
+		<view class="p15 border-bottom fsz-24">
+			<view class="mb5">联系人：{{expInfo.shipping_name}}</view>
+			<view class="mb10">收货地址：{{expInfo.shipping_name}}</view>
+			<view class="mb10 i-flex i-aic">
+				<picker class="i-flex-item" bindchange="bindPickerChange" value="{{index}}" range="{{expInfo.express_list}}" range-key="name">
+					<view class="picker">
+						物流公司：{{expInfo.express_list[index].name}} <text class="iconfont icon-xia fsz-24 text-gray"></text>
+					</view>
+				</picker>
+			</view>
+			<view class="i-flex i-aic">
+				物流单号：
+				<input class="ipt i-flex-item" type="text" placeholder="请输入物流单号" bindinput="bindKeyInput"></input>
+			</view>
+		</view>
+		<view class="i-flex jcontent-sa text-center weight fsz-30">
+			<view class="btn p10 i-flex-item text-gray" bindtap="hideExpModal">取消</view>
+			<view class="btn p10 i-flex-item bule" data-id="{{expInfo.order_id}}" bindtap="expSend">确认发货</view>
+		</view>
+	</view>
+</i-modal>
+
+<i-select-rider order_id="{{selectOrderId}}" bind:update="initFn" bind:close="closeRiderList" show="{{showRaderList}}" wx:if="{{showRaderList}}" />

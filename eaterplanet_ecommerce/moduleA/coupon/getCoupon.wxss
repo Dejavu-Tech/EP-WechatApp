@@ -1,0 +1,150 @@
+
+/* 新优惠券 */
+.list {
+  padding: 10rpx 30rpx 20rpx;
+}
+
+/* 新优惠券 */
+
+.coupon {
+  background-color: #fefefe;
+  position: relative;
+  padding: 0 20rpx;
+  border-radius: 6rpx;
+  margin-top: 24rpx;
+}
+
+.coupon:before, .coupon:after {
+  content: '';
+  position: absolute;
+  width: 20rpx;
+  height: 40rpx;
+  background: #f6f6f6;
+  top: 70rpx;
+  z-index: 1;
+}
+
+.coupon:before {
+  border-radius: 0 40rpx 40rpx 0;
+  left: 0;
+}
+
+.coupon:after {
+  border-radius: 40rpx 0 0 40rpx;
+  right: 0;
+}
+
+.coupon .header {
+  display: flex;
+  padding: 15rpx 0;
+  border-bottom: 2rpx dashed #dbdbdb;
+  height: 140rpx;
+}
+
+.coupon .footer {
+  color: #747474;
+  font-size: 24rpx;
+  padding: 22rpx 0 20rpx 35rpx;
+}
+
+.coupon .price {
+  color: #333;
+  width: 175rpx;
+  text-align: center;
+  border-right: 2rpx dashed #dbdbdb;
+}
+
+.coupon .price .reduce-price {
+  color: #000;
+  font-size: 38rpx;
+  font-weight: bold;
+  padding-top: 30rpx;
+}
+
+.coupon .price .reduce-price text {
+  font-size: 24rpx;
+}
+
+.coupon .price .reduce-desc {
+  font-size: 20rpx;
+  margin-top: 10rpx;
+}
+
+.coupon .info {
+  padding-left: 30rpx;
+  flex: 1;
+}
+
+.coupon .info .reduce-title {
+  color: #000;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding-top: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.coupon .info .reduce-type {
+  color: #fff;
+  font-weight: normal;
+  font-size: 20rpx;
+  background: #4facfe;
+  padding: 2rpx 8rpx;
+  border-radius: 4rpx;
+}
+
+.coupon .status {
+  width: 130rpx;
+  text-align: center;
+}
+
+.coupon .status image {
+  width: 90rpx;
+  height: 90rpx;
+  margin-top: 20rpx;
+}
+
+.coupon.used,
+.coupon.expired {
+  background: #fafafa;
+}
+
+.coupon.used .price,
+.coupon.expired .price {
+  color: #949494;
+}
+
+.coupon.used .reduce-price,
+.coupon.expired .reduce-price,
+.coupon.used .reduce-title,
+.coupon.expired .reduce-title {
+  color: #7a7a7a;
+}
+
+.coupon.used .reduce-type,
+.coupon.expired .reduce-type {
+  background: #b7ddff;
+}
+
+.coupon.used .footer,
+.coupon.expired .footer {
+  color: #b6b6b6;
+}
+
+.reduce-area {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.go-shop {
+  border: 1rpx solid #4facfe;
+  border-radius: 30rpx;
+  color: #4facfe;
+  font-size: 24rpx;
+  margin-top: 60rpx;
+  margin-right: 12rpx;
+  line-height: 38rpx;
+}

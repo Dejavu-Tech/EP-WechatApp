@@ -1,0 +1,9 @@
+<view class="index-advs">
+    <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="index-adcs-sqiper" duration="{{duration}}" indicatorDots="{{indicatorDots}}" interval="{{interval}}" style="width:{{advWidth}}px;height:{{advsheight}}px;">
+        <swiper-item wx:for='{{item.data}}' wx:for-item='item' wx:for-index='idx' wx:key="*this">
+            <navigator class="index-advs-navigator" url="{{item.link}}">
+            <image mode="widthFix" src="{{item.thumb}}" bindload="imagesHeight" class="advimg" data-type="advsheight"></image>
+            </navigator>
+        </swiper-item>
+    </swiper>
+</view>

@@ -1,0 +1,63 @@
+<navBar title="会员分销" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='wrap gcs-box'>
+  <view class="gcs-info card" wx:if="{{status==0}}">
+    <form bindsubmit="formSubmit">
+      <view class="card-header">
+        <view class="title">{{commiss_diy_name}}会员申请</view>
+      </view>
+      <view class="card-body">
+        <block wx:for="{{commiss_diy_form}}" wx:key="id">
+          <block wx:if="{{item.type=='textarea'}}">
+            <view class="info-item textarea-item">
+              <view class="item-title">{{item.title}}</view>
+              <textarea wx:if="{{item.type=='textarea'}}" name="ipt-{{index}}" value="{{item.value}}" bindfocus="iptFocus" bindblur="iptBlur" data-name="ipt-{{index}}" placeholder="请输入{{item.title}}" auto-height></textarea>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="info-item">
+              <view class="item-title">{{item.title}}</view>
+              <view class="item-content">
+                <input type='{{item.type}}' wx:if="{{item.type=='text'}}" name="ipt-{{index}}" value="{{item.value}}" bindfocus="iptFocus" bindblur="iptBlur" data-name="ipt-{{index}}" placeholder="请输入{{item.title}}" />
+                <checkbox-group wx:if="{{item.type=='checkbox'}}" bindchange="checkboxChange" data-idx="{{index}}">
+                  <label class="checkbox" wx:for="{{item.value}}" wx:for-item="check" wx:for-index="idx" wx:key="idx">
+                    <checkbox value="{{check.value}}" /><text>{{check.text}}</text>
+                  </label>
+                </checkbox-group>
+                <radio-group class="radio-group" bindchange="radioChange" wx:if="{{item.type=='radio'}}" data-idx="{{index}}">
+                  <label class="radio" wx:for="{{item.value}}" wx:for-item="rds" wx:for-index="idx" wx:key="idx">
+                    <radio value="{{rds.value}}"/><text>{{rds.text}}</text>
+                  </label>
+                </radio-group>
+                <picker value="{{formArr[index].index}}" range="{{item.value}}" range-key="value" wx:if="{{item.type=='select'}}" bindchange="bindPickerChange" data-idx="{{index}}">
+                  <view class="picker"> {{item.value[formArr[index].index].text}} </view>
+                </picker>
+              </view>
+            </view>
+          </block>
+          <view class="bot-line {{currentFocus=='ipt-'+index?'focus':''}}"></view>
+        </block>
+      </view>
+      <view class="edit-btn">
+        <button loading="{{btnLoading}}" form-type="submit">保存</button>
+      </view>
+    </form>
+  </view>
+  <view class='status' wx:if="{{status==1}}">
+    <image class='status-img' src='../../images/auditing.png' mode='widthFix'></image>
+    <view class='p'>恭喜您申请成功！</view>
+    <view class='p'>平台将尽快审核！</view>
+    <button class='status-btn' type='warn' bindtap='goLink' data-url='/eaterplanet_ecommerce/pages/user/me'>确定</button>
+  </view>
+  <view class='status' wx:if="{{status==2}}">
+    <image class='status-img' src='../../images/auditSuccess.png' mode='widthFix'></image>
+    <view class='p'>您已经是{{commiss_diy_name}}会员</view>
+    <button class='status-btn' type='warn' bindtap='goLink' data-url='/eaterplanet_ecommerce/distributionCenter/pages/me'>进入{{commiss_diy_name}}</button>
+  </view>
+  <view class='status' wx:if="{{status==3}}">
+    <image class='status-img' src='../../images/auditSuccess.png' mode='widthFix'></image>
+    <view class='p'>恭喜您申请成功！</view>
+    <button class='status-btn' type='warn' bindtap='goLink' data-url='/eaterplanet_ecommerce/distributionCenter/pages/me'>确定</button>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>

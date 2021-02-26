@@ -1,0 +1,153 @@
+.seckill-item {
+  position: relative;
+  display: flex;
+  padding: 20rpx 20rpx 30rpx;
+}
+
+.img {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.img .img-class {
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.seckill-item .item-right {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.seckill-item .title {
+  color: #333;
+  font-size: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 350rpx;
+  margin-bottom: 12rpx;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seckill-item .item-right .desc {
+  font-size: 26rpx;
+  line-height: 32rpx;
+  color: #999;
+  width: 400rpx;
+  height: 32rpx;
+  margin-bottom: 12rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.seckill-item .spu-price {
+  display: flex;
+  align-items: flex-end;
+  font-size: 26rpx;
+  line-height: 26rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.seckill-item .spu-price .sale-price {
+    color: #ff758c;
+    margin-right: 12rpx;
+}
+
+.seckill-item .spu-price .sale-price .span {
+  font-size: 46rpx;
+  line-height: 42rpx;
+  margin: 0;
+  font-weight: bold;
+}
+
+.seckill-item .spu-price .market-price {
+  text-decoration: line-through;
+  color: #999;
+  margin-right: 30rpx;
+}
+
+.seckill-item .add-cart {
+  height: 52rpx;
+  line-height: 52rpx;
+  padding: 0 20rpx;
+  margin: 0;
+  position: absolute;
+  right: 20rpx;
+  bottom: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26rpx;
+  background: linear-gradient(90deg, #ff5041 0%, #ff695c 100%);
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.seckill-item .add-cart.disabled {
+  background: #ccc;
+}
+
+.progress-box {
+  display: flex;
+  color: #999;
+  font-size: 22rpx;
+  margin-top: auto;
+  margin-bottom: 20rpx;
+}
+
+.progress-wrap {
+  width: 160rpx;
+  margin-right: 10rpx;
+}
+
+.flex {
+  flex-direction: column;
+  color: #666;
+  font-size: 24rpx;
+}
+
+.flex .progress-wrap {
+  width: 100%;
+  margin-right: 0;
+  margin-bottom: 10rpx;
+}
+
+.seckill-item .mask {
+  background: rgba(255, 255, 255, 0.5);
+  width: 240rpx;
+  height: 240rpx;
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+}
+
+.seckill-item .act-end {
+  position: absolute;
+  height: 60rpx;
+  border-radius: 10rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+  left: 140rpx;
+  top: 112rpx;
+  padding: 0 12rpx;
+  transform: translateX(-50%);
+}
+
+.seckill-item .act-end.act-out {
+  left: 140rpx;
+}

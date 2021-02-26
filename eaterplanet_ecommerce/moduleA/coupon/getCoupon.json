@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "领券中心",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-empty": "../../components/empty/index"
+  }
+}

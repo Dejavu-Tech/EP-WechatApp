@@ -1,0 +1,86 @@
+<navBar background='#fff' title="我的订单" back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="nav-bar">
+    <view class="nav-bar-inner">
+      <view bindtap="getOrder" wx:for="{{tabs}}" wx:key="id" class="nav-bar-item {{order_status==item.id?'current':''}}" data-type="{{item.id}}" style="{{order_status==item.id?'border-color:'+skin.color:''}}">
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+  <view class='nav-bar-content'>
+    <!-- 订单项目 S -->
+    <block wx:if="{{!is_empty}}">
+      <view class="card" wx:for="{{order}}" wx:key="id" bindtap="goOrder" data-type="{{item.order_id}}" data-delivery="{{item.delivery}}">
+        <i-card data-orderId="{{item.order_id}}" iClass="my-card" showModal="true">
+          <view class="card-header" slot="header">
+            <view>下单时间：
+              <text>{{item.createTime}}</text>
+            </view>
+            <view class="bold {{item.order_status_id==3?'red':'gray'}}" style="{{item.order_status_id==3?'color:'+skin.color:''}}">
+              <block wx:if="{{item.delivery=='hexiao'&&(item.order_status_id==3||item.order_status_id==4||item.order_status_id==11)}}">{{hexiaoStatus[item.order_status_id]}}</block>
+              <block wx:else>{{item.status_name}}</block>
+            </view>
+          </view>
+          <view class="card-content" slot="content">
+            <view class="content-wrap" wx:if="{{item.is_pin==1}}">
+              <i-img height="60" iClass="show-img mar-right-10" lazyLoad="true" loadImage="{{item.goods_list[0].goods_images}}" width="60"></i-img>
+              <view class="i-flex-item">
+                <view class="name bold">
+                  <text class="pintag" style="background:{{skin.color}}">拼团</text>
+                  {{item.goods_list[0].name}}
+                </view>
+                <view class="mount">{{item.goods_list[0].option_str}} x {{item.goods_list[0].quantity}}</view>
+                <view class="bottom-info">¥{{item.goods_list[0].price}} <text>¥{{item.goods_list[0].orign_price}}</text></view>
+              </view>
+            </view>
+            <view class="content-wrap" wx:else>
+              <view class='clearfix'>
+                <i-img wx:for="{{item.goods_list}}" wx:if="{{i_inx<4}}" wx:key="id" wx:for-item="img" wx:for-index="i_inx"  height="60" iClass="show-img {{i_inx<4?'mar-right-10':''}}" lazyLoad="true" loadImage="{{img.goods_images}}" width="60"></i-img>
+              </view>
+              <view class="dot" wx:if="{{item.goods_list.length>=4}}">
+                <view class="dot-item"></view>
+                <view class="dot-item dot-middle"></view>
+                <view class="dot-item"></view>
+              </view>
+            </view>
+          </view>
+          <view class="card-footer" slot="footer">
+            <view>共
+              <text class="i-class">{{item.goods_list.length}}</text> 件商品
+              <view class="accual-pay" wx:if="{{item.orderStatus!=3}}">实付：
+                <view class="money" wx:if="{{item.type=='integral'}}">
+                  <block wx:if="{{item.shipping_fare>0}}">¥{{item.shipping_fare}} + </block>{{item.score}}积分
+                </view>
+                <view class="money" wx:else>
+                  ¥{{item.total}}
+                </view>
+              </view>
+            </view>
+            <view class="button-group" wx:if="{{item.order_status_id==3}}">
+              <view catchtap="cancelOrder" data-type="{{item.order_id}}" class="my-button" data-show="cancelVisible">取消订单</view>
+              <view catchtap="preOrderPay" data-type="{{item.order_id}}" class="my-button-pay padding-15" style="background: linear-gradient(90deg, {{skin.color}} 0%, {{skin.light}} 100%)">
+                立即支付
+              </view>
+            </view>
+            <view wx:if="{{item.order_status_id==4}}">
+              <view data-type="{{item.order_id}}" class="my-button" size="small" wx:if="{{item.delivery=='hexiao'}}">去使用</view>
+              <view data-type="{{item.order_id}}" class="get-goods" data-delivery="{{item.delivery}}" wx:else>
+                <view class="sure-get">{{item.delivery=="pickup"?"确认提货":"确认收货"}}</view>
+                <image class="right-arrow" src="../../images/rightArrowImg.png"></image>
+              </view>
+            </view>
+            <view wx:if="{{item.order_status_id==1||item.order_status_id==6||item.order_status_id==11||item.order_status_id==14}}">
+              <view data-type="{{item.order_id}}" class="my-button" size="small">查看详情</view>
+            </view>
+          </view>
+        </i-card>
+      </view>
+    </block>
+    <view class="empty-wrap" wx:else>
+      <image class="empty-img" src="../../images/noData.png"></image>
+      <view class="empty-txt">暂无任何订单记录～</view>
+    </view>
+    <!-- 订单项目 E -->
+    <i-loadMore tip="{{tip}}" wx:if="{{!isHideLoadMore}}"></i-loadMore>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="fui-title" style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.margintop?'margin-top:'+item.style.margintop/2+'px;':'margin:0;'}}{{item.style.color?'color:'+item.style.color+';':''}}{{item.style.textalign?'text-align:'+item.style.textalign+';':''}}{{item.style.fontsize?'font-size:'+item.style.fontsize/2+'px;':''}}{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
+      <navigator hoverClass='none' url='{{item.params.link}}'>
+      <span class="icox {{item.params.icon}}" style="margin:0 15rpx"></span>
+      <text>{{item.params.title}}</text>
+      </navigator>
+</view>

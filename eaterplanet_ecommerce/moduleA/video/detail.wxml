@@ -1,0 +1,30 @@
+<i-navigation-bar back="{{showBackBtn}}" color="#FFFFFF" background="transparent" style="position:absolute;z-index:10000;top:0;">
+  <cover-view slot="left">
+    <cover-view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
+      <cover-image class="img" src="/eaterplanet_ecommerce/images/zhuye.png"></cover-image>
+    </cover-view>
+  </cover-view>
+</i-navigation-bar>
+<scroll-view scrollY="false" style="height:100vh;">
+  <view class="main">
+    <view class="section">
+      <video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="myVideo" objectFit="{{is_heng==0?'fill':'contain'}}" showFullscreenBtn="{{false}}" src="{{goods.video}}"></video>
+    </view>
+    <cover-view bindtap="goDetails" class="goods" data-id="{{goods.id}}" wx:if="{{goods}}">
+      <cover-view class="good-img">
+        <cover-image src="{{goods.image_thumb?goods.image_thumb:'../../images/placeholder-refund.png'}}"></cover-image>
+      </cover-view>
+      <cover-view style="display: flex;flex-direction: column;justify-content: space-between;margin-right:10rpx;flex:1;">
+        <cover-view class="good-title text-overflow2">{{goods.goodsname}}</cover-view>
+        <cover-view class="xqbottom">
+          <cover-view class="good-price">￥{{goods.price_front}}.{{goods.price_after}}</cover-view>
+          <cover-image class="cart" src="../../images/icon-add-shopCart.png"></cover-image>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+    <cover-view class="switch">
+      <cover-view bindtap="pre" class="an">上一个商品</cover-view>
+      <cover-view bindtap="next" class="an">下一个商品</cover-view>
+    </cover-view>
+  </view>
+</scroll-view>

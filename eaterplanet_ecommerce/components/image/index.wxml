@@ -1,0 +1,4 @@
+<view class="img-view" style="width:{{w}}px;height:{{h}}px;">
+  <image class='img-image' bindload="imageLoad" bindtap="preview" lazyLoad="{{isLazy}}" mode="aspectFill" src="{{img}}" style="width:{{w}}px;height:{{h}}px;border-radius:{{isCircle?'50%':''}};"></image>
+  <image class='img-image' hidden="{{isLoad}}" src="{{defaultImage}}" style="width:{{w}}px;height:{{h}}px;"></image>
+</view>

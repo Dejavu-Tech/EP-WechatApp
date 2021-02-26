@@ -1,0 +1,72 @@
+<navBar title="核销信息" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="bg-f p15 m15 rounded shadow">
+  <view class="fsz-34 weight text-3">用户信息</view>
+  <view class="mt10">
+    <view>昵称：{{orders.username}}</view>
+    <view>收货人：{{orders.shipping_name}}</view>
+    <view>手机号：{{orders.shipping_tel}}</view>
+    <view>商品数量：{{order_goods_count}}</view>
+  </view>
+</view>
+
+<view class="bg-f p15 m15 rounded shadow">
+  <view class="i-flex pb15">
+    <view class="fsz-34 weight text-3 pb15 i-flex-item">核销内容</view>
+    <view class="red" bindtap="allHexiao">全部核销</view>
+  </view>
+  <view class="list">
+    <view class="item border-bottom" wx:for="{{order_goods_saleshexiao_list}}" wx:key="id">
+      <view class="i-flex">
+        <image src="{{item.goods_images}}" class="goodsimg"></image>
+        <view>
+          <view class="fsz-28">{{item.goods_name}}</view>
+          <view class="fsz-24 text-gray mt10">x {{item.quantity}}</view>
+        </view>
+      </view>
+      <view class="mt10 fsz-24 text-6">
+        <view>订单编号：{{orders.order_num_alias}}</view>
+        <view>核销日期：{{item.effect_begin_time}}~{{item.effect_begin_time}}</view>
+      </view>
+      <view wx:if="{{item.hexiao_type==1}}" class="mt10 fsz-24 text-6">
+        <view>总核销：{{item.hexiao_count}}次</view>
+        <view>已核销：{{item.has_hexiao_count}}次</view>
+        <view>可核销：{{item.remain_hexiao_count}}次</view>
+      </view>
+      <view class="state mt10 bg-sucess" wx:if="{{item.is_hexiao_over==1}}">已核销</view>
+      <view class="state mt10 bg-primary" bindtap="goHexiao" data-id="{{item.id}}" data-type="{{item.hexiao_type}}" wx:else>核销</view>
+    </view>
+  </view>
+</view>
+
+<!-- 核销弹窗 -->
+<i-modal scrollUp="{{true}}" visible="{{showHexiaoModal}}" bind:cancel="handleHexiaoModal">
+  <view class="sku-card">
+    <view class="weight fsz-32 pb10 text-center">
+      商品核销
+      <text class="iconfont icon-guanbi fsz-34 text-3" bindtap="handleHexiaoModal"></text>
+    </view>
+    <scroll-view scroll-y style="max-height: 60vh;" class="pb15">
+      <view class="i-flex border-bottom pb15">
+        <image src="{{order_goods_info.goods_images}}" class="goodsimg"></image>
+        <view>
+          <view class="fsz-28">{{order_goods_info.goods_name}}</view>
+          <view class="fsz-24 text-gray mt10">x {{order_goods_info.quantity}}</view>
+        </view>
+      </view>
+      <!-- 使用记录 -->
+      <view wx:if="{{hexiao_record_list}}" class="fsz-24 pb15 border-bottom">
+        <view class="fsz-28 weight mb10 mt10">使用记录</view>
+        <view class="i-flex mt10" wx:for="{{hexiao_record_list}}" wx:key="index">
+          <view class="i-flex-item">核销次数：{{item.hexiao_count}}</view>
+          <view>核销时间：{{item.hx_time}}</view>
+        </view>
+      </view>
+    </scroll-view>
+     <!-- 剩余可使用 -->
+    <view class="mt10 i-flex i-flex-alc pb15">
+      <view class="i-flex-item">使用次数（剩余 <text class="red">{{saleshexiao_info.remain_hexiao_count}}</text> 次）</view>
+      <i-input-number bind:change="changeNumber" bind:outOfMax="outOfMax" max="{{saleshexiao_info.remain_hexiao_count}}" min="1" value="{{hxNum}}"></i-input-number>
+    </view>
+    <view class="state mt10 bg-primary fsz-32" style="height: 74rpx;line-height: 74rpx;" data-id="{{saleshexiao_info.id}}" bindtap="numHexiao">确认使用</view>
+  </view>
+</i-modal>

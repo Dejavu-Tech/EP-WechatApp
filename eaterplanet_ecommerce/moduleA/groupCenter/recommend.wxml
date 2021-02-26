@@ -1,0 +1,5 @@
+<navBar title="推荐二维码" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='content'>
+  <view class='img' bindtap="preImg"><image src='{{qrcode}}'></image></view>
+  <view class="tip text-gray mt10">点击二维码图片预览，长按保存图片，发送至群。</view>
+</view>

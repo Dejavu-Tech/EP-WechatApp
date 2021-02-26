@@ -1,0 +1,39 @@
+  <!-- 小区确认begin -->
+  <i-modal scrollUp="{{false}}" visible="{{visible&&canChange}}">
+    <view class="community-box">
+      <view class="community-content">
+        <view class="community-content-title">
+          分享{{groupInfo.owner_name}}与当前{{groupInfo.owner_name}}不一致，<block wx:if="{{canChange}}">请选择</block><block wx:else>因为设置无法切换{{groupInfo.owner_name}}，所以仍绑定之前{{groupInfo.owner_name}}。</block>
+        </view>
+        <view class="community-content-tip">
+          <view class="item" bindtap="switchCommunity" data-type="1">
+            <view class="item-l">
+              <image class="img" src="{{changeCommunity.disUserHeadImg}}"></image>
+              <view class="type">分享{{groupInfo.owner_name}}</view>
+            </view>
+            <view class="item-r">
+              <view class="name">{{changeCommunity.communityName}} <text wx:if="{{changeCommunity.distance}}" class="distance">{{changeCommunity.distance}}</text></view>
+              <view class="address">{{changeCommunity.fullAddress}}</view>
+            </view>
+            <view class="item-ft">
+              <image mode="widthFix" class="img" src="../../images/community-right-arrow.png"></image>
+            </view>
+          </view>
+          <view class="item" bindtap="switchCommunity" data-type="0" wx:if="{{community&&community.communityName}}">
+            <view class="item-l">
+              <image class="img" src="{{community.disUserHeadImg}}"></image>
+              <view class="type green">原{{groupInfo.owner_name}}</view>
+            </view>
+            <view class="item-r">
+              <view class="name">{{community.communityName}} <text class="distance" wx:if="{{community.distance}}">{{community.distance}}</text></view>
+              <view class="address">{{community.fullAddress}}</view>
+            </view>
+            <view class="item-ft">
+              <image mode="widthFix" class="img" src="../../images/community-right-arrow.png"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </i-modal>
+  <!-- 小区确认end -->

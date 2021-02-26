@@ -1,8 +1,0 @@
-{
-    "navigationBarBackgroundColor": "#FFF",
-    "navigationBarTitleText": "会员分销",
-    "navigationBarTextStyle": "black",
-    "usingComponents": {
-        "i-new-auth": "../../components/new-auth/index"
-    }
-}

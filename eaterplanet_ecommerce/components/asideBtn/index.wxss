@@ -1,0 +1,61 @@
+@import "../../../icon.wxss";
+.cart-btn {
+    position: fixed;
+    right: 0rpx;
+    bottom: 40%;
+    z-index: 100;
+}
+
+.cart-btn .icon {
+    position: relative;
+
+
+    margin-bottom: 20rpx;
+    right: 0rpx;
+    width: 70rpx;
+    height: 100rpx;
+    background: #4facfe86;
+    border-radius: 30rpx 0rpx 0rpx 30rpx;
+    text-align: center;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 20rpx;
+    padding: 10rpx;
+    line-height: 1.4;
+    z-index: 100;
+}
+
+.cart-btn .btn.icon {
+    line-height: 1.5;
+    z-index: 100;
+}
+
+.cart-btn .iconfont {
+  font-size: 30rpx;
+  color: #fff;
+}
+
+
+.cart-btn .none-btn.icon .iconfont {
+  font-size: 35rpx;
+}
+
+.cart-btn .none-btn.icon .name {
+  margin-top: -3rpx;
+}
+
+.button::after {
+width: 200%;
+height: 200%;
+position: absolute;
+top: 0;
+left: 0;
+border: 0px solid rgba(0,0,0,.2);
+-webkit-transform: scale(.5);
+transform: scale(.5);
+-webkit-transform-origin: 0 0;
+transform-origin: 0 0;
+box-sizing: border-box;
+border-radius: 10px;
+
+}

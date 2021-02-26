@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "团长排行",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+      "navBar": "miniprograms-navigation-bar/index"
+      }
+}

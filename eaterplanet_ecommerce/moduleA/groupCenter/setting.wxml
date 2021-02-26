@@ -1,0 +1,141 @@
+<navBar title="团长资料" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='gcs-box'>
+  <view class='top-bg'></view>
+  <view class="avatar-box">
+    <image src="{{headInfo.member_info.avatar}}"></image>
+    <!-- <view class="avatar-edit" bindtap="showEdit" data-type="avatar">修改头像</view> -->
+    <view class="user-id">ID: {{headInfo.re_id}}</view>
+    <view class="rest" wx:if="{{headInfo.close_reset_btn!=1}}">
+      <text>{{rest==1?"休息中":"营业中"}}</text>
+      <switch checked="{{rest==1?false:true}}" bindchange="switchChange" color='#f34b1f' />
+    </view>
+  </view>
+  <!-- 个人资料 -->
+  <view class="gcs-info card">
+    <view class="card-header">
+      <view class="title">个人资料</view><view class="card-edit" bindtap="showEdit" data-type="info">编辑</view>
+    </view>
+    <view class="bot-line"></view>
+    <view class="info-item">
+      <view class="item-title">关联会员</view>
+      <view class="item-content">{{headInfo.member_info.username}}</view>
+    </view>
+    <view class="bot-line"></view>
+    <view class="info-item">
+      <view class="item-title">{{groupInfo.owner_name}}名称</view>
+      <view class="item-content">{{headInfo.head_name}}</view>
+    </view>
+    <view class="bot-line"></view>
+    <view class="info-item">
+      <view class="item-title">手机号</view>
+      <view class="item-content">{{headInfo.head_mobile}}</view>
+    </view>
+    <view class="bot-line"></view>
+    <view class="info-item">
+      <view class="item-title">{{groupInfo.group_name}}名称</view>
+      <view class="item-content">{{headInfo.community_name}}</view>
+    </view>
+    <block wx:if="{{headInfo.delivery_type_tuanz==1}}">
+      <view class="bot-line"></view>
+      <view class="info-item">
+        <view class="item-title">自定义配送开关</view>
+        <view class="item-content">{{tuanType[headInfo.is_modify_shipping_method]}}</view>
+      </view>
+      <view class="bot-line"></view>
+      <view class="info-item">
+        <view class="item-title">自定义配送费</view>
+        <view class="item-content">{{headInfo.is_modify_shipping_fare==0?'跟随系统':headInfo.shipping_fare}}</view>
+      </view>
+      <view class="info-item" wx:if="{{headInfo.share_wxcode}}">
+        <view class="item-title">群分享二维码</view>
+        <view class="item-content">
+          <image class='img' src='{{headInfo.share_wxcode}}'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<!-- 修改头像begin -->
+<i-modal scrollUp="{{false}}" visible="{{showEditAvatar}}" wx:if="{{showEditAvatar}}">
+  <view class="avatar-edit-box">
+    <view class="modal-title">修改头像</view>
+    <image src="{{headInfo.member_info.avatar}}"></image>
+    <view class="bot-line"></view>
+    <view class="modal-btn">上传头像</view>
+    <view class="bot-line"></view>
+    <view class="modal-btn cancel" bindtap="hideEdit">取消</view>
+  </view>
+</i-modal>
+<!-- 修改头像end -->
+
+<!-- 个人资料修改begin -->
+<i-modal scrollUp="{{false}}" visible="{{showEditUserInfo}}" wx:if="{{showEditUserInfo}}">
+  <view class="edit-box">
+    <form bindsubmit="infoFormSubmit">
+      <view class="card-header">
+        <view class="title">修改个人资料</view>
+        <image class="edit-close" bindtap="hideEdit" src="../../images/icon-sku-close.png"></image>
+      </view>
+      <view class="bot-line"></view>
+      <view class="info-item">
+        <view class="item-title">{{groupInfo.owner_name}}名称</view>
+        <view class="item-content">
+          <input name="head_name" value="{{headInfo.head_name}}" bindfocus="iptFocus" bindblur="iptBlur" data-name="headName" placeholder="请输入团长名称" />
+        </view>
+      </view>
+      <view class="bot-line {{currentFocus=='headName'?'focus':''}}"></view>
+      <view class="info-item">
+        <view class="item-title">手机号</view>
+        <view class="item-content">
+          <input name="head_mobile" type="number" value="{{headInfo.head_mobile}}" bindfocus="iptFocus" bindblur="iptBlur" data-name="headMobile" placeholder="请输入手机号" />
+        </view>
+      </view>
+      <view class="bot-line {{currentFocus=='headMobile'?'focus':''}}"></view>
+      <block wx:if="{{headInfo.delivery_type_tuanz==1}}">
+        <view class="info-item">
+          <view class="item-title">自定义配送开关</view>
+          <view class="item-content">
+            <radio-group class="radio-group" bindchange="radioChange" data-name="method">
+              <label class="radio" wx:for="{{tuanItems}}" wx:key="name">
+                <radio value="{{item.name}}" checked="{{headInfo.is_modify_shipping_method==item.name?true:false}}" /><text>{{item.value}}</text>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+        <view class="info-item">
+          <view class="item-title">自定义配送费</view>
+          <view class="item-content">
+            <radio-group class="radio-group" bindchange="radioChange" data-name="fare">
+              <label class="radio" wx:for="{{fareItems}}" wx:key="name">
+                <radio value="{{item.name}}" checked="{{headInfo.is_modify_shipping_fare==item.name?true:false}}" /><text>{{item.value}}</text>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+        <block wx:if="{{showFare}}">
+          <view class="info-item">
+            <view class="item-title">配送费(元)</view>
+            <view class="item-content">
+              <input name="shipping_fare" value="{{headInfo.shipping_fare}}" bindfocus="iptFocus" bindblur="iptBlur" data-name="tuanzMoney" placeholder="请输入配送费" />
+            </view>
+          </view>
+          <view class="bot-line {{currentFocus=='tuanzMoney'?'focus':''}}"></view>
+        </block>
+      </block>
+      <view class="info-item" bindtap='choseImg'>
+        <view class="item-title">群分享二维码(点击修改)</view>
+        <view class="item-content">
+          <image class='img' src='{{headInfo.share_wxcode}}' wx:if="{{headInfo.share_wxcode}}"></image>
+          <view class="upload-btn" wx:else>
+            <text class="iconfont icon-xiangce"></text>
+          </view>
+        </view>
+      </view>
+      <view class="edit-btn">
+        <button loading="{{btnLoading}}" form-type="submit">保存</button>
+      </view>
+    </form>
+  </view>
+</i-modal>
+<!-- 个人资料修改end -->

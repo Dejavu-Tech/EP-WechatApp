@@ -1,0 +1,16 @@
+.img-content {
+  position: relative;
+}
+
+.img-def {
+  position: absolute !important;
+  transition: opacity 0.1s;
+}
+
+.opacity {
+  opacity: 0;
+}
+
+.show-img {
+  opacity: 1;
+}

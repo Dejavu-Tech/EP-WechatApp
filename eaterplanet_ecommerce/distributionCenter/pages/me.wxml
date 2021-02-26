@@ -1,0 +1,50 @@
+<navBar title="会员分销中心" background='#fff' back="{{true}}" iconTheme='black' color='' bindback="handlerGobackClick"/>
+<view class="wrap">
+  <view class='user-info i-flex i-flex-alc bor-bottom'>
+    <image class='avatar' src='{{member_info.avatar}}'></image>
+    <view class='i-flex-item'>
+      <view class='nickname'>{{member_info.username}}</view>
+      <view class='userid'>ID：{{member_info.member_id}}</view>
+      <!-- <view class='invote'>邀请人：{{info.share_name||'无'}}</view> -->
+      <view class='invote' wx:if="{{parent_info}}">直属上级：{{parent_info.username||'无'}}</view>
+      <view class='invote' wx:else>直属上级：无</view>
+    </view>
+  </view>
+  <view class='money i-flex i-flex-alc bor-bottom'>
+    <view class='i-flex-item'>
+      <view class="recharge-money">{{info.money}}</view>
+      <view class="recharge-tip">可提现金额（元）</view>
+    </view>
+    <view class='btn' bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/excharge'>
+      <button type='warn' size='mini'>提现</button>
+    </view>
+  </view>
+  <view class='menu'>
+    <view bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/member'>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">我的粉丝</view>
+        <view class="tool-right">
+          <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </view>
+    <view bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/goodsDetails'>
+      <view class="item-main i-flex i-flex-alc bor-bottom">
+        <view class="item-title i-flex-item">推广收益</view>
+        <view class="tool-right">
+          <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </view>
+    <view bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/share'>
+      <view class="item-main i-flex i-flex-alc">
+        <view class="item-title i-flex-item">我的二维码</view>
+        <view class="tool-right">
+          <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>

@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "订单详情",
+  "navigationBarBackgroundColor": "#ff5344",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-img": "../../components/img/index",
+    "i-card": "../../components/card/index",
+    "i-modal": "../../components/modal/index",
+    "i-select-rider": "components/selectRider"
+  }
+}

@@ -1,0 +1,67 @@
+@import 'tabbar.wxss';
+
+.user-info .avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  border-radius: 50%;
+}
+
+.nickname {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #000;
+}
+
+.userid,
+invote {
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.money {
+  padding: 20rpx 30rpx;
+}
+
+.bor-bottom {
+  position: relative;
+}
+
+.bor-bottom::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  transform: scaleY(.5);
+  border-bottom: 1rpx solid #efefef;
+}
+
+.item-main {
+  padding: 32rpx 40rpx;
+}
+
+.item-title {
+  height: 40rpx;
+  width: 400rpx;
+  color: #444;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+}
+
+.icon-right {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.recharge-money {
+  color: #ce3c39;
+  font-size: 50rpx;
+}
+
+.recharge-tip {
+  color: #999;
+  font-size: 24rpx;
+}

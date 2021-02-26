@@ -1,0 +1,52 @@
+.orderNotify {
+  background-color: rgba(0,0,0,.6);
+  color: #fff;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  padding: 0 20rpx;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  transform: translateX(-100%);
+}
+
+.orderNotify.ani-in {
+  animation: aniIn 400ms ease-in forwards;
+}
+
+.orderNotify.ani-out {
+  animation: aniOut 400ms ease-out forwards;
+}
+
+.orderNotifyAvatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+
+.orderNotifyName {
+  display: inline-block;
+  max-width: 200rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+@keyframes aniIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes aniOut {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

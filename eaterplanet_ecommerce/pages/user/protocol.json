@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "常见帮助",
+  "usingComponents": {
+    "i-empty": "../../components/empty/index"
+  }
+}

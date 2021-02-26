@@ -1,0 +1,44 @@
+<form bindsubmit="submit2" reportSubmit="true">
+  <button hidden formType="submit" id="formId"></button>
+</form>
+<label class="spu" for="formId">
+  <i-router-link routerClass="spu-content" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?&id={{spuItem.actId}}">
+    <view class="item-top">
+      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="100" iClass="img-class" lazyLoad="true" loadImage="{{spuItem.bigImg?spuItem.bigImg:spuItem.skuImage}}" width="100"></i-img>
+      <view class="spu-play" wx:if="{{spuItem.is_video}}">
+        <image class="img" src="../../images/play.png"></image>
+      </view>
+    </view>
+    <view class="item-bottom">
+      <view class="item-right-top">
+        <view class="spu-title text-overflow1">
+          <text class='span'>{{spuItem.spuName}}</text>
+        </view>
+        <view class="spu-desc text-overflow1" wx:if="{{spuItem.spuDescribe}}">
+          <em>{{spuItem.spuDescribe}}</em>
+        </view>
+      </view>
+      <i-vip-price wx:if="{{is_open_vipcard_buy==1&&spuItem.is_take_vipcard==1}}" price="{{spuItem.card_price}}"></i-vip-price>
+      <view class="spu-price">
+        <view class="sale-price">
+          <text class='span'>¥{{spuItem.actPrice[0]}}</text>.{{spuItem.actPrice[1]}}
+        </view>
+        <view class="market-price">¥{{spuItem.marketPrice[0]}}.{{spuItem.marketPrice[1]}}</view>
+      </view>
+    </view>
+    <block wx:if="{{!isPast}}">
+      <block wx:if="{{number<=0}}">
+        <i-button iClass="add-cart" wx:if="{{disabled||spuItem.spuCanBuyNum==0||actEnd}}">
+          <image class='img' src="../../images/icon-add-shopCart-disabled.png"></image>
+        </i-button>
+        <i-button bind:click="openSku" iClass="add-cart" wx:else>
+          <i-addcart iClass='img' fontsize="28" />
+        </i-button>
+      </block>
+      <i-input-number wx:else addImage="../../images/icon-add-2.png" bind:change="changeNumber" bind:outOfMax="outOfMax" iNumberView="input-number-view" iNumberImg="input-number-img" iClassNumberText="input-number-input" max="{{spuItem.spuCanBuyNum}}" min="0" reduceImage="../../images/icon-reduce-2.png" value="{{number}}" class="col-input-number"></i-input-number>
+    </block>
+    <view class="mask" wx:if="{{isPast||disabled||spuItem.spuCanBuyNum==0?'disabled':''}}"></view>
+    <view class="act-end act-out" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+    <view class="act-end" wx:elif="{{actEnd}}">已结束</view>
+  </i-router-link>
+</label>

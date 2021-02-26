@@ -1,0 +1,126 @@
+<navBar title="售后申请" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="wrap">
+	<view class="goods">
+		<view class="goods-item">
+			<view style="goods-item-l">
+				<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{order_goods.goods_images}}" width="60"></i-img>
+			</view>
+			<view class="goods-item-r">
+				<view class="name">{{order_goods.name}}</view>
+				<block wx:if="{{order_goods.type=='integral'}}">
+					<view class="mount">
+						<block wx:if="{{order_goods.option_str}}">{{order_goods.option_str}} </block>{{order_goods.price}}积分 x {{order_goods.quantity}}
+					</view>
+					<view class="price">{{order_goods.total_score}}积分</view>
+				</block>
+				<block wx:else>
+					<view class="mount">
+						<block wx:if="{{order_goods.option_str}}">{{order_goods.option_str}} </block>￥{{order_goods.price}} x {{order_goods.quantity}}
+					</view>
+					<view class="price">￥{{total}}</view>
+				</block>
+			</view>
+		</view>
+	</view>
+	<view class="cell-col">
+		<view class="tit">退款数量：</view>
+		<view class="ll">
+      <block wx:if="{{selArr&&selArr.length}}" wx:for="{{selArr}}" wx:key="index">
+        <label class="i-flex i-flex-alc fsz-26 mb10 {{item.isrefund?'isrefund':''}}">
+          <view class="checkbox" wx:if="{{item.isrefund}}">
+            <image class="checkbox-img" src="../../images/checkbox-disabled.png"></image>
+          </view>
+          <checkbox-group bindchange="goodsselect" data-idx="{{index}}" wx:else>
+            <view class="checkbox">
+              <image class="checkbox-img" src="../../images/checkbox-checked.png" wx:if="{{item.isselect}}"></image>
+              <image class="checkbox-img" src="../../images/checkbox-disabled.png" wx:else></image>
+              <checkbox hidden checked="{{item.isselect}}" value="{{item.isselect}}"></checkbox>
+            </view>
+          </checkbox-group>
+          <view class="mx10 i-flex-item text-overflow1">{{order_goods.name}}</view>
+          <!-- <view class="red fsz-28 weight">￥{{order_goods.price}}</view> -->
+        </label>
+      </block>
+		</view>
+	</view>
+	<view class="cell">
+		<view class="cell-hd">售后类型：</view>
+		<view class="cell-bd">申请退款</view>
+	</view>
+	<view class="cell">
+		<view class="cell-hd">问题类型：</view>
+		<view class="cell-bd">
+			<picker bindchange="bindPickerChange" value="{{index}}" range="{{xarray}}">
+				<view class="picker">
+					{{xarray[index]}}
+				</view>
+			</picker>
+		</view>
+	</view>
+	<view class="cell">
+		<view class="cell-hd">退款金额：</view>
+		<view class="cell-bd i-flex" wx:if="{{order_goods.type=='integral'}}">
+
+			<input class='cell-ipt i-flex-item i-aic' value="{{refund_money}}" bindinput="refund_money_input" type="text" placeholder="最高可退 {{refund_money}}积分"></input> <text style="margin-top:2px;margin-left:3px;">积分</text>
+		</view>
+		<view class="cell-bd" wx:else>
+			<input class='cell-ipt' value="{{refund_money}}" bindinput="refund_money_input" type="text" placeholder="最高可退款 ￥{{max_can_refund}}"></input>
+		</view>
+	</view>
+	<block wx:if="{{order_goods.use_score>0}}">
+		<view class="cell">
+			<view class="cell-hd">积分抵扣金额：</view>
+			<view class="cell-bd">￥{{order_goods.score_for_money}}</view>
+		</view>
+		<view class="cell">
+			<view class="cell-hd">可退积分：</view>
+			<view class="cell-bd">{{refund_score?refund_score:order_goods.use_score}}积分</view>
+		</view>
+	</block>
+  <view class="cell">
+		<view class="cell-hd">可退配送费：</view>
+		<view class="cell-bd">
+      <view>￥{{can_shipping_fare}}</view>
+			<view class="fsz-22 text-gray" wx:if="{{order_goods.shipping_fare==0}}">无配送费</view>
+		</view>
+	</view>
+	<view class="cell-col">
+		<view class="tit">商品问题描述：</view>
+		<textarea class='cell-textarea' bindinput="wenti_input" maxlength="1000" placeholder="问题描述越详细,可以提高您的申请成功率哦~" value="{{complaint_desc}}"></textarea>
+	</view>
+	<view class='cell-col'>
+		<view class="tit">上传凭证图片（最多三张）</view>
+		<view class='img-wrap'>
+			<view class="image_uploader_image" wx:for="{{refund_thumb_imgs}}" wx:key="index">
+				<image class="image_uploader_image_img_portrait" src="{{item}}"> </image>
+				<view class="image_uploader_image_delete" data-sr="{{item}}" bindtap='cancle_img'>-</view>
+			</view>
+			<view class="image_uploader_selector" bindtap='choseImg'>
+				<view class="image_uploader_indicate">+</view>
+			</view>
+		</view>
+	</view>
+	<view class="cell">
+		<view class="cell-hd">联系人：</view>
+		<view class="cell-bd">
+			<input class='cell-ipt' value="{{complaint_name}}" bindinput="name_input" type="text" maxlength="20" placeholder="请输入联系人"></input>
+		</view>
+	</view>
+	<view class="cell">
+		<view class="cell-hd">联系方式：</view>
+		<view class="cell-bd">
+			<input class='cell-ipt' value="{{complaint_mobile}}" bindinput="mobile_input" type="number" maxlength="20" placeholder="请输入手机号"></input>
+		</view>
+	</view>
+
+	<view class="submit_button">
+		<view class="span" bindtap='sub_refund'>提交申请</view>
+	</view>
+
+	<view class='note'>
+		<view class='note-tit'>退款须知</view>
+		<view class="article">
+			<view class="p">请按照提示关注维权进度和超时提醒并提供相应凭证。</view>
+		</view>
+	</view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "navigationBarBackgroundColor": "#FFF",
+  "navigationBarTitleText": "结算记录",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "component-load-more": "../../components/load-more/index"
+  }
+}

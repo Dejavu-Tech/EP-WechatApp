@@ -1,0 +1,161 @@
+<navBar ref=''  background='#4facfe'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgindex="{{true}}" ></navBar>
+<view class="wrap">
+	<!-- 幻灯片 -->
+	<view class="swipe pt10" wx:if="{{slider_list.length>0}}">
+		<swiper indicatorDots class="swiper-content" duration="400" autoplay indicatorActiveColor="{{skin.color}}" indicatorColor="#E7E9E7" interval="5000" circular>
+			<swiper-item wx:for="{{slider_list}}" wx:key="id">
+				<view class='banner' bindtap='goBannerUrl' data-idx="{{index}}">
+					<i-img iClass="banner-img" loadImage="{{item.image}}"></i-img>
+				</view>
+			</swiper-item>
+		</swiper>
+	</view>
+	<!-- 导航列表 -->
+	<view class='nav-list' wx:if="{{navigat.length>0}}">
+		<block wx:for="{{navigat}}" wx:key="id">
+			<view class='nav-list-item' bindtap='goNavUrl' data-idx="{{index}}" wx:if="{{item.type!=5}}">
+				<i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+				<view class='nav-list-text'>{{item.navname}}</view>
+			</view>
+			<button class="nav-list-item nav-contact" openType="contact" wx:else>
+				<i-img height="86" iClass="nav-list-img" loadImage="{{item.thumb}}" width="86"></i-img>
+				<view class='nav-list-text'>{{item.navname}}</view>
+			</button>
+		</block>
+		<div style="width:20%;" wx:for="{{navigatEmpty}}" wx:if="{{navigatEmpty.length}}" wx:key="id"></div>
+	</view>
+
+	<!-- 列表 -->
+	<!-- <image id='rush-title' wx:if="{{index_list_top_image}}" class="rush-list-title" src="{{index_list_top_image}}"></image> -->
+	<view class='sticky-cate' style="{{'top: ' + statusBarHeight}}">
+		<i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+		<view class="tab-nav-query"></view>
+	</view>
+
+	<view class='rush-list-box'>
+		<block wx:if="{{rushList.length>0}}">
+			<!-- 样式一 Start -->
+			<view class="active-item" wx:for="{{rushList}}" wx:key="id" wx:if="{{rushList.length>0 && theme==0}}">
+				<view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+					<view class="empty-1"></view>
+					<view class="empty-2" wx:if="{{item.spuDescribe}}"></view>
+					<view class="empty-3"></view>
+					<view class="list-item-count-down" style="color:{{skin.color}}" wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}" data-xx="{{item.spuCanBuyNum}}">
+						仅剩
+						<em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+						<span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+						<span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+						<span class="item-class">{{countDownMap[item.end_time].second}}</span>
+					</view>
+				</view>
+				<i-new-rush-spu actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}"></i-new-rush-spu>
+			</view>
+			<!-- 样式一 End -->
+			<!-- 样式二 Start -->
+			<view class="active-item-two" wx:for="{{rushList}}" wx:key="id" wx:if="{{rushList.length>0 && theme==1}}">
+				<view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+					<view class="list-item-count-down type-two" style="color:{{background.color}}" wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}">
+						仅剩
+						<em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+						<span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+						<span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+						<span class="item-class">{{countDownMap[item.end_time].second}}</span>
+					</view>
+				</view>
+				<i-rush-spu-big saleUnit="{{goods_sale_unit}}" actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}"></i-rush-spu-big>
+			</view>
+			<!-- 样式二 End -->
+			<!-- 样式三 Start -->
+			<view class="theme3" wx:if="{{rushList.length>0 && theme==2}}">
+				<image class='topic-img' src="{{cate_info.banner}}" mode="widthFix" wx:if="{{cate_info.banner}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/details?id={{classificationId}}"></image>
+				<i-rush-spu class="item" wx:for="{{rushList}}" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" bind:vipModal="vipModal"></i-rush-spu>
+			</view>
+			<!-- 样式三 End -->
+			<!-- 样式4 Start -->
+			<view class="comming-list themeTwo" wx:if="{{rushList.length>0&&theme==3}}">
+				<skeleton wx:for="{{rushList}}" wx:key="actId" class="comming-spu-item">
+					<i-tworow actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku" spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal" needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}"></i-tworow>
+				</skeleton>
+			</view>
+			<!-- 样式4 End -->
+			<i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{loadMore}}"></i-load-more>
+		</block>
+
+		<view class="none-rush-list" wx:if="{{showEmpty}}">
+			<image class="img-block" src="../../images/icon-index-empty.png"></image>
+			<view class="h1">暂时没有商品</view>
+			<view class="h2">我们正在为您准备更优惠的商品</view>
+		</view>
+		<view class="slogan" wx:if="{{!loadMore&&rushList.length}}">
+			<image src="{{indexBottomImage?indexBottomImage:'../../images/icon-index-slogan.png'}}"></image>
+		</view>
+	</view>
+</view>
+
+<i-tabbar currentIdx='2' cartNum='{{cartNum}}' wx:if="{{showTabbar}}" class="tabbar {{isIpx?'pb20':''}}" />
+
+<view class="mask" hidden="{{!visible}}"></view>
+<!---规格选择begin-->
+<view bind:cancel="close" class='sku-content' scrollUp="{{true}}" hidden="{{!visible}}">
+	<view class="sku-card">
+		<view bindtap="closeSku" class="close">
+			<image src="../../images/icon-sku-close.png"></image>
+		</view>
+		<view class="sku-header">
+			<i-img defaultImage="../../images/placeholder-refund.png" height="80" iClass="sku-img" loadImage="{{cur_sku_arr.skuImage}}" width="80"></i-img>
+			<view class="sku-desc">
+				<view class="sku-title">
+					<span>{{cur_sku_arr.spuName}}</span>
+				</view>
+				<view class="sku-price">
+					<view class="sale-price">
+						¥ <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
+					</view>
+					<view class="market-price">¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</view>
+					<!-- 会员价 -->
+					<i-vip-price wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member==1&&is_take_vipcard==1}}" price="{{cur_sku_arr.card_price}}"></i-vip-price>
+					<block wx:elif="{{is_member_level_buy==1&&is_mb_level_buy==1}}">
+						<i-vip-price wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+						<i-vip-price wx:if="{{is_open_vipcard_buy!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+					</block>
+				</view>
+				<view class="sku-switch-on">已选择：{{cur_sku_arr.spec}}</view>
+			</view>
+		</view>
+
+		<view class="sku-spec" wx:for="{{skuList.list}}" wx:key="id">
+			<view class="title">{{item.name}}</view>
+			<view class="spec-list">
+				<span bindtap="selectSku" class="{{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for-index="idx" data-idx="{{idx}}" wx:for="{{item.option_value}}" wx:for-item="value" wx:key="idx">{{value.name}}</span>
+			</view>
+		</view>
+		<view class="sku-num-content">
+			<view class="title">数量</view>
+			<view class="i-class i-input-number i-input-number-size-{{size}}">
+				<view bindtap="setNum" data-type="decrease" class="i-input-number-minus {{value<=min?'i-input-number-disabled':''}}">
+					<image src="../../images/icon-input-reduce.png"></image>
+				</view>
+				<input bindblur="handleBlur" bindfocus="handleFocus" class="i-input-number-text {{min>=max?'i-input-number-disabled':''}}" type="number" value="{{sku_val}}" bindinput="changeNumber"></input>
+				<view bindtap="setNum" data-type="add" class="i-input-number-plus {{value>=max?'i-input-number-disabled':''}}">
+					<image src="../../images/icon-input-add.png"></image>
+				</view>
+			</view>
+			<view class="msg" wx:if="{{skuList[current].isLimit}}">
+				<span wx:if="{{skuList[current].limitMemberNum>-1}}">每人限{{skuList[current].limitMemberNum}}单</span>
+				<span wx:if="{{skuList[current].limitOrderNum>-1}}">每单限{{skuList[current].limitOrderNum}}份</span>
+				<span></span>
+			</view>
+			<view class="even-num" wx:elif="{{!skuList[current].isLimit&&skuList[current].canBuyNum-value<=10&&skuList[current].canBuyNum-value>-1}}">还可以购买 {{skuList[current].canBuyNum-value}} 件</view>
+		</view>
+		<form bindsubmit="gocarfrom" report-submit="true">
+			<button formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0 ? true : false}}'>
+				<view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
+			</button>
+		</form>
+	</view>
+</view>
+<!---规格选择end-->
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+

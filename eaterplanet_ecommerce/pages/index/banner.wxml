@@ -1,0 +1,14 @@
+<view class='index-banner' style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.dotstyle?'dot-style:'+item.style.dotstyle+';':''}}{{item.style.dotalign?'dot-align:'+item.style.dotalign+';':''}}{{item.style.opacity?'opacity:'+item.style.opacity+';':''}}">
+    <swiper autoplay="{{autoplay}}" circular="{{circular}}"
+     duration="{{duration}}" indicator-dots="{{indicatorDots}}" indicatorDots="{{indicatorDots}}" 
+     interval="{{interval}}" indicator-color="{{item.style.background}}" class="index-adcs-sqiper index-banner-sqiper"
+      style="{{bannerheight?'height:' + bannerheight + 'px':'height:auto'}}">
+        <block wx:for='{{item.data}}' wx:for-item='item' wx:for-index='idx' wx:key="*this">
+            <swiper-item>
+                <navigator class="index-advs-navigator" url="{{item.linkurl}}" >
+                    <image mode="widthFix" src="{{item.imgurl}}" bindload="imagesHeight" class="advimg" data-type="bannerheight"></image>
+                </navigator>
+            </swiper-item>
+        </block>
+    </swiper>
+</view>

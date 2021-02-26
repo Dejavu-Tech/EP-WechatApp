@@ -1,0 +1,34 @@
+<navBar title="我的优惠券" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class='list'>
+  <view class="coupon {{item.is_over==1?'expired':''}} {{item.is_use==1?'used':''}}" wx:for="{{list}}" wx:key="key"
+    wx:if="{{list.length}}">
+    <view class='header'>
+      <view class='price'>
+        <view class='reduce-price'>
+          {{item.credit}}<text>元</text>
+        </view>
+        <view class='reduce-desc'>{{item.limit_money >0.01 ?'满'+item.limit_money+'元可用':'不限制'}}</view>
+      </view>
+      <view class='info'>
+        <view class='reduce-title'><text class='reduce-type' wx:if="{{item.tag}}">{{item.tag}}</text>
+          {{item.voucher_title}}</view>
+        <view class='reduce-area' wx:if="{{item.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+        <view class='reduce-area' wx:elif="{{item.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+        <view class='reduce-area' wx:elif="{{item.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+      </view>
+      <view class='status' wx:if="{{item.is_collect==1}}">
+        <view class='go-shop' wx:if="{{item.is_over==0&&item.is_use==0}}" bindtap='goUse' data-idx='{{index}}'>去使用
+        </view>
+        <image src="../../images/expired.png" wx:if="{{item.is_over==1&&item.is_use==0}}"></image>
+        <image src="../../images/used.png" wx:if="{{item.is_use==1}}"></image>
+      </view>
+      <view class='status' wx:else>
+        <view class='go-shop' wx:if="{{item.is_use==2&&(item.total_count-item.send_count)>0}}" bindtap='receiveCoupon' data-idx='{{index}}'>领取</view>
+        <image src="../../images/expired.png" wx:elif="{{item.is_over==1}}"></image>
+        <image src="../../images/qiangguang.png" wx:elif="{{item.is_nomore==1||(item.total_count-item.send_count)==0}}"></image>
+      </view>
+    </view>
+    <view class='footer'>有效期：{{item.begin_time}}~{{item.end_time}}</view>
+  </view>
+  <i-empty wx:if="{{list.length==0}}">暂无记录~</i-empty>
+</view>

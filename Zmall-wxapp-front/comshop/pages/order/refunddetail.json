@@ -1,6 +1,0 @@
-{
-    "enablePullDownRefresh": true,
-    "usingComponents": {
-        "i-img": "../../components/img/index"
-    }
-}

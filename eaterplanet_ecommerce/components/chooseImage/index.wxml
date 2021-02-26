@@ -1,0 +1,15 @@
+<view class="img-group">
+  <view class="img-item" wx:if="{{imgGroup.length}}" wx:for="{{imgGroup}}" wx:key="id">
+    <view bindtap="remove" class="close" data-idx="{{index}}">
+      <image class='closeImg' src="../../images/img-close.png"></image>
+    </view>
+    <image class="img" bindtap="bigImg" data-list="{{imgGroup}}" data-src="{{item}}" mode="aspectFill" src="{{item}}"></image>
+    <view class="progress {{progressList[index]===100?'hide-progress':''}}">
+      <text class="span" style="width: {{progressList[index]}}%;"></text>
+    </view>
+  </view>
+  <view bindtap="addImg" class="img-item img-add" wx:if="{{imgGroup.length<imgMax}}">
+    <image class="cameraImg" src="../../images/icon-camera.png"></image>
+    <text>{{imgGroup.length?imgGroup.length+'/'+imgMax:'上传图片'}}</text>
+  </view>
+</view>

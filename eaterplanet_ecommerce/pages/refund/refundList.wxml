@@ -1,0 +1,76 @@
+<navBar title="售后退款" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="refundList">
+    <view class="nav">
+      <view bindtap="switchNav" class="orderList_item" data-current="{{item.status}}" wx:for="{{navList}}" wx:key="id" style="{{currentTab===item.status?'color:'+skin.color:''}}">
+        <view>{{item.name}}</view>
+        <view class="line" wx:if="{{currentTab===item.status}}" style="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></view>
+      </view>
+    </view>
+    <swiper bindchange="bindChange" class="swiper-box" current="{{currentTab}}" duration="300" style="height:{{containerHeight}}px">
+      <swiper-item wx:for="{{navList}}" wx:key="id">
+        <scroll-view scrollY bindscrolltolower="getCurrentList" class="order-scroll-view" lowerThreshold="50" scrollTop="{{scrollTop}}" style="height: {{containerHeight}}px">
+          <view class="noRecordCon" wx:if="{{refundList[index].length===0}}">
+            <image class="noRefundImg" src="../../images/noData.png"></image>
+            <view class="noRecord">暂无任何退款记录</view>
+          </view>
+          <block wx:else>
+            <!-- 订单项目 S -->
+            <view class="card" wx:for="{{order}}" wx:key="id" bindtap="goRefund" data-type="{{item.ref_id}}">
+              <view data-orderId="{{item.order_id}}" class="i-card my-card" showModal="true">
+                <view class="card-header" slot="header">
+                  <view>下单时间：
+                    <text>{{item.createTime}}</text>
+                  </view>
+                  <view>
+                    <text class="bold {{item.order_status_id==3?'red':'gray'}}">{{item.status_name}}</text>
+                  </view>
+                </view>
+                <view class="card-content" slot="content">
+                  <view class="content-wrap">
+                    <view>
+                      <view>
+                        <image src='{{img.goods_images}}' wx:for="{{item.goods_list}}" wx:if="{{i_inx<4}}" wx:for-item="img" wx:for-index="i_inx" class="show-img {{i_inx<4?'mar-right-10':''}}" width="60" height="60" wx:key="i_inx"></image>
+                      </view>
+                      <view class="dot" wx:if="{{item.orderSkuResps.length>=4}}">
+                        <view class="dot-item"></view>
+                        <view class="dot-item dot-middle"></view>
+                        <view class="dot-item"></view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+                <view class="card-footer" slot="footer">
+                  <view>共
+                    <text class="i-class">{{item.goods_list.length}}</text> 件商品
+                    <view class="accual-pay" wx:if="{{item.orderStatus!=3}}">实付：
+                      <view class="money">
+                        ¥{{item.total}}
+                      </view>
+                    </view>
+                  </view>
+
+                  <view class="button-group" wx:if="{{item.order_status_id==3}}">
+                    <view catchtap="cancelOrder" data-type="{{item.order_id}}" class="my-button" data-show="cancelVisible">取消订单</view>
+                    <view catchtap="orderPay" data-type="{{item.order_id}}" class="my-button-pay padding-15">立即支付</view>
+                  </view>
+                  <view wx:if="{{item.order_status_id==4}}">
+                    <view bindtap="receivOrder" data-type="{{item.order_id}}" class="get-goods">
+                      <view class="sure-get">确认提货</view>
+                      <image class="right-arrow" src="../../images/rightArrowImg.png"></image>
+                    </view>
+                  </view>
+                  <view wx:if="{{item.order_status_id==1||item.order_status_id==6||item.order_status_id==11||item.order_status_id==14}}">
+                    <view bindtap="goOrder" data-type="{{item.order_id}}" class="my-button" size="small">查看详情</view>
+                  </view>
+                </view>
+              </view>
+            </view>
+            <!-- 订单项目 E -->
+            <i-load-more loading="{{LoadingComplete[currentTab]}}" tip="没有更多订单了~"></i-load-more>
+          </block>
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

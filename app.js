@@ -1,0 +1,150 @@
+var util = require('we7/resource/js/util.js');
+var timeQueue = require('eaterplanet_ecommerce/utils/timeQueue');
+var mta = require('txmta/mta_analysis.js');
+require('eaterplanet_ecommerce/utils//mixins.js');
+require('/lib/SPage.js')
+
+App({
+  onLaunch: async function (options) {
+    let scene = options.scene || '';
+    this.globalData.scene = scene;
+    var userInfo = wx.getStorageSync("userInfo");
+    this.globalData.userInfo = userInfo;
+    var currentCommunity = wx.getStorageSync("community");
+    this.globalData.hasDefaultCommunity = !!currentCommunity;
+    this.globalData.community = currentCommunity;
+    this.globalData.systemInfo = wx.getSystemInfoSync();
+    var model = this.globalData.systemInfo.model;
+    this.globalData.isIpx = model.indexOf("iPhone X") > -1 || model.indexOf("unknown<iPhone") > -1;
+    this.globalData.timer = new timeQueue.default();
+    mta.App.init({
+      "appID": "500688266",
+      "eventID": "500688269", //渠道分析,需在onLaunch方法传入options,如onLaunch:function(options){...}
+      "autoReport": true,//每个页面均加入参数上报
+      "statParam": true, //statParam为true时，如果不想上报的参数可配置忽略
+      "ignoreParams": ['test_adt'],// 高级功能-自定义事件统计ID，配置开通后在初始化处填写
+      "lauchOpts": true, // 使用分析-下拉刷新次数/人数，必须先开通自定义事件，并配置了合法的eventID
+      "statPullDownFresh": true, // 使用分析-分享次数/人数，必须先开通自定义事件，并配置了合法的eventID
+      "statShareApp": true,// 使用分析-页面触底次数/人数，必须先开通自定义事件，并配置了合法的eventID
+      "statReachBottom": true //开启自动上报
+    });
+  },
+  $mixinP:{
+		onLoad(options){
+			console.log("options", options)
+		}
+	},
+  onShow: function () {
+    if(this.globalData.scene!=1154) this.getUpdate();
+  },
+  onHide: function () {
+  },
+  //加载微擎工具类
+  util: util,
+  //用户信息，sessionid是用户是否登录的凭证
+  userInfo: {
+    sessionid: null,
+  },
+  globalData: {
+    systemInfo: {},
+    isIpx: false,
+    userInfo: {},
+    canGetGPS: true,
+    city: {},
+    community: {},
+    location: {},
+    hasDefaultCommunity: true,
+    historyCommunity: [],
+    changedCommunity: false,
+    disUserInfo: {},
+    changeCity: "",
+    timer: 0,
+    formIds: [],
+    community_id: '',
+    placeholdeImg: '',
+    cartNum: 0,
+    cartNumStamp: 0,
+    common_header_backgroundimage: '',
+    appLoadStatus: 1, // 1 正常 0 未登录 2 未选择社区
+    goodsListCarCount: [],
+    typeCateId: 0,
+    navBackUrl: '',
+    isblack: 0,
+    statusBarHeight: wx.getSystemInfoSync()['statusBarHeight'],
+    skin: {
+      color: '#ff5344',
+      subColor: '#ed7b3a',
+      lighter: '#fff9f4'
+    },
+    goods_sale_unit: '件',
+    scene: '',
+    indexCateId: '',
+    key: '5ab1d47738dc411ab09ca18448cc26af',
+    weatherBackgroundUrl:'https://cdn.heweather.com/img/plugin/190516/bg/h5/',
+    weatherIconUrl: 'https://cdn.heweather.com/cond_icon/',
+    weatherIconUrl1: 'https://cdn.heweather.com/img/plugin/190516/icon/c/',
+    requestUrl: {
+      weather: 'https://free-api.heweather.com/s6/weather',
+      hourly: 'https://free-api.heweather.com/s6/weather/hourly'
+    },
+  },
+  getUpdate: function(){
+    if (wx.canIUse("getUpdateManager")) {
+      const updateManager = wx.getUpdateManager();
+      updateManager.onCheckForUpdate(function (res) {
+        res.hasUpdate && (updateManager.onUpdateReady(function () {
+          wx.showModal({
+            title: "更新提示",
+            content: "新版本已经准备好，是否马上重启小程序？",
+            success: function (t) {
+              t.confirm && updateManager.applyUpdate();
+            }
+          });
+        }), updateManager.onUpdateFailed(function () {
+          wx.showModal({
+            title: "已经有新版本了哟~",
+            content: "新版本已经上线啦~，请您删除当前小程序，重新搜索打开哟~"
+          });
+        }));
+      });
+    } else wx.showModal({
+      title: "提示",
+      content: "当前微信版本过低，无法使用该功能，请升级到最新微信版本后重试。"
+    });
+  },
+  getConfig: function() {
+    var token = wx.getStorageSync('token');
+    return new Promise((resolve, reject)=>{
+      util.request({
+        url: 'entry/wxapp/user',
+        data: {
+          controller: 'index.get_firstload_msg',
+          token,
+          m: 'eaterplanet_ecommerce'
+        },
+        method: 'post',
+        dataType: 'json',
+        success: function(res) {
+          if(res.data.code==0) {
+            let { new_head_id, default_head_info, isparse_formdata } = res.data;
+            if(!token) isparse_formdata = 0;
+            wx.setStorageSync('isparse_formdata', isparse_formdata);
+
+            if(new_head_id>0&&Object.keys(default_head_info).length) {
+              wx.setStorageSync('community', default_head_info);
+            }
+            resolve(res)
+          } else {
+            reject()
+          }
+        }
+      })
+    })
+  },
+  setShareConfig: function(){
+    wx.showShareMenu({
+      menus: ['shareAppMessage', 'shareTimeline']
+    })
+  },
+  siteInfo: require('siteinfo.js')
+});

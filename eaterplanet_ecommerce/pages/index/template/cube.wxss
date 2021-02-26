@@ -1,0 +1,89 @@
+.cube {
+    position: relative;
+    padding: 0 20rpx 20rpx;
+    margin-top: 20rpx;
+    overflow: hidden;
+    z-index: 3;
+    
+}
+
+.cube-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10rpx;
+    
+}
+
+.cube-item:last-child {
+  margin-bottom: 0;
+}
+
+.cube-one {
+    border-radius: 20rpx;
+    width: 710rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-left {
+    border-radius: 20rpx;
+    width: 273rpx;
+    height: 371rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-two {
+    border-radius: 20rpx;
+    width: 430rpx;
+    height: 370rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-three {
+    border-radius: 20rpx;
+    width: 430rpx;
+    height: 181rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-four {
+    border-radius: 20rpx;
+    width: 211rpx;
+    height: 182rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-w {
+    border-radius: 20rpx;
+    width: 353rpx;
+    height: 212rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.cube-w4 {
+    border-radius: 20rpx;
+    width: 173rpx;
+    height: 173rpx;
+    box-shadow: 0rpx 5rpx 15rpx 0rpx rgb(79, 129, 182);
+}
+
+.w450 {
+  width: 430rpx;
+}
+
+.cube-item.two-row {
+  flex-wrap: wrap;
+}
+
+
+
+.cube-item.two-row .cube-w {
+    flex: initial;
+    width: 355rpx;
+    height: 355rpx;
+}
+
+.cube-item.two-row .cube-w4 {
+    flex: initial;
+    width: 355rpx;
+    height: 355rpx;
+}

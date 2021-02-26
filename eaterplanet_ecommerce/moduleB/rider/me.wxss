@@ -1,0 +1,26 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+@import 'tabbar.wxss';
+
+.money {
+  padding: 20rpx 30rpx;
+}
+
+.icon-right {
+  width: 12rpx;
+  height: 22rpx;
+}
+
+.recharge-money {
+  color: #ce3c39;
+  font-size: 50rpx;
+}
+
+.recharge-tip {
+  color: #999;
+  font-size: 24rpx;
+}
+
+switch {
+  zoom: 0.7;
+}

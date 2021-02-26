@@ -1,9 +1,0 @@
-<view class="i-index-demo">
-    <i-index height="100%" localCity="{{localCity}}">
-        <i-index-item name="{{item.key}}" wx:for="{{cities}}" wx:key="{{index}}">
-            <view bindtap="chooseCity" class="i-index-demo-item" data-city="{{it.city}}" wx:for="{{item.list}}" wx:for-index="in" wx:for-item="it" wx:key="{{in}}">
-        {{it.name}}
-      </view>
-        </i-index-item>
-    </i-index>
-</view>

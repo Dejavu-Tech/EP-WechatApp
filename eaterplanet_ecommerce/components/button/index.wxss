@@ -1,0 +1,127 @@
+.i-btn {
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 28rpx;
+  border-radius: 4rpx;
+  border: 0 !important;
+  position: relative;
+  text-decoration: none;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #f7f7f7;
+  color: #495060;
+  margin: 20rpx;
+}
+
+.i-btn-hover {
+  opacity: 0.7;
+}
+
+.i-btn-long {
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.i-btn-large {
+  height: 96rpx;
+  line-height: 96rpx;
+}
+
+.i-btn-small {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.i-btn-primary {
+  color: #fff;
+  background: #2d8cf0;
+}
+
+.i-btn-ghost {
+  background: #fff;
+  color: #495060;
+}
+
+.i-btn-success {
+  color: #fff;
+  background: #19be6b;
+}
+
+.i-btn-warning {
+  color: #fff;
+  background: #f90;
+}
+
+.i-btn-error {
+  color: #fff;
+  background: #ed3f14;
+}
+
+.i-btn-info {
+  color: #fff;
+  background: #2db7f5;
+}
+
+.i-btn-circle {
+  border-radius: 88rpx;
+}
+
+.i-btn-large.i-btn-circle {
+  border-radius: 96rpx;
+}
+
+.i-btn-small.i-btn-circle {
+  border-radius: 80rpx;
+}
+
+.i-btn-loading {
+  opacity: 0.6;
+}
+
+.i-btn-loading-inner {
+  display: inline-block;
+  margin-right: 24rpx;
+  vertical-align: middle;
+  width: 28rpx;
+  height: 28rpx;
+  background: 0 0;
+  border: 4rpx solid #e9eaec;
+  border-color: #e9eaec #e9eaec #e9eaec #2d8cf0;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear;
+  animation-iteration-count: infinite;
+}
+
+.i-btn-disabled {
+  opacity: 0.9;
+}
+
+.i-btn-inline {
+  display: inline-block;
+}
+
+@-webkit-keyframes btn-spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes btn-spin {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

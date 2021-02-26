@@ -1,0 +1,14 @@
+<i-modal bind:cancel="close" scrollUp="{{false}}" visible="{{visible}}">
+  <view class="auth-content">
+    <view bindtap="close" class="close">
+      <image class='close-img' src="../../images/icon-close-white.png"></image>
+    </view>
+    <image class="bg" src="../../images/get-phone-bg.png"></image>
+    <view class="h1">需要您的同意</view>
+    <view class="h2">
+      <view class="p">需要您的手机授权</view>
+      <view class="p">授权后可享受更多优质服务</view>
+    </view>
+    <i-button bindgetphonenumber="getPhoneNumber" iClass="confirm" openType="getPhoneNumber">确认授权</i-button>
+  </view>
+</i-modal>

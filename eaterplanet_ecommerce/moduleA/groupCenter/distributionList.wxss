@@ -1,0 +1,280 @@
+.nav {
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #fff;
+    height: 92rpx;
+    border-top: 2rpx solid #f2f2f2;
+    border-bottom: 2rpx solid #f2f2f2;
+    padding: 0 60rpx;
+    width: unset;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav .orderList_item {
+  margin-bottom: 4rpx;
+  font-size: 28rpx;
+  font-family: PingFangSC-Medium;
+  font-weight: 500;
+  color: #666;
+  position: relative;
+  height: 96rpx;
+  line-height: 96rpx;
+}
+
+.nav .orderList_item .line {
+    position: absolute;
+    bottom: 0;
+    height: 6rpx;
+    width: 100%;
+    background: linear-gradient(90deg,#4facfe 0%,#00f2fe 100%);
+    box-shadow: 0rpx 4rpx 8rpx 0rpx rgba(255,89,0,0.25);
+    border-radius: 24rpx;
+}
+
+.nav .on {
+    color: #4facfe;
+}
+
+.swiper-box {
+  width: 100%;
+  margin-top: 90rpx;
+}
+
+.swiper-box .order-scroll-view {
+  width: 750rpx;
+  height: 100%;
+}
+
+.swiper-box .noRecordCon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.swiper-box .noRecordCon .noRecordImg {
+  width: 132rpx;
+  height: 138rpx;
+  margin-top: 50%;
+}
+
+.swiper-box .noRecordCon .noRefundImg {
+  width: 218rpx;
+  height: 218rpx;
+  margin-top: 50%;
+}
+
+.swiper-box .noRecordCon .noRecord {
+  padding-top: 32rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Light;
+  font-weight: 300;
+  color: #666;
+  line-height: 30rpx;
+}
+
+.swiper-box .noRecordCon .goIndex {
+    width: 164rpx;
+    height: 60rpx;
+    background: #4facfe;
+    border-radius: 30rpx;
+    font-size: 28rpx;
+    color: #fff;
+    margin-top: 30rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-box .item {
+  width: 710rpx;
+  /**height: 266rpx;**/
+  box-shadow: 0rpx 0rpx 40rpx 0rpx rgba(0, 0, 0, 0.05);
+  border-radius: 20rpx;
+  margin: 20rpx auto 0;
+  background: #fff;
+}
+
+.swiper-box .item:last-of-type {
+  margin: 20rpx auto;
+}
+
+.refresh {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  border: 2rpx solid #999;
+  box-shadow: 2rpx 2rpx 4rpx #999;
+  position: fixed;
+  right: 50rpx;
+  bottom: 200rpx;
+  font-size: 20rpx;
+  color: #666;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.refresh .refreshImg {
+  font-size: 32rpx;
+  color: #000;
+  margin-bottom: 4rpx;
+}
+
+swiper-item {
+  height: auto;
+}
+
+.section {
+    
+    width: 690rpx;
+    
+    display: flex;
+    font-size: 28rpx;
+    color: #666;
+    padding: 20rpx 30rpx;
+    background-color: #fff;
+}
+
+.section .groupDay {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.section .picker {
+  margin-left: 20rpx;
+  display: flex;
+  flex: 1;
+}
+
+.section .picker .choose-day .iconfont {
+  font-size: 12rpx;
+  margin-left: 6rpx;
+  vertical-align: middle;
+  color: #999;
+}
+
+.distributionList {
+    width: 100%;
+    position: fixed;
+}
+
+.distributionList .nav {
+  top: 80rpx;
+}
+
+.distributionList .on {
+    color: #4facfe;
+    border-bottom: 4rpx solid #4facfe;
+    margin: 0;
+}
+
+.distributionList .swiper-box {
+  margin-top: 170rpx;
+}
+
+.item {
+  background: #fff;
+  overflow: hidden;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+}
+
+.distributionNum {
+  height: 80rpx;
+  font-size: 26rpx;
+  color: #333;
+  padding: 0 30rpx;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  border-bottom: 2rpx solid #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.distributionNum .distributionTime {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.distributionNum .statusName {
+    font-size: 26rpx;
+    color: #4facfe;
+}
+
+.spu {
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.spu .goodsImg {
+  height: 120rpx;
+  margin-right: 30rpx;
+}
+
+.spu .detail {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.spu .detail .goodsName {
+  color: #333;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  height: 80rpx;
+  width: 540rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: initial;
+  white-space: normal;
+}
+
+.spu .detail .commission {
+  font-size: 24rpx;
+  color: #999;
+  line-height: 40rpx;
+}
+
+.distributionCommision {
+  border-top: 2rpx solid #e4e4e4;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 80rpx;
+  font-size: 26rpx;
+  color: #777;
+  padding: 0 30rpx;
+}
+
+.distributionCommision text {
+  margin-left: 30rpx;
+}
+
+.dialogText {
+  box-sizing: border-box;
+  padding: 20rpx;
+  height: 140rpx!important;
+  text-align: justify;
+}
+
+.dialogBtn {
+  font-size: 30rpx!important;
+  height: 68rpx!important;
+  line-height: 68rpx!important;
+}
+
+.tips .tag {
+  font-size: 20rpx;
+  padding: 4rpx 8rpx;
+  border-radius: 5rpx;
+}

@@ -1,0 +1,16 @@
+{
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "sku": "../../components/sku/index",
+    "i-cart-btn": "../../components/cartBtn/index",
+    "i-aside-btn": "../../components/asideBtn/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-rush-spu-big": "../../components/rush-spu-big/index",
+    "i-new-rush-spu": "../../components/new-rush-spu/index",
+    "i-rush-spu": "../../components/rush-spu-col/index",
+    "i-tworow": "../../components/tworow/index",
+    "i-tabbar": "../../components/tabbar/index",
+    "i-vip-modal": "../../components/vipModal/index"
+  }
+}

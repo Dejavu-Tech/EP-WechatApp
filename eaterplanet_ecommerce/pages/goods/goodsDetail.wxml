@@ -1,0 +1,505 @@
+<navBar ref='' backgroundColorTop='linear-gradient(90deg, #e7614d  0%, #e68475 100%);' color='#fff'  iconTheme='white'  bindback="handlerGobackClick" titleimg="{{true}}" ></navBar>
+<movable-area>
+<view class='goods-wrapper'>
+  <view class='ui-mask' bindtap='hide_share_handler' hidden='{{is_share_html}}'></view>
+  <view class="model-services show" hidden='{{is_share_html}}'>
+    <view class="model-services-title">分享</view>
+    <view class="model-services-content">
+      <view class="service-list">
+        <view class="service-item">
+          <button open-type="share" class='none_btn' plain="true">
+            <text class="iconfont icon-weixin2 service-icon"></text>
+            <view class="cube-text">
+              <text>好友</text>
+            </view>
+          </button>
+        </view>
+        <view class="service-item" bindtap='get_share_img'>
+          <text class="iconfont icon-pengyouquan service-icon"></text>
+          <view class="cube-text">
+            <text>海报</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="spuInfoImg" style='height:{{imageSize.imageHeight}}px;background: url("/eaterplanet_ecommerce/images/index-comming-goods-bitmap.png)";background-size: 100% 100%;'>
+    <view wx:if="{{goods.label_info && goods.label_info.type==0}}" class='item-tag'>
+      <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+      <view class='tag-name {{goods.label_info.len==2?"two-word":""}}'>{{goods.label_info.tagcontent}}</view>
+    </view>
+    <view wx:if="{{goods.label_info && goods.label_info.type==1}}" class='item-tag' style='background:url({{goods.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+    <text class="current" wx:if="{{fmShow==true}}">{{goodsIndex}}/{{goods_image_length}}</text>
+    <swiper bindchange="scrollImagesChange" duration="300" style='height:{{imageSize.imageHeight}}px' interval="5000" circular autoplay="{{!goods.video}}">
+      <swiper-item wx:for="{{goods_image}}" wx:key="id">
+        <block wx:if="{{goods.video!=''&&goods.video!=null}}">
+          <image wx:if="{{index!=0}}" src="{{item.image}}" mode="widthFix" bindload="imageLoad" lazy-load="true" bindtap='previewImg' data-idx="{{index}}"></image>
+          <view class='video-wrap i-flex i-flex-alc' style="background:#000;" wx:else>
+            <view wx:if="{{fmShow==true}}" style="width: 100%;">
+              <view class='btn_view centerboth' wx:if="{{item.video==''}}"></view>
+              <view class='btn_view centerboth' wx:else bindtap='btnPlay'>
+                <image src='../../images/play.png'></image>
+              </view>
+              <image src="{{item.image}}" mode="widthFix" bindload="imageLoad" lazy-load="true" data-idx="{{index}}"></image>
+            </view>
+            <video class='swiper-video' bindloadedmetadata="handleLoadedMetaData" hidden="{{fmShow}}" id="myVideo" src="{{goods.video}}" bindended="videEnd" object-fit="contain" style='{{videoStyle}}'></video>
+          </view>
+        </block>
+        <image wx:else src="{{item.image}}" mode="widthFix" bindload="imageLoad" lazy-load="true" bindtap='previewImg' data-idx="{{index}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view hidden="{{fmShow}}" class='end-play' bindtap='endPlay'>
+    <text class='btn'>退出播放</text>
+  </view>
+  <view class="spuInfo" style='z-index: {{fmShow==false?-1:2}}'>
+    <view class="spuPrice">
+      <image class='spuPriceBg' src='{{goods_details_price_bg?goods_details_price_bg:"../../images/shareBottomBg.png"}}'></image>
+      <view class="price">
+        <block wx:if="{{buy_type=='integral'}}">
+          <text class="salePrice">{{goods.price_front}}</text>积分
+          <text class="storePrice">¥{{goods.productprice}}</text>
+        </block>
+        <block wx:else>
+          ¥<text class="salePrice">{{goods.price_front}}</text>.{{goods.price_after}}
+          <text class="storePrice">¥{{goods.productprice}}</text>
+        </block>
+      </view>
+      <view class="time" wx:if="{{is_close_details_time==0}}">
+        <text wx:if="{{goods.over_type == 1}}">距结束</text>
+        <text class="endAct" wx:if="{{goods.over_type == 0}}">距开始</text>
+        <text class="endAct" wx:if="{{goods.over_type == 2}}">结束时间</text>
+        <text class="endAct" wx:if="{{goods.over_type == 2}}">{{goods.end_date}}</text>
+        <view class="countdown-class i-count-down" wx:else>
+          <em wx:if="{{endtime.days > 0}}">{{endtime.days}}天</em>
+          <span class="item-class">{{endtime.hours}}</span>:
+          <span class="item-class">{{endtime.minutes}}</span>:
+          <span class="item-class">{{endtime.seconds}}</span>
+        </view>
+      </view>
+    </view>
+    <view class="spuDetailInfo">
+      <view class="spuName">
+        <text wx:if="{{goods.is_seckill==1}}" class="red" style="font-size:30rpx;">[秒杀] </text>{{goods.goodsname}}
+      </view>
+      <view wx:if="{{goods.subtitle}}" class="fsz-26 p5 text-gray">{{goods.subtitle}}</view>
+      <!-- 核销自提 -->
+      <view class="fsz-22 i-flex mt10 i-aic" wx:if="{{is_only_hexiao==1}}">
+        <view class="hexiao text-6"><text class="iconfont icon-gou red fsz-22"></text> 自提商品</view>
+        <view class="hexiao text-6" bindtap="handleHexiaoModal" wx:if="{{hx_len}}">
+          <text class="iconfont icon-gou red fsz-22"></text> 支持多点自提
+        </view>
+      </view>
+
+      <view class="comiss" wx:if="{{is_commiss_mb==1&&commiss_mb_money>0&&!hideCommissInfo}}">
+        <text class="con">{{groupInfo.commiss_diy_name}}预估佣金:¥{{commiss_mb_money}}</text>
+      </view>
+      <view class="comiss" wx:if="{{is_goods_head_mb==1&&goods_head_money>0&&!hideCommissInfo}}">
+        <text class="con">{{groupInfo.owner_name}}预估佣金：¥{{goods_head_money}}</text>
+      </view>
+
+      <block wx:if="{{buy_type!='integral'}}">
+        <!-- 会员、等级价格 -->
+        <i-vip-price wx:if="{{is_open_vipcard_buy==1&&goods.is_take_vipcard==1}}" price="{{goods.card_price}}"></i-vip-price>
+        <i-vip-price wx:if="{{is_member_level_buy==1&&goods.is_mb_level_buy==1&&(goods.price!=goods.levelprice)}}" price="{{goods.levelprice}}" type="1"></i-vip-price>
+      </block>
+
+      <view class="remind" wx:if="{{is_show_ziti_time==1&&goods.is_show_arrive==1&&delivery_type_ziti==1}}">
+        <image class="remindImg" src="../../images/icon-give.png"></image>
+        <text>现在下单，预计({{goods.pick_up_modify}})可自提</text>
+      </view>
+      <view class="remind" wx:if="{{goods.diy_arrive_switch==1&&goods.diy_arrive_details}}">
+        <image class="remindImg" src="../../images/icon-give.png"></image>
+        <text>{{goods.diy_arrive_details}}</text>
+      </view>
+      <view class="preferential i-flex" wx:if="{{buy_type!='integral'&&(goods.is_take_fullreduction==1||goods.is_modify_sendscore==1)}}">
+        <view wx:if="{{goods.is_take_fullreduction==1}}">
+          <text class="tit">满减</text>
+          <text class="con">满{{goods.full_money}}元减{{goods.full_reducemoney}}元</text>
+        </view>
+        <view wx:if="{{goods.is_modify_sendscore==1&&goods.open_buy_send_score==1}}">
+          <text class="tit">赠送</text>
+          <text class="con">下单预估赠送{{goods.send_socre}}积分</text>
+        </view>
+      </view>
+      <view class="purchasing pb10" wx:if="{{goods.one_limit_count > 0 || goods.total_limit_count > 0}}">
+        <text class="purTit">限购</text>
+        <text wx:if="{{goods.total_limit_count > 0}}">每人限购{{goods.total_limit_count}}份</text>
+        <text wx:if="{{goods.one_limit_count > 0}}"> 每单限购{{goods.one_limit_count}}份</text>
+      </view>
+      <view class="saleNum" wx:if="{{is_hide_details_count!=1}}">
+        <text class="purTit">销量</text>
+        <view class="stock">已售
+          <text class="remaining"> {{goods.seller_count}} </text>{{goods_sale_unit}}，仅剩
+          <text class="remaining"> {{goods.total}} </text>{{goods_sale_unit}}</view>
+      </view>
+      <!-- 会员 -->
+      <!-- 是会员  不是会员商品 不显示 -->
+      <block wx:if="{{goods.is_take_vipcard==1&&is_vip_card_member==1&&is_open_vipcard_buy==1}}">
+        <view class="vip i-flex i-flex-spb" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
+          <view class="i-flex vip-name">
+            <image src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}" class="vip-logo"></image>
+            <text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text> “{{modify_vipcard_name}}”
+            <block wx:if="{{goods.is_take_vipcard==1}}">会员立省{{goods.feePrice}}元</block>
+          </view>
+        </view>
+      </block>
+      <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member!=1}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
+        <view class="i-flex vip-name">
+          <image src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}" class="vip-logo"></image>
+          <text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text>
+          <block wx:if="{{goods.is_take_vipcard==1}}">开通“{{modify_vipcard_name}}”立省{{goods.feePrice}}元</block>
+          <block wx:else>“{{modify_vipcard_name}}” 尊享特权·会员专享价</block>
+        </view>
+        <view wx:if="{{is_vip_card_member==0}}">立即开通
+          <text class="iconfont icon-youjiantou goright"></text>
+        </view>
+        <view wx:if="{{is_vip_card_member==2}}">
+                    <text style="color:#5c5c5c;">已到期,</text>立即开通
+          <text class="iconfont icon-youjiantou goright"></text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 弹窗广告 -->
+    <advimg pos="1" />
+
+    <!-- 团长信息 -->
+    <view class='group' bindtap="changeCommunity" wx:if="{{is_show_goodsdetails_communityinfo==1&&community&&community.communityName}}">
+      <view class="group-avatar">
+        <image src='{{community.headImg||community.disUserHeadImg}}'></image>
+      </view>
+      <view class='group-m'>
+        <view class='group-title'>{{community.communityName}}</view>
+        <view class='group-desc'><text style="color:#333;">取货地址:</text>{{community.fullAddress}}</view>
+      </view>
+      <view class='group-r' wx:if="{{hide_community_change_btn==0}}">
+        <image class="group-r-icon" src="../../images/community-right-arrow.png"></image>
+      </view>
+    </view>
+
+    <!-- 团长群 -->
+    <view class='group' wx:if="{{isopen_community_group_share==1&&group_share_info}}" bindtap="showGroupCode">
+      <view class="group-avatar">
+        <image src='{{group_share_info.share_avatar}}'></image>
+      </view>
+      <view class='group-m'>
+        <view class='group-title'>{{group_share_info.share_title}}</view>
+        <view class='group-desc'>{{group_share_info.share_desc}}</view>
+      </view>
+      <view class='group-r'>
+        <view class='group-btn' style="background:{{skin.color}}">马上加群</view>
+      </view>
+    </view>
+    <!-- 评价 -->
+    <view wx:if="{{order_comment_count > 0 && is_show_comment_list == 1}}">
+      <view class="straightInLive">
+        <view class="title">
+          商品评价
+          <text class="commentsNum">（{{order_comment_count}}）</text>
+        </view>
+        <view class="comments" wx:for="{{comment_list}}" wx:key="comment_id">
+          <view class='comment-user'>
+            <image src='{{item.avatar}}'></image>
+            <text>{{item.user_name}}</text>
+          </view>
+          <view bindtap="bindOpen" class="commentsCon {{item.isOpen&&item.showOpen?'doubleHidden':''}}" data-idx="{{index}}">{{item.content}}</view>
+          <view class="commentsOpen" wx:if="{{item.showOpen}}">
+            <text bindtap="bindOpen" data-idx="{{index}}">{{item.isOpen?'展开':'收起'}}</text>
+            <image class="commentsOpenImg down" src="../../images/commentsOpen.png"></image>
+          </view>
+          <view class="allImg" wx:if="{{item.images.length > 0}}">
+            <view class="commentsImg" wx:for="{{item.images}}" wx:for-index="idx" wx:for-item="imgItem" wx:key="id">
+              <i-img class="goodsImg" height="75" iClass="img-class" imgType="5" loadImage="{{imgItem}}" width="75"></i-img>
+            </view>
+          </view>
+          <navigator class="checkComments" hoverClass="none" url="/eaterplanet_ecommerce/pages/goods/comment?id={{item.goods_id}}">查看全部评论</navigator>
+        </view>
+      </view>
+    </view>
+    <!-- 购买记录 -->
+    <view wx:if="{{buy_record_arr.count>0 && is_show_buy_record==1}}">
+      <view class="buyRecords">
+        <navigator class="moreBuyer" hoverClass="none" url="/eaterplanet_ecommerce/pages/goods/buyRecords?id={{goods_id}}">
+          <view class="title">
+            购买记录
+            <view class="buyNum">
+              已有
+              <text>{{buy_record_arr.count}}</text> 人购买，商品共销售
+              <text>{{goods.seller_count}}</text> 份
+              <image class="goBuyRecords" src="../../images/community-right-arrow.png"></image>
+            </view>
+          </view>
+        </navigator>
+        <view class="buyerList">
+          <image wx:for="{{buy_record_arr.list}}" wx:key="id" src='{{item.avatar}}' class='buyerImg img-class' style='height:90rpx;height:90rpx;'></image>
+          <navigator class="moreBuyer" hoverClass="none" url="/eaterplanet_ecommerce/pages/goods/buyRecords?id={{goods_id}}">
+            <image class="buyerImg" src="../../images/moreBuyer.png"></image>
+          </navigator>
+        </view>
+      </view>
+    </view>
+    <!-- 关联商品 -->
+    <i-relative-goods-list list="{{relative_goods_list}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" wx:if="{{loaded}}"></i-relative-goods-list>
+    <!-- 详情 -->
+    <view class="spuDetail" wx:if="{{ishide_details_desc!=1}}">
+      <image class="goodsDetailTitleImg" src="{{goods_details_title_bg?goods_details_title_bg:'../../images/goodsDetailTitle.png'}}" mode="widthFix"></image>
+      <view class="warmPrompt">
+        <view class="wxParse">
+          <parser html="{{goods.description}}" use-cache lazy-load />
+        </view>
+      </view>
+    </view>
+    <view class="service">
+      <view class="detailLogo">
+        <text></text>
+        <image wx:if="{{goods_details_middle_image}}" mode='widthFix' class="detailLogoImg" src="{{goods_details_middle_image}}"></image>
+        <text></text>
+      </view>
+      <view class="instructions" wx:if="{{!noIns}}">
+        <view class="wxParse">
+          <parser html="{{instructions}}" />
+        </view>
+      </view>
+    </view>
+    <navigator url='/eaterplanet_ecommerce/pages/goods/industrial?id={{goods_id}}' class='cell' wx:if="{{goods_industrial_switch==1&&goods_industrial}}">
+      <view class='cell-left'>
+        <image class='cell-icon' mode='widthFix' src='data:image/jpeg;base64,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'></image>
+        <text>工商资质</text>
+      </view>
+      <image class='icon-right' src='../../images/rightArrowImg.png'></image>
+    </navigator>
+
+    <!-- 猜你喜欢 -->
+    <guess-like bind:openSku="openSku" iClass="guessLike" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal" likeTitle="猜你喜欢" controller="goods.goods_guess_like" gid="{{goods_id}}" wx:if="{{goods_id&&loaded}}"></guess-like>
+
+    <image class="sloganImg" src="{{index_bottom_image?index_bottom_image:'../../images/icon-index-slogan.png'}}"></image>
+  </view>
+
+  <!--底部按钮begin-->
+  <view class='i-fixed-bottom safebottom'>
+    <view class="goods-bottom-bar">
+      <view class="leftBtn">
+        <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
+          <view class="bar-item back-to-index">
+            <image class="icon" src="{{iconArr.home}}"></image>
+            回首页
+          </view>
+        </navigator>
+        <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/order/shopCart">
+          <view class="bar-item shop-cart">
+            <view class="icon">
+              <image src="{{iconArr.car}}"></image>
+              <view class="cart-num" wx:if="{{cartNum}}">{{cartNum}}</view>
+            </view>
+            购物车
+          </view>
+        </navigator>
+      </view>
+
+      <button class="goodsStatus"  wx:if="{{!loaded}}" loading style="border-radius:0;background:{{goodsdetails_addcart_bg_color}}">加载中</button>
+      <view class="goodsStatus" wx:elif="{{goods.over_type == 0}}">即将开抢</view>
+      <view class="goodsStatus" wx:elif="{{goods.total<=0}}">已抢光</view>
+      <view class="goodsStatus" wx:elif="{{goods.total > 0 && goods.over_type ==2}}">已结束</view>
+      <view class="goodsStatus" wx:elif="{{goods.grounding != 1}}">已下架</view>
+      <view class="goodsStatus" wx:elif="{{is_comunity_rest == 1}}">团长休息中</view>
+      <view class="gobuy" wx:elif="{{buy_type == 'integral'}}">
+        <form bindsubmit="submit" reportSubmit="true">
+          <button hidden formType="submit" id="formId"></button>
+        </form>
+        <label class="balanceBtn" for="formId">
+                    <view bindtap="balance" class="bar-item balance" >立即兑换</view>
+        </label>
+      </view>
+      <view class="gobuy" wx:else>
+        <form bindsubmit="addToCart" reportSubmit="true">
+                    <view class="bar-item add-to-cart" >加入购物车</view>
+          <button class="btn" formType="submit"></button>
+        </form>
+        <form bindsubmit="submit" reportSubmit="true">
+          <button hidden formType="submit" id="formId"></button>
+        </form>
+        <label class="balanceBtn" for="formId">
+                    <view bindtap="balance" class="bar-item balance">
+            {{goods.is_seckill==1?"马上抢购":"立即购买"}}
+          </view>
+        </label>
+      </view>
+    </view>
+  </view>
+  <!--底部按钮end-->
+
+  <view class="mask" bindtap='closeSku' hidden="{{!visible}}"></view>
+  <!---规格选择begin-->
+  <view bind:cancel="close" class='sku-content safebottom' scrollUp="{{true}}" hidden="{{!visible}}">
+    <view class="sku-card">
+      <view bindtap="closeSku" class="close">
+        <image src="../../images/icon-sku-close.png"></image>
+      </view>
+      <view class="sku-header">
+        <image src='{{cur_sku_arr.skuImage}}' style="width:80px;height:80px;" class='sku-img'></image>
+        <view class="sku-desc">
+          <view class="sku-title">
+            <span>{{cur_sku_arr.spuName}}</span>
+          </view>
+          <view class="sku-price">
+            <view class="sale-price" wx:if="{{buy_type=='integral'}}">
+              <span>{{cur_sku_arr.actPrice[0]}}</span> 积分
+            </view>
+            <block wx:else>
+              <view class="sale-price">
+                ¥ <span>{{cur_sku_arr.actPrice[0]}}</span>.{{cur_sku_arr.actPrice[1]}}
+              </view>
+            </block>
+            <view class="market-price">
+              <block wx:if="{{buy_type=='integral'}}">¥{{cur_sku_arr.marketPrice[0]}}</block>
+              <block wx:else>¥{{cur_sku_arr.marketPrice[0]}}.{{cur_sku_arr.marketPrice[1]}}</block>
+            </view>
+            <block wx:if="{{buy_type!='integral'}}">
+              <!-- 会员价 -->
+              <i-vip-price wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member==1&&goods.is_take_vipcard==1}}" price="{{cur_sku_arr.card_price}}"></i-vip-price>
+              <block wx:elif="{{is_member_level_buy==1&&goods.is_mb_level_buy==1}}">
+                <i-vip-price wx:if="{{is_open_vipcard_buy==1&&is_vip_card_member!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+                <i-vip-price wx:if="{{is_open_vipcard_buy!=1}}" price="{{cur_sku_arr.levelprice}}" type="1"></i-vip-price>
+              </block>
+            </block>
+          </view>
+          <view class="sku-switch-on" wx:if="{{cur_sku_arr.spec}}">已选择：{{cur_sku_arr.spec}}</view>
+        </view>
+      </view>
+      <view class="sku-spec" wx:for="{{skuList.list}}" wx:key="id">
+        <view class="title">{{item.name}}</view>
+        <view class="spec-list">
+          <span bindtap="selectSku" class="{{idx==sku[index]['idx']?'on':''}}" data-disabled="{{item.canBuyNum-value<0}}" data-type="{{index}}_{{idx}}_{{value.option_value_id}}_{{value.name}}" wx:for-index="idx" wx:key="idx" data-idx="{{idx}}" wx:for="{{item.option_value}}"
+            wx:for-item="value" style="{{idx==sku[index]['idx']?'color:'+skin.color+';border-color:'+skin.color:''}}">{{value.name}}</span>
+        </view>
+      </view>
+      <view class="sku-num-content">
+        <view class="title">数量</view>
+        <view class="i-class i-input-number i-input-number-size-{{size}}">
+          <view bindtap="setNum" data-type="decrease" class="i-input-number-minus">
+            <image src="../../images/icon-input-reduce.png"></image>
+          </view>
+          <input bindblur="handleBlur" bindfocus="handleFocus" bindinput="changeNumber" class="i-input-number-text" type="number" value="{{sku_val}}"></input>
+          <view bindtap="setNum" data-type="add" class="i-input-number-plus">
+            <image src="../../images/icon-input-add.png"></image>
+          </view>
+        </view>
+        <view class="msg" wx:if="{{cur_sku_arr.one_limit_count>0||cur_sku_arr.total_limit_count>0||cur_sku_arr.oneday_limit_count>0}}">
+          <span wx:if="{{cur_sku_arr.one_limit_count>0}}">每单限{{cur_sku_arr.one_limit_count}}份</span>
+          <span style="margin-left:8rpx;" wx:if="{{cur_sku_arr.total_limit_count>0}}">每人限购{{cur_sku_arr.total_limit_count}}份</span>
+          <span></span>
+        </view>
+      </view>
+      <view class="sku-num-content">
+        <view class="even-num" wx:if="{{showLimitTip}}">
+          购物车总数已满或超出{{showLimitType==1?'每次':(showLimitType==2?'每天':'最多')}}购买数量
+        </view>
+      </view>
+      <form bindsubmit="gocarfrom" report-submit="true">
+        <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
+          <view>库存不足</view>
+        </button>
+        <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="background:{{skin.color}}">
+          <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
+        </button>
+      </form>
+    </view>
+  </view>
+  <!---规格选择end-->
+</view>
+
+        <view class="fixed-aside">
+
+            <movable-view y="900rpx" direction="vertical" bindtap="share_handler" class="fixed-share" >
+                <text class="iconfont icon-fenxiang"></text>
+                <view>分享</view>
+
+            </movable-view>
+
+            <movable-view y="990rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
+                <text class="iconfont icon-kefu"></text>
+                <view>客服</view>
+
+            </movable-view>
+
+            <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">
+                <text class="iconfont icon-fanhuidingbu"></text>
+                <view>顶部</view>
+
+            </movable-view>
+        </view>
+
+
+<i-order-notify i-class="order-notify" wx:if="{{order_notify_switch==1}}" stopNotify="{{stopNotify}}" />
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>
+<!-- 新分享形式 Start -->
+<view class='share-modal' bindtap='closeShareModal' hidden='{{hideModal}}'>
+  <view class='share-modal-content'>
+    <view class='share-modal-img'>
+      <image mode='widthFix' src='{{shareImgUrl}}'></image>
+    </view>
+    <view class="share-modal-btn-list">
+      <view class="share-modal-btn-item">
+        <button open-type="share" class='none_btn' plain="true">
+          <text class="iconfont icon-weixin1 btn-icon"></text>
+          <view class="btn-text">
+            <text>分享好友</text>
+          </view>
+        </button>
+      </view>
+      <view class="share-modal-btn-item" catchtap='saveThumb'>
+        <text class="iconfont icon-zhaopian btn-icon"></text>
+        <view class="btn-text">
+          <text>保存相册</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 团长切换 -->
+<i-change-community wx:if="{{showChangeCommunity}}" visible="{{showChangeCommunity}}" changeCommunity="{{changeCommunity}}" community="{{community}}" bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" groupInfo="{{groupInfo}}" bind:noChange="cancelChangeCommunity" cancelFn="{{true}}"></i-change-community>
+<canvas canvasId="myCanvas" class="canvas-img" style="width: {{canvasWidth}}px;height: {{canvasHeight}}px;"></canvas>
+
+<i-sub-notice visible="{{is_need_subscript==1}}" templateId="{{need_subscript_template}}" />
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+
+<!-- 核销弹窗 -->
+<i-modal scrollUp="{{true}}" visible="{{showHexiaoModal}}" bind:cancel="handleHexiaoModal">
+  <view class="sku-card">
+    <view class="title text-gray mb10 fsz-26 i-flex i-alc">
+      <view class="i-flex-item">共 <text class="red bold">{{hx_len}}</text> 个自提点</view>
+      <text class="iconfont icon-guanbi fsz-34 text-3" bindtap="handleHexiaoModal"></text>
+    </view>
+    <scroll-view scroll-y style="height: 60vh;">
+      <view class="border-bottom py10" wx:for="{{hexiao_arr}}" wx:key="index">
+        <view class="fsz-28 weight mb5">{{item.room_name}}</view>
+        <view class="fsz-22">{{item.room_address}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</i-modal>
+
+<!-- 全屏视频 -->
+<scroll-view scrollY="false" style="height:100vh;" class="coverVideo" wx:if="{{showCoverVideo}}">
+  <view class="main">
+    <view class="section">
+      <video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="coverVideo" objectFit="{{is_heng==0?'fill':'contain'}}" showFullscreenBtn="{{false}}" src="{{goods.video}}" bindended="coverVideoEnd"></video>
+    </view>
+    <cover-view bindtap="closeCoverVideo" class="goods" data-id="{{goods.id}}" wx:if="{{goods}}">
+      <cover-view class="good-img">
+        <cover-image src="{{goods.image_thumb?goods.image_thumb:'../../images/placeholder-refund.png'}}"></cover-image>
+      </cover-view>
+      <cover-view style="display: flex;flex-direction: column;justify-content: space-between;margin-right:10rpx;flex:1;">
+        <cover-view class="good-title .text-overflow2">{{goods.goodsname}}</cover-view>
+        <cover-view class="xqbottom">
+          <cover-view class="good-price">￥{{goods.price_front}}.{{goods.price_after}}</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </view>
+</scroll-view>
+</movable-area>

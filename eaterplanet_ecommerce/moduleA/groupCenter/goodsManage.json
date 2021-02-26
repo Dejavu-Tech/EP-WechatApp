@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "商品管理",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "component-img": "../../components/image/index"
+  }
+}

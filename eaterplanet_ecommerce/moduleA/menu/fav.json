@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "我的收藏",
+  "backgroundTextStyle": "light",
+  "navigationBarBackgroundColor": "#fff",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "masonry": "../components/masonry/masonry",
+    "img-box": "../components/img-box/img-box",
+    "i-empty": "../../components/empty/index"
+  }
+}

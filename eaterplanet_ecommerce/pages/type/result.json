@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "搜索结果",
+    "navigationBarTextStyle": "white",
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-tabbar": "../../components/tabbar/index",
+    "i-load-more": "../../components/load-more/index",
+    "i-img": "../../components/img/index",
+    "i-type-item": "./type-item",
+    "i-sku": "../../components/sku/index",
+    "i-cart-btn": "../../components/cartBtn/index"
+  }
+}

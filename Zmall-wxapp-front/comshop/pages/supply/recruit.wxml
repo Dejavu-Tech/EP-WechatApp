@@ -1,9 +1,0 @@
-<import src="../../wxParse/wxParse.wxml"></import>
-<view>
-    <view class="section">
-        <view class="wxParse">
-            <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
-        </view>
-        <navigator class="apply-btn" hoverClass="none" url="/lionfish_comshop/pages/supply/apply">申请成为供应商</navigator>
-    </view>
-</view>

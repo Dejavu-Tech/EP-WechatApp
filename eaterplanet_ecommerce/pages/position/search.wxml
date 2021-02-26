@@ -1,0 +1,22 @@
+<navBar title="社区搜索" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="header-content">
+    <view class="search-content">
+      <i-router-link openType="redirect" url="../../pages/position/cities">
+        <view class="city-content">
+          <image class="search-icon" src="../../images/icon-search.png"></image>
+          {{cityName}}
+          <image class="bottom-arrow" src="../../images/icon-bottom-arrow.png"></image>
+        </view>
+      </i-router-link>
+      <input bindinput="onInput" bindconfirm="subInput" class="ipt-class" focus="{{focus}}" placeholder="请输入{{groupInfo.group_name}}名" type="text"></input>
+    </view>
+  </view>
+
+  <i-community-item city="{{city}}" class="item-border" item="{{item}}" wx:for="{{communities}}" wx:key="id" groupInfo="{{groupInfo}}" skin="{{skin}}"></i-community-item>
+  <i-load-more iClass="load-more" loading="{{loadMore}}" tip="{{inputValue?tip:'请输入{{groupInfo.group_name}}名'}}" wx:if="{{!noResult}}"></i-load-more>
+  <view class="no-result" wx:if="{{noResult&&tip}}">
+    <image src="../../images/noData.png"></image>
+    {{tip}}
+  </view>
+</view>

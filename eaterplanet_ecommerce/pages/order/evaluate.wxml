@@ -1,0 +1,38 @@
+<navBar title="评价" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<view>
+  <view class="good-card">
+    <view class="good">
+      <image src="{{order_goods.goods_images}}"></image>
+      <text>{{order_goods.name+' '+order_goods.option_str}}</text>
+    </view>
+    <view class="evaluate-content">
+      <textarea bindinput="textinput" foucs="{{focus}}" maxlength="5000"  Class="placeholder-class" placeholder="{{placeholder}}"></textarea>
+      <view class="img-group">
+        <view class="img-item" wx:if="{{imgGroup.length}}" wx:for="{{imgGroup}}" wx:key="id">
+          <view bindtap="choseImg" class="close" data-idx="{{index}}">
+            <image src="../../images/img-close.png"></image>
+          </view>
+          <image bindtap="bigImg" data-list="{{imgGroup}}" data-src="{{item}}" mode="aspectFill" src="{{item}}"></image>
+          <view class="progress {{progressList[index]===100?'hide-progress':''}}" style="display:none;">
+            <span style="width: {{progressList[index]}}%;"></span>
+          </view>
+        </view>
+        <view bindtap="addImg" class="img-item img-add" wx:if="{{imgGroup.length<imgMax}}">
+          <image class="cameraImg" src="../../images/icon-camera.png"></image>
+          <text>{{imgGroup.length?imgGroup.length+'/'+imgMax:'上传图片'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='desc' wx:if="{{open_comment_gift==1}}">
+    <view class='h2'>说明：</view>
+    <view class="wxParse">
+      <parser html="{{comment_gift_publish}}" />
+    </view>
+  </view>
+
+  <label class="submit {{isIpx?'mb20':''}}">提交评价
+    <button hidden bindtap="sub_comment"></button>
+  </label>
+</view>

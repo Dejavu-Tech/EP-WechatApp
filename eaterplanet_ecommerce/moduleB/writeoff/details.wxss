@@ -1,0 +1,25 @@
+
+.goodsimg {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+}
+
+.item {
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.state {
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  color: #ffffff;
+}
+
+.sku-card .icon-guanbi {
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+  font-size: 40rpx;
+}

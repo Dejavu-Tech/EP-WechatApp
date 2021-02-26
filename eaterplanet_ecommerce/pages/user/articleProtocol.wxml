@@ -1,0 +1,6 @@
+<navBar title="{{title}}" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="article">
+  <view class="wxParse">
+    <parser html="{{article}}" />
+  </view>
+</view>

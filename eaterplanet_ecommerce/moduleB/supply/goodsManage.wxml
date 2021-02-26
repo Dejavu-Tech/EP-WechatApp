@@ -1,0 +1,39 @@
+<navBar title="商品管理" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<import src="tabbar.wxml"></import>
+<view class="wrap pb100">
+	<view class="nav">
+		<view bindtap="switchNav" class="orderList_item {{currentTab==item.status?'on':''}}" data-current="{{item.status}}" wx:for="{{navList}}" wx:key="status">{{item.name}}</view>
+	</view>
+  <!--搜索框begin-->
+  <view class='search-bar'>
+    <view class='search-box'>
+      <input class='ipt' placeholder="搜索商品" confirm-type="搜索" type="text" bindconfirm="goResult"></input>
+      <view class='search-icon'>
+        <text class="iconfont icon-sousuo1"></text>
+      </view>
+    </view>
+  </view>
+  <view class="list" wx:if="{{list.length>0}}">
+    <view class="item p15 bg-f border-bottom i-flex" wx:for="{{list}}" wx:key="id">
+      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" iClass="img-class" lazyLoad="true" loadImage="{{item.big_img}}" width="160"></i-img>
+      <view class="i-flex-item ml10 i-flex-col jcontent-c">
+        <view class="fsz-28 weight">{{item.goodsname}}</view>
+        <view class="price red mt10">¥{{item.price}}</view>
+        <view class="red fsz-24 mt-auto">库存：{{item.total}}</view>
+      </view>
+      <text class="iconfont icon-more mt-auto fsz-36" bindtap="handleActionsheet" data-id="{{item.id}}" data-index="{{index}}"></text>
+    </view>
+    <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!noMore}}"></i-load-more>
+  </view>
+  <i-empty wx:if="{{noData}}">暂无商品~</i-empty>
+</view>
+
+<mp-actionSheet bindactiontap="handleBtn" show="{{showActionsheet}}" actions="{{groups}}" title="选择需要的操作" bindclose="handleActionsheet"></mp-actionSheet>
+
+<mp-dialog title="库存" show="{{editSkuVisible}}" bindbuttontap="editSku" buttons="{{buttons}}">
+  <view>
+    <input type="number" focus="{{true}}" placeholder="请输入修改的库存数量" bindinput="bindSkuIpt" value="{{editSkuNum}}"></input>
+  </view>
+</mp-dialog>
+
+<template is="tabbar" data="{{data:0}}"></template>

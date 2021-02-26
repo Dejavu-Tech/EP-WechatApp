@@ -1,0 +1,15 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+        "navBar": "miniprograms-navigation-bar/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "i-img": "../../components/img/index",
+    "i-button": "../../components/button/index",
+    "i-router-link": "../../components/router-link/router-link",
+    "sku": "../../components/sku/index",
+    "i-cart-btn": "../../components/cartBtn/index",
+    "i-input-number": "../../components/input-number/index",
+    "i-aside-btn": "../../components/asideBtn/index",
+    "i-addcart": "../../components/addCartBtn/index"
+  }
+}

@@ -1,0 +1,452 @@
+<i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
+<navBar ref='' backgroundColorTop='#fff' color='#000' title='提交订单' background='#fff'  iconTheme='black' bindback="handlerGobackClick" back="{{true}}" ></navBar>
+  <view class='placeOrderBox'>
+    <view class="address-content">
+      <view class="tab-nav {{tabLength==1?'tab-nav-one':''}}" style="border-color:{{skin.color}}">
+        <view bindtap="tabSwitch" wx:for="{{tabList}}" wx:key="id" class="tab-nav-item {{tabIdx==item.id?'active':''}}" data-idx="{{item.id}}" wx:if="{{item.enabled}}" style="{{tabIdx==item.id?'background:'+skin.color:''}}">
+          <span>{{item.name}}</span>
+        </view>
+      </view>
+      <view class="receiver">
+        <text space="ensp">{{(tabIdx==0||tabIdx==4)?"提 货 人":"收 货 人"}}： </text>
+        <input bindinput="changeReceiverName" class="receive-name" placeholder="提货人" type="text" value="{{tabAddress[tabIdx].name}}" focus='{{focus_name}}'></input>
+      </view>
+      <view class="receiver">
+        <text>手机号码：</text>
+        <input bindinput="bindReceiverMobile" class="mobile" placeholder="手机号码" type="text" value="{{tabAddress[tabIdx].mobile}}" focus='{{focus_mobile}}'></input>
+      </view>
+      <view class="receiver" wx:if="{{order_note_open==1&&(tabIdx==0||tabIdx==1||tabIdx==3)}}">
+        <text space="ensp">{{order_note_name}}： </text>
+        <input bindinput="changeNoteName" class="receive-name" placeholder="请填写{{order_note_name}}" type="text" value="{{order_note_content?order_note_content:''}}"></input>
+      </view>
+      <view class='address-box' wx:if="{{tabIdx!=0&&tabIdx!=4}}">
+        <block wx:if="{{tabIdx==2||tabIdx==3}}">
+          <view class="receiver">
+            <text>所在地区： </text>
+            <view class='sel-btn' bindtap='choseLocation'>{{tabAddress[tabIdx].region[0] || "选择地址"}}{{tabAddress[tabIdx].region[1]}}{{tabAddress[tabIdx].region[2]}}</view>
+            <image src='../../images/rightArrowImg.png' class='icon-right'></image>
+          </view>
+          <view class="receiver align-start">
+            <text>详细地址：</text>
+            <textarea hidden="{{showConfirmModal||showAlertTime}}" class="receive-name" bindinput="changeReceiverAddress" type="text" value="{{tabAddress[tabIdx].receiverAddress}}" placeholder="详细地址" focus='{{focus_addr}}' />
+          </view>
+        </block>
+        <block wx:else>
+          <view class='receiver align-start' bindtap='choseLocation'>
+            <text>所在位置：</text>
+            <view class='sel-btn tuan-pos'>{{tabAddress[tabIdx].receiverAddress}}
+              <image class='icon-right' src='../../images/rightArrowImg.png'></image>
+            </view>
+          </view>
+          <view class="receiver align-start">
+            <text>{{order_lou_meng_hao}}：</text>
+            <textarea wx:if="{{!showConfirmModal}}" class="receive-name" bindinput="changeTuanAddress" type="text" value="{{tabAddress[tabIdx].lou_meng_hao}}" placeholder="{{order_lou_meng_hao_placeholder}}" focus='{{focus_addr}}' />
+          </view>
+        </block>
+      </view>
+      <view wx:if="{{tabIdx==2}}" class="use-wx-address" bindtap='getWxAddress' style="color:{{skin.color}}">+使用微信地址</view>
+      <block wx:if="{{tabIdx!=2&&tabIdx!=3&&is_hexiao!=1}}">
+        <p class="address-red">{{groupInfo.owner_name}}信息：{{disUserName}} ({{pickUpCommunityName}})</p>
+        <p class="address">{{tabIdx==0?"提货地点":groupInfo.owner_name+"位置"}}：{{pickUpAddress}}</p>
+      </block>
+    </view>
+    <view class="address-line">
+      <image src="../../images/icon-address-line.png"></image>
+    </view>
+    <!-- 同城配送预计时间 -->
+    <view class="act-content" wx:if="{{tabIdx==3}}">
+      <view class="cell" bindtap="handleTimeModal">
+        <block wx:if="{{curAlertTime==-1}}">
+          <span>立即送出</span>
+          <em class="red i-flex-item" style="text-align:right;">大约{{localtown_dispatchtime}}送达</em>
+        </block>
+        <block wx:else>
+          <span>送达时间</span>
+          <em class="red i-flex-item" style="text-align:right;">
+            <block wx:if="{{localtown_expected_delivery.localtown_delivery_space_month!=localtown_delivery_space_month}}">
+              {{localtown_delivery_space_month}}
+            </block>
+            {{localtown_expected_delivery.localtown_delivery_space_time_list[localtown_delivery_space_month][curAlertTime].time}}
+          </em>
+        </block>
+        <view wx:if="{{localtown_expected_delivery.localtown_expected_delivery_status&&localtown_expected_delivery.localtown_delivery_space_month}}">
+          <image class='icon-right' src='../../images/rightArrowImg.png' style="margin-top: -12rpx;"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="card-container" wx:for="{{seller_goodss}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+      <i-card iClass="card-content">
+        <view class="card-header" slot="header" style="color:{{skin.color}}">
+          <block wx:if="{{tabIdx==0}}">
+            <view class="cart-header-left" wx:if="{{pick_up_type == 3}}">预计{{pick_up_time}}可自提</view>
+            <view class="cart-header-left" wx:else>预计{{pick_up_time}}({{pick_up_weekday}})可自提</view>
+          </block>
+          <block wx:elif="{{tabIdx==1}}">
+            <view class="cart-header-left" wx:if="{{pick_up_type == 3}}">预计{{pick_up_time}}{{groupInfo.owner_name}}配送</view>
+            <view class="cart-header-left" wx:else>预计{{pick_up_time}}({{pick_up_weekday}}){{groupInfo.owner_name}}配送</view>
+          </block>
+          <view class="cart-header-right">{{value.goodsnum}}{{goods_sale_unit}}商品</view>
+        </view>
+        <view class="cart-item" slot="content">
+          <block wx:for="{{value.goods}}" wx:key="key">
+            <view class="sku-item">
+              <i-img defaultImage="../../images/placeholder-refund.png" height="60" iClass="sku-img" loadImage="{{item.image}}" width="60"></i-img>
+              <view class="sku-msg">
+                <view class="sku-title">
+                  {{item.name}}
+                </view>
+                <view class="sku-spec" wx:if="{{item.option.length>0}}">规格：
+                  <text wx:for="{{item.option}}" wx:key="option_id" wx:for-item="option">{{option.value}}；</text>
+                </view>
+                <view class="original-price">
+                  <block wx:if="{{buy_type!='integral'}}">¥</block>{{item.price}} ×{{item.quantity}}
+                  <block wx:if="{{buy_type=='integral'}}">积分</block>
+                  <i-vip-price wx:if="{{is_open_vipcard_buy==1&&item.is_take_vipcard==1&&is_vip_card_member==1}}" price="{{item.card_price}}"></i-vip-price>
+                  <i-vip-price wx:elif="{{item.is_mb_level_buy}}" price="{{item.levelprice}}" type="1"></i-vip-price>
+                </view>
+                <view class="sku-price">小计：
+                  <span>
+                    <block wx:if="{{buy_type!='integral'}}">¥</block>{{item.total}}
+                    <block wx:if="{{buy_type=='integral'}}">积分</block>
+                  </span>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view class="cart-footer" slot="footer" wx:if="{{is_open_order_message==1}}">
+          <input bindinput="bindInputMessage" class="order-message" placeholder="备注" type="text" data-idx="{{key}}"></input> 
+        </view>
+      </i-card>
+    </view>
+
+    <!-- 优惠信息 -->
+    <view class="act-content">
+      <view class="cell" wx:if="{{is_vip_card_member==1&&is_open_vipcard_buy==1&&vipcard_save_money>0}}">
+        <span>会员优惠</span>
+        <em>- ¥ {{vipcard_save_money}}</em>
+      </view>
+      <view class="cell" wx:if="{{levelAmount>0}}">
+        <span>等级折扣</span>
+        <em>- ¥ {{levelAmount}}</em>
+      </view>
+      <view class="cell" wx:if="{{tabIdx==1&&delivery_tuanz_money>0}}">
+        <span>{{groupInfo.placeorder_tuan_name}}</span>
+        <em>+ ¥ {{delivery_tuanz_money}}</em>
+      </view>
+      <view class="cell" wx:if="{{tabIdx==2&&trans_free_toal>0}}">
+        <span>{{groupInfo.placeorder_trans_name}}</span>
+        <em>+ ¥ {{trans_free_toal}}</em>
+      </view>
+      <!-- 同城配送 配送费 -->
+      <block wx:if="{{tabIdx==3}}">
+        <block wx:if="{{localtown_shipping_fare_arr.total_yl_shipping_fare>0}}">
+          <view class="cell">
+            <view style="line-height: 1;">
+              同城配送费
+              <view wx:if="{{localtown_shipping_fare_arr.shipping_fare>0}}" class="fsz-22 text-gray mt5">已减{{localtown_shipping_fare_arr.shipping_fare}}元</view>
+            </view>
+            <view>
+              <text class="localtownfare" wx:if="{{localtown_shipping_fare_arr.shipping_fare>0}}">¥{{localtown_shipping_fare_arr.total_yl_shipping_fare}}</text>
+              + ¥ {{localtown_shipping_fare_arr.total_shipping_fare}}
+            </view>
+          </view>
+        </block>
+        <view class="cell" wx:if="{{localtown_makeup_delivery_money>0}}">
+          <span>加价配送费</span>
+          <em>+ ¥ {{localtown_makeup_delivery_money}}</em>
+        </view>
+        <view class="cell" wx:if="{{pickingup_fare>0}}">
+          <span>{{localtown_modifypickingname}}</span>
+          <em>+ ¥ {{pickingup_fare}}</em>
+        </view>
+      </block>
+      <view class="cell" wx:if="{{tabIdx!=0}}">
+        <block wx:if="{{tabIdx==1&&is_man_delivery_tuanz_fare>0}}">
+          <span>满{{man_free_tuanzshipping}}免{{groupInfo.placeorder_tuan_name}}</span>
+          <em>- ¥ {{fare_man_delivery_tuanz_fare_money}}</em>
+        </block>
+        <block wx:if="{{tabIdx==2&&is_man_shipping_fare>0&&buy_type!='pintuan'}}">
+          <span>满{{man_free_shipping}}免{{groupInfo.placeorder_trans_name}}</span>
+          <em>- ¥ {{fare_man_shipping_fare_money}}</em>
+        </block>
+      </view>
+      <view class="cell" wx:if="{{reduce_money&&is_open_fullreduction}}">
+        <span>满减</span>
+        <em>- ¥ {{reduce_money}}</em>
+      </view>
+      <view class="cell" wx:if='{{seller_goodss[sgvKey].show_voucher==1}}' bindtap='show_voucher' data-seller_id="{{seller_goodss[sgvKey].store_info.s_id}}">
+        <view> 
+          <span>优惠券</span>
+          <span class="cell-desc" wx:if="{{sel_chose_vouche.limit_money>0}}">满{{sel_chose_vouche.limit_money}}元优惠{{sel_chose_vouche.credit}}元</span>
+          <span class="cell-desc" wx:else="{{sel_chose_vouche.limit_money<=0}}">优惠{{sel_chose_vouche.credit}}元</span>
+        </view>
+        <view>
+          <em>- ¥ {{sel_chose_vouche.credit*1>total_goods_price?total_goods_price:sel_chose_vouche.credit}}</em>
+          <image class='icon-right' src='../../images/rightArrowImg.png'></image>
+        </view>
+      </view>
+      <view class="cell" wx:if="{{ssvoucher_list.length&&seller_goodss[sgvKey].show_voucher==0}}" bindtap='show_voucher' data-seller_id="{{seller_goodss[sgvKey].store_info.s_id}}">
+        <view>
+          <span>选择优惠券</span>
+        </view>
+        <view>
+          <image class='icon-right' src='../../images/rightArrowImg.png'></image>
+        </view>
+      </view>
+      <view class="cell" wx:if="{{open_score_buy_score==1}}">
+        <span>
+          当前积分{{score}},本次<block wx:if="{{bue_use_score>0}}">可用{{bue_use_score}}积分抵扣{{score_for_money}}元</block><block wx:else>不可用积分支付</block>
+        </span>
+        <view><switch checked='{{use_score==1}}' bindchange="scoreChange" disabled="{{bue_use_score<=0}}" /></view>
+      </view>
+    </view>
+
+    <block wx:if="{{buy_type=='integral'}}">
+      <!-- 积分商品 -->
+      <view class="act-content" wx:if="{{is_yue_open==1&&total_free>0}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_wxpays">
+          <view class="oc-payment-item {{ck_yupay==0?'oc-payment-selected':''}}" style="{{ck_yupay==0?'color:'+skin.color:''}}">
+            <text class="iconfont icon-weixinzhifu oc-payment-icon" style="color:#00c800;"></text>
+            <view class="oc-payment-method">微信支付</view>
+            <view class="oc-payment-recommend" style="color:{{skin.color}};border-color:{{skin.color}}">推荐</view>
+          </view>
+        </view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
+          <view class="oc-payment-item {{ck_yupay>0?'oc-payment-selected':''}}" style="{{ck_yupay>0?'color:'+skin.color:''}}">
+            <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+          </view>
+        </view>
+        <view class="oc-payment" wx:else>
+          <view class="oc-payment-item">
+            <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
+            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <!-- 普通商品 -->
+      <view class="act-content" wx:if="{{is_yue_open==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_wxpays">
+          <view class="oc-payment-item {{ck_yupay==0?'oc-payment-selected':''}}" style="{{ck_yupay==0?'color:'+skin.color:''}}">
+            <text class="iconfont icon-weixinzhifu oc-payment-icon" style="color:#00c800;"></text>
+            <view class="oc-payment-method">微信支付</view>
+            <view class="oc-payment-recommend" style="color:{{skin.color}};border-color:{{skin.color}}">推荐</view>
+          </view>
+        </view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
+          <view class="oc-payment-item {{ck_yupay>0?'oc-payment-selected':''}}" style="{{ck_yupay>0?'color:'+skin.color:''}}">
+            <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+          </view>
+        </view>
+        <view class="oc-payment" wx:else>
+          <view class="oc-payment-item">
+            <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
+            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <i-fixed-bottom>
+      <view class="fixed-content">
+        <view class="fixed-left">
+          <view class="h1" wx:if="{{buy_type=='integral'}}">
+            实付：
+            <span>
+              <block wx:if="{{total_free>0}}">¥{{total_free}} + </block>{{total_integral}}积分
+            </span>
+          </view>
+          <view class="h1" wx:else>
+            合计：<span>¥{{tot_price}}</span>
+          </view>
+          <view class="h2" wx:if="{{buy_type!='integral'}}">
+            <em>总额：¥{{total_all}}</em>
+            <em wx:if="{{disAmount>0}}">总优惠：¥{{disAmount}}</em>
+          </view>
+        </view>
+        <view wx:if="{{btnDisable}}" class="fixed-bar-btn bgDisabled">{{btnText?btnText:"立即支付"}}</view>
+        <i-button wx:else bind:click="goOrderfrom" iClass="fixed-bar-btn" loading="{{btnLoading}}">
+          <view wx:if="{{buy_type=='integral'}}" style="background:{{skin.color}}">立即兑换</view>
+          <view wx:else style="background:{{skin.color}}">立即支付</view>
+        </i-button>
+      </view>
+    </i-fixed-bottom>
+  </view>
+</i-auth>
+
+<i-modal bind:cancel="closeConfirmModal" iClass="confirm-modal-content" visible="{{showConfirmModal}}">
+  <view class="confirm-order-modal">
+    <block wx:if="{{tabIdx==0}}">
+      <view class="title">此商品需要您{{tabList[tabIdx].name}}，请确认提货信息</view>
+      <view class="sub-title">
+        <image src="../../images/icon-give.png"></image>
+        <text wx:if="{{pick_up_type == 3}}">预计{{pick_up_time}}可自提</text>
+        <text wx:else>预计{{pick_up_time}}({{pick_up_weekday}})可自提</text>
+      </view>
+    </block>
+    <block wx:elif="{{tabIdx==1}}">
+      <view class="title">需要{{groupInfo.owner_name}}配送，请确认收货信息</view>
+      <view class="sub-title">
+        <image src="../../images/icon-give.png"></image>
+        <text wx:if="{{pick_up_type == 3}}">预计{{pick_up_time}}{{groupInfo.owner_name}}配送</text>
+        <text wx:else>预计{{pick_up_time}}({{pick_up_weekday}}){{groupInfo.owner_name}}配送</text>
+      </view>
+    </block>
+    <view class="title" wx:elif="{{tabIdx==2}}">需要快递配送，请确认收货信息</view>
+    <view class="title" wx:elif="{{tabIdx==3}}">需要同城配送，请确认收货信息</view>
+    <view class="title" wx:elif="{{tabIdx==4}}">此商品需要您到店核销，请确认预留信息</view>
+    <view class="order-content">
+      <view class="msg-group">
+        <span>商品总额：</span>
+        <em>+¥{{total_goods_price}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{tabIdx==1&&delivery_tuanz_money>0}}">
+        <span>{{groupInfo.placeorder_tuan_name}}：</span>
+        <em>+¥{{delivery_tuanz_money?delivery_tuanz_money:0}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{tabIdx==2&&trans_free_toal>0}}">
+        <span>{{groupInfo.placeorder_trans_name}}：</span>
+        <em>+¥{{trans_free_toal?trans_free_toal:0}}</em>
+      </view>
+      <block wx:if="{{tabIdx==3}}">
+        <view class="msg-group" wx:if="{{localtown_shipping_fare_arr.total_yl_shipping_fare>0}}">
+          <span>同城配送费：</span>
+          <em>+¥{{localtown_shipping_fare_arr.total_yl_shipping_fare}}</em>
+        </view>
+        <view class="msg-group" wx:if="{{localtown_shipping_fare_arr.shipping_fare>0}}">
+          <span>免同城配送费：</span>
+          <em>- ¥ {{localtown_shipping_fare_arr.shipping_fare}}</em>
+        </view>
+        <view class="msg-group" wx:if="{{localtown_makeup_delivery_money>0}}">
+          <span>加价配送费：</span>
+          <em>+ ¥ {{localtown_makeup_delivery_money}}</em>
+        </view>
+        <view class="msg-group" wx:if="{{pickingup_fare>0}}">
+          <span>{{localtown_modifypickingname}}：</span>
+          <em>+¥{{pickingup_fare}}</em>
+        </view>
+      </block>
+      <view class="msg-group" wx:if="{{disAmount>0}}">
+        <span>优惠金额：</span>
+        <em>-¥{{disAmount}}</em>
+      </view>
+      <!-- 核销 -->
+      <block wx:if="{{tabIdx==4}}">
+        <view class="msg-group">
+          <span>提 货 人：</span>
+          <em>{{tabAddress[tabIdx].name}}</em>
+        </view>
+        <view class="msg-group">
+          <span>手机号码：</span>
+          <em>{{tabAddress[tabIdx].mobile}}</em>
+        </view>
+      </block>
+      <block wx:else>
+         <view class="msg-group">
+          <span>{{groupInfo.owner_name}}信息：</span>
+          <em>{{disUserName}} <text class='distance' wx:if="{{current_distance&&tabIdx==1}}">(距您{{current_distance_str}})</text></em>
+        </view>
+        <view class="msg-group">
+          <span>{{(tabIdx==0)?"提 货 人":"收 货 人"}}：</span>
+          <em>{{tabAddress[tabIdx].name}} {{tabAddress[tabIdx].mobile}}</em>
+        </view>
+      </block>
+      <view class="msg-group" wx:if="{{tabIdx==0}}">
+        <block wx:if="{{index_hide_headdetail_address==0}}">
+          <span>提货地点：</span>
+          <em>{{pickUpAddress}}</em>
+        </block>
+      </view>
+      <view class="msg-group" wx:elif="{{tabIdx==1}}">
+        <span>收货地址：</span>
+        <em>{{tabAddress[tabIdx].receiverAddress}}</em>
+      </view>
+      <view class="msg-group" wx:elif="{{tabIdx!=4}}">
+        <span style="align-self: start;">收货地址：</span>
+        <em>{{tabAddress[tabIdx].region[0]}}{{tabAddress[tabIdx].region[1]}}{{tabAddress[tabIdx].region[2]}}{{tabAddress[tabIdx].receiverAddress}}</em>
+      </view>
+      <view class="total">
+        合计:
+        <em>¥{{tot_price}}</em>
+      </view>
+    </view>
+    <view class="button-group">
+      <i-button bind:click="closeConfirmModal" class="btn-content" iClass="btn left-btn">取消</i-button>
+      <view wx:if="{{btnDisable}}" class="btn-content btn right-btn bgDisabled">{{btnText?btnText:"确认支付"}}</view>
+      <i-button wx:else bind:click="preSubscript" class="btn-content" iClass="btn right-btn" loading="{{payBtnLoading}}" styleStr="background:{{skin.color}}">
+        <view style="background:{{skin.color}}">确认支付</view>
+      </i-button>
+    </view>
+  </view>
+</i-modal>
+<i-dialog bind:cancel="delete" bind:confirm="continuePay" confirmText="确认" text="赠品已送完，确认支付？" visible="{{visible}}"></i-dialog>
+
+<!-- 优惠券选择 -->
+<i-modal bind:cancel="closeCouponModal" iClass="confirm-modal-content" visible="{{!hide_quan}}">
+  <view class="confirm-coupon-modal">
+    <view class='title'>请选择优惠券</view>
+    <scroll-view class='list' scroll-y>
+      <view class='item' bindtap='chose_voucher_id' data-voucher_id="0" data-seller_id="{{voucher_serller_id}}">
+        <view>不使用</view>
+        <image class='no-tag-img' wx:if="{{seller_chose_id==0}}" src='../../images/checkbox-checked.png'></image>
+        <image class='no-tag-img' wx:else src='../../images/checkbox-disabled.png'></image>
+      </view>
+      <view class="coupon" wx:for="{{ssvoucher_list}}" wx:key="id" bindtap='chose_voucher_id' data-voucher_id="{{item.id}}" data-seller_id="{{voucher_serller_id}}">
+        <view class='header'>
+          <view class='price'>
+            <view class='reduce-price'>
+              {{item.credit}}<text>元</text>
+            </view>
+            <view class='reduce-desc'>{{item.limit_money >0.01 ?'满'+item.limit_money+'元可用':'不限制'}}</view>
+          </view>
+          <view class='info'>
+            <view class='reduce-title'>{{item.voucher_title}}<text class='reduce-type' wx:if="{{item.cate_name}}">{{item.cate_name}}</text></view>
+          </view>
+          <view class='status'>
+            <image class='tag-img' wx:if="{{item.id == seller_chose_id}}" src='../../images/checkbox-checked.png'></image>
+            <image class='tag-img' wx:else src='../../images/checkbox-disabled.png'></image>
+          </view>
+        </view>
+        <view class='footer'>有效期：{{item.begin_time}}~{{item.end_time}}</view>
+      </view>
+    </scroll-view>
+  </view>
+</i-modal>
+
+
+<!-- 配送时间 -->
+<i-modal scrollUp="{{true}}" visible="{{showAlertTime}}" bind:cancel="handleTimeModal">
+  <view class="time-alert">
+    <view class="alertTtitle text-center fsz-32 border-bottom">
+      选择预计送达时间段
+      <text class="iconfont icon-guanbi alertClose" bindtap="handleTimeModal"></text>
+    </view>
+    <view class="alertTimebox i-flex i-flex-spb">
+      <view class="left_box">
+        <block wx:if="{{localtown_expected_delivery.localtown_delivery_space_time_list}}" wx:for="{{localtown_expected_delivery.localtown_delivery_space_time_list}}" wx:key="index">
+          <view class="{{index==localtown_delivery_space_month?'active':''}}" bindtap="selectAlertDate" data-idx="{{index}}">
+            {{index}}
+          </view>
+        </block>
+      </view>
+      <view class="right_box">
+        <scroll-view scroll-y style="height:660rpx;">
+          <view class="{{curAlertTime==-1?'active':''}}" wx:if="{{localtown_expected_delivery.localtown_delivery_space_month==localtown_delivery_space_month}}" bindtap="selectAlertTime" data-idx="-1">立即送出({{localtown_dispatchtime}})</view>
+          <block wx:for="{{localtown_expected_delivery.localtown_delivery_space_time_list[localtown_delivery_space_month]}}" wx:key="index">
+            <view class="{{(index)==curAlertTime?'active':''}}" bindtap="selectAlertTime" data-idx="{{(index)}}">
+              {{item.time}}
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+    <view class="alertTimebtn">
+      <view class="alertTimebtn-item weight" style="background:{{skin.color}}" bindtap="handleTimeModal">确定</view>
+    </view>
+  </view>
+</i-modal>

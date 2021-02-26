@@ -1,0 +1,13 @@
+<navBar title="商户申请" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <view class="section">
+    <view class="wxParse">
+      <parser html="{{article}}" />
+    </view>
+    <view class="apply-btn" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/supply/apply" style="background:{{skin.color}}">
+      申请成为{{supply_diy_name}}
+    </view>
+  </view>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{false}}"></i-new-auth>

@@ -1,0 +1,3 @@
+<view class="fui-line-diy" style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.height?'height:'+item.style.height+'px;':''}}{{item.style.color?'color:'+item.style.color+';':''}}{{item.style.textalign?'text-align:'+item.style.textalign+';':''}}{{item.style.fontsize?'font-size:'+item.style.fontsize+'px;':''}}{{item.style.padding?'padding:'+item.style.padding/2+'px 0;':''}}">
+      <view class="line" style="border-top: {{item.style.height?item.style.height/2:1}}px {{item.style.linestyle?item.style.linestyle:'solid'}} {{item.style.bordercolor?item.style.bordercolor:'#000000'}}"></view>
+</view>

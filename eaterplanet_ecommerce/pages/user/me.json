@@ -1,0 +1,14 @@
+{
+  "navigationBarTitleText": "个人中心",
+  "usingComponents": {
+      "navBar": "miniprograms-navigation-bar",
+    "i-tabbar": "../../components/tabbar/index",
+    "component-modal": "../../components/modal/index",
+    "i-fetch-coder": "../../components/fetch-coder/index",
+    "i-modal": "../../components/modal/index",
+    "i-get-phone": "../../components/get-phone/index",
+    "i-new-auth": "../../components/new-auth/index",
+    "ad-alert": "../../components/ad-alert/index",
+    "advimg": "../../components/advimg/index"
+  }
+}

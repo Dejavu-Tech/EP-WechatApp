@@ -1,0 +1,12 @@
+.i-index-item-header {
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 26rpx;
+  padding-left: 40rpx;
+  color: #999;
+  background: #f6f6f6;
+}
+
+.i-index-item-content {
+  background: #fff;
+}
