@@ -18,15 +18,15 @@ App({
     this.globalData.isIpx = model.indexOf("iPhone X") > -1 || model.indexOf("unknown<iPhone") > -1;
     this.globalData.timer = new timeQueue.default();
     mta.App.init({
-      "appID": "500688266",
-      "eventID": "500688269", //渠道分析,需在onLaunch方法传入options,如onLaunch:function(options){...}
-      "autoReport": true,//每个页面均加入参数上报
-      "statParam": true, //statParam为true时，如果不想上报的参数可配置忽略
-      "ignoreParams": ['test_adt'],// 高级功能-自定义事件统计ID，配置开通后在初始化处填写
-      "lauchOpts": true, // 使用分析-下拉刷新次数/人数，必须先开通自定义事件，并配置了合法的eventID
-      "statPullDownFresh": true, // 使用分析-分享次数/人数，必须先开通自定义事件，并配置了合法的eventID
-      "statShareApp": true,// 使用分析-页面触底次数/人数，必须先开通自定义事件，并配置了合法的eventID
-      "statReachBottom": true //开启自动上报
+      "appID": "",
+      "eventID": "",
+      "autoReport": true,
+      "statParam": true,
+      "ignoreParams": ['test_adt'],
+      "lauchOpts": true,
+      "statPullDownFresh": true,
+      "statShareApp": true,
+      "statReachBottom": true 
     });
   },
   $mixinP:{
@@ -39,9 +39,7 @@ App({
   },
   onHide: function () {
   },
-  //加载微擎工具类
   util: util,
-  //用户信息，sessionid是用户是否登录的凭证
   userInfo: {
     sessionid: null,
   },
