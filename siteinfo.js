@@ -1,2 +1,2 @@
-var siteinfo = { "siteroot": "https://demo.ch871.com/wxapp.php"}
+var siteinfo = { "siteroot": ""}
 module.exports = siteinfo
