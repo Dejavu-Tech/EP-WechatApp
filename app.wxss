@@ -400,6 +400,6 @@ image {
 
 /* 安全区域 */
 .safebottom {
-   padding-bottom: env(safe-area-inset-bottom) !important;
+    /* padding-bottom: env(safe-area-inset-bottom) !important;*/
     /* padding-bottom: 20rpx!important; */
 }

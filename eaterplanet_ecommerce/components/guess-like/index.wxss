@@ -27,7 +27,7 @@
     border-radius: 10px;
     font-size: 28rpx;
     margin-bottom: 20rpx;
-    box-shadow: 10rpx 10rpx 20rpx 0rpx #afafafa1;
+    box-shadow: 10rpx 10rpx 20rpx 0rpx #4571a1a1;
 }
 
 .new-comers-item .new-img {

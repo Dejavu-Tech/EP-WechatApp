@@ -2,8 +2,9 @@
     width: 710rpx;
     border-radius: 20rpx;
     background: #fff;
+    box-shadow: 0 0 40rpx 0 rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    box-shadow: 10rpx 10rpx 20rpx 0rpx #afafafa1;
+    box-shadow: 10rpx 10rpx 20rpx 0rpx #4571a1a1;
 }

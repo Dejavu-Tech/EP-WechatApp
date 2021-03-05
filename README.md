@@ -45,6 +45,18 @@
 - 支持无限三级分销裂变
 - 支持无限创建各种专题活动页面
 
+> 后续版本更新日志将在公众号发布
+### 开发进度
+> 后台系统 95%
+
+> 微信小程序 99%
+
+> 支付宝小程序 80%
+
+> app 20%
+
+> web端商城 40%
+
 ### 已部署项目
 - web端商城（在线测试中）
 > 测试网址Demo：http://www.ch871.com
@@ -55,7 +67,7 @@
 <img src="https://image.ch871.com/value_img1_pc.png" width="300px"/> 
 
 ### 项目宣传视频
-- 吃货星球微信小程序 [点我观看](https://www.bilibili.com/video/av69788389/)
+- 霸气妖吃货星球微信小程序 [点我观看](https://www.bilibili.com/video/av69788389/)
 
 ### 项目截图
 - 商城管理系统前台
@@ -167,6 +179,22 @@
 | nginx         | 1.17.4  | http://nginx.org/en/download.html                            |
 | tomcat         | 8.5.47    | https://tomcat.apache.org/download-80.cgi                         |
 | apache-maven         | 3.6.2    | http://maven.apache.org                        |
+
+
+## 参考资料
+
+- [Java核心技术·卷 I（原书第10版）](https://book.douban.com/subject/26880667/)
+- [Vue.js项目实战](https://book.douban.com/subject/30395202/)
+- [Node.js开发实战](https://book.douban.com/subject/30373587/)
+- [PHP和MySQL Web开发(原书第4版)](https://book.douban.com/subject/3549421/)
+- [Java编程思想](https://book.douban.com/subject/2130190/)
+- [Spring实战（第4版）](https://book.douban.com/subject/26767354/)
+- [Spring Data实战](https://book.douban.com/subject/25975186/)
+- [MyBatis从入门到精通](https://book.douban.com/subject/27074809/)
+- [深入浅出MySQL](https://book.douban.com/subject/25817684/)
+- [Elasticsearch 技术解析与实战](https://book.douban.com/subject/26967826/)
+- [MongoDB实战(第二版)](https://book.douban.com/subject/27061123/)
+
 
 
 
