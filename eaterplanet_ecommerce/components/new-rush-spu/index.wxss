@@ -302,7 +302,7 @@
 .spu .index-input-number {
     position: absolute;
     right: 20rpx;
-    bottom: -20rpx;
+    bottom: 0rpx;
     display: flex;
     justify-content: center;
     align-items: center;
