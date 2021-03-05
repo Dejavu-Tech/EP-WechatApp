@@ -1,9 +1,9 @@
 <img src="https://image.ch871.com/logo.jpg" width="80px" align="left"/>  
 
-# 蒂佳芙科技-Zmall吃货星球项目仓库
-## 区域化电商团购商城H5/微信小程序/支付宝小程序/APP/公众号  统一后台多端项目
+# 蒂佳芙科技-EP吃货星球-微信小程序前端 
+## 新零售电商社区团购商城web端/微信小程序/APP/公众号  统一后台多端项目
 [![](https://img.shields.io/badge/Author-Albert.Z-blue.svg)](http://www.dejavu871.com)
-[![](https://img.shields.io/badge/version-4.0.0-brightgreen)](https://github.com/Dejavu-Tech/EP-WechatApp)
+[![](https://img.shields.io/badge/version-4.0.4-brightgreen)](https://github.com/Dejavu-Tech/EP-WechatApp)
 [![AUR](https://img.shields.io/badge/GPL-v3-red)](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/License)
 [![GitHub stars](https://img.shields.io/github/stars/Dejavu-Tech/EP-WechatApp.svg?style=social&label=Stars)](https://github.com/Dejavu-Tech/EP-WechatApp)
 [![GitHub forks](https://img.shields.io/github/forks/Dejavu-Tech/EP-WechatApp.svg?style=social&label=Fork)](https://github.com/Dejavu-Tech/EP-WechatApp)
@@ -11,8 +11,6 @@
 > 吃货星球S2B2C新零售团购系统
 
 > 基于SOA架构的分布式前后端系统
-
-> 运行于微擎或独立版后端商城管理系统
 <img src="https://image.ch871.com/intro.png"  align="left"/>  
 
 ### 系统功能
@@ -47,22 +45,20 @@
 
 > 后续版本更新日志将在公众号发布
 ### 开发进度
-> 后台系统 95%
+> 后台系统 90%
 
-> 微信小程序 99%
+> 微信小程序 100%
 
-> 支付宝小程序 80%
+> iOS app 60%
 
-> app 20%
+> web端(H5)商城 90%
 
-> web端商城 40%
+> 头条号小程序 立项
 
-### 已部署项目
-- web端商城（在线测试中）
-> 测试网址Demo：http://www.ch871.com
-- 商城管理系统前台
-> 测试网址Demo：http://wxapp.dejavu871.com
-- 微信小程序（v1.7.5）已正式运营
+### 体验项目
+- 商城管理系统
+> 测试网址Demo：http://demo.ch871.com
+- 微信小程序（v4.0.4）
 > 微信扫码可体验：
 <img src="https://image.ch871.com/value_img1_pc.png" width="300px"/> 
 
@@ -70,7 +66,7 @@
 - 霸气妖吃货星球微信小程序 [点我观看](https://www.bilibili.com/video/av69788389/)
 
 ### 项目截图
-- 商城管理系统前台
+- 商城管理系统
 
 <img src="https://image.ch871.com/master0.png" />  
 <img src="https://image.ch871.com/master1.png" />  
@@ -82,6 +78,7 @@
    <td><img src="https://image.ch871.com/wxapp1.png" width="280px"/></td> 
    <td><img src="https://image.ch871.com/wxapp2.png" width="280px"/></td>
 
+- 新版微信小程序(2021年4月前上线)
 
 ## 技术选型
 
@@ -179,26 +176,6 @@
 | nginx         | 1.17.4  | http://nginx.org/en/download.html                            |
 | tomcat         | 8.5.47    | https://tomcat.apache.org/download-80.cgi                         |
 | apache-maven         | 3.6.2    | http://maven.apache.org                        |
-
-
-## 参考资料
-
-- [Java核心技术·卷 I（原书第10版）](https://book.douban.com/subject/26880667/)
-- [Vue.js项目实战](https://book.douban.com/subject/30395202/)
-- [Node.js开发实战](https://book.douban.com/subject/30373587/)
-- [PHP和MySQL Web开发(原书第4版)](https://book.douban.com/subject/3549421/)
-- [Java编程思想](https://book.douban.com/subject/2130190/)
-- [Spring实战（第4版）](https://book.douban.com/subject/26767354/)
-- [Spring Data实战](https://book.douban.com/subject/25975186/)
-- [MyBatis从入门到精通](https://book.douban.com/subject/27074809/)
-- [深入浅出MySQL](https://book.douban.com/subject/25817684/)
-- [Elasticsearch 技术解析与实战](https://book.douban.com/subject/26967826/)
-- [MongoDB实战(第二版)](https://book.douban.com/subject/27061123/)
-
-
-
-
-
 
 
 ## 开发部署&技术疑问交流
