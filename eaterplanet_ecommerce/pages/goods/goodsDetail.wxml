@@ -278,7 +278,7 @@
   </view>
 
   <!--底部按钮begin-->
-  <view class='i-fixed-bottom safebottom'>
+  <view class='i-fixed-bottom'>
     <view class="goods-bottom-bar">
       <view class="leftBtn">
         <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
