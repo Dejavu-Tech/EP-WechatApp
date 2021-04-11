@@ -28,6 +28,7 @@
 }
 
 .goodsInfo .price {
+  font-family:DIN;
   font-size: 24rpx;
   color: #ff5344;
   font-weight: bold;
