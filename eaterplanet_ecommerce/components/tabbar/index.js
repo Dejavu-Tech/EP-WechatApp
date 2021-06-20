@@ -202,6 +202,9 @@ Component({
       } else if(type == 8) {
         let url = '/eaterplanet_ecommerce/moduleB/generalmall/index';
         wx.redirectTo({ url })
+      } else if(type == 9) {
+        let url = '/eaterplanet_ecommerce/moduleB/presale/index';
+        wx.redirectTo({ url })
       }
     }
   }
