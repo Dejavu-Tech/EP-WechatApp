@@ -218,29 +218,50 @@ Page({
       data: {
         controller: 'car.wxpay',
         token: token,
-        order_id: id
+        order_id: id,
+        scene: app.globalData.scene
       },
       dataType: 'json',
       method: 'POST',
       success: function (res) {
         wx.hideLoading();
         if (res.data.code == 0) {
-          wx.requestPayment({
-            appId: res.data.appId,
-            timeStamp: res.data.timeStamp,
-            nonceStr: res.data.nonceStr,
-            package: res.data.package,
-            signType: res.data.signType,
-            paySign: res.data.paySign,
-            success: function (wxres) {
-              wx.redirectTo({
-                url: '/eaterplanet_ecommerce/moduleA/pin/share?id=' + id
-              })
-            },
-            fail: function (res) {
-              console.log(res);
-            }
-          })
+          // 交易组件
+          if(res.data.isRequestOrderPayment==1) {
+            wx.requestOrderPayment({
+              orderInfo: res.data.order_info,
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success: function (wxres) {
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/moduleA/pin/share?id=' + id
+                })
+              },
+              fail: function (res) {
+                console.log(res);
+              }
+            })
+          } else {
+            wx.requestPayment({
+              appId: res.data.appId,
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success: function (wxres) {
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/moduleA/pin/share?id=' + id
+                })
+              },
+              fail: function (res) {
+                console.log(res);
+              }
+            })
+          }
         } else if (res.data.code == 2) {
           wx.showToast({
             title: res.data.msg,
