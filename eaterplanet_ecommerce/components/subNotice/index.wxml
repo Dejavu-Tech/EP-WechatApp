@@ -1,6 +1,0 @@
-<view class="i-flex notice i-aic fsz-26 {{visible?'i-as-show':''}}">
-  <view class="i-flex-item">
-    <text class="iconfont icon-notice red hithere"></text> 订阅消息，实时了解动态
-  </view>
-  <view class="bg-sucess text-white btn rounded-mini" bindtap="subscriptionNotice">订阅</view>
-</view>
