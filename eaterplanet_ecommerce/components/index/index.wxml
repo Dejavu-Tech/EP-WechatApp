@@ -2,12 +2,12 @@
   <scroll-view scrollY bindscroll="handlerScroll" scrollTop="{{scrollTop}}" style="{{scrollHeight}}">
     <view class="index-title">当前定位</view>
     <view bindtap="changeGPSCommunity" class="local-position-content">
-      <span>{{localCity.districtName}}</span>
+      <span style="color:{{skin.color}}">{{localCity.districtName}}</span>
       GPS定位
     </view>
     <slot></slot>
     <view catchtouchend="handlerTouchEnd" catchtouchmove="handlerTouchMove" catchtouchstart="handlerTouchMove" class="i-index-fixed">
-      <view catchtap="handlerFixedTap" class="i-index-fixed-item" data-index="{{index}}" wx:for="{{fixedData}}" wx:key="index">
+      <view catchtap="handlerFixedTap" class="i-index-fixed-item" data-index="{{index}}" wx:for="{{fixedData}}" wx:key="{{index}}">
         {{item}}
       </view>
     </view>
