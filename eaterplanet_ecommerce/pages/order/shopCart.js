@@ -177,7 +177,7 @@ Page({
             is_open_vipcard_buy,
             is_vip_card_member,
             vipcard_save_money,
-            modify_vipcard_name,
+            modify_vipcard_name: modify_vipcard_name?modify_vipcard_name:'天机会员',
             is_member_level_buy,
             level_save_money,
             tabList,
@@ -331,7 +331,7 @@ Page({
 
   goLink: function(event) {
     let link = event.currentTarget.dataset.link;
-    wx.redirectTo({
+    wx.navigateTo({
       url: link
     })
 

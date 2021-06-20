@@ -58,7 +58,7 @@
             </view>
             <view class="button-group" wx:if="{{item.order_status_id==3}}">
               <view catchtap="cancelOrder" data-type="{{item.order_id}}" class="my-button" data-show="cancelVisible">取消订单</view>
-              <view catchtap="preOrderPay" data-type="{{item.order_id}}" class="my-button-pay padding-15" style="background: linear-gradient(90deg, {{skin.color}} 0%, {{skin.light}} 100%)">
+              <view catchtap="preOrderPay" data-type="{{item.order_id}}" data-delivery="{{item.delivery}}" class="my-button-pay padding-15" style="background: linear-gradient(90deg, {{skin.color}} 0%, {{skin.light}} 100%)">
                 立即支付
               </view>
             </view>

@@ -335,6 +335,7 @@ page {
   position: absolute;
   left: 0;
   bottom: 0;
+  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
 
 .confirm-order-modal .button-group .btn-content {
@@ -915,4 +916,51 @@ picker.receive-name {
   color: #999;
   text-decoration: line-through;
   margin-right: 10rpx;
+}
+
+.picktime {
+  font-size: 22rpx;
+}
+
+.presale-item {
+  padding: 15rpx 50rpx;
+}
+
+.presale-item-circle {
+  position: relative;
+  padding-left: 25rpx;
+}
+
+.presale-item-circle::before {
+  position: absolute;
+  content: "";
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+  background: #cccccc;
+  top: 50%;
+  margin-top: -7rpx;
+  left: 0;
+}
+
+.presale-item.red .presale-item-circle::before {
+  background: #ff5344;
+}
+
+.presale-item .presale-item-circle::after {
+  position: absolute;
+  content: "";
+  border-right: 1rpx solid #cccccc;
+  left: 7rpx;
+  bottom: 50%;
+  height: 40rpx;
+}
+
+.presale-item.red .presale-item-circle::after {
+  position: absolute;
+  content: "";
+  border-right: 1rpx solid #ff5344;
+  left: 7rpx;
+  top: 50%;
+  height: 30rpx;
 }

@@ -2,6 +2,7 @@ var util = require('../../utils/util.js');
 var app = getApp();
 var status = require('../../utils/index.js');
 var location = require("../../utils/Location");
+var canpay = true;
 
 function count_down(that, total_micro_second) {
   var second = Math.floor(total_micro_second / 1000);
@@ -83,7 +84,13 @@ Page({
     order_goods_list: '',
     hx_receive_info: '',
     salesroom_list: '',
-    goodsHexiaoIdx: 0
+    goodsHexiaoIdx: 0,
+    share_title: '',
+    presale_info: '',
+    presalePickup: {
+      pickup: '自提', localtown_delivery:'配送', express:'发货', hexiao: '核销', tuanz_send: '配送'
+    },
+    showPresalePayModal: false
   },
   is_show_tip: '',
   timeOut: function() {
@@ -190,7 +197,9 @@ Page({
           } else if (is_show_tip != undefined && is_show_tip == 1) {
             if (res.data.order_pay_after_share == 1) {
               let share_img = res.data.data.share_img;
+              let share_title = res.data.data.share_title;
               that.setData({
+                share_title,
                 share_img,
                 isShowModal: true
               })
@@ -222,7 +231,9 @@ Page({
             order_can_shen_refund,
             order_note_open,
             order_note_name,
-            open_comment_gift
+            open_comment_gift,
+            presale_info,
+            virtualcard_info
           } = res.data;
           let order = res.data.data || {order_info: {}};
           order.order_info.order_note_open = order_note_open || '';
@@ -236,6 +247,25 @@ Page({
           let order_goods_list = order.order_goods_list || '';
           let hx_receive_info = order.order_info.hx_receive_info || '';
           let salesroom_list =  order.salesroom_list || '';
+
+          // 预售订单
+          presale_info = Object.keys(presale_info).length>0 ? presale_info : '';
+          if(presale_info) {
+            if(presale_info.presale_type==0) {
+              let goodsTot = 0;
+              order_goods_list.forEach(goodsItem=>{ goodsTot += goodsItem.price*goodsItem.quantity; });
+              let { presale_deduction_money, presale_ding_money } = presale_info;
+              presale_deduction_money = presale_deduction_money>0?presale_deduction_money:presale_ding_money;
+              let payTot = order.order_info.total*1-presale_deduction_money*1;
+              presale_info.payTot = payTot>0?payTot.toFixed(2):0;
+              let weikuan = goodsTot - presale_deduction_money*1;
+              presale_info.weikuan = weikuan>0?weikuan.toFixed(2):0;
+              presale_info.presale_deduction_money = presale_deduction_money;
+            }
+          }
+
+          // 礼品卡
+          virtualcard_info = Object.keys(virtualcard_info).length>0 ? virtualcard_info : '';
 
           that.setData({
             order,
@@ -256,7 +286,9 @@ Page({
             open_comment_gift,
             latitude,
             longitude,
-            markers
+            markers,
+            presale_info,
+            virtualcard_info
           })
           that.caclGoodsTot(res.data.data);
           that.hide_lding();
@@ -451,12 +483,17 @@ Page({
   /**
    * 支付防抖
    */
-  preOrderPay: util.debounce(function(event) {
-    this.payNow(event);
-  }),
+  // preOrderPay: util.debounce(function(event) {
+  //   canpay && this.payNow(event);
+  // }),
+  preOrderPay: function(event) {
+    canpay && this.payNow(event);
+  },
 
   payNow: function(e) {
-    var order_id = e[0].currentTarget.dataset.type || '';
+    canpay = false;
+    let that = this;
+    var order_id = e.currentTarget.dataset.type || '';
     var token = wx.getStorageSync('token');
 
     order_id && app.util.request({
@@ -464,39 +501,72 @@ Page({
       data: {
         controller: 'car.wxpay',
         token,
-        order_id
+        order_id,
+        scene: app.globalData.scene
       },
       dataType: 'json',
       method: 'POST',
       success: function(res) {
         if (res.data.code == 0) {
-          wx.requestPayment({
-            "appId": res.data.appId,
-            "timeStamp": res.data.timeStamp,
-            "nonceStr": res.data.nonceStr,
-            "package": res.data.package,
-            "signType": res.data.signType,
-            "paySign": res.data.paySign,
-            'success': function(wxres) {
-              wx.redirectTo({
-                url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1'
-              })
-            },
-            'fail': function(res) {
-              console.log(res);
-            }
-          })
+          // 交易组件
+          if(res.data.isRequestOrderPayment==1) {
+            wx.requestOrderPayment({
+              orderInfo: res.data.order_info,
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success: function(wxres) {
+                canpay = true;
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery='+that.data.delivery
+                })
+              },
+              'fail': function(res) {
+                canpay = true;
+                console.log(res);
+              }
+            })
+          } else {
+            wx.requestPayment({
+              "appId": res.data.appId,
+              "timeStamp": res.data.timeStamp,
+              "nonceStr": res.data.nonceStr,
+              "package": res.data.package,
+              "signType": res.data.signType,
+              "paySign": res.data.paySign,
+              'success': function(wxres) {
+                canpay = true;
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery='+that.data.delivery
+                })
+              },
+              'fail': function(res) {
+                canpay = true;
+                console.log(res);
+              }
+            })
+          }
         } else if (res.data.code == 1) {
           wx.showToast({
             title: res.data.RETURN_MSG || '支付错误',
             icon: 'none'
           })
+          canpay = true;
         } else if (res.data.code == 2) {
           wx.showToast({
             title: res.data.msg,
             icon: 'none'
           })
+          setTimeout(() => {
+            canpay = true;
+            that.reload_data();
+          }, 1500);
         }
+      },
+      fail: ()=>{
+        canpay = true;
       }
     })
   },
@@ -723,13 +793,47 @@ Page({
     this.setData({ goodsHexiaoIdx, showHexiaoGoodsModal: true })
   },
 
+  hanlePresaleModal: function(e) {
+    this.setData({
+      showPresaleDesc: !this.data.showPresaleDesc
+    })
+  },
+
+  hanlePresalePayModal: function(){
+    console.log(this.data.showPresalePayModal)
+    this.setData({
+      showPresalePayModal: !this.data.showPresalePayModal
+    })
+  },
+
+  copyCont: function(e) {
+    let data = e.currentTarget.dataset.code || "";
+    data&&wx.setClipboardData({
+      data,
+      success:function (res) {
+        wx.showToast({
+          title: '复制成功',
+        })
+      }
+    })
+  },
+
+  goLink: function(event) {
+    let url = event.currentTarget.dataset.link;
+    let needauth = event.currentTarget.dataset.needauth || '';
+    if(needauth){ if (!this.authModal()) return; }
+    url && wx.redirectTo({ url })
+  },
+
   onShareAppMessage: function(res) {
     var order_id = this.data.order.order_info.order_id || '';
     let goods_share_image = this.data.order.order_goods_list[0].goods_share_image;
     let share_img = this.data.share_img;
+    let share_title = this.data.share_title;
+    share_title = share_title?share_title:`@${this.data.order.order_info.ziti_name}${this.data.groupInfo.owner_name}，我是${this.data.userInfo.shareNickName}，刚在你这里下单啦！！！`;
     if (order_id && this.is_show_tip == 1) {
       return {
-        title: `@${this.data.order.order_info.ziti_name}${this.data.groupInfo.owner_name}，我是${this.data.userInfo.shareNickName}，刚在你这里下单啦！！！`,
+        title: share_title,
         path: "eaterplanet_ecommerce/pages/order/shareOrderInfo?order_id=" + order_id,
         imageUrl: share_img ? share_img : goods_share_image
       };

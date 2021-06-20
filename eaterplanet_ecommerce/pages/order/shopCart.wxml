@@ -299,7 +299,7 @@
 			<block wx:elif="{{tabIdx==3&&!localtownCanBuy}}">
 				<button class='fixed-bar-btn' disabled>去结算</button>
 			</block>
-			<button class='fixed-bar-btn' bindtap="toorder" style="background:{{skin.color}}" wx:else>去结算({{allnum}})</button>
+			<button class='fixed-bar-btn' bindtap="toorder" style="" wx:else>去结算({{allnum}})</button>
 		</view>
 	</view>
 	<view class="fixed-bar safebottom" wx:if="{{isEmpty&&is_open_fullreduction==1&&full_list.length>0}}">

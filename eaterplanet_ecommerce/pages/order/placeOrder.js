@@ -52,7 +52,10 @@ Page({
     commentArr: {},
     note_content: '',
     showAlertTime: false,
-    curAlertTime: -1
+    curAlertTime: -1,
+    isAgreePresale: false,
+    presale_info: '',
+    presalePickup: ['自提','配送','发货','配送','核销']
   },
   canPay: true,
   canPreSub: true,
@@ -145,8 +148,11 @@ Page({
           localtown_makeup_delivery_money,
           localtown_expected_delivery,
           order_lou_meng_hao,
-          order_lou_meng_hao_placeholder
+          order_lou_meng_hao_placeholder,
+          presale_info
         } = res.data;
+
+        presale_info = Object.keys(presale_info).length ? presale_info : '';
 
         // 同城满免运费
         if(localtown_shipping_fare_arr) {
@@ -198,6 +204,7 @@ Page({
 
         let sel_chose_vouche = '';
         let sgvKey = 0;
+        let goodsTotNum = 0;
         for (var i in seller_goods) {
           if (seller_goods[i].show_voucher == 1) {
             if (seller_goods[i].chose_vouche.id) seller_chose_id = seller_goods[i].chose_vouche.id;
@@ -210,6 +217,7 @@ Page({
           }
           seller_goods[i].goodsnum = Object.keys(seller_goods[i].goods).length;
           for (var j in seller_goods[i].goods) {
+            goodsTotNum += seller_goods[i].goods[j].quantity*1;
             if (seller_goods[i].goods[j].header_disc > 0 && seller_goods[i].goods[j].header_disc < 100) {
               seller_goods[i].goods[j].header_disc = (seller_goods[i].goods[j].header_disc / 10).toFixed(1);
             }
@@ -220,6 +228,15 @@ Page({
         let current_distance_str = that.changeDistance(current_distance);
 
         order_note_content = order_note_content!=null?order_note_content:'';
+
+        if(presale_info&&presale_info.goods_price) {
+          let deduction_money = presale_info.deduction_money;
+          deduction_money = deduction_money>0?deduction_money:presale_info.presale_ding_money;
+          let totDeduction = deduction_money*goodsTotNum;
+          presale_info.balance = (presale_info.goods_price*1 - totDeduction).toFixed(2);
+          presale_info.totdingMoney = (goodsTotNum*presale_info.presale_ding_money).toFixed(2);
+          presale_info.totDeduction = totDeduction.toFixed(2);
+        }
 
         let param = {
           sgvKey,
@@ -272,7 +289,8 @@ Page({
           localtown_expected_delivery,
           localtown_delivery_space_month,
           order_lou_meng_hao: order_lou_meng_hao|| '楼号门牌',
-          order_lou_meng_hao_placeholder: order_lou_meng_hao_placeholder || '例如:A座106室'
+          order_lou_meng_hao_placeholder: order_lou_meng_hao_placeholder || '例如:A座106室',
+          presale_info
         }
 
         let addrObj = rdata.address || {};
@@ -470,7 +488,8 @@ Page({
   },
 
   goOrderfrom: function() {
-    let { tabAddress, tabIdx, note_content, order_note_open, order_note_name } = this.data;
+    let that = this;
+    let { tabAddress, tabIdx, note_content, order_note_open, order_note_name, isAgreePresale, buy_type, presale_info } = this.data;
 
     var t_ziti_name = tabAddress[tabIdx].name;
     var t_ziti_mobile = tabAddress[tabIdx].mobile;
@@ -502,7 +521,8 @@ Page({
       return false;
     }
 
-    if(tabIdx==0||tabIdx==1||tabIdx==3) {
+    if((tabIdx==0||tabIdx==1||tabIdx==3)&&this.data.buy_type!='virtualcard') {
+
       if(order_note_open==1 && note_content=='') {
         wx.showToast({
           title: '请填写' + order_note_name,
@@ -553,7 +573,31 @@ Page({
 
     }
 
-    if (tabIdx == 2){
+    if(buy_type=='presale'&&!isAgreePresale) {
+      wx.showModal({
+        title: '提示',
+        content: '预售商品定金不支持退款，同意后可继续下单',
+        showCancel: true,
+        cancelText: '我再想想',
+        cancelColor: '#ff5344',
+        confirmText: '同意下单',
+        success (res) {
+          if (res.confirm) {
+            that.setData({ isAgreePresale: true });
+            if (tabIdx == 2){
+              that.preSubscript();
+            } else {
+              that.conformOrder();
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
+
+    if (tabIdx == 2||this.data.buy_type=="virtualcard"){
       this.preSubscript();
     } else {
       this.conformOrder();
@@ -583,7 +627,9 @@ Page({
   prepay: function() {
     this.canPreSub = true;
     let { tabAddress, tabIdx, is_limit_distance_buy, note_content, seller_goodss, commentArr } = this.data;
-    if (is_limit_distance_buy == 1 && (tabIdx == 1)){
+    let isVirtualcard = 0;
+    if(this.data.buy_type=='virtualcard') isVirtualcard = 1;
+    if (is_limit_distance_buy == 1 && (tabIdx == 1) && isVirtualcard==0){
       wx.showModal({
         title: '提示',
         content: '离团长太远了，暂不支持下单',
@@ -592,6 +638,7 @@ Page({
       })
       return false;
     }
+    console.log('this.canPay', this.canPay)
     if(this.canPay){
       this.setData({ payBtnLoading: true })
       this.canPay = false;
@@ -696,7 +743,8 @@ Page({
           use_score,
           soli_id,
           note_content,
-          expected_delivery_time
+          expected_delivery_time,
+          scene: app.globalData.scene
         },
         dataType: 'json',
         method: 'POST',
@@ -707,27 +755,11 @@ Page({
           let h = {};
           console.log('支付日志：', res);
           if (res.data.code == 0) {
-            that.changeIndexList();
-            if (has_yupay == 1) {
-              that.canPay = true;
-              if (buy_type == "dan" || buy_type == "pindan" || buy_type == "integral" || buy_type == "soitaire") {
-                if (res.data.is_go_orderlist <= 1) {
-                  wx.redirectTo({
-                    url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery=' + dispatching
-                  })
-                } else {
-                  wx.redirectTo({
-                    url: '/eaterplanet_ecommerce/pages/order/index?is_show=1'
-                  })
-                }
-              } else {
-                wx.redirectTo({
-                  url: `/eaterplanet_ecommerce/moduleA/pin/share?id=${order_id}`
-                })
-              }
-            } else {
-              wx.requestPayment({
-                "appId": res.data.appId,
+            // 交易组件
+            console.log('33333');
+            if(res.data.isRequestOrderPayment==1) {
+              wx.requestOrderPayment({
+                "orderInfo": res.data.order_info,
                 "timeStamp": res.data.timeStamp,
                 "nonceStr": res.data.nonceStr,
                 "package": res.data.package,
@@ -735,7 +767,7 @@ Page({
                 "paySign": res.data.paySign,
                 'success': function (wxres) {
                   that.canPay = true;
-                  if (buy_type == "dan" || buy_type == "pindan" || buy_type == "integral" || buy_type == "soitaire") {
+                  if (buy_type == "dan" || buy_type == "pindan" || buy_type == "integral" || buy_type == "soitaire" || buy_type == "presale" || buy_type == "virtualcard") {
                     if (res.data.is_go_orderlist<=1){
                       wx.redirectTo({
                         url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery=' + dispatching
@@ -754,7 +786,7 @@ Page({
                 'fail': function (error) {
                   if (res.data.is_go_orderlist <= 1) {
                     wx.redirectTo({
-                      url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&?isfail=1&delivery=' + dispatching
+                      url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&isfail=1&delivery=' + dispatching
                     })
                   } else {
                     wx.redirectTo({
@@ -763,9 +795,68 @@ Page({
                   }
                 }
               })
+            } else {
+              that.changeIndexList();
+              if (has_yupay == 1) {
+                that.canPay = true;
+                if (buy_type == "dan" || buy_type == "pindan" || buy_type == "integral" || buy_type == "soitaire" || buy_type == "presale" || buy_type == "virtualcard") {
+                  if (res.data.is_go_orderlist <= 1) {
+                    wx.redirectTo({
+                      url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery=' + dispatching
+                    })
+                  } else {
+                    wx.redirectTo({
+                      url: '/eaterplanet_ecommerce/pages/order/index?is_show=1'
+                    })
+                  }
+                } else {
+                  wx.redirectTo({
+                    url: `/eaterplanet_ecommerce/moduleA/pin/share?id=${order_id}`
+                  })
+                }
+              } else {
+                wx.requestPayment({
+                  "appId": res.data.appId,
+                  "timeStamp": res.data.timeStamp,
+                  "nonceStr": res.data.nonceStr,
+                  "package": res.data.package,
+                  "signType": res.data.signType,
+                  "paySign": res.data.paySign,
+                  'success': function (wxres) {
+                    that.canPay = true;
+                    if (buy_type == "dan" || buy_type == "pindan" || buy_type == "integral" || buy_type == "soitaire" || buy_type == "presale" || buy_type == "virtualcard") {
+                      if (res.data.is_go_orderlist<=1){
+                        wx.redirectTo({
+                          url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&is_show=1&delivery=' + dispatching
+                        })
+                      } else {
+                        wx.redirectTo({
+                          url: '/eaterplanet_ecommerce/pages/order/index?is_show=1'
+                        })
+                      }
+                    } else {
+                      wx.redirectTo({
+                        url: `/eaterplanet_ecommerce/moduleA/pin/share?id=${order_id}`
+                      })
+                    }
+                  },
+                  'fail': function (error) {
+                    if (res.data.is_go_orderlist <= 1) {
+                      wx.redirectTo({
+                        url: '/eaterplanet_ecommerce/pages/order/order?id=' + order_id + '&isfail=1&delivery=' + dispatching
+                      })
+                    } else {
+                      wx.redirectTo({
+                        url: '/eaterplanet_ecommerce/pages/order/index?isfail=1'
+                      })
+                    }
+                  }
+                })
+              }
             }
           } else if (res.data.code == 1) {
             that.canPay = true;
+            console.log('11111');
             wx.showModal({
               title: '提示',
               content: res.data.RETURN_MSG || '支付失败',
@@ -779,13 +870,14 @@ Page({
                     })
                   } else {
                     wx.redirectTo({
-                      url: '/eaterplanet_ecommerce/pages/order/index?is_show=1&?isfail=1'
+                      url: '/eaterplanet_ecommerce/pages/order/index?is_show=1&isfail=1'
                     })
                   }
                 }
               }
             })
           } else if (res.data.code == 2) {
+            console.log('22222');
             that.canPay = true;
             if( res.data.is_forb ==1 ){ h.btnDisable = true; h.btnText="已抢光"; }
             wx.showToast({
@@ -799,7 +891,7 @@ Page({
         },
         fail: function() {
           wx.redirectTo({
-            url: '/eaterplanet_ecommerce/pages/order/index?is_show=1&?isfail=1'
+            url: '/eaterplanet_ecommerce/pages/order/index?is_show=1&isfail=1'
           })
         }
       })
@@ -1436,6 +1528,26 @@ Page({
     this.setData({
       localtown_delivery_space_month: idx,
       curAlertTime
+    })
+  },
+
+  agreePresaleChange: function(e) {
+    let state = e.detail.value;
+    console.log('统一支付定金', state);
+    this.setData({ isAgreePresale: state })
+  },
+
+  hanlePresaleModal: function(e) {
+    this.setData({
+      showPresaleDesc: !this.data.showPresaleDesc
+    })
+  },
+
+  showPresaleAmoutDesc: function(){
+    wx.showModal({
+      title: '优惠说明',
+      content: '优惠金额将在支付尾款时使用',
+      showCancel: false
     })
   }
 })

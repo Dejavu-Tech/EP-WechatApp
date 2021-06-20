@@ -1,5 +1,6 @@
 var app = getApp();
 var util = require('../../utils/util.js');
+var canpay = true;
 
 Page({
   mixins: [require('../../mixin/globalMixin.js')],
@@ -202,20 +203,23 @@ Page({
    * 支付防抖
    */
   preOrderPay: util.debounce(function(event) {
-    this.orderPay(event);
+    canpay&&this.orderPay(event);
   }),
 
   orderPay: function(event) {
-    console.log(event)
+    canpay = false;
+    let that = this;
     var token = wx.getStorageSync('token');
     let id = event[0].currentTarget.dataset.type;
+    let delivery = event[0].currentTarget.dataset.delivery;
 
     app.util.request({
       'url': 'entry/wxapp/index',
       'data': {
         controller: 'car.wxpay',
-        'token': token,
-        "order_id": id
+        token: token,
+        order_id: id,
+        scene: app.globalData.scene
       },
       dataType: 'json',
       method: 'POST',
@@ -223,33 +227,75 @@ Page({
         if(res.data.code ==0)
         {
           var is_pin = res.data.is_pin;
-          wx.requestPayment({
-            appId: res.data.appId,
-            timeStamp: res.data.timeStamp,
-            nonceStr: res.data.nonceStr,
-            package: res.data.package,
-            signType: res.data.signType,
-            paySign: res.data.paySign,
-            success: function (wxres) {
-              wx.redirectTo({
-                url: '/eaterplanet_ecommerce/pages/order/order?id=' + id + '&is_show=1'
-              })
-            },
-            fail: function (res) {
-              console.log(res);
-            }
-          })
+          // 交易组件
+          if(res.data.isRequestOrderPayment==1) {
+            wx.requestOrderPayment({
+              orderInfo: res.data.order_info,
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success: function (wxres) {
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/pages/order/order?id=' + id + '&is_show=1&delivery='+delivery
+                })
+              },
+              fail: function (res) {
+                console.log(res);
+              },
+              complete: ()=>{
+                canpay = true;
+              }
+            })
+          } else {
+            wx.requestPayment({
+              appId: res.data.appId,
+              timeStamp: res.data.timeStamp,
+              nonceStr: res.data.nonceStr,
+              package: res.data.package,
+              signType: res.data.signType,
+              paySign: res.data.paySign,
+              success: function (wxres) {
+                wx.redirectTo({
+                  url: '/eaterplanet_ecommerce/pages/order/order?id=' + id + '&is_show=1&delivery='+delivery
+                })
+              },
+              fail: function (res) {
+                console.log(res);
+              },
+              complete: ()=>{
+                canpay = true;
+              }
+            })
+          }
         } else if (res.data.code == 1) {
           wx.showToast({
             title: res.data.RETURN_MSG || '支付错误',
             icon: 'none'
           })
+          canpay = true;
         } else if (res.data.code == 2) {
           wx.showToast({
             title: res.data.msg,
             icon:'none'
           })
+          canpay = true;
+          setTimeout(() => {
+            that.setData({
+              page: 1,
+              no_order: 0,
+              order: [],
+              tip: '正在加载',
+              is_empty: false
+            }, ()=>{
+              that.getData();
+            })
+          }, 1500);
         }
+      },
+      fail: ()=>{
+        canpay = true;
       }
     })
   },

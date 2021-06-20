@@ -16,7 +16,16 @@
 					<view class="font-12" wx:else>请尽快付款，不然就被抢光了</view>
 				</view>
 				<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==1}}">
-					<view class="font-bold-20">备货中</view>
+					<view class="font-bold-20">
+						<block wx:if="{{presale_info&&presale_info.id}}">
+							<view>{{order.order_status_info.name}}</view>
+							<view class="fsz-24">
+								发货时间：<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
+								<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
+							</view>
+						</block>
+						<block wx:else>备货中</block>
+					</view>
 					<image class="little-img" src="../../images/img_delivery@2x.png"></image>
 				</view>
 				<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==2}}">
@@ -28,7 +37,13 @@
 					<image class="little-img" src="../../images/img_delivery@2x.png"></image>
 				</view>
 				<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==4}}">
-					<view class="font-bold-20">{{order.order_status_info.name?order.order_status_info.name:"可提货"}}</view>
+					<view class="font-bold-20">
+						<view>{{order.order_status_info.name?order.order_status_info.name:"可提货"}}</view>
+					<view class="fsz-24">
+								发货时间：<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
+								<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
+					</view>
+				</view>
 					<image class="little-img" src="../../images/img_ready_to_get@2x.png"></image>
 				</view>
 				<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==6}}">
@@ -51,7 +66,11 @@
 				</view>
 				<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==5 || changeState==1}}">
 					<view class="font-bold-20 cancel-box">
-						<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>交易取消
+						<block wx:if="{{presale_info&&presale_info.is_unpay_ding_cancle==1}}">
+							<view class="fsz-32">未在规定时间内支付，订单已取消</view>
+							<view class="fsz-24" wx:if="{{presale_info.presale_limit_balancepaytime==1}}">支付尾款时间：{{presale_info.balance_pay_begintime}} - {{presale_info.balance_pay_endtime}}</view>
+						</block>
+						<block wx:else><image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>交易取消</block>
 					</view>
 				</view>
 				<view class="trade-cancel-wrap" wx:if="{{order.order_info.order_status_id==7}}">
@@ -59,94 +78,19 @@
 						<image class="cancel-img" src="../../images/icon_exclamation@2x.png"></image>已退款
 					</view>
 				</view>
+				<!-- 预售订单状态 -->
+				<view class="to-get-wrap" wx:if="{{presale_info&&order.order_info.order_status_id==15}}">
+					<view class="font-bold-20">
+						<view>{{order.order_status_info.name}}</view>
+						<view class="fsz-24" wx:if="{{presale_info.presale_limit_balancepaytime==1}}">支付尾款时间：{{presale_info.balance_pay_begintime}} - {{presale_info.balance_pay_endtime}}</view>
+					</view>
+					<image class="little-img" src="../../images/img_delivery@2x.png"></image>
+				</view>
 			</view>
 		</view>
 		<view class="content">
-			<block wx:if="{{delivery!='hexiao'}}">
-				<view class="goods-info" wx:if="{{order.order_info.delivery!='pickup'}}">
-					<i-order-info-express order="{{order}}" hidePhone="{{is_hidden_orderlist_phone}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}" wx:if="{{order.order_info}}" goods_sale_unit="{{goods_sale_unit}}">
-					</i-order-info-express>
-				</view>
-				<view class="goods-info" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
-					<i-goods-info order="{{order}}" hidePhone="{{is_hidden_orderlist_phone}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}" goods_sale_unit="{{goods_sale_unit}}">
-					</i-goods-info>
-				</view>
-				<view class="goods-card">
-					<view class="i-card">
-						<view class="header" slot="header">
-							<view class="goods-cancel bold-text" wx:if="{{order.order_info.order_status_id==5}}">已取消</view>
-							<view class="goods-ready bold-text" wx:if="{{order.order_info.order_status_id==1||order.order_info.order_status_id==14}}" style="color:{{skin.color}}">
-								<block wx:if="{{order.order_info.delivery=='pickup'}}">预计{{order.order_info.pick_up_time}}可提货</block>
-								<block wx:elif="{{order.order_info.delivery=='tuanz_send'}}">预计{{order.order_info.pick_up_time}}{{groupInfo.owner_name}}配送</block>
-								<block wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">同城配送</block>
-								<block wx:else>{{groupInfo.delivery_express_name}}</block>
-							</view>
-							<view class="goods-done bold-text" wx:if="{{order.order_info.order_status_id==6||order.order_info.order_status_id==11}}">{{showRealPickUpTime}}提货完成</view>
-							<view class="goods-num">{{order.goods_count}}{{goods_sale_unit}}商品</view>
-						</view>
-						<view class="middle" slot="content">
-							<block wx:for="{{order_goods_list}}" wx:for-item="goodsInfo" wx:key="id">
-								<view class="middle-line"></view>
-								<view class='each-item' bindtap="showRefundInfo" data-idx="{{index}}" data-hasrefund="{{goodsInfo.has_refund_quantity}}">
-									<view style="margin-right: 10px">
-										<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{goodsInfo.image}}" width="60"></i-img>
-									</view>
-									<view style="flex-grow: 1 ">
-										<view class="name bold-text">
-											<text class="pintag" wx:if="{{order.order_info.is_pin==1}}" style="background:{{skin.color}}">拼团</text>
-											{{goodsInfo.name}}
-										</view>
-										<view class="mount">
-											<block wx:if="{{goodsInfo.option_str}}">{{goodsInfo.option_str}} </block>
-											<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.price}}
-											<block wx:if="{{order.order_info.type=='integral'}}">积分</block> x {{goodsInfo.quantity}}
-											<block wx:if="{{goodsInfo.refund_info}}">
-												<text wx:if="{{goodsInfo.refund_info.state==0}}" class="bg-primary text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 申请退款中</text>
-												<text wx:if="{{goodsInfo.refund_info.state==3}}" class="bg-sucess text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款成功</text>
-												<text wx:if="{{goodsInfo.refund_info.state==4}}" class="bg-warning text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款失败</text>
-											</block>
-										</view>
-										<view class="bottom-info">
-											<view class='bold-text'>
-												小计：<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.real_total}}
-												<block wx:if="{{order.order_info.type=='integral'}}">积分</block>
-											</view>
-											<i-dialog bind:cancel="callDialog" bind:confirm="confirmGoods" data-cancel="confirmGoodsVisible" text="确认该商品已经提货？" visible="{{confirmGoodsVisible}}"></i-dialog>
-										</view>
-										<view class="card-btn">
-											<block wx:if="{{goodsInfo.is_refund_state>0&&goodsInfo.order_refund_goods.ref_id}}">
-												<view class="btn-2 mar-left-8" catchtap="goRefund" data-id="{{goodsInfo.order_refund_goods.ref_id}}">
-													<block wx:if="{{goodsInfo.is_refund_state==1}}">
-														{{(goodsInfo.order_refund_goods&&goodsInfo.order_refund_goods.state==3)?'退款成功':'查看售后'}}
-													</block>
-													<block wx:else>退款成功</block>
-												</view>
-											</block>
-											<view catchtap="goComment" data-order_goods_id="{{goodsInfo.order_goods_id}}" data-goods_id="{{goodsInfo.goods_id}}" data-type="{{order.order_info.order_id}}" class="btn-1" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==6&& goodsInfo.hascomment == 0}}">{{open_comment_gift==1?'评价有礼':'去评价'}}</view>
-											<!-- <block wx:if="{{order_can_del_cancle==1}}">
-												<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.can_ti_refund!=0&&goodsInfo.is_refund_state==0&&order.order_info.order_status_id==4&&order_can_shen_refund==1}}">申请售后</view>
-											</block> -->
-											<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1}}">申请售后</view>
-											<button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch==1}}">
-												<text>联系客服</text>
-											</button>
-											<view class="btn-2 mar-left-8" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==1}}">备货中</view>
-											<view class="btn-2 mar-left-8" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==14}}">配送中</view>
-										</view>
-									</view>
-								</view>
-							</block>
-						</view>
-						<view class="footer">
-							<view bindtap="cancelOrder" data-order_goods_id="0" data-type="{{order.order_info.order_id}}" class="btn-1 mar-left-8" wx:if="{{order.order_info.order_status_id==1&&order_can_del_cancle==1&&order.order_info.is_pin!=1}}">取消订单</view>
-							<navigator url="/eaterplanet_ecommerce/moduleA/pin/share?id={{order.order_info.order_id}}" wx:if="{{order.order_info.is_pin==1&&order.order_info.order_status_id!=3}}" class="btn-1">拼团详情</navigator>
-							<view catchtap="receivOrder" data-type="{{order.order_info.order_id}}" class="btn-3 mar-left-8" data-show="confirmGoodsVisible" wx:if="{{order.order_info.order_status_id==4&&order.order_info.is_can_received==1}}">{{order.order_info.delivery=='pickup'?"确认提货":"确认收货"}}</view>
-						</view>
-					</view>
-					<view class="space-between-card" wx:if="{{index!==orderSkuResps.length-1}}"></view>
-				</view>
-			</block>
-			<block wx:else>
+			<!-- 核销 -->
+			<block wx:if="{{delivery=='hexiao'}}">
 				<!-- 券码已使用 -->
 				<block wx:if="{{hx_receive_info.goods_count==hx_receive_info.receive_count}}">
 					<i-card>
@@ -165,6 +109,7 @@
 									<view class="bottom-info i-flex i-flex-alc">
 										<view class='bold-text i-flex-item'>小计：¥{{goodsInfo.real_total}}</view>
 										<view class="card-btn" style="margin: 0;">
+											<view catchtap="hanlePresalePayModal" class="btn-1 mar-left-8" wx:if="{{presale_info.need_repay==2&&!presale_info.second_paytime}}">付尾款</view>
 											<block wx:if="{{goodsInfo.is_refund_state>0&&goodsInfo.order_refund_goods.ref_id}}">
 												<view class="btn-2 mar-left-8" catchtap="goRefund" data-id="{{goodsInfo.order_refund_goods.ref_id}}">
 													<block wx:if="{{goodsInfo.is_refund_state==1}}">
@@ -209,7 +154,7 @@
 				</block>
 				<!-- 券码未使用 -->
 				<block wx:else>
-					<i-card>
+					<i-card wx:if="{{order.order_info.order_status_id!=11&&order.order_info.order_status_id!=6}}">
 						<view slot="header" class="header">{{order.order_info.shopname}}</view>
 						<view slot="content" class="content-wrap">
 							<view class="text-center mt10" wx:if="{{order.order_info.hexiao_qr_code}}">
@@ -229,8 +174,8 @@
 							</view>
 							<view slot="header" class="header i-flex i-flex-spb" wx:else>
 								<view class="red fsz-24">有效期至{{goodsInfo.effect_end_time}}</view>
-								<view class="red fsz-24" wx:if="{{goodsInfo.is_hexiao_over==1}}">已使用（{{goodsInfo.hexiao_count-goodsInfo.remain_hexiao_count}}{{goodsInfo.hexiao_type==0?'份':'次'}}）</view>
-								<view class="red fsz-24" wx:elif="{{goodsInfo.is_refund_state>0}}">已退款</view>
+								<view class="red fsz-24" wx:if="{{goodsInfo.is_refund_state>0}}">{{goodsInfo.is_refund_state==1?'已退款':'部分退款'}}</view>
+								<view class="red fsz-24" wx:elif="{{goodsInfo.is_hexiao_over==1}}">已使用（{{goodsInfo.hexiao_count-goodsInfo.remain_hexiao_count}}{{goodsInfo.hexiao_type==0?'份':'次'}}）</view>
 								<view class="red fsz-24" wx:else>未使用（{{goodsInfo.remain_hexiao_count ==0?'不限':goodsInfo.remain_hexiao_count}}{{goodsInfo.hexiao_type==0?'份':'次'}}）</view>
 							</view>
 							<view slot="content" class="content-wrap middle">
@@ -247,6 +192,7 @@
 										<view class="bottom-info i-flex i-flex-alc">
 											<view class='bold-text i-flex-item'>小计：¥{{goodsInfo.real_total}}</view>
 											<view class="card-btn" style="margin: 0;">
+												<view catchtap="hanlePresalePayModal" class="btn-1 mar-left-8" wx:if="{{presale_info.need_repay==2&&!presale_info.second_paytime}}">付尾款</view>
 												<block wx:if="{{goodsInfo.is_refund_state>0&&goodsInfo.order_refund_goods.ref_id}}">
 													<view class="btn-2 mar-left-8" catchtap="goRefund" data-id="{{goodsInfo.order_refund_goods.ref_id}}">
 														<block wx:if="{{goodsInfo.is_refund_state==1}}">
@@ -256,7 +202,7 @@
 													</view>
 												</block>
 												<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1}}">申请售后</view>
-												<text class="iconfont icon-erweima1 fsz-36 ml10"></text>
+												<text class="iconfont icon-erweima1 fsz-36 ml10" wx:if="{{order.order_info.order_status_id!=11&&order.order_info.order_status_id!=6}}"></text>
 											</view>
 										</view>
 									</view>
@@ -292,12 +238,221 @@
 							</view>
 						</i-card>
 					</block>
-					<view class="i-flex weight" style="background:#fbf1eb;margin:20rpx 0;padding:15rpx 20rpx;color:#f2792c;border-radius:5rpx;">
+					<view class="i-flex weight" style="background:#fbf1eb;margin:20rpx 0;padding:15rpx 20rpx;color:#f2792c;border-radius:5rpx;" wx:if="{{order.order_info.order_status_id!=11&&order.order_info.order_status_id!=6}}">
 						<text class="iconfont icon-laba" style="margin-right:10rpx;"></text>
 						商品门店信息请点击商品右下角二维码查看
 					</view>
 				</block>
 				<view class="mt10"></view>
+			</block>
+			<!-- 礼品卡 -->
+			<block wx:elif="{{virtualcard_info}}">
+				<i-card wx:if="{{virtualcard_info.state==1&&virtualcard_info.is_effect}}">
+					<view slot="header" class="header">礼品卡</view>
+					<view slot="content" class="content-wrap">
+						<view class="text-center weight mt5 pt10 pb15" bindtap="copyCont" data-code="{{virtualcard_info.code_sn}}">
+							{{virtualcard_info.code_sn}} <text class="bule">复制</text>
+						</view>
+					</view>
+				</i-card>
+				<!-- 商品信息 -->
+				<block wx:for="{{order_goods_list}}" wx:for-item="goodsInfo" wx:key="id">
+					<view class="mt10"></view>
+					<i-card data-idx="{{index}}">
+						<view slot="header" class="header i-flex i-flex-spb" wx:if="{{virtualcard_info.is_effect==0}}">
+							<view class="red fsz-24">{{virtualcard_info.effect_type==1?'有效期至'+virtualcard_info.effect_enddate:''}}</view>
+							<view class="red fsz-24" wx:if="{{goodsInfo.is_refund_state>0}}">已退款</view>
+							<view class="red fsz-24" wx:else>已过期</view>
+						</view>
+						<view slot="header" class="header i-flex i-flex-spb" wx:else>
+							<view class="red fsz-24">{{virtualcard_info.effect_type==1?'有效期至'+virtualcard_info.effect_enddate:''}}</view>
+							<view class="red fsz-24" wx:if="{{goodsInfo.is_refund_state>0}}">{{goodsInfo.is_refund_state==1?'已退款':'部分退款'}}</view>
+							<view class="red fsz-24" wx:elif="{{virtualcard_info.state==2}}">已使用</view>
+							<view class="red fsz-24" wx:else>未使用</view>
+						</view>
+						<view slot="content" class="content-wrap middle">
+							<view class="each-item">
+								<view style="margin-right: 10px">
+									<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{goodsInfo.image}}" width="60"></i-img>
+								</view>
+								<view style="flex-grow: 1">
+									<view class="name bold-text">{{goodsInfo.name}}</view>
+									<view class="mount">
+										<block wx:if="{{goodsInfo.option_str}}">{{goodsInfo.option_str}} </block>
+										¥{{goodsInfo.price}} x {{goodsInfo.quantity}}
+									</view>
+									<view class="bottom-info i-flex i-flex-alc">
+										<view class='bold-text i-flex-item'>小计：¥{{goodsInfo.real_total}}</view>
+										<view class="card-btn" style="margin: 0;">
+											<block wx:if="{{goodsInfo.is_refund_state>0&&goodsInfo.order_refund_goods.ref_id}}">
+												<view class="btn-2 mar-left-8" catchtap="goRefund" data-id="{{goodsInfo.order_refund_goods.ref_id}}">
+													<block wx:if="{{goodsInfo.is_refund_state==1}}">
+														{{(goodsInfo.order_refund_goods&&goodsInfo.order_refund_goods.state==3)?'退款成功':'查看售后'}}
+													</block>
+													<block wx:else>退款成功</block>
+												</view>
+											</block>
+											<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1}}">申请售后</view>
+											<block wx:if="{{virtualcard_info.is_effect==1&&virtualcard_info.state==1}}">
+												<view class="btn-1 mar-left-8" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/exchange">去使用</view>
+											</block>
+										</view>
+									</view>
+								</view>
+							</view>
+						</view>
+					</i-card>
+				</block>
+				<view class="mt10"></view>
+				<block wx:if="{{virtualcard_info.state>=2}}">
+					<i-card>
+						<view slot="header" class="header">
+							<view class="i-flex-item fsz-30">{{order.order_info.order_status_id==7?'已退款':'已收货'}}</view>
+						</view>
+						<view slot="content" class="content-wrap p15 fsz-24">
+							<view wx:if="{{virtualcard_info.use_date}}">使用时间：{{virtualcard_info.use_date}}</view>
+							<view class="mt5" wx:if="{{virtualcard_info.use_member_name}}">兑换人：{{virtualcard_info.use_member_name}}</view>
+							<view class="i-flex mt5">
+								<view>兑换码：</view>
+								<view class="i-flex-item weight">
+									<view>
+										<text class="line-through">{{virtualcard_info.code_sn}}</text> <text class="bule ml5" wx:if="{{order.order_info.order_status_id==7}}">已退款</text>
+									</view>
+								</view>
+							</view>
+						</view>
+					</i-card>
+					<view class="mt10"></view>
+				</block>
+			</block>
+			<block wx:else>
+				<view class="goods-info" wx:if="{{order.order_info.delivery!='pickup'}}">
+					<i-order-info-express order="{{order}}" hidePhone="{{is_hidden_orderlist_phone}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}" wx:if="{{order.order_info}}" goods_sale_unit="{{goods_sale_unit}}" presale="{{presale_info}}">
+					</i-order-info-express>
+				</view>
+				<view class="goods-info" wx:elif="{{order.order_info.order_status_id!=3&&order.order_info.order_status_id!=5}}">
+					<i-goods-info order="{{order}}" hidePhone="{{is_hidden_orderlist_phone}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}" goods_sale_unit="{{goods_sale_unit}}">
+					</i-goods-info>
+				</view>
+
+				<block wx:if="{{presale_info&&presale_info.presale_type==0}}">
+					<i-card>
+						<view slot="header" class="header">预售信息</view>
+						<view slot="content" class="content-wrap middle p10">
+							<view class="red">预售价¥{{goodsTot}}，付定金后再减¥{{presale_info.presale_deduction_money}}，尾款需付金额￥{{presale_info.weikuan}}（若有优惠，优惠将在尾款时使用）</view>
+							<view>
+								<view class="presale-item red i-flex i-flex-spb">
+									<view class="presale-item-circle">定金({{presale_info.first_paytime>0?'已支付':'未支付'}}) <text class="iconfont icon-shuoming text-gray fsz-28" bindtap="hanlePresaleModal"></text></view>
+									<view>¥{{presale_info.presale_ding_money}}</view>
+								</view>
+								<view class="presale-item i-flex i-flex-spb {{presale_info.second_paytime>0?'red':''}}">
+									<view class="presale-item-circle">尾款({{presale_info.is_unpay_ding_cancle==1?'已过期':(presale_info.second_paytime>0?'已支付':'未支付')}})</view>
+									<view>￥{{presale_info.weikuan}}</view>
+								</view>
+							</view>
+							<view class="mt10 fsz-24 text-gray" wx:if="{{presale_info.presale_limit_balancepaytime==1}}">
+								{{presale_info.balance_pay_begintime}} - {{presale_info.balance_pay_endtime}} 开始支付尾款
+							</view>
+							<view class="mt10 fsz-24 i-flex i-flex-spb" wx:if="{{presale_info.presale_sendorder_date||presale_info.presale_sendorder_afterday}}">
+								<view>
+									<em wx:if="{{order.order_info.delivery=='express'}}">{{groupInfo.delivery_express_name}}</em>
+									<em wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">同城配送</em>
+									<em wx:elif="{{order.order_info.delivery=='pickup'}}">{{groupInfo.delivery_ziti_name}}</em>
+									<em wx:else>{{groupInfo.delivery_tuanzshipping_name}}</em>
+								</view>
+								<view>
+									{{!presale_info.second_paytime&&presale_info.presale_type==0?'尾款支付成功后':''}}
+									<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
+									<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
+								</view>
+							</view>
+						</view>
+					</i-card>
+					<view class="mt10"></view>
+				</block>
+
+				<view class="goods-card">
+					<view class="i-card">
+						<view class="header" slot="header">
+							<view class="goods-cancel bold-text" wx:if="{{order.order_info.order_status_id==5}}">已取消</view>
+							<view class="goods-ready bold-text" wx:if="{{order.order_info.order_status_id==1||order.order_info.order_status_id==14}}" style="color:{{skin.color}}">
+								<block wx:if="{{presale_info&&presale_info.id}}">
+									<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
+									<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
+								</block>
+								<block wx:else>
+									<block wx:if="{{order.order_info.delivery=='pickup'}}">预计{{order.order_info.pick_up_time}}可提货</block>
+									<block wx:elif="{{order.order_info.delivery=='tuanz_send'}}">预计{{order.order_info.pick_up_time}}{{groupInfo.owner_name}}配送</block>
+									<block wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">同城配送</block>
+									<block wx:else>{{groupInfo.delivery_express_name}}</block>
+								</block>
+							</view>
+							<view class="goods-done bold-text" wx:if="{{order.order_info.order_status_id==6||order.order_info.order_status_id==11}}">{{showRealPickUpTime}}提货完成</view>
+							<view class="goods-num">{{order.goods_count}}{{goods_sale_unit}}商品</view>
+						</view>
+						<view class="middle" slot="content">
+							<block wx:for="{{order_goods_list}}" wx:for-item="goodsInfo" wx:key="id">
+								<view class="middle-line"></view>
+								<view class='each-item' bindtap="showRefundInfo" data-idx="{{index}}" data-hasrefund="{{goodsInfo.has_refund_quantity}}">
+									<view style="margin-right: 10px">
+										<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{goodsInfo.image}}" width="60"></i-img>
+									</view>
+									<view style="flex-grow: 1 ">
+										<view class="name bold-text">
+											<text class="red" wx:if="{{presale_info}}">[预售]</text>
+											<text class="pintag" wx:if="{{order.order_info.is_pin==1}}" style="background:{{skin.color}}">拼团</text>
+											{{goodsInfo.name}}
+										</view>
+										<view class="mount">
+											<block wx:if="{{goodsInfo.option_str}}">{{goodsInfo.option_str}} </block>
+											<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.price}}
+											<block wx:if="{{order.order_info.type=='integral'}}">积分</block> x {{goodsInfo.quantity}}
+											<block wx:if="{{goodsInfo.refund_info}}">
+												<text wx:if="{{goodsInfo.refund_info.state==0}}" class="bg-primary text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 申请退款中</text>
+												<text wx:if="{{goodsInfo.refund_info.state==3}}" class="bg-sucess text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款成功</text>
+												<text wx:if="{{goodsInfo.refund_info.state==4}}" class="bg-warning text-white tag">{{goodsInfo.refund_info.real_refund_quantity}}个 退款失败</text>
+											</block>
+										</view>
+										<view class="bottom-info">
+											<view class='bold-text'>
+												小计：<block wx:if="{{order.order_info.type!='integral'}}">¥</block>{{goodsInfo.real_total}}
+												<block wx:if="{{order.order_info.type=='integral'}}">积分</block>
+											</view>
+											<i-dialog bind:cancel="callDialog" bind:confirm="confirmGoods" data-cancel="confirmGoodsVisible" text="确认该商品已经提货？" visible="{{confirmGoodsVisible}}"></i-dialog>
+										</view>
+										<view class="card-btn">
+											<block wx:if="{{goodsInfo.is_refund_state>0&&goodsInfo.order_refund_goods.ref_id}}">
+												<view class="btn-2 mar-left-8" catchtap="goRefund" data-id="{{goodsInfo.order_refund_goods.ref_id}}">
+													<block wx:if="{{goodsInfo.is_refund_state==1}}">
+														{{(goodsInfo.order_refund_goods&&goodsInfo.order_refund_goods.state==3)?'退款成功':'查看售后'}}
+													</block>
+													<block wx:else>退款成功</block>
+												</view>
+											</block>
+											<view catchtap="goComment" data-order_goods_id="{{goodsInfo.order_goods_id}}" data-goods_id="{{goodsInfo.goods_id}}" data-type="{{order.order_info.order_id}}" class="btn-1" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==6&& goodsInfo.hascomment == 0}}">{{open_comment_gift==1?'评价有礼':'去评价'}}</view>
+											<!-- <block wx:if="{{order_can_del_cancle==1}}">
+												<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.can_ti_refund!=0&&goodsInfo.is_refund_state==0&&order.order_info.order_status_id==4&&order_can_shen_refund==1}}">申请售后</view>
+											</block> -->
+											<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1&&presale_info.presale_type!=1}}">申请售后</view>
+											<button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch==1}}">
+												<text>联系客服</text>
+											</button>
+											<view class="btn-2 mar-left-8" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==1}}">备货中</view>
+											<view class="btn-2 mar-left-8" wx:if="{{goodsInfo.is_refund_state == 0 && order.order_info.order_status_id==14}}">配送中</view>
+										</view>
+									</view>
+								</view>
+							</block>
+						</view>
+						<view class="footer">
+							<view bindtap="hanlePresalePayModal" class="btn-1 mar-left-8" wx:if="{{presale_info.need_repay==2&&!presale_info.second_paytime}}">付尾款</view>
+							<view bindtap="cancelOrder" data-order_goods_id="0" data-type="{{order.order_info.order_id}}" class="btn-1 mar-left-8" wx:if="{{order.order_info.order_status_id==1&&order_can_del_cancle==1&&order.order_info.is_pin!=1}}">取消订单</view>
+							<navigator url="/eaterplanet_ecommerce/moduleA/pin/share?id={{order.order_info.order_id}}" wx:if="{{order.order_info.is_pin==1&&order.order_info.order_status_id!=3}}" class="btn-1">拼团详情</navigator>
+							<view catchtap="receivOrder" data-type="{{order.order_info.order_id}}" class="btn-3 mar-left-8" data-show="confirmGoodsVisible" wx:if="{{order.order_info.order_status_id==4&&order.order_info.is_can_received==1}}">{{order.order_info.delivery=='pickup'?"确认提货":"确认收货"}}</view>
+						</view>
+					</view>
+					<view class="space-between-card" wx:if="{{index!==orderSkuResps.length-1}}"></view>
+				</view>
 			</block>
 			<i-orderComment wx:if="{{order.order_info.comment}}" comment="{{order.order_info.comment}}" />
 			<view class="order-info">
@@ -329,7 +484,8 @@
 <i-modal scrollUp="{{false}}" visible="{{isShowModal}}" wx:if="{{order.order_info.ziti_name}}">
 	<view class="share-modal">
 		<image class='close-modal' src='../../images/img-close.png' bindtap='closeModal'></image>
-		<view class='share-modal-title'>@{{order.order_info.ziti_name}}{{groupInfo.owner_name}}，我是{{userInfo.shareNickName}}，刚在你这里下单啦！！！</view>
+		<view class='share-modal-title' wx:if="{{share_title}}">{{share_title}}</view>
+		<view class='share-modal-title' wx:else>@{{order.order_info.ziti_name}}{{groupInfo.owner_name}}，我是{{userInfo.shareNickName}}，刚在你这里下单啦！！！</view>
 		<view class='share-modal-img'>
 			<image mode='widthFix' src='{{share_img?share_img:order_goods_list[0].goods_share_image}}'></image>
 		</view>
@@ -377,7 +533,7 @@
 							<!-- <block wx:if="{{order_can_del_cancle==1}}">
 								<view bindtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{refundGoodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{refundGoodsInfo.can_ti_refund!=0&&refundGoodsInfo.is_refund_state==0&&order.order_info.order_status_id==4}}">申请售后</view>
 							</block> -->
-							<view bindtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{refundGoodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{refundGoodsInfo.is_statements_state==0&&refundGoodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)}}">申请售后</view>
+							<view bindtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{refundGoodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{refundGoodsInfo.is_statements_state==0&&refundGoodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&presale_info.presale_type!=1}}">申请售后</view>
 						</view>
 					</view>
 				</view>
@@ -421,7 +577,7 @@
   </view>
 </i-modal>
 
-<!-- 搜歌商品核销详情弹窗 -->
+<!-- 商品核销详情弹窗 -->
 <i-modal scrollUp="{{true}}" visible="{{showHexiaoGoodsModal}}" bind:cancel="handleHexiaoGoodsModal">
   <view class="sku-card" style="padding: 40rpx 0 0;">
     <view class="weight fsz-32 pb10 text-center" style="padding: 0 40rpx;">{{order.order_info.shopname}}</view>
@@ -474,4 +630,79 @@
 			<view class="text-center text-white bg-primary fsz-30" style="height: 74rpx;line-height: 74rpx;" bindtap="handleHexiaoGoodsModal">关闭</view>
 		</view>
   </view>
+</i-modal>
+
+<!-- 预售说明 -->
+<i-modal bind:cancel="hanlePresaleModal" iClass="confirm-modal-content" visible="{{showPresaleDesc}}">
+  <view class="confirm-coupon-modal" style="background:#fff;">
+    <view class='title'>预售协议</view>
+    <scroll-view class='list' scroll-y style="min-height: 300rpx;padding-top:30rpx;">
+			<text>{{presale_info.presale_agreement}}</text>
+    </scroll-view>
+  </view>
+</i-modal>
+
+<!-- 预售尾款 -->
+<i-modal bind:cancel="hanlePresalePayModal" iClass="confirm-modal-content" visible="{{showPresalePayModal}}">
+  <view class="confirm-presale-modal">
+		<view class="title text-center">预售尾款支付信息</view>
+		<view class="order-content">
+			<view class="msg-group">
+				<span>尾款金额：</span>
+				<em>+¥{{presale_info.weikuan}}</em>
+			</view>
+			<view class="msg-group" wx:if="{{order.order_info.shipping_fare>0}}">
+				<span wx:if="{{order.order_info.delivery=='localtown_delivery'}}">同城配送费：</span>
+        <span wx:else>{{order.order_info.delivery=="express"?groupInfo.placeorder_trans_name:groupInfo.placeorder_tuan_name}}：</span>
+        <em>+ ¥{{order.order_info.shipping_fare}}</em>
+      </view>
+			<view class="msg-group" wx:if="{{order.order_info.is_free_shipping_fare==1}}">
+				<span>满金额免{{order.order_info.delivery=="express"?groupInfo.placeorder_trans_name:groupInfo.placeorder_tuan_name}}：</span>
+				<em>- ¥{{order.order_info.fare_shipping_free}}</em>
+			</view>
+      <view class="msg-group" wx:if="{{(order.order_info.score_for_money*1)>0}}">
+        <span>积分抵扣：</span>
+        <em>- ¥{{order.order_info.score_for_money}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{order.order_info.voucher_credit>0}}">
+        <span>优惠券：</span>
+        <em>- ¥{{order.order_info.voucher_credit}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{order.order_info.fullreduction_money>0}}">
+        <span>满减：</span>
+        <em>- ¥{{order.order_info.fullreduction_money}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{order.order_info.packing_fare>0}}">
+        <span>{{groupInfo.localtown_modifypickingname}}：</span>
+        <em>+ ¥{{order.order_info.packing_fare}}</em>
+      </view>
+      <view class="msg-group" wx:if="{{order.order_info.localtown_add_shipping_fare>0}}">
+        <span>加价配送费：</span>
+        <em>+ ¥{{order.order_info.localtown_add_shipping_fare}}</em>
+			</view>
+			<view class="msg-group">
+        <span>配送方式：</span>
+				<em wx:if="{{order.order_info.delivery=='express'}}">{{groupInfo.delivery_express_name}}</em>
+				<em wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">同城配送</em>
+				<em wx:else>{{groupInfo.delivery_tuanzshipping_name}}</em>
+			</view>
+			<view class="msg-group" wx:if="{{presale_info.presale_sendorder_date||presale_info.presale_sendorder_afterday}}">
+				<span>发货时间：</span>
+				<em>
+					{{!presale_info.second_paytime&&presale_info.presale_type==0?'尾款支付成功后':''}}
+					<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
+					<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
+				</em>
+			</view>
+			<view class="total">
+        合计:<em>¥{{presale_info.payTot}}</em>
+      </view>
+		</view>
+		<view class="button-group i-flex">
+      <i-button bindtap="hanlePresalePayModal" class="btn-content text-center" iClass="btn left-btn">取消</i-button>
+      <i-button class="btn-content text-center" iClass="btn right-btn" loading="{{payBtnLoading}}" bindtap="preOrderPay" data-type="{{order.order_info.order_id}}">
+        <view style="background:{{skin.color}};line-height:80rpx;color:#fff;">确认支付</view>
+      </i-button>
+    </view>
+	</view>
 </i-modal>
