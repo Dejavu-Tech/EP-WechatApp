@@ -1,10 +1,12 @@
 /* 新人专享 */
 .new-comers {
-    position: relative;
+  position: relative;
     padding: 20rpx 0;
-    margin: 20rpx;
-    background: #fff;
-    border-radius: 10rpx;
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  overflow: hidden;
+  z-index: 0;
 }
 
 .new-comers-title {
@@ -139,4 +141,54 @@
 .onlyThree .new-comers-item .new-img {
   width: 196rpx!important;
   height: 196rpx!important;
+}
+
+/* diy */
+.diylist-theme-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 160rpx;
+}
+
+.diylist-theme-red {
+  background: linear-gradient(180deg, #FFD8D8, transparent);
+}
+
+.diylist-theme-blue {
+  background: linear-gradient(180deg, #D7FAFF, transparent);
+}
+
+.diylist-theme-yellow {
+  background: linear-gradient(180deg, #FFF4E0, transparent);
+}
+
+.diylist-theme-violet {
+  background: linear-gradient(180deg, #F9E5FF, transparent);
+}
+
+.diylist-head {
+  position: relative;
+  line-height: 30rpx;
+  height: 30rpx;
+  padding: 30rpx 20rpx 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.diylist-s1-lefticon {
+  width: 125rpx;
+  height: 30rpx;
+  flex-shrink: 0;
+  margin-right: 20rpx;
+}
+
+.diylist-s1-name {
+  color: #909399;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
 }

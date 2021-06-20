@@ -82,6 +82,55 @@ Component({
         }
       }
     },
+    getProfile: function() {
+      var that = this;
+      console.log(wx.canIUse("getUserProfile"));
+      if (!that.data.btnLoading) {
+      // if(wx.canIUse("getUserProfile")) {
+        wx.getUserProfile({
+          desc: "获取你的昵称、头像、地区及性别",
+          success: function (msg) {
+            var userInfo = msg.userInfo
+            wx.setStorage({
+              key: "userInfo",
+              data: userInfo
+            })
+            that.setData({ btnLoading: true });
+            util.login_prosime(that.data.needPosition, userInfo).then( res => {
+              console.log("授权成功")
+              that.setData({ btnLoading: false });
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 2000
+              })
+              that.triggerEvent("authSuccess", res);
+              app.globalData.changedCommunity = true;
+              //检查获取位置权限
+              that.data.needPosition && location.getGps();
+            }).catch(function () {
+              that.triggerEvent("cancel");
+              console.log('授权失败');
+            })
+          },
+          fail: ()=>{
+            wx.showToast({
+              title: "授权失败，为了完整体验，获取更多优惠活动，需要您的授权。",
+              icon: "none"
+            });
+            that.triggerEvent("cancel");
+            that.setData({ btnLoading: false });
+          }
+        })
+      }
+      // } else {
+      //   wx.showModal({
+      //     title: '提示',
+      //     content: '请升级微信',
+      //     showCancel: false
+      //   })
+      // }
+    },
     checkWxLogin: function() {
       return new Promise((resolve, reject) => {
         wx.getSetting({

@@ -16,7 +16,10 @@ Component({
     },
     skin: {
       type: Object
-    }
+    },
+    diyData: {
+      type: Object
+    },
   },
 
   /**

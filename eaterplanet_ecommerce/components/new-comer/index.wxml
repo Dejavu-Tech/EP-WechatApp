@@ -1,6 +1,17 @@
 <!-- 新人专享 -->
 <view class='new-comers' wx:if="{{list.length}}">
-  <view class='new-comers-title'><text class="leftBorder" style="border-color: {{skin.color}}"></text>新人专享</view>
+  <!-- diy头 -->
+  <block wx:if="{{diyData}}">
+    <view class="diylist-theme-bg diylist-theme-{{diyData.bgSelect}}"></view>
+    <view class="diylist-head i-flex" wx:if="{{diyData.style==1}}">
+      <image class="diylist-s1-lefticon" src="{{diyData.host + diyData.list[0].imageUrl}}"></image>
+      <view class="diylist-s1-name">{{diyData.list[0].title}}</view>
+      <view></view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class='new-comers-title'><text class="leftBorder" style="border-color: {{skin.color}}"></text>新人专享</view>
+  </block>
   <scroll-view class='new-comers-scroll' scroll-x bindscrolltolower="getMore">
     <view class='new-comers-wrap {{list.length<=3?"onlyThree":""}}'>
       <i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="id">

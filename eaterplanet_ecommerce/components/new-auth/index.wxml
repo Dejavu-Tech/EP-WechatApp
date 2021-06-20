@@ -6,12 +6,12 @@
         <image class="img" mode="widthFix" src="{{newauth_cancel_image}}"></image>
       </view>
       <view class="close-btn" bindtap="close" style="border-color:#fff;color:#fff" wx:else>暂不登录</view>
-      <i-button bindgetuserinfo="bindGetUserInfo" iClass="confirm-img" openType="getUserInfo" wx:if="{{newauth_confirm_image}}">
+      <button catchtap="getProfile" class="confirm-img" wx:if="{{newauth_confirm_image}}">
         <image class="img" mode="widthFix" src="{{newauth_confirm_image}}"></image>
-      </i-button>
-      <i-button bindgetuserinfo="bindGetUserInfo" iClass="confirm" loading="{{btnLoading}}" openType="getUserInfo" styleStr="background:#fff" wx:else>
+      </button>
+      <button catchtap="getProfile" class="confirm" loading="{{btnLoading}}" style="background:background:#fff" wx:else>
         立即登录
-      </i-button>
+      </button>
     </view>
     <view class="updateWx" wx:else>请升级微信版本</view>
   </view>
