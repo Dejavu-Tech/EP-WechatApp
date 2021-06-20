@@ -82,7 +82,8 @@
 }
 
 .pinrow-wrap .spu-content .spu-price .sale-price {
-  color: #ff5344;
+  font-family: 'DIN';
+  color: #ff758c;
   margin-right: 12rpx;
 }
 
@@ -94,6 +95,7 @@
 }
 
 .pinrow-wrap .spu-content .spu-price .market-price {
+  font-family: DIN;
   text-decoration: line-through;
   color: #999;
   margin-right: 20rpx;
@@ -125,7 +127,7 @@
   margin: 0;
   position: absolute;
   right: 20rpx;
-  bottom: 30rpx;
+  bottom: 20rpx;
   display: flex;
   align-items: center;
   justify-content: center;
