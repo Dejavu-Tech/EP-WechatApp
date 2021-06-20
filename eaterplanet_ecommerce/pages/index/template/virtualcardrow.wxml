@@ -1,0 +1,66 @@
+<template name="virtualcardrow">
+  <view class='pin-spec' wx:if="{{data.goods_list&&data.goods_list.length&&data.isopen_virtualcard==1}}">
+    <image class="pin-spec-img" mode="widthFix" src="{{data.virtualcard_index_coming_img}}"
+      wx:if="{{data.virtualcard_index_coming_img}}" bindtap="goLink"
+      data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index"></image>
+    <view class="pinrow-wrap presalerow">
+      <view class="border-bottom" wx:for="{{data.goods_list}}" wx:key="id">
+        <i-router-link routerClass="spu-content"
+          url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}&type=virtualcard">
+          <view class="item-top">
+            <!-- 标签 -->
+            <view wx:if="{{item.label_info && item.label_info.type==0}}" class='item-tag'>
+              <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+              <view class='tag-name {{item.label_info.len==2?"two-word":""}}'>{{item.label_info.tagcontent}}</view>
+            </view>
+            <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag'
+              style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'>
+            </view>
+            <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="240"
+              iClass="spu-img" lazyLoad="true" loadImage="{{item.bigImg?item.bigImg:item.skuImage}}" width="300">
+            </i-img>
+            <view class="spu-play" wx:if="{{item.is_video}}">
+              <image class="img" src="../../images/play.png"></image>
+            </view>
+          </view>
+          <view class="item-bottom">
+            <view class="spu-title">
+              <text class='span'>{{item.spuName}}</text>
+            </view>
+            <view class="spu-desc" wx:if="{{item.spuDescribe}}">
+              <text class="em">{{item.spuDescribe}}</text>
+            </view>
+            <view class="spu-count">
+              <text class="pin-tag"
+                style="color:{{skin.color}};border-color:{{skin.color}}">可兑换{{item.code_money}}元</text>
+            </view>
+            <view class="spu-price">
+              <view class="sale-price">
+                <text class='span'>¥{{item.actPrice[0]}}</text>.{{item.actPrice[1]}}
+              </view>
+              <view class="market-price">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</view>
+            </view>
+          </view>
+          <block wx:if="{{!isPast}}">
+            <i-button class="add-cart-disabled" disabled="{{item.spuCanBuyNum==0}}" wx:if="{{item.spuCanBuyNum==0}}">
+              已抢光
+            </i-button>
+            <i-button class="add-cart-disabled" disabled="{{item.actEnd==1}}" wx:if="{{item.actEnd==1}}">
+              已结束
+            </i-button>
+            <i-button iClass="add-cart" class="add-cart"
+              style="background: linear-gradient(90deg, {{skin.color}} 0%, {{skin.light}} 100%);" wx:else>
+              去抢购
+            </i-button>
+          </block>
+          <view class="mask" wx:if="{{item.spuCanBuyNum==0||item.actEnd==1?'disabled':''}}"></view>
+          <view class="act-end act-out" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+          <view class="act-end act-out" wx:elif="{{item.actEnd==1}}">已结束</view>
+        </i-router-link>
+      </view>
+    </view>
+    <view class="pin-more" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index">
+      查看全部 <text class="iconfont icon-youjiantou fsz-22"></text>
+    </view>
+  </view>
+</template>
