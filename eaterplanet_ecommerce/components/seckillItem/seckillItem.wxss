@@ -61,8 +61,8 @@
 }
 
 .seckill-item .spu-price .sale-price {
-    color: #ff758c;
-    margin-right: 12rpx;
+  color: #ff5344;
+  margin-right: 12rpx;
 }
 
 .seckill-item .spu-price .sale-price .span {
