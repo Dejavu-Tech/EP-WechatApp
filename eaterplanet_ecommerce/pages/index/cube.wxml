@@ -1,62 +1,9 @@
-<block wx:if="{{item.data}}">
-  <block wx:if="{{item.params.row>1}}">
-    <view class='fui-picturew row-{{item.params.row}}' style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-      <view class="item" wx:for='{{item.data}}' wx:for-item='items' wx:for-index='idx' wx:key="cube">
-        <navigator url='{{items.linkurl}}' style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-          <image mode="widthFix" src="{{items.imgurl}}" bindload="imagesHeight" class="advimg" data-type="cubeheight"></image>
-        </navigator>
+<template name="cube">
+  <view class="rubik-cube" style="{{'background:'+(item.backgroundColor)+';'}}">
+    <block wx:for="{{item.list}}" wx:for-item="cubeItem" wx:for-index="idx" wx:key="idx">
+      <view class="item {{item.selectedTemplate}}" bindtap="goDiysliderUrl" data-link="{{cubeItem.link}}" style="padding:{{item.imageGap}}rpx">
+        <image src="{{cubeItem.imageUrl}}" mode="widthFix"></image>
       </view>
-    </view>
-  </block>
-  <block wx:else>
-    <view class='fui-cube' style="{{item.style.background?'background:'+item.style.background+';':''}}">
-      <block wx:if="{{item.data.length == 1}}">
-        <navigator url='{{item.data[0].linkurl}}'>
-          <image mode="widthFix" src="{{item.data[0].imgurl}}"></image>
-        </navigator>
-      </block>
-      <block wx:if="{{item.data.length > 1}}">
-        <view class='fui-cube-left'>
-          <navigator url='{{item.data[0].linkurl}}' style="width:auto;{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}padding-right:0">
-            <image mode="widthFix" src="{{item.data[0].imgurl}}"></image>
-          </navigator>
-        </view>
-        <view class='fui-cube-right'>
-          <block wx:if="{{item.data.length == 2}}">
-            <navigator url='{{item.data[1].linkurl}}' style="width:auto;{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-              <image mode="widthFix" src="{{item.data[1].imgurl}}"></image>
-            </navigator>
-          </block>
-          <block wx:if="{{item.data.length > 2}}">
-            <view class='fui-cube-right1'>
-              <navigator url='{{item.data[1].linkurl}}' style="width:auto;{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-                <image src="{{item.data[1].imgurl}}"></image>
-              </navigator>
-            </view>
-            <view class='fui-cube-right2'>
-              <block wx:if="{{item.data.length == 3}}">
-                <navigator url='{{item.data[2].linkurl}}' style="width:auto;{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-                  <image src="{{item.data[2].imgurl}}"></image>
-                </navigator>
-              </block>
-              <block wx:if="{{item.data.length > 3}}">
-                <view class='left'>
-                  <navigator url='{{item.data[2].linkurl}}' style="width:auto;{{item.style.paddingtop?'margin-top:'+item.style.paddingtop/2+'px;padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}padding-right:{{item.style.paddingleft/4}}px">
-                    <image mode="widthFix" src="{{item.data[2].imgurl}}"></image>
-                  </navigator>
-                </view>
-                <block wx:if="{{item.data.length >= 4}}">
-                  <view class='right'>
-                    <navigator url='{{item.data[3].linkurl}}' style="width:auto;{{item.style.paddingtop?'margin-top:'+item.style.paddingtop/2+'px;padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}};padding-left:{{item.style.paddingleft/4}}px">
-                      <image mode="widthFix" src="{{item.data[3].imgurl}}"></image>
-                    </navigator>
-                  </view>
-                </block>
-              </block>
-            </view>
-          </block>
-        </view>
-      </block>
-    </view>
-  </block>
-</block>
+    </block>
+  </view>
+</template>

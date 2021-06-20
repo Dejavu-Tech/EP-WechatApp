@@ -138,6 +138,8 @@ isIPhoneX: globalData.isIPhoneX,
       imageHeight: 600
     },
     fmShow: true,
+    presale_index_info: '',
+    isDiy: 0
   },
   isFirst: 0,
   $data: {
@@ -426,7 +428,6 @@ isIPhoneX: globalData.isIPhoneX,
     let community_id = community.communityId || '';
     
     let isparse_formdata = wx.getStorageSync('isparse_formdata') || 0;
-    console.log("isparse_formdata", isparse_formdata);
     if (isparse_formdata != 1) {
       // this.get_index_info();
       if (options && Object.keys(options).length != 0) {
@@ -561,10 +562,14 @@ isIPhoneX: globalData.isIPhoneX,
     console.log('step8');
     let that = this;
     that.get_index_info();
-    that.get_type_topic();
-    that.getNavigat();
+    if(this.data.isDiy==0) {
+      that.get_type_topic();
+      that.getNavigat();
+      that.getPinList();
+    } else {
+      this.getDiyInfo();
+    }
     that.getCoupon();
-    that.getPinList();
 
     status.loadStatus().then(function() {
       let appLoadStatus = app.globalData.appLoadStatus;
@@ -573,7 +578,7 @@ isIPhoneX: globalData.isIPhoneX,
         // wx.hideLoading();
         setTimeout(function(){ wx.hideLoading(); },1000);
         that.setData({ needAuth: true, couponRefresh: false });
-        that.load_goods_data();
+        that.data.isDiy==0&&that.load_goods_data();
       } else if (appLoadStatus == 2) {
         console.log('step9');
         that.getHistoryCommunity();
@@ -593,7 +598,7 @@ isIPhoneX: globalData.isIPhoneX,
           })
         }
         console.log('step18');
-        that.load_goods_data();
+        that.data.isDiy==0&&that.load_goods_data();
       }
     });
   },
@@ -1067,6 +1072,48 @@ isIPhoneX: globalData.isIPhoneX,
 
           let index_video_arr = rdata.index_video_arr;
 
+          // 预售信息
+          let presale_index_info = rdata.presale_index_info || '';
+          if(presale_index_info&&presale_index_info.goods_list) {
+            let goods_list = presale_index_info.goods_list;
+            let nowtime = Date.parse(new Date())/1000;
+            goods_list.forEach((item, idx)=>{
+              let { presale_ding_money, actPrice, presale_deduction_money, presale_type, presale_ding_time_start_int, presale_ding_time_end_int } = item;
+              if(presale_type==0) {
+                presale_deduction_money = presale_deduction_money>0?presale_deduction_money:presale_ding_money;
+                let goodsPrice = (actPrice[0]+'.'+actPrice[1])*1;
+                presale_index_info.goods_list[idx].weikuan = (goodsPrice - presale_deduction_money*1).toFixed(2);
+                presale_ding_money = presale_ding_money.toFixed(2);
+                presale_index_info.goods_list[idx].dingArr = (presale_ding_money+'').split('.');
+                presale_index_info.goods_list[idx].presale_deduction_money = presale_deduction_money;
+              }
+              let saleStatus = 1; //客付定金  0未开始  2已结束
+              if(nowtime<presale_ding_time_start_int) {
+                saleStatus = 0;
+              } else if(nowtime>presale_ding_time_end_int) {
+                saleStatus = 2;
+              }
+              presale_index_info.goods_list[idx].saleStatus = saleStatus;
+            })
+          }
+          let isDiy = rdata.open_diy_index_page || 0;
+          wx.setStorageSync('is_diy', isDiy);
+          (isDiy==1)&&that.getDiyInfo();
+
+          // 礼品卡
+          let virtualcard_info = rdata.virtualcard_info || '';
+          if(virtualcard_info&&virtualcard_info.goods_list) {
+              var timestamp = Date.parse(new Date())/1000;
+              let newList = [];
+              if(Object.keys(virtualcard_info.goods_list).length) {
+                virtualcard_info.goods_list.forEach(item=>{
+                  (item.end_time<timestamp)&&(item.actEnd = 1);
+                  newList.push(item);
+                })
+              }
+              virtualcard_info.goods_list = newList;
+          }
+
           that.setData({
             notice_list,
             slider_list,
@@ -1109,7 +1156,10 @@ isIPhoneX: globalData.isIPhoneX,
             hide_index_type,
             show_index_wechat_oa: rdata.show_index_wechat_oa,
             ishide_index_goodslist: rdata.ishide_index_goodslist,
-            can_index_notice_alert: rdata.can_index_notice_alert
+            can_index_notice_alert: rdata.can_index_notice_alert,
+            presale_index_info,
+            isDiy,
+            virtualcard_info
           })
         }
       }
@@ -1706,7 +1756,7 @@ isIPhoneX: globalData.isIPhoneX,
   },
 
   onReachBottom: function(e) {
-    if(this.data.ishide_index_goodslist==1) return;
+    if(this.data.ishide_index_goodslist==1||this.data.isDiy==1) return;
     if (this.data.tabIdx==0){
       this.load_goods_data();
     } else {
@@ -1768,7 +1818,8 @@ isIPhoneX: globalData.isIPhoneX,
 
   // 搜索
   goResult: function (e) {
-    let keyword = e.detail.value.keyword.replace(/\s+/g, '');
+    let value = e.detail.value.keyword ? e.detail.value.keyword : e.detail.value;
+    let keyword = value.replace(/\s+/g, '');
     if (!keyword) {
       wx.showToast({
         title: '请输入关键词',
@@ -2200,41 +2251,6 @@ isIPhoneX: globalData.isIPhoneX,
     })
   },
 
-  // 输入框获得焦点
-  // handleFocus: function () {
-  //   this.focusFlag = true;
-  // },
-
-  // handleBlur: function (t) {
-  //   let a = t.detail;
-  //   let val = parseInt(a.value);
-  //   if (val == '' || isNaN(val)){
-  //     this.setData({ sku_val: 1 })
-  //   }
-  // },
-
-  // 监控输入框变化
-  // changeNumber: function (t) {
-  //   let { cur_sku_arr, sku_val } = this.data;
-  //   let max = cur_sku_arr.stock * 1;
-  //   let a = t.detail;
-  //   this.focusFlag = false;
-  //   if (a) {
-  //     let val = parseInt(a.value);
-  //     val = val < 1 ? 1 : val;
-  //     if (val > max) {
-  //       wx.showToast({
-  //         title: `最多只能购买${max}件`,
-  //         icon: 'none'
-  //       })
-  //       sku_val = max;
-  //     } else {
-  //       sku_val = val;
-  //     }
-  //   }
-  //   this.setData({ sku_val })
-  // },
-
   /** 
    * 图片信息
    */
@@ -2280,6 +2296,112 @@ isIPhoneX: globalData.isIPhoneX,
       let noticeIdx = e.currentTarget.dataset.idx;
       this.setData({ showNoticeText, noticeIdx })
     }
+  },
+
+  /**
+   * DIY公用链接跳转
+   */
+  goDiysliderUrl: function(t) {
+    let link = t.currentTarget.dataset.link;
+    let needAuth = this.data.needAuth;
+
+    if (Object.keys(link).length > 0) {
+      let type = link.parents;
+      if (util.checkRedirectTo(link.wap_url, needAuth)) {
+        this.authModal();
+        return;
+      }
+      switch(type) {
+        case "WEBVIEW":
+          let url = link.wap_url;
+          url && wx.navigateTo({ url: '/eaterplanet_ecommerce/pages/web-view?url=' + encodeURIComponent(url) });
+          break;
+        case "MALL_LINK":
+          url = link.wap_url;
+          if (url.indexOf('eaterplanet_ecommerce/pages/index/index') != -1 || url.indexOf('eaterplanet_ecommerce/pages/order/shopCart') != -1 || url.indexOf('eaterplanet_ecommerce/pages/user/me') != -1 || url.indexOf('eaterplanet_ecommerce/pages/type/index') != -1) {
+            url && wx.switchTab({ url })
+          } else {
+            url && wx.navigateTo({ url })
+          }
+          break;
+        case "OTHER_APPLET":
+          // 跳转小程序
+          let appId = link.appid;
+          let path = link.wap_url;
+          appId && wx.navigateToMiniProgram({
+            appId,
+            path,
+            extraData: {},
+            envVersion: 'release',
+            success(res) {},
+            fail(error) {  wx.showModal({ title: "提示", content: error.errMsg, showCancel: false }) }
+          })
+          break;
+        case "CUSTOM_LINK":
+          url = link.wap_url;
+          if (url.indexOf('eaterplanet_ecommerce/pages/index/index') != -1 || url.indexOf('eaterplanet_ecommerce/pages/order/shopCart') != -1 || url.indexOf('eaterplanet_ecommerce/pages/user/me') != -1 || url.indexOf('eaterplanet_ecommerce/pages/type/index') != -1) {
+            url && wx.switchTab({ url })
+          } else {
+            url && wx.navigateTo({ url })
+          }
+          break;
+        case "GOODS_CATEGORY":
+          //独立分类
+          let cateId = link.id;
+          app.globalData.typeCateId = cateId;
+          wx.switchTab({
+            url: '/eaterplanet_ecommerce/pages/type/index'
+          })
+          break;
+        default:
+          url = link.wap_url;
+          url && wx.navigateTo({ url })
+          break;
+      }
+    }
+  },
+
+  /**
+   * DIY商品列表组获取
+   */
+  getDiyGoodsList(res) {
+    let data = res.detail.data;
+    let idx = res.detail.id;
+    let diyGoodsList = [];
+    let is_open_vipcard_buy = 0;
+    if(data.code==0) {
+      let resGoodsList = data.list;
+      console.log(resGoodsList);
+      if (data.is_show_list_timer==1&&resGoodsList.length>0) {
+        diyGoodsList = this.transTime(resGoodsList);
+        for (let s in this.$data.countDownMap) this.initCountDown(this.$data.countDownMap[s]);
+      } else {
+        diyGoodsList[0] = resGoodsList;
+      }
+      is_open_vipcard_buy = data.is_open_vipcard_buy;
+    }
+    let list = this.data.diyGoodsList;
+    list[idx] = diyGoodsList;
+    this.setData({ diyGoodsList: list, is_open_vipcard_buy })
+  },
+
+  /**
+   * DIY数据
+   */
+  getDiyInfo: function() {
+    app.util.ProReq('index.get_diy_info').then(res => {
+      console.log(res.global)
+      let { diyJson, global } = res;
+      wx.setNavigationBarTitle({ title: global.title });
+      wx.setNavigationBarColor({
+        backgroundColor: global.topNavColor,
+        frontColor: global.textNavColor,
+      })
+      let diyGoodsList = Array.from(Array(diyJson.length), () => '');
+      this.setData({
+        diyJson, globalDiyData: global, diyGoodsList
+      })
+    })
   },
 
   onShareAppMessage: function(res) {

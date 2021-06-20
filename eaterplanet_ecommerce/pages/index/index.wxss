@@ -5,9 +5,15 @@
 @import "template/seckill.wxss";
 @import "template/video.wxss";
 @import "template/navlist.wxss";
+@import "template/presalerow.wxss";
+@import "nav.wxss";
+@import "floatBtn.wxss";
+@import "cube.wxss";
+@import "search.wxss";
+@import "coupon.wxss";
 
 page {
-  background-color: #f6f6f6;
+  background-color: #f6f6f6!important;
 }
 
 ::-webkit-scrollbar {
@@ -1680,10 +1686,9 @@ button.search-btn::after {
 
 /* 优惠券 20190713 */
 .promotion {
-    box-sizing: border-box;
-    height: 126rpx;
-    padding: 0 20rpx 20rpx;
-    
+  box-sizing: border-box;
+  /* height: 126rpx; */
+  padding: 0 20rpx 20rpx;
     z-index: 3;
 }
 
@@ -1726,9 +1731,6 @@ button.search-btn::after {
     position: relative;
     overflow: hidden;
     background-color: #ff758c;
-
-
-
 }
 
 .promotion .card {
@@ -1838,12 +1840,23 @@ button.search-btn::after {
 /* 优惠券 20190713 End */
 
 .theme3 {
+  position: relative;
     display: flex;
     flex-wrap: wrap;
     margin: 20rpx;
     border-radius: 30rpx;
     overflow: hidden;
-    
+}
+
+.theme3-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.theme3-list::after {
+	content:'';
+	width: 33.33%;
 }
 
 .theme3 .topic-img {
@@ -1928,9 +1941,31 @@ button.search-btn::after {
 }
 
 .forbid .iconfont {
-    font-size: 200rpx;
+  font-size: 120rpx;
+  color: #c7c7c7;
+  margin-bottom: 30rpx;
 }
 
+.diy-box {
+  min-height: 100vh;
+}
+
+.mp-account {
+    position: fixed;
+    left: 20rpx;
+    right: 20rpx;
+    border: 1rpx solid #ccc;
+    border-radius: 8rpx;
+    overflow: hidden;
+    bottom: calc(98rpx + env(safe-area-inset-bottom));
+    z-index: 99998;
+}
+.mp-account .iconfont {
+  position: absolute;
+  right: 10rpx;
+  top: -10rpx;
+  z-index: 99999;
+}
 .forbid .h1 {
     font-size: 32rpx;
     margin-top: 30rpx;
@@ -1962,30 +1997,15 @@ button.search-btn::after {
 }
 
 .group{
-  
-    
     width: 100%;
     display: block;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
-    
   }
   
 
-
-
-.mp-account {
-    position: fixed;
-    left: 20rpx;
-    right: 20rpx;
-    bottom: 97rpx;
-    z-index: 100;
-    border: 1rpx solid #ccc;
-    border-radius: 8rpx;
-    overflow: hidden;
-}
 .bigIcon {
     width: 60rpx;
     height: 60rpx;

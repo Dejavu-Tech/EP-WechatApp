@@ -1,12 +1,16 @@
-<view wx:if="{{item.data}}">
-    <view class="fui-icon-group col-{{item.style.rownum?item.style.rownum:4}} noborder {{item.style.navstyle?item.style.navstyle:''}}" style="{{item.style.background?'background:'+item.style.background+';':''}}">
-        <block wx:for='{{item.data}}' wx:for-item='item' wx:for-index='idx' wx:key="nav">
-            <navigator url="{{item.linkurl}}" class="fui-icon-col">
-                <view>
-                    <image src='{{item.imgurl}}'></image>
+<template name="nav">
+    <view style="margin: {{item.marginTop*2}}rpx 20rpx 0;color: {{item.textColor}};border-radius:10rpx;overflow: hidden;">
+        <view class="szy-icon-group col-{{item.showType?item.showType:4}} {{item.navRadius}}"
+            style="{{item.backgroundColor?'background:'+item.backgroundColor+';':''}}">
+            <block wx:for='{{item.list}}' wx:for-item='navItem' wx:for-index='idx' wx:key="nav">
+                <view url="{{navItem.linkurl}}" class="szy-icon-col" bindtap="goDiysliderUrl"
+                    data-link="{{navItem.link}}">
+                    <view wx:if="{{item.selectedTemplate=='imageNavigation'}}">
+                        <image class="nav-img" src='{{navItem.imageUrl}}'></image>
+                    </view>
+                    <view class="nav-name text-overflow1 u-font-26">{{navItem.title}}</view>
                 </view>
-                <view class='navs-navname' style="{{item.color?'color:'+item.color+';':''}}">{{item.text}}</view>
-            </navigator>
-        </block>
+            </block>
+        </view>
     </view>
-</view>
+</template>

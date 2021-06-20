@@ -1,0 +1,40 @@
+.diy-search-bar {
+  background-color: transparent;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.diy-search-bar .search-box {
+  position: relative;
+  background-color: #f0f0f0;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 76rpx;
+  color: #acacac;
+  display: flex;
+  align-content: center;
+  flex: 1;
+}
+
+.diy-search-bar .search-box .ipt {
+  padding: 0 30rpx;
+  line-height: 76rpx;
+  height: 76rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.diy-search-bar .search-box .ipt.radius {
+  border-radius: 76rpx;
+}
+
+.diy-search-bar .diy-search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  margin-top: -30rpx;
+  text-align: center;
+  line-height: 60rpx;
+}

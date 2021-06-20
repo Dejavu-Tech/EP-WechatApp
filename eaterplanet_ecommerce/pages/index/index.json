@@ -5,7 +5,6 @@
     "backgroundColor": "#4d9ee9",
   "usingComponents": {
     "navBar": "miniprograms-navigation-bar/index",
-    "i-auth": "../../components/auth/index",
     "i-tabbar": "../../components/tabbar/index",
     "i-router-link": "../../components/router-link/router-link",
     "i-rush-spu-big": "../../components/rush-spu-big/index",
@@ -31,6 +30,9 @@
     "skeleton": "../../components/skeleton/skeleton",
     "ad-alert": "../../components/ad-alert/index",
     "advimg": "../../components/advimg/index",
-    "form-apply": "../../components/form/apply"
+    "form-apply": "../../components/form/apply",
+    "parser":"../../components/parser/parser",
+    "diy-goods-list":"../../components/diy-goods-list/index",
+    "diy-pintuan":"../../components/diy-pintuan/index"
   }
 }

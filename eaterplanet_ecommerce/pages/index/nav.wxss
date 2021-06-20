@@ -1,0 +1,33 @@
+.szy-icon-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 5px;
+}
+
+.szy-icon-col {
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 8px 5px;
+}
+
+.col-3 .szy-icon-col {
+  width: 33.33%;
+}
+
+.col-4 .szy-icon-col {
+  width: 25%;
+}
+
+.col-5 .szy-icon-col {
+  width: 20%;
+}
+
+.szy-icon-col .nav-img {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+.szy-icon-group.fillet .nav-img {
+  border-radius: 50%;
+}

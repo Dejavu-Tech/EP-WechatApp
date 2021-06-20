@@ -1,3 +1,5 @@
-<view class='wxParse' style='margin:0px;padding:{{item.style.padding? item.style.padding/2:0}}px;{{item.style.background?"background: " + item.style.background+";":""}}'>
-<parser html="{{item.params.htmlindex}}" />
-</view>
+<template name="richtext">
+  <view style="margin: {{item.marginTop*2+'rpx'}} 20rpx 0;background-color: {{item.backgroundColor}};border-radius:10rpx;">
+    <parser html="{{item.html}}" />
+  </view>
+</template>

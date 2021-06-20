@@ -1,22 +1,15 @@
-<view wx:if="{{item.data}}">
-    <view class='index-hot' style="padding:6px;{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.bordercolor?'border:1px solid '+item.style.bordercolor+';':''}}">
-        <view class='weui-flex'>
-            <view class='<flex-head-item item-hotdot'>
-                <image class="hotdot" src="{{item.params.iconurl?item.params.iconurl:hotimg}}" style=""></image>
-                <span class="icox icox-notification" style="margin:0px 0px 6px 5px;border-left:1px solid #ccc;padding-left:15rpx;color:{{item.style.iconcolor}}"></span>
-                <!--image class="notification" src="{{notification}}"></image-->
-            </view>
-            <view class='weui-flex__item'>
-                <swiper autoplay="{{autoplayHot}}" circular="{{circularHot}}" class="index-adcs-sqiper index-notification-swiper" duration="{{durationHot}}" autoplay='true' indicatorDots="{{indicatorDotsHot}}" interval="{{item.params.speed?item.params.speed*1000:intervalHot}}" style="{{item.style.color?'color:'+item.style.color+';':''}}">
-                    <block wx:for='{{item.data}}' wx:for-item='item' wx:for-index='idx' wx:key="notice">
-                        <swiper-item>
-                            <navigator hoverClass="none" class="notification-navigoter" url="/{{item.linkurl}}">{{item.title}}
-                            </navigator>
-                        </swiper-item>
-                    </block>
-                </swiper>
-            </view>
+<template name="notice">
+    <view style="margin-top: {{item.marginTop}}px;">
+        <view class="top-msg" style="color: {{item.textColor}};background:{{item.backgroundColor}};">
+            <image wx:if="{{item.leftImg!='/static/diycomponent/notice/img/notice.png'}}" src="{{item.leftImg}}"></image>
+            <text wx:else class="iconfont icon-laba"></text>
+            <swiper class='notice-swipe' autoplay interval="3000" vertical circular>
+                <block wx:for="{{item.list}}" wx:for-item="noticeItem" wx:key="id">
+                    <swiper-item class='notice-swipe-item' data-content="{{noticeItem.title}}">
+                        {{noticeItem.title}}
+                    </swiper-item>
+                </block>
+            </swiper>
         </view>
     </view>
-
-</view>
+</template>

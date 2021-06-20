@@ -1,12 +1,12 @@
-<view class='diy-search {{item.style.searchstyle}}' style="{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px;':''}}">
-  <view class='inner left' style="{{item.style.inputbackground?'background:'+item.style.inputbackground+';':''}}">
-    <navigator hoverClass='none' url='/Snailfish_shop/pages/goods/search?fromsearch=1'>
-      <view>
-        <view class='search-icon' style='line-height:26px;'>
-          <image src='{{icons.search}}' style='width:18px;height:18px;'></image>
+<template name="search">
+  <form bindsubmit="goResult" style="display:block;width: 100%;">
+    <view class='diy-search-bar u-p-l-20 u-p-r-20 u-p-t-10 u-p-b-10' style="background-color:{{item.backgroundColor}}">
+      <view class='search-box' style="{{item.borderType==1?'border-radius:0;':''}};text-align:{{item.textAlign}};">
+        <input class="ipt {{item.borderType==2?'radius':''}}" placeholder="{{item.title?item.title:'搜索商品'}}" confirm-type="search" bindconfirm="goResult" type="text" name="keyword" style="background-color:{{item.bgColor}};color:{{item.textColor}};" placeholder-style="color:{{item.textColor}};"></input>
+        <view class='diy-search-icon'>
+          <text class="iconfont icon-sousuo1" style="color:{{item.textColor}}"></text>
         </view>
-        <view class='search-input' style="{{item.style.textalign?'text-align:'+item.style.textalign+';':''}}{{item.style.color?'color:'+item.style.color+';':''}}"><text style="padding:0 10px 0;">{{item.params.placeholder?item.params.placeholder:'输入关键字进行搜索'}}</text></view>
       </view>
-    </navigator>
-  </view>
-</view>
+    </view>
+  </form>
+</template>
