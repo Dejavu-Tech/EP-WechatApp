@@ -2,7 +2,7 @@
   <view class='like-title'>——{{likeTitle}}——</view>
   <view class='like-list'>
     <i-router-link routerClass="new-comers-item" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{item.actId}}" wx:for="{{list}}" wx:key="id">
-      <i-img defaultImage="../../images/placeholder-refund.png" height="200" iClass="new-img" loadImage="{{item.skuImage}}" width="180"></i-img>
+      <i-img defaultImage="../../images/placeholder-refund.png" height="285" width="285" iClass="new-img" loadImage="{{item.skuImage}}"></i-img>
       <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
       <view class='title'>{{item.spuName}}</view>
       <view class='new-bot'>
