@@ -66,5 +66,5 @@
 }
 
 .ipx {
-  padding-bottom: 40rpx;
+  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
