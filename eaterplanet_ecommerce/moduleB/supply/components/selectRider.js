@@ -46,13 +46,13 @@ Component({
       let keyword = e.detail.value.replace(/\s+/g, '');
       this.initFn(keyword);
     },
-  
+
     getData: function () {
       let that = this;
       let token = wx.getStorageSync('token');
       let order_id = this.data.order_id;
       let keyword = this.keyword;
-  
+
       wx.showLoading();
       app.util.request({
         url: 'entry/wxapp/index',
