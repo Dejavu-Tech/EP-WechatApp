@@ -1,5 +1,5 @@
 <import src="tabbar.wxml"></import>
-<navBar title="抢单" background='#FED206' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+
 <view class="list pb100" wx:if="{{list.length>0}}">
     <view class="item bg-f mb10" wx:for="{{list}}" wx:key="order_num_alias">
         <view class="border-bottom text-gray p15 fsz-24">订单编号: {{item.order_num_alias}}</view>
@@ -22,6 +22,7 @@
         <view class="user border-bottom p15 fsz-26">
             <view class="weight">收货人：{{item.shipping_name}}</view>
             <view class="mt5">下单时间：{{item.pay_time}}</view>
+            <view class="mt5">商家拣货完毕：{{item.order_delivery_time}}</view>
             <view class="mt5 red">{{item.delivery_note}}</view>
         </view>
         <view class="footer i-flex jcontent-sa py10">

@@ -24,23 +24,7 @@ Page({
     loadMore: true,
   },
   page: 1,
-    handlerGobackClick(delta) {
-    const pages = getCurrentPages();
-    if (pages.length >= 2) {
-      wx.navigateBack({
-        delta: delta
-      });
-    } else {
-      wx.switchTab({
-        url: '/eaterplanet_ecommerce/pages/index/index'
-      });
-    }
-  },
-  handlerGohomeClick(url) {
-    wx.switchTab({
-      url: '/eaterplanet_ecommerce/pages/index/index'
-    });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -128,7 +112,7 @@ Page({
           h.loadMore = false;
           h.noMore = false;
           h.loadText = "没有更多记录了~";
-          h.noData = 1;
+         if(that.page==1) { h.noData = 1; }
           that.setData(h)
         } else {
           app.util.message(res.data.msg, 'switchTo:/eaterplanet_ecommerce/pages/user/me', 'error');
@@ -271,6 +255,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log(this.data.noMore)
+    this.data.loadMore && this.getData();
   }
 })
