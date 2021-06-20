@@ -1,0 +1,3 @@
+<view class="goods-list" style="{{'background-color:'+(value.backgroundColor)+';'+('margin-top:'+(value.marginTop*2+'rpx')+';')}}">
+  <slot></slot>
+</view>
