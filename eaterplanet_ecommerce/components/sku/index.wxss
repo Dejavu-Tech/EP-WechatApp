@@ -219,7 +219,6 @@
 
 .sku-card .sku-confirm {
     width: 750rpx;
-    height: 96rpx;
     background: linear-gradient(to right,#4facfe,#00f2fe);
     line-height: 96rpx;
     text-align: center;
@@ -229,6 +228,7 @@
     padding: 0;
     border-radius: 0;
     font-weight: bold;
+    padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
 
 .sku-card .sku-confirm::after{

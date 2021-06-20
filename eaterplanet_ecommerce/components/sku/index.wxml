@@ -1,5 +1,5 @@
 <i-modal bind:cancel="close" iClass="sku-content" scrollUp="{{true}}" visible="{{visible}}">
-  <view class="sku-card safebottom">
+  <view class="sku-card">
     <view bindtap="close" class="close">
       <image class="image" src="../../images/icon-sku-close.png"></image>
     </view>
@@ -61,7 +61,7 @@
       <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
         <view>库存不足</view>
       </button>
-      <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="background:{{skin.color}}">
+      <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="">
         <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
       </button>
     </form>
