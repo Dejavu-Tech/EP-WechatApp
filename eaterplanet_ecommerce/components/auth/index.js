@@ -59,27 +59,41 @@ Component({
     bindGetUserInfo: function (t) {
       var that = this;
       if (!this.data.btnLoading) {
-        var n = t.detail;
-        if(this.setData({btnLoading: true}), "getUserInfo:ok" === n.errMsg){
-          util.login_prosime(that.data.needPosition).then(function(){
-            console.log("授权成功")
-            that.setData({ btnLoading: false });
-            wx.showToast({
-              title: '登录成功',
-              icon: 'success',
-              duration: 2000
+        wx.getUserProfile({
+          desc: "获取你的昵称、头像、地区及性别",
+          success: function (msg) {
+            var userInfo = msg.userInfo
+            wx.setStorage({
+              key: "userInfo",
+              data: userInfo
             })
-            that.triggerEvent("authSuccess");
-          }).catch(function(){
-            console.log('授权失败')
-          })
-        } else {
-          wx.showToast({
-            title: "授权失败，为了完整体验，获取更多优惠活动，需要您的授权。",
-            icon: "none"
-          });
-          this.setData({btnLoading: false});
-        }
+            that.setData({ btnLoading: true });
+            util.login_prosime(that.data.needPosition, userInfo).then(function () {
+              console.log("授权成功")
+              that.setData({ btnLoading: false });
+              wx.showToast({
+                title: '登录成功',
+                icon: 'success',
+                duration: 2000
+              })
+              that.triggerEvent("authSuccess");
+              app.globalData.changedCommunity = true;
+              //检查获取位置权限
+              that.data.needPosition && location.getGps();
+            }).catch(function () {
+              that.triggerEvent("cancel");
+              console.log('授权失败');
+            })
+          },
+          fail: ()=>{
+            wx.showToast({
+              title: "授权失败，为了完整体验，获取更多优惠活动，需要您的授权。",
+              icon: "none"
+            });
+            that.triggerEvent("cancel");
+            that.setData({ btnLoading: false });
+          }
+        })
       }
     },
     bindGetUserInfoTwo: function (t) {

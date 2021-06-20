@@ -9,6 +9,6 @@
     <view class="updateWx" wx:else>请升级微信版本</view>
   </block>
 </view>
-<view class="container" wx:else>
+<view class="container {{isIpx?'pb20 mb20':''}}" wx:else>
   <slot></slot>
 </view>
