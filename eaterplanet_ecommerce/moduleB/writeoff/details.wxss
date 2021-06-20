@@ -23,3 +23,10 @@
   top: 30rpx;
   font-size: 40rpx;
 }
+
+.allbtn {
+  background: #ff5344;
+  color: #ffffff;
+  padding: 8rpx 15rpx;
+  border-radius: 10rpx;
+}

@@ -41,7 +41,7 @@
     <view class="fsz-28">选择核销方式</view>
     <form catchsubmit="preFormSubmit">
       <view class="i-flex i-aic mt10">
-        <input class="i-flex-item ipt" name="code" placeholder="请输入券码"></input>
+        <input class="i-flex-item ipt" name="code" placeholder="请输入手机号/券码"></input>
         <button type="primary" formType="submit" class="btn">查询</button>
       </view>
     </form>
@@ -61,15 +61,21 @@
         <view>操作员：{{item.smember_name}}</view>
         <view class="mt5">订单编号：{{item.order_num_alias}}</view>
         <view class="mt5">用户手机号：{{item.shipping_tel}}</view>
-        <view class="mt5">核销时间：{{item.hx_time}}</view>
+        <view slot="header" class="header i-flex i-flex-spb">
+			<view class="mt5">核销时间：{{item.hx_time}} </view>
+			<view class="red fsz-24" >已核销</view>
+        </view>
         <view class="i-flex mt10">
           <image src="{{item.goods_images}}" class="goodsimg"></image>
           <view>
             <view class="fsz-28">{{item.goods_name}}</view>
             <view class="fsz-24 text-gray mt10">共 <text class="red">{{item.hexiao_count}}</text> 次</view>
+            <view class="fsz-24 text-gray mt5" wx:if="{{item.hexiao_type!=1}}">核销类型：订单核销</view>
+            <view wx:if="{{item.hexiao_type==1}}" class=" fsz-24 text-gray mt5">
+               <view class="mt5">核销类型：按次核销；本次核销消耗<text class="red">{{item.hexiao_count2}}</text>次</view>
+             </view>
           </view>
         </view>
-        <view class="state mt10 bg-sucess fsz-28">已核销</view>
       </view>
     </block>
     <view class="empty fsz32 text-center" wx:else>暂无记录~</view>

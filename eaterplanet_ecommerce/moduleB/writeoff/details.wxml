@@ -12,7 +12,9 @@
 <view class="bg-f p15 m15 rounded shadow">
   <view class="i-flex pb15">
     <view class="fsz-34 weight text-3 pb15 i-flex-item">核销内容</view>
-    <view class="red" bindtap="allHexiao">全部核销</view>
+    <view bindtap="allHexiao">
+      <view class="allbtn">全部核销</view>
+    </view>
   </view>
   <view class="list">
     <view class="item border-bottom" wx:for="{{order_goods_saleshexiao_list}}" wx:key="id">
@@ -24,15 +26,19 @@
         </view>
       </view>
       <view class="mt10 fsz-24 text-6">
-        <view>订单编号：{{orders.order_num_alias}}</view>
+        <view>订单编号：{{item.order_num_alias}}</view>
         <view>核销日期：{{item.effect_begin_time}}~{{item.effect_begin_time}}</view>
+        <view wx:if="{{item.hexiao_type!=1}}">核销类型：订单核销</view>
       </view>
       <view wx:if="{{item.hexiao_type==1}}" class="mt10 fsz-24 text-6">
+        <view>核销类型：按次核销</view>
         <view>总核销：{{item.hexiao_count}}次</view>
         <view>已核销：{{item.has_hexiao_count}}次</view>
         <view>可核销：{{item.remain_hexiao_count}}次</view>
       </view>
-      <view class="state mt10 bg-sucess" wx:if="{{item.is_hexiao_over==1}}">已核销</view>
+      <view wx:if="{{item.is_refund>0}}" class="red fsz-24 text-6">订单状态：{{item.is_refund==1?'已退款':'部分退款'}}</view>
+      <view wx:if="{{item.is_refund==1}}" class="state mt10 bg-sucess">已退款</view>
+      <view class="state mt10 bg-sucess" wx:elif="{{item.is_hexiao_over==1}}">已核销</view>
       <view class="state mt10 bg-primary" bindtap="goHexiao" data-id="{{item.id}}" data-type="{{item.hexiao_type}}" wx:else>核销</view>
     </view>
   </view>
@@ -48,9 +54,12 @@
     <scroll-view scroll-y style="max-height: 60vh;" class="pb15">
       <view class="i-flex border-bottom pb15">
         <image src="{{order_goods_info.goods_images}}" class="goodsimg"></image>
-        <view>
+        <view class="i-flex-item">
           <view class="fsz-28">{{order_goods_info.goods_name}}</view>
           <view class="fsz-24 text-gray mt10">x {{order_goods_info.quantity}}</view>
+        </view>
+        <view bindtap="allHexiaoBytimes" data-id="{{saleshexiao_info.id}}">
+          <view class="fsz-28 allbtn">全部核销</view>
         </view>
       </view>
       <!-- 使用记录 -->

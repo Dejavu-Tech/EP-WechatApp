@@ -8,7 +8,7 @@ Page({
    */
   data: {
     salesroomIdx: 0,
-    salesroom_list: [],
+    salesroom_list: [], 
     today_saleshexiao_count: 0,
     saleshexiao_record_list: []
   },
@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -88,7 +88,7 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '请输入正确的券码',
+        title: '请输入手机号/券码',
         icon: 'none'
       })
     }

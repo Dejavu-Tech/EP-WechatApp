@@ -163,10 +163,33 @@ Page({
    */
   allHexiao: function(event) {
     this.actionConfirm('确认全部核销').then(()=>{
-      let order_id = this.data.orders.order_id;
+      let order_goods_saleshexiao_list = this.data.order_goods_saleshexiao_list;
+      let order_ids = [];
+      order_goods_saleshexiao_list.map(item=>{
+        (item.is_hexiao_over==0)&&order_ids.push(item.order_id)
+      })
+      let order_id = order_ids.join(',');
       let token = wx.getStorageSync('token');
       let salesroom_id = this.salesroom_id;
       app.util.ProReq('hexiao.all_hx_order', { token, order_id, salesroom_id }).then(res => {
+        this.getHexiaoInfo(this.code);
+      }).catch(err => {
+        console.log(err)
+        app.util.message(err.msg || '请求出错', '', 'error');
+      })
+    });
+  },
+
+  /**
+   * 单商品按次数全部核销
+   */
+  allHexiaoBytimes: function(event) {
+    this.actionConfirm('确认全部核销').then(()=>{
+      let hexiao_id = event.currentTarget.dataset.id || '';
+      let token = wx.getStorageSync('token');
+      let salesroom_id = this.salesroom_id;
+      app.util.ProReq('hexiao.all_hx_order_goods_bytimes', { token, hexiao_id, salesroom_id }).then(res => {
+        this.setData({showHexiaoModal: false});
         this.getHexiaoInfo(this.code);
       }).catch(err => {
         console.log(err)
