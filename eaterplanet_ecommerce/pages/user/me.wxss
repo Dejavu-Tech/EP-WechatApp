@@ -826,10 +826,11 @@ button {
   width: 60rpx;
   height: 60rpx!important;
   margin-bottom: 15rpx;
+  max-height: initial;
 }
 
 .waptoolList.toolList .item-fav {
-  height: 98rpx;
+  height: 108rpx;
   font-size: 26rpx;
   font-weight: 400;
   color: #333;
@@ -874,4 +875,25 @@ button {
   flex: 1;
   color: #fff;
   font-size: 22rpx;
+}
+.luxian {
+  position: relative;
+  padding-left: 30rpx;
+  margin-left: 30rpx;
+}
+
+.luxian::before {
+  content: "";
+  position: absolute;
+  top: 25%;
+  bottom: 25%;
+  left: 0;
+  border: 1px solid #e5e5e5;
+  transform-origin: 0 0;
+  transform: scaleX(0.5);
+}
+
+.community-flex {
+  display: flex;
+  justify-content: space-between;
 }

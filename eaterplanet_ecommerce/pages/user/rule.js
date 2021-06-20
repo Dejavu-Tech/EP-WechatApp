@@ -1,6 +1,23 @@
 var app = getApp();
 
 Page({
+  handlerGobackClick(delta) {
+    const pages = getCurrentPages();
+    if (pages.length >= 2) {
+      wx.navigateBack({
+        delta: delta
+      });
+    } else {
+      wx.switchTab({
+        url: '/eaterplanet_ecommerce/pages/index/index'
+      });
+    }
+  },
+  handlerGohomeClick(url) {
+    wx.switchTab({
+      url: '/eaterplanet_ecommerce/pages/index/index'
+    });
+  },
   onLoad: function (options) {
     let type = options.type || "";
     if (!type) {

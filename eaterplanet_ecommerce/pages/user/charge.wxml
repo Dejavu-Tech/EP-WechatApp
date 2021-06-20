@@ -24,6 +24,9 @@
       <input class='money' min="0" step="0.01" type="digit" placeholder="输入金额" maxlength="15" bindinput="getMoney" bindfocus="bindIptFocus" bindblur="bindIptBlur" value="{{money}}"></input>
       <view class='bottom-line {{onFocus?"ipt-focus":""}}'></view>
     </view>
+    <view wx:if="{{recharge_get_money==1&&rewardIdx>-1}}" class="mt10 red">
+      充值满{{chargeArr[rewardIdx].money}}元，赠送{{chargeArr[rewardIdx].send_money}}元
+    </view>
   </view>
   <view class='btn {{canPay?"":"disable"}}' bindtap='wxcharge' style="{{canPay?'background:'+skin.color:'background:'+skin.lighter}}">确认</view>
   <view class='desc'>

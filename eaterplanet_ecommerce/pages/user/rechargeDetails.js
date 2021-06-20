@@ -10,11 +10,49 @@ Page({
     list: [],
     showData: 1,
     loadText: '加载中',
-    remark: ['', '前台充值', '', '余额支付', '订单退款', '后台充值', '商品退款', '', '后台扣除', '分销提现至余额', '团长提现至余额', '拼团佣金提现至余额', '配送佣金提现到余额']
+    remark: [
+      '', 
+      '前台充值', 
+      '', 
+      '余额支付', 
+      '订单退款', 
+      '后台充值', 
+      '商品退款', 
+      '', 
+      '后台扣除', 
+      '分销提现至余额', 
+      '团长提现至余额', 
+      '拼团佣金提现至余额', 
+      '配送佣金提现到余额',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '礼品卡兑换'
+    ]
   },
   page: 1,
   no_data: 0,
-
+  handlerGobackClick(delta) {
+    const pages = getCurrentPages();
+    if (pages.length >= 2) {
+      wx.navigateBack({
+        delta: delta
+      });
+    } else {
+      wx.switchTab({
+        url: '/eaterplanet_ecommerce/pages/index/index'
+      });
+    }
+  },
+  handlerGohomeClick(url) {
+    wx.switchTab({
+      url: '/eaterplanet_ecommerce/pages/index/index'
+    });
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -15,7 +15,7 @@
             <view class="user-name" style="color:{{user_top_font_color}}">
               <view class="user-name-top">
                 <view>{{member_info.username}}</view>
-                <button bindgetuserinfo="bindGetUserInfo" class="modify" openType="getUserInfo" wx:if="{{canIUse}}">
+                <button bindtap="bindGetUserInfo" class="modify" wx:if="{{canIUse}}">
                   <text class="iconfont icon-shuaxin" style="color:{{user_top_font_color}}"></text>
                 </button>
               </view>
@@ -120,7 +120,7 @@
             data-link="/eaterplanet_ecommerce/distributionCenter/pages/fans">
             <text>查看</text>
           </view>
-          </view> 
+        </view>
         <view class='modal-body i-flex i-flex-alc'>
           <view class='distribut-tot i-flex-item'>{{share_member_count}}</view>
           <view class='distribut-new bor-r'>
@@ -185,18 +185,27 @@
           </block>
         </view>
         </view>
-        <view class='modal-body community fsz-30'>
+        <view class='modal-body community fsz-30 i-flex'>
+        <view class="i-flex-item">
           <view class="weight red mb5" style="color:{{skin.color}}">{{community.communityName}}</view>
           <view class="fsz-26 text-gray mb5">{{community.fullAddress}}</view>
-          <view class="i-flex" wx:if="{{community.head_mobile||community.disUserMobile}}">
-            <view>
-              <text class="iconfont icon-ziyuan fsz-28"></text> 电话：</view>
-            <view style="color:#ee884a;" bindtap="callTelphone"
+          <view class="i-flex community-flex" wx:if="{{community.head_mobile||community.disUserMobile}}">
+            <view class="i-flex">
+              <view><text class="iconfont icon-ziyuan fsz-28"></text> 电话：</view>
+              <view style="color:#ee884a;" bindtap="callTelphone"
               data-phone="{{community.head_mobile||community.disUserMobile}}" wx:if="{{show_user_tuan_mobile==1}}">
               {{community.head_mobile||community.disUserMobile}}</view>
-            <view style="color:#ee884a;" wx:else>{{community.hideTel}}</view>
+              <view style="color:#ee884a;" wx:else>{{community.hideTel}}</view>
+            </view>
+            <view class="i-flex">
+              <view class="text-center i-flex-alc luxian" style="color:{{skin.color}}" bindtap="gotoMap" wx:if="{{show_user_change_comunity_map==1}}">
+                <text class="iconfont icon-luxian fsz-32"></text> 路线
+              </view>
+            </view>
           </view>
         </view>
+        </view>
+
       </view>
       <!-- 我的提货点 End -->
 
@@ -399,6 +408,30 @@
               </view>
             </view>
           </block>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/presale.png'}}"></image>
+              <text>预售中心</text>
+            </view>
+          </view>
+        </view>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="../../images/invite.png"></image>
+              <text>邀新有礼</text>
+            </view>
+          </view>
+        </view>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="../../images/virtualcard.png"></image>
+              <text>{{virtualcard_name_modify}}</text>
+            </view>
+          </view>
+        </view>
           <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
             <view class="item-main">
               <view class="item-title">
@@ -566,6 +599,24 @@
               </view>
             </view>
           </block>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" >
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="../../images/presale.png"></image>
+            <text>预售中心</text>
+          </view>
+        </view>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" >
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="../../images/invite.png"></image>
+            <text>邀新有礼</text>
+          </view>
+        </view>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" >
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="../../images/virtualcard.png"></image>
+            <text>{{virtualcard_name_modify}}</text>
+          </view>
+        </view>
           <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
             <view class="item-title">
               <image class="toolIcon" mode="widthFix"

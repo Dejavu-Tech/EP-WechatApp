@@ -1,3 +1,4 @@
+<navBar title="活动规则" background='linear-gradient(100deg,#4facfe 0%,#00f2fe 100%)' back="{{true}}"  bindback="handlerGobackClick"/>
 <view class="article">
   <view class="wxParse">
     <parser html="{{article}}" />

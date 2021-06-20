@@ -1,8 +1,9 @@
 {
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#FFFFFF",
-  "navigationBarTextStyle": "black",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
+    "navBar": "miniprograms-navigation-bar",
     "parser":"../../components/parser/parser"
   }
 }

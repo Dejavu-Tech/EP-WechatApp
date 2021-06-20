@@ -37,7 +37,10 @@
             <image src="../../images/used.png" wx:if="{{item.is_use ==1}}"></image>
           </view>
         </view>
-        <view class='footer'>有效期：{{item.begin_time}}~{{item.end_time}}</view>
+        <view class='footer i-flex'>
+          <text class="footer-tag bg-sucess" wx:if="{{item.receive_type=='invitegift'||item.receive_type=='invitegift_new'}}">邀新奖励</text>
+          <view>有效期：{{item.begin_time}}~{{item.end_time}}</view>
+        </view>
       </view>
       <view class='empty-wrap' wx:if="{{quan.length==0&&isHideLoadMore}}">
         <image class='empty-img' src='../../images/noData.png'></image>

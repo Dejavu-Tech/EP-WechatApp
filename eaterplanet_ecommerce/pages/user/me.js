@@ -13,7 +13,7 @@ Page({
         searchBarHeight: app.globalData.statusBarHeight + 'px',
       rushboxHeight: app.globalData.statusBarHeight + 200 + 'px',
     tablebar: 4,
-    canIUse: wx.canIUse("button.open-type.getUserInfo"),
+    canIUse: wx.canIUse("getUserProfile"),
     theme_type: '',
     add_mo: 0,
     is_show_on: 0,
@@ -131,7 +131,11 @@ Page({
             needAuth,
             show_user_tuan_mobile,
             is_localtown_distributionman,
-            user_tool_showtype
+            user_tool_showtype,
+            isopen_presale,
+            is_open_invite_invitation,
+            virtualcard_name_modify,
+            is_open_virtualcard_show
           } = res.data;
           that.setData({
             ...params,
@@ -148,7 +152,11 @@ Page({
             needAuth,
             show_user_tuan_mobile,
             is_localtown_distributionman,
-            user_tool_showtype: user_tool_showtype || 0
+            user_tool_showtype: user_tool_showtype || 0,
+            isopen_presale,
+            is_open_invite_invitation,
+            virtualcard_name_modify,
+            is_open_virtualcard_show
           });
         } else {
           //needAuth
@@ -216,6 +224,7 @@ Page({
             common_header_backgroundimage,
             is_show_about_us,
             show_user_change_comunity,
+            show_user_change_comunity_map,
             open_danhead_model,
             default_head_info,
             is_open_solitaire,
@@ -256,6 +265,7 @@ Page({
             fetch_coder_type: fetch_coder_type || 0,
             show_user_pin,
             show_user_change_comunity,
+            show_user_change_comunity_map,
             open_danhead_model,
             is_open_solitaire,
             user_top_font_color,
@@ -309,52 +319,57 @@ Page({
    */
   bindGetUserInfo: function(e) {
     let that = this;
-    if ("getUserInfo:ok" === e.detail.errMsg) {
-      var userInfo = Object.assign({}, wx.getStorageSync("userInfo"), {
-        avatarUrl: e.detail.userInfo.avatarUrl,
-        nickName: e.detail.userInfo.nickName
-      });
-      let { nickName, avatarUrl } = e.detail.userInfo;
-      app.globalData.userInfo = userInfo, wx.setStorage({
-        key: "userInfo",
-        data: userInfo
-      }), this.setData({
-        userInfo: userInfo
-      }), wx.showToast({
-        title: "资料已更新",
-        icon: "none",
-        duration: 2000
-      }), nickName && app.util.request({
-        url: 'entry/wxapp/user',
-        data: {
-          controller: 'user.update_user_info',
-          token: wx.getStorageSync("token"),
-          nickName,
-          avatarUrl
-        },
-        dataType: 'json',
-        success: function(res) {
-          if(res.data.code==0) {
-            let member_info = that.data.member_info;
-            let user_info = Object.assign({}, member_info, {
-              avatar: e.detail.userInfo.avatarUrl,
-              username: e.detail.userInfo.nickName
-            });
-            that.setData({
-              member_info: user_info
-            })
+    wx.getUserProfile({
+      desc: "获取你的昵称、头像、地区及性别",
+      success: function (msg) {
+        var userInfo = msg.userInfo;
+        var userInfo = Object.assign({}, wx.getStorageSync("userInfo"), {
+          avatarUrl: userInfo.avatarUrl,
+          nickName: userInfo.nickName
+        });
+        let { nickName, avatarUrl } = userInfo;
+        app.globalData.userInfo = userInfo, wx.setStorage({
+          key: "userInfo",
+          data: userInfo
+        }), that.setData({
+          userInfo: userInfo
+        }), wx.showToast({
+          title: "资料已更新",
+          icon: "none",
+          duration: 2000
+        }), nickName && app.util.request({
+          url: 'entry/wxapp/user',
+          data: {
+            controller: 'user.update_user_info',
+            token: wx.getStorageSync("token"),
+            nickName,
+            avatarUrl
+          },
+          dataType: 'json',
+          success: function(res) {
+            if(res.data.code==0) {
+              let member_info = that.data.member_info;
+              let user_info = Object.assign({}, member_info, {
+                avatar: userInfo.avatarUrl,
+                username: userInfo.nickName
+              });
+              that.setData({
+                member_info: user_info
+              })
+            }
           }
-        }
-      })
-    } else {
-      wx.showToast({
-        title: "资料更新失败。",
-        icon: "none"
-      });
-    }
+        })
+      },
+      fail: ()=>{
+        wx.showToast({
+          title: "资料更新失败。",
+          icon: "none"
+        });
+      }
+    })
   },
 
-  /**
+  /** 
    * 预览图片
    */
   previewImage: function(e) {
@@ -563,5 +578,24 @@ Page({
         }
       }));
     }
+  },
+
+  /**
+  * 查看地图
+  */
+  gotoMap: function () {
+    let community = this.data.community;
+    let postion = {lat: community.lat, lon: community.lon};
+    let longitude = parseFloat(postion.lon),
+      latitude = parseFloat(postion.lat),
+      name = community.disUserName,
+      address = `${community.fullAddress}(${community.communityName})`;
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      name: name,
+      address: address,
+      scale: 28
+    })
   },
 })

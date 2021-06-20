@@ -1,17 +1,6 @@
+<navBar title="余额明细" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <i-auth bind:authSuccess="authSuccess" needAuth="{{!is_login}}">
   <view class='charge-box'>
-      <!-- <view class="searchData">
-          <picker bindchange="bindDateChange" end="{{maxDate}}" fields="month" mode="date" start="2019-01-01" value="{{date}}">
-              <view class="choose-day">
-                  <text>{{chooseDate}}</text>
-                  <text class="arrow"></text>
-              </view>
-          </picker>
-          <view class="getData">
-              <text>获取：{{incomeNum}}</text>
-              <text>使用：{{expendNum}}</text>
-          </view>
-      </view> -->
       <view class="noDistributionList" style="height:{{containerHeight}}px" wx:if="{{showData===0}}">
           <image class="noDistributionListImg" src="../../images/noData.png"></image>
           <view class="noDistributionListTit">暂无任何明细记录</view>
@@ -27,6 +16,7 @@
                       </view>
                       <view class="list-orderNo" wx:if="{{item.state==3||item.state==4||item.state==6}}">{{item.trans_id}}</view>
                       <view class="list-time">{{item.charge_time}}</view>
+                      <view class="u-font-22 text-gray u-m-t-20" wx:if="{{item.remark}}">{{item.remark}}</view>
                   </view>
               </view>
           </i-card>

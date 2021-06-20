@@ -165,9 +165,9 @@
 }
 
 .tabs.tabs-card>.tabs-bar .tabs-tab-active {
-    background: #fff;
-    transform: translateZ(0);
-    border-color: #d9d9d9;
+  background: #fff;
+  transform: translateZ(0);
+  border-color: #d9d9d9;
     color: #4facfe;
 }
 
@@ -240,8 +240,8 @@
 
 .coupon .footer {
     color: #fff;
-    font-size: 24rpx;
-    padding: 22rpx 0 20rpx 35rpx;
+  font-size: 24rpx;
+  padding: 22rpx 0 20rpx 0;
 }
 
 .coupon .price {
@@ -345,4 +345,11 @@
     margin-top: 60rpx;
     margin-right: 12rpx;
     line-height: 38rpx;
+}
+
+.footer-tag {
+  font-size: 20rpx;
+  border-radius: 5rpx;
+  color: #fff;
+  padding: 2rpx 5rpx;
 }
