@@ -93,7 +93,7 @@ page {
   overflow: hidden;
   padding: 40rpx 40rpx 0 40rpx;
   padding-bottom: constant(safe-area-inset-bottom);
-  padding-bottom: env(safe-area-inset-bottom);
+  
 }
 
 .sku-card .close {
@@ -306,7 +306,6 @@ page {
 
 .sku-card .sku-confirm {
     width: 750rpx;
-    height: 96rpx;
     background: linear-gradient(90deg, #e7614d  0%, #e68475 100%);
     line-height: 96rpx;
     text-align: center;
@@ -317,6 +316,7 @@ page {
     border-radius: 0;
     font-weight: bold;
     border-radius: 20px 20px 0px 0px;
+    padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
 
 .sku-card button.sku-confirm::after{
