@@ -1,8 +1,7 @@
-<navBar title="{{modify_vipcard_name}}" background='#2e3748' iconTheme='white' color='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <view class="section">
   <block wx:if="{{is_vip_card_member==0}}">
     <image class="topImg" src="{{vipcard_unopen_headbg}}" wx:if="{{vipcard_unopen_headbg}}" mode="widthFix"></image>
-    <view class="bg-ff" wx:else>
+    <view class="bg-f" wx:else>
       <view class="head">
         <view class="card">
           <view class="card-title">
@@ -16,7 +15,7 @@
       </view>
     </view>
   </block>
-  <view class="bg-ff" wx:if="{{is_vip_card_member==1}}">
+  <view class="bg-f" wx:if="{{is_vip_card_member==1}}">
     <view class="head1">
       <view class="card" style="{{vipcard_effect_headbg?'background:url('+vipcard_effect_headbg+');background-size:cover;background-repeat:no-repeat;':''}}">
         <view class="card-title vipinfo">
@@ -35,7 +34,7 @@
   </view>
   <block wx:if="{{is_vip_card_member==2}}">
     <image class="topImg" src="{{vipcard_afterefect_headbg}}" wx:if="{{vipcard_afterefect_headbg}}" mode="widthFix"></image>
-    <view class="bg-ff" wx:else>
+    <view class="bg-f" wx:else>
       <view class="head">
         <view class="card">
           <view class="card-title">
@@ -50,7 +49,7 @@
     </view>
   </block>
 
-  <view class="privilege bg-ff {{is_vip_card_member==1?'privilege1':''}}">
+  <view class="privilege bg-f {{is_vip_card_member==1?'privilege1':''}}">
     <view class="greentitle weight">{{modify_vipcard_name}}专享特权</view>
     <view class="privilegelist" wx:if="{{card_equity_list.length>0}}">
       <view class="list-item" wx:for="{{card_equity_list}}" wx:key="id">
@@ -60,7 +59,7 @@
     </view>
   </view>
 
-  <view class="viptype bg-ff">
+  <view class="viptype bg-f">
     <view class="greentitle weight">{{modify_vipcard_name}}类型</view>
     <view class="viplist">
       <view class="list" wx:if="{{card_list.length>0}}">
@@ -75,16 +74,16 @@
     </view>
   </view>
   <block wx:if="{{is_vip_card_member!=1}}">
-    <view class="bg-ff" style="padding-bottom: 30rpx;">
+    <view class="bg-f" style="padding-bottom: 30rpx;">
       <view bindtap="submitpay" class="apply-btn weight">{{is_vip_card_member!=0?"立即续费":"立即购买"}}</view>
     </view>
   </block>
 
   <view class="mb10"></view>
-  <view class="goodsList bg-ff mb10">
+  <view class="goodsList bg-f mb10" wx:if="{{is_show_vipgoods==1}}">
     <view class="greentitle weight" style="padding: 30rpx;">{{modify_vipcard_name}}专享特价</view>
     <view class="cate">
-      <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background: linear-gradient(to right, #ffffff, #eacda3);'}}"></i-tabs>
+      <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background: linear-gradient(to right, #3CBA63, #72fa9c);'}}"></i-tabs>
     </view>
     <view class="rushList">
       <view class="goodsItem" wx:for="{{rushList}}" wx:key="actId">

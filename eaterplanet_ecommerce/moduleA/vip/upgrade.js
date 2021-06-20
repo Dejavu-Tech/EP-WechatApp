@@ -13,27 +13,12 @@ Page({
     loadMore: true,
     loadText: "加载中...",
     loadOver: false,
-    showEmpty: false
+    showEmpty: false,
+    is_show_vipgoods: 1
   },
   pageNum:1,
   canLoad: 1,
-    handlerGobackClick(delta) {
-    const pages = getCurrentPages();
-    if (pages.length >= 2) {
-      wx.navigateBack({
-        delta: delta
-      });
-    } else {
-      wx.switchTab({
-        url: '/eaterplanet_ecommerce/pages/index/index'
-      });
-    }
-  },
-  handlerGohomeClick(url) {
-    wx.switchTab({
-      url: '/eaterplanet_ecommerce/pages/index/index'
-    });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -157,6 +142,7 @@ Page({
             vipcard_afterefect_headbg,
             vipcard_equity_notice,
             del_vip_day: res.data.del_vip_day || '',
+            is_show_vipgoods,
             ...params
           })
         } else {
