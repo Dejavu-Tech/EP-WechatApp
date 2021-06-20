@@ -24,7 +24,7 @@
     <view class="common-money">{{wait_sub_total_money}}</view>
     <view class='common-title'>
       <view class='subtit'>可提现金额</view>
-      <navigator url='/eaterplanet_ecommerce/moduleA/groupCenter/detailsList?type=2' class='common-nav'>订单明细</navigator>
+      <navigator url='/eaterplanet_ecommerce/moduleA/groupCenter/detailsList?type=2' class='common-nav'>收益明细</navigator>
     </view>
     <view class="common-money">{{commission_info.money}}</view>
     <view class='common-title'>

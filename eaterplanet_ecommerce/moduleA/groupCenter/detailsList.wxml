@@ -12,7 +12,7 @@
   </view>
   <view class='cash-list'>
     <view class='list-item' wx:for="{{order}}" wx:key="id">
-      <view class="title">
+      <view class="title" wx:if="{{item.order_num_alias>0}}">
         <text>订单单号（{{item.order_num_alias}}）</text>
       </view>
       <view class="main">
@@ -21,7 +21,7 @@
             <text>订单标题：</text>
             <text>{{item.name}}</text>
           </view>
-          <view class="per">
+          <view class="per" wx:if="{{item.total>0}}">
             <text>订单金额：</text>
             <text>￥{{item.total}}</text>
           </view>
