@@ -45,7 +45,11 @@ Component({
       type: Number,
       default: 0
     },
-    goods_sale_unit: String
+    goods_sale_unit: String,
+    presale: {
+      type: Object,
+      default: {}
+    }
   },
   data: {
     isCalling: false

@@ -41,6 +41,10 @@
           <view class='title'>快递单号</view>
           <view class='detail'>{{order.order_info.shipping_no}}</view>
         </view>
+        <view class='item' wx:elif="{{presale&&presale.id&&presale.presale_sendorder_date}}">
+          <view class='title'>{{groupInfo.delivery_express_name}}</view>
+          <view class='detail'>{{presale.presale_sendorder_date}}开始发货</view>
+        </view>
       </block>
       <view class='item' wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">
         <view class='title'>配送方式</view>
