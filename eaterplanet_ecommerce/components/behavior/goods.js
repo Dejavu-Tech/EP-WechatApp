@@ -87,6 +87,16 @@ module.exports = Behavior({
     },
     saleUnit: {
       type: String
+    },
+    width250: {
+      type: Boolean,
+      value: false
+    },
+    diyInfo: {
+      type: Object,
+      value: {
+        goodsTag: 'default'
+      }
     }
   },
   attached() {
@@ -96,7 +106,8 @@ module.exports = Behavior({
     disabled: false,
     placeholdeImg: '',
     number: 0,
-    url: ''
+    url: '',
+    canClick: true
   },
   ready: function () {
     this.setData({
@@ -269,13 +280,38 @@ module.exports = Behavior({
 
     },
     goDetails: function(t){
+      if(!this.data.canClick) {
+        return;
+      }
+      let that = this;
+      this.setData({
+        canClick: false
+      });
       let goodsid = t.currentTarget.dataset.id || '';
       let img = t.currentTarget.dataset.img || '';
       let url = '/eaterplanet_ecommerce/pages/goods/goodsDetail?id='+goodsid;
       util.getStorageImage(img).then(res=>{
-        wx.navigateTo({ url })
+        wx.navigateTo({
+          url,
+          complete: function () {
+            setTimeout(function () {
+              that.setData({
+                canClick: true
+              });
+            }, 400);
+          }
+        })
       }).catch(err=>{
-        wx.navigateTo({ url })
+        wx.navigateTo({
+          url,
+          complete: function () {
+            setTimeout(function () {
+              that.setData({
+                canClick: true
+              });
+            }, 400);
+          }
+        })
       });
     }
   }
