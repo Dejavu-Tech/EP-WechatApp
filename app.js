@@ -8,8 +8,10 @@ App({
   onLaunch: async function (options) {
     let scene = options.scene || '';
     this.globalData.scene = scene;
+    console.log('scene:' + scene);
     var userInfo = wx.getStorageSync("userInfo");
     this.globalData.userInfo = userInfo;
+    wx.setStorageSync("isparse_formdata", 0);
     var currentCommunity = wx.getStorageSync("community");
     this.globalData.hasDefaultCommunity = !!currentCommunity;
     this.globalData.community = currentCommunity;
@@ -26,7 +28,7 @@ App({
       "lauchOpts": true,
       "statPullDownFresh": true,
       "statShareApp": true,
-      "statReachBottom": true 
+      "statReachBottom": true
     });
   },
   $mixinP:{
@@ -39,6 +41,7 @@ App({
   },
   onHide: function () {
   },
+
   util: util,
   userInfo: {
     sessionid: null,
