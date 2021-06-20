@@ -159,10 +159,10 @@ function login(s_link, type = 0) {
   })
 }
 
-function login_prosime(needPosition=true) {
+function login_prosime(needPosition=true, userInfo={}) {
   return new Promise(function (resolve, reject) {
     getCode().then(token=>{
-      wxGetUserInfo(needPosition, token).then(res=>{
+      wxGetUserInfo(needPosition, token, userInfo).then(res=>{
         resolve(res)
       }).catch(res => {
         console.log(res);
@@ -202,7 +202,7 @@ function getCode() {
   })
 }
 
-function wxGetUserInfo(needPosition, token) {
+function wxGetUserInfo(needPosition, token, userInfo) {
   return new Promise(function (resolve, reject) {
     var app = getApp();
     var share_id = wx.getStorageSync('share_id');
@@ -211,61 +211,49 @@ function wxGetUserInfo(needPosition, token) {
     var community_id = community && (community.communityId || 0);
     community && wx.setStorageSync('lastCommunity', community);
 
-    wx.getUserInfo({
-      success: function (msg) {
-        var userInfo = msg.userInfo
-        wx.setStorage({
-          key: "userInfo",
-          data: userInfo
-        })
-        console.log(msg.userInfo);
-        app.util.request({
-          url: 'entry/wxapp/user',
-          data: {
-            controller: 'user.applogin_do',
-            token,
-            share_id: share_id,
-            nickName: msg.userInfo.nickName,
-            avatarUrl: msg.userInfo.avatarUrl,
-            encrypteddata: msg.encryptedData,
-            iv: msg.iv,
-            community_id
-          },
-          method: 'post',
-          dataType: 'json',
-          success: function (res) {
-            let isblack = res.data.isblack || 0;
-            let isparse_formdata = res.data.isparse_formdata || 0;
-
-            if (isblack == 1) {
-              app.globalData.isblack = 1;
-              wx.removeStorageSync('token');
-              wx.switchTab({
-                url: '/eaterplanet_ecommerce/pages/index/index',
-              })
-            } else if (isparse_formdata == 1) {
-              wx.setStorageSync('isparse_formdata', 1);
-              wx.setStorage({
-                key: "member_id",
-                data: res.data.member_id
-              })
-              wx.reLaunch({
-                url: '/eaterplanet_ecommerce/pages/index/index',
-              })
-            } else {
-              wx.setStorage({
-                key: "member_id",
-                data: res.data.member_id
-              })
-              console.log('needPosition', needPosition)
-              needPosition && getCommunityInfo();
-            }
-            resolve(res);
-          }
-        })
+    app.util.request({
+      url: 'entry/wxapp/user',
+      data: {
+        controller: 'user.applogin_do',
+        token,
+        share_id: share_id,
+        nickName: userInfo.nickName,
+        avatarUrl: userInfo.avatarUrl,
+        community_id
       },
-      fail: function (msg) {
-        reject(msg)
+      method: 'post',
+      dataType: 'json',
+      success: function (res) {
+        let isblack = res.data.isblack || 0;
+        let isparse_formdata = res.data.isparse_formdata || 0;
+
+        if (isblack == 1) {
+          app.globalData.isblack = 1;
+          wx.removeStorageSync('token');
+          wx.switchTab({
+            url: '/eaterplanet_ecommerce/pages/index/index',
+          })
+        } else if (isparse_formdata == 1) {
+          wx.setStorageSync('isparse_formdata', 1);
+          wx.setStorage({
+            key: "member_id",
+            data: res.data.member_id
+          })
+          wx.reLaunch({
+            url: '/eaterplanet_ecommerce/pages/index/index',
+          })
+        } else {
+          wx.setStorage({
+            key: "member_id",
+            data: res.data.member_id
+          })
+          console.log('needPosition', needPosition)
+          needPosition && getCommunityInfo();
+        }
+        resolve(res);
+      },
+      fail: (err)=>{
+        reject(err);
       }
     })
   })
@@ -550,6 +538,7 @@ const getStorageImage = (web_image) => {
     if (webImage) {
       try {
         fileSystem.accessSync(webImage.local_path)
+        resolve(webImage.local_path)
         return webImage.local_path
       } catch (e) {
         // let webImageIdx = webImages.findIndex(y => y.web_path === web_image)
@@ -587,6 +576,8 @@ const getStorageImage = (web_image) => {
                 reject()
               }
             })
+          } else {
+            reject()
           }
         },
         fail() {

@@ -52,7 +52,7 @@ function collectFormIds(e) {
   }
   formIds.push(e), app.globalData.formIds = formIds;
   var token = wx.getStorageSync('token');
-  
+
   app.util.request({
     'url': 'entry/wxapp/index',
     'data': {
@@ -84,7 +84,7 @@ function isIdCard(t) {
 module.exports = {
   addToCart,
   skuConfirm,
-  collectFormIds, 
+  collectFormIds,
   checkMobile,
   isIdCard
 }

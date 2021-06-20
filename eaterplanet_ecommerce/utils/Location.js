@@ -169,7 +169,7 @@ function analyzeGps(tx_map_key, lat, lon) {
         console.log(res)
         let address_component = res.result.address_component || {};
         let address_reference = res.result.address_reference;
-        address_component.town = address_reference.town.title || '';
+        address_component.town = address_reference.town&&address_reference.town.title || '';
         resolve(address_component);
       }
     })
