@@ -98,9 +98,13 @@
 								<view class='detail'>{{order.order_info.shipping_no}}</view>
 							</view>
 						</block>
-						<view class='item' wx:if="{{order.order_info.delivery=='localtown_delivery'}}">
+						<view class='item' wx:elif="{{order.order_info.delivery=='localtown_delivery'}}">
 							<view class='title'>配送方式</view>
 							<view class='detail'>同城配送</view>
+						</view>
+						<view class='item' wx:elif="{{order.order_info.delivery=='hexiao'}}">
+							<view class='title'>配送方式</view>
+							<view class='detail'>到店核销</view>
 						</view>
 						<view class='item' wx:else>
 							<view class='title'>配送方式</view>
@@ -126,7 +130,7 @@
 							<view class="title">收货地址</view>
 							<view class="detail">{{order.shipping_province.name}}{{order.shipping_city.name}}{{order.shipping_country.name}}{{order.order_info.shipping_address}}</view>
 						</view>
-						<view class="item" wx:else>
+						<view class="item" wx:elif="{{order.order_info.tuan_send_address}}">
 							<view class="title">收货地址</view>
 							<view class="detail">{{order.order_info.tuan_send_address}}</view>
 						</view>
@@ -299,7 +303,7 @@
 				<view class="btn bg-blue" wx:if="{{order.order_info.delivery=='tuanz_send'||order.order_info.delivery=='pickup'}}" data-id="{{order.order_info.order_id}}" catchtap="tuanOver">确认送达团长</view>
 			</block>
 			<block wx:if="{{order.order_info.order_status_id==3}}">
-				<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{order.order_info.order_id}}'>订单改价</view>
+				<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{order.order_info.order_id}}' wx:if="{{!presale_info}}">订单改价</view>
 				<view class="btn bg-blue" catchtap="confirmPay" data-id="{{order.order_info.order_id}}">确认付款</view>
 			</block>
 		</view>

@@ -289,6 +289,7 @@ Page({
             icon: 'none'
           })
         } else {
+          that.initFn();
           app.util.message(res.data.msg, '', 'error');
         }
       }

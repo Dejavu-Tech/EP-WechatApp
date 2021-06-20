@@ -55,7 +55,7 @@ Page({
     let token = wx.getStorageSync('token');
     app.util.ProReq('order.order_info', {token, id, is_supply: 1}).then(res=>{
       let order = res.data;
-      let { is_hidden_orderlist_phone } = res;
+      let { is_hidden_orderlist_phone, presale_info } = res;
 
       let { real_total, shipping_fare, voucher_credit, fullreduction_money } = order.order_info;
       var goodsTotal = parseFloat(real_total) - parseFloat(shipping_fare);
@@ -79,13 +79,16 @@ Page({
         })
       }
 
+      presale_info = Object.keys(presale_info).length ? presale_info : '';
+
       this.setData({
         order,
         is_hidden_orderlist_phone,
         goodsTotal: goodsTotal.toFixed(2),
         disAmount: disAmount.toFixed(2),
         levelAmount: levelAmount.toFixed(2),
-        changePrice: changePrice.toFixed(2)
+        changePrice: changePrice.toFixed(2),
+        presale_info
       })
     }).catch(err=>{
       app.util.message(err.msg, 'switchTo:/eaterplanet_ecommerce/pages/user/me', 'error');

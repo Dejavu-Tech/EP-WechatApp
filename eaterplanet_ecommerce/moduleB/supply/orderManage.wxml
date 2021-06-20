@@ -61,7 +61,7 @@
 					<view class="btn bg-blue" wx:if="{{item.delivery=='tuanz_send'||item.delivery=='pickup'}}" data-id="{{item.order_id}}" catchtap="tuanOver">确认送达团长</view>
 				</block>
 				<block wx:if="{{item.order_status_id==3}}">
-					<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{item.order_id}}'>订单改价</view>
+					<view class="btn bg-primary" catchtap="goLink" data-link='/eaterplanet_ecommerce/moduleB/supply/changePrice?order_id={{item.order_id}}' wx:if="{{item.is_presale!=1}}">订单改价</view>
 					<view class="btn bg-blue" catchtap="confirmPay" data-id="{{item.order_id}}">确认付款</view>
 				</block>
 			</view>
@@ -90,7 +90,7 @@
 			</view>
 			<view class="i-flex i-aic">
 				物流单号：
-				<input class="ipt i-flex-item" type="text" placeholder="请输入物流单号" bindinput="bindKeyInput"></input>
+				<input class="ipt i-flex-item" type="text" placeholder="请输入物流单号" bindinput="bindKeyInput" wx:if="{{showExpModal}}"></input>
 			</view>
 		</view>
 		<view class="i-flex jcontent-sa text-center weight fsz-30">

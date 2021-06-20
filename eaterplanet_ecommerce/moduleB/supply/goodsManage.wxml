@@ -15,7 +15,7 @@
   </view>
   <view class="list" wx:if="{{list.length>0}}">
     <view class="item p15 bg-f border-bottom i-flex" wx:for="{{list}}" wx:key="id">
-      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" iClass="img-class" lazyLoad="true" loadImage="{{item.big_img}}" width="160"></i-img>
+      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="160" iClass="img-class" lazyLoad="true" loadImage="{{item.skuImage}}" width="160"></i-img>
       <view class="i-flex-item ml10 i-flex-col jcontent-c">
         <view class="fsz-28 weight">{{item.goodsname}}</view>
         <view class="price red mt10">¥{{item.price}}</view>
@@ -27,6 +27,8 @@
   </view>
   <i-empty wx:if="{{noData}}">暂无商品~</i-empty>
 </view>
+
+<view class="safebottom"></view>
 
 <mp-actionSheet bindactiontap="handleBtn" show="{{showActionsheet}}" actions="{{groups}}" title="选择需要的操作" bindclose="handleActionsheet"></mp-actionSheet>
 
