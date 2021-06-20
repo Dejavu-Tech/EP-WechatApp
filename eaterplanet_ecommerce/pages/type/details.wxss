@@ -76,3 +76,19 @@ page {
 .comming-list .comming-spu-item:nth-child(odd) {
   margin-right: 20rpx;
 }
+
+.theme3-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.theme3-list::after {
+	content:'';
+	width: 33.33%;
+}
+
+.cate-subtitle {
+  font-size: 32rpx;
+  font-weight: bold;
+}

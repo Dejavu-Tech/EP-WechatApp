@@ -120,7 +120,7 @@
     left: 160rpx;
     width: 590rpx;
     height: 1000rpx;
-    padding-top: 10rpx;
+    padding-top: 0;
     box-sizing: border-box;
     border-radius: 20px 20px 0px 20px;
 }
@@ -187,7 +187,7 @@
 
 /* 子栏目 */
 .sub-cate {
-  position: relative;
+  position: sticky;
   line-height: 88rpx;
   overflow: hidden;
   white-space: nowrap;
@@ -198,7 +198,9 @@
   z-index: 20;
   background-color: #fff;
   display: flex;
-  margin-left: 160rpx;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .sub-cate-scroll {
@@ -254,8 +256,8 @@
 }
 
 .sub-cate-hide {
-  position: absolute;
-  left: 160rpx;
+  position: sticky;
+  left: 0;
   right: 0;
   top: 89rpx;
   z-index: 500;
@@ -333,4 +335,17 @@
 .item-tag .tag-name.two-word {
   font-size: 22rpx;
   padding-top: 14rpx;
+}
+
+.advimg-box {
+  width: 546rpx;
+  height: 182rpx;
+  margin: 0 24rpx;
+  overflow: hidden;
+}
+
+.advimg {
+  width: 546rpx;
+  height: 182rpx;
+  box-sizing: border-box;
 }

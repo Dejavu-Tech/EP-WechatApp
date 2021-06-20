@@ -26,7 +26,8 @@ Page({
     groupInfo: {
       group_name: '社区',
       owner_name: '团长'
-    }
+    },
+    rightScrollTop: 0
   },
   $data: {
     options: {},
@@ -743,7 +744,8 @@ Page({
       showEmpty: false,
       loadMore: true,
       loadText: '加载中',
-      resetScrollBarTop: 50
+      resetScrollBarTop: 50,
+      rightScrollTop: 0
     }, () => {
       that.getHotList();
     })
@@ -753,6 +755,69 @@ Page({
     wx.navigateTo({
       url: '/eaterplanet_ecommerce/pages/type/search',
     })
+  },
+
+  clickAdv: function(e) {
+    let info = e.currentTarget.dataset.info || '';
+    let type = info.linktype;
+    let url = info.link;
+    if (type == 0) {
+      // 跳转webview
+      wx.navigateTo({
+        url: '/eaterplanet_ecommerce/pages/web-view?url=' + encodeURIComponent(url),
+      })
+    } else if (type == 1) {
+      if (url.indexOf('eaterplanet_ecommerce/pages/index/index') != -1 || url.indexOf('eaterplanet_ecommerce/pages/order/shopCart') != -1 || url.indexOf('eaterplanet_ecommerce/pages/user/me') != -1 || url.indexOf('eaterplanet_ecommerce/pages/type/index') != -1) {
+        url && wx.switchTab({ url })
+      } else {
+        url && wx.navigateTo({ url })
+      }
+    } else if (type == 2) {
+      // 跳转小程序
+      let appId = info.appid;
+      appId && wx.navigateToMiniProgram({
+        appId,
+        path: url,
+        extraData: {},
+        envVersion: 'release',
+        success(res) {
+          // 打开成功
+        },
+        fail(error) {
+          console.log(error)
+        }
+      })
+    } else if (type == 3) {
+      if(this.data.pos==0) {
+        this.triggerEvent("switchType", url);
+      } else {
+        getApp().globalData.indexCateId = url;
+        wx.switchTab({
+          url: '/eaterplanet_ecommerce/pages/index/index'
+        })
+      }
+    } else if (type == 4) {
+      //独立分类
+      getApp().globalData.typeCateId = url;
+      wx.switchTab({
+        url: '/eaterplanet_ecommerce/pages/type/index'
+      })
+    }else if (type==5){
+      // 跳转小程序
+      let appId = info.appid;
+      appId && wx.navigateToMiniProgram({
+        appId,
+        path: url,
+        extraData: {},
+        envVersion: 'release',
+        success(res) {
+          // 打开成功
+        },
+        fail(error) {
+          console.log(error)
+        }
+      })
+    }
   },
 
   /**

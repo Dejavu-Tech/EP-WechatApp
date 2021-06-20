@@ -20,23 +20,29 @@
       </view>
       <view class="category-item safebottom"></view>
     </scroll-view>
-    <!-- 子栏目 -->
-    <view class='mask' hidden='{{!showDrop}}' bindtap='showDrop'></view>
-    <view class='sub-cate' wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length}}">
-      <scroll-view class='sub-cate-scroll' scroll-x scrollLeft="{{scrollLeft}}">
+    <!-- 列表 -->
+    <!-- {{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length?'pt50':''}} -->
+    <scroll-view scrollWithAnimation scrollY bindscroll="scroll" bindscrolltolower="scrollBottom" class="page-list" lowerThreshold="{{250}}" style="height:{{scrollViewHeight+50}}px" scroll-top="{{rightScrollTop}}">
+      <!-- 广告图 -->
+      <view wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.image}}" class="advimg-box" bindtap="clickAdv" data-info="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info}}">
+        <image class="advimg" src="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.image}}" mode="aspectFill"></image>
+      </view>
+      <!-- 子栏目 -->
+      <view class='mask' hidden='{{!showDrop}}' bindtap='showDrop'></view>
+      <view class='sub-cate' wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length}}">
+        <scroll-view class='sub-cate-scroll' scroll-x scrollLeft="{{scrollLeft}}">
         <view class='sub-cate-item' style="{{active_sub_index==0?'color:#e7614d':''}}" data-idx="0" data-id='{{rushCategoryData.tabs[rushCategoryData.activeIndex].id}}' bindtap='change_sub_cate'>全部</view>
         <view class='sub-cate-item' style="{{active_sub_index==index+1?'color:#e7614d':''}}" wx:for="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub}}" wx:key="id" data-idx="{{index+1}}" data-id='{{item.id}}' bindtap='change_sub_cate'>{{item.name}}</view>
-      </scroll-view>
-      <view class='icon-open' bindtap='showDrop'>
-        <image class="openImg {{showDrop?'':'down'}}" src="../../images/commentsOpen.png"></image>
+        </scroll-view>
+        <view class='icon-open' bindtap='showDrop'>
+          <image class="openImg {{showDrop?'':'down'}}" src="../../images/commentsOpen.png"></image>
+        </view>
       </view>
-    </view>
-    <view class='sub-cate-hide' wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length&&showDrop}}">
-      <view class='sub-cate-item' style="{{(active_sub_index==0&&skin.color)?'color:#fff;background-color:#e7614d':''}}" data-idx="0" data-id='{{rushCategoryData.tabs[rushCategoryData.activeIndex].id}}' bindtap='change_sub_cate'>全部</view>
-      <view class='sub-cate-item' style="{{active_sub_index==index+1?'color:#fff;background-color:#e7614d':''}}" wx:for="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub}}" wx:key="id" data-idx="{{index+1}}" data-id='{{item.id}}' bindtap='change_sub_cate'>{{item.name}}</view>
-    </view>
-    <!-- 列表 -->
-    <scroll-view scrollWithAnimation scrollY bindscroll="scroll" bindscrolltolower="scrollBottom" class="page-list {{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length?'pt50':''}}" lowerThreshold="{{250}}" style="height:{{scrollViewHeight+50}}px">
+      <view class='sub-cate-hide' wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length&&showDrop}}">
+        <view class='sub-cate-item' style="{{(active_sub_index==0&&skin.color)?'color:#fff;background-color:'+skin.color:''}}" data-idx="0" data-id='{{rushCategoryData.tabs[rushCategoryData.activeIndex].id}}' bindtap='change_sub_cate'>全部</view>
+        <view class='sub-cate-item' style="{{active_sub_index==index+1?'color:#fff;background-color:'+skin.color:''}}" wx:for="{{rushCategoryData.tabs[rushCategoryData.activeIndex].sub}}" wx:key="id" data-idx="{{index+1}}" data-id='{{item.id}}' bindtap='change_sub_cate'>{{item.name}}</view>
+      </view>
+
       <view style="min-height: {{scrollViewHeight+50}}px;">
         <block wx:if="{{!pageEmpty}}">
           <view style="position: relative;" wx:for="{{rushList}}" wx:key="actId">
@@ -58,7 +64,7 @@
         </view>
         <view class="scroll-col-tip-bottom" wx:elif="{{canNext}}">
           <span wx:if="{{isLastCategory}}">看到我的底线了吗～</span>
-          <block wx:else>
+          <block wx:elif="{{!pageEmpty}}">
             <span>该分类下没有更多商品了~</span>
           </block>
         </view>
