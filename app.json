@@ -1,6 +1,6 @@
 {
   "pages": [
-"eaterplanet_ecommerce/pages/index/guanggao",
+    "eaterplanet_ecommerce/pages/index/guanggao",
     "eaterplanet_ecommerce/pages/index/index",
     "eaterplanet_ecommerce/pages/goods/goodsDetail",
     "eaterplanet_ecommerce/pages/order/shopCart",
@@ -44,11 +44,9 @@
     "navigationBarTitleText": "",
     "navigationBarBackgroundColor": "#007FAF",
     "backgroundColor": "#fff"
-
   },
   "tabBar": {
     "list": [
-
       {
         "pagePath": "eaterplanet_ecommerce/pages/index/index",
         "text": "首页"
@@ -186,7 +184,16 @@
         "rider/exchargeRecord",
         "rider/accountRecord",
         "writeoff/details",
-        "supply/changePrice"
+        "supply/changePrice",
+        "order/share",
+        "presale/index",
+        "invite/index",
+        "invite/reward",
+        "invite/scoreList",
+        "invite/record",
+        "invite/share",
+        "virtualcard/index",
+        "virtualcard/exchange"
       ]
     }
   ],
@@ -206,5 +213,6 @@
   },
   "requiredBackgroundModes": [
     "audio"
-  ]
+  ],
+  "usingShopPlugin": true
 }
