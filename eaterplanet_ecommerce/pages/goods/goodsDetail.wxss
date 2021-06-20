@@ -1526,3 +1526,15 @@ button[plain] {
   font-size: 28rpx;
   color: red;
 }
+
+.presaleTime {
+  text-align: center;
+  padding-right: 10rpx;
+  flex: 3;
+  border-right: 1px solid #fff;
+}
+
+.dingjin .price {
+  font-family: DIN;
+  color: ff758c;
+}

@@ -95,7 +95,10 @@ Page({
       owner_name: '团长'
     },
     showCoverVideo: false, // Todo
-    loaded: false
+    loaded: false,
+    presale_goods_info: '', // 预售信息
+    presaleState: 0, //预售状态 0未开始 1 进行中 2 已结束
+    presaleBalance: 0 //预售尾款
   },
   $data: {
     stickyFlag: false,
@@ -399,11 +402,27 @@ Page({
         that.show_goods_preview = res.data.show_goods_preview || 0;
         let is_close_details_time = res.data.is_close_details_time || 0;
 
+        // 预售信息
+        let preData = {};
+        if(that.buy_type=='presale') {
+          let presale_goods_info = res.data.data.presale_goods_info;
+          preData.presale_goods_info = presale_goods_info;
+          let presaleBalance = 0;
+          let { presale_ding_money, presale_deduction_money } = presale_goods_info;
+          let presaleDeduction = presale_deduction_money>0?presale_deduction_money*1:presale_ding_money*1;
+          presaleBalance = goods.price*1 - presaleDeduction;
+          preData.presaleBalance = presaleBalance>0?presaleBalance.toFixed(2):'0.00';
+          preData.presale_goods_info.presale_deduction_money = presaleDeduction;
+        }
+
+        // 礼品卡
+        let virtualcard_goods_info = res.data.data.virtualcard_goods_info;
+
         that.setData({
           showCoverVideo,
           order_comment_count: res.data.order_comment_count,
           comment_list: comment_list,
-          goods: goods,
+          goods,
           options: res.data.data.options,
           order: {
             goods_id: res.data.data.goods.goods_id,
@@ -448,7 +467,9 @@ Page({
           needAuth: res.data.needauth,
           ishide_details_desc: res.data.ishide_details_desc,
           delivery_type_ziti: res.data.delivery_type_ziti || '',
-          loaded: true
+          loaded: true,
+          ...preData,
+          virtualcard_goods_info
         }, () => {
           let goods_share_image = goods.goods_share_image;
           if (goods_share_image) {
@@ -474,15 +495,38 @@ Page({
             success(res) { }
           })
         }
-        let over_type = goods.over_type;
-        var seconds = 0;
-        if (over_type == 0) {
-          seconds = (goods.begin_time - res.data.data.cur_time) * 1000;
+
+        if(that.buy_type=='presale') {
+          // 预售商品计时
+          // 判断状态 presale_ding_time_start 开始时间  presale_ding_time_end 结束时间
+          let { presale_goods_info, cur_time } = res.data.data;
+          let { presale_ding_time_start, presale_ding_time_end } = presale_goods_info;
+          let presaleState = 1;
+          let seconds = (presale_ding_time_end*1 - cur_time) * 1000;
+          if(presale_ding_time_start*1>cur_time) {
+            // 未开始
+            presaleState = 0;
+            seconds = (presale_ding_time_start*1 - cur_time) * 1000;
+          }
+          if(presale_ding_time_end*1<cur_time) {
+            // 已结束
+            presaleState = 2;
+            seconds = 0;
+          }
+          that.setData({ presaleState });
+          seconds>0&&count_down(that, seconds);
         } else {
-          seconds = (goods.end_time - res.data.data.cur_time) * 1000;
-        }
-        if (seconds > 0&&is_close_details_time==0) {
-          count_down(that, seconds);
+          // 普通商品计时
+          let over_type = goods.over_type;
+          var seconds = 0;
+          if (over_type == 0) {
+            seconds = (goods.begin_time - res.data.data.cur_time) * 1000;
+          } else {
+            seconds = (goods.end_time - res.data.data.cur_time) * 1000;
+          }
+          if (seconds > 0&&is_close_details_time==0) {
+            count_down(that, seconds);
+          }
         }
       }
     })
@@ -941,11 +985,11 @@ Page({
               var pages_all = getCurrentPages();
               if (pages_all.length > 3) {
                 wx.redirectTo({
-                  url: '/eaterplanet_ecommerce/pages/order/placeOrder?type=dan&is_limit=' + is_limit
+                  url: '/eaterplanet_ecommerce/pages/order/placeOrder?type='+buy_type+'&is_limit=' + is_limit
                 })
               } else {
                 wx.navigateTo({
-                  url: '/eaterplanet_ecommerce/pages/order/placeOrder?type=dan&is_limit=' + is_limit
+                  url: '/eaterplanet_ecommerce/pages/order/placeOrder?type='+buy_type+'&is_limit=' + is_limit
                 })
               }
             }
@@ -1049,8 +1093,18 @@ Page({
       this.setData({
         is_just_addcar: 0
       })
-      //加入购物车
-      this.openSku();
+      let is_need_subscript = this.data.is_need_subscript;
+      if(is_need_subscript==1) {
+        //弹出订阅消息
+        this.subscriptionNotice().then(()=>{
+          this.openSku();
+        }).catch(()=>{
+          this.openSku();
+        });
+      } else {
+        //加入购物车
+        this.openSku();
+      }
     }
   },
 
@@ -1409,6 +1463,7 @@ Page({
   drawImg: function () {
     let endtime = this.data.endtime;
     let shareTime = (endtime.days > 0 ? endtime.days + '天' : '') + endtime.hours + ':' + endtime.minutes + ':' + endtime.seconds;
+    console.log('endtime', shareTime);
     var t = this;
     wx.createSelectorQuery().select(".canvas-img").boundingClientRect(function () {
       const context = wx.createCanvasContext("myCanvas");
@@ -1518,6 +1573,102 @@ Page({
         }
       })
     }, 500)
+  },
+
+  drawImg1: function () {
+    let endtime = this.data.endtime;
+    let shareTime = (endtime.days > 0 ? endtime.days + '天' : '') + endtime.hours + ':' + endtime.minutes + ':' + endtime.seconds;
+    var t = this;
+
+    let option = [];
+    let price = 0;
+    if(t.data.buy_type=='integral') {
+      price = t.data.goods.price + "积分";
+      var e = context.measureText(" ").width;
+      var o = context.measureText(t.data.goods.price + "积分").width;
+    } else {
+      price = "￥" + t.data.goods.price_front + "." + t.data.goods.price_after;
+    }
+    // if (t.data.buy_type=='integral') {
+    //   option.push()
+    // }
+
+    this.setData({
+      template: {
+        "width": "375px",
+        "height": "300px",
+        "background": "#fff",
+        "views": [
+          {
+            "type": "image",
+            "url": t.goodsImg,
+            "css":
+            {
+              "width": "375px",
+              "height": "300px",
+              "top": "0px",
+              "left": "0px",
+              "rotate": "0",
+              "borderRadius": "0px",
+              "borderWidth": "",
+              "borderColor": "#000000",
+              "shadow": "",
+              "mode": "aspectFill"
+            }
+          },
+          {
+            "type": "image",
+            "url": "../../images/shareBottomBg.png",
+            "css":
+            {
+              "width": "375px",
+              "height": "53px",
+              "bottom": "0",
+              "left": "0px",
+              "rotate": "0",
+              "borderRadius": "",
+              "borderWidth": "",
+              "borderColor": "#000000",
+              "shadow": "",
+              "mode": "scaleToFill"
+            }
+          },
+          {
+            "type": "text",
+            "text": price,
+            "css":
+            {
+              "color": "#ffffff",
+              "background": "",
+              "width": "375px",
+              "height": "28px",
+              "bottom": "30px",
+              "left": "10px",
+              "rotate": "0",
+              "borderRadius": "",
+              "borderWidth": "",
+              "borderColor": "#000000",
+              "shadow": "",
+              "padding": "0px",
+              "fontSize": "28px",
+              "fontWeight": "normal",
+              "maxLines": "1",
+              "lineHeight": "28px",
+              "textStyle": "fill",
+              "textDecoration": "none",
+              "fontFamily": "Arial",
+              "textAlign": "left"
+            }
+          },
+          ...option
+        ]
+      }
+    });
+  },
+
+  onImgOK(e) {
+    this.imagePath = e.detail.path;
+    this.imageUrl = this.imagePath;
   },
 
   previewImg: function(e){
@@ -1675,6 +1826,69 @@ Page({
         videoStyle: `width: calc(${ww * width / height})px`,
       });
     }
+  },
+
+  bindimgtap: function(e, ignore) {
+    (this.show_goods_preview==1)&&e.detail.ignore();
+  },
+
+    /**
+   * 订阅消息
+   */
+  subscriptionNotice: function() {
+    let that = this;
+    return new Promise((resolve, reject)=>{
+      let obj = that.data.need_subscript_template;
+      let tmplIds =  Object.keys(obj).map(key => obj[key]); // 订阅消息模版id
+      if (wx.requestSubscribeMessage) {
+        tmplIds.length && wx.requestSubscribeMessage({
+          tmplIds: tmplIds,
+          success(res) {
+            let is_need_subscript = 1;
+            let acceptId = [];
+            Object.keys(obj).forEach(item=>{
+              if (res[obj[item]] == 'accept') {
+                //用户同意了订阅，添加进数据库
+                acceptId.push(item);
+              } else {
+                //用户拒绝了订阅或当前游戏被禁用订阅消息
+                is_need_subscript = 0;
+              }
+            })
+
+            if(acceptId.length) {
+              that.addAccept(acceptId);
+            }
+            that.setData({ is_need_subscript })
+            resolve();
+          },
+          fail(err) {
+            console.log(err)
+            reject();
+          }
+        })
+      } else {
+        // 兼容处理
+        reject();
+      }
+    })
+  },
+
+  // 用户点击订阅添加到数据库
+  addAccept: function (acceptId) {
+    let token = wx.getStorageSync('token');
+    let type = acceptId.join(',');
+    app.util.request({
+      url: 'entry/wxapp/user',
+      data: {
+        controller: 'user.collect_subscriptmsg',
+        token,
+        type
+      },
+      dataType: 'json',
+      method: 'POST',
+      success: function () {}
+    })
   },
 
   /**
