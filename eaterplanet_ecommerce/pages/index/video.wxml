@@ -1,3 +1,5 @@
-<view>
-      <video src="{{item.params.videourl}}" controls poster="{{item.params.poster}}" style="width:100%;height:{{item.style.height?item.style.height+'px':'auto'}};"></video>
-</view>
+<template name="video">
+  <view style="margin-top: {{item.marginTop}}px;">
+    <video src="{{videoItem.videoUrl}}" controls style="width:100%;height:auto;min-height:320rpx;" wx:for="{{item.list}}" wx:key="index" wx:for-item="videoItem"></video>
+  </view>
+</template>
