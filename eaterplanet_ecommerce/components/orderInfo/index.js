@@ -9,7 +9,7 @@ Component({
       observer: function (t) {
         let real_total = t.real_total * 1;
         var goodsTotal = parseFloat(real_total) - parseFloat(t.shipping_fare);
-        
+
         let disAmount = parseFloat(t.voucher_credit) + parseFloat(t.fullreduction_money);
         disAmount = (disAmount > goodsTotal) ? goodsTotal : disAmount;
 
