@@ -1,14 +1,19 @@
 <view class="spu">
   <view class="{{width250?'w250':'new-comers-item'}}" bindtap="goDetails" data-id="{{spuItem.actId}}" data-img="{{spuItem.skuImage}}">
     <!-- 标签 -->
-    <view wx:if="{{spuItem.label_info && spuItem.label_info.type==0}}" class='item-tag'>
-      <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
-      <view class='tag-name {{spuItem.label_info.len==2?"two-word":""}}'>{{spuItem.label_info.tagcontent}}</view>
-    </view>
-    <view wx:if="{{spuItem.label_info && spuItem.label_info.type==1}}" class='item-tag' style='background:url({{spuItem.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+    <block wx:if="{{diyInfo.goodsTag=='default'}}">
+      <view wx:if="{{spuItem.label_info && spuItem.label_info.type==0}}" class='item-tag'>
+        <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+        <view class='tag-name {{spuItem.label_info.len==2?"two-word":""}}'>{{spuItem.label_info.tagcontent}}</view>
+      </view>
+      <view wx:if="{{spuItem.label_info && spuItem.label_info.type==1}}" class='item-tag' style='background:url({{spuItem.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+    </block>
+    <block wx:if="{{diyInfo.goodsTag=='diy'}}">
+      <view class='item-tag' style='background:url({{diyInfo.tagImg.imageUrl}}) no-repeat left top;background-size: 100%;'></view>
+    </block>
     <!-- 图片 -->
-    <i-img defaultImage="../../images/placeholder-refund.png" height="180" width="180" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:if="{{width250}}"></i-img>
-    <i-img defaultImage="../../images/placeholder-refund.png" height="180" width="180" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:else></i-img>
+    <i-img defaultImage="../../images/placeholder-refund.png" height="230" width="230" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:if="{{width250}}"></i-img>
+    <i-img defaultImage="../../images/placeholder-refund.png" height="217" width="217" iClass="new-img" loadImage="{{spuItem.skuImage}}" wx:else></i-img>
     <!-- 限购 -->
     <view class="spu-active" wx:if="{{reduction.is_open_fullreduction==1&&spuItem.is_take_fullreduction==1}}">
       <view class="tag">满{{reduction.full_money}}减{{reduction.full_reducemoney}}</view>

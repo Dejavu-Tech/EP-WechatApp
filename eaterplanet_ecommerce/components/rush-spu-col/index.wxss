@@ -11,15 +11,15 @@
 }
 
 .new-comers-item .new-img {
-  width: 210rpx;
-  height: 210rpx;
+  width: 217rpx;
+  height: 217rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
 }
 
 .w250 .new-img {
   width: 230rpx;
-  height: 180rpx;
+  height: 230rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
 }
