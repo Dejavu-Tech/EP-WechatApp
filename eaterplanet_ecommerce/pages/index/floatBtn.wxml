@@ -1,0 +1,16 @@
+<template name="floatBtn">
+	<view class="diyFloatBtn fixed-{{item.bottomPosition}}"
+		style="{{item.bottomPosition==3||item.bottomPosition==4?'bottom:'+(item.baseBtnBottom*1+item.btnBottom*1)+'px;':''}} {{item.bottomPosition==1||item.bottomPosition==2?'top:'+(item.baseBtnBottom*1+item.btnBottom*1)+'px;':''}}">
+		<block wx:for='{{item.list}}' wx:for-item='btnItem' wx:for-index='idx' wx:key="idx">
+			<button class="diyFloatBtn-item" wx:if="{{btnItem.linktype=='custom'}}" open-type="contact">
+				<image class="diyFloatBtn-img" src="{{btnItem.imageUrl}}"></image>
+			</button>
+			<button class="diyFloatBtn-item" wx:elif="{{btnItem.linktype=='gotop'}}" bindtap="backTop">
+				<image class="diyFloatBtn-img" src="{{btnItem.imageUrl}}"></image>
+			</button>
+			<button class="diyFloatBtn-item" bindtap="goDiysliderUrl" data-link="{{btnItem.link}}" wx:else>
+				<image class="diyFloatBtn-img" src="{{btnItem.imageUrl}}"></image>
+			</button>
+		</block>
+	</view>
+</template>

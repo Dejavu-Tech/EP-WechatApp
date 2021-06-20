@@ -1,0 +1,36 @@
+.diyFloatBtn {
+  position: fixed;
+  z-index: 999;
+  width: 80rpx;
+}
+
+.diyFloatBtn.fixed-1,
+.diyFloatBtn.fixed-3 {
+  left: 20rpx;
+}
+
+.diyFloatBtn.fixed-2,
+.diyFloatBtn.fixed-4 {
+  right: 20rpx;
+}
+
+.diyFloatBtn-item {
+  display: inline-block;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  text-align: center;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+  line-height: 1;
+  padding: 0;
+}
+
+.diyFloatBtn-item::after {
+  border: 0;
+}
+
+.diyFloatBtn-img {
+  width: 80rpx;
+  height: 80rpx;
+}

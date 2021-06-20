@@ -1,0 +1,86 @@
+<template name="goodsList">
+  <block wx:if="{{rushList.length>0}}">
+    <!-- 样式一 Start -->
+    <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx" wx:if="{{rushList.length>0 && value.style==1}}">
+      <skeleton wx:for="{{rush}}" wx:key="id">
+        <view class="active-item">
+          <view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+            <view class="empty-1"></view>
+            <view class="empty-2" wx:if="{{item.spuDescribe}}"></view>
+            <view class="empty-3"></view>
+            <view class="list-item-count-down" style="color:{{skin.color}}"
+              wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}" data-xx="{{item.spuCanBuyNum}}">
+              仅剩
+              <em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+              <span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+              <span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+              <span class="item-class">{{countDownMap[item.end_time].second}}</span>
+            </view>
+          </view>
+          <i-new-rush-spu actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku"
+            spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}"
+            bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal"
+            needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"
+            isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}"
+            bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}" diyInfo="{{value}}"></i-new-rush-spu>
+        </view>
+      </skeleton>
+    </block>
+    <!-- 样式一 End -->
+    <!-- 样式二 Start -->
+    <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx"
+      wx:if="{{rushList.length>0&&value.style==2}}">
+      <skeleton wx:for="{{rush}}" wx:key="id">
+        <view class="active-item-two">
+          <view class="list-item-tag-content" wx:if="{{isShowListTimer==1}}">
+            <view class="list-item-count-down type-two" style="background:{{skin.color}}"
+              wx:if="{{item.spuCanBuyNum!=0 && !actEndMap[item.end_time]}}">
+              仅剩
+              <em wx:if="{{countDownMap[item.end_time].day>0}}">{{countDownMap[item.end_time].day}}天</em>
+              <span class="item-class">{{countDownMap[item.end_time].hour}}</span>:
+              <span class="item-class">{{countDownMap[item.end_time].minute}}</span>:
+              <span class="item-class">{{countDownMap[item.end_time].second}}</span>
+            </view>
+          </view>
+          <i-rush-spu-big actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku"
+            spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}"
+            bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal"
+            needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"
+            showPickTime="{{ishow_index_pickup_time==1}}" bind:vipModal="vipModal" skin="{{skin}}"
+            saleUnit="{{goods_sale_unit}}" diyInfo="{{value}}"></i-rush-spu-big>
+        </view>
+      </skeleton>
+    </block>
+    <!-- 样式二 End -->
+    <!-- 样式三 Start -->
+    <view class="theme3" wx:if="{{rushList.length>0 && value.style==3}}">
+      <image class='topic-img' src="{{cate_info.banner}}" mode="widthFix" wx:if="{{cate_info.banner}}" bindtap="goLink"
+        data-link="/eaterplanet_ecommerce/pages/type/details?id={{classificationId}}"></image>
+      <view class="theme3-list">
+        <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx">
+          <block class="item" wx:for="{{rush}}" wx:key="actId">
+            <i-rush-spu spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku"
+              needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum"
+              changeCarCount="{{changeCarCount}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}"
+              canLevelBuy="{{canLevelBuy}}" bind:vipModal="vipModal" actEnd="{{actEndMap[item.end_time]}}" diyInfo="{{value}}"></i-rush-spu>
+          </block>
+        </block>
+      </view>
+    </view>
+    <!-- 样式三 End -->
+    <!-- 样式4 Start -->
+    <view class="comming-list themeTwo" wx:if="{{rushList.length>0&&value.style==4}}">
+      <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx">
+        <skeleton wx:for="{{rush}}" wx:key="id" class="comming-spu-item">
+          <i-tworow actEnd="{{actEndMap[item.end_time]}}" stopClick="{{stopClick}}" bind:openSku="openSku"
+            spuItem="{{item}}" reduction="{{reduction}}" isShowListCount="{{isShowListCount}}"
+            bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" bind:authModal="authModal"
+            needAuth="{{needAuth}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"
+            isShowListTimer="{{isShowListTimer==1}}" showPickTime="{{ishow_index_pickup_time==1}}"
+            bind:vipModal="vipModal" skin="{{skin}}" saleUnit="{{goods_sale_unit}}" diyInfo="{{value}}"></i-tworow>
+        </skeleton>
+      </block>
+    </view>
+    <!-- 样式4 End -->
+  </block>
+</template>

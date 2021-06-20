@@ -1,0 +1,56 @@
+<template name="communityShow">
+  <view class="header-content" style='color: {{item.textColor}}'>
+    <view class="location" wx:if="{{item.style==1}}">
+      <view class="location-left" wx:if="{{community&&community.communityName}}">
+        <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community"
+          wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}">
+          <view class="community-title">
+            <view class="text-overflow1" style="max-width: 360rpx;">{{community.communityName}}</view>
+            <text class='community-change' wx:if="{{hide_community_change_word==0}}">切换</text>
+            <text class="iconfont icon-youjiantou"></text>
+          </view>
+        </navigator>
+        <view wx:else>
+          <view class="community-title">
+            <span>{{community.communityName}}</span>
+          </view>
+        </view>
+        <view class="community-address" bindtap='gotoMap' wx:if="{{index_hide_headdetail_address==0}}">
+          <text class="iconfont icon-weizhi-tianchong"></text>
+          {{community.address||community.communityAddress||community.fullAddress}}
+        </view>
+      </view>
+      <view class="location-left" wx:else>
+        <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community">
+          您还没有选择{{groupInfo.owner_name}}，轻触去选择 <text class="iconfont icon-weizhi-tianchong"></text>
+        </navigator>
+      </view>
+      <view class="location-right">
+        <image src='{{community.headImg ? community.headImg: community.disUserHeadImg}}' class='img'></image>
+        <text>{{community.disUserName}}</text>
+      </view>
+    </view>
+    <view class="location-theme2" wx:else>
+      <block wx:if="{{community&&community.communityName}}">
+        <view class="loc-l">
+          <image src='{{community.headImg ? community.headImg: community.disUserHeadImg}}' class='img'></image>
+        </view>
+        <view class="loc-m" wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}" bindtap="goLink"
+          data-link="/eaterplanet_ecommerce/pages/position/community">
+          {{community.communityName}} <text style='font-size:12px;'
+            wx:if="{{hide_community_change_word==0}}">切换</text><text class="iconfont icon-youjiantou"
+            style='font-size:12px;'></text>
+        </view>
+        <view class="loc-m" wx:else>{{community.communityName}}</view>
+      </block>
+      <view class="loc-l" wx:else>
+        <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community">
+          您还没有选择{{groupInfo.owner_name}}，轻触去选择 <text class="iconfont icon-weizhi-tianchong"></text>
+        </navigator>
+      </view>
+      <view class="top-search" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/search">
+        <text class="iconfont icon-sousuo1"></text>搜索
+      </view>
+    </view>
+  </view>
+</template>
