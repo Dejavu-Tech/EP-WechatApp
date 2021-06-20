@@ -29,6 +29,7 @@ module.exports = {
         h.isparse_formdata = isparse_formdata;
       } else {
         isparse_formdata = 0;
+        h.isparse_formdata = 0;
       }
       console.log(h)
       wx.setStorageSync('isparse_formdata', isparse_formdata);

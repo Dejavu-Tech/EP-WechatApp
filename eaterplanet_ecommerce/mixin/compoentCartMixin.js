@@ -73,7 +73,7 @@ module.exports = {
 
       let { car_quantity, goods_start_count } = cur_sku_arr;
       if(car_quantity && car_quantity>=goods_start_count) goods_start_count=1;
-
+      
       that.setData({
         sku: arr,
         sku_val: goods_start_count || 1,

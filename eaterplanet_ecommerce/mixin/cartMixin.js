@@ -167,7 +167,7 @@ module.exports = {
         } else {
           if (is_just_addcar == 1) {
             list[idx].car_count = res.data.cur_count || 0;
-            that.setData({ 
+            that.setData({
               cartNum: res.data.total || 0,
               list
             })
@@ -245,7 +245,7 @@ module.exports = {
         pin_id: 0,
         is_just_addcar: 1
       }
-  
+
       util.addCart(data).then(res=>{
         if(res.showVipModal==1) {
           let { pop_vipmember_buyimage } = res.data;
