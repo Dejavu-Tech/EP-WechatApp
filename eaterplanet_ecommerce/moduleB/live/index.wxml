@@ -1,4 +1,3 @@
-<navBar title="" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="pb100">
 	<view class="fui-live-list" wx:if="{{roomInfo.length}}">
 		<navigator class="fui-live-item" url="{{'plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id='+item.roomid}}" wx:for="{{roomInfo}}" wx:for-index="idx" wx:key="idx">

@@ -10,23 +10,7 @@ Page({
     roominfo: ''
   },
   room_id: '',
-    handlerGobackClick(delta) {
-    const pages = getCurrentPages();
-    if (pages.length >= 2) {
-      wx.navigateBack({
-        delta: delta
-      });
-    } else {
-      wx.switchTab({
-        url: '/eaterplanet_ecommerce/pages/index/index'
-      });
-    }
-  },
-  handlerGohomeClick(url) {
-    wx.switchTab({
-      url: '/eaterplanet_ecommerce/pages/index/index'
-    });
-  },
+
   /**
    * 生命周期函数--监听页面加载
    */
