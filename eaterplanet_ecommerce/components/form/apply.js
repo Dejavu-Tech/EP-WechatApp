@@ -69,7 +69,7 @@ Component({
       })
     },
 
-    //报错 
+    //报错
     showModal(error) {
       wx.showModal({
         content: error.msg,
