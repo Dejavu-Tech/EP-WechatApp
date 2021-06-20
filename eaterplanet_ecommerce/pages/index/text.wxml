@@ -1,0 +1,5 @@
+<template name="text">
+  <view style="margin: {{item.marginTop*2+'rpx'}} 20rpx 0;background-color: {{item.backgroundColor}};color:{{item.textColor}};font-size:{{item.fontSize*2}}rpx;text-align:{{item.alignStyle}};border-radius:10rpx;">
+    {{item.title}}
+  </view>
+</template>
