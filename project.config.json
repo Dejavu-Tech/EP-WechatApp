@@ -30,7 +30,6 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
@@ -42,7 +41,7 @@
   "compileType": "miniprogram",
   "libVersion": "2.17.3",
   "appid": "wxf3f3f5ed4425be9e",
-  "projectname": "4.7.0",
+  "projectname": "4.7.1",
   "debugOptions": {
     "hidedInDevtools": []
   },
