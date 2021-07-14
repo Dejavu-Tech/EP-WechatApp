@@ -85,8 +85,8 @@ App({
     weatherIconUrl: 'https://cdn.heweather.com/cond_icon/',
     weatherIconUrl1: 'https://cdn.heweather.com/img/plugin/190516/icon/c/',
     requestUrl: {
-      weather: 'https://free-api.heweather.com/s6/weather',
-      hourly: 'https://free-api.heweather.com/s6/weather/hourly'
+      weather: 'https://free-api.qweather.com/s6/weather/now?',
+      hourly: 'https://free-api.qweather.com/s6/weather/hourly?'
     },
   },
   getUpdate: function(){
