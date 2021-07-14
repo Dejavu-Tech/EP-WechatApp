@@ -72,7 +72,7 @@ Page({
       let list = res.data || [];
       if(res.new_order_notice==1 && !this._onPlay) {
         this._onPlay = true;
-        bgMusic.src = "https://shiziyu.liofis.com/addons/eaterplanet_ecommerce/static/mp3/click.mp3";
+        bgMusic.src = "https://demo.ch871.com/assets/ep/mp3/click.mp3";
         bgMusic.title = '您有新订单';
         bgMusic.play()
       }
