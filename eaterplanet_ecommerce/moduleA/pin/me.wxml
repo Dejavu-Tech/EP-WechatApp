@@ -11,8 +11,6 @@
         <view slot="header">
           <view class="header i-flex i-flex-spb">
             <view class="suppy">
-              <!-- <image class="logo" src="https://mall.shiziyu888.com/dan//Uploads/image/shop/2018-04-02/5ac1294430a78.png"></image>
-              <text class="name">狮子鱼旗舰店</text> -->
             </view>
             <view class="status red" style="color:{{skin.color}}">{{item.status_name}}</view>
           </view>

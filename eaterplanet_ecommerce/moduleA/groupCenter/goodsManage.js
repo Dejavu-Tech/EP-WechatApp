@@ -9,16 +9,10 @@ Page({
   data: {
     isIpx: false,
     goods: [{
-      name: '大苹果',
-      image: 'https://shiziyu.liofis.com/attachment/images/3/2019/03/S3sWb8he8w9ujHJ70bI8JUh2wuJjbS.jpg?imageView2/2/w/240/h/240/ignore-error/1',
+      name: '',
+      image: '',
       status_name: '上架',
       checked: false
-    },
-    {
-      name: '大苹果',
-      image: 'https://shiziyu.liofis.com/attachment/images/3/2019/03/S3sWb8he8w9ujHJ70bI8JUh2wuJjbS.jpg?imageView2/2/w/240/h/240/ignore-error/1',
-      status_name: '上架',
-      checked: true
     }],
     checkedAll: false,
     checkedCount: 0

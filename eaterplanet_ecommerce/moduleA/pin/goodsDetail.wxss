@@ -259,12 +259,12 @@ swiper image {
 }
 
 .spuInfo .bgOne {
-  background: url("http://shiziyu.liofis.com/attachment/images/3/2019/01/s8DBXZhrLr998t89Tg8BblqnXbNB8r.png");
+  background: url("");
   background-size: 100% 100%;
 }
 
 .spuInfo .bgTwo {
-  background: url("https://image.songshupinpin.com/goods_1540374630865.png");
+  background: url("");
   background-size: 100% 100%;
 }
 

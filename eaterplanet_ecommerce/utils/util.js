@@ -8,7 +8,7 @@ function getdomain() {
 }
 
 function api() {
-  var api = 'https://mall.shiziyu888.com/dan/';
+  var api = 'https://www.ch871.com/api/';
   return api;
 }
 
