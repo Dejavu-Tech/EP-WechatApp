@@ -185,7 +185,6 @@
         "rider/accountRecord",
         "writeoff/details",
         "supply/changePrice",
-        "order/share",
         "presale/index",
         "invite/index",
         "invite/reward",
