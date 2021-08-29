@@ -1,0 +1,25 @@
+<view class="i-flex" wx:if="{{paymentCode=='cashon_delivery'}}">
+  <view class="blue u-font-24 u-m-r-10" wx:if="{{codeImg}}" bindtap="handleImgDialog">出示收款码</view>
+  <view class="blue u-font-24 u-m-r-10" wx:else>暂无收款码，请线下收款</view>
+  <text class="iconfont icon-shuoming text-dark fsz-28" bindtap="handleTipDialog"></text>
+</view>
+
+<i-modal scrollUp="{{false}}" visible="{{showTipDialog}}">
+  <view class="rule-modal bg-f w90p rounded">
+    <view class="fsz-30 weight border-bottom text-center py10">收款码</view>
+		<view class="p15 border-bottom fsz-28 line-height">
+			该订单为 “货到付款” 支付方式，用户订单签收的时候请出示“收款码”进行收款，或者其他方式收款，提前沟通确认，防止订单出错。
+		</view>
+    <view class="fsz-30 bule text-center py10" bindtap="handleTipDialog">知道了</view>
+  </view>
+</i-modal>
+
+<i-modal scrollUp="{{false}}" visible="{{showImgDialog}}">
+  <view class="rule-modal bg-f w90p rounded">
+    <view class="fsz-30 weight border-bottom text-center py10">收款码</view>
+		<view class="p15 border-bottom fsz-28 line-height text-center">
+			<image src="{{codeImg}}" style="width: 480rpx;height:480rpx;"></image>
+		</view>
+    <view class="fsz-30 bule text-center py10" bindtap="handleImgDialog">关闭</view>
+  </view>
+</i-modal>

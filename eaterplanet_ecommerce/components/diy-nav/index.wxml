@@ -1,0 +1,31 @@
+<view style="margin: {{list.marginTop*2}}rpx 20rpx 0;color: {{list.textColor}};border-radius:10rpx;overflow: hidden;">
+  <block wx:if="{{isSwiper}}">
+    <swiper bindchange="onCurrent" style="height:{{swiperHeight}}px;">
+      <swiper-item class="navigation-text" wx:for='{{number}}' wx:key="index">
+        <view id="nav_{{index}}" class="ep-icon-group col-{{list.showType?list.showType:4}} {{list.navRadius}}" style="{{list.backgroundColor?'background:'+list.backgroundColor+';':''}}">
+          <block wx:for='{{newlist[index]}}' wx:for-item='navItem' wx:for-index='idx' wx:key="nav">
+            <view url="{{navItem.linkurl}}" class="ep-icon-col" bindtap="goDiysliderUrl" data-link="{{navItem.link}}">
+              <view wx:if="{{list.selectedTemplate=='imageNavigation'}}">
+                <image class="nav-img" src='{{navItem.imageUrl}}'></image>
+              </view>
+              <view class="nav-name text-overflow1 u-font-26">{{navItem.title}}</view>
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="navigation-indicator">
+      <view wx:for='{{number}}' wx:key="index" class="item" style="background: {{current==index?skin.color:''}};"></view>
+    </view>
+  </block>
+  <view wx:else class="ep-icon-group col-{{list.showType?list.showType:4}} {{list.navRadius}}" style="{{list.backgroundColor?'background:'+list.backgroundColor+';':''}}">
+    <block wx:for='{{list.list}}' wx:for-item='navItem' wx:for-index='idx' wx:key="nav">
+      <view url="{{navItem.linkurl}}" class="ep-icon-col" bindtap="goDiysliderUrl" data-link="{{navItem.link}}">
+        <view wx:if="{{list.selectedTemplate=='imageNavigation'}}">
+          <image class="nav-img" src='{{navItem.imageUrl}}'></image>
+        </view>
+        <view class="nav-name text-overflow1 u-font-26">{{navItem.title}}</view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,39 @@
+<i-modal scrollUp="{{true}}" visible="{{show}}">
+  <view class="time1">
+    <view class="top i-flex i-flex-spb">
+      <text bindtap="cancel">取消</text>
+      <text bindtap="confirm">确定</text>
+    </view>
+    <picker-view class="picker" value="{{value}}" bindchange="getime" indicator-style="height:30px;">
+      <picker-view-column>
+        <view class="hours" style="line-height:30px; text-align: center;" wx:for="{{hoursList}}" wx:key="index">
+          {{ item }}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="minutes" style="line-height:30px; text-align: center;" wx:for="{{minutes}}" wx:key="index">
+          {{ item }}</view>
+      </picker-view-column>
+      <picker-view-column>
+        <view class="minutes" style="line-height:30px; text-align: center;" wx:for="{{second}}" wx:key="index">
+          {{ item }}</view>
+      </picker-view-column>
+      <block wx:if="{{!isOne}}">
+        <picker-view-column>
+          <view style="line-height:30px; text-align: center;">至</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class="hours" style="line-height:30px; text-align: center;" wx:for="{{hoursList}}" wx:key="index">
+            {{ item }}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class="minutes" style="line-height:30px; text-align: center;" wx:for="{{minutes}}" wx:key="index">
+            {{ item }}</view>
+        </picker-view-column>
+        <picker-view-column>
+          <view class="minutes" style="line-height:30px; text-align: center;" wx:for="{{second}}" wx:key="index">
+            {{ item }}</view>
+        </picker-view-column>
+      </block>
+    </picker-view>
+  </view>
+</i-modal>

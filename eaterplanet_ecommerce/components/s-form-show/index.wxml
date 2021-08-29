@@ -1,0 +1,10 @@
+<view wx:for="{{formList}}" wx:key="index" class="i-flex u-m-b-15">
+  <view class="u-m-r-15 text-gray">{{item.item_name}}:</view>
+  <view wx:if="{{item.type!=='image'}}" class="i-flex-item">
+    {{item.item_val}}
+  </view>
+  <view class="i-flex i-flex-wrap" wx:else>
+    <image wx:if="{{item.item_val&&item.item_val.length>0}}" src="{{img}}" wx:for="{{item.item_val}}" wx:for-item="img" wx:key="idx"
+      style="height:100rpx;width:100rpx;" class="u-m-r-15" bindtap="prevImg" data-current="{{img}}" data-urls="{{item.item_val}}"></image>
+  </view>
+</view>

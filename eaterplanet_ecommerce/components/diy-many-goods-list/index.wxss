@@ -1,0 +1,47 @@
+.navlist {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.navlist .item {
+  width: 120rpx;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.navlist .item .name {
+  font-size: 32rpx;
+  color: #303133;
+  line-height: 1;
+}
+
+.navlist .item .tag {
+  font-size: 24rpx;
+  color: #909399;
+  margin-top: 10rpx;
+  line-height: 36rpx;
+}
+
+.navlist .item.active .name {
+  font-weight: bold;
+}
+
+.navlist .item.active .tag {
+  background: rgb(255, 69, 68);
+  color: #FFFFFF;
+  border-radius: 20rpx;
+}
+
+.split-line {
+  width: 1rpx;
+  height: 30rpx;
+  background-color: #E5E5E5;
+  margin-right: calc((100% - 121rpx * 4) / 6);
+  margin-left: calc((100% - 121rpx * 4) / 6);
+}

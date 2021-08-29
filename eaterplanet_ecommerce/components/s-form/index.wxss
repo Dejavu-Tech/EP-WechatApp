@@ -1,0 +1,41 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
+.ipt {
+  border: 1rpx solid #E6E7EB;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  resize: none;
+  padding: 10rpx 20rpx;
+}
+
+.ipt-holder {
+  color: rgb(206, 206, 206);
+}
+
+radio {
+  transform: scale(0.7)
+}
+
+checkbox {
+  transform: scale(0.7)
+}
+
+.rightIcon {
+  position: absolute;
+  right: 20rpx;
+  top: 38%;
+  font-size: 16rpx;
+  color: #d2d2d2;
+}
+
+.rightIcon.icon-calendar,
+.rightIcon.icon-time {
+  top: 30%;
+  font-size: 28rpx;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+}

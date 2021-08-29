@@ -1,0 +1,76 @@
+<form bindsubmit="formSubmit">
+  <view wx:for="{{formList}}" wx:key="index" class="u-m-b-20">
+    <view class="u-font-30">{{item.title}} <text wx:if="{{item.required}}" class="red">*</text></view>
+		<view class="u-font-26 text-gray line-h u-m-b-10">{{item.remark}}</view>
+    <view wx:if="{{item.type=='image'}}">
+      <chooseImage imgMax="{{item.max_count}}" bind:on-changeImage="changeImg" bind:onChooseImage="chooseImage" key="{{item.type+'_'+item.random_code}}"></chooseImage>
+    </view>
+    <view wx:if="{{item.type=='text'}}">
+      <input value="{{form[item.type+'_'+item.random_code]}}" bindinput="bindKeyInput" data-idx="{{item.type+'_'+item.random_code}}" placeholder="{{item.hint}}" type="{{item.type}}" class="ipt" placeholder-class="ipt-holder" />
+    </view>
+    <view wx:if="{{item.type=='textarea'}}">
+      <textarea value="{{form[item.type+'_'+item.random_code]}}" bindinput="bindKeyInput" data-idx="{{item.type+'_'+item.random_code}}" style="min-height:120rpx;" auto-height placeholder="{{item.hint}}" class="ipt" placeholder-class="ipt-holder" />
+    </view>
+    <view wx:if="{{item.type=='select'}}" class="pos-r">
+      <picker bindchange="bindPickerChange" value="{{item.index}}" range="{{item.option_val}}" data-idx="{{index}}">
+        <view class="ipt {{item.index==-1?'ipt-holder':''}}">{{item.index==-1?item.hint:form[item.type+'_'+item.random_code]}}</view>
+        <i class="iconfont icon-xiatiao rightIcon"></i>
+      </picker>
+    </view>
+    <view wx:if="{{item.type=='radio'}}">
+      <radio-group bindchange="radioChange" data-idx="{{item.type+'_'+item.random_code}}">
+        <label class="i-flex u-m-t-15 i-flex-alc radio" wx:for="{{item.option_val}}" wx:for-item="rItem" wx:key="rItem">
+          <radio value="{{rItem}}" checked="{{false}}"/>
+          <view class="i-flex-item">{{rItem}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view wx:if="{{item.type=='checked'}}">
+      <checkbox-group bindchange="checkboxChange" data-idx="{{item.type+'_'+item.random_code}}">
+        <label class="i-flex u-m-t-15 i-flex-alc" wx:for="{{item.option_val}}" wx:for-item="rItem" wx:key="rItem">
+          <checkbox value="{{rItem}}" checked="{{false}}"/>
+          <view class="i-flex-item">{{rItem}}</view>
+        </label>
+      </checkbox-group>
+    </view>
+    <view wx:if="{{item.type=='area'}}" class="pos-r">
+      <picker mode="region" bindchange="bindRegionChange" value="{{item.region}}" data-idx="{{index}}">
+        <view class="ipt {{item.province_id?'':'ipt-holder'}}">
+          <block wx:if="{{item.province_id}}">
+            {{item.region[0]}}，{{item.region[1]}}，{{item.region[2]}}
+          </block>
+          <block wx:else>{{item.hint}}</block>
+        </view>
+        <i class="iconfont icon-xiatiao rightIcon"></i>
+      </picker>
+    </view>
+    <view wx:if="{{item.type=='date'}}" class="pos-r">
+      <picker mode="date" value="{{form[item.type+'_'+item.random_code]}}" bindchange="bindDateChange" data-idx="{{item.type+'_'+item.random_code}}">
+        <view class="ipt">{{form[item.type+'_'+item.random_code]?form[item.type+'_'+item.random_code]:item.hint}}</view>
+        <i class="iconfont icon-calendar rightIcon"></i>
+      </picker>
+    </view>
+    <view wx:if="{{item.type=='date_range'}}" class="pos-r">
+      <view class="ipt" bindtap="showDateRange" data-idx="{{index}}">{{form[item.type+'_'+item.random_code]?form[item.type+'_'+item.random_code]:item.begin_hint}}</view>
+      <timePicker pickerShow="{{item.show}}" id="{{item.type+'_'+item.random_code}}" bind:hidePicker="pickerHide" bind:setPickerTime="setPickerTime"
+  config="{{item.pickerConfig}}" data-idx="{{index}}"></timePicker>
+      <i class="iconfont icon-calendar rightIcon"></i>
+    </view>
+    <view wx:if="{{item.type=='time'}}" class="pos-r">
+      <view class="ipt" bindtap="showTimeRange" data-idx="{{index}}">{{form[item.type+'_'+item.random_code]?form[item.type+'_'+item.random_code]:item.hint}}</view>
+      <time-range show="{{item.show}}" isOne="{{true}}" beginTime="{{form[item.type+'_'+item.random_code]}}" bind:confrim="timeRangeConfirm" bind:cancel="pickerHide" data-idx="{{index}}"></time-range >
+      <i class="iconfont icon-time rightIcon"></i>
+    </view>
+    <view wx:if="{{item.type=='time_range'}}" class="pos-r">
+      <view class="ipt" bindtap="showTimeRange" data-idx="{{index}}">{{form[item.type+'_'+item.random_code]?form[item.type+'_'+item.random_code]:item.begin_hint}}</view>
+      <time-range show="{{item.show}}" beginTime="{{item.beginTime}}" endTime="{{item.endTime}}" bind:confrim="timeRangeConfirm" bind:cancel="pickerHide" data-idx="{{index}}"></time-range >
+        <i class="iconfont icon-time rightIcon"></i>
+    </view>
+    <view wx:if="{{item.type=='idcard'}}">
+      <input value="{{form[item.type+'_'+item.random_code]}}" bindinput="bindKeyInput" data-idx="{{item.type+'_'+item.random_code}}" placeholder="{{item.hint}}" type="{{item.idcard}}" class="ipt" placeholder-class="ipt-holder" maxlength="18" />
+    </view>
+    <view wx:if="{{item.type=='telephone'}}">
+      <input value="{{form[item.type+'_'+item.random_code]}}" bindinput="bindKeyInput" data-idx="{{item.type+'_'+item.random_code}}" placeholder="{{item.hint}}" type="number" class="ipt" placeholder-class="ipt-holder" maxlength="11" />
+    </view>
+  </view>
+</form>

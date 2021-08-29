@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "chooseImage": "../chooseImage/index",
+    "timePicker": "../../components/timePicker/timePicker",
+    "time-range": "../../components/time-range/index"
+  }
+}

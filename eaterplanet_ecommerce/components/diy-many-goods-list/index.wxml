@@ -1,0 +1,14 @@
+<view class="goods-list" style="{{'background-color:'+(value.backgroundColor)+';'+('margin-top:'+(value.marginTop*2+'rpx')+';')}}">
+  <scroll-view scrollWithAnimation scroll-x="true" scroll-y="false" class="tabs__navs">
+    <view class="navlist">
+      <block wx:for="{{value.list}}" wx:key="index">
+        <view class="split-line" wx:if="{{index!=0}}"></view>
+        <view class="item {{index==current?'active':''}}" data-idx="{{index}}" bindtap="changeCate">
+          <view class="name">{{item.title}}</view>
+          <view class="tag">{{item.desc}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <slot></slot>
+</view>

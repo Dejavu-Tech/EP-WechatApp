@@ -1,0 +1,48 @@
+.ep-icon-group {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 5px;
+}
+
+.ep-icon-col {
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 8px 5px;
+}
+
+.col-3 .ep-icon-col {
+  width: 33.33%;
+}
+
+.col-4 .ep-icon-col {
+  width: 25%;
+}
+
+.col-5 .ep-icon-col {
+  width: 20%;
+}
+
+.ep-icon-col .nav-img {
+  width: 86rpx;
+  height: 86rpx;
+}
+
+.ep-icon-group.fillet .nav-img {
+  border-radius: 50%;
+}
+
+.navigation-indicator {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10rpx 0 20rpx;
+}
+
+.navigation-indicator .item {
+  width: 30rpx;
+  height: 6rpx;
+  background: #cccccc;
+  margin: 0 5rpx;
+}

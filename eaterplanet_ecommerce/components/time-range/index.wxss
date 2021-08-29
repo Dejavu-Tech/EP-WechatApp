@@ -1,0 +1,8 @@
+.time1{width:100%;margin:0 auto;background-color:#fff;color:#000;height:450rpx}.time1 .top{width:690rpx;margin:0 auto;height:100rpx;line-height:100rpx}.time1 .top text{font-weight:700}.time1 .top text:nth-child(1){font-size:28rpx;color:#999}.time1 .top text:nth-child(2){font-size:28rpx;color:#0a84ff}.time1 .tip12{width:100%;height:100rpx}.time1 .tip12 view{width:50%;text-align:center;line-height:100rpx;font-size:40rpx;color:#000}.time1 .hours{font-size:30rpx;font-weight:700;color:#000}.time1 .minutes{font-size:30rpx;font-weight:700;color:#000}.picker{width:100%;height:300rpx}
+.i-flex {
+  display: flex;
+}
+.i-flex-spb {
+  justify-content: space-between;
+  align-items: center;
+}
