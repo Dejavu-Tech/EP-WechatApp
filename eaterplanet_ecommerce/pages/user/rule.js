@@ -38,7 +38,8 @@ Page({
       vipcard: '权益规则',
       pintuan: '拼团规则',
       signin: '活动规则',
-      solitaire: '接龙规则'
+      solitaire: '接龙规则',
+      pintuanRebate: '拼团返利规则',
     }
     wx.setNavigationBarTitle({
       title: navTitle[type] || '规则'
@@ -53,7 +54,8 @@ Page({
       vipcard: 'vipcard.get_vipcard_baseinfo',
       pintuan: 'group.pintuan_slides',
       signin: 'signinreward.get_signinreward_baseinfo',
-      solitaire: 'solitaire.get_rule'
+      solitaire: 'solitaire.get_rule',
+      pintuanRebate: 'group.pintuan_slides'
     }
     var token = wx.getStorageSync('token');
     let that = this;
@@ -80,6 +82,9 @@ Page({
           } else if (type == 'solitaire') {
             let { solitaire_notice } = res.data;
             article = solitaire_notice;
+          } else if (type == 'pintuanRebate') {
+            let { pintuan_rebate_publish } = res.data;
+            article = pintuan_rebate_publish;
           }
           that.setData({ article })
         }
