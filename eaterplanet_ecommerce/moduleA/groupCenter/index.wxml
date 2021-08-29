@@ -42,7 +42,7 @@
           </view>
           <view class="income" bindtap="confirmMessage">
             <text class="incomeTop">{{total_order_count}}</text>
-            <view class="incomeBottom">总订单 <text class="iconfont icon-shuoming red fsz-24"></text></view>
+            <view class="incomeBottom">总订单 <text class="iconfont icon-shuoming blue fsz-24"></text></view>
           </view>
           <view class="income">
             <text class="incomeTop">{{total_member_count}}</text>

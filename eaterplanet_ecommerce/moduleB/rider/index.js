@@ -44,16 +44,22 @@ Page({
   getMyLocal: function() {
     let that = this;
     location.getGps().then(ret=>{
-      wx.getLocation({
-        type: 'wgs84',
-        success: (res) => {
-          that.setData({
-            scale: 12,
-            longitude: res.longitude,
-            latitude: res.latitude
-          })
-        }
-      });
+      that.setData({
+        scale: 12,
+        longitude: ret.longitude,
+        latitude: ret.latitude
+      })
+      // wx.getLocation({
+      //   type: 'wgs84',
+      //   success: (res) => {
+      //     console.log("getMyLocal",res)
+      //     that.setData({
+      //       scale: 12,
+      //       longitude: res.longitude,
+      //       latitude: res.latitude
+      //     })
+      //   }
+      // });
     }).catch(()=>{
       app.util.message('地图功能开启失败', '', 'error');
     })

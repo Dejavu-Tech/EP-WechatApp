@@ -2,10 +2,14 @@
 
 <view class="list pb100" wx:if="{{list.length>0}}">
     <view class="item bg-f mb10" wx:for="{{list}}" wx:key="order_num_alias">
-        <view class="border-bottom text-gray p15 fsz-24">订单编号: {{item.order_num_alias}}</view>
-        <view class="shop py10 px15">
-            <view class="fsz-30 weight text-dark">{{item.shop_name}}</view>
+        <view class="border-bottom text-gray p15 fsz-24 i-flex">
+            <view class="i-flex-item">订单编号: {{item.order_num_alias}}</view>
+            <view class="bule u-font-24 u-m-l-10" wx:if="{{item.payment_code}}">货到付款</view>
+        </view>
+        <view class="shop py10 px15 i-flex">
+            <view class="fsz-30 weight text-dark i-flex-item">{{item.shop_name}}</view>
             <!-- <view class="fsz-26 mt5">期望送达时间：{{item.want_time}}</view> -->
+            <i-cashon_delivery paymentCode="{{item.payment_code}}" codeImg="{{item.cashondelivery_code_img}}"></i-cashon_delivery>
         </view>
         <view class="px15">
             <view class="i-flex i-aic">

@@ -7,7 +7,7 @@ Page({
   data: {
     loadMore: true,
     classification: {
-      tabs: [],
+      menutabs: [],
       activeIndex: 0
     },
     tabTop: 0,

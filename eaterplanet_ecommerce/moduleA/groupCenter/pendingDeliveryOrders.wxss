@@ -50,12 +50,12 @@
   align-items: center;
   background: #fff;
   margin-bottom: 2rpx;
-  height: 145rpx;
+  /* height: 145rpx; */
 }
 
 .order-item .order-title .order-msg {
   width: 550rpx;
-  height: 145rpx;
+  /* height: 145rpx; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -119,7 +119,7 @@
   text-overflow: initial;
   white-space: normal;
   font-size: 28rpx;
-  height: 80rpx;
+  /* height: 80rpx; */
   margin-bottom: 12rpx;
 }
 

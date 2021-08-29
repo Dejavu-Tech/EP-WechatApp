@@ -107,7 +107,39 @@
       </view>
     </view>
 
-    <view class="pinRecords buyRecords">
+    <!-- 返利拼团 -->
+    <view class="pinRecords buyRecords" wx:if="{{pin_info.is_pintuan_rebate==1}}">
+      <view class="pinIntro" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/user/rule?type=pintuanRebate">
+        <view class="i-flex i-flex-spb pinIntro-top">
+          <view class="pinIntro-title">拼团玩法</view>
+          <view class="">查看规则<text class="iconfont icon-youjiantou"></text></view>
+        </view>
+        <view class="i-flex i-flex-spb pinIntro-bot">
+          <view class="rule-item">
+            <view class="step">1</view>
+            <view class="p">支付开团</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">2</view>
+            <view class="p">邀请用户</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">3</view>
+            <view class="p">拼团成功中</view>
+            <view class="p">奖人员发货</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">4</view>
+            <view class="p">未中奖人员退</view>
+            <view class="p">款发放奖励</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 普通拼团 -->
+    <view class="pinRecords buyRecords" wx:else>
       <view class="pinIntro" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/user/rule?type=pintuan">
         <view class="i-flex i-flex-spb pinIntro-top">
           <view class="pinIntro-title">拼团玩法</view>
@@ -321,10 +353,11 @@
 
             </movable-view>
 
-            <movable-view y="1040rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
-                <text class="iconfont icon-kefu"></text>
-                <view>客服</view>
-
+            <movable-view y="1040rpx" direction="vertical">
+                <button class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
+                    <text class="iconfont icon-kefu"></text>
+                    <view>客服</view>
+                </button>
             </movable-view>
 
             <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">
@@ -333,7 +366,7 @@
 
             </movable-view>
         </view>
-<i-order-notify iClass="order-notify" stopNotify="{{stopNotify}}" wx:if="{{order_notify_switch==1}}"></i-order-notify>
+<i-order-notify i-class="order-notify" wx:if="{{order_notify_switch==1}}" stopNotify="{{stopNotify}}" />
 <i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>
 <!-- 新分享形式 Start -->
 <view class='share-modal' bindtap='closeShareModal' hidden='{{hideModal}}'>

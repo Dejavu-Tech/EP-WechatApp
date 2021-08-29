@@ -276,10 +276,14 @@ Page({
     var n = this.data.order;
 
     var sub_order_arr = [];
+    let is_cashon_delivery = false;
 
     n.forEach(function(e) {
       if (e.checked) {
         sub_order_arr.push(e.order_id)
+      }
+      if(e.payment_code=="cashon_delivery") {
+        is_cashon_delivery = true;
       }
     })
 
@@ -293,7 +297,7 @@ Page({
     var token = wx.getStorageSync('token');
     wx.showModal({
       title: "订单提货确认",
-      content: "请确认买家已收选中的商品，再进行提货确认哦！",
+      content: is_cashon_delivery?"所选商品含货到付款，请再次确认是否已收款":"请确认买家已收选中的商品，再进行提货确认哦！",
       confirmText: "确定",
       confirmColor: "#FF673F",
       success: function(t) {

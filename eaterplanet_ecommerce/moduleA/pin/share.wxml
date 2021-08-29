@@ -86,34 +86,68 @@
   </view>
 
   <!-- 规则 -->
-  <view class="pinIntro bg-f" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/user/rule?type=pintuan">
-    <view class="i-flex i-flex-spb pinIntro-top">
-      <view class="pinIntro-title">拼团玩法</view>
-      <view class="">查看规则<text class="iconfont icon-youjiantou"></text></view>
+  <!-- 返利拼团 -->
+  <view class="pinRecords buyRecords bg-f" wx:if="{{pin_info.is_pintuan_rebate==1}}">
+      <view class="pinIntro" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/user/rule?type=pintuanRebate">
+        <view class="i-flex i-flex-spb pinIntro-top">
+          <view class="pinIntro-title">拼团玩法</view>
+          <view class="">查看规则<text class="iconfont icon-youjiantou"></text></view>
+        </view>
+        <view class="i-flex i-flex-spb pinIntro-bot">
+          <view class="rule-item">
+            <view class="step">1</view>
+            <view class="p">支付开团</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">2</view>
+            <view class="p">邀请用户</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">3</view>
+            <view class="p">拼团成功中</view>
+            <view class="p">奖人员发货</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">4</view>
+            <view class="p">未中奖人员退</view>
+            <view class="p">款发放奖励</view>
+          </view>
+        </view>
+      </view>
     </view>
-    <view class="i-flex i-flex-spb pinIntro-bot">
-      <view class="rule-item">
-        <view class="step">1</view>
-        <view class="p">支付开团</view>
-        <view class="p">参团</view>
-      </view>
-      <view class="rule-item">
-        <view class="step">2</view>
-        <view class="p">邀请用户</view>
-        <view class="p">参团</view>
-      </view>
-      <view class="rule-item">
-        <view class="step">3</view>
-        <view class="p">拼团成功</view>
-        <view class="p">按时送达</view>
-      </view>
-      <view class="rule-item">
-        <view class="step">4</view>
-        <view class="p">逾期未成</view>
-        <view class="p">团退款</view>
+    <!-- 普通拼团 -->
+    <view class="pinRecords buyRecords bg-f" wx:else>
+      <view class="pinIntro" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/user/rule?type=pintuan">
+        <view class="i-flex i-flex-spb pinIntro-top">
+          <view class="pinIntro-title">拼团玩法</view>
+          <view class="">查看规则<text class="iconfont icon-youjiantou"></text></view>
+        </view>
+        <view class="i-flex i-flex-spb pinIntro-bot">
+          <view class="rule-item">
+            <view class="step">1</view>
+            <view class="p">支付开团</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">2</view>
+            <view class="p">邀请用户</view>
+            <view class="p">参团</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">3</view>
+            <view class="p">拼团成功</view>
+            <view class="p">按时送达</view>
+          </view>
+          <view class="rule-item">
+            <view class="step">4</view>
+            <view class="p">逾期未成</view>
+            <view class="p">团退款</view>
+          </view>
+        </view>
       </view>
     </view>
-  </view>
 
   <!-- 猜你喜欢 -->
   <view class="guessLike" wx:if="{{is_show_order_guess_like==1&&likeList.length}}">

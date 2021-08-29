@@ -69,11 +69,15 @@
           <image src="{{item.goods_images}}" class="goodsimg"></image>
           <view>
             <view class="fsz-28">{{item.goods_name}}</view>
+            <view class="fsz-24 text-gray mt10">
+              <text wx:if="{{item.option_sku}}">{{item.option_sku}}</text> x{{item.quantity}}
+            </view>
+            <view class="fsz-24 red mt10">小计 ¥{{item.total}}</view>
             <view class="fsz-24 text-gray mt10">共 <text class="red">{{item.hexiao_count}}</text> 次</view>
             <view class="fsz-24 text-gray mt5" wx:if="{{item.hexiao_type!=1}}">核销类型：订单核销</view>
             <view wx:if="{{item.hexiao_type==1}}" class=" fsz-24 text-gray mt5">
-               <view class="mt5">核销类型：按次核销；本次核销消耗<text class="red">{{item.hexiao_count2}}</text>次</view>
-             </view>
+              <view class="mt5">核销类型：按次核销；本次核销消耗<text class="red">{{item.hexiao_count2}}</text>次</view>
+            </view>
           </view>
         </view>
       </view>

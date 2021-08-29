@@ -1241,7 +1241,6 @@ button[plain] {
 
 .fixed-service {
     display: inline-block;
-    transform: translateY(860rpx);
     width: 80rpx;
     height: 80rpx;
     background: #e7614d93;

@@ -4,6 +4,7 @@
   "usingComponents": {
     "navBar": "miniprograms-navigation-bar/index",
     "i-input-number": "../../components/input-number/index",
-    "i-modal": "../../components/modal/index"
+    "i-modal": "../../components/modal/index",
+    "i-cashon_delivery": "../../components/cashon_delivery/index"
   }
 }

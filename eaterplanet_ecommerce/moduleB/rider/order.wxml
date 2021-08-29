@@ -9,12 +9,18 @@
     <block wx:for="{{list}}" wx:key="order_num_alias">
       <!-- 待取货 -->
       <view class="item bg-f mb10" wx:if="{{status==2}}">
-        <view class="border-bottom text-gray p15 fsz-24">订单编号: {{item.order_num_alias}}</view>
+        <view class="border-bottom text-gray p15 fsz-24 i-flex i-flex-spb">
+          <view>订单编号: {{item.order_num_alias}}</view>
+          <i-cashon_delivery paymentCode="{{item.order_info.payment_code}}" codeImg="{{item.cashondelivery_code_img}}"></i-cashon_delivery>
+        </view>
         <view class="goodsList py10 mx15 border-bottom mb10" wx:if="{{item.order_info.goods_list}}">
           <view class="goods i-flex" wx:for="{{item.order_info.goods_list}}" wx:for-item="goods" wx:key="order_id">
             <image class="img" src="{{goods.goods_images}}"></image>
             <view class="i-flex-item">
-              <view class="fsz-28">{{goods.name}}</view>
+              <view class="fsz-28 i-flex">
+                <view class="i-flex-item">{{goods.name}}</view>
+                <view class="u-font-24 bule u-m-l-10" wx:if="{{item.order_info.payment_code=='cashon_delivery'}}">货到付款</view>
+              </view>
               <view class="text-gray fsz-24 mt5">{{goods.option_str}}x{{goods.quantity}}</view>
               <view class="red fsz-26 mt5">小计¥{{goods.total}}</view>
             </view>
@@ -49,12 +55,18 @@
       </view>
       <!-- 配送中/待配送 -->
       <view class="item bg-f mb10" wx:if="{{status==3||status==4}}">
-        <view class="border-bottom text-gray p15 fsz-24">订单编号: {{item.order_num_alias}}</view>
+        <view class="border-bottom text-gray p15 fsz-24 i-flex i-flex-spb">
+          <view>订单编号: {{item.order_num_alias}}</view>
+          <i-cashon_delivery paymentCode="{{item.order_info.payment_code}}" codeImg="{{item.cashondelivery_code_img}}"></i-cashon_delivery>
+        </view>
         <view class="goodsList py10 mx15 border-bottom mb10" wx:if="{{item.order_info.goods_list}}">
           <view class="goods i-flex" wx:for="{{item.order_info.goods_list}}" wx:for-item="goods" wx:key="order_id">
             <image class="img" src="{{goods.goods_images}}"></image>
             <view class="i-flex-item">
-              <view class="fsz-28">{{goods.name}}</view>
+              <view class="fsz-28 i-flex">
+                <view class="i-flex-item">{{goods.name}}</view>
+                <view class="u-font-24 bule u-m-l-10" wx:if="{{item.order_info.payment_code=='cashon_delivery'}}">货到付款</view>
+              </view>
               <view class="text-gray fsz-24 mt5">{{goods.option_str}}x{{goods.quantity}}</view>
               <view class="red fsz-26 mt5">小计¥{{goods.total}}</view>
             </view>

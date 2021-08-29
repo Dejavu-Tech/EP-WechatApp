@@ -8,7 +8,7 @@
     "i-new-auth": "../../components/new-auth/index",
     "masonry": "../components/masonry/masonry",
     "i-img": "../../components/img/index",
-    "i-tabs": "../../components/tabs/index",
+    "i-menutabs": "../../components/menutabs/index",
     "img-box": "../components/img-box/img-box",
     "i-empty": "../../components/empty/index",
     "i-tabbar": "../../components/tabbar/index"

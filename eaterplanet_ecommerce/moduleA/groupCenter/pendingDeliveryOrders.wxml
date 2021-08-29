@@ -14,10 +14,13 @@
                 </view>
               </checkbox-group>
             </label>
-            <view class="order-msg">
-              <span>订单编号：{{item.order_num_alias}}</span>
+            <view class="order-msg u-p-t-20 u-p-b-20">
+              <view class="i-flex i-flex-spb">
+                <view>订单编号：{{item.order_num_alias}}</view>
+              </view>
               <view class="fsz-24">提货人：{{item.shipping_name}}<text class="ml30">手机号：{{item.shipping_tel}}</text></view>
-              <em class="fsz-24 mt5">{{item.createTime}}</em>
+              <em class="fsz-24 mt5 u-m-b-10">{{item.createTime}}</em>
+              <i-cashon_delivery paymentCode="{{item.payment_code}}" codeImg="{{item.cashondelivery_code_img}}"></i-cashon_delivery>
             </view>
             <view class="order-status">{{item.status_name}}</view>
           </view>
@@ -34,6 +37,7 @@
                 </view>
                 <view class="goods-detail">
                   <view class="goods-title">{{skuItem.name}}</view>
+                  <view class="u-font-24 bule u-m-t-10" wx:if="{{item.payment_code=='cashon_delivery'}}">货到付款</view>
                   <view class="goods-desc"><text wx:if="{{skuItem.option_str}}">{{skuItem.option_str}};</text> 共{{skuItem.quantity}}件</view>
                 </view>
                 <view class="goods-sign-btn goods-sign-btn-disabled" style="display:none;" wx:if="{{skuItem.orderSkuStatus===-1}}">提货确认</view>

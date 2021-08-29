@@ -37,8 +37,9 @@
             <view class="spu">
               <image src='{{goods.goods_images}}' class='i-class goodsImg' mode='widthFix'></image>
               <view class="detail">
-                <view class="spuName">
-                  <text>{{goods.name}}</text>
+                <view class="spuName i-flex">
+                  <text class="i-flex-item">{{goods.name}}</text>
+                  <view class="u-font-24 bule u-m-l-5" wx:if="{{item.payment_code=='cashon_delivery'}}">货到付款</view>
                 </view>
                 <view class="tips">
                   <span>商品数量：{{goods.quantity}}</span>

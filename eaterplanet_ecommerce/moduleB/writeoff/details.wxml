@@ -1,6 +1,9 @@
 <navBar title="核销信息" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="bg-f p15 m15 rounded shadow">
-  <view class="fsz-34 weight text-3">用户信息</view>
+  <view class="fsz-34 weight text-3 i-flex i-flex-spb">
+    用户信息
+    <i-cashon_delivery paymentCode="{{orders.payment_code}}" codeImg="{{orders.cashondelivery_code_img}}"></i-cashon_delivery>
+  </view>
   <view class="mt10">
     <view>昵称：{{orders.username}}</view>
     <view>收货人：{{orders.shipping_name}}</view>
@@ -20,9 +23,13 @@
     <view class="item border-bottom" wx:for="{{order_goods_saleshexiao_list}}" wx:key="id">
       <view class="i-flex">
         <image src="{{item.goods_images}}" class="goodsimg"></image>
-        <view>
-          <view class="fsz-28">{{item.goods_name}}</view>
-          <view class="fsz-24 text-gray mt10">x {{item.quantity}}</view>
+        <view class="i-flex-item">
+          <view class="fsz-28 i-flex">
+            <view class="i-flex-item">{{item.goods_name}}</view>
+            <view class="bule u-font-24 u-m-l-10" wx:if="{{orders.payment_code=='cashon_delivery'}}">货到付款</view>
+          </view>
+          <view class="fsz-24 text-gray mt5">{{item.option_sku}}</view>
+          <view class="fsz-24 text-gray mt5">x {{item.quantity}}</view>
         </view>
       </view>
       <view class="mt10 fsz-24 text-6">

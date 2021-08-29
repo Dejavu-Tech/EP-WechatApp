@@ -13,7 +13,7 @@
   </view>
   <view class="pb100"></view>
   <!-- 幻灯片 -->
-  <view class="swipe bg-ff" wx:if="{{adv_arr.length>0}}">
+  <view class="swipe bg-ff" wx:if="{{adv_arr.length>0}}" style="background-color: #ff758c;">
     <swiper indicatorDots class="swiper-content" duration="400" autoplay indicatorActiveColor="{{skin.color}}" indicatorColor="#FF5344" interval="5000" circular>
       <swiper-item wx:for="{{adv_arr}}" wx:key="id">
         <view class='banner' bindtap='goBannerUrl' data-idx="{{index}}">
@@ -23,14 +23,14 @@
     </swiper>
   </view>
   <!-- 导航 -->
-  <view class="cate bg-ff">
+  <view class="cate bg-ff" style="background-color: #ff758c;">
     <view class="cate-title weight">今日推荐</view>
     <view id="tab" style="{{oneFixed=='Fixed'?'height: 90rpx;':'height: 0;'}}"></view>
     <view class="sticky-content i-flex i-flex-spb bg-ff {{oneFixed}}" wx:if="{{classification.tabs.length}}">
       <view class="i-flex-item" style="width: 0;">
-        <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-tabs>
+        <i-menutabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background:linear-gradient(to right, '+skin.color+', '+skin.light+')'}}"></i-menutabs>
+
       </view>
-      <navigator url="/eaterplanet_ecommerce/moduleA/menu/subcate" hover-class="none" class="iconfont icon-fenlei_"></navigator>
     </view>
   </view>
   <!-- 列表 -->

@@ -19,7 +19,10 @@
 					<view class="goodsList">
 						<i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="60" iClass="img-class" loadImage="{{goodsInfo.image}}" width="60"></i-img>
 						<view class="goos-item">
-							<view class="goodsTitle">{{goodsInfo.name}}</view>
+							<view class="i-flex i-flex-spb">
+								<view class="goodsTitle i-flex-item">{{goodsInfo.name}}</view>
+								<i-cashon_delivery paymentCode="{{order.order_info.payment_code}}" codeImg="{{order.order_info.cashondelivery_code_img}}"></i-cashon_delivery>
+							</view>
 							<view class="attribute">
 								<span>
 									<block wx:if="{{goodsInfo.option_str}}">规格：{{goodsInfo.option_str}} </block>数量：{{goodsInfo.quantity}}
@@ -48,14 +51,19 @@
 						</view>
 					</view>
 				</view>
-				<view class="px15 py10 text-right">
-					<view class="mb5" wx:if="{{head_shipping_fare}}">
-						团长配送费:<text class="red weight">￥{{head_shipping_fare}} </text><text class="fsz-24 text-gray">(归团长收入)</text>
+				<view class="px15 py10 i-flex">
+					<view class="bule u-m-r-10" wx:if="{{order.order_info.payment_code=='cashon_delivery'}}">
+						货到付款
 					</view>
-					<view bindtap="handleTipDialog">
-						实际佣金:<text class="red weight">￥{{commision}} </text>
-						<text class="iconfont icon-shuoming text-dark fsz-28"></text>
-						<text class="fsz-24 text-gray"> ({{is_statements_state==1?'已结算':'待结算'}}<block wx:if="{{is_statements_state==1&&statements_end_date}}"> {{statements_end_date}}</block>)</text>
+					<view class="i-flex-item text-right">
+						<view class="mb5" wx:if="{{head_shipping_fare}}">
+							团长配送费:<text class="red weight">￥{{head_shipping_fare}} </text><text class="fsz-24 text-gray">(归团长收入)</text>
+						</view>
+						<view bindtap="handleTipDialog">
+							实际佣金:<text class="red weight">￥{{commision}} </text>
+							<text class="iconfont icon-shuoming text-dark fsz-28"></text>
+							<text class="fsz-24 text-gray"> ({{is_statements_state==1?'已结算':'待结算'}}<block wx:if="{{is_statements_state==1&&statements_end_date}}"> {{statements_end_date}}</block>)</text>
+						</view>
 					</view>
 				</view>
 			</view>
