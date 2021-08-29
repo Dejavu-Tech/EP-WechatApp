@@ -85,9 +85,8 @@ function getGps() {
     wx.getLocation({
       type: 'gcj02', //编码方式，
       success: function (res) {
+        console.log("getGps-res", res);
         resolve(res);
-        var latitude = res.latitude;
-        var longitude = res.longitude;
         wx.setStorage({
           key: "latitude",
           data: res.latitude
@@ -98,6 +97,7 @@ function getGps() {
         })
       },
       fail: (error) => {
+        console.log("getGps-error", error);
         if (error.errMsg == "getLocation:fail auth deny"){
           that.openSetting().then(function(res){
             console.log(res);
@@ -107,6 +107,7 @@ function getGps() {
             reject(error);
           });
         } else {
+          // reject(error);
           console.log(error);
           // reject(error);
         }
