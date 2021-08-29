@@ -135,7 +135,8 @@ Page({
             isopen_presale,
             is_open_invite_invitation,
             virtualcard_name_modify,
-            is_open_virtualcard_show
+            is_open_virtualcard_show,
+            isopen_admin_managefront
           } = res.data;
           that.setData({
             ...params,
@@ -156,7 +157,8 @@ Page({
             isopen_presale,
             is_open_invite_invitation,
             virtualcard_name_modify,
-            is_open_virtualcard_show
+            is_open_virtualcard_show,
+            isopen_admin_managefront
           });
         } else {
           //needAuth
@@ -175,7 +177,7 @@ Page({
   getCommunityInfo: function(){
     let that = this;
     let community = wx.getStorageSync('community');
-    if (community) {
+    if (community&&community.headDoorphoto) {
       if(!community.head_mobile) {
         util.getCommunityById(community.communityId).then(res=>{
           let head_mobile = res.data.disUserMobile || res.data.head_mobile;
@@ -373,7 +375,7 @@ Page({
    * 预览图片
    */
   previewImage: function(e) {
-    var current = e.target.dataset.src;
+    var current = e.currentTarget.dataset.src;
     current && wx.previewImage({
       current: current,
       urls: [current]

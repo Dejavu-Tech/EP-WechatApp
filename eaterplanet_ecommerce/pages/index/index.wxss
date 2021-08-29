@@ -6,11 +6,11 @@
 @import "template/video.wxss";
 @import "template/navlist.wxss";
 @import "template/presalerow.wxss";
-@import "nav.wxss";
 @import "floatBtn.wxss";
 @import "cube.wxss";
 @import "search.wxss";
 @import "coupon.wxss";
+@import "diySeckill.wxss";
 
 page {
   background-color: #f6f6f6!important;

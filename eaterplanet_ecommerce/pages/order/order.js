@@ -164,7 +164,7 @@ Page({
     }
   },
 
-  getData: function(id, latitude, longitude, is_show_tip='', delivery=''){
+  getData: function(id, latitude="", longitude="", is_show_tip='', delivery=''){
     if (is_show_tip != undefined && is_show_tip == 1) {
       //todo 弹出分享 
     } else {
@@ -323,6 +323,9 @@ Page({
               longitude: res.longitude,
               latitude: res.latitude
             })
+          },
+          fail: ()=>{
+            reject();
           }
         });
       }).catch(()=>{
@@ -825,6 +828,23 @@ Page({
     url && wx.redirectTo({ url })
   },
 
+  showFanliView: function() {
+    let pin_rebate = this.data.order.pin_rebate || '';
+    console.log(pin_rebate)
+    let text = "";
+    if(pin_rebate&&pin_rebate.rebate_reward==1) {
+      text = "拼团返利赠送"+ pin_rebate.reward_amount +"积分";
+    } else {
+      text = "拼团返利赠送余额：+"+ pin_rebate.reward_amount;
+    }
+    pin_rebate&&wx.showModal({
+      title: "返利详情",
+      content: text,
+      showCancel: false,
+      confirmText: "我知道了"
+    })
+  },
+  
   onShareAppMessage: function(res) {
     var order_id = this.data.order.order_info.order_id || '';
     let goods_share_image = this.data.order.order_goods_list[0].goods_share_image;

@@ -55,7 +55,8 @@ Page({
     curAlertTime: -1,
     isAgreePresale: false,
     presale_info: '',
-    presalePickup: ['自提','配送','发货','配送','核销']
+    presalePickup: ['自提','配送','发货','配送','核销'],
+    allform: ""
   },
   canPay: true,
   canPreSub: true,
@@ -109,7 +110,7 @@ Page({
       success: function (res) {
         // wx.hideLoading();
         setTimeout(function(){ wx.hideLoading(); },1000);
-
+        
         let rdata = res.data;
         // 提货方式
         let tabIdx = -1;
@@ -117,10 +118,10 @@ Page({
         let tabList = that.data.tabList || {};
         let sortTabList = [];
 
-        let {
-          delivery_express_name,
-          delivery_tuanzshipping_name,
-          delivery_ziti_name,
+        let { 
+          delivery_express_name, 
+          delivery_tuanzshipping_name, 
+          delivery_ziti_name, 
           delivery_diy_sort,
           delivery_type_express,
           delivery_type_tuanz,
@@ -149,8 +150,18 @@ Page({
           localtown_expected_delivery,
           order_lou_meng_hao,
           order_lou_meng_hao_placeholder,
-          presale_info
+          presale_info,
+          cashondelivery_data,
+          allform
         } = res.data;
+
+        let {
+          isopen_cashondelivery,
+          isopen_cashondelivery_communityhead,
+          isopen_cashondelivery_express,
+          isopen_cashondelivery_hexiao,
+          isopen_cashondelivery_localtown
+        } = cashondelivery_data;
 
         presale_info = Object.keys(presale_info).length ? presale_info : '';
 
@@ -290,7 +301,9 @@ Page({
           localtown_delivery_space_month,
           order_lou_meng_hao: order_lou_meng_hao|| '楼号门牌',
           order_lou_meng_hao_placeholder: order_lou_meng_hao_placeholder || '例如:A座106室',
-          presale_info
+          presale_info,
+          cashondelivery_data,
+          allform
         }
 
         let addrObj = rdata.address || {};
@@ -449,6 +462,12 @@ Page({
     })
   },
 
+  ck_cash: function () {
+    this.setData({
+      ck_yupay: 2
+    })
+  },
+
   scoreChange: function (e) {
     console.log('是否使用', e.detail.value)
     let tdata = this.data;
@@ -487,10 +506,21 @@ Page({
     });
   },
 
-  goOrderfrom: function() {
+  // 生成订单号 Step1
+  preOrderConfirm() {
+    if(this.data.allform&&this.data.allform.is_open_orderform) {
+      this.selectComponent("#sForm").formSubmit();
+      return false;
+    } else {
+      this.goOrderfrom();
+    }
+  },
+  // 生成订单号 Step2
+  goOrderfrom: function(formData={detail: {}}) {
     let that = this;
     let { tabAddress, tabIdx, note_content, order_note_open, order_note_name, isAgreePresale, buy_type, presale_info } = this.data;
 
+    this.setData({ formData: formData.detail })
     var t_ziti_name = tabAddress[tabIdx].name;
     var t_ziti_mobile = tabAddress[tabIdx].mobile;
     var receiverAddress = tabAddress[tabIdx].receiverAddress;
@@ -626,7 +656,7 @@ Page({
 
   prepay: function() {
     this.canPreSub = true;
-    let { tabAddress, tabIdx, is_limit_distance_buy, note_content, seller_goodss, commentArr } = this.data;
+    let { tabAddress, tabIdx, is_limit_distance_buy, note_content, seller_goodss, commentArr, formData } = this.data;
     let isVirtualcard = 0;
     if(this.data.buy_type=='virtualcard') isVirtualcard = 1;
     if (is_limit_distance_buy == 1 && (tabIdx == 1) && isVirtualcard==0){
@@ -717,6 +747,8 @@ Page({
         expected_delivery_time = localtown_delivery_space_month + ' ' + expected_delivery_time;
       }
 
+      let cashon_delivery = (ck_yupay)==2?1:0
+
       wx.showLoading();
       app.util.request({
         url: 'entry/wxapp/user',
@@ -744,7 +776,9 @@ Page({
           soli_id,
           note_content,
           expected_delivery_time,
-          scene: app.globalData.scene
+          scene: app.globalData.scene,
+          cashon_delivery,
+          ...formData
         },
         dataType: 'json',
         method: 'POST',
@@ -756,7 +790,6 @@ Page({
           console.log('支付日志：', res);
           if (res.data.code == 0) {
             // 交易组件
-            console.log('33333');
             if(res.data.isRequestOrderPayment==1) {
               wx.requestOrderPayment({
                 "orderInfo": res.data.order_info,
@@ -856,7 +889,6 @@ Page({
             }
           } else if (res.data.code == 1) {
             that.canPay = true;
-            console.log('11111');
             wx.showModal({
               title: '提示',
               content: res.data.RETURN_MSG || '支付失败',
@@ -877,7 +909,6 @@ Page({
               }
             })
           } else if (res.data.code == 2) {
-            console.log('22222');
             that.canPay = true;
             if( res.data.is_forb ==1 ){ h.btnDisable = true; h.btnText="已抢光"; }
             wx.showToast({

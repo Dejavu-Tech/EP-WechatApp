@@ -260,7 +260,7 @@
 
     <block wx:if="{{buy_type=='integral'}}">
       <!-- 积分商品 -->
-      <view class="act-content" wx:if="{{is_yue_open==1&&total_free>0}}">
+      <view class="act-content" wx:if="{{total_free>0}}">
         <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_wxpays">
           <view class="oc-payment-item {{ck_yupay==0?'oc-payment-selected':''}}" style="{{ck_yupay==0?'color:'+skin.color:''}}">
             <text class="iconfont icon-weixinzhifu oc-payment-icon" style="color:#00c800;"></text>
@@ -268,23 +268,25 @@
             <view class="oc-payment-recommend" style="color:{{skin.color}};border-color:{{skin.color}}">推荐</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
-          <view class="oc-payment-item {{ck_yupay>0?'oc-payment-selected':''}}" style="{{ck_yupay>0?'color:'+skin.color:''}}">
-            <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
-            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+        <block wx:if="{{is_yue_open==1}}">
+          <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
+            <view class="oc-payment-item {{ck_yupay==1?'oc-payment-selected':''}}" style="{{ck_yupay==1?'color:'+skin.color:''}}">
+              <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
+              <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+            </view>
           </view>
-        </view>
-        <view class="oc-payment" wx:else>
-          <view class="oc-payment-item">
-            <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
-            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+          <view class="oc-payment" wx:else>
+            <view class="oc-payment-item">
+              <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
+              <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+            </view>
           </view>
-        </view>
+        </block>
       </view>
     </block>
     <block wx:else>
       <!-- 普通商品 -->
-      <view class="act-content" wx:if="{{is_yue_open==1}}">
+      <view class="act-content">
         <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_wxpays">
           <view class="oc-payment-item {{ck_yupay==0?'oc-payment-selected':''}}" style="{{ck_yupay==0?'color:'+skin.color:''}}">
             <text class="iconfont icon-weixinzhifu oc-payment-icon" style="color:#00c800;"></text>
@@ -292,20 +294,57 @@
             <view class="oc-payment-recommend" style="color:{{skin.color}};border-color:{{skin.color}}">推荐</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
-          <view class="oc-payment-item {{ck_yupay>0?'oc-payment-selected':''}}" style="{{ck_yupay>0?'color:'+skin.color:''}}">
-            <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
-            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+        <block wx:if="{{is_yue_open==1}}">
+          <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_yupays" wx:if="{{can_yupay}}">
+            <view class="oc-payment-item {{ck_yupay==1?'oc-payment-selected':''}}" style="{{ck_yupay==1?'color:'+skin.color:''}}">
+              <text class="iconfont icon-balance oc-payment-icon" style="color:#ff5777;"></text>
+              <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+            </view>
+          </view>
+          <view class="oc-payment" wx:else>
+            <view class="oc-payment-item">
+              <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
+              <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+            </view>
+          </view>
+        </block>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==0&&cashondelivery_data.isopen_cashondelivery_ziti==1}}">
+          <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
+            <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
-        <view class="oc-payment" wx:else>
-          <view class="oc-payment-item">
-            <text class="iconfont icon-balance oc-payment-icon text-gray"></text>
-            <view class="oc-payment-method">余额支付（余额：{{yu_money}}）</view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==1&&cashondelivery_data.isopen_cashondelivery_communityhead==1}}">
+          <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
+            <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">货到付款</view>
+          </view>
+        </view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==2&&cashondelivery_data.isopen_cashondelivery_express==1}}">
+          <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
+            <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">货到付款</view>
+          </view>
+        </view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==3&&cashondelivery_data.isopen_cashondelivery_localtown==1}}">
+          <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
+            <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">货到付款</view>
+          </view>
+        </view>
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==4&&cashondelivery_data.isopen_cashondelivery_hexiao==1}}">
+          <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
+            <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
+            <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
       </view>
     </block>
+
+    <!-- 自定义表单 -->
+    <view wx:if="{{allform&&allform.is_open_orderform}}" class="u-m-t-20 rounded u-m-l-20 u-m-r-20 u-p-20 bg-f">
+			<s-form id="sForm" formData="{{allform}}" bind:success="goOrderfrom"></s-form>
+		</view>
 
     <i-fixed-bottom>
       <view class="fixed-content">
@@ -338,7 +377,7 @@
           </block>
         </view>
         <view wx:if="{{btnDisable}}" class="fixed-bar-btn bgDisabled">{{btnText?btnText:"立即支付"}}</view>
-        <i-button wx:else bind:click="goOrderfrom" iClass="fixed-bar-btn" loading="{{btnLoading}}">
+        <i-button wx:else bind:click="preOrderConfirm" iClass="fixed-bar-btn" loading="{{btnLoading}}">
           <view wx:if="{{buy_type=='integral'}}" style="">立即兑换</view>
           <view wx:else style="">立即支付</view>
         </i-button>
@@ -453,10 +492,10 @@
         <em>{{tabAddress[tabIdx].region[0]}}{{tabAddress[tabIdx].region[1]}}{{tabAddress[tabIdx].region[2]}}{{tabAddress[tabIdx].receiverAddress}}</em>
       </view>
       <view class="total" wx:if="{{buy_type=='presale'&&presale_info.presale_type==0}}">
-        合计:<em>¥{{presale_info.totdingMoney}}</em>
+        合计{{ck_yupay==2?'到付':''}}:<em>¥{{presale_info.totdingMoney}}</em>
       </view>
       <view class="total" wx:else>
-        合计:<em>¥{{tot_price}}</em>
+        合计{{ck_yupay==2?'到付':''}}:<em>¥{{tot_price}}</em>
       </view>
     </view>
     <view class="button-group">

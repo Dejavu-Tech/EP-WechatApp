@@ -1,9 +1,11 @@
 .diy-search-bar {
   background-color: transparent;
-  width: 100%;
+  width: 94%;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  margin:0 auto;
+  border-radius: 10rpx;
 }
 
 .diy-search-bar .search-box {

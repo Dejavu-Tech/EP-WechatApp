@@ -24,7 +24,7 @@
     <!-- {{rushCategoryData.tabs[rushCategoryData.activeIndex].sub.length?'pt50':''}} -->
     <scroll-view scrollWithAnimation scrollY bindscroll="scroll" bindscrolltolower="scrollBottom" class="page-list" lowerThreshold="{{250}}" style="height:{{scrollViewHeight+50}}px" scroll-top="{{rightScrollTop}}">
       <!-- 广告图 -->
-      <view wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.image}}" class="advimg-box" bindtap="clickAdv" data-info="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info}}">
+      <view wx:if="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.image&&rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.enabled==1}}" class="advimg-box" bindtap="clickAdv" data-info="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info}}">
         <image class="advimg" src="{{rushCategoryData.tabs[rushCategoryData.activeIndex].adv_info.image}}" mode="aspectFill"></image>
       </view>
       <!-- 子栏目 -->

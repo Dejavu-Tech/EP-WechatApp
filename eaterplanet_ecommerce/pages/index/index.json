@@ -33,6 +33,9 @@
     "form-apply": "../../components/form/apply",
     "parser":"../../components/parser/parser",
     "diy-goods-list":"../../components/diy-goods-list/index",
-    "diy-pintuan":"../../components/diy-pintuan/index"
+    "diy-many-goods-list":"../../components/diy-many-goods-list/index",
+    "diy-pintuan":"../../components/diy-pintuan/index",
+    "i-empty":"../../components/empty/index",
+    "diy-nav":"../../components/diy-nav/index"
   }
 }

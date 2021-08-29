@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "常见帮助",
   "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
     "i-empty": "../../components/empty/index"
   }
 }

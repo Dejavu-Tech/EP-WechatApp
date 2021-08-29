@@ -10,7 +10,10 @@
       <view class="personalCon">
         <view class="userInfo">
           <block wx:if="{{!needAuth}}">
-            <image class="userAvatarUrl" src="{{member_info.avatar}}" wx:if="{{member_info.avatar}}"></image>
+            <view class="pos-r userAvatarUrl" wx:if="{{member_info.avatar}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/editUser/index">
+              <image style="width: 100rpx;height:100rpx;border-radius: 50%;" src="{{member_info.avatar}}"></image>
+              <text class="iconfont icon-bianji edituserbtn"></text>
+            </view>
             <image class="userAvatarUrl" src="../../images/head-bitmap.png" wx:else></image>
             <view class="user-name" style="color:{{user_top_font_color}}">
               <view class="user-name-top">
@@ -18,6 +21,11 @@
                 <button bindtap="bindGetUserInfo" class="modify" wx:if="{{canIUse}}">
                   <text class="iconfont icon-shuaxin" style="color:{{user_top_font_color}}"></text>
                 </button>
+              </view>
+              <view class="userLevel" wx:if="{{member_info.is_show_member_id==1}}">
+                <view class="userLeveldiscount">
+                 用户ID: {{member_info.member_id}}
+                </view>
               </view>
               <view class="userLevel" wx:if="{{member_info.is_show_member_level==1}}">
                 <view class="userLevelName">
@@ -42,10 +50,6 @@
 
       </view>
     </view>
-  
-
-
-
     <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1}}" bindtap="goLink2"
           data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
           <view class="i-flex vip-name">
@@ -57,9 +61,8 @@
           <view wx:if="{{is_vip_card_member==1}}">立即查看<text class="iconfont icon-youjiantou goright"></text></view>
           <view wx:if="{{is_vip_card_member==2}}"><text style="color:#5c5c5c;">已到期,</text>立即续费<text
               class="iconfont icon-youjiantou goright"></text></view>
-        </view>
-
-      <view class="order ">
+    </view>
+    <view class="order ">
         <view class="my-order">
           <view class="my-order-title">
             <text>我的订单</text>
@@ -187,7 +190,12 @@
         </view>
         <view class='modal-body community fsz-30 i-flex'>
         <view class="i-flex-item">
+	          <view class="i-flex" style="align-items: center">
+            <view wx:if="{{community.headDoorphoto}}" class="u-m-r-15" bindtap="previewImage" data-src="{{community.headDoorphoto}}">
+              <image src="{{community.headDoorphoto}}" style="width: 100rpx;height: 100rpx;"></image>
+            </view>
           <view class="weight red mb5" style="color:{{skin.color}}">{{community.communityName}}</view>
+        </view>
           <view class="fsz-26 text-gray mb5">{{community.fullAddress}}</view>
           <view class="i-flex community-flex" wx:if="{{community.head_mobile||community.disUserMobile}}">
             <view class="i-flex">
@@ -439,7 +447,6 @@
                   src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
                 <text>常见帮助</text>
               </view>
-
             </view>
           </navigator>
           <button class="item-fav" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}"
@@ -450,7 +457,6 @@
                   src="{{user_tool_icons.i8?user_tool_icons.i8:'../../images/serviceIcon.png'}}"></image>
                 <text>联系客服</text>
               </view>
-
             </view>
           </button>
           <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/user/articleProtocol?about=1"
@@ -461,9 +467,24 @@
                   src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
                 <text>关于我们</text>
               </view>
-
             </view>
           </navigator>
+        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
+              <text>平台管理</text>
+            </view>
+          </view>
+        </navigator>
+        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+              <text>卡密充值</text>
+            </view>
+          </view>
+        </navigator>
           <view class="toolList">
           <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
             <view class="item-main">
@@ -599,21 +620,21 @@
               </view>
             </view>
           </block>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" >
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
           <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="../../images/presale.png"></image>
+            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i12?user_tool_icons.i12:'../../images/presale.png'}}"></image>
             <text>预售中心</text>
           </view>
         </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" >
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
           <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="../../images/invite.png"></image>
+            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i13?user_tool_icons.i13:'../../images/invite.png'}}"></image>
             <text>邀新有礼</text>
           </view>
         </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" >
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
           <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="../../images/virtualcard.png"></image>
+            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i14?user_tool_icons.i14:'../../images/virtualcard.png'}}"></image>
             <text>{{virtualcard_name_modify}}</text>
           </view>
         </view>
@@ -642,7 +663,7 @@
           </navigator>
           <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
             <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="../../images/loginOut.png"></image>
+            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i15?user_tool_icons.i15:'../../images/loginOut.png'}}"></image>
               <text>退出登录</text>
             </view>
           </view>

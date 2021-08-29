@@ -124,13 +124,13 @@
           </view>
         </view>
 
-        <view class="comiss" wx:if="{{is_commiss_mb==1&&commiss_mb_money>0&&!hideCommissInfo}}">
-          <text class="con">{{groupInfo.commiss_diy_name}}预估佣金:¥{{commiss_mb_money}}</text>
-        </view>
-        <view class="comiss" wx:if="{{is_goods_head_mb==1&&goods_head_money>0&&!hideCommissInfo}}">
-          <text class="con">{{groupInfo.owner_name}}预估佣金：¥{{goods_head_money}}</text>
-        </view>
         <block wx:if="{{buy_type!='integral'}}">
+          <view class="comiss" wx:if="{{is_commiss_mb==1&&commiss_mb_money>0&&!hideCommissInfo}}">
+            <text class="con">{{groupInfo.commiss_diy_name}}预估佣金:¥{{commiss_mb_money}}</text>
+          </view>
+          <view class="comiss" wx:if="{{is_goods_head_mb==1&&goods_head_money>0&&!hideCommissInfo}}">
+            <text class="con">{{groupInfo.owner_name}}预估佣金：¥{{goods_head_money}}</text>
+          </view>
           <!-- 会员、等级价格 -->
           <i-vip-price wx:if="{{is_open_vipcard_buy==1&&goods.is_take_vipcard==1}}" price="{{goods.card_price}}"></i-vip-price>
           <i-vip-price wx:if="{{is_member_level_buy==1&&goods.is_mb_level_buy==1&&(goods.price!=goods.levelprice)}}" price="{{goods.levelprice}}" type="1"></i-vip-price>
@@ -161,7 +161,7 @@
         <text wx:if="{{goods.one_limit_count > 0}}"> 每单限购{{goods.one_limit_count}}份</text>
       </view>
       <view class="saleNum" wx:if="{{buy_type=='presale'}}">
-        <view class="stock">已预订<text class="remaining"> {{goods.total}} </text>{{goods_sale_unit}}</view>
+        <view class="stock">已预订<text class="remaining"> {{goods.seller_count}} </text>{{goods_sale_unit}}</view>
       </view>
       <view class="saleNum" wx:if="{{is_hide_details_count!=1&&buy_type!='presale'}}">
         <text class="purTit">销量</text>
@@ -491,7 +491,7 @@
       </view>
       <form bindsubmit="gocarfrom" report-submit="true">
         <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
-          <view>库存不足</view>
+          <view>抢光了</view>
         </button>
         <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="">
           <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>

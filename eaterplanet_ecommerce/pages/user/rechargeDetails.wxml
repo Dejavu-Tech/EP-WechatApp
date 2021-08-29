@@ -14,7 +14,7 @@
                           <!-- <text class="num {{item.state==3?'num2':''}}">{{item.money}}</text> -->
                           <text class="num yue">余额:{{item.current_yuer}}</text>
                       </view>
-                      <view class="list-orderNo" wx:if="{{item.state==3||item.state==4||item.state==6}}">{{item.trans_id}}</view>
+                      <view class="list-orderNo" wx:if="{{item.state==3||item.state==4||item.state==6||item.state==21}}">{{item.trans_id}}</view>
                       <view class="list-time">{{item.charge_time}}</view>
                       <view class="u-font-22 text-gray u-m-t-20" wx:if="{{item.remark}}">{{item.remark}}</view>
                   </view>

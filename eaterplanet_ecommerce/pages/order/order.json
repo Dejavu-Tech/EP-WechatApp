@@ -17,6 +17,7 @@
     "i-img": "../../components/img/index",
     "sku": "../../components/sku/index",
     "guess-like": "../../components/guess-like/index",
-    "i-aside-btn": "../../components/asideBtn/index"
+    "i-aside-btn": "../../components/asideBtn/index",
+    "s-form-show": "../../components/s-form-show/index"
   }
 }

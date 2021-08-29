@@ -1,6 +1,6 @@
 <template name="communityShow">
-  <view class="header-content" style='color: {{item.textColor}}'>
-    <view class="location" wx:if="{{item.style==1}}">
+  <view class="header-content">
+    <view class="location" wx:if="{{item.style==1}}" style='color: {{item.textColor}}'>
       <view class="location-left" wx:if="{{community&&community.communityName}}">
         <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community"
           wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}">
@@ -30,16 +30,15 @@
         <text>{{community.disUserName}}</text>
       </view>
     </view>
-    <view class="location-theme2" wx:else>
+    <view class="location-theme2" style='color: {{item.textColor}}' wx:else>
       <block wx:if="{{community&&community.communityName}}">
         <view class="loc-l">
           <image src='{{community.headImg ? community.headImg: community.disUserHeadImg}}' class='img'></image>
         </view>
-        <view class="loc-m" wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}" bindtap="goLink"
-          data-link="/eaterplanet_ecommerce/pages/position/community">
-          {{community.communityName}} <text style='font-size:12px;'
-            wx:if="{{hide_community_change_word==0}}">切换</text><text class="iconfont icon-youjiantou"
-            style='font-size:12px;'></text>
+        <view class="loc-m" wx:if="{{hide_community_change_btn==0&&open_danhead_model!=1}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/position/community">
+          {{community.communityName}}
+            <text style='font-size:20rpx;' wx:if="{{hide_community_change_word==0}}" class="u-m-l-20">切换</text>
+            <text class="iconfont icon-youjiantou" style='font-size:18rpx;'></text>
         </view>
         <view class="loc-m" wx:else>{{community.communityName}}</view>
       </block>

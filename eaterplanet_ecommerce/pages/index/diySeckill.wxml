@@ -1,31 +1,71 @@
 <template name="diySeckill">
   <view class="seckill" style="margin-top:{{diyInfo.marginTop*2+'rpx'}};">
-    <view class="seckill-head i-flex" style="background:{{diyInfo.backgroundColor}}">
-      <view class="tit">
-        <view>整点</view>
-        <view>秒杀</view>
-      </view>
-      <view class="i-flex-item i-flex">
-        <view class="seckill-head-item {{secKillActiveIdx==index?'active':''}}" wx:for="{{scekillTimeList}}" wx:key="id"
-          data-time="{{item.seckillTime}}" data-idx="{{index}}" bindtap="changeSecKillTime">
-          <view class="time">{{item.timeStr}}</view>
-          <view class="desc" style="{{secKillActiveIdx==index?('color:'+diyInfo.backgroundColor):''}}">{{item.desc}}</view>
+    <block wx:if="{{diyInfo.style==1}}">
+      <view class="seckill-head i-flex" style="background:{{diyInfo.backgroundColor}}">
+        <view class="tit">
+          <view>整点</view>
+          <view>秒杀</view>
+        </view>
+        <view class="i-flex-item i-flex">
+          <view class="seckill-head-item {{secKillActiveIdx==index?'active':''}}" wx:for="{{scekillTimeList}}" wx:key="id"
+            data-time="{{item.seckillTime}}" data-idx="{{index}}" bindtap="changeSecKillTime">
+            <view class="time">{{item.timeStr}}</view>
+            <view class="desc" style="{{secKillActiveIdx==index?('color:'+diyInfo.backgroundColor):''}}">{{item.desc}}</view>
+          </view>
+        </view>
+        <view class="more" bindtap="goLink"
+          data-link="/eaterplanet_ecommerce/moduleA/seckill/list?time={{scekillTimeList[secKillActiveIdx].seckillTime}}">
+          更多 <text class="iconfont icon-gengduo"></text>
         </view>
       </view>
-      <view class="more" bindtap="goLink"
-        data-link="/eaterplanet_ecommerce/moduleA/seckill/list?time={{scekillTimeList[secKillActiveIdx].seckillTime}}">
-        更多 <text class="iconfont icon-gengduo"></text>
+      <view class="seckill-list" wx:if="{{secRushList.length}}">
+        <swiper indicatorDots class="sec-swiper-content" autoplay duration="400" circular indicator-dots="{{false}}"
+          bindchange="scrollSecKillGoodsChange">
+          <swiper-item wx:for="{{secRushList}}" wx:key="id">
+            <i-seckill-spu spuItem="{{item}}" begin="{{scekillTimeList[secKillActiveIdx].state==2?1:0}}"
+              needAuth="{{needAuth}}"></i-seckill-spu>
+          </swiper-item>
+        </swiper>
+        <text class="current" wx:if="{{secRushList.length}}">{{secKillGoodsIndex}}/{{secRushList.length}}</text>
       </view>
-    </view>
-    <view class="seckill-list" wx:if="{{secRushList.length}}">
-      <swiper indicatorDots class="sec-swiper-content" autoplay duration="400" circular indicator-dots="{{false}}"
-        bindchange="scrollSecKillGoodsChange">
-        <swiper-item wx:for="{{secRushList}}" wx:key="id">
-          <i-seckill-spu spuItem="{{item}}" begin="{{scekillTimeList[secKillActiveIdx].state==2?1:0}}"
-            needAuth="{{needAuth}}"></i-seckill-spu>
-        </swiper-item>
-      </swiper>
-      <text class="current" wx:if="{{secRushList.length}}">{{secKillGoodsIndex}}/{{secRushList.length}}</text>
-    </view>
+    </block>
+    <block wx:if="{{diyInfo.style==2}}">
+      <view class="seckill-head2 i-flex i-flex-alc u-p-t-40 u-p-l-30 u-p-r-30 u-p-b-10">
+        <view class="i-flex-item">
+          <image style="width:206rpx;height:32rpx" src="{{diyInfo.host+diyInfo.list[1].imageUrl}}"></image>
+          <view style="color:rgba(255, 69, 68, .6);" class="u-font-28">
+            <block wx:for="{{scekillTimeList}}" wx:key="id" wx:if="{{secKillActiveIdx==index}}">
+              {{item.desc}} <text class="seckill-time-i">{{item.timeArr[0]}}</text>:<text class="seckill-time-i">{{item.timeArr[1]}}</text>
+            </block>
+          </view>
+        </view>
+        <view class="text-gray u-font-24" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/seckill/list?time={{scekillTimeList[secKillActiveIdx].seckillTime}}">
+          更多秒杀<text class="iconfont icon-youjiantou u-font-22"></text>
+        </view>
+      </view>
+      <view class="seckill-list" wx:if="{{secRushList.length}}">
+        <view wx:for="{{secRushList}}" wx:key="id">
+          <i-seckill-spu spuItem="{{item}}" begin="{{scekillTimeList[secKillActiveIdx].state==2?1:0}}" needAuth="{{needAuth}}"></i-seckill-spu>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{diyInfo.style==3}}">
+      <view class="seckill-head2 text-center u-p-t-50 u-p-l-30 u-p-r-30 u-p-b-10">
+        <view><image style="width:348rpx;height:34rpx" src="{{diyInfo.host+diyInfo.list[2].imageUrl}}"></image></view>
+        <view style="color:rgba(255, 69, 68, .6);" class="u-font-24 u-m-t-10">
+          <block wx:for="{{scekillTimeList}}" wx:key="id" wx:if="{{secKillActiveIdx==index}}">
+            {{item.desc}} <text class="seckill-time-i">{{item.timeArr[0]}}</text>:<text class="seckill-time-i">{{item.timeArr[1]}}</text>
+          </block>
+        </view>
+      </view>
+      <view class="seckill-list u-m-t-20" wx:if="{{secRushList.length}}">
+        <view wx:for="{{secRushList}}" wx:key="id">
+          <i-seckill-spu spuItem="{{item}}" begin="{{scekillTimeList[secKillActiveIdx].state==2?1:0}}" needAuth="{{needAuth}}"></i-seckill-spu>
+        </view>
+      </view>
+      <view class="text-gray u-font-24 text-center border-top u-p-t-30 u-p-b-30 u-m-l-20 u-m-r-20" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/seckill/list?time={{scekillTimeList[secKillActiveIdx].seckillTime}}">
+        更多秒杀<text class="iconfont icon-youjiantou u-font-22"></text>
+      </view>
+    </block>
   </view>
 </template>

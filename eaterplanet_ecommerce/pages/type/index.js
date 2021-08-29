@@ -802,7 +802,7 @@ Page({
       wx.switchTab({
         url: '/eaterplanet_ecommerce/pages/type/index'
       })
-    }else if (type==5){
+    } else if (type==5){
       // 跳转小程序
       let appId = info.appid;
       appId && wx.navigateToMiniProgram({
@@ -816,6 +816,11 @@ Page({
         fail(error) {
           console.log(error)
         }
+      })
+    } else if(type==6) {
+      //领券
+      wx.navigateTo({
+        url: '/eaterplanet_ecommerce/moduleA/coupon/getCoupon?id='+url
       })
     }
   },

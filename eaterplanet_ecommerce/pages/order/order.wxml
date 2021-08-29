@@ -39,7 +39,7 @@
 				<view class="to-get-wrap" wx:if="{{order.order_info.order_status_id==4}}">
 					<view class="font-bold-20">
 						<view>{{order.order_status_info.name?order.order_status_info.name:"可提货"}}</view>
-					<view class="fsz-24">
+					<view class="fsz-24" wx:if="{{presale_info}}">
 								发货时间：<block wx:if="{{presale_info.presale_sendorder_date}}">{{presale_info.presale_sendorder_date}}</block>
 								<block wx:else>{{presale_info.presale_sendorder_afterday}}日内</block>开始{{presalePickup[order.order_info.delivery]}}
 					</view>
@@ -160,7 +160,8 @@
 							<view class="text-center mt10" wx:if="{{order.order_info.hexiao_qr_code}}">
 								<image src="{{order.order_info.hexiao_qr_code}}" style="width:300rpx;height:300rpx;"></image>
 							</view>
-							<view class="text-center weight mt5 pt10 pb15">{{order.order_info.hexiao_volume_code}}</view>
+							<view class="text-center weight mt5 pt10">{{order.order_info.hexiao_volume_code}}</view>
+							<view class="text-center u-font-24 mt5 pb15 text-gray">出示二维码给店员核销</view>
 						</view>
 					</i-card>
 					<!-- 商品信息 -->
@@ -433,7 +434,7 @@
 											<!-- <block wx:if="{{order_can_del_cancle==1}}">
 												<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.can_ti_refund!=0&&goodsInfo.is_refund_state==0&&order.order_info.order_status_id==4&&order_can_shen_refund==1}}">申请售后</view>
 											</block> -->
-											<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1&&presale_info.presale_type!=1}}">申请售后</view>
+											<view catchtap="applyForService" data-type="{{order.order_info.order_id}}" data-order_goods_id="{{goodsInfo.order_goods_id}}" class="btn-1 mar-left-8" wx:if="{{goodsInfo.can_ti_refund!=0&goodsInfo.is_statements_state==0&&goodsInfo.is_refund_state==0&&(order.order_info.order_status_id==6||order.order_info.order_status_id==11)&&order_can_shen_refund==1&&presale_info.presale_type!=1}}">申请售后</view>
 											<button class="btn-1 mar-left-8" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch==1}}">
 												<text>联系客服</text>
 											</button>
@@ -447,7 +448,8 @@
 						<view class="footer">
 							<view bindtap="hanlePresalePayModal" class="btn-1 mar-left-8" wx:if="{{presale_info.need_repay==2&&!presale_info.second_paytime}}">付尾款</view>
 							<view bindtap="cancelOrder" data-order_goods_id="0" data-type="{{order.order_info.order_id}}" class="btn-1 mar-left-8" wx:if="{{order.order_info.order_status_id==1&&order_can_del_cancle==1&&order.order_info.is_pin!=1}}">取消订单</view>
-							<navigator url="/eaterplanet_ecommerce/moduleA/pin/share?id={{order.order_info.order_id}}" wx:if="{{order.order_info.is_pin==1&&order.order_info.order_status_id!=3}}" class="btn-1">拼团详情</navigator>
+							<view wx:if="{{order.order_info.is_pin==1&&order.order_info.order_status_id==7&&order.pin_rebate}}" class="btn-1" bindtap="showFanliView">返利详情</view>
+							<navigator url="/eaterplanet_ecommerce/moduleA/pin/share?id={{order.order_info.order_id}}" wx:if="{{order.order_info.is_pin==1&&order.order_info.order_status_id!=3}}" class="btn-1 mar-left-8">拼团详情</navigator>
 							<view catchtap="receivOrder" data-type="{{order.order_info.order_id}}" class="btn-3 mar-left-8" data-show="confirmGoodsVisible" wx:if="{{order.order_info.order_status_id==4&&order.order_info.is_can_received==1}}">{{order.order_info.delivery=='pickup'?"确认提货":"确认收货"}}</view>
 						</view>
 					</view>
@@ -458,6 +460,12 @@
 			<view class="order-info">
 				<i-order-info orderInfo="{{order.order_info}}" order_goods_list="{{order_goods_list}}" groupInfo="{{groupInfo}}" goodsTot="{{goodsTot}}" wx:if="{{order.order_info}}"></i-order-info>
 			</view>
+
+			<!-- 下单表单 -->
+			<view class="rounded bg-f u-p-30" wx:if="{{order.order_form&&order.order_form.form_type}}">
+				<s-form-show formData="{{order.order_form}}"></s-form-show>
+			</view>
+
 		</view>
 		<view class="foot" wx:if="{{order.order_info.order_status_id==3 && changeState!=1}}">
 			<i-fixedBottom>
@@ -585,7 +593,8 @@
 			<view class="text-center mt10" wx:if="{{order_goods_list[goodsHexiaoIdx].hexiao_qr_code}}">
 				<image src="{{order_goods_list[goodsHexiaoIdx].hexiao_qr_code}}" style="width:300rpx;height:300rpx;"></image>
 			</view>
-			<view class="text-center weight mt5 pt10 pb15">{{order_goods_list[goodsHexiaoIdx].hexiao_volume_code}}</view>
+			<view class="text-center weight mt5 pt10">{{order_goods_list[goodsHexiaoIdx].hexiao_volume_code}}</view>
+			<view class="text-center u-font-24 mt5 pb15 text-gray">出示二维码给店员核销</view>
 		</view>
     <scroll-view scroll-y style="max-height: 40vh;padding: 0 40rpx;" class="pb15 mt10">
       <view class="i-flex border-bottom pb15">

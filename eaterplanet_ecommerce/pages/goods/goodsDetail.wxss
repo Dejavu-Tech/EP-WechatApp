@@ -46,7 +46,6 @@ movable-area {
 
 .fixed-service {
     display: inline-block;
-    transform: translateY(860rpx);
     width: 80rpx;
     height: 80rpx;
     background: #e7614d93;
@@ -231,7 +230,7 @@ movable-area {
   color: #fff;
   position: absolute;
   left: 50%;
-  bottom: 110rpx;
+  bottom: 50rpx;
   margin-left: -44rpx;
   z-index: 1;
 }
@@ -245,8 +244,7 @@ movable-area {
     width: 100%;
     z-index: 2;
     position: relative;
-    margin-top: -50px;
-    background-color: #f6f6f6;
+    margin-top: -20px;
 }
 
 .spuInfo .spuPrice {

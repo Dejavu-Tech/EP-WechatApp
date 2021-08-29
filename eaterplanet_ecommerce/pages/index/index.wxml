@@ -1,19 +1,14 @@
 <!--<recycle-view bindscroll="{{test.funcA}}" batch="{{batchSetRecycleData}}">-->
 <wxs module="test" src="./test.wxs"></wxs>
 <page-meta bindscroll="{{test.funcA}}">
-<view class="containermini" style="{{'top: ' + searchBarHeight}};right:180rpx" bindtap='goweather'>
+<!--<view class="containermini" style="{{'top: ' + searchBarHeight}};right:180rpx" bindtap='goweather'>
   <view class='content'>
-
     <view class='info'>
       <view class='city'>
         <view class='name'>
-
           <view class='val'>{{cityDatas.basic.location || '定位中'}}</view>
-
         </view>
-
       </view>
-
       <view style="margin-top:5rpx;">
         <view class='temp num' decode='true'>{{cityDatas.now.tmp || '-'}}<text style='font-size:18rpx;position:relative;'>℃</text></view>
         <view class='weather'>{{cityDatas.now.cond_txt || '--'}}</view>
@@ -21,10 +16,9 @@
       <view class='bigIcon1'wx:if='{{cityDatas.now.cond_code}}'><image class='bigIcon' src='{{weatherIconUrl1}}{{cityDatas.now.cond_code}}{{bh}}.png'></image></view>
     </view>
   </view>
-</view>
-                <image class="header-bg" src="{{shop_info.common_header_backgroundimage?shop_info.common_header_backgroundimage:'../../images/TOP_background@2x.png'}}" wx:if="{{shop_info.index_top_img_bg_open==0}}"></image>
+</view>>-->
+<image class="header-bg" src="{{shop_info.common_header_backgroundimage?shop_info.common_header_backgroundimage:'../../images/TOP_background@2x.png'}}" wx:if="{{shop_info.index_top_img_bg_open==0}}"></image>
 <navBar ref=''  background='{{background}}'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgindex="{{true}}" ></navBar>
-
 <view class="group"  style="background-color:rgba(00, 00, 00, 0);height:{{statusBarHeight}}"></view>
 <movable-area>
 <view class='index-box pb100 {{showNewCoupon?"preventTouchMove":""}}' wx:if="{{(isDiy==1||loadOver)&&isblack!=1&&isparse_formdata!=1}}">
@@ -191,7 +185,7 @@
      <form bindsubmit="goResult" style="display: block;width: 100%;padding-bottom: 16rpx;background: linear-gradient(180deg,#94cefe 0%, #4d9ee9 100%)" wx:if="{{index_switch_search==1}}">
         <view class='search-bar'>
           <view class='search-box'>
-            <input class='ipt' placeholder="搜索商品" confirm-type="搜索" type="text" name="keyword"></input>
+            <input class='ipt' placeholder="搜索商品" confirm-type="搜索" type="text" name="keyword" bindconfirm="goResult"></input>
             <view class='search-icon'>
               <text class="iconfont icon-sousuo1"></text>
             </view>
@@ -364,14 +358,13 @@
   </block>
 
   <!-- diy组件 -->
-  <view wx:if="{{isDiy==1}}" class="diy-box safebottom" style="background: url({{globalDiyData.bgUrl}}) no-repeat top center {{globalDiyData.bgColor}};background-size: 100%;">
+  <view wx:if="{{isDiy==1&&diyLoaded}}" class="diy-box safebottom" style="background: url({{globalDiyData.bgUrl}}) no-repeat top center {{globalDiyData.bgColor}};background-size: 100%;">
     <import src="communityShow.wxml"></import>
     <import src="richtext.wxml"></import>
     <import src="text.wxml"></import>
     <import src="blank.wxml"></import>
     <import src="banner.wxml"></import>
     <import src="notice.wxml"></import>
-    <import src="nav.wxml"></import>
     <import src="search.wxml"></import>
     <import src="line.wxml"></import>
     <import src="floatBtn.wxml"></import>
@@ -379,16 +372,18 @@
     <import src="goodsList.wxml"></import>
     <import src="diySeckill.wxml"></import>
     <import src="video.wxml"></import>
+    <import src="diySingleImg.wxml"></import>
+    <import src="diyCoupon.wxml"></import>
 
     <block wx:for="{{diyJson}}" wx:key="index">
       <!-- 社区展示 -->
-      <template is="communityShow" data="{{item, community, hide_community_change_btn, open_danhead_model, index_hide_headdetail_address}}" wx:if="{{item.controller=='CommunityShow'}}"></template>
+      <template is="communityShow" data="{{item, community, hide_community_change_btn, open_danhead_model, index_hide_headdetail_address, hide_community_change_word}}" wx:if="{{item.controller=='CommunityShow'}}"></template>
       <!-- 导航图标 -->
-      <template is="nav" data="{{item}}" wx:if="{{item.controller=='GraphicNav'}}"></template>
+      <diy-nav list="{{item}}" skin="{{skin}}" wx:if="{{item.controller=='GraphicNav'}}"></diy-nav>
       <!-- 公告 -->
       <template is="notice" data="{{item}}" wx:if="{{item.controller=='Notice'}}"></template>
       <!-- 优惠券 -->
-      <template is="coupon" data="{{hasCoupon, quan, item}}" wx:if="{{item.controller=='Coupon'}}"></template>
+      <template is="diyCoupon" data="{{hasCoupon, quan, item}}" wx:if="{{item.controller=='Coupon'}}"></template>
       <!-- 幻灯片 -->
       <template is="banner" data="{{item}}" wx:if="{{item.controller=='Slider'}}"></template>
       <!-- 搜索框 -->
@@ -408,7 +403,7 @@
       <!-- 商品列表 -->
       <block wx:if="{{item.controller=='GoodsList'}}">
         <diy-goods-list value="{{item}}" idx="{{index}}" bind:diyGoodsList="getDiyGoodsList">
-          <template is="goodsList" data="{{rushList: diyGoodsList[index], value: item, isShowListTimer, actEndMap, countDownMap, stopClick, isShowListCount, needAuth, is_open_vipcard_buy, ishow_index_pickup_time, skin, goods_sale_unit}}" wx:if="{{diyGoodsList}}"></template>
+          <template is="goodsList" data="{{rushList: diyGoodsList[index], value: item, isShowListTimer, actEndMap, countDownMap, stopClick, isShowListCount, needAuth, is_open_vipcard_buy, ishow_index_pickup_time, skin, goods_sale_unit}}" wx:if="{{diyGoodsList.length}}"></template>
         </diy-goods-list>
       </block>
       <!-- 拼团 -->
@@ -421,6 +416,19 @@
       <block wx:if="{{item.controller=='Newcome'}}">
         <i-new-comer bind:openSku="openSku" refresh="{{newComerRefresh}}" diyData="{{item}}" skin="{{skin}}" />
       </block>
+      <!-- 专题 -->
+      <block wx:if="{{item.controller=='Special'}}">
+        <i-topic refresh="{{couponRefresh}}" bind:openSku="openSku" showPos="0" diyInfo="{{item}}" />
+      </block>
+      <!-- 多商品组 -->
+      <block wx:if="{{item.controller=='ManyGoodsList'}}">
+        <diy-many-goods-list value="{{item}}" idx="{{index}}" bind:diyGoodsList="getDiyManyGoodsList">
+          <template is="goodsList" data="{{rushList: diyManyGoodsList, value: item, isShowListTimer, actEndMap, countDownMap, stopClick, isShowListCount, needAuth, is_open_vipcard_buy, ishow_index_pickup_time, skin, goods_sale_unit}}" wx:if="{{diyManyGoodsList.length}}"></template>
+          <view wx:else><i-empty>暂无商品~</i-empty></view>
+        </diy-many-goods-list>
+      </block>
+      <!-- 单图组 -->
+      <template is="diySingleImg" data="{{item}}" wx:if="{{item.controller=='SingleImg'}}"></template>
     </block>
 
     <view style="height:100rpx;"></view>

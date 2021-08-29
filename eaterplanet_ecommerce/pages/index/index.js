@@ -139,7 +139,8 @@ isIPhoneX: globalData.isIPhoneX,
     },
     fmShow: true,
     presale_index_info: '',
-    isDiy: 0
+    isDiy: 0,
+    diyManyGoodsList: []
   },
   isFirst: 0,
   $data: {
@@ -162,191 +163,191 @@ isIPhoneX: globalData.isIPhoneX,
   postion: {},
   options: '',
   focusFlag: false,
-    goweather: function (options) {
-             wx.navigateTo({
-            url: '../../pages/weather/index', 
-            })
-        },
+  /**goweather: function (options) {
+         wx.navigateTo({
+        url: '../../pages/weather/index', 
+        })
+    },
 
     success (data, location) {
-        this.setData({
-          openSettingButtonShow: false,
-          searchCity: location,
-        })
-        wx.stopPullDownRefresh()
-        let now = new Date()
-        // 存下来源数据
-        data.updateTime = now.getTime()
-        data.updateTimeFormat = utils.formatDate(now, "MM-dd hh:mm")
-        wx.setStorage({
-          key: 'cityDatas',
-          data,
-        })
-        this.setData({
-          cityDatas: data,
-        })
-      },
-      fail(res) {
-        wx.stopPullDownRefresh()
-        let errMsg = res.errMsg || ''
-        // 拒绝授权地理位置权限
-        if (errMsg.indexOf('deny') !== -1 || errMsg.indexOf('denied') !== -1) {
-          wx.showToast({
-            title: '需要开启地理位置权限',
-            icon: 'none',
-            duration: 2500,
-            success: (res) => {
-              if (this.canUseOpenSettingApi()) {
-                let timer = setTimeout(() => {
-                  clearTimeout(timer)
-                  wx.openSetting({})
-                }, 2500)
-              } else {
-                this.setData({
-                  openSettingButtonShow: true,
-                })
-              }
-            },
-          })
-        } else {
-          wx.showToast({
-            title: '网络不给力，请稍后再试',
-            icon: 'none',
-          })
-        }
-      },
-    
-      clearInput () {
-        this.setData({
-          searchText: '',
-        })
-      },
-    
-    
-      canUseOpenSettingApi () {
-        let systeminfo = getApp().globalData.systeminfo
-        let SDKVersion = systeminfo.SDKVersion
-        let version = utils.cmpVersion(SDKVersion, '2.0.7')
-        if (version < 0) {
-          return true
-        } else {
-          return false
-        }
-      },
-      init(params, callback) {
-        this.setData({
-          located: true,
-        })
-        wx.getLocation({
-          success: (res) => {
-            this.getWeather(`${res.latitude},${res.longitude}`)
-            this.getHourly(`${res.latitude},${res.longitude}`)
-            callback && callback()
-          },
-          fail: (res) => {
-            this.fail(res)
+    this.setData({
+      openSettingButtonShow: false,
+      searchCity: location,
+    })
+    wx.stopPullDownRefresh()
+    let now = new Date()
+    // 存下来源数据
+    data.updateTime = now.getTime()
+    data.updateTimeFormat = utils.formatDate(now, "MM-dd hh:mm")
+    wx.setStorage({
+      key: 'cityDatas',
+      data,
+    })
+    this.setData({
+      cityDatas: data,
+    })
+  },
+  fail(res) {
+    wx.stopPullDownRefresh()
+    let errMsg = res.errMsg || ''
+    // 拒绝授权地理位置权限
+    if (errMsg.indexOf('deny') !== -1 || errMsg.indexOf('denied') !== -1) {
+      wx.showToast({
+        title: '需要开启地理位置权限',
+        icon: 'none',
+        duration: 2500,
+        success: (res) => {
+          if (this.canUseOpenSettingApi()) {
+            let timer = setTimeout(() => {
+              clearTimeout(timer)
+              wx.openSetting({})
+            }, 2500)
+          } else {
+            this.setData({
+              openSettingButtonShow: true,
+            })
           }
-        })
+        },
+      })
+    } else {
+      wx.showToast({
+        title: '网络不给力，请稍后再试',
+        icon: 'none',
+      })
+    }
+  },
+
+  clearInput () {
+    this.setData({
+      searchText: '',
+    })
+  },
+
+
+  canUseOpenSettingApi () {
+    let systeminfo = getApp().globalData.systeminfo
+    let SDKVersion = systeminfo.SDKVersion
+    let version = utils.cmpVersion(SDKVersion, '2.0.7')
+    if (version < 0) {
+      return true
+    } else {
+      return false
+    }
+  },
+  init(params, callback) {
+    this.setData({
+      located: true,
+    })
+    wx.getLocation({
+      success: (res) => {
+        this.getWeather(`${res.latitude},${res.longitude}`)
+        this.getHourly(`${res.latitude},${res.longitude}`)
+        callback && callback()
       },
-      getWeather (location) {
-        wx.request({
-          url: `${globalData.requestUrl.weather}`,
-          data: {
-            location,
-            key,
-          },
-          success: (res) => {
-            if (res.statusCode === 200) {
-              let data = res.data.HeWeather6[0]
-              if (data.status === 'ok') {
-                this.clearInput()
-                this.success(data, location)
-              } else {
-                wx.showToast({
-                  title: '查询失败',
-                  icon: 'none',
-                })
-              }
-            }
-          },
-          fail: () => {
+      fail: (res) => {
+        this.fail(res)
+      }
+    })
+  },
+  getWeather (location) {
+    wx.request({
+      url: `${globalData.requestUrl.weather}`,
+      data: {
+        location,
+        key,
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let data = res.data.HeWeather6[0]
+          if (data.status === 'ok') {
+            this.clearInput()
+            this.success(data, location)
+          } else {
             wx.showToast({
               title: '查询失败',
               icon: 'none',
             })
-          },
-        })
-      },
-      getHourly(location) {
-        wx.request({
-          url: `${globalData.requestUrl.hourly}`,
-          data: {
-            location,
-            key,
-          },
-          success: (res) => {
-            if (res.statusCode === 200) {
-              let data = res.data.HeWeather6[0]
-              if (data.status === 'ok') {
-                this.setData({
-                  hourlyDatas: data.hourly || []
-                })
-              }
-            }
-          },
-          fail: () => {
-            wx.showToast({
-              title: '查询失败',
-              icon: 'none',
-            })
-          },
-        })
-      },
-      initSetting (successFunc) {
-        wx.getStorage({
-          key: 'setting',
-          success: (res) => {
-            let setting = res.data || {}
-            this.setData({
-              setting,
-            })
-            successFunc && successFunc(setting)
-          },
-          fail: () => {
-            this.setData({
-              setting: {},
-            })
-          },
-        })
-      },
-      reloadInitSetting () {
-        this.initSetting((setting) => {
-          this.checkUpdate(setting)
-        })
-      },
-      onPullDownRefresh (res) {
-        this.reloadPage()
-      },
-      getCityDatas() {
-        let cityDatas = wx.getStorage({
-          key: 'cityDatas',
-          success: (res) => {
-            this.setData({
-              cityDatas: res.data,
-            })
-          },
-        })
-      },
-      reloadWeather () {
-        if (this.data.located) {
-          this.init({})
-        } else {
-          this.search(this.data.searchCity)
-          this.setData({
-            searchCity: '',
-          })
+          }
         }
       },
+      fail: () => {
+        wx.showToast({
+          title: '查询失败',
+          icon: 'none',
+        })
+      },
+    })
+  },
+  getHourly(location) {
+    wx.request({
+      url: `${globalData.requestUrl.hourly}`,
+      data: {
+        location,
+        key,
+      },
+      success: (res) => {
+        if (res.statusCode === 200) {
+          let data = res.data.HeWeather6[0]
+          if (data.status === 'ok') {
+            this.setData({
+              hourlyDatas: data.hourly || []
+            })
+          }
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '查询失败',
+          icon: 'none',
+        })
+      },
+    })
+  },
+  initSetting (successFunc) {
+    wx.getStorage({
+      key: 'setting',
+      success: (res) => {
+        let setting = res.data || {}
+        this.setData({
+          setting,
+        })
+        successFunc && successFunc(setting)
+      },
+      fail: () => {
+        this.setData({
+          setting: {},
+        })
+      },
+    })
+  },
+  reloadInitSetting () {
+    this.initSetting((setting) => {
+      this.checkUpdate(setting)
+    })
+  },
+  onPullDownRefresh (res) {
+    this.reloadPage()
+  },
+  getCityDatas() {
+    let cityDatas = wx.getStorage({
+      key: 'cityDatas',
+      success: (res) => {
+        this.setData({
+          cityDatas: res.data,
+        })
+      },
+    })
+  },
+  reloadWeather () {
+    if (this.data.located) {
+      this.init({})
+    } else {
+      this.search(this.data.searchCity)
+      this.setData({
+        searchCity: '',
+      })
+    }
+  },*/
 
 
 
@@ -382,13 +383,11 @@ isIPhoneX: globalData.isIPhoneX,
       this.$data.scrollTop = t.scrollTop
     }
   },
-  reloadPage () {
-    
+  /**reloadPage () {
     this.getCityDatas()
     this.reloadInitSetting()
     this.reloadWeather()
-    
-  },
+  },*/
   onLoad: function(options) {
     app.setShareConfig();
     wx.hideTabBar();
@@ -420,7 +419,7 @@ isIPhoneX: globalData.isIPhoneX,
             bh: 'n'
       })
     }
-    this.reloadPage()
+    /**this.reloadPage()*/
     status.setNavBgColor();
     status.setGroupInfo().then((groupInfo) => { that.setData({ groupInfo }) });
     console.log('step1');
@@ -765,7 +764,8 @@ isIPhoneX: globalData.isIPhoneX,
       needAuth: false,
       newComerRefresh: false,
       couponRefresh: true,
-      isblack: app.globalData.isblack || 0
+      isblack: app.globalData.isblack || 0,
+      diyLoaded: false
     })
     this.$data = {
       ...this.$data, ...{
@@ -1063,6 +1063,7 @@ isIPhoneX: globalData.isIPhoneX,
                 secObj.desc = '即将开抢';
               }
               secObj.timeStr = (item < 10 ? '0' + item : item) + ':00';
+              secObj.timeArr = [item < 10 ? '0' + item : item, '00'];
               secObj.seckillTime = item;
               scekillTimeList.push(secObj);
             })
@@ -1748,7 +1749,8 @@ isIPhoneX: globalData.isIPhoneX,
       couponRefresh: true,
       newComerRefresh: true,
       stopNotify: false,
-      rushEndTime: 0
+      rushEndTime: 0,
+      diyLoaded: false
     }, ()=>{
       this.loadPage();
     })
@@ -2365,13 +2367,13 @@ isIPhoneX: globalData.isIPhoneX,
    * DIY商品列表组获取
    */
   getDiyGoodsList(res) {
+    console.log('getDiyGoodsList', res)
     let data = res.detail.data;
     let idx = res.detail.id;
     let diyGoodsList = [];
     let is_open_vipcard_buy = 0;
     if(data.code==0) {
       let resGoodsList = data.list;
-      console.log(resGoodsList);
       if (data.is_show_list_timer==1&&resGoodsList.length>0) {
         diyGoodsList = this.transTime(resGoodsList);
         for (let s in this.$data.countDownMap) this.initCountDown(this.$data.countDownMap[s]);
@@ -2383,6 +2385,22 @@ isIPhoneX: globalData.isIPhoneX,
     let list = this.data.diyGoodsList;
     list[idx] = diyGoodsList;
     this.setData({ diyGoodsList: list, is_open_vipcard_buy })
+  },
+
+  getDiyManyGoodsList(res) {
+    let data = res.detail.data;
+    let list = [];
+    if(data.code==0) {
+      let resGoodsList = data.list;
+      if (data.is_show_list_timer==1&&resGoodsList.length>0) {
+        list = this.transTime(resGoodsList);
+        for (let s in this.$data.countDownMap) this.initCountDown(this.$data.countDownMap[s]);
+      } else {
+        list[0] = resGoodsList;
+      }
+    }
+
+    this.setData({ diyManyGoodsList: list })
   },
 
   /**
@@ -2399,7 +2417,7 @@ isIPhoneX: globalData.isIPhoneX,
       })
       let diyGoodsList = Array.from(Array(diyJson.length), () => '');
       this.setData({
-        diyJson, globalDiyData: global, diyGoodsList
+        diyJson, globalDiyData: global, diyGoodsList, diyLoaded: true
       })
     })
   },
