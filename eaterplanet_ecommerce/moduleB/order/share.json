@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "朋友的订单",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "i-new-auth": "../../components/new-auth/index",
+    "sku": "../../components/sku/index",
+    "i-new-rush-spu": "../../components/new-rush-spu/index",
+    "i-fixed-bottom": "../../components/fixed-bottom/index",
+    "i-change-community": "../../components/changeCommunity/index",
+    "i-vip-modal": "../../components/vipModal/index"
+  }
+}

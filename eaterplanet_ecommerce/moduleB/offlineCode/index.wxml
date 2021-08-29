@@ -1,0 +1,12 @@
+<navBar title="卡密充值" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view>
+  <form catchsubmit="formSubmit">
+    <view class="bg-f u-p-30">
+      <view class="title u-m-r-30 u-m-b-20">卡密:</view>
+      <input type="text" name="code_sn" placeholder="请输入卡密" maxlength="20" class="ipt i-flex-item" auto-focus />
+    </view>
+    <button class="btn" formType="submit">提交</button>
+  </form>
+</view>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>

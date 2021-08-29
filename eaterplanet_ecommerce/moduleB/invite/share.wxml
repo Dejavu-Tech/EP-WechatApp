@@ -1,0 +1,89 @@
+<navBar title="新手福利" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<image src="{{topImg?topImg:'../images/invite.png'}}" mode="widthFix" style="width: 100%;"></image>
+<view class="rules">
+  <text class="iconfont icon-rules" style="font-size:36rpx;color:#e64340;" bindtap="handleRuleModal"></text>
+</view>
+
+<!-- 领取 -->
+<view class="box u-m-t-35 u-p-35" wx:if="{{isCollect==0}}">
+  <button type="primary" bindtap="getGift" wx:if="{{can_collect_gift==1||!token}}">立即领取</button>
+  <view class="text-center" wx:else>
+    <view class="u-font-32">抱歉！您已是我们的老朋友啦</view>
+    <view class="u-font-26 u-m-t-20 u-m-b-30 text-gray">该礼包仅限新加入的用户领取，您也可以通过邀请其他新用户进行参与，获得奖励！</view>
+    <button type="warn" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/invite/index">立即邀请</button>
+  </view>
+</view>
+<view class="box u-m-t-35 u-p-35" wx:else>
+  <view class="text-center">
+    <view class="u-font-32 u-m-b-30">恭喜，已成功领取新人礼包！</view>
+    <view wx:if="{{coupon_info}}" class="u-m-b-30">
+      <view class="u-font-32 actColor medium u-m-b-38">优惠券</view>
+      <view class="coupon {{coupon_info.is_over==1?'expired':''}} {{coupon_info.is_use==1?'used':''}}">
+        <view class='header'>
+          <view class='price'>
+            <view class='reduce-price'>
+              {{coupon_info.credit}}<text>元</text>
+            </view>
+            <view class='reduce-desc'>{{coupon_info.limit_money >0.01 ?'满'+coupon_info.limit_money+'元可用':'不限制'}}</view>
+          </view>
+          <view class='info'>
+            <view class='reduce-title'><text class='reduce-type' wx:if="{{coupon_info.tag}}">{{coupon_info.tag}}</text>
+              {{coupon_info.voucher_title}}</view>
+            <view class='reduce-area' wx:if="{{coupon_info.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+            <view class='reduce-area' wx:elif="{{coupon_info.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+            <view class='reduce-area' wx:elif="{{coupon_info.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+          </view>
+          <view class='status' wx:if="{{coupon_info.is_collect==1}}">
+            <view class='go-shop' wx:if="{{coupon_info.is_over==0&&item.is_use==0}}" bindtap='goUse' data-idx='{{index}}'>去使用
+            </view>
+            <image src="../../images/expired.png" wx:if="{{coupon_info.is_over==1&&item.is_use==0}}"></image>
+            <image src="../../images/used.png" wx:if="{{coupon_info.is_use==1}}"></image>
+          </view>
+          <view class='status' wx:else>
+            <view class='go-shop' wx:if="{{coupon_info.is_use==2&&(coupon_info.total_count-item.send_count)>0}}"
+              bindtap='receiveCoupon' data-idx='{{index}}'>领取</view>
+            <image src="../../images/expired.png" wx:elif="{{coupon_info.is_over==1}}"></image>
+            <image src="../../images/qiangguang.png"
+              wx:elif="{{item.is_nomore==1||(coupon_info.total_count-item.send_count)==0}}"></image>
+          </view>
+        </view>
+        <view class='footer'>有效期：{{coupon_info.begin_time}}~{{coupon_info.end_time}}</view>
+      </view>
+    </view>
+    <view wx:if="{{point}}" class="u-m-b-30 point-box">
+      <view class="u-font-32 medium u-m-b-30 text-white">恭喜您获得</view>
+      <view class="i-flex jcontent-c line-h" style="align-items: flex-end;">
+        <text class="point weight">{{point}}</text>积分
+      </view>
+    </view>
+    <button type="warn" bindtap="goIndex">去使用</button>
+  </view>
+</view>
+
+<!-- 规则 -->
+<view class="box u-m-t-35 u-p-35 u-m-b-35">
+  <view class="text-center u-font-38 u-m-b-40 actColor">领券规则</view>
+  <parser html="{{getRules}}" />
+</view>
+
+<!-- 推荐商品 -->
+<guess-like bind:openSku="openSku" updateCart="{{updateCart}}" likeTitle="精选商品" bind:vipModal="vipModal"></guess-like>
+
+<view style="height: 100rpx;"></view>
+
+
+<!-- 规则弹窗 -->
+<i-modal scrollUp="{{true}}" visible="{{showRulesPopup}}" bind:cancel="handleRuleModal">
+  <view class="i-flex-col">
+    <view class="u-p-30 u-font-32 text-center u-border-bottom">活动规则</view>
+    <scroll-view scroll-y style="height:50vh;box-sizing: border-box;" class="u-p-30">
+      <parser html="{{rules}}" />
+    </scroll-view>
+  </view>
+</i-modal>
+
+<sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></sku>
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"
+  needPosition="{{false}}"></i-new-auth>

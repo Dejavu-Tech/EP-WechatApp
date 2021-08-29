@@ -1,0 +1,33 @@
+.tip {
+  position: relative;
+  background: rgb(255, 245, 244);
+  color: #FD4F5F;
+  padding: 10rpx 20rpx;
+  margin-top: 15px;
+}
+
+.tip::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid rgb(255, 245, 244);
+}
+
+.price {
+  margin-left: 5rpx;
+}
+
+.cartbtn {
+  border: 1px solid #FD4F5F;
+  color: #FD4F5F;
+  margin-left: 30rpx;
+}
+
+.btn {
+  background: #FD4F5F;
+  color: #ffffff;
+}

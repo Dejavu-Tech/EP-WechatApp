@@ -1,0 +1,60 @@
+/* eaterplanet_ecommerce/moduleB/components/presale-goodsrow.wxss */
+@import "/eaterplanet_ecommerce/pages/index/template/pinrow.wxss";
+
+.pinrow-wrap {
+  background: #ffffff;
+  border-radius: 10rpx;
+}
+
+.pinrow-wrap .spu-content {
+  margin-top: 0;
+}
+
+.pinrow-wrap .mask {
+  width: 240rpx;
+  height: 240rpx;
+  left: 20rpx;
+  top: 20rpx;
+}
+
+.pinrow-wrap .act-end {
+  z-index: 1;
+  left: 118rpx;
+  top: 95rpx;
+}
+
+/* 标签 */
+
+.item-tag {
+  position: absolute;
+  left: 10rpx;
+  top: 20rpx;
+  width: 54rpx;
+  height: 62rpx;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+
+.item-tag-bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 54rpx;
+  height: 62rpx;
+  z-index: 0;
+}
+
+.item-tag .tag-name {
+  position: relative;
+  padding-top: 6rpx;
+  font-size: 20rpx;
+  line-height: 1;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.item-tag .tag-name.two-word {
+  font-size: 22rpx;
+  padding-top: 14rpx;
+}

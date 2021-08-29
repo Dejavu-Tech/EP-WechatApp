@@ -1,0 +1,20 @@
+.ipt {
+  width: 100%;
+}
+
+.ipt-hold {
+  color: #969799;
+}
+
+.edit-btn button {
+  background-color: #4facfe;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  border-radius: 0;
+  font-weight: bold;
+  color: #fff;
+}
+
+.edit-btn button::after {
+  border: 0;
+}

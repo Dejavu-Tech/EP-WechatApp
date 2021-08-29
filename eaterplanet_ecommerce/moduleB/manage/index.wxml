@@ -1,0 +1,189 @@
+<navBar title="平台管理" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="bg-f u-p-b-20">
+  <view class="text-center u-p-30 u-font-28 weight">销售统计</view>
+  <view class="diytime bule u-font-24" bindtap="pickerShow">自定义时间</view>
+  <view class="nav i-flex i-flex-alc text-center">
+    <view class="i-flex-item item {{type==0?'active':''}}" data-type="0" bindtap="changeNav">汇总</view>
+    <view class="i-flex-item item {{type==1?'active':''}}" data-type="1" bindtap="changeNav">今日</view>
+    <view class="i-flex-item item {{type==2?'active':''}}" data-type="2" bindtap="changeNav">昨日</view>
+    <view class="i-flex-item item {{type==3?'active':''}}" data-type="3" bindtap="changeNav">7日</view>
+  </view>
+</view>
+<view class="u-m-t-30 i-flex text-center u-m-l-30 u-m-r-30 rounded text-white pos-r bg-line">
+  <view class="i-flex-item u-p-30">
+    <view class="u-font-40 weight">{{sales_data.pay_order_count}}</view>
+    <view class="u-font-24 u-m-t-10">支付订单数</view>
+  </view>
+  <view class="i-flex-item u-p-30">
+    <view class="u-font-40 weight"><text class="u-font-30">¥</text>{{sales_data.pay_order_money?sales_data.pay_order_money:0}}</view>
+    <view class="u-font-24 u-m-t-10">支付订单金额</view>
+  </view>
+</view>
+<view class="u-m-t-30 i-flex">
+  <view class="i-flex-item bg-f rounded u-m-l-30 u-m-r-10 u-p-l-20 u-p-r-20 u-p-t-20 u-p-b-30">
+    <view class="i-flex i-flex-spb icon-menu">
+      <text class="iconfont icon-daifahuo" style="color: #4facfe"></text>
+      <text class="iconfont icon-more u-font-26"></text>
+    </view>
+    <view class="u-font-40 weight u-m-t-30">{{sales_data.wait_send_count}}</view>
+    <view class="u-font-24 u-m-t-10 text-gray">待发货订单</view>
+  </view>
+  <view class="i-flex-item bg-f rounded u-m-l-10 u-m-r-10 u-p-l-20 u-p-r-20 u-p-t-20 u-p-b-30">
+    <view class="i-flex i-flex-spb icon-menu">
+      <text class="iconfont icon-peisongzhong" style="color: #4facfe"></text>
+      <text class="iconfont icon-more u-font-26"></text>
+    </view>
+    <view class="u-font-40 weight u-m-t-30">{{sales_data.sending_order_count}}</view>
+    <view class="u-font-24 u-m-t-10 text-gray">配送中订单</view>
+  </view>
+  <view class="i-flex-item bg-f rounded u-m-l-10 u-m-r-30 u-p-l-20 u-p-r-20 u-p-t-20 u-p-b-30">
+    <view class="i-flex i-flex-spb icon-menu">
+      <text class="iconfont icon-tuihuotubiao-01" style="color: #4facfe"></text>
+      <text class="iconfont icon-more u-font-26"></text>
+    </view>
+    <view class="u-font-40 weight u-m-t-30">{{sales_data.waitrefund_count}}</view>
+    <view class="u-font-24 u-m-t-10 text-gray">待退款订单</view>
+  </view>
+</view>
+
+<view class="bg-f u-m-30 rounded">
+  <view class="text-center u-p-30 u-font-28 weight border-bottom">平台数据</view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{todayOrderData.todaypay_order_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日付款订单</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight"><text class="u-font-30">¥</text>{{todayOrderData.todaypay_order_money}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日付款总金额</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{todayOrderData.todaywait_send_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日待付款订单</view>
+    </view>
+  </view>
+</view>
+
+<view class="bg-f u-m-30 rounded">
+  <view class="text-center u-p-30 u-font-28 weight border-bottom">平台用户</view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{user_data.today_user_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日新增会员</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{user_data.yes_user_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">昨日新增会员</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight bule">{{user_data.total_user_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">总会员数</view>
+    </view>
+  </view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{user_data.today_addhead_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日新增团长</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{user_data.yes_addhead_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">昨日新增团长</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{user_data.total_head_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">总团长数</view>
+    </view>
+  </view>
+</view>
+
+<view class="bg-f u-m-30 rounded">
+  <view class="text-center u-p-30 u-font-28 weight border-bottom">商品数据</view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{goods_data.count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">商品总数</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{goods_data.normal_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">普通商品</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{goods_data.pingoods_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">拼团商品</view>
+    </view>
+  </view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{goods_data.integral_goods_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">积分商品</view>
+    </view>
+    <view class="i-flex-item u-p-30"></view>
+    <view class="i-flex-item u-p-30"></view>
+  </view>
+</view>
+
+<view class="bg-f u-m-30 rounded">
+  <view class="text-center u-p-30 u-font-28 weight border-bottom">
+    平台营业数据
+    <text class="iconfont icon-shuoming bule u-m-l-5" bindtap="confirmMessage"></text>
+  </view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight"><text class="u-font-30">¥</text>{{business_data.head_commiss_money}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">商城团长总佣金</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight"><text class="u-font-30">¥</text>{{business_data.today_win_money}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">今日利润</view>
+    </view>
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{business_data.payed_member_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">付款人数</view>
+    </view>
+  </view>
+  <view class="i-flex text-center">
+    <view class="i-flex-item u-p-30">
+      <view class="u-font-40 weight">{{business_data.addorder_member_count}}</view>
+      <view class="u-font-24 u-m-t-10 text-gray">下单人数</view>
+    </view>
+    <view class="i-flex-item u-p-30"></view>
+    <view class="i-flex-item u-p-30"></view>
+  </view>
+</view>
+
+
+<view bindtap="confirmMessage" class="hide-dialog" wx:if="{{showTipDialog}}"></view>
+<view class="dialog-tips" wx:if="{{showTipDialog}}">
+  <view class="dialog-title">
+    <text>提示</text>
+  </view>
+  <view class="dialog-content line-height">
+   <scroll-view scroll-y="true" style="max-height: 58vh;">
+    <view class="u-m-b-10"><text class="text-3 weight">订单金额：</text> 统计订单金额不包含退款金额和已取消订单金额。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">团长总佣金：</text>统计佣金订单金额不包含退款金额和已取消订单金额。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">今日利润：</text>今日商城商品销量的全部金额-今日商城商品销量的全部成本金额-今日商城商品优惠金额=今日商品利润。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">今日商城商品销量的全部金额：</text>商城今日销售的所有商品金额总和。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">今日商城商品销量的全部成本金额：</text>商城今日销售的所有商品成本金额总。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">今日商城商品优惠金额：</text>商城今日使用掉的优惠金额（积分抵扣的金额，优惠券金额，新人优惠金额等）。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">访问人数：</text>浏览小程序的人数（包含已登录和未登录小程序的人数，每个IP计算一次，相同IP不重复统计）。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">下单人数：</text>商城下过订单的会员人数（待付款的订单人数也统计在内）。</view>
+    <view class="u-m-b-10"><text class="text-3 weight">付款人数：</text>商城下单并且付款完成（已支付）的会员人数。</view>
+   </scroll-view>
+  </view>
+  <button bindtap="confirmMessage" class="dialog-btn">
+    <text>我知道了</text>
+  </button>
+</view>
+
+<!-- 时间选择 -->
+<i-modal scrollUp="{{true}}" visible="{{showTimeModal}}" bind:cancel="handleModal">
+  <view class="sku-card">
+    <view class="weight fsz-32 pb10 text-center">自定义时间</view>
+    <view>
+      1111
+    </view>
+  </view>
+</i-modal>
+
+<timePicker pickerShow="{{isPickerShow}}" id="picker" wx:if="{{isPickerRender}}" bind:hidePicker="pickerHide" bind:setPickerTime="setPickerTime"
+  config="{{pickerConfig}}"></timePicker>

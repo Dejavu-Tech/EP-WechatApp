@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "邀请有礼",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-empty": "../../components/empty/index",
+    "i-painter": "../../components/painter/painter",
+    "i-modal": "../../components/modal/index",
+    "parser":"../../components/parser/parser"
+  }
+}

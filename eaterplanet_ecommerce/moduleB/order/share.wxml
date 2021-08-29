@@ -1,0 +1,50 @@
+<view class="saleinfo i-flex bg-f p15">
+  <block wx:if="{{orders.salesroom_info}}">
+    <view>
+      <image class="avatar" src="{{orders.salesroom_info.room_logo}}"></image>
+    </view>
+    <view class="i-flex-item ml10">
+      <view class="weight">{{orders.salesroom_info.room_name}}</view>
+      <view class="text-gray fsz-22">{{orders.salesroom_info.room_address}}</view>
+    </view>
+  </block>
+  <block wx:elif="{{orders.head_info}}">
+    <view>
+      <image class="avatar" src="{{orders.head_info.head_images}}"></image>
+    </view>
+    <view class="i-flex-item ml10">
+      <view class="weight">{{orders.head_info.community_name}}</view>
+      <view class="text-gray fsz-22">{{orders.head_info.fulladdress}}</view>
+    </view>
+  </block>
+</view>
+
+<view class="goodsinfo m15 rounded bg-f p10">
+  <view class="i-flex userinfo i-aic">
+    <image class="avatar" src="{{members.avatar}}"></image>
+    <view class="ml10 weight">{{members.username}}</view>
+  </view>
+  <view class="tip" wx:if="{{orders.goods_count}}">
+    买了{{orders.goods_count}}件共花费¥{{orders.old_order_total}}
+    <block wx:if="{{orders.save_money>0}}">，一共省了¥<text class="fsz-36 price">{{orders.save_money}}</text></block>
+  </view>
+</view>
+
+<view>
+  <i-new-rush-spu wx:for="{{order_goods_list}}" wx:if="{{order_goods_list.length}}" wx:for-item="item" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeNotListCartNum" notNum="{{true}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"></i-new-rush-spu>
+</view>
+
+<i-fixed-bottom>
+  <view class="i-flex i-aic text-center">
+    <navigator url="/eaterplanet_ecommerce/pages/order/shopCart" open-type="switchTab" hover-class="none" class="i-flex-item cartbtn rounded p10 weight">去购物车</navigator>
+    <navigator url="/eaterplanet_ecommerce/pages/index/index" open-type="switchTab" hover-class="none" class="i-flex-item m15 btn rounded p10 weight">去首页逛逛</navigator>
+  </view>
+</i-fixed-bottom>
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal"></i-new-auth>
+<sku visible="{{visible}}" skin="{{skin}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></sku>
+
+<i-vip-modal visible="{{showVipModal}}" imgUrl="{{pop_vipmember_buyimage}}" />
+
+<!-- 团长切换 -->
+<i-change-community wx:if="{{showChangeCommunity}}" visible="{{showChangeCommunity}}" changeCommunity="{{changeCommunity}}" community="{{currentCommunity}}" bind:changeComunity="confrimChangeCommunity" canChange="{{hide_community_change_btn==0}}" groupInfo="{{groupInfo}}" bind:noChange="cancelChangeCommunity" cancelFn="{{true}}"></i-change-community>

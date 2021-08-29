@@ -1,0 +1,121 @@
+<navBar title="邀新有礼" background='linear-gradient(90deg, #ff5734, #ff854f)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<block v-if="info">
+  <image src="{{info.invite_activity_topback_img?info.invite_activity_topback_img:'../images/invite.png'}}"
+    mode="widthFix" style="width: 100%;"></image>
+
+  <!-- 记录 -->
+  <view class="box u-p-35" style="margin-top: -285rpx;">
+    <view class="text-center u-font-38 actColor">我的邀请战绩</view>
+    <view class="u-m-t-60 u-m-b-60 i-flex text-center" style="align-items:flex-start;">
+      <view class="i-flex-item u-border-right" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/invite/record?type=1">
+        <view class="u-font-30">
+          邀请成功
+          <text class="iconfont icon-youjiantou" style="color: #c7c7c7;font-size:24rpx;"></text>
+        </view>
+        <view class="actColor u-font-24 u-m-t-20">
+          <text class="invite-num">{{info.income.invitee_succ_count}}</text>人
+        </view>
+      </view>
+      <view class="i-flex-item u-border-right" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/invite/record?type=0">
+        <view class="u-font-30">
+          累计邀请
+          <text class="iconfont icon-youjiantou" style="color: #c7c7c7;font-size:24rpx;"></text>
+        </view>
+        <view class="actColor u-font-24 u-m-t-20">
+          <text class="invite-num">{{info.income.invitee_count}}</text>人
+        </view>
+      </view>
+      <view class="i-flex-item" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/invite/reward">
+        <view class="u-font-30">
+          累计奖励
+          <text class="iconfont icon-youjiantou" style="color: #c7c7c7;font-size:24rpx;"></text>
+        </view>
+        <view class="actColor u-font-24 u-m-t-20">
+          <text class="invite-num">{{info.income.inviter_total_count}}</text>次
+        </view>
+      </view>
+    </view>
+    <view class="btn" bindtap="checkInvitegift">
+      <image src="../images/invite-btn.png" mode="widthFix" class="btn-bg"></image>
+      <view class="title medium text-center">立即邀请</view>
+    </view>
+  </view>
+
+  <!-- 我邀请的好友 -->
+  <view class="box u-m-t-35 u-p-35">
+    <view class="text-center u-font-38 u-m-b-10 actColor">我邀请的好友</view>
+    <view class="">
+      <block wx:if="{{list.length}}">
+        <view wx:for="{{list}}" wx:key="index" class="u-p-t-30 u-p-b-30 i-flex {{index==0?'':'u-border-top'}}" wx:if="{{index<3}}">
+          <image class="avatar" src="{{item.avatar}}"></image>
+          <view class="i-flex-item u-m-l-15 u-m-r-10">
+            <view class="u-font-32 medium">
+              <image src="{{'../images/'+item.user_type+'.png'}}" mode="widthFix" class="tag"></image>
+              {{item.nickname}}
+            </view>
+            <view class="u-font-26 text-gray u-m-t-5">{{item.addtime}}</view>
+            <view class="u-font-24 text-gray u-m-t-5">{{item.receive_content}}</view>
+          </view>
+          <view class="u-font-26 actColor">
+            <button type="warn" size="mini" open-type="share" data-name="invite" wx:if="{{item.invite_order_btn==1&&item.invite_type=='wait'}}">邀请下单</button>
+            <block wx:else>
+              {{item.reward_content}}
+              <i class="iconfont icon-question u-m-l-5" style="color:#666666;font-size:34rpx;" bindtap="handleTipModal"
+                wx:if="{{item.invite_type=='invalid'||item.invite_type=='wait'}}" data-type="{{item.invite_type}}"></i>
+            </block>
+          </view>
+        </view>
+        <view class="u-font-26 actColor i-flex i-aic jcontent-c u-p-t-30 border-top" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleB/invite/record"
+          wx:if="{{list.length>3}}">
+          查看更多 <text class="iconfont icon-youjiantou" style="color: #ff6139;font-size:24rpx;"></text>
+        </view>
+      </block>
+      <i-empty wx:else>还没邀请到好友，快去邀请把！</i-empty>
+    </view>
+  </view>
+
+  <!-- 规则 -->
+  <view class="box u-m-t-35 u-p-35">
+    <view class="text-center u-font-38 u-m-b-40 actColor">活动规则</view>
+    <parser html="{{info.invite_activity_rules}}" />
+  </view>
+
+</block>
+
+<view style="height: 100rpx;"></view>
+
+<!-- 分享 -->
+<view class='ui-mask' bindtap='hide_share_handler' hidden='{{showSharePopup}}'></view>
+<view class="model-services safebottom show" hidden='{{showSharePopup}}'>
+  <view class="model-services-title">分享</view>
+  <view class="model-services-content">
+    <view class="service-list">
+      <view class="service-item">
+        <button open-type="share" class='none_btn' plain="true">
+          <text class="iconfont icon-weixin2 service-icon"></text>
+          <view class="cube-text">
+            <text>好友</text>
+          </view>
+        </button>
+      </view>
+      <view class="service-item" bindtap="handleShareModal">
+        <text class="iconfont icon-pengyouquan service-icon"></text>
+        <view class="cube-text">
+          <text>海报</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 分享 End -->
+
+<!-- 分享弹窗 -->
+<i-modal scrollUp="{{true}}" iClass="shareModal-box" visible="{{showShareModal}}" bind:cancel="handleShareModal">
+  <view class="i-flex-col shareModal">
+    <image src="{{image}}" mode="widthFix" class="mb10" style="width: 100%;"/>
+    <view class="shareBtn fsz-32 bg-primary text-white rounded text-center" bindtap="saveImage">
+      <text class="iconfont icon-fenxiang fsz-30"></text> 保存图片</view>
+  </view>
+</i-modal>
+
+<i-painter customStyle='position: absolute; left: -9999rpx;' palette="{{template}}" bind:imgOK="onImgOK"/>

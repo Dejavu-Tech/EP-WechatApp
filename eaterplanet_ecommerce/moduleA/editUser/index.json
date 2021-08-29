@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "修改资料",
+  "navigationBarBackgroundColor": "#F8F8F8",
+  "navigationBarTextStyle": "black",
+  "usingComponents": {
+     "navBar": "miniprograms-navigation-bar/index"
+  }
+}

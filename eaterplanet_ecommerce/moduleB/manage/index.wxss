@@ -1,0 +1,85 @@
+.diytime {
+  position: absolute;
+  right: 30rpx;
+  top: 32rpx;
+}
+
+.nav {
+  border: 1rpx solid #4facfe;
+  margin: 0 50rpx;
+  border-radius: 50rpx;
+  color: #4facfe;
+  overflow: hidden;
+}
+
+.nav .item {
+  padding: 10rpx 0;
+  border-left: 1rpx solid #4facfe;
+}
+
+.nav .item:first-child {
+  border-left: 0;
+}
+
+.nav .item.active {
+  background-color: #4facfe;
+  color: #ffffff;
+}
+
+.bg-line {
+  background: linear-gradient(160deg, #4facfe, #00f2fe);
+}
+
+.hide-dialog {
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 19;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+}
+
+.dialog-tips {
+  width: 700rpx;
+  min-height: 412rpx;
+  max-height: 75vh;
+  border-radius: 24rpx;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  margin: auto;
+  position: fixed;
+  background: #fff;
+  z-index: 20;
+}
+
+.dialog-tips .dialog-title {
+  padding: 30rpx 0;
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+  font-weight: 500;
+}
+
+.dialog-tips .dialog-content {
+  font-size: 28rpx;
+  padding: 0 50rpx;
+  color: #999;
+}
+
+.dialog-tips .dialog-btn {
+  bottom: 30rpx;
+  position: absolute;
+  text-align: center;
+  color: #fff;
+  background: #4facfe;
+  font-size: 32rpx;
+  height: 72rpx;
+  width: 432rpx;
+  line-height: 72rpx;
+  border-radius: 60rpx;
+  left: 50%;
+  margin-left: -216rpx;
+}

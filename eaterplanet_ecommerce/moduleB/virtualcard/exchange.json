@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "兑换中心",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-empty": "../../components/empty/index",
+    "i-modal": "../../components/modal/index",
+    "parser":"../../components/parser/parser"
+  }
+}

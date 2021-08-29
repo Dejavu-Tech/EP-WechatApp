@@ -1,0 +1,5 @@
+@import "./presale-goodsone.wxss";
+
+.spu-content {
+  height: 530rpx;
+}

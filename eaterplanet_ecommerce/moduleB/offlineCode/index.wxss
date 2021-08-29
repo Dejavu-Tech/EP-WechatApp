@@ -1,0 +1,12 @@
+.btn {
+  margin: 50rpx;
+  font-size: 30rpx;
+  background-color: #4facfe;
+  color: #fff;
+}
+
+.ipt {
+  padding: 15rpx 20rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 5rpx;
+}

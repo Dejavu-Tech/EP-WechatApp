@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "邀请奖励",
+  "navigationBarBackgroundColor": "#FFFFFF",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "navBar": "miniprograms-navigation-bar/index",
+    "i-empty": "../../components/empty/index"
+  }
+}

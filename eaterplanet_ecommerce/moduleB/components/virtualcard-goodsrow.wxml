@@ -1,0 +1,43 @@
+<view class="pinrow-wrap">
+  <i-router-link routerClass="spu-content" url="/eaterplanet_ecommerce/pages/goods/goodsDetail?id={{spuItem.actId}}&type=virtualcard">
+    <view class="item-top">
+      <!-- 标签 -->
+      <view wx:if="{{spuItem.label_info && spuItem.label_info.type==0}}" class='item-tag'>
+        <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+        <view class='tag-name {{spuItem.label_info.len==2?"two-word":""}}'>{{spuItem.label_info.tagcontent}}</view>
+      </view>
+      <view wx:if="{{spuItem.label_info && spuItem.label_info.type==1}}" class='item-tag' style='background:url({{spuItem.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+      <i-img defaultImage="{{placeholdeImg?placeholdeImg:'../../images/placeholder-refund.png'}}" height="240"
+        iClass="spu-img" lazyLoad="true" loadImage="{{spuItem.bigImg?spuItem.bigImg:spuItem.skuImage}}" width="300"></i-img>
+      <view class="spu-play" wx:if="{{spuItem.is_video}}">
+        <image class="img" src="../../images/play.png"></image>
+      </view>
+      <view class="act-end" wx:if="{{spuItem.spuCanBuyNum==0}}">已抢光</view>
+      <view class="act-end" wx:elif="{{spuItem.actEnd==1}}">已结束</view>
+    </view>
+    <view class="item-bottom">
+      <view class="spu-title">
+        <text class='span'>{{spuItem.spuName}}</text>
+      </view>
+      <view class="spu-desc" wx:if="{{spuItem.spuDescribe}}">
+        <text class="em">{{spuItem.spuDescribe}}</text>
+      </view>
+      <view class="spu-count">
+        <text class="pin-tag" style="color:{{skin.color}};border-color:{{skin.color}}">可兑换{{spuItem.code_money}}元</text>
+      </view>
+      <view class="spu-price">
+        <view class="sale-price">
+          <text class='span'>¥{{spuItem.actPrice[0]}}</text>.{{spuItem.actPrice[1]}}
+        </view>
+        <view class="market-price">¥{{spuItem.marketPrice[0]}}.{{spuItem.marketPrice[1]}}</view>
+      </view>
+    </view>
+    <block wx:if="{{!isPast}}">
+      <i-button class="add-cart-disabled" disabled="{{spuItem.spuCanBuyNum==0}}" wx:if="{{spuItem.spuCanBuyNum==0}}">
+        已抢光
+      </i-button>
+      <view bind:click="goLink" class="add-cart" style="" wx:else>去抢购</view>
+    </block>
+    <view class="mask" wx:if="{{spuItem.spuCanBuyNum==0||spuItem.actEnd==1?'disabled':''}}"></view>
+  </i-router-link>
+</view>

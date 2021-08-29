@@ -1,0 +1,42 @@
+<!-- 幻灯片 -->
+<navBar title="预售商品" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="swipe" wx:if="{{slider_list.length>0&&has_slider==1}}">
+  <swiper indicatorDots class="swiper-content" duration="400" autoplay indicatorActiveColor="#FF5344"
+    indicatorColor="#E7E9E7" interval="5000" circular>
+    <swiper-item wx:for="{{slider_list}}" wx:key="id">
+      <button class="banner nav-contact" openType="contact" wx:if="{{item.linktype==5}}">
+        <i-img iClass="banner-img" loadImage="{{item.image}}"></i-img>
+      </button>
+      <view class='banner' bindtap='goBannerUrl' data-idx="{{index}}" wx:else>
+        <i-img iClass="banner-img" loadImage="{{item.image}}"></i-img>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
+
+<!--搜索框begin-->
+<form bindsubmit="goResult" style="display: block;width: 100%;" wx:if="{{false}}">
+  <view class='search-bar'>
+    <view class='search-box'>
+      <input class='ipt' placeholder="搜索商品" confirm-type="搜索" type="text" name="keyword"></input>
+      <view class='search-icon'>
+        <text class="iconfont icon-sousuo1"></text>
+      </view>
+    </view>
+    <button class="search-btn" formType="submit" style="color:{{skin.color}}">搜索</button>
+  </view>
+</form>
+<!--搜索框end-->
+
+<!-- 列表 -->
+<view class="list twoCol mt10 safebottom">
+  <i-spu-col wx:for="{{rushList}}" wx:if="{{rushList.length&&presale_layout==0}}" wx:key="actId" spuItem="{{item}}" skin="{{skin}}"></i-spu-col>
+  <i-spu-row wx:for="{{rushList}}" wx:if="{{rushList.length&&presale_layout==1}}" wx:key="actId" spuItem="{{item}}" skin="{{skin}}"></i-spu-row>
+  <view class="none-rush-list" wx:if="{{showEmpty}}">
+    <image class="img-block" src="../../images/icon-index-empty.png"></image>
+    <view class="h1">暂时没有商品</view>
+  </view>
+</view>
+
+
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>

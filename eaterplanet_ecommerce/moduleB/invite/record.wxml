@@ -1,0 +1,45 @@
+<navBar title="邀新记录" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<view class="tabs">
+  <view class='tabs-bar'>
+    <view class='tabs-nav--container'>
+      <view class='tabs-nav--wrap'>
+        <view class='tabs-nav tabs-nav--animated'>
+          <view class='tabs-link-bar tabs-link-bar-animated'></view>
+          <view bindtap='tabchange' data-index='0' class='tabs-tab J-tabs-tab-key {{tab_index==0?"tabs-tab-active":""}}'
+            style="{{tab_index ==1?'border-color:'+skin.color+';color:'+skin.color:''}}">
+            已邀请好友
+          </view>
+          <view bindtap='tabchange' data-index='1' class='tabs-tab J-tabs-tab-key {{tab_index==1?"tabs-tab-active":""}}'
+            style="{{tab_index ==2?'border-color:'+skin.color+';color:'+skin.color:''}}">
+            邀请成功好友
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="list">
+  <i-empty wx:if="{{list.length==0}}">暂无记录~</i-empty>
+  <block wx:else>
+    <view wx:for="{{list}}" wx:key="index" class="u-p-30 i-flex bg-f {{index==0?'':'u-border-top'}}">
+      <image src="{{item.avatar}}" class="avatar"></image>
+      <view class="i-flex-item u-m-l-15 u-m-r-10">
+        <view class="u-font-32 medium">
+          <image src="{{'../images/'+item.user_type+'.png'}}" mode="widthFix" class="tag"></image>
+          {{item.nickname}}
+        </view>
+        <view class="u-font-26 text-gray u-m-t-5">{{item.addtime}}</view>
+        <view class="u-font-24 text-gray u-m-t-5">{{item.receive_content}}</view>
+      </view>
+      <view class="u-font-26 actColor">
+        <button type="warn" size="mini" open-type="share" wx:if="{{item.invite_order_btn==1&&item.invite_type=='wait'}}">邀请下单</button>
+        <block wx:else>
+          {{item.reward_content}}
+          <i class="iconfont icon-question u-m-l-5" style="color:#666666;font-size:34rpx;" bindtap="handleTipModal"
+            wx:if="{{item.invite_type=='invalid'||item.invite_type=='wait'}}" data-type="{{item.invite_type}}"></i>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>
