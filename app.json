@@ -153,7 +153,8 @@
         "groupCenter/headlist",
         "groupCenter/recommend",
         "groupCenter/ranking",
-        "coupon/getCoupon"
+        "coupon/getCoupon",
+        "editUser/index"
       ]
     },
     {
@@ -185,6 +186,7 @@
         "rider/accountRecord",
         "writeoff/details",
         "supply/changePrice",
+        "order/share",
         "presale/index",
         "invite/index",
         "invite/reward",
@@ -192,7 +194,9 @@
         "invite/record",
         "invite/share",
         "virtualcard/index",
-        "virtualcard/exchange"
+        "virtualcard/exchange",
+        "manage/index",
+        "offlineCode/index"
       ]
     }
   ],
