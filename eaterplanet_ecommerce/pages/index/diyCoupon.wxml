@@ -1,0 +1,65 @@
+<template name="diyCoupon">
+  <view wx:if="{{hasCoupon&&item.style!=3}}" class="promotion" style="padding:30rpx;margin-top:{{item.marginTop*2+'rpx'}};background-color:{{item.style==1?item.backgroundColor:'transparent'}};">
+    <view class="slider">
+      <view class="slider-wraper">
+        <view class="list">
+          <!-- 样式一 -->
+          <block wx:if="{{item.style==1}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' class="card-content list-item {{(qItem.is_get==1&&qItem.is_hide>0)? 'get':''}}" wx:if="{{idx<item.couponCount}}">
+              <view class="card">
+                <view class="card-price span">
+                  <view class="card-price--unit span">¥</view>
+                  <view class="card-price--num span">{{qItem.credit}}</view>
+                </view>
+                <view class="card-desc span" wx:if="{{qItem.limit_money >0}}">
+                  满{{qItem.limit_money}}元可用</view>
+                <view class='card-desc span fsz-16' wx:if="{{qItem.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+                <view class='card-desc span fsz-16' wx:elif="{{qItem.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+                <view class='card-desc span fsz-16' wx:elif="{{qItem.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+                <view class="card-tag span {{(qItem.is_get==1&&qItem.is_hide>0)? 'card-tag--get':''}}">
+                  <view class="card-tag--text span">已领取</view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <!-- 样式二 -->
+          <block wx:if="{{item.style==2}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' class="coupon-item2">
+              <image class="coupon-item2-bg" src="{{item.host+'/static/diycomponent/coupon/img/coupon_bg.png'}}"></image>
+              <view class="coupon-intro u-font-24 w0">
+								<view class="coupon-price red">￥<text class="u-font-40 weight">{{qItem.credit}}</text></view>
+								<view class="coupon-desc red u-m-t-5" wx:if="{{qItem.limit_money >0}}">满{{qItem.limit_money}}元可用</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:elif="{{qItem.is_limit_goods_buy==0}}">使用范围：所有商品</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:elif="{{qItem.is_limit_goods_buy==1}}">使用范围：指定商品</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:elif="{{qItem.is_limit_goods_buy==2}}">使用范围：指定分类</view>
+							</view>
+							<view class="coupon-btn red u-font-28">{{qItem.is_get==1&&qItem.is_hide>0?'已领取':'领取'}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 样式三 -->
+  <view wx:if="{{hasCoupon&&item.style==3}}" class="promotion coupon-style3" style="margin-top:{{item.marginTop*2+'rpx'}};{{('background-image:url('+item.host+'/static/diycomponent/coupon/img/style3-bg-1.png)')}}">
+    <view class="slider">
+      <view class="slider-wraper">
+        <view class="list">
+          <block wx:if="{{item.style==3}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' class="coupon-item3">
+              <image class="coupon-item3-bg" src="{{item.host+'/static/diycomponent/coupon/img/style3-bg-2.png'}}"></image>
+              <view class="coupon-intro u-font-24 u-p-t-30 text-center">
+								<view class="coupon-price red">￥<text class="price weight">{{qItem.credit}}</text></view>
+								<view class="red u-m-t-10 u-m-b-10" wx:if="{{qItem.limit_money >0}}">满{{qItem.limit_money}}元可用</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:if="{{qItem.is_limit_goods_buy==0}}">所有商品</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:elif="{{qItem.is_limit_goods_buy==1}}">指定商品</view>
+                <view class='coupon-desc red text-overflow1 u-m-t-5' wx:elif="{{qItem.is_limit_goods_buy==2}}">指定分类</view>
+							</view>
+							<view class="coupon-btn u-font-24 text-center">{{qItem.is_get==1&&qItem.is_hide>0?'已领取':'领取'}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

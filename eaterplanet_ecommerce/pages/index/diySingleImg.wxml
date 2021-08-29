@@ -1,0 +1,7 @@
+<template name="diySingleImg">
+  <view style="margin-top: {{item.marginTop*2}}rpx;padding-left: {{item.paddingLeftRight*2}}rpx;padding-right: {{item.paddingLeftRight*2}}rpx;">
+    <block wx:for="{{item.list}}" wx:for-item="imgs" wx:for-index="kk" wx:key="kk">
+      <image src="{{imgs.imageUrl}}" mode="widthFix" bindtap="goDiysliderUrl" data-link="{{imgs.link}}" style="width:100%;vertical-align:top;margin-top:{{kk>0?(item.imageGap*2):0}}rpx;border-radius:{{item.topRadius*2}}rpx {{item.topRadius*2}}rpx {{item.bottomRadius*2}}rpx {{item.bottomRadius*2}}rpx;"></image>
+    </block>
+  </view>
+</template>

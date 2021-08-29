@@ -1,0 +1,13 @@
+.seckill-time-i {
+  display: inline-block;
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 4rpx;
+  background-color: #303133;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0 6rpx;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  text-align: center;
+}
