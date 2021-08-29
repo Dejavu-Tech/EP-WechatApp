@@ -36,7 +36,7 @@ Component({
       wx.chooseImage({
         count: this.data.imgMax - i.length,
         success: function(n) {
-          s.triggerEvent("on-chooseImage"), (i = i.concat(n.tempFilePaths)).length > s.data.imgMax && i.splice(s.data.imgMax),
+          s.triggerEvent("on-chooseImage", {key: s.data.key}), (i = i.concat(n.tempFilePaths)).length > s.data.imgMax && i.splice(s.data.imgMax),
             s.setData({
               imgGroup: i
             });
@@ -64,7 +64,8 @@ Component({
                 t[i + a - o] = JSON.parse(r.data).image_o, s.setData(e({}, "progressList[" + (i + a - o) + "]", 100)),
                   s.triggerEvent("on-changeImage", {
                     value: t,
-                    len: a
+                    len: a,
+                    key: s.data.key
                   });
               }
             }), r[i + a - o].onProgressUpdate(function(t) {
@@ -85,7 +86,8 @@ Component({
           progressList: n
         }), this.triggerEvent("on-changeImage", {
           value: t,
-          len: a
+          len: a,
+          key: this.data.key
         });
     },
     bigImg: function(e) {

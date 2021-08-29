@@ -1,3 +1,6 @@
+@import "/icon.wxss";
+@import "/common.wxss";
+
 .pin-spec {
   position: relative;
   background: #fff;
@@ -120,4 +123,121 @@
 .pin-spec .item-tag .tag-name.two-word {
   font-size: 22rpx;
   padding-top: 14rpx;
+}
+
+.pin-s2-tit {
+  width: 240rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+}
+
+.pin-s2 .pin-img {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 0;
+}
+
+.pin-s2 .act-end {
+  position: absolute;
+  height: 60rpx;
+  border-radius: 10rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 60rpx;
+  left: 50%;
+  top: 80rpx;
+  padding: 0 12rpx;
+  transform: translateX(-50%);
+}
+
+.pin-s2 .title {
+  height: 64rpx;
+}
+
+.pin-s2 .label {
+  padding: 4rpx 12rpx 6rpx;
+  line-height: 1;
+  font-size: 75%;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.pin-s2 .label .tag {
+  height: 30rpx;
+  line-height: 30rpx;
+  border: 1rpx solid #FF4544;
+  border-radius: 4rpx;
+  margin-right: 10rpx;
+}
+
+.pin-s2 .label .tag.label-person .iconfont {
+  display: inline-block;
+  width: 30rpx;
+  height: 30rpx;
+  background-color: #FF4544;
+  font-size: 18rpx;
+  color: #FFFFFF;
+  text-align: center;
+}
+
+.pin-s2 .label .label-name {
+  font-size: 20rpx;
+  padding: 0 10rpx;
+  color: #FF4544;
+}
+
+.pin-s2 .bot {
+  line-height: 1;
+}
+
+.pin-s2 .bot .content-price {
+  display: flex;
+  align-items: flex-end;
+  font-size: 24rpx;
+  color: #FF4544;
+  margin-top: 20rpx;
+  height: 32rpx;
+  font-weight: 600;
+}
+
+.content-num {
+  font-weight: 500;
+  margin-top: 0;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #909399;
+  text-decoration: line-through;
+}
+
+.pin-s2-item-r {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #EEEEEE;
+}
+
+.pin-s2 .pin-s2-item:last-child .pin-s2-item-r {
+  border-bottom: 0;
+}
+
+.pin-s2-btn {
+  background-color: #FF4544;
+  width: 160rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  font-size: 28rpx;
+  color: #FFFFFF;
+}
+
+.pin-s3-tit {
+  width: 348rpx;
+  height: 74rpx;
+  text-align: center;
+  line-height: 74rpx;
 }

@@ -1,5 +1,5 @@
 <block wx:for="{{list}}" wx:key="id" wx:if="{{list.length}}" wx:for-item="vo" wx:for-index="idx">
-  <view class="topic" wx:if="{{vo.index_pos==showPos}}">
+  <view class="topic" wx:if="{{vo.index_pos==showPos||diyInfo.specialId}}" style="{{diyInfo.marginTop>=0?'margin-top:'+(diyInfo.marginTop*2)+'rpx':''}}">
     <image class='topic-img' src="{{vo.cover}}" mode="widthFix" wx:if="{{vo.cover}}" bindtap="goSpecial" data-id="{{vo.id}}"></image>
     <view class='new-comers' wx:if="{{vo.list.length}}">
       <scroll-view class='new-comers-scroll' scroll-x>

@@ -48,8 +48,8 @@ Component({
     vipInfo: {
       type: Object,
       value: {
-        is_open_vipcard_buy: 0,
-        is_vip_card_member: 0,
+        is_open_vipcard_buy: 0, 
+        is_vip_card_member: 0, 
         is_member_level_buy: 0
       }
     },

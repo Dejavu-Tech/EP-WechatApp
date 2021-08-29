@@ -1,14 +1,18 @@
-<view class='pin-spec' style="{{('margin-top:'+(diyInfo.marginTop*2+'rpx')+';')}}" wx:if="{{pinList.list&&pinList.list.length}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index">
-    <image class="pin-spec-img" mode="widthFix" src="{{diyInfo.list[style].imageUrl}}" wx:if="{{diyInfo.list[diyInfo.style-1].imageUrl}}"></image>
+<block wx:if="{{diyInfo.style==1}}">
+  <view class='pin-spec' style="{{('margin-top:'+(diyInfo.marginTop*2+'rpx')+';')}}" wx:if="{{pinList.list&&pinList.list.length}}">
+    <image class="pin-spec-img" mode="widthFix" src="{{diyInfo.list[style].imageUrl}}"
+      wx:if="{{diyInfo.list[diyInfo.style-1].imageUrl}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index"></image>
     <scroll-view class='pin-spec-scroll' scroll-x>
       <view class='pin-spec-wrap'>
-        <view class="pin-spec-item" wx:for="{{pinList.list}}" wx:key="id">
-          <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="200" iClass="pin-img" loadImage="{{item.skuImage}}"></i-img>
+        <view class="pin-spec-item" wx:for="{{pinList.list}}" wx:key="actId" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/goodsDetail?id={{item.actId}}">
+          <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="200" iClass="pin-img"
+            loadImage="{{item.skuImage}}"></i-img>
           <view wx:if="{{item.label_info && item.label_info.type==0}}" class='item-tag'>
             <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
             <view class='tag-name {{item.label_info.len==2?"two-word":""}}'>{{item.label_info.tagcontent}}</view>
           </view>
-          <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag' style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+          <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag'
+            style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
           <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
           <view class='title'>{{item.spuName}}</view>
           <text class="pin-tag" style="border-color:{{skin.color}};color:{{skin.color}}">{{item.pin_count}}人团</text>
@@ -20,3 +24,98 @@
       </view>
     </scroll-view>
   </view>
+</block>
+
+<block wx:elif="{{diyInfo.style==2}}">
+  <view class='pin-spec u-p-30' style="{{('margin-top:'+(diyInfo.marginTop*2+'rpx')+';')}}" wx:if="{{pinList.list&&pinList.list.length}}">
+    <view class="i-flex i-flex-spb" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index">
+      <image src="{{styleList[1].imageUrl}}" class="pin-s2-tit"></image>
+      <view class="u-font-24" style="color:#909399;">
+        <text>更多拼团</text>
+        <text class="iconfont icon-youjiantou fsz-22"></text>
+      </view>
+    </view>
+    <view class="pin-s2">
+      <view wx:for="{{pinList.list}}" wx:key="id" class="i-flex pin-s2-item" style="height: 250rpx;" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/goodsDetail?id={{item.actId}}">
+        <view class="pos-r u-m-t-25">
+          <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="200" iClass="pin-img" loadImage="{{item.skuImage}}"></i-img>
+          <view wx:if="{{item.label_info&&item.label_info.type==0}}" class='item-tag'>
+            <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+            <view class='tag-name {{item.label_info.len==2?"two-word":""}}'>{{item.label_info.tagcontent}}</view>
+          </view>
+          <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag'
+            style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+          <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+        </view>
+        <view class="i-flex-item u-m-l-20 u-p-b-25 u-p-t-25 pin-s2-item-r">
+          <view class="top">
+            <view class='title'>{{item.spuName}}</view>
+            <view class="label i-flex">
+              <view class="label-person tag" style="border-color:{{skin.color}};color:{{skin.color}}">
+                <text class="iconfont icon-pintuan fsz-22"></text>
+                <text class="label-name">{{item.pin_count}}人团</text>
+              </view>
+              <view class="label-num tag" style="border-color:{{skin.color}};color:{{skin.color}}">
+                <text class="label-name">已拼{{item.soldNum}}件</text>
+              </view>
+            </view>
+          </view>
+          <view class='bot i-flex i-i-flex-spb'>
+            <view class="content-price i-flex-item">
+              <view class='price'>¥<text class="u-font-32 u-m-r-10">{{item.actPrice[0]}}.{{item.actPrice[1]}}</text></view>
+              <view class="content-num">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</view>
+            </view>
+            <view class="pin-s2-btn">去拼团</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<block wx:elif="{{diyInfo.style==3}}">
+  <view class='pin-spec u-p-30' style="{{('margin-top:'+(diyInfo.marginTop*2+'rpx')+';')}}" wx:if="{{pinList.list&&pinList.list.length}}">
+    <view class="text-center">
+      <image src="{{styleList[2].imageUrl}}" class="pin-s3-tit"></image>
+    </view>
+    <view class="pin-s2">
+      <view wx:for="{{pinList.list}}" wx:key="id" class="i-flex pin-s2-item" style="height: 250rpx;" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/goodsDetail?id={{item.actId}}">
+        <view class="pos-r u-m-t-25">
+          <i-img defaultImage="../../images/placeholder-refund.png" height="200" width="200" iClass="pin-img" loadImage="{{item.skuImage}}"></i-img>
+          <view wx:if="{{item.label_info&&item.label_info.type==0}}" class='item-tag'>
+            <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
+            <view class='tag-name {{item.label_info.len==2?"two-word":""}}'>{{item.label_info.tagcontent}}</view>
+          </view>
+          <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag'
+            style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
+          <view class="act-end" wx:if="{{item.spuCanBuyNum==0}}">已抢光</view>
+        </view>
+        <view class="i-flex-item u-m-l-20 u-p-b-25 u-p-t-25 pin-s2-item-r">
+          <view class="top">
+            <view class='title'>{{item.spuName}}</view>
+            <view class="label i-flex">
+              <view class="label-person tag" style="border-color:{{skin.color}};color:{{skin.color}}">
+                <text class="iconfont icon-pintuan fsz-22"></text>
+                <text class="label-name">{{item.pin_count}}人团</text>
+              </view>
+              <view class="label-num tag" style="border-color:{{skin.color}};color:{{skin.color}}">
+                <text class="label-name">已拼{{item.soldNum}}件</text>
+              </view>
+            </view>
+          </view>
+          <view class='bot i-flex i-i-flex-spb'>
+            <view class="content-price i-flex-item">
+              <view class='price'>¥<text class="u-font-32 u-m-r-10">{{item.actPrice[0]}}.{{item.actPrice[1]}}</text></view>
+              <view class="content-num">¥{{item.marketPrice[0]}}.{{item.marketPrice[1]}}</view>
+            </view>
+            <view class="pin-s2-btn">去拼团</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="u-font-24 border-top u-p-t-30 text-center" style="color:#909399;" bindtap="goLink" data-link="/eaterplanet_ecommerce/moduleA/pin/index">
+        <text>更多拼团</text>
+        <text class="iconfont icon-youjiantou fsz-22"></text>
+      </view>
+  </view>
+</block>

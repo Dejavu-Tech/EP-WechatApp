@@ -59,7 +59,7 @@
     </view>
     <form bindsubmit="gocarfrom" report-submit="true">
       <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
-        <view>库存不足</view>
+        <view>抢光了</view>
       </button>
       <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="">
         <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>

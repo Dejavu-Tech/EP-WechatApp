@@ -54,6 +54,10 @@
         <view class='title'>配送方式</view>
         <view class='detail'>{{groupInfo.delivery_tuanzshipping_name}}</view>
       </view>
+      <view class='item' wx:if="{{order.order_info.expected_delivery_time}}">
+        <view class='title'>预计送达时间</view>
+        <view class='detail'>{{order.order_info.expected_delivery_time}}</view>
+      </view>
       <view class="item" wx:if="{{order.order_info.type=='normal'&&order.order_info.ziti_name}}">
         <view class="title">{{groupInfo.owner_name}}信息</view>
         <view class="detail">

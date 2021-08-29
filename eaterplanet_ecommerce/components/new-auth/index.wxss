@@ -69,7 +69,7 @@
 .auth-content .confirm {
     height: 64rpx;
     line-height: 64rpx;
-    
+    font-size: 29rpx;
     background: #fff;
     border-radius: 36rpx;
     margin: 20rpx 15rpx;

@@ -15,7 +15,15 @@ Component({
     diyInfo: {
       type: Object,
       observer: function (t) {
-        if (t) this.setData({ style: t.style*1-1 });
+        if (t) {
+          let list = t.list || [];
+          list.forEach((item, index)=>{
+            if(item.imageUrl.indexOf('http')==-1) {
+              list[index].imageUrl = t.host + item.imageUrl;
+            }
+          })
+          this.setData({ style: t.style*1-1, styleList: list });
+        }
       }
     },
     skin: {
@@ -26,6 +34,7 @@ Component({
   data: {
     style: 0,
     list: [],
+    styleList: [],
     placeholdeImg: app.globalData.placeholdeImg
   },
 
@@ -59,6 +68,7 @@ Component({
             pinList.img = pintuan_index_coming_img || '';
             pinList.show = pintuan_index_show || 0;
             that.setData({ pinList })
+            console.log('pinList', pinList)
           }
         }
       })

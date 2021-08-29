@@ -15,6 +15,12 @@ Component({
     showPos: {
       type: Number,
       value: 0
+    },
+    diyInfo: {
+      type: Object,
+      value: {
+        specialId: ""
+      }
     }
   },
 
@@ -39,12 +45,17 @@ Component({
       var token = wx.getStorageSync('token');
       var that = this;
       var cur_community = wx.getStorageSync('community');
+      let params = {};
+      if(this.data.diyInfo&&this.data.diyInfo.specialId) {
+        params.id = this.data.diyInfo.specialId;
+      }
       app.util.request({
-        'url': 'entry/wxapp/index',
-        'data': {
+        url: 'entry/wxapp/index',
+        data: {
           controller: 'marketing.get_special_list',
           token: token,
-          head_id: cur_community.communityId
+          head_id: cur_community.communityId,
+          ...params
         },
         dataType: 'json',
         success: function (res) {
