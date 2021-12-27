@@ -2410,7 +2410,7 @@ isIPhoneX: globalData.isIPhoneX,
     app.util.ProReq('index.get_diy_info').then(res => {
       console.log(res.global)
       let { diyJson, global } = res;
-      wx.setNavigationBarTitle({ title: global.title });
+      global.title && wx.setNavigationBarTitle({ title: global.title });
       wx.setNavigationBarColor({
         backgroundColor: global.topNavColor,
         frontColor: global.textNavColor,
