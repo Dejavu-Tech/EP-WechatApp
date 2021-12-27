@@ -477,7 +477,7 @@
             </view>
           </view>
         </navigator>
-        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index">
+        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
           <view class="item-main">
             <view class="item-title">
               <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
@@ -659,6 +659,18 @@
               <image class="toolIcon" mode="widthFix"
                 src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
               <text>关于我们</text>
+          </view>
+        </navigator>
+        <navigator hoverClass="none" url="/lionfish_comshop/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
+            <text>平台管理</text>
+          </view>
+        </navigator>
+        <navigator hoverClass="none" url="/lionfish_comshop/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+            <text>卡密充值</text>
             </view>
           </navigator>
           <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
