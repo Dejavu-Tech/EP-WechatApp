@@ -99,7 +99,7 @@
 .comming-spu-content .spu-price {
   /* display: flex;
   align-items: flex-end; */
-  font-size: 20rpx;
+  font-size: 28rpx;
   margin: 0 20rpx;
 }
 
@@ -111,7 +111,7 @@
 }
 
 .comming-spu-content .spu-price .sale-price .span {
-  font-size: 40rpx;
+  font-size: 48rpx;
   line-height: 40rpx;
   margin-left: 4rpx;
   font-weight: 500;
@@ -120,6 +120,8 @@
 .comming-spu-content .spu-price .market-price {
   text-decoration: line-through;
   color: #999;
+  font-family: 'DIN';
+  font-size: 20rpx;
 }
 
 .imgbox {
