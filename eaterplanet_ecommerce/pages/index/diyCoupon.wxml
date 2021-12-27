@@ -4,8 +4,8 @@
       <view class="slider-wraper">
         <view class="list">
           <!-- 样式一 -->
-          <block wx:if="{{item.style==1}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
-            <view bindtap='receiveCoupon' class="card-content list-item {{(qItem.is_get==1&&qItem.is_hide>0)? 'get':''}}" wx:if="{{idx<item.couponCount}}">
+          <block wx:if="{{item.style==1}}" wx:for="{{quan}}" wx:key="id" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' data-quan_id="{{qItem.id}}" class="card-content list-item {{(qItem.is_get==1&&qItem.is_hide>0)? 'get':''}}" wx:if="{{idx<item.couponCount}}">
               <view class="card">
                 <view class="card-price span">
                   <view class="card-price--unit span">¥</view>
@@ -23,8 +23,8 @@
             </view>
           </block>
           <!-- 样式二 -->
-          <block wx:if="{{item.style==2}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
-            <view bindtap='receiveCoupon' class="coupon-item2">
+          <block wx:if="{{item.style==2}}" wx:for="{{quan}}" wx:key="id" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' data-quan_id="{{qItem.id}}" class="coupon-item2">
               <image class="coupon-item2-bg" src="{{item.host+'/static/diycomponent/coupon/img/coupon_bg.png'}}"></image>
               <view class="coupon-intro u-font-24 w0">
 								<view class="coupon-price red">￥<text class="u-font-40 weight">{{qItem.credit}}</text></view>
@@ -45,8 +45,8 @@
     <view class="slider">
       <view class="slider-wraper">
         <view class="list">
-          <block wx:if="{{item.style==3}}" wx:for="{{quan}}" wx:key="id" data-quan_id="{{qItem.id}}" wx:for-index="idx" wx:for-item='qItem'>
-            <view bindtap='receiveCoupon' class="coupon-item3">
+          <block wx:if="{{item.style==3}}" wx:for="{{quan}}" wx:key="id" wx:for-index="idx" wx:for-item='qItem'>
+            <view bindtap='receiveCoupon' data-quan_id="{{qItem.id}}" class="coupon-item3">
               <image class="coupon-item3-bg" src="{{item.host+'/static/diycomponent/coupon/img/style3-bg-2.png'}}"></image>
               <view class="coupon-intro u-font-24 u-p-t-30 text-center">
 								<view class="coupon-price red">￥<text class="price weight">{{qItem.credit}}</text></view>
