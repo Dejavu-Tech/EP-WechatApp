@@ -1,5 +1,5 @@
 <template name="communityShow">
-  <view class="header-content">
+  <view class="header-content" style="background: {{item.backgroundColor}}">
     <view class="location" wx:if="{{item.style==1}}" style='color: {{item.textColor}}'>
       <view class="location-left" wx:if="{{community&&community.communityName}}">
         <navigator hoverClass="router-hover" url="/eaterplanet_ecommerce/pages/position/community"
