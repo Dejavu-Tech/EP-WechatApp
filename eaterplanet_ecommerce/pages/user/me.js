@@ -136,7 +136,8 @@ Page({
             is_open_invite_invitation,
             virtualcard_name_modify,
             is_open_virtualcard_show,
-            isopen_admin_managefront
+            isopen_admin_managefront,
+            isopen_virtualcard
           } = res.data;
           that.setData({
             ...params,
@@ -158,7 +159,8 @@ Page({
             is_open_invite_invitation,
             virtualcard_name_modify,
             is_open_virtualcard_show,
-            isopen_admin_managefront
+            isopen_admin_managefront,
+            isopen_virtualcard
           });
         } else {
           //needAuth
