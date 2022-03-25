@@ -36,7 +36,7 @@
   overflow: hidden;
   position: relative;
   box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.05);
-  margin: 0 auto 20rpx;
+  margin: 20rpx auto 20rpx;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;

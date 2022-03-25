@@ -3,7 +3,6 @@ page {
 }
 
 movable-view {
-background-color: #fff;
 width: 110rpx;
 height: 110rpx;
 top: 0;

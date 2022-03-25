@@ -91,7 +91,6 @@ page {
   border-radius: 30rpx 30rpx 0 0;
   background: #fff;
   overflow: hidden;
-  padding: 40rpx 40rpx 0 40rpx;
   padding-bottom: constant(safe-area-inset-bottom);
   
 }
@@ -115,7 +114,7 @@ page {
 .sku-card .sku-header {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 40rpx;
+  margin: 40rpx;
 }
 
 .sku-card .sku-header .sku-img {
@@ -276,7 +275,7 @@ page {
 
 .sku-card .sku-num-content {
     width: 670rpx;
-    margin: 0 auto 52rpx;
+    margin: 0 auto 26rpx;
     display: flex;
     align-items: center;
 }
@@ -311,7 +310,7 @@ page {
     text-align: center;
     color: #fff;
     font-size: 30rpx;
-    margin: 0 0 0 -40rpx;
+    margin: 0;
     padding: 0;
     border-radius: 0;
     font-weight: bold;
