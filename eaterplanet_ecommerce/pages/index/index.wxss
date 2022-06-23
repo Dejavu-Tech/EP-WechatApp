@@ -586,14 +586,14 @@ movable-area {
 .none-rush-list .h1 {
     font-size: 32rpx;
     line-height: 32rpx;
-    color: #fff;
+    color: #4facfe;
     margin-bottom: 20rpx;
 }
 
 .none-rush-list .h2 {
     font-size: 24rpx;
     line-height: 24rpx;
-    color: #fff;
+    color: #4facfe;
 }
 
 .slogan {
