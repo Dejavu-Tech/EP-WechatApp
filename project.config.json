@@ -1,7 +1,8 @@
 {
-    "description": "项目配置文件",
+    "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
     "packOptions": {
-        "ignore": []
+        "ignore": [],
+        "include": []
     },
     "setting": {
         "urlCheck": true,
@@ -38,39 +39,16 @@
         "disableUseStrict": false,
         "minifyWXML": true,
         "showES6CompileOption": false,
-        "useCompilerPlugins": false
+        "useCompilerPlugins": false,
+        "useStaticServer": true
     },
     "compileType": "miniprogram",
     "libVersion": "2.16.1",
-    "appid": "wxf3f3f5ed4425be9e",
-    "projectname": "EP 4.13.1",
-    "debugOptions": {
-        "hidedInDevtools": []
-    },
-    "scripts": {},
-    "staticServerOptions": {
-        "baseURL": "",
-        "servePath": ""
-    },
-    "isGameTourist": false,
-    "condition": {
-        "search": {
-            "list": []
-        },
-        "conversation": {
-            "list": []
-        },
-        "game": {
-            "list": []
-        },
-        "plugin": {
-            "list": []
-        },
-        "gamePlugin": {
-            "list": []
-        },
-        "miniprogram": {
-            "list": []
-        }
+    "appid": "",
+    "projectname": "EP 4.14.0",
+    "condition": {},
+    "editorSetting": {
+        "tabIndent": "insertSpaces",
+        "tabSize": 4
     }
 }
