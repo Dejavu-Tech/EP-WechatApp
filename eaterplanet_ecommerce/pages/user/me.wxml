@@ -234,7 +234,7 @@
       </view>
       <!-- 拼团 End -->
       <!-- 配送员中心 -->
-      <view class="tool1 distribution">
+      <view class="tool1 distribution" wx:if="{{is_localtown_distributionman==1}}">
         <view class="my-distribution modal-head" bindtap="goLink2"
           data-link="/eaterplanet_ecommerce/moduleB/rider/index">
           <view class="my-distribution-title" style="border-bottom: none">
@@ -703,7 +703,7 @@
         <image class="dejavu" src="../../images/dejavulogo.png"></image>
       </view> 
         <view class="right">
-        <text>小程序开发运营：蒂佳芙™科技(云南)有限公司\n©2021 DEJAVU.Tech ALL RIGHTS RESERVED.</text>
+        <text>小程序开发：蒂佳芙™科技(云南)有限公司\n©2021 DEJAVU.Tech ALL RIGHTS RESERVED</text>
         </view>  
       
       </view>
