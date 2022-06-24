@@ -89,8 +89,6 @@ module.exports =
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-    var app = getApp(), util = require("../../eaterplanet_ecommerce/utils/util.js"); 
 
 Component({
   onHide: function () { },
