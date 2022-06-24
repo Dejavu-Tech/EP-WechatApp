@@ -17,7 +17,7 @@
         "autoAudits": false,
         "showShadowRootInWxmlPanel": true,
         "scopeDataCheck": false,
-        "uglifyFileName": false,
+        "uglifyFileName": true,
         "checkInvalidKey": true,
         "checkSiteMap": true,
         "uploadWithSourceMap": true,
@@ -31,6 +31,7 @@
             "disablePlugins": [],
             "outputPath": ""
         },
+        "enableEngineNative": false,
         "useIsolateContext": false,
         "userConfirmedBundleSwitch": false,
         "packNpmManually": false,
@@ -40,7 +41,8 @@
         "minifyWXML": true,
         "showES6CompileOption": false,
         "useCompilerPlugins": false,
-        "useStaticServer": true
+        "useStaticServer": true,
+        "ignoreUploadUnusedFiles": false
     },
     "compileType": "miniprogram",
     "libVersion": "2.16.1",
