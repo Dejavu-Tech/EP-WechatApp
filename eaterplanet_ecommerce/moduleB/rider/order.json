@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "处理中订单",
+  "navigationBarTitleText": "配送订单列表",
   "navigationBarBackgroundColor": "#FED206",
   "enablePullDownRefresh": true,
   "usingComponents": {

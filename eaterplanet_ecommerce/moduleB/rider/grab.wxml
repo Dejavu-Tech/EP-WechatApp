@@ -1,5 +1,5 @@
 <import src="tabbar.wxml"></import>
-
+<navBar title="抢单" background='#FED206' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="list pb100" wx:if="{{list.length>0}}">
     <view class="item bg-f mb10" wx:for="{{list}}" wx:key="order_num_alias">
         <view class="border-bottom text-gray p15 fsz-24 i-flex">
