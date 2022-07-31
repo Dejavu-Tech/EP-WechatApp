@@ -217,5 +217,10 @@
   "requiredBackgroundModes": [
     "audio"
   ],
-  "usingShopPlugin": true
+  "usingShopPlugin": true,
+  "requiredPrivateInfos": [
+    "chooseAddress",
+    "chooseLocation",
+    "getLocation"
+  ]
 }
