@@ -451,17 +451,17 @@ movable-area {
 
 .top-msg {
     width: 705rpx;
-    height: 56rpx;
+    height: 60rpx;
     display: flex;
     align-items: center;
     padding: 0 30rpx;
     box-sizing: border-box;
     color: #ff758c;
-    font-size: 24rpx;
-    line-height: 24rpx;
+    font-size: 26rpx;
+    line-height: 26rpx;
     margin: 0 auto 20rpx;
     background: #fff9f4;
-    border-radius: 40rpx;
+    border-radius: 20rpx;
 }
 
 .top-msg image {

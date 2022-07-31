@@ -856,7 +856,7 @@ button {
   position: relative;
   margin: 0rpx 40rpx 30rpx 40rpx;
   z-index: 3;
-  padding: 22rpx 22rpx;
+  padding: 22rpx 20rpx;
   align-items: center;
   overflow: hidden;
   justify-content: space-between;
@@ -868,7 +868,7 @@ button {
 }
 
 .dejavu-version .left {
-  margin-left: 55rpx;
+  margin-left: 30rpx;
   margin-top: 10rpx;
   position: relative;
 }

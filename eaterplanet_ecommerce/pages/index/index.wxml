@@ -120,7 +120,7 @@
       <template is="coupon" data="{{hasCoupon, quan}}"></template>
 
       <!-- 公告 -->
-      <view style="padding-bottom:20rpx;" wx:if="{{notice_list.length>0}}">
+      <view style="padding-bottom:5rpx;" wx:if="{{notice_list.length>0}}">
         <view class="top-msg" style="color: {{notice_setting.font_color}};background:{{notice_setting.background_color}};">
           <image wx:if="{{notice_setting.horn}}" src="{{notice_setting.horn}}"></image>
           <text wx:else class="iconfont icon-laba"></text>

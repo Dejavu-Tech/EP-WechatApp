@@ -661,13 +661,13 @@
               <text>关于我们</text>
           </view>
         </navigator>
-        <navigator hoverClass="none" url="/lionfish_comshop/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
+        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
           <view class="item-title">
             <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
             <text>平台管理</text>
           </view>
         </navigator>
-        <navigator hoverClass="none" url="/lionfish_comshop/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
           <view class="item-title">
             <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
             <text>卡密充值</text>
@@ -700,10 +700,10 @@
       </view>
       <view class="dejavu-version">
         <view class="left">
-        <image class="dejavu" src="../../images/dejavulogo.png"></image>
+        <image class="dejavu" src="../../images/dejavuLogo.png"></image>
       </view> 
         <view class="right">
-        <text>小程序开发：蒂佳芙™科技(云南)有限公司\n©2022 DEJAVU.Tech ALL RIGHTS RESERVED</text>
+        <text>开发&著作权所有：蒂佳芙科技（云南）有限公司\n©2022 DEJAVU.Tech ALL RIGHTS RESERVED.</text>
         </view>  
       
       </view>

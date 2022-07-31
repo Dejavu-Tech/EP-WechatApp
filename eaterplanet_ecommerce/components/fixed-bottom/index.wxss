@@ -5,6 +5,7 @@
   background: #fff;
   width: 100%;
   z-index: 2;
+  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
 
 .pb20 {
