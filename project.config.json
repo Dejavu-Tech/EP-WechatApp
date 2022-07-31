@@ -45,9 +45,9 @@
         "ignoreUploadUnusedFiles": false
     },
     "compileType": "miniprogram",
-    "libVersion": "2.16.1",
+    "libVersion": "2.17.3",
     "appid": "",
-    "projectname": "EP 4.14.0",
+    "projectname": "EP 4.15.0",
     "condition": {},
     "editorSetting": {
         "tabIndent": "insertSpaces",
