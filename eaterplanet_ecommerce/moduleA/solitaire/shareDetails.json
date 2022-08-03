@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "接龙详情",
-  "navigationBarBackgroundColor": "#FFFFFF",
-  "usingComponents": {
-      "navBar": "miniprograms-navigation-bar/index"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-      "navBar": "miniprograms-navigation-bar/index",
-    "i-fixed-bottom": "../../components/fixed-bottom/index"
-  }
-}

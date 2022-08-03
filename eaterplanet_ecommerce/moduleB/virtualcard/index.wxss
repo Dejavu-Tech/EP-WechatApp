@@ -1,7 +1,0 @@
-@import "../presale/index.wxss";
-
-.fixed-btn {
-  position: fixed;
-  right: 20rpx;
-  bottom: 30%;
-}
