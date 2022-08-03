@@ -416,14 +416,6 @@
               </view>
             </view>
           </block>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/presale.png'}}"></image>
-              <text>预售中心</text>
-            </view>
-          </view>
-        </view>
         <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
           <view class="item-main">
             <view class="item-title">
@@ -620,12 +612,6 @@
               </view>
             </view>
           </block>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i12?user_tool_icons.i12:'../../images/presale.png'}}"></image>
-            <text>预售中心</text>
-          </view>
-        </view>
         <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
           <view class="item-title">
             <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i13?user_tool_icons.i13:'../../images/invite.png'}}"></image>
