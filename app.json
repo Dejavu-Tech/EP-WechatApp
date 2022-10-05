@@ -35,8 +35,7 @@
     "eaterplanet_ecommerce/pages/supply/home",
     "eaterplanet_ecommerce/pages/refund/refundList",
     "eaterplanet_ecommerce/pages/type/details",
-    "eaterplanet_ecommerce/pages/user/rule",
-    "eaterplanet_ecommerce/pages/weather/index"
+    "eaterplanet_ecommerce/pages/user/rule"
   ],
   "window": {
     "navigationStyle": "custom",
