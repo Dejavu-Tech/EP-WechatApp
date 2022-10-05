@@ -150,7 +150,7 @@
       <!-- 限时秒杀 -->
       <i-spike bind:openSku="openSku" refresh="{{newComerRefresh}}" wx:if="{{is_show_spike_buy==1}}" skin="{{skin}}" />
 
-      <!-- 多时段限时秒杀 -->
+      <!-- 多时段整点秒杀 -->
     <template is="seckill" style="background: linear-gradient(180deg,#94cefe 0%, #4d9ee9 100%)" data="{{secRushList:secRushList,skin,scekillTimeList,secKillActiveIdx,secKillGoodsIndex,needAuth,seckill_bg_color}}" wx:if="{{seckill_is_open==1&&seckill_is_show_index==1}}"></template>
 
       <!-- 专题 -->
@@ -343,10 +343,11 @@
 
             </movable-view>
 
-            <movable-view y="950rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
+            <movable-view y="950rpx" direction="vertical" >
+                <button open-type="contact" wx:if="{{isShowContactBtn==1}}" class="contact-service">
                 <text class="iconfont icon-kefu"></text>
                 <view>客服</view>
-
+                </button>
             </movable-view>
 
             <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">

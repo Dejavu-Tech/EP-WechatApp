@@ -4,7 +4,7 @@
 .seckill {
     position: relative;
     padding: 20rpx 20rpx 20rpx 20rpx;
-    
+    z-index: 3;
     overflow: hidden;
 }
 
