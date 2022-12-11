@@ -46,8 +46,6 @@ Component({
   data: {
     isIpx: false,
     tabbar: {
-            backgroundColor: "rgba(255, 255, 255, 0.7);",
-            color: "#bfbfbf",
       "color": "#707070",
       "selectedColor": "#004986",
       "list": [
