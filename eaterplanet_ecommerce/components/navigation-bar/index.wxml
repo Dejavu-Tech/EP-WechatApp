@@ -1,0 +1,53 @@
+<view class="navbar {{extClass}}" style="background: {{backgroundColorTop}};height: {{navBarHeight+ navBarExtendHeight}}px;">
+    <view class="navbar-placeholder {{ios ? 'ios' : 'android'}}" style="padding-top: {{navBarHeight+ navBarExtendHeight}}px;visibility: hidden;"></view>
+    <block wx:if="{{filter}}">
+        <view class="filter" style="height: {{navBarHeight+ navBarExtendHeight}}px;"></view>
+    </block>
+    <block wx:if="{{group}}">
+        <view class="group" style="height: {{navBarHeight+ navBarExtendHeight}}px;"></view>
+    </block>
+    <view class="navbar-inner {{ios ? 'ios' : 'android'}}" style="{{navigationbarinnerStyle}}{{displayStyle}}">
+        <view wx:if="{{titleimg}}" class='navbar-img-icon' bindtap="back"></view>
+        <view wx:if="{{titleimgplus}}" class='navbar-img-plus' bindtap="img"></view>
+        <view class='navbar-left' style="{{navBarLeft}}">
+            <block wx:if="{{back&&!home}}">
+                <view bindtap="back" class="navbar-button navbar-btn_goback {{iconTheme}}"></view>
+            </block>
+            <block wx:if="{{!back&&home}}">
+                <view bindtap="home" class="navbar-button navbar-btn_gohome {{iconTheme}}"></view>
+            </block>
+            <block wx:elif="{{back&&home}}">
+                <view class="navbar-buttons {{ios ? 'ios' : 'android'}}" wx:if="{{home}}">
+                    <view bindtap="back" class="navbar-button navbar-btn_goback {{iconTheme}}" wx:if="{{back}}"></view>
+                    <view bindtap="home" class="navbar-button navbar-btn_gohome {{iconTheme}}"></view>
+                </view>
+            </block>
+            <block wx:else>
+                <slot name="left"></slot>
+            </block>
+        </view>
+        <view class='navbar-center'>
+            <block wx:if="{{title}}">
+                <text>{{title}}</text>
+            </block>
+            <view class='navbar-search' style="height:{{capsulePosition.height - 2}}px;" wx:elif="{{searchBar}}">
+                <view class='navbar-search-icon' />
+                <view class='navbar-search-input'><input bindconfirm="goResult" confirmType="搜索" placeholder="搜索商品" type="text" style="height:30px; width:280px;"></input></view>
+            </view>
+            <!-- 暂时不开发标题loading. 看后期需要 -->
+            <!-- <view wx:if="{{loading}}" class="navbar-loading">
+                <view class="navbar-loading" style="width:{{size.width}}rpx;height:{{size.height}}rpx;"></view>
+            </view> -->
+            <block wx:else>
+                <slot name="center"></slot>
+            </block>
+        </view>
+        <view class='navbar-right'>
+            <block wx:if="{{weather}}">
+                <i-weather></i-weather>
+            </block>
+            <slot name="right"></slot>
+
+        </view>
+    </view>
+</view>
