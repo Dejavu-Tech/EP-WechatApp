@@ -1,7 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "i-card": "../card/index",
-    "i-money": "../moneyFormat/index"
+    "i-card": "../card/index"
   }
 }
