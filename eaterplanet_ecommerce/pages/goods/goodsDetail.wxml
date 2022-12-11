@@ -1,4 +1,4 @@
-<navBar ref='' backgroundColorTop='linear-gradient(90deg, #e7614d  0%, #e68475 100%);' color='#fff'  iconTheme='white'  bindback="handlerGobackClick" titleimg="{{true}}" ></navBar>
+<ep-navBar ref='' backgroundColorTop='linear-gradient(90deg, #e7614d  0%, #e68475 100%);' color='#fff'  iconTheme='white'  bindback="handlerGobackClick" titleimg="{{true}}" ></ep-navBar>
 <movable-area>
 <view class='goods-wrapper'>
   <view class='ui-mask' bindtap='hide_share_handler' hidden='{{is_share_html}}'></view>
@@ -24,7 +24,7 @@
     </view>
   </view>
 
-  <view class="spuInfoImg" style='height:{{imageSize.imageHeight}}px;background: url("/eaterplanet_ecommerce/images/index-comming-goods-bitmap.png)";background-size: 100% 100%;'>
+  <view class="spuInfoImg" style='height:{{imageSize.imageHeight}}px;background: url("/eaterplanet_ecommerce/images/index-comming-goods-bitmap.png"); background-size: 100% 100%;'>
     <view wx:if="{{goods.label_info && goods.label_info.type==0}}" class='item-tag'>
       <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
       <view class='tag-name {{goods.label_info.len==2?"two-word":""}}'>{{goods.label_info.tagcontent}}</view>
@@ -377,7 +377,7 @@
       <!-- 预售 -->
       <view class="gobuy" wx:elif="{{buy_type == 'presale'}}">
         <label class="balanceBtn">
-          <view bindtap="balance" class="bar-item balance i-flex" style='' wx:if="{{presaleState==1}}">
+          <view bindtap="balance" class="bar-item balance i-flex" wx:if="{{presaleState==1}}">
             <view class="fsz-24 presaleTime">
               <view>{{presale_goods_info.presale_ding_time_end_date}}结束</view>
               <view wx:if="{{presale_goods_info.presale_sendorder_type==0}}">{{presale_goods_info.presale_sendorder_datetime}}开始发货</view>
@@ -392,7 +392,7 @@
       <!-- 礼品卡 -->
       <view class="gobuy" wx:elif="{{buy_type == 'virtualcard'}}">
         <label class="balanceBtn">
-          <view bindtap="balance" class="bar-item balance i-flex" style=''>
+          <view bindtap="balance" class="bar-item balance i-flex">
             <view class="text-center" style="flex:2;">立即购买</view>
           </view>
         </label>
@@ -493,7 +493,7 @@
         <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
           <view>抢光了</view>
         </button>
-        <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="">
+        <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}'>
           <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
         </button>
       </form>
@@ -501,29 +501,20 @@
   </view>
   <!---规格选择end-->
 </view>
-
-        <view class="fixed-aside">
-
-            <movable-view y="900rpx" direction="vertical" bindtap="share_handler" class="fixed-share" >
-                <text class="iconfont icon-fenxiang"></text>
-                <view>分享</view>
-
-            </movable-view>
-
-            <movable-view y="990rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
-                <text class="iconfont icon-kefu"></text>
-                <view>客服</view>
-
-            </movable-view>
-
-            <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">
-                <text class="iconfont icon-fanhuidingbu"></text>
-                <view>顶部</view>
-
-            </movable-view>
-        </view>
-
-
+<view class="fixed-aside">
+    <movable-view y="900rpx" direction="vertical" bindtap="share_handler" class="fixed-share" >
+        <text class="iconfont icon-fenxiang"></text>
+        <view>分享</view>
+    </movable-view>
+    <movable-view y="990rpx" direction="vertical" class="fixed-service" openType="contact" wx:if="{{isShowContactBtn==1}}">
+        <text class="iconfont icon-kefu"></text>
+        <view>客服</view>
+    </movable-view>
+    <movable-view y="1040rpx" direction="vertical" bindtap="backTop" class="fixed-top" hidden="{{!isSticky}}" wx:if="{{ishow_index_gotop==1}}">
+        <text class="iconfont icon-fanhuidingbu"></text>
+        <view>顶部</view>
+    </movable-view>
+</view>
 <i-order-notify i-class="order-notify" wx:if="{{order_notify_switch==1}}" stopNotify="{{stopNotify}}" />
 
 <i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{needPosition}}"></i-new-auth>

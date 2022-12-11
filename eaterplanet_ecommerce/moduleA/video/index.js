@@ -15,7 +15,7 @@ Page({
     shareInfo: ''
   },
   pageNum: 1,
-    handlerGobackClick(delta) {
+  handlerGobackClick(delta) {
     const pages = getCurrentPages();
     if (pages.length >= 2) {
       wx.navigateBack({

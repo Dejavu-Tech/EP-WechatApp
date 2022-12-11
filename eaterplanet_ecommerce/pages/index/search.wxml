@@ -1,7 +1,7 @@
 <template name="search">
   <form bindsubmit="goResult" style="display:block;width: 100%;">
     <view class='diy-search-bar u-p-l-20 u-p-r-20 u-p-t-10 u-p-b-10' style="background-color:{{item.backgroundColor}}">
-      <view class='search-box' style="{{item.borderType==1?'border-radius:0;':''}};text-align:{{item.textAlign}};">
+      <view class='search-box' style="{{item.borderType==1?'border-radius:0;':''}};text-align:{{item.textAlign}}">
         <input class="ipt {{item.borderType==2?'radius':''}}" placeholder="{{item.title?item.title:'搜索商品'}}" confirm-type="search" bindconfirm="goResult" type="text" name="keyword" style="background-color:{{item.bgColor}};color:{{item.textColor}};" placeholder-style="color:{{item.textColor}};"></input>
         <view class='diy-search-icon'>
           <text class="iconfont icon-sousuo1" style="color:{{item.textColor}}"></text>

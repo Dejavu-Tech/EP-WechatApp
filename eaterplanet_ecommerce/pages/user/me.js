@@ -132,6 +132,7 @@ Page({
             show_user_tuan_mobile,
             is_localtown_distributionman,
             user_tool_showtype,
+            isopen_presale,
             is_open_invite_invitation,
             virtualcard_name_modify,
             is_open_virtualcard_show,
@@ -154,11 +155,12 @@ Page({
             show_user_tuan_mobile,
             is_localtown_distributionman,
             user_tool_showtype: user_tool_showtype || 0,
+            isopen_presale: isopen_presale || 0,
             is_open_invite_invitation,
-            virtualcard_name_modify,
-            is_open_virtualcard_show,
+            virtualcard_name_modify: virtualcard_name_modify || 0,
+            is_open_virtualcard_show: is_open_virtualcard_show || 0,
             isopen_admin_managefront,
-            isopen_virtualcard
+            isopen_virtualcard: isopen_virtualcard || 0
           });
         } else {
           //needAuth
