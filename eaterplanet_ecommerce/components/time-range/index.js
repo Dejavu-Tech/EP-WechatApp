@@ -28,7 +28,7 @@ Component({
 			default: ""
 		},
 		remark: {
-			type: [String, Object],
+			type: Object,
 			default: ""
 		}
   },
