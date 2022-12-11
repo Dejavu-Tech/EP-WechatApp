@@ -1,6 +1,6 @@
 {
   "pages": [
-    "eaterplanet_ecommerce/pages/index/guanggao",
+    "eaterplanet_ecommerce/pages/index/advert",
     "eaterplanet_ecommerce/pages/index/index",
     "eaterplanet_ecommerce/pages/goods/goodsDetail",
     "eaterplanet_ecommerce/pages/order/shopCart",
@@ -111,6 +111,7 @@
         "groupCenter/apply",
         "groupCenter/communityMembers",
         "groupCenter/distributionList",
+        "groupCenter/distributionInstruct",
         "groupCenter/settlementList",
         "groupCenter/settlementDetail",
         "groupCenter/editInfo",
