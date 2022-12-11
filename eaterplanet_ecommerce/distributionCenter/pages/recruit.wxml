@@ -1,4 +1,4 @@
-<navBar title="分享达人" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="分享达人" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="section">
     <view class="wxParse">

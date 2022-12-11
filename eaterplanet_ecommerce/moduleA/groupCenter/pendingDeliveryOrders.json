@@ -3,7 +3,7 @@
   "navigationBarTitleText": "用户待核销订单",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-      "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index",
     "component-img": "../../components/image/index",
     "i-aside-btn": "../../components/asideBtn/index",

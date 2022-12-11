@@ -1,4 +1,4 @@
-<navBar title="分享" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="分享" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='share-box'>
   <view class='tip'>点击图片预览，长按保存图片，发送至群。</view>
   <image bindtap='preImg' mode='widthFix' class='img' src='{{goodShareImg}}' data-src='{{goodShareImg}}'></image>

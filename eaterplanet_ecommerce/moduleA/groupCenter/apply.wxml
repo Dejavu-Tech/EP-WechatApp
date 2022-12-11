@@ -1,4 +1,4 @@
-<navBar title="团长申请" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="团长申请" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="container" wx:if="{{member_info.is_head==0 && !apply_complete}}">
     <view class="header" style="background:{{skin.color}}">请填写姓名、手机号等相关信息</view>

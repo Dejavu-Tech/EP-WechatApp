@@ -2,7 +2,7 @@
   "navigationBarTitleText": "商品详情",
     "navigationBarBackgroundColor": "#007FAF",
   "usingComponents": {
-      "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-new-auth": "../../components/new-auth/index",
     "i-order-notify": "../../components/order-notify/index",
     "i-relative-goods-list": "./relativeGoodsList",

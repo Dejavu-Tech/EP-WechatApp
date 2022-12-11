@@ -3,7 +3,7 @@
   "navigationBarTitleText": "配送单",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index",
     "i-load-more": "../../components/load-more/index"
   }

@@ -1,4 +1,4 @@
-<navBar title="团长排行" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="团长排行" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="top">
   <image src="../static/tzph-top.png" style="width:100%;height:424rpx;vertical-align: top;"></image>
 </view>

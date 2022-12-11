@@ -1,4 +1,4 @@
-<navBar title="商品评价" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="商品评价" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="goodsInfo">
     <i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="90" iClass="img-class" loadImage="{{goods.one_image}}" width="90"></i-img>

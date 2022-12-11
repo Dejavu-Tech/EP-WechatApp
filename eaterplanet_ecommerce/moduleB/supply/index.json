@@ -2,7 +2,7 @@
   "navigationBarTitleText": "商户管理中心",
   "navigationBarBackgroundColor": "#FE8464",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-fixed-bottom": "../../components/fixed-bottom/index"
   }
 }

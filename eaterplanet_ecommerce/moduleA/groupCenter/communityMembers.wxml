@@ -1,4 +1,4 @@
-<navBar title="我的用户" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="我的用户" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <view>
   <view class="search">
     <icon class="icon-search" size="14" type="search"></icon>

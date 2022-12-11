@@ -1,4 +1,4 @@
-<navBar backgroundColorTop='#ffbad2' color='#fff' titleimg="{{true}}" background='#ffbad2' iconTheme='white' title="购物车" />
+<ep-navBar backgroundColorTop='#ffbad2' color='#fff' titleimg="{{true}}" background='#ffbad2' iconTheme='white' title="购物车" />
 <view class='pb100'>
 	<!-- <block wx:if="{{!cartsNull}}"> -->
 		<view class="cart-tabs {{(is_open_vipcard_buy==1&&is_vip_card_member!=1)?'hasVip':''}}" wx:if="{{showTab}}">

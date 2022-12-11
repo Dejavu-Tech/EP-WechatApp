@@ -4,7 +4,7 @@
   "navigationBarBackgroundColor": "#EF485A",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-dialog": "../../components/dialog/index",
     "i-modal": "../../components/modal/index",
     "timePicker": "../../components/timePicker/timePicker"

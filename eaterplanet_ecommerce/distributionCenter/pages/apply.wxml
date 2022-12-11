@@ -1,4 +1,4 @@
-<navBar title="会员分销" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="会员分销" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='wrap gcs-box'>
   <view class="gcs-info card" wx:if="{{status==0}}">
     <form bindsubmit="formSubmit">

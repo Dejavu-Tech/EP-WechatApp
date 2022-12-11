@@ -1,4 +1,4 @@
-<navBar class="search-bar" background='linear-gradient(90deg, #e7614d  0%, #eb8a7b 100%)' searchBar="{{true}}"  />
+<ep-navBar class="search-bar" background='linear-gradient(90deg, #e7614d  0%, #eb8a7b 100%)' searchBar="{{true}}"  />
 <view class='page-wrap'>
   <!--搜索框begin
   <form bindsubmit="goResult" style="display: block;width: 100%;">

@@ -1,4 +1,4 @@
-<navBar title="结算记录" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="结算记录" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="section">
     <image class="groupDay" src="../../images/groupDay.png"></image>

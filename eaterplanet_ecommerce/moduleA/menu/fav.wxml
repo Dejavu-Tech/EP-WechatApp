@@ -1,4 +1,4 @@
-<navBar title="我的收藏" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="我的收藏" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="container">
   <masonry generic:masonry-item="img-box" id="masonry" interval-width="20rpx" bind:needAuth="noLogin"></masonry>
 </view>

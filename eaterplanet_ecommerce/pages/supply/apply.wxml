@@ -1,4 +1,4 @@
-<navBar title="商户申请页" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="商户申请页" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="container" wx:if="{{state==null}}">
     <view class="header" style="background:{{skin.color}}">申请{{supply_diy_name}}身份，需要您填写真实姓名、手机</view>

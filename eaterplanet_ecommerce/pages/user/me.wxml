@@ -1,4 +1,4 @@
-<navBar title='个人中心' titleimg="{{true}}" backgroundColorTop='#121b24' color='#fff' iconTheme='white'></navBar>
+<ep-navBar title='个人中心' titleimg="{{true}}" backgroundColorTop='#121b24' color='#fff' iconTheme='white'></ep-navBar>
 <view bindtap="toggleFetchCoder" class="fetch-coder" style="color:{{user_top_font_color}}"wx:if="{{fetch_coder_type==1||needAuth}}">
  <text class="iconfont icon-erweima1"></text>
   <view class="fetch-coder-text">提货码</view>
@@ -416,6 +416,14 @@
               </view>
             </view>
           </block>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
+          <view class="item-main">
+            <view class="item-title">
+              <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/presale.png'}}"></image>
+              <text>预售中心</text>
+            </view>
+          </view>
+        </view>
         <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
           <view class="item-main">
             <view class="item-title">
@@ -612,6 +620,12 @@
               </view>
             </view>
           </block>
+        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
+          <view class="item-title">
+            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i12?user_tool_icons.i12:'../../images/presale.png'}}"></image>
+            <text>预售中心</text>
+          </view>
+        </view>
         <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
           <view class="item-title">
             <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i13?user_tool_icons.i13:'../../images/invite.png'}}"></image>

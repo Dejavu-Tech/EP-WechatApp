@@ -1,5 +1,5 @@
 <!-- 子分类 -->
-<navBar title="菜谱分类" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="菜谱分类" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="cate bg-f">
   <block wx:for="{{subCate}}" wx:key="id">
     <view class="sub-tit weight">{{item.name}}</view>

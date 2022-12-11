@@ -3,7 +3,7 @@
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index",
     "i-card": "../../components/card/index",
     "i-img": "../../components/img/index",

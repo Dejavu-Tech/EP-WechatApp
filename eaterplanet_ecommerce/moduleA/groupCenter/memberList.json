@@ -3,7 +3,7 @@
   "navigationBarTitleText": "查看会员",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-"navBar": "miniprograms-navigation-bar/index",
+"ep-navBar": "../../components/navigation-bar",
     "i-img": "../../components/img/index",
     "i-load-more": "../../components/load-more/index"
   }

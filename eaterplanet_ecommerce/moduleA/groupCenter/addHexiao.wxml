@@ -1,4 +1,4 @@
-<navBar title="添加核销人员" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="添加核销人员" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='content'>
   <view class='top'>
     <view class='tip'>邀请员工扫码，完成添加</view>

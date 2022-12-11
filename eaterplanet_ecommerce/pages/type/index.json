@@ -2,7 +2,7 @@
   "navigationBarTitleText": "分类",
   "disableScroll": true,
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-tabbar": "../../components/tabbar/index",
     "i-load-more": "../../components/load-more/index",
     "i-img": "../../components/img/index",

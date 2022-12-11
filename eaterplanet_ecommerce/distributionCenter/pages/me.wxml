@@ -1,4 +1,4 @@
-<navBar title="会员分销中心" background='#fff' back="{{true}}" iconTheme='black' color='' bindback="handlerGobackClick"/>
+<ep-navBar title="会员分销中心" background='#fff' back="{{true}}" iconTheme='black' color='' bindback="handlerGobackClick"/>
 <view class="wrap">
   <view class='user-info i-flex i-flex-alc bor-bottom'>
     <image class='avatar' src='{{member_info.avatar}}'></image>

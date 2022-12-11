@@ -2,7 +2,7 @@
   "navigationBarTitleText": "商户列表",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-new-auth": "../../components/new-auth/index",
     "i-img": "../../components/img/index",
     "i-button": "../../components/button/index",

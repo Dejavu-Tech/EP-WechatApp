@@ -2,7 +2,7 @@
   "navigationBarTitleText": "商品管理",
   "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "component-img": "../../components/image/index"
   }
 }

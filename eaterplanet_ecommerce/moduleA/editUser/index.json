@@ -3,6 +3,6 @@
   "navigationBarBackgroundColor": "#F8F8F8",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-     "navBar": "miniprograms-navigation-bar/index"
+     "ep-navBar": "../../components/navigation-bar"
   }
 }

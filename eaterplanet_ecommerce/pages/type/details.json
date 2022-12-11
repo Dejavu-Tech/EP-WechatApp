@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-new-auth": "../../components/new-auth/index",
     "sku": "../../components/sku/index",
     "i-cart-btn": "../../components/cartBtn/index",

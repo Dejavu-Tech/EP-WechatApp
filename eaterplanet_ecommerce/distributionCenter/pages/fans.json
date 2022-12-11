@@ -3,7 +3,7 @@
   "navigationBarTitleText": "我的粉丝",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "component-img": "../../components/image/index",
     "component-load-more": "../../components/load-more/index"
   }

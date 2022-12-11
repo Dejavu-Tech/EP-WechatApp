@@ -1,4 +1,4 @@
-<navBar title="查看物流" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="查看物流" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="dialog-content">
 	<view class="express-title flex">
 		<view class="goods-express-icon" >

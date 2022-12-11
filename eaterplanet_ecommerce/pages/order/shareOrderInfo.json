@@ -3,7 +3,7 @@
     "navigationBarBackgroundColor": "#4facfe",
     "navigationBarTextStyle": "white",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-order-info-express": "../../components/order/orderInfoExpress",
     "i-goods-info": "../../components/goodsInfo/index",
     "i-order-info": "../../components/orderInfo/index",

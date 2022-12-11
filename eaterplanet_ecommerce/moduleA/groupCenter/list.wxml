@@ -1,4 +1,4 @@
-<navBar title="配送单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="配送单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
   <!-- <view class="search">
     <icon class="icon-search" size="14" type="search"></icon>

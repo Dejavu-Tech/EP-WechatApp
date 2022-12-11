@@ -1,6 +1,6 @@
 <!--eaterplanet_ecommerce/pages/position/community.wxml-->
 <i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
-<navBar title="社区选择" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="社区选择" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
   <view>
     <view class="header-content">
       <view class="search-content">

@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "到店核销",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-modal": "../../components/modal/index"
   }
 }

@@ -1,4 +1,4 @@
-<navBar title="商户列表" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="商户列表" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='wrap'>
   <view class="topic" bindtap='goDetails' wx:if="{{supplyList.length}}" wx:for="{{supplyList}}" wx:key="id" wx:for-index="idx" wx:for-item="shop" data-id="{{shop.id}}">
     <view class='supply'>

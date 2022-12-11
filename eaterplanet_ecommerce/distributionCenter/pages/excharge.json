@@ -1,7 +1,7 @@
 {
   "navigationBarTitleText": "提现",
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-new-auth": "../../components/new-auth/index",
     "parser":"../../components/parser/parser"
   }

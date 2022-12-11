@@ -1,4 +1,4 @@
-<navBar title="新手福利" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="新手福利" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <image src="{{topImg?topImg:'../images/invite.png'}}" mode="widthFix" style="width: 100%;"></image>
 <view class="rules">
   <text class="iconfont icon-rules" style="font-size:36rpx;color:#e64340;" bindtap="handleRuleModal"></text>

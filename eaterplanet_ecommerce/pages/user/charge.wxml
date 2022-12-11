@@ -1,4 +1,4 @@
-<navBar title="我的钱包" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="我的钱包" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <view class='wrap'>
   <view class='charge-form'>
     <view class='tit'>

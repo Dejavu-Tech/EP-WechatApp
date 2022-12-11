@@ -1,4 +1,4 @@
-<navBar title="余额明细" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="余额明细" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <i-auth bind:authSuccess="authSuccess" needAuth="{{!is_login}}">
   <view class='charge-box'>
       <view class="noDistributionList" style="height:{{containerHeight}}px" wx:if="{{showData===0}}">

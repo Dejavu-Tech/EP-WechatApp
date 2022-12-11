@@ -1,4 +1,4 @@
-<navBar title="订单明细" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="订单明细" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class='nav-bar'>
     <view class='nav-bar-inner'>

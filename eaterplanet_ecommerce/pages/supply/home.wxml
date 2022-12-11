@@ -1,4 +1,4 @@
-<navBar title="商户首页" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="商户首页" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="special">
   <image class='topic-img' src="{{info.banner}}" mode="aspectFill" wx:if="{{info.banner}}"></image>
   <view class='like'>

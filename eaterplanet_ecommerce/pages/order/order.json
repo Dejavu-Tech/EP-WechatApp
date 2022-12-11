@@ -4,7 +4,7 @@
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh": false,
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index",
     "i-card": "../../components/card/index",
     "i-fixedBottom": "../../components/fixed-bottom/index",

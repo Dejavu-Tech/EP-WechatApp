@@ -4,7 +4,7 @@
   "navigationBarTextStyle": "black",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-empty": "../../components/empty/index"
   }
 }

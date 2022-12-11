@@ -1,7 +1,7 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-tabs": "../../components/tabs/index",
     "i-img": "../../components/img/index",
     "i-rush-spu-big": "../../components/rush-spu-big/index",

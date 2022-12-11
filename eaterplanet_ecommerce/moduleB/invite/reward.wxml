@@ -1,4 +1,4 @@
-<navBar title="邀新奖励" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="邀新奖励" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="tabs">
   <view class='tabs-bar'>
     <view class='tabs-nav--container'>

@@ -1,4 +1,4 @@
-<navBar title="平台管理" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="平台管理" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="bg-f u-p-b-20">
   <view class="text-center u-p-30 u-font-28 weight">销售统计</view>
   <view class="diytime bule u-font-24" bindtap="pickerShow">自定义时间</view>

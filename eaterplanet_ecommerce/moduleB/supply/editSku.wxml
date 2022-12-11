@@ -1,4 +1,4 @@
-<navBar title="修改库存" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="修改库存" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="text-center">
   <view class="bg-f head i-flex weight fsz-28 py10 border-bottom">
     <view class="i-flex-item">名称</view>

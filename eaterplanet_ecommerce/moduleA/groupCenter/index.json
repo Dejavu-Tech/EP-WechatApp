@@ -2,7 +2,7 @@
   "navigationBarTitleText": "团长中心",
     "navigationBarBackgroundColor": "#4facfe",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-modal": "../../components/modal/index"
   }
 }

@@ -3,7 +3,7 @@
   "navigationBarTitleText": "订单明细",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-load-more": "../../components/load-more/index"
   }
 }

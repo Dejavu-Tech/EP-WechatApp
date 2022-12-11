@@ -1,4 +1,4 @@
-<navBar title="推广明细" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="推广明细" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='wrap'>
   <view class='list' wx:if="{{list.length}}">
     <view class='list-item i-flex i-flex-alc' wx:for="{{list}}" wx:key="id" >

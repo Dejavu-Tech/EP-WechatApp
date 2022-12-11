@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-      "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index",
     "i-router-link": "../../components/router-link/router-link",
     "i-load-more": "../../components/load-more/index",

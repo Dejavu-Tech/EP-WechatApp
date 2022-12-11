@@ -4,7 +4,7 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#4d9ee9",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-tabbar": "../../components/tabbar/index",
     "i-router-link": "../../components/router-link/router-link",
     "i-rush-spu-big": "../../components/rush-spu-big/index",

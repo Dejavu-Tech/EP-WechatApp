@@ -3,7 +3,7 @@
   "navigationBarTitleText": "我的钱包",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-dialog": "../../components/dialog/index"
   }
 }

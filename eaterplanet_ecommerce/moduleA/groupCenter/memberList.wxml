@@ -1,4 +1,4 @@
-<navBar title="会员列表" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="会员列表" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="member-box">
   <view class='member-list'>
     <view class='list-item'>

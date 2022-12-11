@@ -1,4 +1,4 @@
-<navBar title="社区查询" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="社区查询" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="i-index-demo">
   <i-index height="100%" localCity="{{localCity}}" skin="{{skin}}">
     <i-index-item name="{{item.key}}" wx:for="{{cities}}" wx:key="id">

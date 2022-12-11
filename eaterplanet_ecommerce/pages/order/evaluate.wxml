@@ -1,4 +1,4 @@
-<navBar title="评价" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="评价" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <view>
   <view class="good-card">
     <view class="good">

@@ -2,7 +2,7 @@
   "navigationBarTitleText": "权益规则",
   "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
-  "navBar": "miniprograms-navigation-bar/index",
+  "ep-navBar": "../../components/navigation-bar",
     "parser":"../../components/parser/parser"
   }
 }

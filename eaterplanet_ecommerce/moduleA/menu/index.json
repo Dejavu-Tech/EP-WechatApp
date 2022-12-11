@@ -4,7 +4,7 @@
     "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
-        "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-new-auth": "../../components/new-auth/index",
     "masonry": "../components/masonry/masonry",
     "i-img": "../../components/img/index",

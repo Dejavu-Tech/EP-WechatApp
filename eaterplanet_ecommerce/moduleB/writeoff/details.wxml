@@ -1,4 +1,4 @@
-<navBar title="核销信息" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="核销信息" background='linear-gradient(270deg,#f9c706 0%,#feb600 100%)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="bg-f p15 m15 rounded shadow">
   <view class="fsz-34 weight text-3 i-flex i-flex-spb">
     用户信息

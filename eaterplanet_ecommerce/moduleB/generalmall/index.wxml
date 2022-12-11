@@ -1,4 +1,4 @@
-<navBar ref=''  background='#4facfe'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgindex="{{true}}" ></navBar>
+<ep-navBar ref=''  background='#4facfe'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgplus="{{true}}" ></ep-navBar>
 <view class="wrap">
 	<!-- 幻灯片 -->
 	<view class="swipe pt10" wx:if="{{slider_list.length>0}}">

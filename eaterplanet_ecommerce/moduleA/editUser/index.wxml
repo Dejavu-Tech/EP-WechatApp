@@ -1,4 +1,4 @@
-<navBar title="修改个人资料" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="修改个人资料" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <form bindsubmit="formSubmit">
   <view class="u-p-30 u-m-t-30 bg-f">
     <view class="i-flex i-aic u-border-bottom u-p-b-30">

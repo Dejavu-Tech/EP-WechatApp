@@ -2,7 +2,7 @@
   "navigationBarTitleText": "员工信息",
   "navigationBarBackgroundColor": "#FFFFFF",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-auth": "../../components/auth/index"
   }
 }

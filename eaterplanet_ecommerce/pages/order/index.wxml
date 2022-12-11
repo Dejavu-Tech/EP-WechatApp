@@ -1,4 +1,4 @@
-<navBar background='#fff' title="我的订单" back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar background='#fff' title="我的订单" back="{{true}}"  bindback="handlerGobackClick"/>
 <view>
   <view class="nav-bar">
     <view class="nav-bar-inner">

@@ -1,4 +1,4 @@
-<navBar title="订单改价" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="订单改价" background='#fe8464' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="goodsBox">
     <block wx:for="{{order_goods}}" wx:for-item="goods" wx:if="{{order_goods.length}}" wx:key="order_goods_id">

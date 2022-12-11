@@ -2,7 +2,7 @@
   "navigationBarTitleText": "资金管理",
   "navigationBarBackgroundColor": "#FE8464",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "i-load-more": "../../components/load-more/index",
     "i-empty": "../../components/empty/index",
     "i-fixed-bottom": "../../components/fixed-bottom/index"

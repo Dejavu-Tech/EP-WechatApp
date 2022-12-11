@@ -1,4 +1,4 @@
-<navBar title="常见帮助" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="常见帮助" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view wx:if="{{list.length}}">
     <navigator class="list-item" wx:for="{{list}}" wx:key="id" url="/eaterplanet_ecommerce/pages/user/articleProtocol?id={{item.id}}">
         <span>{{item.title}}</span>

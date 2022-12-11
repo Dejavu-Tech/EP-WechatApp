@@ -1,4 +1,4 @@
-<navBar title="我的优惠券" background='linear-gradient(100deg,#4facfe 0%,#00f2fe 100%)' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="我的优惠券" background='linear-gradient(100deg,#4facfe 0%,#00f2fe 100%)' back="{{true}}"  bindback="handlerGobackClick"/>
 <i-auth bind:authSuccess="authSuccess" needAuth="{{!is_login}}">
   <view class='tabs'>
     <view class='tabs-bar'>

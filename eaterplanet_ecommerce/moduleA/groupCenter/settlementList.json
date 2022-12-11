@@ -3,7 +3,7 @@
   "navigationBarTitleText": "结算记录",
   "navigationBarTextStyle": "black",
   "usingComponents": {
-    "navBar": "miniprograms-navigation-bar/index",
+    "ep-navBar": "../../components/navigation-bar",
     "component-load-more": "../../components/load-more/index"
   }
 }

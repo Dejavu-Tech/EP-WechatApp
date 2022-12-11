@@ -1,4 +1,4 @@
-<navBar title="我的团单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
+<ep-navBar title="我的团单" background='#fff' back="{{true}}"  bindback="handlerGobackClick"/>
 <view>
   <view class="groupList">
     <view class="fixed-top">

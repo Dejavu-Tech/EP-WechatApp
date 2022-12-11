@@ -1,4 +1,4 @@
-<navBar title="提现" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="提现" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='wrap'>
   <view class='top'>
     <view class='money'>

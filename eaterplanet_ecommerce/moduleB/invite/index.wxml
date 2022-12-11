@@ -1,4 +1,4 @@
-<navBar title="邀新有礼" background='linear-gradient(90deg, #ff5734, #ff854f)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="邀新有礼" background='linear-gradient(90deg, #ff5734, #ff854f)' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <block v-if="info">
   <image src="{{info.invite_activity_topback_img?info.invite_activity_topback_img:'../images/invite.png'}}"
     mode="widthFix" style="width: 100%;"></image>
