@@ -7,7 +7,18 @@ Page({
     rushList: [],
     current: 0
   },
-
+  handlerGobackClick(delta) {
+    const pages = getCurrentPages();
+    if (pages.length >= 2) {
+      wx.navigateBack({
+        delta: delta
+      });
+    } else {
+      wx.switchTab({
+        url: '/eaterplanet_ecommerce/pages/index/index'
+      });
+    }
+  },
   onLoad: function (options) {
     app.setShareConfig();
     let id = options.id || '';
