@@ -13,7 +13,7 @@ Page({
   gid: 0,
   goodsImg: '',
   imageUrl: '',
-    handlerGobackClick(delta) {
+  handlerGobackClick(delta) {
     const pages = getCurrentPages();
     if (pages.length >= 2) {
       wx.navigateBack({
