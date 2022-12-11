@@ -1,24 +1,7 @@
-<!--<recycle-view bindscroll="{{test.funcA}}" batch="{{batchSetRecycleData}}">-->
 <wxs module="test" src="./test.wxs"></wxs>
 <page-meta bindscroll="{{test.funcA}}">
-<!--<view class="containermini" style="{{'top: ' + searchBarHeight}};right:180rpx" bindtap='goweather'>
-  <view class='content'>
-    <view class='info'>
-      <view class='city'>
-        <view class='name'>
-          <view class='val'>{{cityDatas.basic.location || '定位中'}}</view>
-        </view>
-      </view>
-      <view style="margin-top:5rpx;">
-        <view class='temp num' decode='true'>{{cityDatas.now.tmp || '-'}}<text style='font-size:18rpx;position:relative;'>℃</text></view>
-        <view class='weather'>{{cityDatas.now.cond_txt || '--'}}</view>
-      </view>
-      <view class='bigIcon1'wx:if='{{cityDatas.now.cond_code}}'><image class='bigIcon' src='{{weatherIconUrl1}}{{cityDatas.now.cond_code}}{{bh}}.png'></image></view>
-    </view>
-  </view>
-</view>>-->
 <image class="header-bg" src="{{shop_info.common_header_backgroundimage?shop_info.common_header_backgroundimage:'../../images/TOP_background@2x.png'}}" wx:if="{{shop_info.index_top_img_bg_open==0}}"></image>
-<navBar ref=''  background='{{background}}'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgindex="{{true}}" ></navBar>
+<ep-navBar ref=''  background='{{background}}'   backgroundColorTop='#4d9ee9' color='#fff'  iconTheme='white'  titleimg="{{true}}" titleimgplus="{{true}}" ></ep-navBar>
 <view class="group"  style="background-color:rgba(00, 00, 00, 0);height:{{statusBarHeight}}"></view>
 <movable-area>
 <view class='index-box pb100 {{showNewCoupon?"preventTouchMove":""}}' wx:if="{{(isDiy==1||loadOver)&&isblack!=1&&isparse_formdata!=1}}">
