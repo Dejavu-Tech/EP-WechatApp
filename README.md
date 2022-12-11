@@ -124,7 +124,7 @@ module.exports = siteinfo
 
 新版吃货星球☢其他项目需要Go、前端等人柱力加持，按代码量贡献度持股，有意者猛戳<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes">👆👆👆</a>
 
-## 📜许可证 [Apache-2.0](https://github.com/Dejavu-Tech/EP-WechatApp/License)
+## 📜许可证 [Apache-2.0](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/LICENSE)
 
 ## 🌎️软件著作权及其他版权所有
 <img src="https://image.ch871.com/rexotech.png" width="25px" align="left"/> 
