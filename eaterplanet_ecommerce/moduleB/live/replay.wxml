@@ -13,13 +13,7 @@
   }
 </wxs>
 
-<i-navigation-bar back="{{showBackBtn}}" color="#FFFFFF" background="transparent" style="position:absolute;z-index:10000;top:0;">
-  <view slot="left">
-    <view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
-      <image class="img" src="/eaterplanet_ecommerce/images/zhuye.png"></image>
-    </view>
-  </view>
-</i-navigation-bar>
+<ep-navBar back="{{true}}" bindback="handlerGobackClick" color="#FFFFFF" background="transparent"></ep-navBar>
 
 <view class="main">
   <video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="myVideo" objectFit="contain" showFullscreenBtn="{{false}}" src="{{replayInfo[0].media_url}}"></video>

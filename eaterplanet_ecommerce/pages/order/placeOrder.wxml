@@ -1,5 +1,5 @@
 <i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
-<navBar ref='' backgroundColorTop='#fff' color='#000' title='提交订单' background='#fff'  iconTheme='black' bindback="handlerGobackClick" back="{{true}}" ></navBar>
+<ep-navBar ref='' backgroundColorTop='#fff' color='#000' title='提交订单' background='#fff'  iconTheme='black' bindback="handlerGobackClick" back="{{true}}" ></ep-navBar>
   <view class='placeOrderBox'>
     <block wx:if="{{buy_type!='virtualcard'}}">
       <view class="address-content">

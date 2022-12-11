@@ -1,11 +1,7 @@
 <view class="wrap" wx:if="{{!showCoverVideo}}">
-	<i-navigation-bar back="{{showBackBtn}}" background="#ffffff" title="详情" style="z-index:1000;">
-		<view slot="left">
-			<view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
-				<image class="img" src="/eaterplanet_ecommerce/images/zhuye-b.png"></image>
-			</view>
-		</view>
-	</i-navigation-bar>
+	<ep-navBar back="{{true}}"  bindback="handlerGobackClick" background="#ffffff" title="详情">
+
+	</ep-navBar>
 	<view class="media-box" wx:if="{{info.images}}">
 		<!-- 图片 -->
 		<view class='video-wrap' wx:if="{{info.video!=''&&info.video!=null}}">
@@ -94,13 +90,7 @@
 		<video autoplay loop autoPauseIfOpenNative="true" controls="{{false}}" direction="0" id="myVideo1" objectFit="contain" showFullscreenBtn="{{false}}" src="{{info.video}}" bindended="coverVideoEnd"></video>
 	</view>
 	<view class="livepage2">
-		<i-navigation-bar back="{{showBackBtn}}" color="#ffffff" style="position:absolute;z-index:10000;top:0;">
-			<view slot="left">
-				<view bindtap='_backhome' class="nav-btn i-flex i-flex-alc">
-					<image class="img" src="/eaterplanet_ecommerce/images/zhuye-b.png"></image>
-				</view>
-			</view>
-		</i-navigation-bar>
+		<ep-navBar back="{{showBackBtn}}" color="#ffffff" back="{{true}}"  bindback="handlerGobackClick"></ep-navBar>
 		<view class="operation i-flex-col" hidden="{{showStore}}">
 			<button class="item i-flex i-flex-alc operation--mode-filter-black" open-type="share">
 				<text class="iconfont icon-fenxiang3"></text>
