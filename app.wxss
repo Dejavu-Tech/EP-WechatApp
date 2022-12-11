@@ -383,7 +383,7 @@ page {
 .order-notify {
   position: fixed;
   left: 0;
-  top: 100rpx;
+  top: calc(env(safe-area-inset-top) + 200rpx);
   z-index: 200;
 }
 
