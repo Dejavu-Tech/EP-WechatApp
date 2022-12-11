@@ -19,11 +19,11 @@ Component({
       value: '大家常买'
     },
     controller: {
-      type: 'String',
+      type: String,
       value: 'index.load_gps_goodslist'
     },
     gid: {
-      type: 'Number',
+      type: Number,
       value: 0
     }
   },
