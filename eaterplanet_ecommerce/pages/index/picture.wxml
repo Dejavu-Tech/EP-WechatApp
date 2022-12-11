@@ -1,9 +1,0 @@
-<block wx:if="{{item.data}}">
-    <view style="width:100%;{{item.style.background?'background:'+item.style.background+';':''}}{{item.style.paddingtop?'padding-bottom:'+item.style.paddingtop/2+'px;':''}}">
-        <view wx:for='{{item.data}}' wx:for-item='items' wx:for-index='idx' wx:key="nav" style="{{item.style.paddingtop?'padding:'+item.style.paddingtop/2+'px '+item.style.paddingleft/2+'px 0;':''}}">
-            <navigator url='{{items.linkurl}}'>
-                <image mode="widthFix" src="{{items.imgurl}}" bindload="imagesHeight" class="advimg" data-type="pictureheight"></image>
-            </navigator>
-        </view>
-    </view>
-</block>

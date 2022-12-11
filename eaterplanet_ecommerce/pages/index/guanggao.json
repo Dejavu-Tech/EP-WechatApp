@@ -1,8 +1,0 @@
-{
-  "navigationBarTextStyle": "white",
-  "backgroundColor": "#fff",
-  "disableScroll": true,
-  "usingComponents": {
-    "i-topic": "../../components/topic2/topic"
-  }
-}
