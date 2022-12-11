@@ -8,7 +8,7 @@ function getdomain() {
 }
 
 function api() {
-  var api = 'https://www.ch871.com/api/';
+  var api = 'https://www.eaterplanet.com/api/';
   return api;
 }
 
