@@ -285,8 +285,8 @@ Page({
           success(res) {
             let is_need_subscript = 1;
             let acceptId = [];
-            Object.keys(obj).forEach(item=>{
-              if (res[obj[item]] == 'accept') {
+            tmplIds.forEach(item=>{
+              if (res[item] == 'accept') {
                 //用户同意了订阅，添加进数据库
                 acceptId.push(item);
               } else {
