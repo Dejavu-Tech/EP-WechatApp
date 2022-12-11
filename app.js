@@ -1,6 +1,6 @@
-var util = require('we7/resource/js/util.js');
+var util = require('lib/util.js');
 var timeQueue = require('eaterplanet_ecommerce/utils/timeQueue');
-var mta = require('txmta/mta_analysis.js');
+var mta = require('lib/mta_analysis.js');
 require('eaterplanet_ecommerce/utils//mixins.js');
 require('/lib/SPage.js')
 
