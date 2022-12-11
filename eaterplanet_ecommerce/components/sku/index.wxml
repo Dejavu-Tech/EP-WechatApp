@@ -61,7 +61,7 @@
       <button wx:if="{{noEougnStock}}" class="sku-confirm" disabled='true'>
         <view>抢光了</view>
       </button>
-      <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}' style="">
+      <button wx:else formType="submit" class="sku-confirm" disabled='{{cur_sku_arr.stock==0?true:false}}'>
         <view>{{cur_sku_arr.stock==0?"已抢光":"确定"}}</view>
       </button>
     </form>
