@@ -120,8 +120,8 @@ module.exports = siteinfo
 - QQ:`142997`<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img width=80px align=center src="https://image.ch871.com/qq-contact .png"/></a>
 - 企业微信:  
 <img src="https://image.ch871.com/qywx-contact .png" width="300px" />
-### 🌱远程招贤纳猿
 
+## 🌱远程招贤纳猿
 新版吃货星球☢其他项目需要Go、前端等人柱力加持，按代码量贡献度持股，有意者猛戳<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes">👆👆👆</a>
 
 ## 📜许可证 [Apache-2.0](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/LICENSE)
