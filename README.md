@@ -7,7 +7,7 @@
 
 <p align="center">
   <a href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img alt="Albert.Z" src="https://img.shields.io/badge/Author-Albert.Z-blue.svg"></a>
-  <a href="https://github.com/Dejavu-Tech/EP-WechatApp/License"><img alt="GPL-v3协议" src="https://img.shields.io/badge/GPL-v3-red"></a>
+  <a href="[https://github.com/Dejavu-Tech/EP-WechatApp/License](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/LICENSE)"><img alt="GPL-v3协议" src="https://img.shields.io/badge/GPL-v3-red"></a>
   <a href="https://github.com/Dejavu-Tech/EP-WechatApp/releases"><img alt="最新版本" src="https://img.shields.io/badge/version-5.0.0-brightgreen"></a>
   <a href="https://img.shields.io/github/stars/Dejavu-TechEP-WechatApp.svg?style=social&label=Stars"><img alt="笔芯" src="https://img.shields.io/github/stars/Dejavu-Tech/EP-WechatApp.svg?style=social&label=Stars"></a>
   <br/>
