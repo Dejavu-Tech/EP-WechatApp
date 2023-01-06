@@ -35,8 +35,13 @@ Component({
 
   attached() {
     let model = wx.getSystemInfoSync().model;
-    let isIpx = model.indexOf("iPhone X") > -1 || model.indexOf("unknown<iPhone") > -1;
+    let screenHeight = wx.getSystemInfoSync().screenHeight;
+    let platform = wx.getSystemInfoSync().platform;
+    console.log(model,screenHeight,platform)
+    let isIpx = model.indexOf("iPhone X") > -1 || model.indexOf("iPhone 1") > -1;
+    let isAndroid8 = platform.indexOf("Android") > -1 && screenHeight >= 812;
     isIpx && this.setData({ isIpx: true });
+    isAndroid8 && this.setData({ isAndroid8: true });
     this.getTabbar();
   },
 

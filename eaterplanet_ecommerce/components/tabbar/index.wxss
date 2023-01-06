@@ -2,26 +2,39 @@
   position: fixed;
   bottom: 0;
   left: 0;
-
-
   z-index: 899;
-  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx)
+
 }
 
 .tabbar_box {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-    width: 730rpx;
-    height: 98rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 750rpx;
+    height: 108rpx;
     box-shadow: 0rpx 10rpx 20rpx 5rpx #4571a1ac;
     background-color: #ffffffd9;
-    margin: 10rpx;
-    border-radius: 30rpx;
-    padding-top: 10rpx;
     backdrop-filter: blur(40rpx);
-}
 
+}
+.isIpx{
+    width: 730rpx!important;
+    height: 98rpx!important;
+    box-shadow: 0rpx 10rpx 20rpx 5rpx #4571a1ac;
+    margin: 10rpx;
+    border-radius:  30rpx 30rpx 80rpx 80rpx;
+    padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
+    padding-top: 15rpx;
+}
+.isAndroid8{
+    width: 730rpx!important;
+    height: 98rpx!important;
+    box-shadow: 0rpx 10rpx 20rpx 5rpx #4571a1ac;
+    margin: 10rpx;
+    border-radius:  30rpx 30rpx 75rpx 75rpx;
+    padding-bottom: 18rpx;
+    padding-top: 15rpx;
+}
 .tabbar_box.iphoneX-height {
   padding-bottom: 48rpx;
 }

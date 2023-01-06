@@ -6,7 +6,6 @@
     font-size: 30rpx;
     text-align: center;
     font-weight: bold;
-    color: #fff;
     margin-bottom: 20rpx;
 }
 

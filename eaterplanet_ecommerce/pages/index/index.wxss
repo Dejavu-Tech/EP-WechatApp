@@ -1325,6 +1325,7 @@ button[plain] {
 }
 
 .contact-service {
+    display: inline-block;
     width: 80rpx;
     height: 80rpx;
     background-color: #94cefec4;
@@ -1334,9 +1335,9 @@ button[plain] {
     color: #fff;
     font-size: 20rpx;
     padding: 10rpx;
-    padding-left: 10rpx;
-    padding-right: 10rpx;
     line-height: 1.2;
+    z-index: 94;
+    margin-bottom: 10rpx;
 }
 
 .contact-service::after {

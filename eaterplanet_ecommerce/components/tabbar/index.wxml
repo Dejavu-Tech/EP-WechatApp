@@ -1,5 +1,5 @@
 <view class="tabbar_outbox  {{isIpx?'pb20':''}}" >
-  <view class="tabbar_box" style="background-color:{{tabbar.backgroundColor}}">
+  <view class="tabbar_box {{isIpx?'isIpx':''}} {{isAndroid8?'isAndroid8':''}}" style ="/*background-color:{{tabbar.backgroundColor}} */">
   <block wx:for="{{tabbar.list}}" wx:key="id">
     <navigator wx:if="{{index!=2}}" class="tabbar_nav" hidden="{{open_tabbar_type==0&&index==1}}" hover-class="none" url="{{item.pagePath}}" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="switchTab">
       <view class='tabbar_icon' data-num="{{cartNum}}">

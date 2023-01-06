@@ -266,7 +266,7 @@
 
 .spu .item-tag {
     position: absolute;
-    left: 5rpx;
+    left: 10rpx;
     top: 0;
     width: 70rpx;
     height: 70rpx;
@@ -278,7 +278,7 @@
 
 .item-tag-bg {
   position: absolute;
-  left: 0;
+  left: 8rpx;
   top: 0;
   width: 54rpx;
   height: 62rpx;
@@ -287,10 +287,8 @@
 
 .spu .item-tag .tag-name {
   position: relative;
-  padding-top: 6rpx;
   font-size: 20rpx;
   line-height: 1;
-  font-weight: 600;
   z-index: 1;
 }
 
