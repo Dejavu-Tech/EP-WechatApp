@@ -5,7 +5,7 @@
     </view>
     <image class="img" bindtap="bigImg" data-list="{{imgGroup}}" data-src="{{item}}" mode="aspectFill" src="{{item}}"></image>
     <view class="progress {{progressList[index]===100?'hide-progress':''}}">
-      <text class="span" style="width: {{progressList[index]}}%;"></text>
+      <text class="span" style="width: {{progressList[index]+'%'}}"></text>
     </view>
   </view>
   <view bindtap="addImg" class="img-item img-add" wx:if="{{imgGroup.length<imgMax}}">

@@ -23,7 +23,7 @@
           绑定{{groupInfo.group_name}}：{{community_info.community_name}}<text class="iconfont icon-youjiantou"></text>
         </view>
         <view class="address" wx:if="{{community_info.is_show_head_level==1}}">
-          <text>{{groupInfo.owner_name}}等级：{{community_info.head_level_info.levelname}}(分佣比例:{{community_info.head_level_info.commission}}%)</text>
+          <text>{{groupInfo.owner_name}}等级：{{community_info.head_level_info.levelname}}(分佣比例:{{community_info.head_level_info.commission+'%'}})</text>
         </view>
       </view>
     </view>

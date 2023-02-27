@@ -12,7 +12,7 @@
         <view class='left'>最多可提现{{commission_info.money}}元，最小提现{{community_min_money}}元</view><view class='get-all' bindtap='getAll'>全部提现</view>
       </view>
       <view class="li">
-        <text class="left" style="width:400rpx;">提现手续费为：{{community_tixian_fee}}% ({{sxfee}}元)</text>
+        <text class="left" style="width:400rpx;">提现手续费为：{{community_tixian_fee+'%'}} ({{sxfee}}元)</text>
       </view>
       <view class="li">
         <text class="left" style="width:400rpx;">最终到账金额：{{final_money}}元</text>

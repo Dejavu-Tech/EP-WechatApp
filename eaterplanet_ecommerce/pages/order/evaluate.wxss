@@ -111,6 +111,7 @@
   position: absolute;
   right: -8rpx;
   top: -8rpx;
+  z-index: 2;
 }
 
 .img-group .img-item image {

@@ -378,8 +378,8 @@
         </view>
         <view wx:if="{{btnDisable}}" class="fixed-bar-btn bgDisabled">{{btnText?btnText:"立即支付"}}</view>
         <i-button wx:else bind:click="preOrderConfirm" iClass="fixed-bar-btn" loading="{{btnLoading}}">
-          <view wx:if="{{buy_type=='integral'}}" style="">立即兑换</view>
-          <view wx:else style="">立即支付</view>
+          <view wx:if="{{buy_type=='integral'}}">立即兑换</view>
+          <view wx:else>立即支付</view>
         </i-button>
       </view>
     </i-fixed-bottom>

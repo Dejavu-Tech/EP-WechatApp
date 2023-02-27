@@ -2,7 +2,7 @@
 <view class="wrap">
 	<view class="goods">
 		<view class="goods-item">
-			<view style="goods-item-l">
+			<view class="goods-item-l">
 				<i-img height="60" iClass="show-img" lazyLoad="true" loadImage="{{order_goods.goods_images}}" width="60"></i-img>
 			</view>
 			<view class="goods-item-r">

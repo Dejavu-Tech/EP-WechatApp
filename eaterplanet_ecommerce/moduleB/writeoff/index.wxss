@@ -110,3 +110,11 @@ button.btn::after {
   height: 120rpx;
   margin-right: 20rpx;
 }
+
+.changemendian {
+  margin: 0 40rpx;
+}
+
+.changehead {
+    margin: 30rpx 0;
+  }

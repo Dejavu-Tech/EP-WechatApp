@@ -15,7 +15,7 @@
         <view class='bottom-line {{onFocus?"ipt-focus":""}}'></view>
       </view>
       <view class='tip' wx:if="{{supply_tixian_free>0}}">
-        最低提现金额: {{supply_min_apply_money}} <text style="margin-left:10rpx;">手续费: {{supply_tixian_free}}%</text><text style="margin-left:10rpx;"> 最终到账: {{final_money}}</text>
+        最低提现金额: {{supply_min_apply_money}} <text style="margin-left:10rpx;">手续费: {{supply_tixian_free+'%'}}</text><text style="margin-left:10rpx;"> 最终到账: {{final_money}}</text>
       </view>
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{tixian_waylist}}" wx:key="index" wx:if="{{item.is_show==1}}">

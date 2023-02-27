@@ -46,7 +46,7 @@
 						</view>
 						<view class="tips i-flex i-flex-spb">
 							<view>有效金额: <text class="red">￥{{goodsInfo.order_jishu}}</text></view>
-							<view wx:if="{{goodsInfo.fen_type==0}}">佣金比例: <text class="red">{{goodsInfo.fen_bili}}%</text></view>
+							<view wx:if="{{goodsInfo.fen_type==0}}">佣金比例: <text class="red">{{goodsInfo.fen_bili+'%'}}</text></view>
 							<view wx:if="{{goodsInfo.fen_type==1}}">佣金固定金额: <text class="red">{{goodsInfo.fen_gumoney}}</text></view>
 						</view>
 					</view>

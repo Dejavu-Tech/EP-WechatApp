@@ -14,7 +14,7 @@
         <view class="getall" bindtap='getAll'>全部提现</view>
         <view class='bottom-line {{onFocus?"ipt-focus":""}}'></view>
       </view>
-      <view class='tip'>手续费：{{info.commiss_tixian_bili}}% <text style="margin-left:10rpx;">最终到账：{{final_money}}</text></view>
+      <view class='tip'>手续费：{{info.commiss_tixian_bili+'%'}} <text style="margin-left:10rpx;">最终到账：{{final_money}}</text></view>
       <!-- <view class='tip'>已提现(元)：{{info.getmoney}}</view> -->
       <radio-group class="radio-group" bindchange="radioChange">
         <label class="radio" wx:for="{{items}}" wx:key="id" wx:if="{{item.show}}">

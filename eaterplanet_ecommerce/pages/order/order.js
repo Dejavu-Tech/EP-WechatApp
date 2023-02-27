@@ -409,8 +409,8 @@ Page({
     var that = this;
     wx.showModal({
       title: '提示',
-      content: '确认收到',
-      confirmColor: '#F75451',
+      content: '确认收货',
+      confirmColor: '#4facfe',
       success(res) {
         if (res.confirm) {
           app.util.request({
