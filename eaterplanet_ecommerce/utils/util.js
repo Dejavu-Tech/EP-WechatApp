@@ -56,7 +56,7 @@ function checkRedirectTo(url, needAuth) {
   let status = false;
   if (needAuth) {
     const needAuthUrl = [
-      "/eaterplanet_ecommerce/moduleA/groupCenter/apply", 
+      "/eaterplanet_ecommerce/moduleA/groupCenter/apply",
       "/eaterplanet_ecommerce/pages/supply/apply",
       "/eaterplanet_ecommerce/pages/user/charge",
       "/eaterplanet_ecommerce/pages/order/index",
@@ -82,7 +82,7 @@ function login(s_link, type = 0) {
   }
 
   wx.login({
-    success: function(res) {
+    success: function (res) {
       if (res.code) {
         console.log(res.code);
         app.util.request({
@@ -92,14 +92,14 @@ function login(s_link, type = 0) {
             'code': res.code
           },
           dataType: 'json',
-          success: function(res) {
+          success: function (res) {
             console.log(res);
             wx.setStorage({
               key: "token",
               data: res.data.token
             })
             wx.getUserInfo({
-              success: function(msg) {
+              success: function (msg) {
                 var userInfo = msg.userInfo
                 wx.setStorage({
                   key: "userInfo",
@@ -119,7 +119,7 @@ function login(s_link, type = 0) {
                   },
                   method: 'post',
                   dataType: 'json',
-                  success: function(res) {
+                  success: function (res) {
                     wx.setStorage({
                       key: "member_id",
                       data: res.data.member_id
@@ -128,9 +128,9 @@ function login(s_link, type = 0) {
                       title: '资料已更新',
                       icon: 'success',
                       duration: 2000,
-                      success: function() {
+                      success: function () {
                         //s_link
-                        if (s_link && s_link.length > 0){
+                        if (s_link && s_link.length > 0) {
                           if (type == 1) {
                             wx.switchTab({
                               url: s_link,
@@ -146,7 +146,7 @@ function login(s_link, type = 0) {
                   }
                 })
               },
-              fail: function(msg) {
+              fail: function (msg) {
                 // console.log(msg);
               }
             })
@@ -159,15 +159,32 @@ function login(s_link, type = 0) {
   })
 }
 
-function login_prosime(needPosition=true, userInfo={}) {
+function login_prosime(needPosition = true, userInfo = {}) {
   return new Promise(function (resolve, reject) {
-    getCode().then(token=>{
-      wxGetUserInfo(needPosition, token, userInfo).then(res=>{
+    getCode().then(token => {
+      wxGetUserInfo(needPosition, token, userInfo).then(res => {
         resolve(res)
       }).catch(res => {
         console.log(res);
         reject(res)
       });
+    })
+  })
+}
+
+function login_promise(needPosition = true, userInfo = {}) {
+  return new Promise(function (resolve, reject) {
+    getCode().then(token => {
+      let member_info = wx.getStorageSync('member_info')
+      console.log(typeof (member_info))
+      let wxGetUserInfoFunc = member_info !== null ? wxGetMemberInfo : wxGetUserInfo;
+      function handleResponse(res) {
+        resolve(res)
+      }
+      function handleError(res) {
+        reject(res)
+      }
+      wxGetUserInfoFunc(needPosition, token, userInfo, member_info).then(handleResponse).catch(handleError);
     })
   })
 }
@@ -192,6 +209,11 @@ function getCode() {
                 key: "token",
                 data: res.data.token
               })
+              wx.setStorage({
+                key: "member_info",
+                data: res.data.member_info
+              })
+              console.log(res.data)
             }
           });
         } else {
@@ -202,11 +224,73 @@ function getCode() {
   })
 }
 
+function wxGetMemberInfo(needPosition, token, userInfo, member_info) {
+  return new Promise(function (resolve, reject) {
+    var app = getApp();
+    var share_id = wx.getStorageSync('share_id');
+    var member_info = wx.getStorageSync('member_info');
+    if (share_id == undefined) {
+      share_id = '0';
+    }
+    var community = wx.getStorageSync('community');
+    var community_id = community && (community.communityId || 0);
+    community && wx.setStorageSync('lastCommunity', community);
+    app.util.request({
+      url: 'entry/wxapp/user',
+      data: {
+        controller: 'user.applogin_do',
+        token,
+        member_info,
+        share_id: share_id,
+        nickName: member_info.username,
+        avatarUrl: member_info.avatar,
+        community_id
+      },
+      method: 'post',
+      dataType: 'json',
+      success: function (res) {
+        let isblack = res.data.isblack || 0;
+        let isparse_formdata = res.data.isparse_formdata || 0;
+        if (isblack == 1) {
+          app.globalData.isblack = 1;
+          wx.removeStorageSync('token');
+          wx.switchTab({
+            url: '/eaterplanet_ecommerce/pages/index/index',
+          })
+        } else if (isparse_formdata == 1) {
+          wx.setStorageSync('isparse_formdata', 1);
+          wx.setStorage({
+            key: "member_id",
+            data: res.data.member_id
+          })
+          wx.reLaunch({
+            url: '/eaterplanet_ecommerce/pages/index/index',
+          })
+        } else {
+          wx.setStorage({
+            key: "member_id",
+            data: res.data.member_id
+          })
+          console.log('needPosition', needPosition)
+          needPosition && getCommunityInfo();
+        }
+        resolve(res);
+      },
+      fail: (err) => {
+        console.log("9applogin_do")
+        reject(err);
+      }
+    })
+  })
+}
+
 function wxGetUserInfo(needPosition, token, userInfo) {
   return new Promise(function (resolve, reject) {
     var app = getApp();
     var share_id = wx.getStorageSync('share_id');
-    if (share_id == undefined) { share_id = '0'; }
+    if (share_id == undefined) {
+      share_id = '0';
+    }
     var community = wx.getStorageSync('community');
     var community_id = community && (community.communityId || 0);
     community && wx.setStorageSync('lastCommunity', community);
@@ -252,7 +336,7 @@ function wxGetUserInfo(needPosition, token, userInfo) {
         }
         resolve(res);
       },
-      fail: (err)=>{
+      fail: (err) => {
         reject(err);
       }
     })
@@ -275,7 +359,7 @@ function imageUtil(e) {
 
   //获取屏幕宽高  
   wx.getSystemInfo({
-    success: function(res) {
+    success: function (res) {
       var windowWidth = res.windowWidth;
       var windowHeight = res.windowHeight;
       var windowscale = windowHeight / windowWidth; //屏幕高宽比  
@@ -322,39 +406,39 @@ const getCommunityInfo = function (param = {}) {
   var token = wx.getStorageSync('token');
   return new Promise(function (resolve, reject) {
     // if (!community){
-      app.util.request({
-        url: 'entry/wxapp/index',
-        data: {
-          controller: 'index.load_history_community',
-          token: token
-        },
-        dataType: 'json',
-        success: function (res) {
-          if (res.data.code == 0) {
-            let history_communities = res.data.list;
-            if (Object.keys(history_communities).length > 0 || history_communities.communityId != 0){
-              wx.setStorageSync('community', history_communities);
-              app.globalData.community = history_communities;
-              resolve(history_communities);
-            } else {
-              resolve('');
-            }
-          } else if (res.data.code == 1){
-            console.log(param)
-            if (check_login() && param.communityId === void 0){
-              wx.redirectTo({
-                url: '/eaterplanet_ecommerce/pages/position/community',
-              })
-              resolve('');
-            } else {
-              resolve(param);
-            }
+    app.util.request({
+      url: 'entry/wxapp/index',
+      data: {
+        controller: 'index.load_history_community',
+        token: token
+      },
+      dataType: 'json',
+      success: function (res) {
+        if (res.data.code == 0) {
+          let history_communities = res.data.list;
+          if (Object.keys(history_communities).length > 0 || history_communities.communityId != 0) {
+            wx.setStorageSync('community', history_communities);
+            app.globalData.community = history_communities;
+            resolve(history_communities);
           } else {
-            // 未登录
             resolve('');
           }
+        } else if (res.data.code == 1) {
+          console.log(param)
+          if (check_login() && param.communityId === void 0) {
+            wx.redirectTo({
+              url: '/eaterplanet_ecommerce/pages/position/community',
+            })
+            resolve('');
+          } else {
+            resolve(param);
+          }
+        } else {
+          // 未登录
+          resolve('');
         }
-      })
+      }
+    })
     // } else {
     //   resolve('')
     // }
@@ -368,7 +452,7 @@ const getCommunityInfo = function (param = {}) {
  * open_danhead_model：是否开启单社区
  * default_head_info： 自定义单社区信息
  */
-const getCommunityById = function (community_id){
+const getCommunityById = function (community_id) {
   return new Promise(function (resolve, reject) {
     getApp().util.request({
       url: 'entry/wxapp/index',
@@ -378,7 +462,7 @@ const getCommunityById = function (community_id){
       },
       dataType: 'json',
       success: function (res) {
-        if(res.data.code==0) resolve(res.data);
+        if (res.data.code == 0) resolve(res.data);
       }
     })
   })
@@ -414,7 +498,10 @@ const addhistory = function (community, isNew = false) {
               let community = result.data.data;
               app.globalData.community = community;
               app.globalData.changedCommunity = true;
-              wx.setStorage({ key: "community", data: community })
+              wx.setStorage({
+                key: "community",
+                data: community
+              })
             }
           }
         })
@@ -458,8 +545,8 @@ const wxCompareVersion = function (v1, v2) {
   return 0
 }
 
-const addCart = function(option) {
-  return new Promise((resolve, reject)=>{
+const addCart = function (option) {
+  return new Promise((resolve, reject) => {
     let token = wx.getStorageSync('token');
     getApp().util.request({
       url: 'entry/wxapp/user',
@@ -470,10 +557,13 @@ const addCart = function(option) {
       },
       dataType: 'json',
       method: 'POST',
-      success: function(res) {
+      success: function (res) {
         if (res.data.code == 7) {
-          let { has_image, pop_vipmember_buyimage } = res.data;
-          if(has_image==1&&pop_vipmember_buyimage) {
+          let {
+            has_image,
+            pop_vipmember_buyimage
+          } = res.data;
+          if (has_image == 1 && pop_vipmember_buyimage) {
             res.showVipModal = 1;
             res.data.pop_vipmember_buyimage = pop_vipmember_buyimage;
             resolve(res)
@@ -484,45 +574,45 @@ const addCart = function(option) {
           resolve(res)
         }
       },
-      fail: function(res) {
+      fail: function (res) {
         reject(res)
       }
     })
   })
 }
 
-const filterTel = function(shipping_tel) {
-  if(shipping_tel) {
-    var pat=/(\d{7})\d*(\d{0})/;
-    return shipping_tel.replace(pat,'$1****$2');
+const filterTel = function (shipping_tel) {
+  if (shipping_tel) {
+    var pat = /(\d{7})\d*(\d{0})/;
+    return shipping_tel.replace(pat, '$1****$2');
   }
   return shipping_tel;
 }
 
 /*函数节流*/
 function throttle(fn, interval) {
-  var enterTime = 0;//触发的时间
-  var gapTime = interval || 300 ;//间隔时间，如果interval不传，则默认300ms
-  return function() {
+  var enterTime = 0; //触发的时间
+  var gapTime = interval || 300; //间隔时间，如果interval不传，则默认300ms
+  return function () {
     var context = this;
-    var backTime = new Date();//第一次函数return即触发的时间
+    var backTime = new Date(); //第一次函数return即触发的时间
     if (backTime - enterTime > gapTime) {
-      fn.call(context,arguments);
-      enterTime = backTime;//赋值给第一次触发的时间，这样就保存了第二次触发的时间
+      fn.call(context, arguments);
+      enterTime = backTime; //赋值给第一次触发的时间，这样就保存了第二次触发的时间
     }
   };
 }
- 
+
 /*函数防抖*/
 function debounce(fn, interval) {
   var timer;
-  var gapTime = interval || 1000;//间隔时间，如果interval不传，则默认1000ms
-  return function() {
+  var gapTime = interval || 1000; //间隔时间，如果interval不传，则默认1000ms
+  return function () {
     clearTimeout(timer);
     var context = this;
-    var args = arguments;//保存此处的arguments，因为setTimeout是全局的，arguments不是防抖函数需要的。
-    timer = setTimeout(function() {
-      fn.call(context,args);
+    var args = arguments; //保存此处的arguments，因为setTimeout是全局的，arguments不是防抖函数需要的。
+    timer = setTimeout(function () {
+      fn.call(context, args);
     }, gapTime);
   };
 }
@@ -532,7 +622,7 @@ const fileSystem = wx.getFileSystemManager()
  * 缓存图片
  */
 const getStorageImage = (web_image) => {
-  return new Promise((resolve, reject)=>{
+  return new Promise((resolve, reject) => {
     let webImages = wx.getStorageSync('webImages') || []
     let webImage = webImages.find(y => y.web_path === web_image)
     if (webImage) {
@@ -556,11 +646,11 @@ const getStorageImage = (web_image) => {
             let webImageStorage = []
             wx.getImageInfo({
               src: filePath,
-              success (ret) {
+              success(ret) {
                 let windowWidth = getApp().globalData.systemInfo.windowWidth || 375;
                 let h = ret.height;
                 let w = ret.width;
-                let height = h*windowWidth/w;
+                let height = h * windowWidth / w;
                 let storage = {
                   web_path: web_image,
                   local_path: filePath,
@@ -599,6 +689,8 @@ module.exports = {
   jsonToString: jsonToString,
   stringToJson: stringToJson,
   login_prosime,
+  login_promise,
+  wxGetMemberInfo,
   getCommunityInfo,
   check_login_new,
   checkRedirectTo,
