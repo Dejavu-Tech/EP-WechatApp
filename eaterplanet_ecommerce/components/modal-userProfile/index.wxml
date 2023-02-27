@@ -1,0 +1,21 @@
+<i-modal bind:cancel="close" scrollUp="{{false}}" visible="{{showUserProfile}}">
+    <view class="auth-content">
+        <view class="avatar">
+            <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+                <image class="avatar-img" src="{{avatarUrl}}"/>
+            </button>
+            <view class="nickname">
+                <text class="title">昵称</text>
+                <view class="nickname-wrapper">
+                    <input class="input" type="nickname" value="{{nickname}}" bindinput="nicknameInput"/>
+                </view>
+            </view>
+        </view>
+        <view class="btn">
+            <view class="close-btn" bindtap="noCover" style="border-color:#fff;color:#fff">暂不修改</view>
+            <button catchtap="uploaduserInfo" class="confirm" loading="{{btnLoading}}" style="background:#fff">
+                点击修改
+            </button>
+        </view>
+    </view>
+</i-modal>

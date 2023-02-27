@@ -1,0 +1,113 @@
+.auth-content {
+    width: 400rpx;
+    min-height: 200rpx;
+    max-height: 500rpx;
+    border-radius: 24rpx;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.auth-content .bg {
+    width: 400rpx;
+    margin-top: -100rpx;
+}
+
+.auth-content .h1 {
+    color: #000;
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+    font-weight: bold;
+}
+
+.auth-content .h2 {
+    font-size: 24rpx;
+    line-height: 36rpx;
+    color: #999;
+    width: 408rpx;
+    margin-bottom: 44rpx;
+}
+
+.auth-content .btn {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -200rpx;
+    align-items: center;
+    justify-content: center;
+    font-size: 28rpx;
+}
+
+.auth-content .btn .close-btn {
+    color: #fff;
+    border: 1rpx solid #fff;
+    border-radius: 36rpx;
+    margin: 0 15rpx;
+    text-align: center;
+    height: 64rpx;
+    line-height: 64rpx;
+}
+
+.auth-content .btn .close-img {
+    margin: 0 15rpx;
+}
+
+.auth-content .btn .img {
+    width: 180rpx;
+}
+
+.auth-content .confirm {
+    height: 64rpx;
+    line-height: 64rpx;
+    font-size: 29rpx;
+    background: #fff;
+    border-radius: 36rpx;
+    margin: 20rpx 15rpx;
+}
+
+.auth-content .avatar {
+    width: 400rpx;
+    margin-top: -100rpx;
+    margin-bottom: 20rpx;
+    font-size: 32rpx;
+}
+
+.avatar-wrapper {
+    margin: auto auto 40rpx;
+    height: 160rpx;
+    width: 160rpx;
+}
+
+.avatar-img {
+border-radius: 20rpx;
+    height: 160rpx;
+    width: 160rpx;
+}
+
+.nickname {
+    margin: auto;
+    font-size: 32rpx;
+    display: flex;
+    justify-content: center;
+}
+
+.nickname-wrapper {
+    font-size: 32rpx;
+    max-width: 240rpx;
+    height: 50rpx;
+    border-radius: 10rpx;
+    background-color: #bfbfbf;
+}
+
+.nickname .title {
+    width: 80rpx;
+    color: #bfbfbf;
+}
+
+.nickname-wrapper .input {
+    text-align: center;
+    font-weight: bold;
+    color: #1d252f;
+}
