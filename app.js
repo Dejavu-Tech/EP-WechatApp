@@ -80,14 +80,6 @@ App({
     goods_sale_unit: '件',
     scene: '',
     indexCateId: '',
-    key: '5ab1d47738dc411ab09ca18448cc26af',
-    weatherBackgroundUrl:'https://cdn.heweather.com/img/plugin/190516/bg/h5/',
-    weatherIconUrl: 'https://cdn.heweather.com/cond_icon/',
-    weatherIconUrl1: 'https://cdn.heweather.com/img/plugin/190516/icon/c/',
-    requestUrl: {
-      weather: 'https://free-api.qweather.com/s6/weather/now?',
-      hourly: 'https://free-api.qweather.com/s6/weather/hourly?'
-    },
   },
   getUpdate: function(){
     if (wx.canIUse("getUpdateManager")) {
