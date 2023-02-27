@@ -94,12 +94,12 @@ handlerGobackClick(delta) {
   addImg: function() {
     var that = this,
       imgGroup = this.data.imgGroup;
-    wx.chooseImage({
+    wx.chooseMedia({
       count: this.data.imgMax - imgGroup.length,
       success: function(res) {
-        var tempFilePaths = res.tempFilePaths;
+        const tempFiles = res.tempFiles;
         var new_thumb_img = that.data.thumb_img;
-        for (var i = 0; i < tempFilePaths.length; i++) {
+        for (var i = 0; i < tempFiles.length; i++) {
           wx.showLoading({
             title: '上传中'
           })
@@ -114,10 +114,10 @@ handlerGobackClick(delta) {
                 'm': 'eaterplanet_ecommerce',
                 'controller': 'goods.doPageUpload'
               }),
-              filePath: tempFilePaths[i],
+              filePath: tempFiles[i].tempFilePath,
               name: 'upfile',
               formData: {
-                'name': tempFilePaths[i]
+                'name': tempFiles[i].tempFilePath
               },
               header: {
                 'content-type': 'multipart/form-data'

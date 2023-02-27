@@ -132,10 +132,10 @@ Page({
 
   addImg: function () {
     var that = this;
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1,
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
+        const tempFiles = res.tempFiles;
         var new_thumb_img = that.data.thumb_img;
         wx.showLoading({ title: '上传中' });
         wx.uploadFile({
@@ -143,10 +143,10 @@ Page({
             'm': 'eaterplanet_ecommerce',
             'controller': 'goods.doPageUpload'
           }),
-          filePath: tempFilePaths[0],
+          filePath: tempFiles[0].tempFilePath,
           name: 'upfile',
           formData: {
-            'name': tempFilePaths[0]
+            'name': tempFiles[0].tempFilePath
           },
           header: {
             'content-type': 'multipart/form-data'

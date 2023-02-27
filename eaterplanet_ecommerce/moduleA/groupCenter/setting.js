@@ -327,21 +327,21 @@ Page({
 
   choseImg: function () {
     var self = this;
-    wx.chooseImage({
+    wx.chooseMedia({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'],
       sourceType: ['album', 'camera'],
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths;
+        const tempFiles = res.tempFiles;
         wx.showLoading({
           title: '上传中',
         })
         wx.uploadFile({
           url: app.util.url('entry/wxapp/index', { 'm': 'eaterplanet_ecommerce', 'controller': 'goods.doPageUpload' }),
-          filePath: tempFilePaths[0],
+          filePath: tempFiles[0].tempFilePath,
           name: 'upfile',
           formData: {
-            'name': tempFilePaths[0]
+            'name': tempFiles[0].tempFilePath
           },
           header: {
             'content-type': 'multipart/form-data'
@@ -349,9 +349,9 @@ Page({
           success: function (res) {
             wx.hideLoading();
             var data = JSON.parse(res.data);
-            const { image_o, image_o_full, image_thumb } = data;
+            var image_o = data.image_o;
             self.setData({
-              'headInfo.share_wxcode': image_o_full,
+              'headInfo.share_wxcode': image_o,
               image_o: image_o
             })
           }

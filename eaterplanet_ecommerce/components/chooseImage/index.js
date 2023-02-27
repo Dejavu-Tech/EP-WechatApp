@@ -33,17 +33,18 @@ Component({
     addImg: function() {
       var s = this,
         i = this.data.imgGroup;
-      wx.chooseImage({
+      wx.chooseMedia({
         count: this.data.imgMax - i.length,
         success: function(n) {
-          s.triggerEvent("on-chooseImage", {key: s.data.key}), (i = i.concat(n.tempFilePaths)).length > s.data.imgMax && i.splice(s.data.imgMax),
+            const tempFiles = n.tempFiles;
+            s.triggerEvent("on-chooseImage", {key: s.data.key}), (i = i.concat(tempFiles)).length > s.data.imgMax && i.splice(s.data.imgMax),
             s.setData({
               imgGroup: i
             });
-          var o = n.tempFilePaths.length;
+          var o = tempFiles.length;
           a = i.length;
-          for (var g = 0; g < n.tempFilePaths.length; g++) ! function(i) {
-            var g = n.tempFilePaths[i].split(".")[n.tempFilePaths[i].split(".").length - 1],
+          for (var g = 0; g < o; g++) ! function(i) {
+            var g = tempFiles[i].tempFilePath.split(".")[tempFiles[i].tempFilePath.split(".").length - 1],
               l = new Date().getTime(),
               p = Math.round(1e6 * Math.random());
             r[i + a - o] = wx.uploadFile({
@@ -51,7 +52,7 @@ Component({
                 'm': 'eaterplanet_ecommerce',
                 'controller': 'goods.doPageUpload'
               }),
-              filePath: n.tempFilePaths[i],
+              filePath: tempFiles[i].tempFilePath,
               name: "upfile",
               header: {
                 "Content-Type": "multipart/form-data"
