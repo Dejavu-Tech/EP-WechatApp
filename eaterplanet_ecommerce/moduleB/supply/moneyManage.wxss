@@ -57,7 +57,8 @@ invote {
 }
 
 .recharge-money {
-  color: #ce3c39;
+  font-family: DIN;  
+  color: #ff758c;
   font-size: 50rpx;
 }
 

@@ -89,9 +89,9 @@
 <!-- 核销弹窗 -->
 <i-modal scrollUp="{{true}}" visible="{{showHexiaoModal}}" bind:cancel="handleHexiaoModal">
   <view class="sku-card">
-    <view class="weight fsz-32 pb10 text-center">门店选择</view>
+    <view class="weight fsz-32 pb10 text-center changehead">门店选择</view>
     <scroll-view scroll-y style="height: 60vh;">
-      <view class="border-bottom i-flex i-aic py10" wx:for="{{salesroom_list}}" wx:key="index" bindtap="changeMendian" data-idx="{{index}}">
+      <view class="border-bottom i-flex i-aic py10 changemendian" wx:for="{{salesroom_list}}" wx:key="index" bindtap="changeMendian" data-idx="{{index}}">
         <view class="i-flex-item">
           <view class="fsz-28 weight mb5">{{item.room_name}}</view>
           <view class="fsz-22">{{item.room_address}}</view>
