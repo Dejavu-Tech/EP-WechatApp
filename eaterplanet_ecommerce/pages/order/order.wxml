@@ -92,7 +92,7 @@
 			<!-- 核销 -->
 			<block wx:if="{{delivery=='hexiao'}}">
 				<!-- 券码已使用 -->
-				<block wx:if="{{hx_receive_info.goods_count==hx_receive_info.receive_count}}">
+				<block wx:if="{{hx_receive_info.goods_count==!hx_receive_info.receive_count}}">
 					<i-card>
 						<view slot="header" class="header">{{order.order_info.shopname}}</view>
 						<view slot="content" class="content-wrap middle">
@@ -145,7 +145,7 @@
 								<view>券码：</view>
 								<view class="i-flex-item weight">
 									<view wx:for="{{hx_receive_info.volume_code_list}}" wx:key="index">
-										<text class="line-through">{{item.hexiao_volume_code}}</text> <text class="bule ml5" wx:if="{{order.order_info.order_status_id==7}}">已退款</text>
+										<text class="line-through">{{order.order_info.hexiao_volume_code}}</text> <text class="bule ml5" wx:if="{{order.order_info.order_status_id==7}}">已退款</text>
 									</view>
 								</view>
 							</view>
