@@ -2,16 +2,17 @@
 var util = require('../../utils/util.js');
 var status = require('../../utils/index.js');
 var wcache = require('../../utils/wcache.js');
-
 var app = getApp()
+const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+const defaultAvatarUrl2 = 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132'
 const height = wx.getSystemInfoSync().windowHeight
 Page({
   mixins: [require('../../mixin/globalMixin.js')],
   data: {
     height: height,
-        statusBarHeight: app.globalData.statusBarHeight + 44 + 'px',
-        searchBarHeight: app.globalData.statusBarHeight + 'px',
-      rushboxHeight: app.globalData.statusBarHeight + 200 + 'px',
+    statusBarHeight: app.globalData.statusBarHeight + 44 + 'px',
+    searchBarHeight: app.globalData.statusBarHeight + 'px',
+    rushboxHeight: app.globalData.statusBarHeight + 200 + 'px',
     tablebar: 4,
     canIUse: wx.canIUse("getUserProfile"),
     theme_type: '',
@@ -43,18 +44,18 @@ Page({
     is_show_score: 0,
     showGetPhone: false,
     user_tool_icons: {},
-    community: ''
+    community: '',
+    showUserProfile: false,
   },
   isCalling: false,
-        $data: {
-        statusBarHeight: app.globalData.statusBarHeight + 44,
-        top: 0,
-
-    },
+  $data: {
+    statusBarHeight: app.globalData.statusBarHeight + 44,
+    top: 0,
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.hideTabBar();
     let that = this;
     status.setNavBgColor();
@@ -64,9 +65,10 @@ Page({
     wx.showLoading();
   },
 
-  getMemberInfo: function() {
+  getMemberInfo: function () {
     var token = wx.getStorageSync('token');
     this.getCommunityInfo();
+
     let that = this;
     app.util.request({
       url: 'entry/wxapp/user',
@@ -74,18 +76,23 @@ Page({
         controller: 'user.get_user_info',
         token: token
       },
+
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         // wx.hideLoading();
-        setTimeout(function(){ wx.hideLoading(); },1000);
+        setTimeout(function () { wx.hideLoading(); }, 1000);
         if (res.data.code == 0) {
           let showGetPhone = false;
           if (res.data.is_show_auth_mobile == 1 && !res.data.data.telephone) showGetPhone = true;
           let member_info = res.data.data || '';
           let params = {};
-
-          if (member_info){
-            member_info.member_level_info && (member_info.member_level_info.discount = (member_info.member_level_info.discount/10).toFixed(1));
+          let invalidAvatars = [defaultAvatarUrl, defaultAvatarUrl2, "", "undefined"];
+          let invalidUsernames = ["微信用户", "", "undefined"];
+          if (invalidAvatars.includes(member_info.avatar)&&invalidUsernames.includes(member_info.username)&&!showGetPhone) {
+            that.setData({ showUserProfile: true });
+          }
+          if (member_info) {
+            member_info.member_level_info && (member_info.member_level_info.discount = (member_info.member_level_info.discount / 10).toFixed(1));
             //开启分销
             if (res.data.commiss_level > 0) {
               //还差多少人升级
@@ -176,12 +183,12 @@ Page({
     })
   },
 
-  getCommunityInfo: function(){
+  getCommunityInfo: function () {
     let that = this;
     let community = wx.getStorageSync('community');
-    if (community&&community.headDoorphoto) {
-      if(!community.head_mobile) {
-        util.getCommunityById(community.communityId).then(res=>{
+    if (community && community.headDoorphoto) {
+      if (!community.head_mobile) {
+        util.getCommunityById(community.communityId).then(res => {
           let head_mobile = res.data.disUserMobile || res.data.head_mobile;
           head_mobile && (res.data.hideTel = util.filterTel(head_mobile));
           that.setData({ community: res.data })
@@ -201,7 +208,7 @@ Page({
     }
   },
 
-  getCopyright: function() {
+  getCopyright: function () {
     let that = this;
     app.util.request({
       'url': 'entry/wxapp/user',
@@ -209,7 +216,7 @@ Page({
         controller: 'user.get_copyright'
       },
       dataType: 'json',
-      success: function(res) {
+      success: function (res) {
         if (res.data.code == 0) {
           let rdata = res.data;
           let {
@@ -240,7 +247,7 @@ Page({
           } = rdata;
 
           let h = {};
-          if (open_danhead_model==1) {
+          if (open_danhead_model == 1) {
             let hideTel = (default_head_info.head_mobile && util.filterTel(default_head_info.head_mobile)) || '';
             default_head_info.hideTel = hideTel;
             h.community = default_head_info;
@@ -287,10 +294,10 @@ Page({
   /**
    * 授权成功回调
    */
-  authSuccess: function() {
+  authSuccess: function () {
     let that = this;
     wx.showLoading();
-    that.setData({ needAuth: false, showAuthModal: false, tabbarRefresh: true });
+    that.setData({ needAuth: false, showAuthModal: false, tabbarRefresh: true, showUserProfile: false });
     (0, status.cartNum)('', true).then((res) => {
       res.code == 0 && that.setData({
         cartNum: res.data
@@ -298,10 +305,18 @@ Page({
     });
     that.getMemberInfo();
   },
-
-  authModal: function(){
-    if(this.data.needAuth) {
+  authModal: function () {
+    if (this.data.needAuth) {
       this.setData({ showAuthModal: !this.data.showAuthModal });
+      return false;
+    }
+    return true;
+  },
+
+  modalProfile: function () {
+    this.getMemberInfo();
+    if (!this.data.needAuth) {
+      this.setData({ showUserProfile: !this.data.showUserProfile });
       return false;
     }
     return true;
@@ -310,7 +325,7 @@ Page({
   /**
    * 跳转团长中心
    */
-  goToGroup: function() {
+  goToGroup: function () {
     5 === this.data.auditStatus ? wx.navigateTo({
       url: "/eaterplanet_ecommerce/moduleA/groupCenter/index"
     }) : wx.navigateTo({
@@ -319,9 +334,9 @@ Page({
   },
 
   /**
-   * 更新资料
+   * 更新资料,转手动更新头像&昵称
    */
-  bindGetUserInfo: function(e) {
+  bindGetUserInfo: function (e) {
     let that = this;
     wx.getUserProfile({
       desc: "获取你的昵称、头像、地区及性别",
@@ -350,8 +365,8 @@ Page({
             avatarUrl
           },
           dataType: 'json',
-          success: function(res) {
-            if(res.data.code==0) {
+          success: function (res) {
+            if (res.data.code == 0) {
               let member_info = that.data.member_info;
               let user_info = Object.assign({}, member_info, {
                 avatar: userInfo.avatarUrl,
@@ -364,7 +379,7 @@ Page({
           }
         })
       },
-      fail: ()=>{
+      fail: () => {
         wx.showToast({
           title: "资料更新失败。",
           icon: "none"
@@ -376,7 +391,7 @@ Page({
   /** 
    * 预览图片
    */
-  previewImage: function(e) {
+  previewImage: function (e) {
     var current = e.currentTarget.dataset.src;
     current && wx.previewImage({
       current: current,
@@ -384,8 +399,8 @@ Page({
     })
   },
 
-  goLink2: function(event) {
-    if(!this.authModal()) return;
+  goLink2: function (event) {
+    if (!this.authModal()) return;
     let link = event.currentTarget.dataset.link;
     var pages_all = getCurrentPages();
     if (pages_all.length > 3) {
@@ -402,9 +417,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     let that = this;
-    util.check_login_new().then((res)=>{
+    util.check_login_new().then((res) => {
       console.log(res)
       if (res) {
         that.setData({ tabbarRefresh: true });
@@ -425,7 +440,7 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     this.setData({
       tabbarRefresh: false
     })
@@ -434,7 +449,7 @@ Page({
   /**
    * 设置手机号
    */
-  getReceiveMobile: function(e) {
+  getReceiveMobile: function (e) {
     wx.showToast({
       icon: 'none',
       title: '授权成功',
@@ -447,7 +462,7 @@ Page({
   /**
    * 关闭手机授权
    */
-  close: function() {
+  close: function () {
     this.setData({
       showGetPhone: false
     });
@@ -456,7 +471,7 @@ Page({
   /**
    * 关闭分销
    */
-  closeDistribution: function() {
+  closeDistribution: function () {
     this.setData({
       showDistribution: false
     })
@@ -465,7 +480,7 @@ Page({
   /**
    * 分销下一步
    */
-  goDistribution: function() {
+  goDistribution: function () {
     let member_info = this.data.member_info;
     //判断是不是分销商
     if (member_info.comsiss_flag == 0) {
@@ -483,7 +498,7 @@ Page({
     }
   },
 
-  distributionNext: function() {
+  distributionNext: function () {
     if (this.data.commiss_sharemember_need == 1) {
       console.log('需要分享');
       let url = '/eaterplanet_ecommerce/distributionCenter/pages/recruit';
@@ -513,7 +528,7 @@ Page({
     }
   },
 
-  goNext: function(e) {
+  goNext: function (e) {
     console.log(e)
     let status = 0;
     let member_info = this.data.member_info;
@@ -549,7 +564,7 @@ Page({
     }
   },
 
-  loginOut: function() {
+  loginOut: function () {
     wx.removeStorageSync('community');
     wx.removeStorage({
       key: 'token',
@@ -561,7 +576,7 @@ Page({
     })
   },
 
-  toggleFetchCoder: function() {
+  toggleFetchCoder: function () {
     if (!this.authModal()) return;
     this.setData({
       isShowCoder: !this.data.isShowCoder
@@ -589,7 +604,7 @@ Page({
   */
   gotoMap: function () {
     let community = this.data.community;
-    let postion = {lat: community.lat, lon: community.lon};
+    let postion = { lat: community.lat, lon: community.lon };
     let longitude = parseFloat(postion.lon),
       latitude = parseFloat(postion.lat),
       name = community.disUserName,

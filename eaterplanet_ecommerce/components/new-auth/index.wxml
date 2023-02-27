@@ -1,18 +1,18 @@
-<i-modal bind:cancel="close" scrollUp="{{false}}" visible="{{needAuth}}">
-  <view class="auth-content">
-    <image class="bg" mode="widthFix" src="{{newauth_bg_image?newauth_bg_image:'../../images/guanggaologo.png'}}"></image>
-    <view class="btn" wx:if="{{canIUse}}">
-      <view class="close-img" bindtap="close" wx:if="{{newauth_cancel_image}}">
-        <image class="img" mode="widthFix" src="{{newauth_cancel_image}}"></image>
-      </view>
-      <view class="close-btn" bindtap="close" style="border-color:#fff;color:#fff" wx:else>暂不登录</view>
-      <button catchtap="getProfile" class="confirm-img" wx:if="{{newauth_confirm_image}}">
-        <image class="img" mode="widthFix" src="{{newauth_confirm_image}}"></image>
-      </button>
-      <button catchtap="getProfile" class="confirm" loading="{{btnLoading}}" style="background:background:#fff" wx:else>
-        立即登录
-      </button>
+<i-modal bind:cancel="close" bind:cancel="close" scrollUp="{{false}}" visible="{{needAuth}}">
+    <view class="auth-content">
+        <image class="bg" mode="widthFix" src="{{newauth_bg_image?newauth_bg_image:'../../images/guanggaologo.png'}}"></image>
+        <view class="btn" wx:if="{{canIUse}}">
+            <view class="close-img" bindtap="close" wx:if="{{newauth_cancel_image}}">
+                <image class="img" mode="widthFix" src="{{newauth_cancel_image}}"></image>
+            </view>
+            <view class="close-btn" bindtap="close" style="border-color:#fff;color:#fff" wx:else>暂不登录</view>
+            <button catchtap="getProfile" class="confirm-img" wx:if="{{newauth_confirm_image}}">
+                <image class="img" mode="widthFix" src="{{newauth_confirm_image}}"></image>
+            </button>
+            <button catchtap="getProfile" class="confirm" loading="{{btnLoading}}" style="background:#fff" wx:else>
+                立即登录
+            </button>
+        </view>
+        <view class="updateWx" wx:else>请升级微信版本</view>
     </view>
-    <view class="updateWx" wx:else>请升级微信版本</view>
-  </view>
 </i-modal>

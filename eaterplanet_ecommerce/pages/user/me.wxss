@@ -346,6 +346,12 @@ button {
     text-align: center;
 }
 
+.personal .basicInform .personalCon .noAuth {
+    padding-top: 40rpx;
+    font-size: 32rpx;
+    align-items: center;
+}
+
 .personal .basicInform .personalCon .userInfo .userAvatarUrl {
     border-radius: 50%;
     width: 100%;

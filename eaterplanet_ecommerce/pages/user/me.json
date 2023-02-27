@@ -2,6 +2,7 @@
   "navigationBarTitleText": "个人中心",
   "usingComponents": {
     "ep-navBar": "../../components/navigation-bar",
+    "ep-modal-userProfile": "../../components/modal-userProfile",
     "i-tabbar": "../../components/tabbar/index",
     "component-modal": "../../components/modal/index",
     "i-fetch-coder": "../../components/fetch-coder/index",

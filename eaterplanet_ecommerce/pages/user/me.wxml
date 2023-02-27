@@ -1,723 +1,640 @@
 <ep-navBar title='个人中心' titleimg="{{true}}" backgroundColorTop='#121b24' color='#fff' iconTheme='white'></ep-navBar>
-<view bindtap="toggleFetchCoder" class="fetch-coder" style="color:{{user_top_font_color}}"wx:if="{{fetch_coder_type==1||needAuth}}">
- <text class="iconfont icon-erweima1"></text>
-  <view class="fetch-coder-text">提货码</view>
+<view bindtap="toggleFetchCoder" class="fetch-coder" style="color:{{user_top_font_color}}" wx:if="{{fetch_coder_type==1||needAuth}}">
+    <text class="iconfont icon-erweima1"></text>
+    <view class="fetch-coder-text">提货码</view>
 </view>
 <view class="{{theme_type}} pb100">
-  <view class="personal">
-    <view class="basicInform">
-      <image class="back-img" src="../../images/TOP_background@2x2.png"></image>
-      <view class="personalCon">
-        <view class="userInfo">
-          <block wx:if="{{!needAuth}}">
-            <view class="pos-r userAvatarUrl" wx:if="{{member_info.avatar}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/editUser/index">
-              <image style="width: 100rpx;height:100rpx;border-radius: 50%;" src="{{member_info.avatar}}"></image>
-              <text class="iconfont icon-bianji edituserbtn"></text>
+    <view class="personal">
+        <view class="basicInform">
+            <image class="back-img" src="../../images/TOP_background@2x2.png"></image>
+            <view class="personalCon">
+                <view class="userInfo" bindtap="modalProfile">
+                    <block wx:if="{{!needAuth}}">
+                        <view class="pos-r userAvatarUrl" wx:if="{{member_info.avatar}}" >
+                            <image style="width: 100rpx;height:100rpx;border-radius: 50%;" src="{{member_info.avatar}}"></image>
+                            <text class="iconfont icon-bianji edituserbtn"></text>
+                        </view>
+                        <image class="userAvatarUrl" src="../../images/head-bitmap.png" wx:else></image>
+                        <view class="user-name" style="color:{{user_top_font_color}}">
+                            <view class="user-name-top">
+                                <view>{{member_info.username}}</view>
+                            </view>
+                            <view class="userLevel" wx:if="{{member_info.is_show_member_id==1}}">
+                                <view class="userLeveldiscount">
+                                    用户ID: {{member_info.member_id}}
+                                </view>
+                            </view>
+                            <view class="userLevel" wx:if="{{member_info.is_show_member_level==1}}">
+                                <view class="userLevelName">
+                                    <text class="iconfont icon-huangguan"></text> {{member_info.member_level_info.level_name}}
+                                </view>
+                                <view class="userLeveldiscount" wx:if="{{member_info.member_level_info.discount<10}}">
+                                    享受{{member_info.member_level_info.discount}}折</view>
+                            </view>
+                        </view>
+                    </block>
+                    <view class="userInfo noAuth" style="color:{{user_top_font_color}}" bindtap="authModal" wx:else>
+                        <image class="userAvatarUrl" src="../../images/head-bitmap.png"></image>
+                        <view class="user-name">点击登录账户</view>
+                    </view>
+                    <view class="fetch-coder {{(fetch_coder_type==1||needAuth)?'signIn':''}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:if="{{isopen_signinreward==1&&show_signinreward_icon==1}}" style="color:{{user_top_font_color}}">
+                        <text class="iconfont icon-qiandao"></text>
+                        <view class="fetch-coder-text">积分签到</view>
+                    </view>
+                </view>
+
             </view>
-            <image class="userAvatarUrl" src="../../images/head-bitmap.png" wx:else></image>
-            <view class="user-name" style="color:{{user_top_font_color}}">
-              <view class="user-name-top">
-                <view>{{member_info.username}}</view>
-                <button bindtap="bindGetUserInfo" class="modify" wx:if="{{canIUse}}">
-                  <text class="iconfont icon-shuaxin" style="color:{{user_top_font_color}}"></text>
+        </view>
+        <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
+            <view class="i-flex vip-name">
+                <image src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}" class="vip-logo"></image>
+                <text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text>
+                “{{modify_vipcard_name}}” 尊享特权·会员专享价
+            </view>
+            <view wx:if="{{is_vip_card_member==0}}">立即开通<text class="iconfont icon-youjiantou goright"></text></view>
+            <view wx:if="{{is_vip_card_member==1}}">立即查看<text class="iconfont icon-youjiantou goright"></text></view>
+            <view wx:if="{{is_vip_card_member==2}}"><text style="color:#5c5c5c;">已到期,</text>立即续费<text class="iconfont icon-youjiantou goright"></text></view>
+        </view>
+        <view class="order ">
+            <view class="my-order">
+                <view class="my-order-title">
+                    <text>我的订单</text>
+                    <view bindtap="goLink2" class="to-order" data-link="/eaterplanet_ecommerce/pages/order/index">
+                        <text>查看全部订单</text>
+                    </view>
+                </view>
+
+                <view class="orderTab">
+                    <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/order/index?order_status=3">
+                        <text class="num" style="background:{{albert}}" wx:if="{{member_info.wait_pay_count!=0}}">{{member_info.wait_pay_count}}</text>
+                        <image class="icon-img" src="{{user_order_menu_icons.i1?user_order_menu_icons.i1:'../../images/needPayIcon.png'}}"></image>
+                        <text style="color: #fff;">待付款</text>
+                    </view>
+                    <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/order/index?order_status=1">
+                        <text class="num" style="background:{{albert}}" wx:if="{{member_info.wait_send_count!=0}}">{{member_info.wait_send_count}}</text>
+                        <image class="icon-img" src="{{user_order_menu_icons.i2?user_order_menu_icons.i2:'../../images/undeli.png'}}"></image>
+                        <text style="color: #fff;">待配送</text>
+                    </view>
+                    <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/order/index?order_status=4">
+                        <text class="num" style="background:{{albert}}" wx:if="{{member_info.wait_get_count!=0}}">{{member_info.wait_get_count}}</text>
+                        <image class="icon-img" src="{{user_order_menu_icons.i3?user_order_menu_icons.i3:'../../images/distributionIcon.png'}}"></image>
+                        <text style="color: #fff;">待提货</text>
+                    </view>
+                    <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/order/index?order_status=6">
+                        <image class="icon-img" src="{{user_order_menu_icons.i4?user_order_menu_icons.i4:'../../images/completeIcon.png'}}"></image>
+                        <text style="color: #fff;">已提货</text>
+                    </view>
+                    <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/refund/refundList">
+                        <image class="icon-img" src="{{user_order_menu_icons.i5?user_order_menu_icons.i5:'../../images/refundIcon.png'}}"></image>
+                        <text style="color: #fff;">售后服务</text>
+                    </view>
+                </view>
+
+            </view>
+
+        </view>
+
+        <!-- 我的分销 Start -->
+        <view class="tool1 distribution" wx:if="{{commiss_level>0}}">
+
+            <block wx:if="{{commiss_sharemember_need==1}}">
+                <view class="my-distribution-title">
+                    <text>我的粉丝</text>
+                    <view bindtap="goLink2" class="to-distribution" data-link="/eaterplanet_ecommerce/distributionCenter/pages/fans">
+                        <text>查看</text>
+                    </view>
+                </view>
+                <view class='modal-body i-flex i-flex-alc'>
+                    <view class='distribut-tot i-flex-item'>{{share_member_count}}</view>
+                    <view class='distribut-new bor-r'>
+                        <view class='distribut-num'>{{today_share_member_count}}</view>
+                        <view class='distribut-desc'>今日新增</view>
+                    </view>
+                    <view class='distribut-new'>
+                        <view class='distribut-num'>{{yestoday_share_member_count}}</view>
+                        <view class='distribut-desc'>昨日新增</view>
+                    </view>
+                </view>
+                <view class='modal-foot i-flex i-flex-spb' wx:if="{{!(member_info.comsiss_flag==1&&member_info.comsiss_state==1)}}">
+                    <view class='modal-foot-l' wx:if="{{need_num_update>0}}">
+                        <text wx:if="{{share_member_count!=0}}">再</text>分享<text class='tot'>{{need_num_update}}</text>位新粉丝可升级为{{commiss_diy_name}}
+                    </view>
+                    <view class='modal-foot-l' wx:if="{{commiss_biaodan_need==0&&need_num_update<=0}}">
+                        <block wx:if="{{formStatus==0}}">差一步就成为{{commiss_diy_name}}人员啦！</block>
+                        <block wx:if="{{formStatus==1}}">恭喜你填写成功，等待审核！</block>
+                        <block wx:if="{{formStatus==2}}">恭喜你成为{{commiss_diy_name}}人员！</block>
+                    </view>
+                    <view class='modal-foot-l' wx:if="{{commiss_biaodan_need==1&&need_num_update<=0}}">
+                        <block wx:if="{{formStatus==0}}">差一步就成为{{commiss_diy_name}}人员啦！</block>
+                        <block wx:if="{{formStatus==1}}">恭喜你填写成功，等待审核！</block>
+                        <block wx:if="{{formStatus==2}}">恭喜你成为{{commiss_diy_name}}人员！</block>
+                    </view>
+                    <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='share' wx:if="{{need_num_update>0}}">立即分享</view>
+                    <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='commiss' wx:if="{{need_num_update<=0&&commiss_biaodan_need<=0&&formStatus==2}}">进入{{commiss_diy_name}}中心</view>
+                    <view class='modal-foot-r btn' bindtap='goNext' data-type='form' wx:if="{{need_num_update<=0&&formStatus==0}}">
+                        立即升级
+                    </view>
+                    <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='commiss' wx:if="{{commiss_biaodan_need==1&&need_num_update<=0&&formStatus==2}}">
+                        进入{{commiss_diy_name}}中心
+                    </view>
+                </view>
+            </block>
+            <view class="toolList">
+                <view bindtap='goDistribution'>
+                    <view class="item-main">
+                        <view class="item-title">
+                            <text>{{commiss_diy_name}}中心</text>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 我的分销 End -->
+
+
+        <!-- 我的提货点 Start -->
+        <view class="tool1 distribution" wx:if="{{community&&show_user_change_comunity==1}}">
+            <view class="my-distribution modal-head">
+                <view class="my-distribution-title">
+                    <text>我的当前自提点</text>
+
+                    <view wx:if="{{open_danhead_model==1}}"></view>
+                    <block wx:elif="{{hide_community_change_btn==0&&open_danhead_model!=1}}">
+                        <navigator wx:if="{{hide_community_change_word==0}}" class="to-distribution" hoverClass="none" url="/eaterplanet_ecommerce/pages/position/community">
+                            <text>切换</text>
+                        </navigator>
+                    </block>
+                </view>
+            </view>
+            <view class='modal-body community fsz-30 i-flex'>
+                <view class="i-flex-item">
+                    <view class="i-flex" style="align-items: center">
+                        <view wx:if="{{community.headDoorphoto}}" class="u-m-r-15" bindtap="previewImage" data-src="{{community.headDoorphoto}}">
+                            <image src="{{community.headDoorphoto}}" style="width: 100rpx;height: 100rpx;"></image>
+                        </view>
+                        <view class="weight red mb5" style="color:{{skin.color}}">{{community.communityName}}</view>
+                    </view>
+                    <view class="fsz-26 text-gray mb5">{{community.fullAddress}}</view>
+                    <view class="i-flex community-flex" wx:if="{{community.head_mobile||community.disUserMobile}}">
+                        <view class="i-flex">
+                            <view><text class="iconfont icon-ziyuan fsz-28"></text> 电话：</view>
+                            <view style="color:#ee884a;" bindtap="callTelphone" data-phone="{{community.head_mobile||community.disUserMobile}}" wx:if="{{show_user_tuan_mobile==1}}">
+                                {{community.head_mobile||community.disUserMobile}}</view>
+                            <view style="color:#ee884a;" wx:else>{{community.hideTel}}</view>
+                        </view>
+                        <view class="i-flex">
+                            <view class="text-center i-flex-alc luxian" style="color:{{skin.color}}" bindtap="gotoMap" wx:if="{{show_user_change_comunity_map==1}}">
+                                <text class="iconfont icon-luxian fsz-32"></text> 路线
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+
+        </view>
+        <!-- 我的提货点 End -->
+
+        <!-- 拼团 Start -->
+        <view class="tool" wx:if="{{show_user_pin==1}}">
+            <view class="toolList">
+                <view bindtap='goDistribution' bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/pin/me">
+                    <view class="item-main">
+                        <view class="item-title"><text>我的拼团</text></view>
+                    </view>
+                </view>
+                <view bindtap='goDistribution' bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/pin/income">
+                    <view class="item-main">
+                        <view class="item-title"><text>拼团收益</text></view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <!-- 拼团 End -->
+        <!-- 配送员中心 -->
+        <view class="tool1 distribution" wx:if="{{is_localtown_distributionman==1}}">
+            <view class="my-distribution modal-head" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/rider/index">
+                <view class="my-distribution-title" style="border-bottom: none">
+                    <image class="toolIconbig" mode="widthFix" src="../../images/rider.png"></image>
+                    <text>配送员中心</text>
+                </view>
+            </view>
+        </view>
+
+        <!-- 列表 -->
+        <view class="tool" wx:if="{{user_tool_showtype==0}}">
+            <view class="toolList">
+                <view class="yuenav" bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/charge" wx:if="{{is_open_yue_pay==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i1?user_tool_icons.i1:'../../images/wallet.png'}}"></image>
+                            <text>余额<block wx:if="{{!needAuth}}">: ¥{{member_info.account_money||0}}</block></text>
+                        </view>
+                        <view class="tool-right">
+                            <text style='margin-right:10rpx;'>{{excharge_nav_name}}</text>
+                            <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/solitaire/me" wx:if="{{is_open_solitaire==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i10?user_tool_icons.i10:'../../images/soli.png'}}"></image>
+                            <text>我的接龙</text>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/writeoff/index" wx:if="{{member_info.is_hexiao_member==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i11?user_tool_icons.i11:'../../images/hexiao.png'}}"></image>
+                            <text>到店核销</text>
+                        </view>
+                    </view>
+                </view>
+                <block wx:if="{{is_show_score==1}}">
+                    <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:if="{{isopen_signinreward==1}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
+                                <text>积分</text>
+                            </view>
+                            <view class="tool-right">
+                                <text style='margin-right:10rpx;'>立即签到</text>
+                                <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:else>
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
+                                <text>积分</text>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/coupon">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/coupon.png'}}"></image>
+                            <text>优惠券</text>
+                        </view>
+                    </view>
+                </view>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/communityMembers" wx:if="{{member_info.pickup_id>0}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i4?user_tool_icons.i4:'../../images/groupCenterIcon.png'}}"></image>
+                            <text>核销管理</text>
+                        </view>
+                    </view>
+                </navigator>
+                <block wx:if="{{close_community_index!=1}}">
+                    <view bindtap="goToGroup" wx:if="{{member_info.is_head==1}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                                <text>{{groupInfo.owner_name}}中心</text>
+                            </view>
+                        </view>
+                    </view>
+                    <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/apply" wx:elif="{{member_info.is_head==2||member_info.is_head==3}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                                <text>{{groupInfo.owner_name}}审核中</text>
+                            </view>
+                            <view class="tool-right">
+                                <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+                            </view>
+                        </view>
+                    </navigator>
+                    <block wx:else>
+                        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/recruit" wx:if="{{close_community_apply_enter==0}}">
+                            <view class="item-main">
+                                <view class="item-title">
+                                    <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                                    <text>申请成为{{groupInfo.owner_name}}</text>
+                                </view>
+                                <view class="tool-right">
+                                    <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+                                </view>
+                            </view>
+                        </navigator>
+                    </block>
+                </block>
+                <view wx:if="{{enabled_front_supply==0&&is_supply==2&&is_open_supplymobile==1}}">
+                    <view class="item-main" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
+                        <view class="item-title">
+                            <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                            <text>{{supply_diy_name}}中心</text>
+                        </view>
+                        <view class="tool-right">
+                            <image class="icon-right " src="../../images/rightArrowImg.png"></image>
+                        </view>
+                    </view>
+                </view>
+                <block wx:elif="{{enabled_front_supply==1}}">
+                    <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/supply/recruit" wx:if="{{is_supply==0||needAuth}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                                <text>申请成为{{supply_diy_name}}</text>
+                            </view>
+
+                        </view>
+                    </navigator>
+                    <view wx:elif="{{is_supply==1}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                                <text>{{supply_diy_name}}审核中</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view wx:elif="{{is_supply==2}}">
+                        <view class="item-main" wx:if="{{is_open_supplymobile==1}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
+                            <view class="item-title">
+                                <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                                <text>{{supply_diy_name}}中心</text>
+                            </view>
+
+                        </view>
+                        <view class="item-main" wx:else>
+                            <view class="item-title">
+                                <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                                <text>您已是{{supply_diy_name}}</text>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/presale.png'}}"></image>
+                            <text>预售中心</text>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="../../images/invite.png"></image>
+                            <text>邀新有礼</text>
+                        </view>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="../../images/virtualcard.png"></image>
+                            <text>{{virtualcard_name_modify}}</text>
+                        </view>
+                    </view>
+                </view>
+                <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
+                            <text>常见帮助</text>
+                        </view>
+                    </view>
+                </navigator>
+                <button class="item-fav" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch!=0}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i8?user_tool_icons.i8:'../../images/serviceIcon.png'}}"></image>
+                            <text>联系客服</text>
+                        </view>
+                    </view>
                 </button>
-              </view>
-              <view class="userLevel" wx:if="{{member_info.is_show_member_id==1}}">
-                <view class="userLeveldiscount">
-                 用户ID: {{member_info.member_id}}
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/user/articleProtocol?about=1" wx:if="{{is_show_about_us==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
+                            <text>关于我们</text>
+                        </view>
+                    </view>
+                </navigator>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
+                            <text>平台管理</text>
+                        </view>
+                    </view>
+                </navigator>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+                            <text>卡密充值</text>
+                        </view>
+                    </view>
+                </navigator>
+                <view class="toolList">
+                    <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
+                        <view class="item-main">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="../../images/loginOut.png"></image>
+                                <text>退出登录</text>
+                            </view>
+                        </view>
+                    </view>
                 </view>
-              </view>
-              <view class="userLevel" wx:if="{{member_info.is_show_member_level==1}}">
-                <view class="userLevelName">
-                  <text class="iconfont icon-huangguan"></text> {{member_info.member_level_info.level_name}}
-                </view>
-                <view class="userLeveldiscount" wx:if="{{member_info.member_level_info.discount<10}}">
-                  享受{{member_info.member_level_info.discount}}折</view>
-              </view>
             </view>
-          </block>
-          <view class="userInfo" style="color:{{user_top_font_color}}" bindtap="authModal" wx:else>
-            <image class="userAvatarUrl" src="../../images/head-bitmap.png"></image>
-            <view class="user-name">点击登录账户</view>
-          </view>
-          <view class="fetch-coder {{(fetch_coder_type==1||needAuth)?'signIn':''}}" bindtap="goLink2"
-            data-link="/eaterplanet_ecommerce/moduleA/score/signin"
-            wx:if="{{isopen_signinreward==1&&show_signinreward_icon==1}}" style="color:{{user_top_font_color}}">
-            <text class="iconfont icon-qiandao"></text>
-            <view class="fetch-coder-text">积分签到</view>
-          </view>
         </view>
+        <!-- 九宫格 -->
+        <view class="tool" wx:if="{{user_tool_showtype==1}}">
+            <view class="toolList waptoolList">
+                <view class="yuenav" bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/charge" wx:if="{{is_open_yue_pay==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i1?user_tool_icons.i1:'../../images/wallet.png'}}"></image>
+                        <text>余额</text>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/solitaire/me" wx:if="{{is_open_solitaire==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i10?user_tool_icons.i10:'../../images/soli.png'}}"></image>
+                        <text>我的接龙</text>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/writeoff/index" wx:if="{{member_info.is_hexiao_member==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i11?user_tool_icons.i11:'../../images/hexiao.png'}}"></image>
+                        <text>到店核销</text>
+                    </view>
+                </view>
+                <block wx:if="{{is_show_score==1}}">
+                    <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:if="{{isopen_signinreward==1}}">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
+                            <text>积分</text>
+                        </view>
+                    </view>
+                    <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:else>
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
+                            <text>积分</text>
+                        </view>
+                    </view>
+                </block>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/coupon">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/coupon.png'}}"></image>
+                        <text>优惠券</text>
+                    </view>
+                </view>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/communityMembers" wx:if="{{member_info.pickup_id>0}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i4?user_tool_icons.i4:'../../images/groupCenterIcon.png'}}"></image>
+                        <text>核销管理</text>
+                    </view>
+                </navigator>
+                <block wx:if="{{close_community_index!=1}}">
+                    <view bindtap="goToGroup" wx:if="{{member_info.is_head==1}}">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                            <text>{{groupInfo.owner_name}}中心</text>
+                        </view>
+                    </view>
+                    <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/apply" wx:elif="{{member_info.is_head==2||member_info.is_head==3}}">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                            <text>{{groupInfo.owner_name}}审核中</text>
+                        </view>
+                    </navigator>
+                    <block wx:else>
+                        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/recruit" wx:if="{{close_community_apply_enter==0}}">
+                            <view class="item-title">
+                                <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
+                                <text>申请成为{{groupInfo.owner_name}}</text>
+                            </view>
+                        </navigator>
+                    </block>
+                </block>
+                <view wx:if="{{enabled_front_supply==0&&is_supply==2&&is_open_supplymobile==1}}">
+                    <view class="item-title" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
+                        <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                        <text>{{supply_diy_name}}中心</text>
+                    </view>
+                </view>
+                <block wx:elif="{{enabled_front_supply==1}}">
+                    <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/supply/recruit" wx:if="{{is_supply==0||needAuth}}">
+                        <view class="item-title">
+                            <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                            <text>申请成为{{supply_diy_name}}</text>
+                        </view>
+                    </navigator>
+                    <view wx:elif="{{is_supply==1}}">
+                        <view class="item-title">
+                            <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                            <text>{{supply_diy_name}}审核中</text>
+                        </view>
+                    </view>
+                    <view wx:elif="{{is_supply==2}}">
+                        <view class="item-title" wx:if="{{is_open_supplymobile==1}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
+                            <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                            <text>{{supply_diy_name}}中心</text>
+                        </view>
+                        <view class="item-title" wx:else>
+                            <image aspectFit class="toolIcon supplier" mode="widthFix" src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
+                            <text>您已是{{supply_diy_name}}</text>
+                        </view>
+                    </view>
+                </block>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i12?user_tool_icons.i12:'../../images/presale.png'}}"></image>
+                        <text>预售中心</text>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i13?user_tool_icons.i13:'../../images/invite.png'}}"></image>
+                        <text>邀新有礼</text>
+                    </view>
+                </view>
+                <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i14?user_tool_icons.i14:'../../images/virtualcard.png'}}"></image>
+                        <text>{{virtualcard_name_modify}}</text>
+                    </view>
+                </view>
+                <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
+                        <text>常见帮助</text>
+                    </view>
+                </navigator>
+                <button class="item-fav" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}" wx:if="{{user_service_switch!=0}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i8?user_tool_icons.i8:'../../images/serviceIcon.png'}}"></image>
+                        <text>联系客服</text>
+                    </view>
+                </button>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/user/articleProtocol?about=1" wx:if="{{is_show_about_us==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
+                        <text>关于我们</text>
+                    </view>
+                </navigator>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
+                        <text>平台管理</text>
+                    </view>
+                </navigator>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+                        <text>卡密充值</text>
+                    </view>
+                </navigator>
+                <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i15?user_tool_icons.i15:'../../images/loginOut.png'}}"></image>
+                        <text>退出登录</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="canvas-content" wx:if="{{fetch_coder_type==0}}">
+            <view class="left">
+                <image bindtap='previewImage' class="canvas" src="{{member_info.hexiao_qrcod}}" wx:if="{{member_info.hexiao_qrcod}}" data-src='{{member_info.hexiao_qrcod}}'></image>
+                <view class="nocode" bindtap="goLink2" wx:else>登录后显示</view>
+            </view>
+            <view class="right">
+                <view class="title1">向{{groupInfo.owner_name}}出示二维码提货</view>
+                <view class="title2" style="display:none;">或出示提货码</view>
+                <view bindtap="showCoder" class="btn" style="display:none;">使用提货码</view>
+            </view>
+        </view>
+        <!-- 弹窗广告 -->
+        <advimg pos="2" />
+        <view class="version">
+            <text>{{copyright}}</text>
+        </view>
+        <view class="dejavu-version">
+            <view class="left">
+                <image class="dejavu" src="../../images/dejavuLogo.png"></image>
+            </view>
+            <view class="right">
+                <text>开发&著作权所有：蒂佳芙科技（云南）有限公司\n©2023 DEJAVU.Tech ALL RIGHTS RESERVED.</text>
+            </view>
 
-      </view>
+        </view>
     </view>
-    <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1}}" bindtap="goLink2"
-          data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
-          <view class="i-flex vip-name">
-            <image src="{{modify_vipcard_logo}}" wx:if="{{modify_vipcard_logo}}" class="vip-logo"></image>
-            <text class="iconfont icon-huiyuan" style="font-size:30rpx;" wx:else></text>
-            “{{modify_vipcard_name}}” 尊享特权·会员专享价
-          </view>
-          <view wx:if="{{is_vip_card_member==0}}">立即开通<text class="iconfont icon-youjiantou goright"></text></view>
-          <view wx:if="{{is_vip_card_member==1}}">立即查看<text class="iconfont icon-youjiantou goright"></text></view>
-          <view wx:if="{{is_vip_card_member==2}}"><text style="color:#5c5c5c;">已到期,</text>立即续费<text
-              class="iconfont icon-youjiantou goright"></text></view>
-    </view>
-    <view class="order ">
-        <view class="my-order">
-          <view class="my-order-title">
-            <text>我的订单</text>
-            <view bindtap="goLink2" class="to-order" data-link="/eaterplanet_ecommerce/pages/order/index">
-              <text>查看全部订单</text>
-            </view>
-          </view>
+</view>
 
-          <view class="orderTab">
-            <view bindtap="goLink2" class="order_status"
-              data-link="/eaterplanet_ecommerce/pages/order/index?order_status=3">
-              <text class="num" style="background:{{albert}}"
-                wx:if="{{member_info.wait_pay_count!=0}}">{{member_info.wait_pay_count}}</text>
-              <image class="icon-img"
-                src="{{user_order_menu_icons.i1?user_order_menu_icons.i1:'../../images/needPayIcon.png'}}"></image>
-              <text style="color: #fff;">待付款</text>
-            </view>
-            <view bindtap="goLink2" class="order_status"
-              data-link="/eaterplanet_ecommerce/pages/order/index?order_status=1">
-              <text class="num" style="background:{{albert}}"
-                wx:if="{{member_info.wait_send_count!=0}}">{{member_info.wait_send_count}}</text>
-              <image class="icon-img"
-                src="{{user_order_menu_icons.i2?user_order_menu_icons.i2:'../../images/undeli.png'}}"></image>
-              <text style="color: #fff;">待配送</text>
-            </view>
-            <view bindtap="goLink2" class="order_status"
-              data-link="/eaterplanet_ecommerce/pages/order/index?order_status=4">
-              <text class="num" style="background:{{albert}}"
-                wx:if="{{member_info.wait_get_count!=0}}">{{member_info.wait_get_count}}</text>
-              <image class="icon-img"
-                src="{{user_order_menu_icons.i3?user_order_menu_icons.i3:'../../images/distributionIcon.png'}}"></image>
-              <text style="color: #fff;">待提货</text>
-            </view>
-            <view bindtap="goLink2" class="order_status"
-              data-link="/eaterplanet_ecommerce/pages/order/index?order_status=6">
-              <image class="icon-img"
-                src="{{user_order_menu_icons.i4?user_order_menu_icons.i4:'../../images/completeIcon.png'}}"></image>
-              <text style="color: #fff;">已提货</text>
-            </view>
-            <view bindtap="goLink2" class="order_status" data-link="/eaterplanet_ecommerce/pages/refund/refundList">
-              <image class="icon-img"
-                src="{{user_order_menu_icons.i5?user_order_menu_icons.i5:'../../images/refundIcon.png'}}"></image>
-              <text style="color: #fff;">售后服务</text>
-            </view>
-          </view>
+<i-tabbar currentIdx='4' cartNum='{{cartNum}}' tabbarRefresh="{{tabbarRefresh}}" needAuth="{{needAuth}}" bind:authModal="authModal" />
+<i-get-phone bind:cancel="close" bind:confirm="getReceiveMobile" visible="{{showGetPhone&&!needAuth&&!showUserProfile}}" bind:needAuth="authModal"></i-get-phone>
+<i-fetch-coder coderList="{{myCoderList}}" visible="{{isShowCoder}}" codeImg="{{member_info.hexiao_qrcod}}" bind:cancel="toggleFetchCoder"></i-fetch-coder>
+<i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal">
+</i-new-auth>
+<ep-modal-userProfile showUserProfile="{{showUserProfile}}" bind:authSuccess="authSuccess" bind:cancel="modalProfile">
+</ep-modal-userProfile>
 
-        </view>
-
-      </view>
-
-          <!-- 我的分销 Start -->
-    <view class="tool1 distribution" wx:if="{{commiss_level>0}}">
-      
-      <block wx:if="{{commiss_sharemember_need==1}}">
-          <view class="my-distribution-title">
-            <text>我的粉丝</text>
-            <view bindtap="goLink2" class="to-distribution"
-            data-link="/eaterplanet_ecommerce/distributionCenter/pages/fans">
-            <text>查看</text>
-          </view>
-        </view>
-        <view class='modal-body i-flex i-flex-alc'>
-          <view class='distribut-tot i-flex-item'>{{share_member_count}}</view>
-          <view class='distribut-new bor-r'>
-            <view class='distribut-num'>{{today_share_member_count}}</view>
-            <view class='distribut-desc'>今日新增</view>
-          </view>
-          <view class='distribut-new'>
-            <view class='distribut-num'>{{yestoday_share_member_count}}</view>
-            <view class='distribut-desc'>昨日新增</view>
-          </view>
-        </view>
-        <view class='modal-foot i-flex i-flex-spb' wx:if="{{!(member_info.comsiss_flag==1&&member_info.comsiss_state==1)}}">
-          <view class='modal-foot-l' wx:if="{{need_num_update>0}}">
-            <text wx:if="{{share_member_count!=0}}">再</text>分享<text class='tot'>{{need_num_update}}</text>位新粉丝可升级为{{commiss_diy_name}}
-          </view>
-          <view class='modal-foot-l' wx:if="{{commiss_biaodan_need==0&&need_num_update<=0}}">
-            <block wx:if="{{formStatus==0}}">差一步就成为{{commiss_diy_name}}人员啦！</block>
-            <block wx:if="{{formStatus==1}}">恭喜你填写成功，等待审核！</block>
-            <block wx:if="{{formStatus==2}}">恭喜你成为{{commiss_diy_name}}人员！</block>
-          </view>
-          <view class='modal-foot-l' wx:if="{{commiss_biaodan_need==1&&need_num_update<=0}}">
-            <block wx:if="{{formStatus==0}}">差一步就成为{{commiss_diy_name}}人员啦！</block>
-            <block wx:if="{{formStatus==1}}">恭喜你填写成功，等待审核！</block>
-            <block wx:if="{{formStatus==2}}">恭喜你成为{{commiss_diy_name}}人员！</block>
-          </view>
-          <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='share' wx:if="{{need_num_update>0}}">立即分享</view>
-          <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='commiss' wx:if="{{need_num_update<=0&&commiss_biaodan_need<=0&&formStatus==2}}">进入{{commiss_diy_name}}中心</view>
-          <view class='modal-foot-r btn' bindtap='goNext' data-type='form' wx:if="{{need_num_update<=0&&formStatus==0}}">
-            立即升级
-          </view>
-          <view class='modal-foot-r btn' style="background:{{skin.color}}" bindtap='goNext' data-type='commiss'wx:if="{{commiss_biaodan_need==1&&need_num_update<=0&&formStatus==2}}">
-            进入{{commiss_diy_name}}中心
-          </view>
-        </view>
-      </block>
-      <view class="toolList">
-        <view bindtap='goDistribution'>
-          <view class="item-main">
-            <view class="item-title">
-              <text>{{commiss_diy_name}}中心</text>
-            </view>
-
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- 我的分销 End -->
-
-
-      <!-- 我的提货点 Start -->
-      <view class="tool1 distribution" wx:if="{{community&&show_user_change_comunity==1}}">
-        <view class="my-distribution modal-head">
-          <view class="my-distribution-title">
-            <text>我的当前自提点</text>
-          
-          <view wx:if="{{open_danhead_model==1}}"></view>
-          <block wx:elif="{{hide_community_change_btn==0&&open_danhead_model!=1}}">
-            <navigator wx:if="{{hide_community_change_word==0}}" class="to-distribution" hoverClass="none"
-              url="/eaterplanet_ecommerce/pages/position/community">
-              <text>切换</text>
-            </navigator>
-          </block>
-        </view>
-        </view>
-        <view class='modal-body community fsz-30 i-flex'>
-        <view class="i-flex-item">
-	          <view class="i-flex" style="align-items: center">
-            <view wx:if="{{community.headDoorphoto}}" class="u-m-r-15" bindtap="previewImage" data-src="{{community.headDoorphoto}}">
-              <image src="{{community.headDoorphoto}}" style="width: 100rpx;height: 100rpx;"></image>
-            </view>
-          <view class="weight red mb5" style="color:{{skin.color}}">{{community.communityName}}</view>
-        </view>
-          <view class="fsz-26 text-gray mb5">{{community.fullAddress}}</view>
-          <view class="i-flex community-flex" wx:if="{{community.head_mobile||community.disUserMobile}}">
-            <view class="i-flex">
-              <view><text class="iconfont icon-ziyuan fsz-28"></text> 电话：</view>
-              <view style="color:#ee884a;" bindtap="callTelphone"
-              data-phone="{{community.head_mobile||community.disUserMobile}}" wx:if="{{show_user_tuan_mobile==1}}">
-              {{community.head_mobile||community.disUserMobile}}</view>
-              <view style="color:#ee884a;" wx:else>{{community.hideTel}}</view>
-            </view>
-            <view class="i-flex">
-              <view class="text-center i-flex-alc luxian" style="color:{{skin.color}}" bindtap="gotoMap" wx:if="{{show_user_change_comunity_map==1}}">
-                <text class="iconfont icon-luxian fsz-32"></text> 路线
-              </view>
-            </view>
-          </view>
-        </view>
-        </view>
-
-      </view>
-      <!-- 我的提货点 End -->
-
-      <!-- 拼团 Start -->
-      <view class="tool" wx:if="{{show_user_pin==1}}">
-        <view class="toolList">
-        <view bindtap='goDistribution' bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/pin/me">
-          <view class="item-main">
-            <view class="item-title"><text>我的拼团</text></view>
-          </view>
-          </view>
-        <view bindtap='goDistribution' bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/pin/income">
-          <view class="item-main">
-            <view class="item-title"><text>拼团收益</text></view>
-          </view>
-          </view>
-        </view>
-      </view>
-      <!-- 拼团 End -->
-      <!-- 配送员中心 -->
-      <view class="tool1 distribution" wx:if="{{is_localtown_distributionman==1}}">
-        <view class="my-distribution modal-head" bindtap="goLink2"
-          data-link="/eaterplanet_ecommerce/moduleB/rider/index">
-          <view class="my-distribution-title" style="border-bottom: none">
-            <image class="toolIconbig" mode="widthFix" src="../../images/rider.png"></image>
-            <text>配送员中心</text>
-          </view>
-        </view>
-      </view>
-
-      <!-- 列表 -->
-      <view class="tool" wx:if="{{user_tool_showtype==0}}">
-        <view class="toolList">
-          <view class="yuenav" bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/charge"
-            wx:if="{{is_open_yue_pay==1}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i1?user_tool_icons.i1:'../../images/wallet.png'}}"></image>
-                <text>余额<block wx:if="{{!needAuth}}">: ¥{{member_info.account_money||0}}</block></text>
-              </view>
-              <view class="tool-right">
-                <text style='margin-right:10rpx;'>{{excharge_nav_name}}</text>
-                <image class="icon-right " src="../../images/rightArrowImg.png"></image>
-              </view>
-            </view>
-          </view>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/solitaire/me"
-            wx:if="{{is_open_solitaire==1}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i10?user_tool_icons.i10:'../../images/soli.png'}}"></image>
-                <text>我的接龙</text>
-              </view>
-            </view>
-          </view>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/writeoff/index"
-            wx:if="{{member_info.is_hexiao_member==1}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i11?user_tool_icons.i11:'../../images/hexiao.png'}}"></image>
-                <text>到店核销</text>
-              </view>
-            </view>
-          </view>
-          <block wx:if="{{is_show_score==1}}">
-            <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin"
-              wx:if="{{isopen_signinreward==1}}">
-              <view class="item-main">
-                <view class="item-title">
-                  <image class="toolIcon" mode="widthFix"
-                    src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
-                  <text>积分</text>
-                </view>
-                <view class="tool-right">
-                  <text style='margin-right:10rpx;'>立即签到</text>
-                  <image class="icon-right " src="../../images/rightArrowImg.png"></image>
-                </view>
-              </view>
-            </view>
-            <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:else>
-              <view class="item-main">
-                <view class="item-title">
-                  <image class="toolIcon" mode="widthFix"
-                    src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
-                  <text>积分</text>
-                </view>
-              </view>
-            </view>
-          </block>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/coupon">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/coupon.png'}}"></image>
-                <text>优惠券</text>
-              </view>
-            </view>
-          </view>
-          <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/communityMembers"
-            wx:if="{{member_info.pickup_id>0}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i4?user_tool_icons.i4:'../../images/groupCenterIcon.png'}}"></image>
-                <text>核销管理</text>
-              </view>
-            </view>
-          </navigator>
-          <block wx:if="{{close_community_index!=1}}">
-            <view bindtap="goToGroup" wx:if="{{member_info.is_head==1}}">
-              <view class="item-main">
-                <view class="item-title">
-                  <image class="toolIcon" mode="widthFix"
-                    src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                  <text>{{groupInfo.owner_name}}中心</text>
-                </view>
-              </view>
-            </view>
-            <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/apply"
-              wx:elif="{{member_info.is_head==2||member_info.is_head==3}}">
-              <view class="item-main">
-                <view class="item-title">
-                  <image class="toolIcon" mode="widthFix"
-                    src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                  <text>{{groupInfo.owner_name}}审核中</text>
-                </view>
-                <view class="tool-right">
-                  <image class="icon-right " src="../../images/rightArrowImg.png"></image>
-                </view>
-              </view>
-            </navigator>
-            <block wx:else>
-              <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/recruit"
-                wx:if="{{close_community_apply_enter==0}}">
-                <view class="item-main">
-                  <view class="item-title">
-                    <image class="toolIcon" mode="widthFix"
-                      src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                    <text>申请成为{{groupInfo.owner_name}}</text>
-                  </view>
-                  <view class="tool-right">
-                    <image class="icon-right " src="../../images/rightArrowImg.png"></image>
-                  </view>
-                </view>
-              </navigator>
-            </block>
-          </block>
-          <view wx:if="{{enabled_front_supply==0&&is_supply==2&&is_open_supplymobile==1}}">
-            <view class="item-main" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
-              <view class="item-title">
-                <image aspectFit class="toolIcon supplier" mode="widthFix"
-                  src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                <text>{{supply_diy_name}}中心</text>
-              </view>
-              <view class="tool-right">
-                <image class="icon-right " src="../../images/rightArrowImg.png"></image>
-              </view>
-            </view>
-          </view>
-          <block wx:elif="{{enabled_front_supply==1}}">
-            <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/supply/recruit"
-              wx:if="{{is_supply==0||needAuth}}">
-              <view class="item-main">
-                <view class="item-title">
-                  <image aspectFit class="toolIcon supplier" mode="widthFix"
-                    src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                  <text>申请成为{{supply_diy_name}}</text>
-                </view>
-
-              </view>
-            </navigator>
-            <view wx:elif="{{is_supply==1}}">
-              <view class="item-main">
-                <view class="item-title">
-                  <image aspectFit class="toolIcon supplier" mode="widthFix"
-                    src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                  <text>{{supply_diy_name}}审核中</text>
-                </view>
-              </view>
-            </view>
-            <view wx:elif="{{is_supply==2}}">
-              <view class="item-main" wx:if="{{is_open_supplymobile==1}}" bindtap="goLink2"
-                data-link="/eaterplanet_ecommerce/moduleB/supply/index">
-                <view class="item-title">
-                  <image aspectFit class="toolIcon supplier" mode="widthFix"
-                    src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                  <text>{{supply_diy_name}}中心</text>
-                </view>
-
-              </view>
-              <view class="item-main" wx:else>
-                <view class="item-title">
-                  <image aspectFit class="toolIcon supplier" mode="widthFix"
-                    src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                  <text>您已是{{supply_diy_name}}</text>
-                </view>
-              </view>
-            </view>
-          </block>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/presale.png'}}"></image>
-              <text>预售中心</text>
-            </view>
-          </view>
-        </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="../../images/invite.png"></image>
-              <text>邀新有礼</text>
-            </view>
-          </view>
-        </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="../../images/virtualcard.png"></image>
-              <text>{{virtualcard_name_modify}}</text>
-            </view>
-          </view>
-        </view>
-          <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
-                <text>常见帮助</text>
-              </view>
-            </view>
-          </navigator>
-          <button class="item-fav" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}"
-            wx:if="{{user_service_switch!=0}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i8?user_tool_icons.i8:'../../images/serviceIcon.png'}}"></image>
-                <text>联系客服</text>
-              </view>
-            </view>
-          </button>
-          <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/user/articleProtocol?about=1"
-            wx:if="{{is_show_about_us==1}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
-                <text>关于我们</text>
-              </view>
-            </view>
-          </navigator>
-        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
-              <text>平台管理</text>
-            </view>
-          </view>
-        </navigator>
-        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
-          <view class="item-main">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
-              <text>卡密充值</text>
-            </view>
-          </view>
-        </navigator>
-          <view class="toolList">
-          <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
-            <view class="item-main">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix" src="../../images/loginOut.png"></image>
-                <text>退出登录</text>
-              </view>
-            </view>
-          </view>
-        </view>
-        </view>
-      </view>
-      <!-- 九宫格 -->
-      <view class="tool" wx:if="{{user_tool_showtype==1}}">
-        <view class="toolList waptoolList">
-          <view class="yuenav" bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/charge"
-            wx:if="{{is_open_yue_pay==1}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i1?user_tool_icons.i1:'../../images/wallet.png'}}"></image>
-              <text>余额</text>
-            </view>
-          </view>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/solitaire/me"
-            wx:if="{{is_open_solitaire==1}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i10?user_tool_icons.i10:'../../images/soli.png'}}"></image>
-              <text>我的接龙</text>
-            </view>
-          </view>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/writeoff/index"
-            wx:if="{{member_info.is_hexiao_member==1}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i11?user_tool_icons.i11:'../../images/hexiao.png'}}"></image>
-              <text>到店核销</text>
-            </view>
-          </view>
-          <block wx:if="{{is_show_score==1}}">
-            <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin"
-              wx:if="{{isopen_signinreward==1}}">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
-                <text>积分</text>
-              </view>
-            </view>
-            <view class="score" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:else>
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i2?user_tool_icons.i2:'../../images/icon-score.png'}}"></image>
-                <text>积分</text>
-              </view>
-            </view>
-          </block>
-          <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/pages/user/coupon">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i3?user_tool_icons.i3:'../../images/coupon.png'}}"></image>
-              <text>优惠券</text>
-            </view>
-          </view>
-          <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/communityMembers"
-            wx:if="{{member_info.pickup_id>0}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i4?user_tool_icons.i4:'../../images/groupCenterIcon.png'}}"></image>
-              <text>核销管理</text>
-            </view>
-          </navigator>
-          <block wx:if="{{close_community_index!=1}}">
-            <view bindtap="goToGroup" wx:if="{{member_info.is_head==1}}">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                <text>{{groupInfo.owner_name}}中心</text>
-              </view>
-            </view>
-            <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/apply"
-              wx:elif="{{member_info.is_head==2||member_info.is_head==3}}">
-              <view class="item-title">
-                <image class="toolIcon" mode="widthFix"
-                  src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                <text>{{groupInfo.owner_name}}审核中</text>
-              </view>
-            </navigator>
-            <block wx:else>
-              <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleA/groupCenter/recruit"
-                wx:if="{{close_community_apply_enter==0}}">
-                <view class="item-title">
-                  <image class="toolIcon" mode="widthFix"
-                    src="{{user_tool_icons.i5?user_tool_icons.i5:'../../images/groupCenterIcon.png'}}"></image>
-                  <text>申请成为{{groupInfo.owner_name}}</text>
-                </view>
-              </navigator>
-            </block>
-          </block>
-          <view wx:if="{{enabled_front_supply==0&&is_supply==2&&is_open_supplymobile==1}}">
-            <view class="item-title" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/supply/index">
-              <image aspectFit class="toolIcon supplier" mode="widthFix"
-                src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-              <text>{{supply_diy_name}}中心</text>
-            </view>
-          </view>
-          <block wx:elif="{{enabled_front_supply==1}}">
-            <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/supply/recruit"
-              wx:if="{{is_supply==0||needAuth}}">
-              <view class="item-title">
-                <image aspectFit class="toolIcon supplier" mode="widthFix"
-                  src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                <text>申请成为{{supply_diy_name}}</text>
-              </view>
-            </navigator>
-            <view wx:elif="{{is_supply==1}}">
-              <view class="item-title">
-                <image aspectFit class="toolIcon supplier" mode="widthFix"
-                  src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                <text>{{supply_diy_name}}审核中</text>
-              </view>
-            </view>
-            <view wx:elif="{{is_supply==2}}">
-              <view class="item-title" wx:if="{{is_open_supplymobile==1}}" bindtap="goLink2"
-                data-link="/eaterplanet_ecommerce/moduleB/supply/index">
-                <image aspectFit class="toolIcon supplier" mode="widthFix"
-                  src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                <text>{{supply_diy_name}}中心</text>
-              </view>
-              <view class="item-title" wx:else>
-                <image aspectFit class="toolIcon supplier" mode="widthFix"
-                  src="{{user_tool_icons.i6?user_tool_icons.i6:'../../images/icon-supplier.png'}}"></image>
-                <text>您已是{{supply_diy_name}}</text>
-              </view>
-            </view>
-          </block>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/presale/index" wx:if="{{isopen_presale==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i12?user_tool_icons.i12:'../../images/presale.png'}}"></image>
-            <text>预售中心</text>
-          </view>
-        </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/invite/index" wx:if="{{is_open_invite_invitation==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i13?user_tool_icons.i13:'../../images/invite.png'}}"></image>
-            <text>邀新有礼</text>
-          </view>
-        </view>
-        <view bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleB/virtualcard/index" wx:if="{{is_open_virtualcard_show==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i14?user_tool_icons.i14:'../../images/virtualcard.png'}}"></image>
-            <text>{{virtualcard_name_modify}}</text>
-          </view>
-        </view>
-          <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
-              <text>常见帮助</text>
-            </view>
-          </navigator>
-          <button class="item-fav" openType="contact" sessionFrom="sobot|{{userInfo.nickName}}|{{userInfo.avatarUrl}}"
-            wx:if="{{user_service_switch!=0}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i8?user_tool_icons.i8:'../../images/serviceIcon.png'}}"></image>
-              <text>联系客服</text>
-            </view>
-          </button>
-          <navigator hoverClass="none" url="/eaterplanet_ecommerce/pages/user/articleProtocol?about=1"
-            wx:if="{{is_show_about_us==1}}">
-            <view class="item-title">
-              <image class="toolIcon" mode="widthFix"
-                src="{{user_tool_icons.i9?user_tool_icons.i9:'../../images/aboutUsIcon.png'}}"></image>
-              <text>关于我们</text>
-          </view>
-        </navigator>
-        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/manage/index" wx:if="{{isopen_admin_managefront==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
-            <text>平台管理</text>
-          </view>
-        </navigator>
-        <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
-          <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
-            <text>卡密充值</text>
-            </view>
-          </navigator>
-          <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
-            <view class="item-title">
-            <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i15?user_tool_icons.i15:'../../images/loginOut.png'}}"></image>
-              <text>退出登录</text>
-            </view>
-          </view>
-        </view>
-      </view>
-      <view class="canvas-content" wx:if="{{fetch_coder_type==0}}">
-        <view class="left">
-          <image bindtap='previewImage' class="canvas" src="{{member_info.hexiao_qrcod}}"
-            wx:if="{{member_info.hexiao_qrcod}}" data-src='{{member_info.hexiao_qrcod}}'></image>
-          <view class="nocode" bindtap="goLink2" wx:else>登录后显示</view>
-        </view>
-        <view class="right">
-          <view class="title1">向{{groupInfo.owner_name}}出示二维码提货</view>
-          <view class="title2" style="display:none;">或出示提货码</view>
-          <view bindtap="showCoder" class="btn" style="display:none;">使用提货码</view>
-        </view>
-      </view>
-            <!-- 弹窗广告 -->
-            <advimg pos="2" />
-      <view class="version">
-        <text>{{copyright}}</text>
-      </view>
-      <view class="dejavu-version">
-        <view class="left">
-        <image class="dejavu" src="../../images/dejavuLogo.png"></image>
-      </view> 
-        <view class="right">
-        <text>开发&著作权所有：蒂佳芙科技（云南）有限公司\n©2022 DEJAVU.Tech ALL RIGHTS RESERVED.</text>
-        </view>  
-      
-      </view>
-    </view>
-  </view>
-
-  <i-tabbar currentIdx='4' cartNum='{{cartNum}}' tabbarRefresh="{{tabbarRefresh}}" needAuth="{{needAuth}}"
-    bind:authModal="authModal" />
-  <i-get-phone bind:cancel="close" bind:confirm="getReceiveMobile" visible="{{showGetPhone&&!needAuth}}"
-    bind:needAuth="authModal"></i-get-phone>
-  <i-fetch-coder coderList="{{myCoderList}}" visible="{{isShowCoder}}" codeImg="{{member_info.hexiao_qrcod}}"
-    bind:cancel="toggleFetchCoder"></i-fetch-coder>
-  <i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal">
-  </i-new-auth>
-
-  <!-- 弹窗广告 -->
-  <ad-alert pop_page="3" />
+<!-- 弹窗广告 -->
+<ad-alert pop_page="3" />
