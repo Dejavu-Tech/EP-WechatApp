@@ -65,21 +65,17 @@ Page({
   initValidate() {
     const rules = {
       realname: {
-        required: true,
         minlength: 1
       },
       telephone: {
-        required: true,
         tel: true
       }
     }
     const messages = {
       realname: {
-        required: '请填写真实姓名',
         minlength: '请输入正确的姓名'
       },
       telephone: {
-        required: '请填写手机号',
         tel: '请填写正确的手机号'
       }
     }
