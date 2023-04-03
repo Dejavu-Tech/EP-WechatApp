@@ -1,71 +1,71 @@
 .noBuyList {
-  background: #fff;
+    background: #fff;
 }
 
 .noBuyList .noBuyListCon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-bottom: 100rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 100rpx;
 }
 
 .noBuyList .noBuyListCon .noBuyListImg {
-  width: 218rpx;
-  height: 218rpx;
-  margin-top: 200rpx;
-  margin-bottom: 30rpx;
+    width: 218rpx;
+    height: 218rpx;
+    margin-top: 200rpx;
+    margin-bottom: 30rpx;
 }
 
 .noBuyList .noBuyListCon .noBuyListTit {
-  font-size: 30rpx;
-  color: #666;
+    font-size: 30rpx;
+    color: #666;
 }
 
 .buyRecords {
-  padding-bottom: 40rpx;
+    padding-bottom: 40rpx;
 }
 
 .buyRecords .buyListCon {
-  padding: 0 20rpx;
-  margin-top: 30rpx;
-  margin-bottom: 120rpx;
+    padding: 0 20rpx;
+    margin-top: 30rpx;
+    margin-bottom: 120rpx;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo {
-  height: 120rpx;
-  padding-left: 30rpx;
-  border-bottom: 1rpx solid #efefef;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+    height: 120rpx;
+    padding-left: 30rpx;
+    border-bottom: 1rpx solid #efefef;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo:last-child {
-  border: none;
+    border: none;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo .userImg {
-  width: 72rpx;
-  height: 72rpx;
-  border-radius: 36rpx;
-  margin-right: 20rpx;
+    width: 72rpx;
+    height: 72rpx;
+    border-radius: 36rpx;
+    margin-right: 20rpx;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo .userName {
-  max-width: 200rpx;
-  font-size: 28rpx;
-  color: #666;
-  margin-right: 10rpx;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    max-width: 200rpx;
+    font-size: 28rpx;
+    color: #666;
+    margin-right: 10rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo .buyNum {
-  font-size: 28rpx;
-  color: #666;
-  margin-right: 20rpx;
+    font-size: 28rpx;
+    color: #666;
+    margin-right: 20rpx;
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo .buyNum text {
@@ -73,95 +73,95 @@
 }
 
 .buyRecords .buyListCon .buyList .buyListInfo .buyTime {
-  font-size: 22rpx;
-  color: #aaa;
+    font-size: 22rpx;
+    color: #aaa;
 }
 
 .canvas-img {
-  position: absolute;
-  top: -20000rpx;
+    position: absolute;
+    top: -20000rpx;
 }
 
 button::after {
-  border: none;
+    border: none;
 }
 
 .goodsInfo {
-  background: #fff;
-  padding: 30rpx;
-  border-top: 0.1rpx solid #efefef;
-  border-bottom: 0.1rpx solid #efefef;
-  display: flex;
-  justify-content: space-between;
+    background: #fff;
+    padding: 30rpx;
+    border-top: 0.1rpx solid #efefef;
+    border-bottom: 0.1rpx solid #efefef;
+    display: flex;
+    justify-content: space-between;
 }
 
 .goodsInfo .goodsImg {
-  width: 180rpx;
-  margin-right: 30rpx;
+    width: 180rpx;
+    margin-right: 30rpx;
 }
 
 .goodsInfo .goodsImg .img-class {
-  width: 180rpx;
-  height: 180rpx;
+    width: 180rpx;
+    height: 180rpx;
 }
 
 .goodsInfo .goodsDetail {
-  width: 480rpx;
-  min-height: 180rpx;
+    width: 480rpx;
+    min-height: 180rpx;
 }
 
 .goodsInfo .goodsDetail .detailTop {
-  min-height: 120rpx;
-  display: flex;
-  justify-content: space-between;
+    min-height: 120rpx;
+    display: flex;
+    justify-content: space-between;
 }
 
 .goodsInfo .goodsDetail .detailTop .detailTopInfo {
-  width: 380rpx;
-  padding-right: 20rpx;
-  border-right: 2rpx dashed #aaa;
+    width: 380rpx;
+    padding-right: 20rpx;
+    border-right: 2rpx dashed #aaa;
 }
 
 .goodsInfo .goodsDetail .detailTop .detailTopInfo .goodsName {
-  width: 380rpx;
-  font-size: 26rpx;
-  color: #444;
-  font-weight: bold;
-  line-height: 32rpx;
-  margin-bottom: 6rpx;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  text-overflow: initial;
-  white-space: normal;
+    width: 380rpx;
+    font-size: 26rpx;
+    color: #444;
+    font-weight: bold;
+    line-height: 32rpx;
+    margin-bottom: 6rpx;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: initial;
+    white-space: normal;
 }
 
 .goodsInfo .goodsDetail .detailTop .detailTopInfo .purchasing,
 .goodsInfo .goodsDetail .detailTop .detailTopInfo .saleNum {
-  font-size: 22rpx;
-  color: #aaa;
+    font-size: 22rpx;
+    color: #aaa;
 }
 
 .goodsInfo .goodsDetail .detailTop .shareBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  padding: 0;
-  margin-right: 4rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    padding: 0;
+    margin-right: 4rpx;
 }
 
 .goodsInfo .goodsDetail .detailTop .shareBtn .shareImg {
-  width: 42rpx;
-  height: 36rpx;
+    width: 42rpx;
+    height: 36rpx;
 }
 
 .goodsInfo .goodsDetail .detailBottom {
-  margin-top: 10rpx;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    margin-top: 10rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .goodsInfo .goodsDetail .detailBottom .price {
@@ -170,36 +170,36 @@ button::after {
 }
 
 .goodsInfo .goodsDetail .detailBottom .price text {
-  font-size: 36rpx;
-  font-weight: bold;
+    font-size: 36rpx;
+    font-weight: bold;
 }
 
 .goodsInfo .goodsDetail .detailBottom .time {
-  width: 290rpx;
-  font-size: 26rpx;
-  color: #444;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+    width: 290rpx;
+    font-size: 26rpx;
+    color: #444;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .goodsInfo .goodsDetail .detailBottom .time .countdown {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .goodsInfo .goodsDetail .detailBottom .time .countdown .itemTime {
-  width: 38rpx;
-  height: 32rpx;
-  background: #444;
-  border-radius: 4rpx;
-  font-size: 26rpx;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 38rpx;
+    height: 32rpx;
+    background: #444;
+    border-radius: 4rpx;
+    font-size: 26rpx;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /***商品底部按钮begin **/
@@ -212,7 +212,7 @@ button::after {
 .goods-bottom-bar .leftBtn {
     height: 96rpx;
     display: flex;
-    
+
 }
 
 .goods-bottom-bar .leftBtn .bar-item {
@@ -221,29 +221,33 @@ button::after {
     align-items: center;
     flex-direction: column;
 }
+
 .goods-bottom-bar .leftBtn .back-to-index {
-  background-color: #36362D;
-  border-radius: 0rpx 8rpx 8rpx 0rpx;
+    background-color: #36362D;
+    border-radius: 0rpx 8rpx 8rpx 0rpx;
     width: 125rpx;
     height: 96rpx;
     font-size: 18rpx;
     color: #fff;
 }
+
 .goods-bottom-bar .leftBtn .back-to-index image {
     width: 50rpx;
     height: 50rpx;
 }
+
 .goods-bottom-bar .leftBtn .shop-cart {
 
-   border-radius: 8rpx 0rpx 0rpx 8rpx;
-   margin-left: 6rpx;
-   background-color: #36362D;
+    border-radius: 8rpx 0rpx 0rpx 8rpx;
+    margin-left: 6rpx;
+    background-color: #36362D;
     width: 125rpx;
     height: 96rpx;
     font-size: 18rpx;
     color: #fff;
     position: relative;
 }
+
 .goods-bottom-bar .leftBtn .shop-cart .icon {
 
     width: 50rpx;
@@ -252,7 +256,7 @@ button::after {
 }
 
 .goods-bottom-bar .leftBtn .shop-cart .icon image {
-    
+
     padding-right: 40rpx;
     width: 100%;
     height: 100%;
@@ -290,11 +294,11 @@ button::after {
     align-items: center;
     justify-content: space-between;
     font-weight: bold;
-    /**background-color: #1c1819;**/
     overflow: hidden;
     border-radius: 0rpx 40rpx 40rpx 0rpx;
 
 }
+
 .bar-item add-to-cart {
     background: rgb(247, 112, 98);
 }
@@ -303,8 +307,8 @@ button::after {
 .goods-bottom-bar .gobuy .add-to-cart {
     width: 270rpx;
     height: 96rpx;
-    background: #36362D!important;
-    border-left:2rpx solid #666;
+    background: #36362D !important;
+    border-left: 2rpx solid #666;
     color: #fff;
     font-size: 28rpx;
     display: flex;
@@ -321,7 +325,7 @@ button::after {
     top: 0;
     padding: 0;
     margin: 0;
-    box-shadow: 20rpx 20rpx 20rpx 0rpx rgba(0,0,0,0.8);  
+    box-shadow: 20rpx 20rpx 20rpx 0rpx rgba(0, 0, 0, 0.8);
 }
 
 .goods-bottom-bar .gobuy .balanceBtn {
@@ -332,7 +336,7 @@ button::after {
 .goods-bottom-bar .gobuy .balanceBtn .balance {
     height: 96rpx;
     flex: 1;
-    background: linear-gradient(270deg,rgb(253, 35, 70) 0%,#feb600 100%)!important;
+    background: linear-gradient(90deg, #e7614d 0%, #E57868 100%);
     color: #fff;
     font-size: 28rpx;
     display: flex;
@@ -342,19 +346,20 @@ button::after {
 }
 
 .i-fixed-bottom {
-  background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     bottom: 40rpx;
     z-index: 100;
     overflow: hidden;
     left: 30rpx;
-        right:30rpx;
+    right: 30rpx;
     border-radius: 48rpx 48rpx 48rpx 48rpx;
-    box-shadow: 0rpx 10rpx 20rpx 10rpx rgba(0,0,0,0.4);
-    
+    box-shadow: 0rpx 10rpx 20rpx 10rpx rgba(0, 0, 0, 0.4);
+
 }
- .filter {
-   background-color: rgba(255, 255, 255, 0.8);
+
+.filter {
+    background-color: rgba(255, 255, 255, 0.8);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -364,9 +369,9 @@ button::after {
     z-index: 2;
     width: 100%;
     height: 96rpx;
-    backdrop-filter: blur(30rpx) ; 
+    backdrop-filter: blur(30rpx);
     border-radius: 30rpx 30rpx 30rpx 30rpx;
-        margin-left: 20rpx;
+    margin-left: 20rpx;
     margin-right: 20rpx;
     overflow: hidden;
 }
@@ -378,7 +383,3 @@ button::after {
 .i-fixed-bottom.pb20 {
     padding-bottom: 40rpx;
 }
-
-
-
-
