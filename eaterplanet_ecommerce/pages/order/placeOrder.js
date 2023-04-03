@@ -299,7 +299,7 @@ Page({
           localtown_makeup_delivery_money,
           localtown_expected_delivery,
           localtown_delivery_space_month,
-          order_lou_meng_hao: order_lou_meng_hao|| '楼号门牌',
+          order_lou_meng_hao: order_lou_meng_hao || '楼号门牌',
           order_lou_meng_hao_placeholder: order_lou_meng_hao_placeholder || '例如:A座106室',
           presale_info,
           cashondelivery_data,
