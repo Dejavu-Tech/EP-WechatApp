@@ -1,4 +1,4 @@
-<ep-navBar title="商品评价" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="商品评价" backgroundColorTop='linear-gradient(90deg, #e7614d  0%, #e68475 100%);' color='#fff' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <view class="goodsInfo">
     <i-img class="goodsImg" defaultImage="../../images/placeholder-refund.png" height="90" iClass="img-class" loadImage="{{goods.one_image}}" width="90"></i-img>
@@ -96,16 +96,15 @@
       <view class="goodsStatus" wx:elif="{{is_comunity_rest == 1}}">团长休息中</view>
       <view class="gobuy" wx:else>
         <form bindsubmit="addToCart" reportSubmit="true">
-          <view class="bar-item add-to-cart" style='background: {{goodsdetails_addcart_bg_color}}'>加入购物车</view>
+          <view class="bar-item add-to-cart">加入购物车</view>
           <button class="btn" formType="submit"></button>
         </form>
         <form bindsubmit="submit" reportSubmit="true">
           <button hidden formType="submit" id="formId"></button>
         </form>
         <label class="balanceBtn" for="formId">
-          <view bindtap="balance" class="bar-item balance" style='background: {{goodsdetails_buy_bg_color}}'>立即购买</view>
+          <view bindtap="balance" class="bar-item balance">立即购买</view>
         </label>
-
       </view>
     </view>
   </view>
