@@ -127,5 +127,5 @@ module.exports = siteinfo
 ## 📜许可证 [Apache-2.0](https://github.com/Dejavu-Tech/EP-WechatApp/blob/master/LICENSE)
 
 ## 🌎️软件著作权及其他版权所有
-<img src="https://image.ch871.com/rexotech.png" width="25px" align="left"/> asdf
+<img src="https://image.ch871.com/rexotech.png" width="25px" align="left"/>
 &nbsp;&nbsp;Copyright © 2019-2023 Dejavu Tech. (YN) Co., Ltd. <a href="https://www.rexotech.cn">官网</a>
