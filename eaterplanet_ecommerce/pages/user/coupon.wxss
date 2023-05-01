@@ -23,7 +23,6 @@
   width: 100%;
   background-color: #fff;
   position: fixed;
-  top: 0;
   left: 0;
   right: 0;
   z-index: 10;
@@ -240,11 +239,12 @@
 
 .coupon .footer {
     color: #fff;
-  font-size: 24rpx;
-  padding: 22rpx 0 20rpx 0;
+    font-size: 24rpx;
+    padding: 22rpx 0 20rpx 0;
 }
 
 .coupon .price {
+    font-family: DIN;
     color: #fff;
     width: 175rpx;
     text-align: center;
@@ -253,7 +253,7 @@
 
 .coupon .price .reduce-price {
     color: #fff;
-    font-size: 38rpx;
+    font-size: 52rpx;
     font-weight: bold;
     padding-top: 30rpx;
 }
@@ -337,7 +337,7 @@
 }
 
 .go-shop {
-    background:#ff758c; 
+    background:#4facfe;
     border: 1rpx solid #fff;
     border-radius: 30rpx;
     color: #fff;
