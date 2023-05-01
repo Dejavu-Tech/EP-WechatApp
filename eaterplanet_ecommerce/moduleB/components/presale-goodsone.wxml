@@ -18,7 +18,7 @@
     </view>
     <view class="spu-title">
       <view class="pin-tag" style="color:{{skin.color}};border-color:{{skin.color}}">
-        <block wx:if="{{spuItem.presale_type==0}}">定金￥{{spuItem.presale_ding_money}}可抵￥{{spuItem.presale_deduction_money>0?spuItem.presale_deduction_money:spuItem.presale_ding_money}}</block>
+        <block wx:if="{{spuItem.presale_type==0}}">定金￥{{spuItem.presale_ding_money}} 可抵￥{{spuItem.presale_deduction_money>0?spuItem.presale_deduction_money:spuItem.presale_ding_money}}</block>
           <block wx:else>全款预售</block>
       </view>
     </view>
