@@ -1,13 +1,14 @@
 .search {
   background: #fff;
-  padding: 20rpx 30rpx;
+  padding: 20rpx;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
+  position: fixed;
   font-size: 28rpx;
-  font-family: PingFangSC-Regular;
   font-weight: 400;
+  width: 710rpx;
+  z-index: 10;
 }
 
 .search .icon-search {
@@ -83,6 +84,7 @@
 
 .list-header {
   height: 84rpx;
+  padding-top: 98rpx;
 }
 
 .list-item {
