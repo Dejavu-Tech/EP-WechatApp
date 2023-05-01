@@ -1,7 +1,7 @@
 <ep-navBar background='linear-gradient(90deg, #e7614d  0%, #eb8a7b 100%)' title="搜索结果" iconTheme='white' color='#fff' back="{{true}}" bindback="handlerGobackClick" />
 <view class='box'>
   <view class='list'>
-    <i-type-item wx:for="{{rushList}}" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal" actEnd="{{item.actEnd}}" />
+    <ep-good-card wx:for="{{rushList}}" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal" actEnd="{{item.actEnd}}" />
     <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{showLoadMore&&!showEmpty}}"></i-load-more>
   </view>
   <view class="none-rush-list" wx:if="{{showEmpty}}">

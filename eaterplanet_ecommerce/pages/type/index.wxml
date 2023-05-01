@@ -51,7 +51,7 @@
               <image class='item-tag-bg' mode='widthFix' src="../../images/tag.png"></image>
             </view>
             <view wx:if="{{item.label_info && item.label_info.type==1}}" class='item-tag' style='background:url({{item.label_info.tagcontent}}) no-repeat left top;background-size: 100%;'></view>
-            <i-type-item spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" needAuth="{{needAuth}}" bind:authModal="authModal" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" bind:vipModal="vipModal" showLabel="{{false}}" actEnd="{{item.actEnd}}" />
+            <ep-good-card spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" needAuth="{{needAuth}}" bind:authModal="authModal" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}" bind:vipModal="vipModal" showLabel="{{false}}" actEnd="{{item.actEnd}}" />
           </view>
         </block>
         <view class="none-rush-list" wx:elif="{{pageEmpty}}">
