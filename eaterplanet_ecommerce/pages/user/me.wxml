@@ -1,8 +1,5 @@
 <ep-navBar title='个人中心' titleimg="{{true}}" backgroundColorTop='#121b24' color='#fff' iconTheme='white'></ep-navBar>
-<view bindtap="toggleFetchCoder" class="fetch-coder" style="color:{{user_top_font_color}}" wx:if="{{fetch_coder_type==1||needAuth}}">
-    <text class="iconfont icon-erweima1"></text>
-    <view class="fetch-coder-text">提货码</view>
-</view>
+
 <view class="{{theme_type}} pb100">
     <view class="personal">
         <view class="basicInform">
@@ -37,12 +34,16 @@
                         <image class="userAvatarUrl" src="../../images/head-bitmap.png"></image>
                         <view class="user-name">点击登录账户</view>
                     </view>
-                    <view class="fetch-coder {{(fetch_coder_type==1||needAuth)?'signIn':''}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:if="{{isopen_signinreward==1&&show_signinreward_icon==1}}" style="color:{{user_top_font_color}}">
-                        <text class="iconfont icon-qiandao"></text>
-                        <view class="fetch-coder-text">积分签到</view>
-                    </view>
-                </view>
 
+                </view>
+                <view bindtap="toggleFetchCoder" class="fetch-coder" style="color:{{user_top_font_color}}; top: 120rpx" wx:if="{{fetch_coder_type==1||needAuth}}">
+                    <text class="iconfont icon-erweima1"></text>
+                    <view class="fetch-coder-text">提货码</view>
+                </view>
+                <view class="fetch-coder {{(fetch_coder_type==1||needAuth)?'signIn':''}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/score/signin" wx:if="{{isopen_signinreward==1&&show_signinreward_icon==1}}" style="color:{{user_top_font_color}}">
+                    <text class="iconfont icon-qiandao"></text>
+                    <view class="fetch-coder-text">积分签到</view>
+                </view>
             </view>
         </view>
         <view class="vip i-flex i-flex-spb" wx:if="{{is_open_vipcard_buy==1}}" bindtap="goLink2" data-link="/eaterplanet_ecommerce/moduleA/vip/upgrade">
@@ -393,6 +394,14 @@
                         </view>
                     </view>
                 </view>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+                    <view class="item-main">
+                        <view class="item-title">
+                            <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+                            <text>线下兑换码</text>
+                        </view>
+                    </view>
+                </navigator>
                 <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
                     <view class="item-main">
                         <view class="item-title">
@@ -422,14 +431,6 @@
                         <view class="item-title">
                             <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
                             <text>平台管理</text>
-                        </view>
-                    </view>
-                </navigator>
-                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
-                    <view class="item-main">
-                        <view class="item-title">
-                            <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
-                            <text>卡密充值</text>
                         </view>
                     </view>
                 </navigator>
@@ -562,6 +563,12 @@
                         <text>{{virtualcard_name_modify}}</text>
                     </view>
                 </view>
+                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
+                    <view class="item-title">
+                        <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
+                        <text>线下兑换码</text>
+                    </view>
+                </navigator>
                 <navigator url="/eaterplanet_ecommerce/pages/user/protocol">
                     <view class="item-title">
                         <image class="toolIcon" mode="widthFix" src="{{user_tool_icons.i7?user_tool_icons.i7:'../../images/protocolIcon.png'}}"></image>
@@ -584,12 +591,6 @@
                     <view class="item-title">
                         <image class="toolIcon" mode="widthFix" src="../../images/pingtai.png"></image>
                         <text>平台管理</text>
-                    </view>
-                </navigator>
-                <navigator hoverClass="none" url="/eaterplanet_ecommerce/moduleB/offlineCode/index" wx:if="{{isopen_virtualcard==1}}">
-                    <view class="item-title">
-                        <image class="toolIcon" mode="widthFix" src="../../images/offlineCode.png"></image>
-                        <text>卡密充值</text>
                     </view>
                 </navigator>
                 <view bindtap="loginOut" wx:if="{{!needAuth&&ishow_user_loginout_btn==1}}">
@@ -630,10 +631,10 @@
 
 <i-tabbar currentIdx='4' cartNum='{{cartNum}}' tabbarRefresh="{{tabbarRefresh}}" needAuth="{{needAuth}}" bind:authModal="authModal" />
 <i-get-phone bind:cancel="close" bind:confirm="getReceiveMobile" visible="{{showGetPhone&&!needAuth&&!showUserProfile}}" bind:needAuth="authModal"></i-get-phone>
-<i-fetch-coder coderList="{{myCoderList}}" visible="{{isShowCoder}}" codeImg="{{member_info.hexiao_qrcod}}" bind:cancel="toggleFetchCoder"></i-fetch-coder>
+<i-fetch-coder coderList="{{myCoderList}}" visible="{{isShowCoder&&!needAuth}}" codeImg="{{member_info.hexiao_qrcod}}" bind:cancel="toggleFetchCoder"></i-fetch-coder>
 <i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal">
 </i-new-auth>
-<ep-modal-userProfile showUserProfile="{{showUserProfile}}" bind:authSuccess="authSuccess" bind:cancel="modalProfile">
+<ep-modal-userProfile showUserProfile="{{showUserProfile&&!needAuth}}" bind:authSuccess="authSuccess" bind:cancel="modalProfile">
 </ep-modal-userProfile>
 
 <!-- 弹窗广告 -->
