@@ -20,7 +20,6 @@
 .isIpx{
     width: 730rpx!important;
     height: 98rpx!important;
-    box-shadow: 0rpx 10rpx 20rpx 5rpx #4571a1ac;
     margin: 10rpx;
     border-radius:  30rpx 30rpx 80rpx 80rpx;
     padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
