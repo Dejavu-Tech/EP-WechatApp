@@ -288,6 +288,7 @@ movable-area {
 .list-content {
     background: #94cefe;
     position: relative;
+    padding-top: 10rpx;
     border-radius: 0px 0px 0px 0px;
 }
 
@@ -449,7 +450,7 @@ movable-area {
 }
 
 .top-msg {
-    width: 705rpx;
+    width: 710rpx;
     height: 60rpx;
     display: flex;
     align-items: center;
@@ -458,7 +459,7 @@ movable-area {
     color: #ff758c;
     font-size: 26rpx;
     line-height: 26rpx;
-    margin: 0 auto 20rpx;
+    margin: 0 20rpx;
     background: #fff9f4;
     border-radius: 20rpx;
 }
@@ -1694,8 +1695,8 @@ button.search-btn::after {
 .promotion {
   box-sizing: border-box;
   /* height: 126rpx; */
-  padding: 0 20rpx 20rpx;
-    z-index: 3;
+  padding: 20rpx 20rpx;
+  z-index: 3;
 }
 
 .promotion .head {
@@ -1983,7 +1984,6 @@ button.search-btn::after {
     margin-top: 10rpx;
 }
 .topic {
-
     padding-bottom: 10rpx;
 }
 
