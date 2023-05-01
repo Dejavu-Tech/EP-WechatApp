@@ -6,7 +6,7 @@
     "i-router-link": "../../components/router-link/router-link",
     "i-img": "../../components/img/index",
     "i-tabs": "../../components/tabs/index",
-    "i-type-item": "../../pages/type/type-item",
+    "ep-good-card": "../../components/good-card/index",
     "sku": "../../components/sku/index",
     "i-load-more": "../../components/load-more/index",
     "i-vip-modal": "../../components/vipModal/index",

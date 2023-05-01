@@ -35,6 +35,9 @@ Page({
     let that = this;
     wx.showLoading();
     this.pageNum = 1;
+    let url = '/eaterplanet_ecommerce/moduleA/vip/upgrade';
+    app.globalData.navBackUrl = url;
+    wx.redirectTo({ url })
     that.setData({
       needAuth: false,
       showAuthModal: false,
@@ -48,15 +51,6 @@ Page({
       loadOver: false,
       showEmpty: false
     });
-  },
-
-  /**
- * 授权成功回调
- */
-  authSuccess: function () {
-    let url = '/eaterplanet_ecommerce/moduleA/vip/upgrade';
-    app.globalData.navBackUrl = url;
-    wx.redirectTo({ url })
   },
 
   /**
@@ -77,7 +71,18 @@ Page({
       }
     })
   },
-
+  handlerGobackClick(delta) {
+    const pages = getCurrentPages();
+    if (pages.length >= 2) {
+      wx.navigateBack({
+        delta: delta
+      });
+    } else {
+      wx.switchTab({
+      url: '/eaterplanet_ecommerce/pages/index/index'
+      });
+    }
+  },
   getData: function(){
     wx.showLoading();
     var token = wx.getStorageSync('token');

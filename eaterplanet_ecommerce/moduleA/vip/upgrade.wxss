@@ -8,16 +8,6 @@
 }
 
 .section .head {
-    width: 130%;
-    height: 350rpx;
-    border-radius: 0 0 50% 50%;
-    background: #2e3748;
-    position: relative;
-    left: -15%;
-    overflow: hidden;
-}
-
-.section .head1 {
   width: 150%;
   height: 240rpx;
   border-radius: 0 0 50% 50%;
@@ -28,19 +18,8 @@
 }
 
 .section .head .card {
-    width: 538rpx;
-    height: 255rpx;
-    background: linear-gradient(to right, #e6b980 0%, #eacda3 100%);
-    margin: 30rpx auto 0 auto;
-    border-radius: 25rpx 25rpx 0 0;
-    padding: 50rpx;
-    text-align: center;
-    overflow: hidden;
-}
-
-.section .head1 .card {
     width: 610rpx;
-    height: 295rpx;
+    height: 290rpx;
     background: linear-gradient(to right, #e6b980 0%, #eacda3 100%);
     margin: 0 auto;
     border-radius: 25rpx;
@@ -93,79 +72,79 @@
   border-radius: 50px;
   color: #fff;
   font-size: 26rpx;
-  right: 22%;
-}
-
-.card .sheng {
-  margin-top: 30rpx;
-  font-size: 30rpx;
-}
-
-.card .sheng text {
-  color: #fff;
+  right: 23%;
 }
 
 .card .card-title .title-name {
-    margin: 0 20rpx;
-    color:linear-gradient(to right,#72491d,#885824);  
+    margin: 20rpx 30rpx;
+    color:linear-gradient(to right,#72491d,#885824); 
+    text-align: center;
+    font-size: 35rpx;
 }
 
 .card .card-title text {
     flex: 1;
-    border-top: 0.1rpx solid #72491d;
+    border-top: 0.2rpx solid #72491d;
 }
 
 .section .content {
-    
     background-image: linear-gradient(to right,#72491d,#885824);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 .card .bigtitle {
-    margin: 30rpx 0;
-    font-size: 55rpx;
+    margin: 20rpx 0;
+    font-size: 40rpx;
+    text-align: center;
 }
 
 .card .smalltitle {
+    padding-top: 10rpx;
   font-size: 30rpx;
   font-weight: 600;
 }
 
 .section .privilege {
-  padding: 30rpx;
-}
-
-.section .privilege1 {
     padding: 140rpx 30rpx 0 30rpx;
-      background-color: #fff;
 }
 
-.section .privilege .privilegelist {
+.privilegelist {
   display: flex;
   width: 100%;
   overflow-x: scroll;
   white-space: nowrap;
-  padding-top: 30rpx;
 }
 
-.section .privilege .privilegelist .list-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.privilegelist .list-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30rpx;
+    min-width: 100rpx;
+    height: 140rpx;
+  }
+  
+.privilegelist .list-item image {
+    width: 70rpx;
+    height: 70rpx;
+    border-radius: 10rpx;
+  }
+
+.privilege .privilegelist .list-item {
   margin-right: 30rpx;
   min-width: 140rpx;
   height: 160rpx;
 }
 
-.section .privilege .privilegelist .list-item image {
+.privilege .privilegelist .list-item image {
   width: 90rpx;
   height: 90rpx;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
 }
 
-.section .privilege .privilegelist .list-item view {
+.privilegelist .list-item view {
   font-size: 24rpx;
   margin-top: 8rpx;
 }
@@ -175,11 +154,17 @@
   color: #2f3746;
 }
 
+.viptype1 {
+    margin-top: 140rpx;
+}
+
 .viptype {
     padding: 30rpx;
-    margin-top: 20rpx;
-    background-color: #fff;
+}
 
+.viptype-title {
+    font-size: 28rpx;
+    padding: 10rpx;
 }
 
 .viplist .list {
@@ -202,7 +187,7 @@
 }
 
 .viplist .list .list-item.active {
-    background: rgba(194, 177, 30, 0.2);
+    background: #e6deb3;
 }
 
 .gray {

@@ -1,103 +1,108 @@
+<ep-navBar title="{{modify_vipcard_name}}" background='#2e3748' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick" />
 <view class="section">
-  <block wx:if="{{is_vip_card_member==0}}">
-    <image class="topImg" src="{{vipcard_unopen_headbg}}" wx:if="{{vipcard_unopen_headbg}}" mode="widthFix"></image>
-    <view class="bg-f" wx:else>
-      <view class="head">
-        <view class="card">
-          <view class="card-title">
-            <text></text>
-            <view class="title-name">开通{{modify_vipcard_name}}</view>
-            <text></text>
-          </view>
-          <view class="content bigtitle weight text-overflow1">尊享特权·会员专享价</view>
-          <!-- <view class="content smalltitle text-overflow1">尊享特权·会员专享价</view> -->
+    <view class="bg-f" wx:if="{{is_vip_card_member==0}}">
+        <view class="head">
+            <view class="card" style="{{vipcard_unopen_headbg?'background:url('+vipcard_unopen_headbg+');background-size:cover;background-repeat:no-repeat;':''}}">
+                <view class="card-title">
+                    <text></text>
+                    <view class="title-name">开通{{modify_vipcard_name}}</view>
+                    <text></text>
+                </view>
+                <view class="content bigtitle weight">尊享会员·专享特权</view>
+        <view bindtap="submitpay" class="apply-btn weight">立即购买</view>
+            </view>
         </view>
-      </view>
     </view>
-  </block>
-  <view class="bg-f" wx:if="{{is_vip_card_member==1}}">
-    <view class="head1">
-      <view class="card" style="{{vipcard_effect_headbg?'background:url('+vipcard_effect_headbg+');background-size:cover;background-repeat:no-repeat;':''}}">
-        <view class="card-title vipinfo">
-          <image class="vipinfo-avatar" src="{{member_info.avatar}}"></image>
-          <view class="vipinfo-r">
-            <view class="text-overflow1 vipinfo-name weight">{{member_info.username}}</view>
-            <view class="endtime">有效期至：{{member_info.card_end_time}}</view>
-          </view>
-          <view bindtap="submitpay" class="vip-xucard">
-            <view>立即续卡</view>
-          </view>
-        </view>
-        <view class="sheng content smalltitle text-overflow1">尊享特权·会员专享价</view>
-      </view>
-    </view>
-  </view>
-  <block wx:if="{{is_vip_card_member==2}}">
-    <image class="topImg" src="{{vipcard_afterefect_headbg}}" wx:if="{{vipcard_afterefect_headbg}}" mode="widthFix"></image>
-    <view class="bg-f" wx:else>
-      <view class="head">
-        <view class="card">
-          <view class="card-title">
-            <text></text>
-            <view class="title-name">开通{{modify_vipcard_name}}</view>
-            <text></text>
-          </view>
-          <view class="content bigtitle weight text-overflow1">尊享特权·会员专享价</view>
-          <!-- <view class="content smalltitle text-overflow1">尊享特权·会员专享价</view> -->
-        </view>
-      </view>
-    </view>
-  </block>
 
-  <view class="privilege bg-f {{is_vip_card_member==1?'privilege1':''}}">
-    <view class="greentitle weight">{{modify_vipcard_name}}专享特权</view>
-    <view class="privilegelist" wx:if="{{card_equity_list.length>0}}">
-      <view class="list-item" wx:for="{{card_equity_list}}" wx:key="id">
-        <image src="{{item.image}}"></image>
-        <view>{{item.equity_name}}</view>
-      </view>
-    </view>
-  </view>
-
-  <view class="viptype bg-f">
-    <view class="greentitle weight">{{modify_vipcard_name}}类型</view>
-    <view class="viplist">
-      <view class="list" wx:if="{{card_list.length>0}}">
-        <view bindtap="choosecard" class="list-item {{selectid==item.id?'active':''}}" data-id="{{item.id}}" data-time="{{item.viptime}}" data-value="{{item.vipprice}}" wx:for="{{card_list}}" wx:key="id">
-          <view class="text-overflow1" style="font-size:26rpx;">{{item.cardname}}</view>
-          <view class="green weight" style="font-size:42rpx;">
-            <text style="font-size:24rpx;">￥</text>{{item.price}}</view>
-          <view class="gray" style="font-size:26rpx;text-decoration-line: line-through;">￥{{item.orignprice}}</view>
-          <view class="gray text-overflow2" style="font-size:22rpx;white-space:pre-wrap;word-break:break-all;">有效期 {{item.expire_day%30==0?item.expire_day/30+'个月':item.expire_day+'天'}}</view>
+<view class="bg-f" wx:if="{{is_vip_card_member==1}}">
+    <view class="head">
+        <view class="card" style="{{vipcard_effect_headbg?'background:url('+vipcard_effect_headbg+');background-size:cover;background-repeat:no-repeat;':''}}">
+            <view class="card-title vipinfo">
+                <image class="vipinfo-avatar" src="{{member_info.avatar}}"></image>
+                <view class="vipinfo-r">
+                    <view class="text-overflow1 vipinfo-name weight">{{member_info.username}}</view>
+                    <view class="endtime">有效期至：{{member_info.card_end_time}}</view>
+                </view>
+                <view bindtap="submitpay" class="vip-xucard">
+                    <view>立即续卡</view>
+                </view>
+            </view>
+            <view class="content smalltitle text-overflow1">{{modify_vipcard_name}}专享特权</view>
+            <view class="privilegelist" wx:if="{{card_equity_list.length>0}}">
+        <view class="list-item" wx:for="{{card_equity_list}}" wx:key="id">
+            <image src="{{item.image}}"></image>
+            <view>{{item.equity_name}}</view>
         </view>
-      </view>
     </view>
-  </view>
-  <block wx:if="{{is_vip_card_member!=1}}">
-    <view class="bg-f" style="padding-bottom: 30rpx;">
-      <view bindtap="submitpay" class="apply-btn weight">{{is_vip_card_member!=0?"立即续费":"立即购买"}}</view>
+        </view>
     </view>
-  </block>
-
-  <view class="mb10"></view>
-  <view class="goodsList bg-f mb10" wx:if="{{is_show_vipgoods==1}}">
-    <view class="greentitle weight" style="padding: 30rpx;">{{modify_vipcard_name}}专享特价</view>
-    <view class="cate">
-      <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background: linear-gradient(to right, #3CBA63, #72fa9c);'}}"></i-tabs>
-    </view>
-    <view class="rushList">
-      <view class="goodsItem" wx:for="{{rushList}}" wx:key="actId">
-        <i-type-item spuItem="{{item}}" reduction="{{reduction}}" bind:openSku="openSku" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" needAuth="{{needAuth}}" bind:authModal="authModal" is_open_vipcard_buy="{{is_open_vipcard_buy}}" bind:vipModal="vipModal" />
-      </view>
-      <view class="none-rush-list" wx:if="{{showEmpty}}">
-        <image class="img-block" src="../../images/icon-index-empty.png"></image>
-        <view class="h1">暂时没有专享商品</view>
-      </view>
-      <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!loadOver&&!showEmpty&&loadMore}}"></i-load-more>
-    </view>
-  </view>
 </view>
 
+    <view class="bg-f" wx:if="{{is_vip_card_member==2}}">
+        <view class="head">
+            <view class="card" style="{{vipcard_afterefect_headbg?'background:url('+vipcard_afterefect_headbg+');background-size:cover;background-repeat:no-repeat;':''}}">
+                <view class="card-title vipinfo">
+                    <image class="vipinfo-avatar" src="{{member_info.avatar}}"></image>
+                    <view class="vipinfo-r">
+                        <view class="text-overflow1 vipinfo-name weight">{{member_info.username}}</view>
+                        <view class="endtime">有效期至：{{member_info.card_end_time}}(已到期)</view>
+                    </view>
+
+                </view>
+                <view class="content bigtitle weight">尊享{{modify_vipcard_name}}特权</view>
+
+        <view bindtap="submitpay" class="apply-btn weight">立即续费</view>
+
+                
+            </view>
+        </view>
+    </view>
+
+
+
+<view class="privilege bg-f" wx:if="{{is_vip_card_member!==1}}">
+    <view class="greentitle weight">{{modify_vipcard_name}}专享特权</view>
+    <view class="privilegelist" wx:if="{{card_equity_list.length>0}}">
+        <view class="list-item" wx:for="{{card_equity_list}}" wx:key="id">
+            <image src="{{item.image}}"></image>
+            <view>{{item.equity_name}}</view>
+        </view>
+    </view>
+</view>
+
+<view class="viptype bg-f {{is_vip_card_member==1?'viptype1':''}}">
+    <view class="greentitle weight">{{modify_vipcard_name}}类型</view>
+    <view class="viplist">
+        <view class="list" wx:if="{{card_list.length>0}}">
+            <view bindtap="choosecard" class="list-item {{selectid==item.id?'active':''}}" data-id="{{item.id}}" data-time="{{item.viptime}}" data-value="{{item.vipprice}}" wx:for="{{card_list}}" wx:key="id">
+                <view class="viptype-title text-overflow1 weight">{{item.cardname}}</view>
+                <view class="green weight" style="font-size:42rpx;">
+                    <text style="font-size:24rpx;">￥</text>{{item.price}}
+                </view>
+                <view class="gray" style="font-size:26rpx;text-decoration-line: line-through;">￥{{item.orignprice}}</view>
+                <view class="gray text-overflow2" style="font-size:22rpx;white-space:pre-wrap;word-break:break-all;">有效期 {{item.expire_day%30==0?item.expire_day/30+'个月':item.expire_day+'天'}}</view>
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class="goodsList bg-f mb20" wx:if="{{is_show_vipgoods==1}}">
+    <view class="greentitle weight" style="padding: 30rpx;">{{modify_vipcard_name}}专享特价</view>
+    <view class="cate">
+        <i-tabs activeIndex="{{classification.activeIndex}}" bind:activeIndexChange="classificationChange" data-idx="1" fontColor="#000" iClass="category-list" tabs="{{classification.tabs}}" lineBgColor="{{'background: #885824;'}}"></i-tabs>
+    </view>
+    <view class="rushList">
+        <view class="goodsItem" wx:for="{{rushList}}" wx:key="actId">
+            <ep-good-card spuItem="{{item}}" reduction="{{reduction}}" bind:openSku="openSku" bind:changeCartNum="changeCartNum" changeCarCount="{{changeCarCount}}" needAuth="{{needAuth}}" bind:authModal="authModal" is_open_vipcard_buy="{{is_open_vipcard_buy}}" bind:vipModal="vipModal" />
+        </view>
+        <view class="none-rush-list" wx:if="{{showEmpty}}">
+            <image class="img-block" src="../../images/icon-index-empty.png"></image>
+            <view class="h1">暂时没有专享商品</view>
+        </view>
+        <i-load-more iClass="loadMore" loading="{{loadMore}}" tip="{{loadText}}" wx:if="{{!loadOver&&!showEmpty&&loadMore}}"></i-load-more>
+    </view>
+</view>
+</view>
 <i-new-auth needAuth="{{needAuth&&showAuthModal}}" bind:authSuccess="authSuccess" bind:cancel="authModal" needPosition="{{true}}"></i-new-auth>
 <sku visible="{{visible}}" skuList="{{skuList}}" cur_sku_arr="{{cur_sku_arr}}" bind:cancel="closeSku" sku_val="{{sku_val}}" sku="{{sku}}" goodsid="{{addCar_goodsid}}" bind:changeCartNum="changeCartNum" bind:vipModal="vipModal"></sku>
 
