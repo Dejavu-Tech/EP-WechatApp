@@ -6,6 +6,6 @@
     "i-auth": "../../components/auth/index",
     "i-load-more": "../../components/load-more/index",
     "i-img": "../../components/img/index",
-    "i-type-item": "./type-item"
+    "ep-good-card": "../../components/good-card/index"
   }
 }

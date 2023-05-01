@@ -7,7 +7,7 @@
     "i-tabbar": "../../components/tabbar/index",
     "i-load-more": "../../components/load-more/index",
     "i-img": "../../components/img/index",
-    "i-type-item": "./type-item",
+    "ep-good-card": "../../components/good-card/index",
     "i-sku": "../../components/sku/index",
     "i-cart-btn": "../../components/cartBtn/index"
   }
