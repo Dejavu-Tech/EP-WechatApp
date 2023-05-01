@@ -1,6 +1,6 @@
 .tabs {
   box-sizing: border-box;
-  position: relative;
+  position: fixed;
   overflow: hidden;
   zoom: 1;
   color: #666;
@@ -23,7 +23,7 @@
   width: 100%;
   background-color: #fff;
   position: fixed;
-  top: 0;
+
   left: 0;
   right: 0;
   z-index: 10;
