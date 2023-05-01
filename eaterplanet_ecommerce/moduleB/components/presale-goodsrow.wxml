@@ -51,7 +51,7 @@
       <i-button class="add-cart-disabled" disabled="{{spuItem.spuCanBuyNum==0}}" wx:elif="{{spuItem.spuCanBuyNum==0}}">
         已抢光
       </i-button>
-      <view bind:click="goLink" class="add-cart" style="" wx:else>去抢购</view>
+      <view bind:click="goLink" class="add-cart" wx:else>去抢购</view>
     </block>
     <view class="mask" wx:if="{{spuItem.spuCanBuyNum==0||saleStatus!=1?'disabled':''}}"></view>
   </i-router-link>
