@@ -1,5 +1,5 @@
 <view class="wrap" wx:if="{{!showCoverVideo}}">
-	<ep-navBar back="{{true}}"  bindback="handlerGobackClick" background="#ffffff" title="详情">
+	<ep-navBar back="{{true}}"  bindback="handlerGobackClick" background="#ffffff" title="{{info.recipe_name}}">
 
 	</ep-navBar>
 	<view class="media-box" wx:if="{{info.images}}">
@@ -43,7 +43,7 @@
 	<view class="list bg-f mb10 pb15" wx:if="{{info.recipe_ingredients.length}}">
 		<view class="com-tit weight p15" style="padding-bottom:0;">清单</view>
 		<view wx:for="{{info.recipe_ingredients}}" wx:key="index">
-			<view class="list-tit p15" wx:if="{{item.ingredients_title}}">
+			<view class="list-tit" wx:if="{{item.ingredients_title}}">
 				<text class="weight">·</text> {{item.ingredients_title}}</view>
 			<view class="list-box" wx:if="{{item.goods}}">
 				<block wx:for="{{item.goods}}" wx:key="idx" wx:for-item="good" wx:for-index="idx">
@@ -55,13 +55,13 @@
 
 	<!-- 步骤 -->
 	<view class="details bg-f p15" wx:if="{{info.content}}">
-		<view class="com-tit weight">详情</view>
+		<view class="com-tit weight">步骤</view>
 		<view class="wxParse">
 			<parser html="{{info.content}}" />
 		</view>
 	</view>
 
-	<view class="pb100"></view>
+	<view class="pb20"></view>
 	<!-- 底部 -->
 	<view class="foot i-flex i-flex-alc bg-f">
 		<view class="i-flex-item foot-item" bindtap="goLink" data-link="switchTo:/eaterplanet_ecommerce/pages/order/shopCart">
@@ -82,6 +82,7 @@
 			</button>
 		</view>
 	</view>
+    <view class="pb100"></view>
 </view>
 
 <!-- 视频展示 -->

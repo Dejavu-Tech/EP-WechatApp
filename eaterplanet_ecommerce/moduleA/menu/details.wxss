@@ -4,11 +4,12 @@
   right: 0;
   bottom: 0;
   z-index: 10;
-  border-top: 1rpx solid #ccc;
   text-align: center;
   height: 100rpx;
   font-size: 24rpx;
   color: #666;
+  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
+  box-shadow: 0rpx 10rpx 20rpx 5rpx #4571a1ac;
 }
 
 .foot-item .btn {
@@ -96,6 +97,7 @@
 }
 
 .list-box {
+  padding: 10rpx 0;
   display: flex;
   overflow-x: scroll;
   overflow-y: hidden;
@@ -109,6 +111,7 @@
 .list-tit {
   color: #333;
   font-size: 28rpx;
+  padding: 15rpx 30rpx;
 }
 
 /* 视频 */
