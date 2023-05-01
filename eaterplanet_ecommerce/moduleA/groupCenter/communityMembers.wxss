@@ -4,7 +4,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  position: relative;
+  position: fixed;
   font-size: 28rpx;
   font-family: PingFangSC-Regular;
   font-weight: 400;

@@ -41,7 +41,6 @@
 
 .swiper-box {
   width: 100%;
-  margin-top: 90rpx;
 }
 
 .swiper-box .order-scroll-view {
@@ -131,10 +130,8 @@ swiper-item {
   height: auto;
 }
 
-.section {
-    
-    width: 690rpx;
-    
+.section {  
+    width: 690rpx;  
     display: flex;
     font-size: 28rpx;
     color: #666;
@@ -165,9 +162,9 @@ swiper-item {
     position: fixed;
 }
 
-.distributionList .nav {
+/* .distributionList .nav {
   top: 80rpx;
-}
+} */
 
 .distributionList .on {
     color: #4facfe;
@@ -175,9 +172,9 @@ swiper-item {
     margin: 0;
 }
 
-.distributionList .swiper-box {
+/* .distributionList .swiper-box {
   margin-top: 170rpx;
-}
+} */
 
 .item {
   background: #fff;

@@ -1,11 +1,11 @@
-<ep-navBar title="团长信息" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="团长分销" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class='wrapper'>
   <view class="zr">
     <view class='top_box'>
       <view class='total'>
         <view class='total-title'>总收入</view>
         <view class='total-money'>{{distributeInfo.total_money}}</view>
-        <navigator url='/eaterplanet_ecommerce/moduleA/groupCenter/recommend' hover-class='none' class='qrcode'>推荐二维码</navigator>
+        <navigator url='/eaterplanet_ecommerce/moduleA/groupCenter/recommend' hover-class='none' class='qrcode'>分销推荐二维码</navigator>
       </view>
       <view class='three'>
         <view class='three-item'>

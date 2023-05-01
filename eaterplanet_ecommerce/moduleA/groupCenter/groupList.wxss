@@ -1,8 +1,6 @@
 .fixed-top {
     width: 100%;
-    position: relative;
-    left: 0;
-    top: 0;
+    position: fixed;
     z-index: 10;
 }
 
@@ -36,8 +34,11 @@
 
 .content-list {
     background-color: #f6f6f6;
-    padding-top: 100rpx;
+    padding-top: 190rpx;
+    padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
     height: 100%;
+
+    z-index: 9;
 }
 
 .order-scroll-view {
