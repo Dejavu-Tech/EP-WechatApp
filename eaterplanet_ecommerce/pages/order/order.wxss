@@ -99,7 +99,7 @@
 .font-bold-20 {
   color: #fff;
     font-size: 40rpx;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .font-12 {
@@ -133,7 +133,7 @@
 .to-get-wrap {
   display: flex;
   justify-content: space-between;
-  padding: 50rpx 50rpx 0 50rpx;
+  padding: 30rpx;
   color: white;
 }
 
