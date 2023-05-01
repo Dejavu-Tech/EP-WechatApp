@@ -134,9 +134,10 @@ Component({
         },
         success: function (res) {
           var data = JSON.parse(res.data);
+          var imgUrl = data.image_o;
           that.setData({
-            avatarUrl: data.image_o
-          })
+              avatarUrl: imgUrl
+          });
         }
       })
       app.util.request({

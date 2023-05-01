@@ -4,7 +4,7 @@
             <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
                 <image class="avatar-img" src="{{avatarUrl}}"/>
             </button>
-            <view class="nickname">
+            <view class="nickname" wx:if="{{showUserProfile}}">
                 <text class="title">昵称</text>
                 <view class="nickname-wrapper">
                     <input class="input" type="nickname" value="{{nickname}}" bindinput="nicknameInput"/>
