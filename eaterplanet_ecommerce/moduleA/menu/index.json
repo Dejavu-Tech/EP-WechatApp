@@ -1,7 +1,4 @@
 {
-  "backgroundTextStyle": "light",
-  "navigationBarBackgroundColor": "#fff",
-    "navigationBarTextStyle": "white",
   "enablePullDownRefresh": false,
   "usingComponents": {
     "ep-navBar": "../../components/navigation-bar",

@@ -10,10 +10,9 @@
 .ipt-box {
   position: relative;
   background-color: #f0f0f0;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 28rpx;
-  color: #acacac;
+  height: 62rpx;
+  border-radius: 20rpx;
+  color: #999;
   display: flex;
   flex: 1;
   margin-right: 20rpx;
@@ -83,7 +82,7 @@
 
 .cate-title {
   position: relative;
-  padding: 30rpx 20rpx 16rpx 40rpx;
+  padding: 20rpx 20rpx 20rpx 40rpx;
   font-size: 34rpx;
   color: #fff;
 }
@@ -91,7 +90,7 @@
 .cate-title::before {
     content: "";
     position: absolute;
-    top: 35rpx;
+    top: 20rpx;
     bottom: 20rpx;
     left: 20rpx;
     border-left: 8rpx solid #fff;

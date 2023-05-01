@@ -1,4 +1,4 @@
-<ep-navBar title="吃货菜谱" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="{{modify_recipe_name}}" background='#ff758c' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view class="wrap">
   <!-- 搜索 -->
   <view class="i-flex i-flex-spb bg-ff search-box">

@@ -262,7 +262,7 @@ Page({
             adv_arr: adv_arr || [],
             modify_recipe_share_title,
             modify_vipcard_share_image,
-            modify_recipe_name: modify_recipe_name || '菜谱',
+            modify_recipe_name,
             ...params
           })
         }
