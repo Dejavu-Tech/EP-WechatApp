@@ -40,7 +40,7 @@ Page({
     let code_sn = e.detail.value.code_sn || "";
     if(!code_sn) {
       wx.showToast({
-        title: '请输入卡密',
+        title: '请输入线下兑换码',
         icon: "none"
       })
       return;

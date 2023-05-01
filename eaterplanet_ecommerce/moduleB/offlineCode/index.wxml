@@ -1,9 +1,9 @@
-<ep-navBar title="卡密充值" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+<ep-navBar title="线下兑换码" background='#4facfe' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
 <view>
   <form catchsubmit="formSubmit">
     <view class="bg-f u-p-30">
-      <view class="title u-m-r-30 u-m-b-20">卡密:</view>
-      <input type="text" name="code_sn" placeholder="请输入卡密" maxlength="20" class="ipt i-flex-item" auto-focus />
+      <view class="title u-m-r-30 u-m-b-20">线下兑换码:</view>
+      <input type="text" name="code_sn" placeholder="请输入线下兑换码" maxlength="20" class="ipt i-flex-item" auto-focus />
     </view>
     <button class="btn" formType="submit">提交</button>
   </form>
