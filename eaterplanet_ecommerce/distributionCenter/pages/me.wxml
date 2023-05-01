@@ -1,4 +1,4 @@
-<ep-navBar title="会员分销中心" background='#fff' back="{{true}}" iconTheme='black' color='' bindback="handlerGobackClick"/>
+<ep-navBar title="分销中心" background='#fff' back="{{true}}" iconTheme='black' color='' bindback="handlerGobackClick"/>
 <view class="wrap">
   <view class='user-info i-flex i-flex-alc bor-bottom'>
     <image class='avatar' src='{{member_info.avatar}}'></image>
@@ -38,7 +38,7 @@
     </view>
     <view bindtap="goLink" data-link='/eaterplanet_ecommerce/distributionCenter/pages/share'>
       <view class="item-main i-flex i-flex-alc">
-        <view class="item-title i-flex-item">我的二维码</view>
+        <view class="item-title i-flex-item">我的分享海报</view>
         <view class="tool-right">
           <image class="icon-right " src="../../images/rightArrowImg.png"></image>
         </view>
