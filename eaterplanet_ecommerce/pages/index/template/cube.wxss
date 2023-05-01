@@ -10,8 +10,7 @@
 .cube-item {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10rpx;
-    
+    margin-bottom: 20rpx;
 }
 
 .cube-item:last-child {
