@@ -100,7 +100,10 @@
        <advimg pos="0" bind:switchType="goIndexType" />
     </view>
       <!-- 优惠券 -->
-      <template is="coupon" data="{{hasCoupon, quan}}"></template>
+    <view style="position: relative;z-index: 3">
+        <template is="coupon" data="{{hasCoupon, quan}}"></template>
+    </view>
+      
 
       <!-- 公告 -->
       <view style="padding-bottom:5rpx; z-index: 3; position: relative" wx:if="{{notice_list.length>0}}">
