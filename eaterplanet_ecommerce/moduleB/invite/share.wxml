@@ -62,7 +62,7 @@
 
 <!-- 规则 -->
 <view class="box u-m-t-35 u-p-35 u-m-b-35">
-  <view class="text-center u-font-38 u-m-b-40 actColor">领券规则</view>
+  <view class="text-center u-font-38 u-m-b-40 actColor">活动积分/优惠券使用规则</view>
   <parser html="{{getRules}}" />
 </view>
 
@@ -75,7 +75,7 @@
 <!-- 规则弹窗 -->
 <i-modal scrollUp="{{true}}" visible="{{showRulesPopup}}" bind:cancel="handleRuleModal">
   <view class="i-flex-col">
-    <view class="u-p-30 u-font-32 text-center u-border-bottom">活动规则</view>
+    <view class="u-p-30 u-font-32 text-center u-border-bottom">活动积分/优惠券使用规则</view>
     <scroll-view scroll-y style="height:50vh;box-sizing: border-box;" class="u-p-30">
       <parser html="{{rules}}" />
     </scroll-view>
