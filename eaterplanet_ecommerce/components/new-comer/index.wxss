@@ -1,10 +1,9 @@
 /* 新人专享 */
 .new-comers {
   position: relative;
-    padding: 20rpx 0;
-  margin: 20rpx;
-  background: #fff;
-  border-radius: 10rpx;
+  padding-bottom: 10rpx;
+  /* margin: 0 20rpx; */
+  border-radius: 20rpx;
   overflow: hidden;
   z-index: 0;
 }
@@ -23,11 +22,11 @@
     left: 0;
     top: 0;
     bottom: 0;
-    border-left: 8rpx solid #4facfe;
+    border-left: 8rpx solid #ff758c;
 }
 
 .new-comers-scroll {
-    max-height: 320rpx;
+    max-height: 340rpx;
 }
 
 .new-comers-wrap {
@@ -46,14 +45,16 @@
 
 .new-comers-item .new-img {
     width: 200rpx;
-    height: 180rpx;
-    margin-bottom: 20rpx;
+    height: 200rpx;
+    margin-bottom: 10rpx;
+    border-radius: 20rpx;
 }
 
 .new-comers-item .title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 .new-comers-item .new-bot {
@@ -77,7 +78,10 @@
 }
 
 .new-comers-item .price {
-    color: #ff758c;
+  font-family: DIN;
+  color: #ff758c;
+  font-size: 36rpx;
+  font-weight: bold;
 }
 
 .new-comers-item {

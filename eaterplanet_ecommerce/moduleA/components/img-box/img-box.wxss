@@ -5,9 +5,9 @@
   width: 100%;
   margin-bottom: 20rpx;
   background: #fff;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   overflow: hidden;
-  box-shadow: 0 0 3px #ccc;
+  box-shadow: 0 0 5px #ccc;
 }
 
 .img-box .img {

@@ -402,8 +402,8 @@ movable-area {
 .spuInfo .straightInLive .preferential .tit,
 .spuInfo .buyRecords .preferential .tit {
     font-size: 20rpx;
-    color: #4facfe;
-    border: 2rpx solid #00f2fe;
+    color: #ca7e57;
+    border: 2rpx solid #ca7e57;
     border-radius: 16rpx;
     padding: 0 8rpx;
     margin-right: 10rpx;
@@ -967,6 +967,7 @@ button::after {
 .goods-bottom-bar .leftBtn .back-to-index image {
     width: 50rpx;
     height: 50rpx;
+    padding-bottom: 3rpx;
 }
 
 .goods-bottom-bar .leftBtn .shop-cart {
@@ -984,6 +985,7 @@ button::after {
     width: 50rpx;
     height: 50rpx;
     position: relative;
+    padding-bottom: 3rpx;
 }
 
 .goods-bottom-bar .leftBtn .shop-cart .icon image {

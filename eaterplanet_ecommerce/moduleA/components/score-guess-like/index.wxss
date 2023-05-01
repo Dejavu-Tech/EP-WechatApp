@@ -59,7 +59,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ff5344;
+  background: #ff7eb3;
   color: #fff;
   border-radius: 30rpx;
   font-size: 24rpx;

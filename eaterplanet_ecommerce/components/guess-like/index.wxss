@@ -62,8 +62,8 @@
 }
 
 .new-comers-item .price {
-    font-family: DIN;
-    color: #ff758c;
+  font-family: DIN;
+  color: #ff758c;
 }
 
 .new-comers-item {

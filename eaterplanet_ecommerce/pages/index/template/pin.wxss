@@ -1,7 +1,7 @@
 .pin-spec {
   position: relative;
-  background: #fff;
-  margin: 20rpx;
+  background: #ffffff86;
+  margin: 0 20rpx 20rpx;
   border-radius: 20rpx;
   overflow: hidden;
 }
@@ -25,22 +25,24 @@
 
 .pin-spec-item {
   position: relative;
-  width: 240rpx;
+  width: 226rpx;
   box-sizing: border-box;
   padding: 20rpx;
   font-size: 28rpx;
 }
 
 .pin-spec-item .pin-img {
-  width: 200rpx;
-  height: 200rpx;
-  margin-bottom: 20rpx;
+  width: 186rpx;
+  height: 186rpx;
+  border-radius: 20rpx;
+  margin-bottom: 10rpx;
 }
 
 .pin-spec-item .title {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-weight: bold;
 }
 
 .pin-spec-item .new-bot {
@@ -50,7 +52,10 @@
 }
 
 .pin-spec-item .price {
-  color: #ff5041;
+  font-family: DIN;
+  color: #ff758c;
+  font-size: 36rpx;
+  font-weight: bold;
 }
 
 .pin-spec-item .act-end {
@@ -83,7 +88,7 @@
     border: 0.1rpx solid #ff758c;
     vertical-align: middle;
     color: #ff758c;
-    border-radius: 4rpx;
+    border-radius: 5rpx;
 }
 
 /* 标签 */

@@ -6,6 +6,9 @@
   box-sizing: border-box;
   position: relative;
   display: flex;
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, .2);
+  border-radius: 20rpx;
+  overflow: hidden;
 }
 
 .pinrow-wrap .spu-img {
@@ -82,7 +85,7 @@
 }
 
 .pinrow-wrap .spu-content .spu-price .sale-price {
-  font-family: 'DIN';
+  font-family: DIN;
   color: #ff758c;
   margin-right: 12rpx;
 }
@@ -116,7 +119,7 @@
   border: 0.1rpx solid #ff5344;
   vertical-align: middle;
   color: #ff5344;
-  border-radius: 4rpx;
+  border-radius: 6rpx;
 }
 
 .pinrow-wrap .spu-content .add-cart,

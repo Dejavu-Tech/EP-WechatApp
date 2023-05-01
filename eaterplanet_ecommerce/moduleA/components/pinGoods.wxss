@@ -1,19 +1,18 @@
 .spu-content {
-  width: 350rpx;
-  height: 506rpx;
-  border-radius: 20rpx;
-  background: #fff;
-  box-sizing: border-box;
-  padding: 30rpx 25rpx;
-  box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.05);
-  position: relative;
-  margin-bottom: 10rpx;
+    width: 345rpx;
+    border-radius: 20rpx;
+    background: #fff;
+    box-sizing: border-box;
+    box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 20rpx;
+    overflow: hidden;
 }
 
 .spu-img {
-  width: 300rpx;
-  height: 300rpx;
-  border-radius: 10rpx;
+    width: 345rpx;
+    height: 345rpx;
+    border-radius: 20rpx 20rpx 0 0;
 }
 
 .spu-content .spu-title {
@@ -28,45 +27,51 @@
 }
 
 .spu-content .spu-title .span {
-  display: block;
-  width: 100%;
+
+  padding: 0 20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .spu-content .spu-price {
-  display: flex;
-  align-items: flex-end;
-  font-size: 20rpx;
+    padding: 0 20rpx;
+    display: flex;
+    align-items: flex-end;
+    font-size: 26rpx;
+    line-height: 26rpx;
+    overflow: hidden;
+    margin-top: 10rpx;
+    font-family: DIN;
 }
 
 .spu-content .spu-price .sale-price {
     color: #ff758c;
     margin-right: 8rpx;
+    font-weight: bold;
 }
 
 .spu-content .spu-price .sale-price .span {
   font-size: 40rpx;
   line-height: 40rpx;
   margin-left: 4rpx;
-  font-weight: 500;
 }
 
 .spu-content .spu-price .market-price {
   text-decoration: line-through;
-  color: #999;
+  color: #666;
 }
 
 .spu-content .spu-count {
   display: flex;
   align-items: flex-end;
-  font-size: 20rpx;
-  color: #999;
-  margin-top: 10rpx;
+  color: #666;
+  margin: 10rpx 0;
+  font-size: 24rpx;
+  padding: 0 20rpx 20rpx;
 }
 
-.spu-content .add-cart,.spu .spu-content .add-cart-disabled {
+.spu-content .add-cart, .spu-content .add-cart-disabled {
     width: 100rpx;
     height: 50rpx;
     padding: 0;
@@ -79,9 +84,9 @@
     justify-content: center;
     background: linear-gradient(100deg,#4facfe 0%,#00f2fe 100%);
     color: #fff;
-    border-radius: 25rpx;
+    border-radius: 30rpx;
     font-size: 26rpx;
-    font-weight: bold;
+    line-height: 26rpx;
 }
 
 .spu-content .add-cart-disabled {
@@ -97,7 +102,7 @@
     line-height: 1;
     vertical-align: middle;
     color: #ff5344;
-    border-radius: 4rpx;
+    border-radius: 5rpx;
 }
 
 .spu-play {
@@ -115,12 +120,13 @@
 }
 
 .mask {
-  background: rgba(255, 255, 255, 0.5);
-  width: 300rpx;
-  height: 240rpx;
-  position: absolute;
-  left: 25rpx;
-  top: 30rpx;
+    background: rgba(255, 255, 255, 0.5);
+    width: 345rpx;
+    height: 345rpx;
+    position: absolute;
+    border-radius: 20rpx 20rpx 0 0;
+    left: 0;
+    top: 0;
 }
 
 .act-end {

@@ -53,7 +53,10 @@
 }
 
 .pin-spec-item .price {
-  color: #ff5041;
+  font-family: DIN;
+  color: #ff758c;
+  font-size: 36rpx;
+  font-weight: bold;
 }
 
 .pin-spec-item .act-end {

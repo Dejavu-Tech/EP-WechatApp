@@ -36,8 +36,8 @@
 }
 
 .footer .money {
-    font-family: DIN;
-    color: #ff758c;
-    font-weight: bold;
-    font-size: 40rpx;
+  font-family: DIN;
+  color: #ff758c;
+  font-weight: bold;
+  font-size: 40rpx;
 }

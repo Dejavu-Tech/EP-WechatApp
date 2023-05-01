@@ -3,7 +3,8 @@
 
 .pinrow-wrap {
   background: #ffffff;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
+  width: 710rpx;
 }
 
 .pinrow-wrap .spu-content {

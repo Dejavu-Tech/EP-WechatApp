@@ -1,19 +1,23 @@
 .spu-content {
-  width: 350rpx;
+  width: 345rpx;
   height: 600rpx;
   border-radius: 20rpx;
   background: #fff;
   box-sizing: border-box;
-  padding: 30rpx 25rpx;
-  box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 20rpx rgba(0, 0, 0, 0.2);
   position: relative;
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.spu-content .item-bottom {
+  padding: 0 20rpx;
 }
 
 .spu-img {
-  width: 300rpx;
-  height: 300rpx;
-  border-radius: 10rpx;
+  width: 345rpx;
+  height: 345rpx;
+  border-radius: 20rpx 20rpx 0 0;
 }
 
 .spu-content .spu-title {
@@ -38,8 +42,8 @@
 .spu-content .spu-price {
   display: flex;
   align-items: flex-end;
-  font-size: 20rpx;
-  margin-top: 30rpx;
+  font-size: 28rpx;
+  margin-top: 10rpx;
 }
 
 .spu-content .spu-price .sale-price {
@@ -113,11 +117,12 @@
 
 .mask {
   background: rgba(255, 255, 255, 0.5);
-  width: 300rpx;
-  height: 300rpx;
+  width: 345rpx;
+  height: 345rpx;
   position: absolute;
-  left: 25rpx;
-  top: 30rpx;
+  border-radius: 20rpx 20rpx 0 0;
+  left: 0;
+  top: 0;
 }
 
 .act-end {

@@ -85,6 +85,7 @@
 }
 
 .sku-card .sku-header .sku-price .sale-price {
+    font-family: DIN;
     color: #ff758c;
     margin-right: 12rpx;
     margin-bottom: -4rpx;

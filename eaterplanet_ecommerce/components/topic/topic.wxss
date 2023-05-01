@@ -2,8 +2,8 @@
 
 .topic {
   margin: 20rpx;
-  background: #fff;
-  border-radius: 10rpx;
+  background: #ffffff86;
+  border-radius: 20rpx;
   overflow: hidden;
 }
 

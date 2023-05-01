@@ -3,10 +3,10 @@
   width: 580rpx;
   box-sizing: border-box;
   display: block;
-  border: .1rpx solid #eee;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   margin-left: 20rpx;
-  padding: 20rpx 10rpx;
+  
+  box-shadow: 0 0 5px #ccc;
 }
 
 .spu .spu-content {
@@ -14,9 +14,9 @@
 }
 
 .spu .img-class {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 10rpx;
+  width: 170rpx;
+  height: 170rpx;
+  border-radius: 20rpx 0 0 20rpx;
   image-rendering: crisp-edges;
   margin-right: 20rpx;
   overflow: hidden;
@@ -29,8 +29,8 @@
 }
 
 .spu-desc {
-  font-size: 26rpx;
-  color: #666;
+  font-size: 20rpx;
+  color: #888;
 }
 
 .item-bottom {
@@ -39,6 +39,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 20rpx 10rpx;
 }
 
 .spu .spu-content .item-bottom .spu-price {
@@ -53,6 +54,7 @@
 }
 
 .spu .spu-content .item-bottom .spu-price .sale-price {
+    font-family: DIN;
     color: #ff758c;
     margin-right: 12rpx;
 }
@@ -66,6 +68,7 @@
 
 .spu .spu-content .item-bottom .spu-price .market-price {
   text-decoration: line-through;
+  font-family: DIN;
   color: #999;
   margin-right: 20rpx;
 }

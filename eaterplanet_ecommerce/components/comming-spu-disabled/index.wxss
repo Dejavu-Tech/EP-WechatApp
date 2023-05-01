@@ -96,6 +96,7 @@
 }
 
 .comming-spu-content .spu-price .sale-price {
+    font-family: DIN;
     color: #ff758c;
     margin-right: 8rpx;
 }

@@ -7,7 +7,7 @@
 .img {
   width: 240rpx;
   height: 240rpx;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   overflow: hidden;
 }
 
@@ -42,7 +42,7 @@
 .seckill-item .item-right .desc {
   font-size: 26rpx;
   line-height: 32rpx;
-  color: #999;
+  color: #666;
   width: 400rpx;
   height: 32rpx;
   margin-bottom: 12rpx;
@@ -61,6 +61,7 @@
 }
 
 .seckill-item .spu-price .sale-price {
+  font-family: DIN;
   color: #ff5344;
   margin-right: 12rpx;
 }
@@ -73,8 +74,9 @@
 }
 
 .seckill-item .spu-price .market-price {
+  font-family: DIN;
   text-decoration: line-through;
-  color: #999;
+  color: #666;
   margin-right: 30rpx;
 }
 
@@ -101,7 +103,7 @@
 
 .progress-box {
   display: flex;
-  color: #999;
+  color: #666;
   font-size: 22rpx;
   margin-top: auto;
   margin-bottom: 20rpx;
