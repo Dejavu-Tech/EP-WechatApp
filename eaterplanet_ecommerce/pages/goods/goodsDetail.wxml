@@ -346,7 +346,7 @@
         <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
           <view class="bar-item back-to-index">
             <image class="icon" src="{{iconArr.home}}"></image>
-            回首页
+            首页
           </view>
         </navigator>
         <navigator hoverClass="none" openType="switchTab" url="/eaterplanet_ecommerce/pages/order/shopCart">
