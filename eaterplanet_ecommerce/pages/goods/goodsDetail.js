@@ -1904,7 +1904,7 @@ Page({
     let shareImg = this.data.goods.goods_share_image || '';
     console.log('商品分享地址：');
     console.log(share_path);
-
+    console.log(shareImg);
     var that = this;
     that.setData({is_share_html: true, hideModal: true, hideCommissInfo: true})
     setTimeout(()=>{
