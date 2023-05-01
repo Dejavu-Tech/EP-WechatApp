@@ -340,7 +340,7 @@
 					<i-card>
 						<view slot="header" class="header">预售信息</view>
 						<view slot="content" class="content-wrap middle p10">
-							<view class="red">预售价¥{{goodsTot}}，付定金后再减¥{{presale_info.presale_deduction_money}}，尾款需付金额￥{{presale_info.weikuan}}（若有优惠，优惠将在尾款时使用）</view>
+							<view class="red">预售价¥{{goodsTot}}元，定金可抵¥{{presale_info.presale_deduction_money}}元，尾款需付金额¥{{presale_info.weikuan}}元（若有优惠，优惠将在尾款时使用）</view>
 							<view>
 								<view class="presale-item red i-flex i-flex-spb">
 									<view class="presale-item-circle">定金({{presale_info.first_paytime>0?'已支付':'未支付'}}) <text class="iconfont icon-shuoming text-gray fsz-28" bindtap="hanlePresaleModal"></text></view>
