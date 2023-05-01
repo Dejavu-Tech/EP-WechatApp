@@ -231,7 +231,7 @@
         </view>
       </block>
       <block wx:else>
-        <view class="red">预售价¥{{presale_info.goods_price}}，付定金后再减¥{{presale_info.totDeduction}}，尾款需付金额￥{{presale_info.balance}}（若有优惠，优惠将在尾款时使用）</view>
+        <view class="red">预售价¥{{presale_info.goods_price}}元，定金可抵¥{{presale_info.totDeduction}}元，尾款需付金额￥{{presale_info.balance}}元（若有优惠，优惠将在尾款时使用）</view>
         <view class="presale-item red i-flex i-flex-spb">
           <view class="presale-item-circle">定金</view>
           <view>¥{{presale_info.totdingMoney}}</view>
