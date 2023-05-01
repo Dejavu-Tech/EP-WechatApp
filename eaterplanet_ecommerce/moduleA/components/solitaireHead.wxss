@@ -15,14 +15,14 @@
 
 .headinfo .share {
   position: absolute;
-  top: 30rpx;
+  top: 50rpx;
   right: 30rpx;
 }
 
 .headinfo .share .iconfont {
-  font-size: 50rpx;
+  font-size: 60rpx;
   margin-left: 30rpx;
-  color: rgb(233, 169, 68);
+  color: #feb600;
 }
 
 .headinfo .share .btn {
