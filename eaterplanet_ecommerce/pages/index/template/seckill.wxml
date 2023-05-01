@@ -1,5 +1,4 @@
 <template name="seckill">
-  <view class="seckill-bg">
   <view class="seckill">
     <view class="seckill-head i-flex" style="background:{{seckill_bg_color}}">
       <view class="tit">
@@ -25,5 +24,4 @@
       <text class="current" wx:if="{{secRushList.length}}">{{secKillGoodsIndex}}/{{secRushList.length}}</text>
     </view>
   </view>
-</view>
 </template>

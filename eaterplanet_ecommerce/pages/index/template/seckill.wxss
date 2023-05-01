@@ -1,16 +1,14 @@
-.seckill-bg {
-  background: #94cefe;
-}
 .seckill {
     position: relative;
-    padding: 20rpx 20rpx 20rpx 20rpx;
+    margin: 10rpx 20rpx 20rpx;
     z-index: 3;
     overflow: hidden;
+    border-radius: 20rpx;
 }
 
 .seckill-head {
   color: #fff;
-  border-radius: 20rpx;
+  
   padding: 0 30rpx;
   align-items: center;
   height: 100rpx;
@@ -36,6 +34,7 @@
 
 .seckill-list {
   position: relative;
+  background-color: #ffffff80;
 }
 
 .sec-swiper-content {
