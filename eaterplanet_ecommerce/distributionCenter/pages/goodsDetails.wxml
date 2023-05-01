@@ -4,7 +4,7 @@
     <view class='top_box'>
       <view class="i-flex i-flex-spb top_box_head">
         <view></view>
-        <navigator url='/eaterplanet_ecommerce/distributionCenter/pages/share' hover-class='none' class='tx-btn'>推荐二维码</navigator>
+        <navigator url='/eaterplanet_ecommerce/distributionCenter/pages/share' hover-class='none' class='tx-btn'>分销分享海报</navigator>
       </view>
       <view class='total'>
         <view class="total-title">可提现（元）</view>
