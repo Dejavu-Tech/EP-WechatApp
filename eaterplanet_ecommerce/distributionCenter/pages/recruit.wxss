@@ -18,6 +18,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  padding-bottom: calc(env(safe-area-inset-bottom) - 30rpx);
 }
 
 .apply-btn {
