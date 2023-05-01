@@ -1,7 +1,7 @@
 <!-- 秒杀 -->
 <view class='new-comers' wx:if="{{list.length}}">
 	<view class='new-comers-title'>
-		<view><text class="leftBorder" style="border-color: {{skin.color}}"></text>限时秒杀</view>
+		<view><text class="leftBorder"></text>限时秒杀</view>
 		<i-count-down countdownClass="count-down" itemClass="item-time" showDay="true" target="{{rushEndTime}}" clearTimer="{{clearTimer}}" wx:if="{{rushEndTime&&is_show_spike_buy_time!=0}}">
 			<span class="count-down-left-text">仅剩</span>
 		</i-count-down>
