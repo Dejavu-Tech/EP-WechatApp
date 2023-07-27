@@ -308,7 +308,7 @@ movable-area {
     background: #e7f4ff;
     position: relative;
     min-height: 1300rpx;
-    padding-top: 80rpx;
+    padding-top: 70rpx;
 }
 
 .first-screen {
@@ -1023,7 +1023,7 @@ movable-area {
   z-index: 99;
   top: -80rpx;
   transition: top 0.3s;
-    border-radius: 20px 20px 0px 0px;
+  border-radius: 20px 20px 0px 0px;
 }
 
 .sticky-content.tab-nav-sticky {
@@ -1127,9 +1127,9 @@ movable-area {
     padding-bottom: 0rpx;
     margin-bottom: 0rpx;
     position: sticky;
-    top: 0px;
     box-sizing: border-box;
     z-index: 99;
+    height: 86rpx;
     border-radius: 0px 0px 0px 0px;
     box-shadow: 0 10rpx 10rpx 0rpx rgba(143, 192, 230, 0.81);
     /**background: linear-gradient(90deg,#007FAF 0%,#42ADD5 100%);

@@ -125,7 +125,7 @@
     </view>
 
     <!-- 列表 Start -->
-    <view class="list-content">
+    <view class="list-content" style="z-index: 3">
 
       <!-- 新人专享 -->
       <i-new-comer bind:openSku="openSku" refresh="{{newComerRefresh}}" wx:if="{{is_show_new_buy==1}}" skin="{{skin}}" />
@@ -220,7 +220,6 @@
         </view>
         <!-- 分类导航 End -->
         <view class='rush-list-box'>
-          <!-- <view wx:if="{{hide_index_type!=1}}" style="height: {{isSticky?'70rpx':'0'}}"></view> -->
           <block wx:if="{{rushList.length>0 && tabIdx===0}}">
             <!-- 样式一 Start -->
             <block wx:for="{{rushList}}" wx:key="idx" wx:for-item="rush" wx:for-index="idx" wx:if="{{rushList.length>0 && theme==0}}">
