@@ -15,7 +15,6 @@ function api() {
 function check_login() {
   let token = wx.getStorageSync('token');
   let member_id = wx.getStorageSync('member_id');
-
   if (token && member_id != undefined && member_id.length > 0) {
     return true;
   } else {
