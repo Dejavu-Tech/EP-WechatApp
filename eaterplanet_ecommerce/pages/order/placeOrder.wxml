@@ -389,7 +389,7 @@
 <i-modal bind:cancel="closeConfirmModal" iClass="confirm-modal-content" visible="{{showConfirmModal}}">
   <view class="confirm-order-modal">
     <block wx:if="{{tabIdx==0}}">
-      <view class="title">此商品需要您{{tabList[tabIdx].name}}，请确认提货信息</view>
+      <view class="title">此商品需要您{{tabList[tabId].name}}，请确认提货信息</view>
       <view class="sub-title">
         <image src="../../images/icon-give.png"></image>
         <text wx:if="{{buy_type=='presale'&&presale_info}}">
@@ -403,7 +403,7 @@
       </view>
     </block>
     <block wx:elif="{{tabIdx==1}}">
-      <view class="title">需要{{groupInfo.owner_name}}配送，请确认收货信息</view>
+      <view class="title">此商品需要{{groupInfo.owner_name}}配送，请确认收货信息</view>
       <view class="sub-title">
         <image src="../../images/icon-give.png"></image>
         <text wx:if="{{buy_type=='presale'&&presale_info}}">
@@ -416,8 +416,8 @@
         </block>
       </view>
     </block>
-    <view class="title" wx:elif="{{tabIdx==2}}">需要快递配送，请确认收货信息</view>
-    <view class="title" wx:elif="{{tabIdx==3}}">需要同城配送，请确认收货信息</view>
+    <view class="title" wx:elif="{{tabIdx==2}}">此商品需要需要快递配送，请确认收货信息</view>
+    <view class="title" wx:elif="{{tabIdx==3}}">此商品需要需要同城配送，请确认收货信息</view>
     <view class="title" wx:elif="{{tabIdx==4}}">此商品需要您到店核销，请确认预留信息</view>
     <view class="order-content">
       <block wx:if="{{buy_type!='presale'&&presale_info.presale_type==0}}">

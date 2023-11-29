@@ -415,7 +415,6 @@ Page({
             that.calcPrice();
           })
         }
-
       }
     })
   },
@@ -1237,9 +1236,11 @@ Page({
    */
   tabSwitch: function (t) {
     let idx = 1 * t.currentTarget.dataset.idx;
+    let id = this.data.tabList[idx].id;
     (idx != 0) && wx.showToast({ title: '配送变更，费用已变化', icon: "none"});
     this.setData({
-      tabIdx: idx
+      tabIdx: idx,
+      tabId: id
     },function(){
       this.calcPrice(1);
     })
@@ -1545,7 +1546,6 @@ Page({
 
   selectAlertTime: function(event){
     let idx = event.currentTarget.dataset.idx;
-    console.log(idx)
     this.setData({
       curAlertTime: idx
     })
@@ -1553,7 +1553,6 @@ Page({
 
   selectAlertDate: function(event){
     let idx = event.currentTarget.dataset.idx;
-    console.log(idx)
     let curAlertTime = 0;
     if(this.data.localtown_expected_delivery.localtown_delivery_space_month==idx) curAlertTime = -1;
     this.setData({
