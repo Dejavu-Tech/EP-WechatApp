@@ -2,10 +2,11 @@
   <block wx:if="{{!use2D}}">
     <canvas canvas-id="photo" style="{{photoStyle}};position: absolute; left: -9999px; top: -9999rpx" />
     <block wx:if="{{dancePalette}}">
-      <canvas canvas-id="bottom" style="{{painterStyle}};position: absolute" />
-      <canvas canvas-id="k-canvas" style="{{painterStyle}};position: absolute" />
-      <canvas canvas-id="top" style="{{painterStyle}};position: absolute" />
+      <canvas type="2d" canvas-id="bottom" style="{{painterStyle}};position: absolute" />
+      <canvas type="2d" canvas-id="k-canvas" style="{{painterStyle}};position: absolute" />
+      <canvas type="2d" canvas-id="top" style="{{painterStyle}};position: absolute" />
       <canvas 
+        type="2d"
         canvas-id="front" 
         style="{{painterStyle}};position: absolute"
         bindtouchstart="onTouchStart"
