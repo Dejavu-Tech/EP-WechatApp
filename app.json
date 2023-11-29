@@ -187,7 +187,6 @@
   "requiredBackgroundModes": [
     "audio"
   ],
-  "usingShopPlugin": true,
   "requiredPrivateInfos": [
     "chooseAddress",
     "chooseLocation",
