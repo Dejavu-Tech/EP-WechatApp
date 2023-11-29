@@ -7,7 +7,7 @@
             <view class="nickname" wx:if="{{showUserProfile}}">
                 <text class="title">昵称</text>
                 <view class="nickname-wrapper">
-                    <input class="input" type="nickname" value="{{nickname}}" bindinput="nicknameInput"/>
+                    <input class="input" type="nickname" value="{{nickname}}" bind:change="getNickname" bindinput="nicknameInput"/>
                 </view>
             </view>
         </view>

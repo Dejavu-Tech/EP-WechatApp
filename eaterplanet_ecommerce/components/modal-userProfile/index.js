@@ -34,7 +34,7 @@ Component({
     })
     this.getBg();
     let member_info = wx.getStorageSync('member_info');
-    if (member_info!==null) {
+    if (member_info !== null) {
       this.setData({
         nickname: member_info.username,
         avatarUrl: member_info.avatar
@@ -55,13 +55,17 @@ Component({
         avatarUrl: e.detail.avatarUrl
       })
     },
-    nicknameInput(e){
-        const {value}= e.detail;
-            console.log(value);
-        this.setData({
-           nickname:value
-              })
-       },
+    nicknameInput(e) {
+      const { value } = e.detail;
+      this.setData({
+        nickname: value
+      })
+    },
+    getNickname(e) {
+      this.setData({
+        nickname: e.detail.value
+      })
+    },
     getBg: function () {
       let that = this;
       app.util.request({
@@ -133,10 +137,10 @@ Component({
           'content-type': 'multipart/form-data'
         },
         success: function (res) {
-          var data = JSON.parse(res.data);
-          var imgUrl = data.image_o;
+          let data = JSON.parse(res.data);
+          let imgUrl = data.image_o;
           that.setData({
-              avatarUrl: imgUrl
+            avatarUrl: imgUrl
           });
         }
       })
@@ -198,7 +202,7 @@ Component({
                 },
                 method: 'post',
                 dataType: 'json',
-                success: function (res) {     
+                success: function (res) {
                   let isblack = res.data.isblack || 0;
                   if (isblack == 1) {
                     app.globalData.isblack = 1;
@@ -220,10 +224,10 @@ Component({
                     title: '修改成功',
                     duration: 2000
                   })
-                  that.triggerEvent("authSuccess",res);
+                  that.triggerEvent("authSuccess", res);
                   console.log("下一步刷新页面")
                 },
-              })              
+              })
             }
           })
         }
