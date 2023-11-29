@@ -299,7 +299,7 @@ movable-area {
 
 .list-content .rush-list-title {
     width: 336rpx;
-    height: 88rpx;
+    height: 60rpx;
     display: block;
     margin: 0 auto 20rpx;
 }
@@ -434,7 +434,7 @@ movable-area {
 }
 
 .header-content .location .location-right text {
-    font-size: 20rpx;
+    font-size: 18rpx;
     width: 70rpx;
     text-align: center;
     -webkit-box-orient: vertical;

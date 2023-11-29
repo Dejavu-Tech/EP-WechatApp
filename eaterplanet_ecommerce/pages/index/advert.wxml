@@ -4,15 +4,11 @@
       <image src="{{common_header_backgroundimage}}"></image>
     </view>
   </view>
-
-  
   <view class="bottom">
-    
     <view class="logohdimg {{isIpx?'pb20':''}}" >
        <image class='logo' src="../../images/logohdimg.png"></image>
     </view>
     <text class='time' catchtap="goHome">点击跳过{{time}}S</text>
   </view>
-  
 </view>
 
