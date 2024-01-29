@@ -1,31 +1,32 @@
 .community-item {
     box-sizing: border-box;
     display: flex;
-    padding: 60rpx 30rpx;
-    margin: 20rpx 0rpx 20rpx 0rpx;
+    padding: 20rpx;
+    margin: 20rpx 0rpx;
     border-radius: 20rpx;
 }
 
 .community-item .group-head {
-    width: 80rpx;
-    height: 80rpx;
-    border-radius: 80rpx;
-    margin-right: 20rpx;
+    width: 140rpx;
+    height: 140rpx;
+    border-radius: 18rpx;
+    margin-right: 18rpx;
 }
 
 .community-item .community-title {
   font-size: 32rpx;
   line-height: 32rpx;
   height: 32rpx;
-  width: 520rpx;
-  margin-bottom: 20rpx;
-  display: flex;
+  /* width: 520rpx; */
+  margin-bottom: 17rpx;
+  /* display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-end; */
 }
 
 .community-item .community-title .span {
-  color: #444;
+  font-size: 30rpx;
+  color: #000;
   font-weight: 500;
 }
 
@@ -40,7 +41,7 @@
   font-size: 26rpx;
   line-height: 34rpx;
   color: #666;
-  width: 520rpx;
+  /* width: 520rpx; */
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
@@ -50,7 +51,7 @@
 }
 
 .community-item .group-master {
-  width: 560rpx;
+  /* width: 560rpx; */
   font-size: 26rpx;
   line-height: 26rpx;
   color: #aaa;
@@ -66,13 +67,35 @@
   height: 28rpx;
 }
 
+.item-button {
+  background-color: #4facfe;
+  margin: auto 3rpx;
+  width: 110rpx;
+  height: 58rpx;
+  border-radius: 29rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+}
+
+.item-button-text {
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 500;
+}
+
 .group-img {
   position: relative;
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 80rpx;
-  margin-right: 20rpx;
-  overflow: hidden;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 20rpx;
+  /* margin-right: 20rpx; */
+}
+
+.item-center {
+  padding: 3rpx 18rpx;
+  max-width: 390rpx;
 }
 
 .rest {

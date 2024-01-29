@@ -80,7 +80,7 @@ Page({
     if (current_community) that.setData({
       community: current_community
     })
-
+    console.log(current_community)
     var tx_map_key = wx.getStorageSync('tx_map_key');
     if (tx_map_key) {
       var shopname = wx.getStorageSync('shopname');
@@ -443,5 +443,37 @@ Page({
    */
   onReachBottom: function() {
     this.load_gps_community_list();
-  }
+  },
+
+  gotoMap: function () {
+    let community = this.data.community;
+    let postion = { lat: community.lat, lon: community.lon };
+    let longitude = parseFloat(postion.lon),
+      latitude = parseFloat(postion.lat),
+      name = community.disUserName,
+      address = `${community.fullAddress}(${community.communityName})`;
+    wx.openLocation({
+      latitude: latitude,
+      longitude: longitude,
+      name: name,
+      address: address,
+      scale: 28
+    })
+  },
+
+  callTelphone: function (e) {
+    let that = this;
+    let community = this.data.community;
+    let phoneNumber = community.head_mobile||community.disUserMobile;
+    if (phoneNumber) {
+      this.isCalling || (this.isCalling = true, wx.makePhoneCall({
+        phoneNumber: phoneNumber,
+        complete: function () {
+          that.isCalling = false;
+        }
+      }));
+    } else {
+      app.util.message('请先登录', 'switchTo:/eaterplanet_ecommerce/pages/user/me', 'error');
+    }
+  },
 })

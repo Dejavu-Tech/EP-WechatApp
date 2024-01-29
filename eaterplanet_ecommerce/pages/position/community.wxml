@@ -1,9 +1,9 @@
 <!--eaterplanet_ecommerce/pages/position/community.wxml-->
 <i-auth bind:authSuccess="authSuccess" needAuth="{{needAuth}}">
-<ep-navBar title="社区选择" background='#9F99AA' back="{{true}}" iconTheme='white' color='#fff' bindback="handlerGobackClick"/>
+  <ep-navBar title="我的{{groupInfo.group_name}}" background='#FFF' back="{{true}}" iconTheme='black' color='#000' bindback="handlerGobackClick"/>
   <view>
     <view class="header-content">
-      <view class="search-content">
+      <!-- <view class="search-content">
         <i-router-link openType="redirect" url="/eaterplanet_ecommerce/pages/position/cities">
           <view class="city-content">
             <image class="search-icon" src="../../images/icon-search.png"></image>
@@ -14,32 +14,43 @@
         <view bindtap="linkSearch" class="search-ipt">
           <view class="ipt-class">请输入{{groupInfo.group_name}}名称</view>
         </view>
-      </view>
+      </view> -->
       <block wx:if="{{!community.communityId}}">
-        <view class="location-title">当前地址</view>
+        <view class="location-title">当前位置</view>
         <view class="location-msg">{{city.districtName}}</view>
-        <view class="switch-btn">请选择您的{{groupInfo.group_name}}</view>
+        <view class="switch-btn">请选择{{groupInfo.group_name}}</view>
       </block>
       <block wx:else>
-        <view class="location-title location-title-pad">当前{{groupInfo.group_name}}</view>
-        <navigator class="local-community-card" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
-          <image class="card-bg" src="../../images/community-desc-bg.png"></image>
-          <view class="head-pic">
-            <image class="head-pic-content" src="{{community.disUserHeadImg||community.headImg}}" wx:if="{{community.disUserHeadImg||community.headImg}}"></image>
-            <image class="head-pic-content" src="../../images/head-bitmap.png" wx:else></image>
+        
+        <view class="local-community-card" >
+          <view class="community-title">当前{{groupInfo.group_name}}</view>
+          <view class="community-card-item">
+            <view class="head-pic" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">
+              <image class="head-pic-content" src="{{community.headDoorphoto}}" wx:if="{{community.headDoorphoto}}"></image>
+              <image class="head-pic-content" src="../../images/head-bitmap.png" wx:else></image>
+            </view>
+            <view class="card-msg">
+              <view class="community-name" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">{{community.communityName}}</view>
+              <!-- <view class="group-master">{{groupInfo.owner_name}}：{{community.disUserName||community.realName}}</view> -->
+              
+              <view class="community-address" openType="switchTab" url="/eaterplanet_ecommerce/pages/index/index">{{community.communityAddress||community.fullAddress}}</view>
+              <view class="community-connect">
+                <view bindtap="callTelphone" style="margin-right: 80rpx" data-phone="{{community.head_mobile||community.disUserMobile}}">
+                  <text class="iconfont icon-ziyuan fsz-26"></text> 联系老板
+                </view>
+                <view bindtap="gotoMap">
+                  <text class="iconfont icon-ditu1 fsz-26"></text> 导航到店
+                </view>
+              </view>
+            </view>
           </view>
-          <view class="card-msg">
-            <view class="group-master">{{groupInfo.owner_name}}：{{community.disUserName||community.realName}}</view>
-            <view class="community-name">{{community.communityName}}</view>
-            <view class="community-address">{{community.communityAddress||community.fullAddress}}</view>
-          </view>
-        </navigator>
+        </view>
       </block>
     </view>
 
     <!-- 曾用社区 -->
-    <view class="community-list history-communities" style="display:none;" wx:if="{{!isNotHistory}}">
-      <view class="title">曾用{{groupInfo.group_name}}</view>
+    <view class="community-list" wx:if="{{!isNotHistory}}">
+      <view class="title">历史{{groupInfo.group_name}}</view>
       <i-community-item city="{{city}}" class="item-border" isOld="true" item="{{historyCommunity}}"></i-community-item>
     </view>
 

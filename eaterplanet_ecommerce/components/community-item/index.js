@@ -40,12 +40,15 @@ Component({
   methods: {
     chooseCommunity: function (event) {
       var community = event.currentTarget.dataset.val;
+      console.log(community)
       if ("火星社区" !== community.communityName || community.communityId) {
         var disUserHeadImg = community.disUserHeadImg || community.headImg || "", 
           disUserName = community.disUserName || community.realName || "", 
+          headDoorphoto = community.headDoorphoto || "",
           data = {
             communityId: community.communityId,
             communityName: community.communityName,
+            headDoorphoto: headDoorphoto,
             disUserName: disUserName,
             disUserHeadImg: disUserHeadImg,
             communityAddress: community.communityAddress,

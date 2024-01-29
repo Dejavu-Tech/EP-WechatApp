@@ -1,5 +1,6 @@
 <view bindtap="chooseCommunity" class="community-item i-class" data-val="{{item}}">
   <view class="group-img">
+    <image class="group-head" src="{{item.headDoorphoto}}" wx:if="{{item.headDoorphoto}}"></image>
     <image class="group-head" src="{{item.headImg||item.disUserHeadImg}}" wx:if="{{item.headImg||item.disUserHeadImg}}"></image>
     <image class="group-head" src="../../images/head-bitmap.png" wx:else></image>
     <text class="rest" wx:if="{{item.rest==1}}">休息中</text>
@@ -7,12 +8,12 @@
   <view class="item-center">
     <view class="community-title">
       <text class='span'>{{item.communityName}}</text>
-      <text class='em' wx:if="{{!isOld&&item.distance}}" style="color:{{skin.color}}">距离{{item.distance}}</text>
+      <!-- <text class='em' wx:if="{{!isOld&&item.distance}}" style="color:{{skin.color}}">距离{{item.distance}}</text> -->
     </view>
-    <view class="group-master">
-      {{groupInfo.owner_name}}：{{item.realName||item.disUserName}}
-      <image class="right-arrow" src="../../images/community-right-arrow.png"></image>
-    </view>
+
     <view class="community-address" wx:if="{{hiddenDetails==0}}">{{item.fullAddress||item.communityAddress}}</view>
+  </view>
+  <view class="item-button">
+    <text class="item-button-text">进店</text>
   </view>
 </view>

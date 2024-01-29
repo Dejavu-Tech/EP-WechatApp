@@ -1,5 +1,5 @@
 page {
-    background: #9F99AA;
+  background: #eef2f5;
 }
 
 .mars-mask {
@@ -12,8 +12,7 @@ page {
 }
 
 .header-content {
-  width: 750rpx;
-  padding-top: 20rpx;
+  margin: 20rpx;
   box-sizing: border-box;
   position: relative;
 }
@@ -73,26 +72,30 @@ page {
 }
 
 .header-content .location-title {
-    color: #fff;
-    font-size: 36rpx;
-    text-align: center;
-    margin-top: 30rpx;
-    margin-bottom: 40rpx;
-    position: relative;
+    color: #000;
+    font-size: 30rpx;
+    font-weight: 500;
+    /* text-align: center;
+    margin-top: 30rpx;*/
+    margin-bottom: 20rpx;
+    text-indent: 20rpx;
 }
 
-.header-content .location-title.location-title-pad {
-  margin-bottom: 66rpx;
+.community-title {
+  color: #000;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+  
 }
+
 
 .header-content .location-msg {
   font-size: 30rpx;
-  width: 560rpx;
-  height: 72rpx;
   margin: 0 auto 28rpx;
   line-height: 36rpx;
   position: relative;
-  color: #fff;
+  color: #000;
   text-align: center;
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -116,12 +119,12 @@ page {
 }
 
 .header-content .local-community-card {
-  width: 690rpx;
-  height: 360rpx;
-  border-radius: 16rpx;
-  box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.08);
-  margin: 0 auto;
-  position: relative;
+  background-color: #fff;
+  border-radius: 20rpx;
+  /* box-shadow: 0 0 40rpx rgba(0, 0, 0, 0.08); */
+  padding: 20rpx;
+  margin: 20rpx 0rpx;
+
 }
 
 .header-content .local-community-card .local-distance {
@@ -138,41 +141,35 @@ page {
     text-align: center;
 }
 
-.header-content .local-community-card .card-bg {
-  position: absolute;
-  width: 690rpx;
-  height: 360rpx;
-  left: 0;
-  top: 0;
+.community-card-item {
+  background-color: #4facfe17;
+  box-sizing: border-box;
+  border: 2rpx solid #4facfe;
+  display: flex;
+  padding: 20rpx;
+  margin: 20rpx 0rpx;
+  border-radius: 20rpx;
 }
 
+
 .header-content .local-community-card .head-pic {
-  position: absolute;
-  width: 120rpx;
-  height: 120rpx;
-  left: 286rpx;
-  top: -60rpx;
-  border-radius: 60rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 18rpx;
   background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 2rpx rgba(0, 0, 0, 0.2) inset;
 }
 
 .header-content .local-community-card .head-pic .head-pic-content {
   position: relative;
-  width: 106rpx;
-  height: 106rpx;
-  border-radius: 50rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 18rpx;
 }
 
 .header-content .local-community-card .card-msg {
   position: relative;
-  display: flex;
+  padding: 2rpx 0 2rpx 18rpx;
   flex-direction: column;
-  align-items: center;
-  padding-top: 94rpx;
 }
 
 .header-content .local-community-card .card-msg .group-master {
@@ -183,36 +180,36 @@ page {
 }
 
 .header-content .local-community-card .card-msg .community-name {
-  font-size: 40rpx;
-  color: #444;
-  line-height: 40rpx;
-  margin-bottom: 30rpx;
-  font-weight: bold;
+  font-size: 30rpx;
+  color: #000;
+  font-weight: 500;
+  margin-bottom: 12rpx;
 }
 
 .header-content .local-community-card .card-msg .community-address {
-  width: 640rpx;
   font-size: 26rpx;
-  line-height: 36rpx;
-  color: #444;
-  text-align: center;
+  line-height: 34rpx;
+  color: #666;
+  padding-bottom: 20rpx;
+}
+
+.header-content .local-community-card .card-msg .community-connect {
+  padding: 24rpx 0 4rpx;
+  font-size: 26rpx;
+  color: #000;
+  border-top: 1rpx solid #d3d3d3;
+  display: flex;
 }
 
 .title {
-    font-size: 40rpx;
-    line-height: 40rpx;
-    color: #fff;
-    border-left: 10rpx solid #fff;
-    text-indent: 20rpx;
-    font-weight: bold;
+    font-size: 30rpx;
+    color: #000;
+    text-indent: 40rpx;
+    font-weight: 500;
 }
 
 .community-list {
-  padding-top: 60rpx;
-}
-
-.history-communities {
-  border-bottom: 20rpx solid #f6f6f6;
+  padding-top: 20rpx;
 }
 
 .item-border {
