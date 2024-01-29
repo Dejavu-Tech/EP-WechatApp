@@ -336,7 +336,7 @@ movable-area {
 .header-content .header-logoimg {
     float: left;
     margin-left: 20rpx;
-    position: relative;
+    position: absolute;
     display: flex;
     align-items: center;
     justify-content: space-between;
