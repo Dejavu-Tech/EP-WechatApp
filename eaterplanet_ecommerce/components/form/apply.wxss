@@ -65,6 +65,4 @@ page {
   font-weight: bold;
 }
 
-.edit-btn button::after {
-  border: 0;
-}
+
