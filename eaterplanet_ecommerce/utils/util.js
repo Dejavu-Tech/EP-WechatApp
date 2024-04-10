@@ -212,7 +212,6 @@ function getCode() {
                 key: "member_info",
                 data: res.data.member_info
               })
-              console.log(res.data)
             }
           });
         } else {
