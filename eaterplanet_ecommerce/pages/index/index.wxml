@@ -143,7 +143,7 @@
           <i-topic refresh="{{couponRefresh}}" bind:openSku="openSku" showPos="0" />
 
           <!-- 分类专题 -->
-          <view class="theme3 bg-ff" wx:if="{{typeTopicList.length&&(typeItem.banner||typeItem.list.length)}}" wx:for="{{typeTopicList}}" wx:key="id" wx:for-index="idx" wx:for-item="typeItem">
+          <view class="theme3" wx:if="{{typeTopicList.length&&(typeItem.banner||typeItem.list.length)}}" wx:for="{{typeTopicList}}" wx:key="id" wx:for-index="idx" wx:for-item="typeItem">
             <image class='topic-img' src="{{typeItem.banner}}" mode="widthFix" wx:if="{{typeItem.banner}}" bindtap="goLink" data-link="/eaterplanet_ecommerce/pages/type/details?id={{typeItem.id}}"></image>
             <view class="theme3-list">
               <i-rush-spu class="item" wx:for="{{typeItem.list}}" wx:if="{{typeItem.list.length}}" wx:for-item="item" wx:key="actId" spuItem="{{item}}" reduction="{{reduction}}" stopClick="{{stopClick}}" bind:openSku="openSku" needAuth="{{needAuth}}" bind:authModal="authModal" bind:changeCartNum="changeNotListCartNum" notNum="{{true}}" is_open_vipcard_buy="{{is_open_vipcard_buy}}" canLevelBuy="{{canLevelBuy}}"></i-rush-spu>
