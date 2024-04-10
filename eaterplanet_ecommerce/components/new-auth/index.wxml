@@ -1,4 +1,4 @@
-<i-modal bind:cancel="close" bind:cancel="close" scrollUp="{{false}}" visible="{{needAuth}}">
+<i-modal bind:cancel="close" scrollUp="{{false}}" visible="{{needAuth}}">
     <view class="auth-content">
         <image class="bg" mode="widthFix" src="{{newauth_bg_image?newauth_bg_image:'../../images/guanggaologo.png'}}"></image>
         <view class="btn" wx:if="{{canIUse}}">

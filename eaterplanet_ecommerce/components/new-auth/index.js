@@ -137,12 +137,12 @@ Component({
                 member_info.username = that.data.nickname
                 member_info.avatar = that.data.avatarUrl
               }
+              that.setData({ btnLoading: false });
               wx.showToast({
                 title: '登录成功',
                 icon: 'success',
                 duration: 2000
               })
-              console.log("查询用户数据", that)
               that.triggerEvent("authSuccess", res);
               console.log("授权成功")
               app.globalData.changedCommunity = true;
@@ -150,7 +150,6 @@ Component({
               that.data.needPosition && location.getGps();
             }).catch(function () {
               that.triggerEvent("cancel");
-              console.log('授权失败');
             })
           },
           fail: () => {
