@@ -2,7 +2,7 @@
   position: relative;
   width: 237rpx;
   box-sizing: border-box;
-  padding: 20rpx 10rpx;
+  padding: 20rpx 0 20rpx;
   font-size: 28rpx;
 }
 
@@ -15,6 +15,7 @@
   height: 217rpx;
   margin-bottom: 20rpx;
   overflow: hidden;
+  border-radius: 20rpx;
 }
 
 .w250 .new-img {
@@ -37,6 +38,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 10rpx;
+  padding-right: 20rpx;
 }
 
 .new-comers-item .add-cart,
@@ -56,7 +58,8 @@
 
 .new-comers-item .price,
 .w250 .price {
-  color: #ff5041;
+  font-family: DIN;
+  color: #ff758c;
 }
 
 .new-comers-item .act-end,
@@ -69,8 +72,8 @@
   font-size: 28rpx;
   text-align: center;
   line-height: 60rpx;
-  left: 50%;
-  top: 80rpx;
+  left: 108rpx;
+  top: 98rpx;
   padding: 0 12rpx;
   transform: translateX(-50%);
 }

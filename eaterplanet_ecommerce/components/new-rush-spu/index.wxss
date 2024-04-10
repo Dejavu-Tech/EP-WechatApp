@@ -66,7 +66,7 @@
 
 .spu .spu-content {
     background:linear-gradient(100deg, #cbebfd 0%, #cbebfd 1%, #e5e8eb 100%);
-    width: 710rpx;
+    width: 690rpx;
     border-radius: 20rpx;
     overflow: hidden;
     position: relative;

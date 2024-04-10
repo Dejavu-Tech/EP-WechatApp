@@ -1852,7 +1852,6 @@ button.search-btn::after {
     flex-wrap: wrap;
     margin: 20rpx;
     border-radius: 30rpx;
-    overflow: hidden;
 }
 
 .theme3-list {
@@ -1884,7 +1883,7 @@ button.search-btn::after {
 
 .theme3-more .iconfont {
   font-size: 20rpx;
-  color: #999;
+  /* color: #999; */
   margin-top: 1rpx;
 }
 

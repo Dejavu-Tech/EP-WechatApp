@@ -180,7 +180,7 @@
   text-align: center;
   line-height: 60rpx;
   left: 90rpx;
-  top: 70rpx;
+  top: 60rpx;
   padding: 0 12rpx;
   transform: translateX(-50%);
 }

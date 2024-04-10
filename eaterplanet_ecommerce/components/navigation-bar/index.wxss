@@ -16,7 +16,6 @@
   
 }
 .group{
-  
   background-color: rgba(77, 158, 233, 1);
   width: 100%;
   display: block;

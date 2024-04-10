@@ -11,6 +11,7 @@
     height: 140rpx;
     border-radius: 18rpx;
     margin-right: 18rpx;
+    position: absolute;
 }
 
 .community-item .community-title {

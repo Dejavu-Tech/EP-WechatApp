@@ -25,7 +25,7 @@
 .i-load-more-tip {
     display: inline-block;
     vertical-align: middle;
-    color: #fff;
+    /* color: #fff; */
 }
 
 .i-load-more-line {
