@@ -275,7 +275,6 @@ function wxGetMemberInfo(needPosition, token, userInfo, member_info) {
         resolve(res);
       },
       fail: (err) => {
-        console.log("9applogin_do")
         reject(err);
       }
     })
