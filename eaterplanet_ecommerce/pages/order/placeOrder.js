@@ -87,13 +87,16 @@ Page({
     var community = wx.getStorageSync('community');
     var community_id = community.communityId;
     util.check_login() ? this.setData({ needAuth: false }) : (this.setData({ needAuth: true }));
+    var member_info = wx.getStorageSync('member_info');
+    console.log(member_info)
     // let is_limit = options.is_limit || 0;
     this.setData({
       buy_type: options.type || '',
       soli_id: options.soli_id || '',
       pickUpAddress: community.fullAddress || '',
       pickUpCommunityName: community.communityName || '',
-      disUserName: community.disUserName || ''
+      disUserName: community.disUserName || '',
+      is_cashon_delivery: member_info.is_cashon_delivery || ''
     })
     wx.showLoading()
     app.util.request({

@@ -308,31 +308,31 @@
             </view>
           </view>
         </block>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==0&&cashondelivery_data.isopen_cashondelivery_ziti==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{is_cashon_delivery==1&&cashondelivery_data.isopen_cashondelivery==1&&tabIdx==0&&cashondelivery_data.isopen_cashondelivery_ziti==1}}">
           <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
             <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
             <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==1&&cashondelivery_data.isopen_cashondelivery_communityhead==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{is_cashon_delivery==1&&cashondelivery_data.isopen_cashondelivery==1&&tabIdx==1&&cashondelivery_data.isopen_cashondelivery_communityhead==1}}">
           <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
             <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
             <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==2&&cashondelivery_data.isopen_cashondelivery_express==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{is_cashon_delivery==1&&cashondelivery_data.isopen_cashondelivery==1&&tabIdx==2&&cashondelivery_data.isopen_cashondelivery_express==1}}">
           <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
             <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
             <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==3&&cashondelivery_data.isopen_cashondelivery_localtown==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{is_cashon_delivery==1&&cashondelivery_data.isopen_cashondelivery==1&&tabIdx==3&&cashondelivery_data.isopen_cashondelivery_localtown==1}}">
           <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
             <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
             <view class="oc-payment-method">货到付款</view>
           </view>
         </view>
-        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{cashondelivery_data.isopen_cashondelivery==1&&tabIdx==4&&cashondelivery_data.isopen_cashondelivery_hexiao==1}}">
+        <view class="oc-payment" avalonctrl="oc_payment" bindtap="ck_cash" wx:if="{{is_cashon_delivery==1&&cashondelivery_data.isopen_cashondelivery==1&&tabIdx==4&&cashondelivery_data.isopen_cashondelivery_hexiao==1}}">
           <view class="oc-payment-item {{ck_yupay==2?'oc-payment-selected':''}}" style="{{ck_yupay==2?'color:'+skin.color:''}}">
             <text class="iconfont icon-huodaofukuan oc-payment-icon" style="color:#ff5777;"></text>
             <view class="oc-payment-method">货到付款</view>
