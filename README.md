@@ -57,7 +57,7 @@ EATER-PLANET
 
 ## 📺DEMO
 #### 后端 ➡️<a href="https://demo.ch871.com">https://demo.ch871.com</a>
-#### 前端 微信搜索`霸气妖吃货星球`或扫码：
+#### 前端 微信搜索`吃货星球社区团购`或扫码：
 <img src="https://image.ch871.com/ep-qrcode.png" width="300px" /> 
 
 ## 🖼️项目截图
