@@ -1,185 +1,188 @@
-let app = getApp();
-var QQMapWX = require("./qqmap-wx-jssdk.min.js");
+const app = getApp();
+const QQMapWX = require('./qqmap-wx-jssdk.min.js');
 
-function checkGPS(t, fn=null) {
+/**
+ * 检查GPS权限
+ * @param {Function} fn 回调函数
+ */
+const checkGPS = (fn = null) => {
   wx.authorize({
-    scope: "scope.userLocation",
-    success: function () {
-      console.log("get GPS success"), wx.getLocation({
-        success: function (n) {
-          console.log("get GPS location success"), app.globalData.location = {
-            lat: n.latitude,
-            lng: n.longitude
-          }, app.globalData.canGetGPS = true, fn;
-          wx.setStorage({
-            key: "latitude",
-            data: n.latitude
-          })
-          wx.setStorage({
-            key: "longitude",
-            data: n.longitude
-          })
+    scope: 'scope.userLocation',
+    success: () => {
+      console.log('get GPS success');
+      wx.getLocation({
+        success: (res) => {
+          console.log('get GPS location success');
+          app.globalData.location = {
+            latitude: res.latitude,
+            longitude: res.longitude
+          };
+          app.globalData.canGetGPS = true;
+          fn && fn(res);
         },
-        fail: function () {
-          console.log("get GPS location fail"), app.globalData.canGetGPS = false, fn&&fn();
+        fail: (error) => {
+          console.log('get GPS location fail', error);
+          app.globalData.canGetGPS = false;
+          fn && fn();
         }
       });
     },
-    fail: function () {
-      console.log("get GPS fail checkGPS"), app.globalData.canGetGPS = false, fn&&fn();
+    fail: () => {
+      console.log('get GPS fail checkGPS');
+      app.globalData.canGetGPS = false;
+      fn && fn();
     }
   });
-}
+};
 
-function openSetting(t) {
-  return new Promise(function (resolve, reject) {
+/**
+ * 打开设置以获取地理位置权限
+ * @param {Object} t 参数对象
+ * @returns {Promise}
+*/
+const openSetting = (t) => {
+  return new Promise((resolve, reject) => {
     wx.showModal({
-      content: "为了更好的服务您,需要您的地理位置",
-      confirmText: "去开启",
-      confirmColor: "#FF673F",
-      success: function(res1) {
-        if(res1.confirm) {
+      content: '为了更好的服务您,需要您的地理位置',
+      confirmText: '去开启',
+      confirmColor: '#FF673F',
+      success: (res1) => {
+        if (res1.confirm) {
           wx.openSetting({
-            success: function(result) {
+            success: (result) => {
               console.log(result);
-              if(result.authSetting["scope.userLocation"]){
+              if (result.authSetting['scope.userLocation']) {
                 wx.getLocation({
-                  success: function(res) {
-                    console.log("get GPS location success");
-                    getApp().globalData.location = {
-                      lat: res.latitude,
-                      lng: res.longitude
-                    }, 
-                    getApp().globalData.canGetGPS = true;
+                  success: (res) => {
+                    console.log('get GPS location success');
+                    app.globalData.location = {
+                      latitude: res.latitude,
+                      longitude: res.longitude
+                    };
+                    app.globalData.canGetGPS = true;
                     resolve(res);
                   },
-                  fail: function (error) {
-                    console.log("get GPS fail openSetting");
-                    getApp().globalData.canGetGPS = false;
-                    reject('取消', error);
+                  fail: (error) => {
+                    console.log('get GPS location fail', error);
+                    app.globalData.canGetGPS = false;
+                    reject(error);
                   }
                 });
               } else {
-                reject('未开启');
+                reject(new Error('User denied location access'));
               }
             },
-            fail: function(error) {
+            fail: (error) => {
+              console.log('openSetting fail', error);
               reject(error);
             }
           });
-        } else if(res1.cancel) {
-          reject('用户点击取消');
-          console.log('用户点击取消')
+        } else {
+          reject(new Error('User cancelled location access'));
         }
       }
     });
   });
-}
+};
 
 /**
- * 获取定位城市
+ * 获取GPS位置
+ * @param {Function} fn 回调函数
  */
-function getGps() {
-  let that = this;
-  return new Promise(function (resolve, reject) {
-    wx.getLocation({
-      type: 'gcj02', //编码方式，
-      success: function (res) {
-        console.log("getGps-res", res);
-        resolve(res);
-        wx.setStorage({
-          key: "latitude",
-          data: res.latitude
-        })
-        wx.setStorage({
-          key: "longitude",
-          data: res.longitude
-        })
-      },
-      fail: (error) => {
-        console.log("getGps-error", error);
-        if (error.errMsg == "getLocation:fail auth deny"){
-          that.openSetting().then(function(res){
-            console.log(res);
-            // reject(res)
-          }).catch(function(){
-            console.log(error);
-            reject(error);
-          });
-        } else {
-          // reject(error);
-          console.log(error);
-          // reject(error);
-        }
-      }
-    })
-  })
-}
+const getGps = (fn) => {
+  wx.getLocation({
+    type: 'wgs84',
+    success: (res) => {
+      console.log('get GPS location success');
+      app.globalData.location = {
+        latitude: res.latitude,
+        longitude: res.longitude
+      };
+      app.globalData.canGetGPS = true;
+      fn && fn(res);
+    },
+    fail: (error) => {
+      console.log('get GPS location fail', error);
+      app.globalData.canGetGPS = false;
+      fn && fn();
+    }
+  });
+};
 
 /**
  * 通过GPS获取详细位置
+ * @param {number} lat 纬度
+ * @param {number} lon 经度
+ * @returns {Promise}
  */
-function getGpsLocation(lat, lon) {
+const getGpsLocation = (lat, lon) => {
   var tx_map_key = wx.getStorageSync('tx_map_key');
   if (tx_map_key) {
-    return new Promise(function (resolve, reject) {
-      analyzeGps(tx_map_key, lat, lon).then((res)=>{
+    return new Promise((resolve, reject) => {
+      analyzeGps(tx_map_key, lat, lon).then((res) => {
         resolve(res);
+      }).catch((error) => {
+        reject(error);
       });
-    })
+    });
   } else {
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
       app.util.request({
         url: 'entry/wxapp/index',
         data: {
           controller: 'index.get_community_config'
         },
         dataType: 'json',
-        success: function (res) {
+        success: (res) => {
           if (res.data.code == 0) {
             tx_map_key = res.data.tx_map_key;
             wx.setStorage({
-              key: "tx_map_key",
+              key: 'tx_map_key',
               data: tx_map_key
-            })
+            });
             analyzeGps(tx_map_key, lat, lon).then((res) => {
               resolve(res);
+            }).catch((error) => {
+              reject(error);
             });
           }
         }
-      })
-    })
+      });
+    });
   }
-}
+};
 
 /**
- * 解析GPS
+ * 解析 GPS
+ * @param {string} tx_map_key 腾讯地图API密钥
+ * @param {number} lat 纬度
+ * @param {number} lon 经度
+ * @returns {Promise}
  */
-function analyzeGps(tx_map_key, lat, lon) {
+const analyzeGps = (tx_map_key, lat, lon) => {
   var demo = new QQMapWX({
     key: tx_map_key
   });
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     demo.reverseGeocoder({
-      //腾讯地图api 逆解析方法 首先设置经纬度
       location: {
         latitude: lat,
         longitude: lon
-      }, //逆解析成功回调函数
-      success: function (res) {
-        console.log(res)
-        let address_component = res.result.address_component || {};
-        let address_reference = res.result.address_reference;
-        address_component.town = address_reference.town&&address_reference.town.title || '';
-        resolve(address_component);
+      },
+      success: (res) => {
+        resolve(res);
+      },
+      fail: (error) => {
+        reject(error);
       }
-    })
-  })
-}
+    });
+  });
+};
 
 module.exports = {
   checkGPS,
   openSetting,
   getGps,
-  getGpsLocation
+  getGpsLocation,
+  analyzeGps
 }
