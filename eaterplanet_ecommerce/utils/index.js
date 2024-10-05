@@ -1,9 +1,12 @@
-var app = getApp();
-var util = require('./util.js');
-var wcache = require('./wcache.js');
+const app = getApp();
+const util = require('./util.js');
+const wcache = require('./wcache.js');
 
-function loadStatus() {
-  return new Promise(function (resolve) {
+/**
+ * 加载状态
+ */
+const loadStatus = () => {
+  return new Promise((resolve) => {
     util.check_login_new().then((res) => {
       let appLoadStatus = 1;
       if (res) {
@@ -15,12 +18,12 @@ function loadStatus() {
       }
       app.globalData.appLoadStatus = appLoadStatus;
       resolve();
-    })
+    });
   });
 };
 
-function changeCommunity(community, city) {
-  let token = wx.getStorageSync('token') || '';
+const changeCommunity = (community, city) => {
+  const token = wx.getStorageSync('token') || '';
   if (community.communityId && community.communityId !== app.globalData.community.communityId) {
     app.globalData.timer.del();
     app.globalData.changedCommunity = true;
@@ -37,26 +40,26 @@ function changeCommunity(community, city) {
       data: city
     });
 
-    var data = {
+    const data = {
       community: community,
       city: city
     };
 
-    var historyCommunity = app.globalData.historyCommunity || [];
-    if (0 === historyCommunity.length || historyCommunity[0] && historyCommunity[0].communityId !== community.communityId) {
-      historyCommunity.length > 1 && historyCommunity.shift();
+    let historyCommunity = app.globalData.historyCommunity || [];
+    if (historyCommunity.length === 0 || (historyCommunity[0] && historyCommunity[0].communityId !== community.communityId)) {
+      if (historyCommunity.length > 1) historyCommunity.shift();
       historyCommunity.push(data);
       app.globalData.historyCommunity = historyCommunity;
       wx.setStorage({
         key: "historyCommunity",
         data: historyCommunity
-      })
+      });
     }
 
     app.globalData.changedCommunity = true;
     app.globalData.goodsListCarCount = [];
     if (token) {
-      console.log('changeCommunity step2')
+      console.log('changeCommunity step2');
       // 请求提交社区id
       app.util.request({
         'url': 'entry/wxapp/index',
@@ -67,11 +70,11 @@ function changeCommunity(community, city) {
         },
         dataType: 'json',
         success: function (res) {
-          swithNavBack(community)
+          switchNavBack(community)
         }
       })
     } else {
-      swithNavBack(community)
+      switchNavBack(community);
     }
   } else {
     if (!app.globalData.community.disUserHeadImg) {
@@ -89,10 +92,12 @@ function changeCommunity(community, city) {
   }
 }
 
-// 切换社区跳转
-function swithNavBack(community) {
+/**
+ * 切换社区跳转
+ */
+const switchNavBack = (community) => {
   app.globalData.community_id = community.communityId;
-  let navBackUrl = app.globalData.navBackUrl;
+  const navBackUrl = app.globalData.navBackUrl;
   if (navBackUrl) {
     let tabUrls = ['/eaterplanet_ecommerce/pages/index/index', '/eaterplanet_ecommerce/pages/order/shopCart', '/eaterplanet_ecommerce/pages/user/me', '/eaterplanet_ecommerce/pages/type/index'];
     if (tabUrls.indexOf(navBackUrl) != -1) {
@@ -117,16 +122,19 @@ function swithNavBack(community) {
   }
 }
 
-function isIdCard(t) {
+/**
+ * 验证身份证号码
+ */
+const isIdCard = (t) => {
   return /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(t);
-}
+};
 
 /**
  * 购物车数量
  */
-function cartNum() {
-  function getTab(cb) {
-    let token = wx.getStorageSync('token') || '';
+const cartNum = () => {
+  const getTab = (cb) => {
+    const token = wx.getStorageSync('token') || '';
     app.util.request({
       'url': 'entry/wxapp/index',
       'data': {
@@ -146,8 +154,8 @@ function cartNum() {
     })
   }
 
-  function setTab(t) {
-    if ("number" == typeof t && t) {
+  const setTab = (t) => {
+    if (typeof t === "number" && t) {
       // wx.setTabBarBadge({
       //   index: 1,
       //   text: t + "",
@@ -155,22 +163,16 @@ function cartNum() {
       //     console.log(error);
       //   }
       // })
-    } else {
-      // wx.removeTabBarBadge({
-      //   index: 1,
-      //   fail: function (error) {
-      //     console.log(error);
-      //   }
-      // });
     }
   }
-  var n = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "",
-    i = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
-  return new Promise(function (resolve) {
+
+  const n = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "";
+  const i = arguments.length > 1 && void 0 !== arguments[1] && arguments[1];
+  return new Promise((resolve) => {
     if (i) {
       getTab(resolve);
     } else {
-      var nowTime = new Date().getTime();
+      const nowTime = new Date().getTime();
       if (app.globalData.cartNumStamp < nowTime) {
         getTab(resolve);
       } else {
@@ -181,9 +183,12 @@ function cartNum() {
   });
 }
 
-function getRect(t, e, r) {
-  return new Promise(function (n) {
-    wx.createSelectorQuery().in(t)[r ? "selectAll" : "select"](e).boundingClientRect(function (t) {
+/**
+ * 获取元素的矩形信息
+ */
+const getRect = (t, e, r) => {
+  return new Promise((n) => {
+    wx.createSelectorQuery().in(t)[r ? "selectAll" : "select"](e).boundingClientRect((t) => {
       r && Array.isArray(t) && t.length && n(t), !r && t && n(t);
     }).exec();
   });
@@ -192,14 +197,14 @@ function getRect(t, e, r) {
 /**
  * 设置缓存过期时间
  */
-function getInNum() {
+const getInNum = () => {
   return new Promise((resolve, reject) => {
-    let timestamp = Date.parse(new Date());
+    const timestamp = Date.parse(new Date());
     let inNum = parseInt(wx.getStorageSync('inNum')) || 0;
     let inNumExp = parseInt(wx.getStorageSync('inNumExp')) || 0;
-    let today = new Date(new Date().toLocaleDateString()).getTime();
+    const today = new Date(new Date().toLocaleDateString()).getTime();
 
-    if ((timestamp - inNumExp) > 86400000 || inNumExp == 0) {
+    if ((timestamp - inNumExp) > 86400000 || inNumExp === 0) {
       console.log('过期了');
       inNum = 1;
       wx.setStorage({
@@ -212,8 +217,8 @@ function getInNum() {
     wx.setStorage({
       key: 'inNum',
       data: inNum
-    })
-    let isThree = inNum > 3 ? false : true;
+    });
+    const isThree = inNum <= 3;
     resolve(isThree);
   })
 }
@@ -221,10 +226,10 @@ function getInNum() {
 /**
  * 设置导航颜色
  */
-function setNavBgColor() {
-  let navBgColor = wcache.get('navBgColor', 1);
-  let navFontColor = wcache.get('navFontColor', 1);
-  if (navBgColor == 1 || navFontColor == 1) {
+const setNavBgColor = () => {
+  const navBgColor = wcache.get('navBgColor', 1);
+  const navFontColor = wcache.get('navFontColor', 1);
+  if (navBgColor === 1 || navFontColor === 1) {
     app.util.request({
       'url': 'entry/wxapp/index',
       'data': {
@@ -255,47 +260,42 @@ function setNavBgColor() {
 /**
  * 获取配置名字 团长快递等
  */
-function setGroupInfo() {
-  return new Promise(function (resolve, reject) {
-    // let groupInfo = wcache.get('groupInfo', 1);
-    // if (groupInfo == 1) {
-      app.util.request({
-        'url': 'entry/wxapp/index',
-        'data': {
-          controller: 'index.get_group_info'
-        },
-        dataType: 'json',
-        success: function (res) {
-          if (res.data.code == 0) {
-            let obj = res.data.data;
-            console.log(obj);
-            obj.commiss_diy_name = obj.commiss_diy_name || '分销';
-            obj.group_name = obj.group_name || '社区';
-            obj.owner_name = obj.owner_name || '团长';
-            obj.delivery_ziti_name = obj.delivery_ziti_name || '社区自提';
-            obj.delivery_tuanzshipping_name = obj.delivery_tuanzshipping_name || '团长配送';
-            obj.delivery_express_name = obj.delivery_express_name || '快递配送';
-            obj.placeorder_tuan_name = obj.placeorder_tuan_name;
-            obj.placeorder_trans_name = obj.placeorder_trans_name;
-            obj.localtown_modifypickingname = obj.localtown_modifypickingname
-            // wcache.put('groupInfo', obj, 60);
-            resolve(obj);
-          }
+const setGroupInfo = () => {
+  return new Promise((resolve, reject) => {
+    app.util.request({
+      'url': 'entry/wxapp/index',
+      'data': {
+        controller: 'index.get_group_info'
+      },
+      dataType: 'json',
+      success: function (res) {
+        if (res.data.code == 0) {
+          let obj = res.data.data;
+          console.log(obj);
+          obj.commiss_diy_name = obj.commiss_diy_name || '分销';
+          obj.group_name = obj.group_name || '社区';
+          obj.owner_name = obj.owner_name || '团长';
+          obj.delivery_ziti_name = obj.delivery_ziti_name || '社区自提';
+          obj.delivery_tuanzshipping_name = obj.delivery_tuanzshipping_name || '团长配送';
+          obj.delivery_express_name = obj.delivery_express_name || '快递配送';
+          obj.placeorder_tuan_name = obj.placeorder_tuan_name;
+          obj.placeorder_trans_name = obj.placeorder_trans_name;
+          obj.localtown_modifypickingname = obj.localtown_modifypickingname
+          // wcache.put('groupInfo', obj, 60);
+          resolve(obj);
         }
-      })
-    // } else {
-    //   resolve(groupInfo);
-    // }
-  })
+      }
+    })
+  });
 }
 
 /**
  * 获取首页、购物车图标
  */
-function setIcon() {
-  let tabList = wcache.get('tabList', 1);
-  return new Promise(function (resolve, reject) {
-    if (tabList == 1) {
+const setIcon = () => {
+  const tabList = wcache.get('tabList', 1);
+  return new Promise((resolve, reject) => {
+    if (tabList === 1) {
       app.util.request({
         'url': 'entry/wxapp/index',
         'data': {
@@ -327,39 +327,44 @@ function setIcon() {
       iconArr.user = tabList.list[3].iconPath;
       resolve(iconArr);
     }
-  })
-}
-
-function getPx(t) {
-  return Math.round(app.globalData.systemInfo.windowWidth / 375 * t);
+  });
 }
 
 /**
- * canvas画文字
+ * 获取像素值
  */
-function drawText(context, obj, o, a, n, i) {
-  var r = o.split(""),
-    l = "",
-    u = [];
+const getPx = (t) => {
+  return Math.round(app.globalData.systemInfo.windowWidth / 375 * t);
+};
+
+/**
+ * canvas 绘制多行文本
+ */
+const drawText = (context, obj, o, a, n, i) => {
+  const r = o.split("");
+  let l = "";
+  const u = [];
   context.setFillStyle(obj.color);
-  // context.fillStyle = obj.color;
   context.textAlign = obj.textAlign;
   context.setFontSize(obj.size);
-  // context.font = obj.size +'px Arial';
-  for (var s = 0; s < r.length; s++) {
-    context.measureText(l).width < i || (u.push(l), l = ""), l += r[s];
+  for (let s = 0; s < r.length; s++) {
+    if (context.measureText(l).width >= i) {
+      u.push(l);
+      l = "";
+    }
+    l += r[s];
   }
   u.push(l);
-  for (var m = 0; m < u.length; m++) {
+  for (let m = 0; m < u.length; m++) {
     context.fillText(u[m], a, n + 12 * m);
   }
-}
+};
 
 /**
  * 下载图片至本地
  */
-function download(t) {
-  return new Promise(function (e) {
+const download = (t) => {
+  return new Promise((e) => {
     wx.downloadFile({
       url: t,
       success: function (t) {
@@ -374,20 +379,20 @@ function download(t) {
 
 /**
  * 更新首页列表购物车数量
- * actId: 商品id
- * num：数量
+ * @param {number} actId 商品id
+ * @param {number} num 数量
  */
-function indexListCarCount(actId, num = 0) {
-  let obj = {
+const indexListCarCount = (actId, num = 0) => {
+  const obj = {
     actId,
     num
   };
   if (!actId) return;
   let goodsListCarCount = app.globalData.goodsListCarCount || [];
-  if(Object.prototype.toString.call(goodsListCarCount) !== '[object Array]') {
+  if (Object.prototype.toString.call(goodsListCarCount) !== '[object Array]') {
     goodsListCarCount = [];
   }
-  if (goodsListCarCount.length == 0) {
+  if (goodsListCarCount.length === 0) {
     goodsListCarCount.push(obj);
   } else {
     let k = goodsListCarCount.findIndex((n) => n.actId == obj.actId);
