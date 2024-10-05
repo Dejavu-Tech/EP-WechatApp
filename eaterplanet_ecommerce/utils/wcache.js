@@ -1,48 +1,39 @@
-var dtime = '_deadtime';
+const dtime = '_deadtime';
 
-function put(k, v, t) {
-  wx.setStorageSync(k, v)
-  var seconds = parseInt(t);
+const put = (k, v, t) => {
+  wx.setStorageSync(k, v);
+  const seconds = parseInt(t);
   if (seconds > 0) {
-    var timestamp = Date.parse(new Date());
-    timestamp = timestamp / 1000 + seconds;
-    wx.setStorageSync(k + dtime, timestamp + "")
+    const timestamp = Math.floor(Date.now() / 1000) + seconds;
+    wx.setStorageSync(k + dtime, timestamp.toString());
   } else {
-    wx.removeStorageSync(k + dtime)
+    wx.removeStorageSync(k + dtime);
   }
-}
+};
 
-function get(k, def) {
-  var deadtime = parseInt(wx.getStorageSync(k + dtime))
-  if (deadtime) {
-    if (parseInt(deadtime) < Date.parse(new Date()) / 1000) {
-      if (def) {
-        return def;
-      } else {
-        return;
-      }
-    }
-  }
-  var res = wx.getStorageSync(k);
-  if (res) {
-    return res;
-  } else {
+const get = (k, def) => {
+  const deadtime = parseInt(wx.getStorageSync(k + dtime));
+  if (deadtime && deadtime < Math.floor(Date.now() / 1000)) {
+    wx.removeStorageSync(k);
+    wx.removeStorageSync(k + dtime);
     return def;
   }
-}
+  const res = wx.getStorageSync(k);
+  return res !== '' ? res : def;
+};
 
-function remove(k) {
+const remove = (k) => {
   wx.removeStorageSync(k);
   wx.removeStorageSync(k + dtime);
-}
+};
 
-function clear() {
+const clear = () => {
   wx.clearStorageSync();
-}
+};
 
 module.exports = {
-  put: put,
-  get: get,
-  remove: remove,
-  clear: clear,
-}
+  put,
+  get,
+  remove,
+  clear,
+};
