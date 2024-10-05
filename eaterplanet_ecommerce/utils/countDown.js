@@ -1,59 +1,48 @@
-function t(obj, attr, newAttr) {
-  return attr in obj ? Object.defineProperty(obj, attr, {
-    value: newAttr,
-    enumerable: true,
-    configurable: true,
-    writable: true
-  }) : obj[attr] = newAttr, obj;
-}
+const timeFormat = require("timeFormat");
+const app = getApp();
 
+const setCountDownData = (context, key, value) => {
+  context.setData({ [`countDownMap.${key}`]: value });
+};
 
-var timeFormat = require("timeFormat"),
-  app = getApp();
+const setActEndData = (context, key, value) => {
+  context.setData({ [`actEndMap.${key}`]: value });
+};
 
 exports.default = {
-  initCountDown: function (e) {
-    var that = this,
-      r = {
-        day: "0",
-        second: "00",
-        minute: "00",
-        hour: "00"
-      };
-    if (e - new Date().getTime() <= 0) {
-      var i;
-      this.setData((i = {}, t(i, "countDownMap." + e, r), t(i, "actEndMap." + e, !0), i));
+  initCountDown(e) {
+    const r = { day: "0", second: "00", minute: "00", hour: "00" };
+    const remainingTime = e - new Date().getTime();
+
+    if (remainingTime <= 0) {
+      setCountDownData(this, e, r);
+      setActEndData(this, e, true);
     } else {
-      this.$data.timer[e] = app.globalData.timer.add(function () {
-        that.interval(e);
-      });
+      this.$data.timer[e] = app.globalData.timer.add(() => this.interval(e));
     }
   },
-  interval: function (t) {
-    var n = {}, r = t - new Date().getTime();
 
-    if (r <= 0) {
-      return app.globalData.timer.remove(this.$data.timer[t]),
-        this.$data.actEndMap[t] || (n["actEndMap." + t] = true),
-        n["countDownMap." + t] = {
-          day: "0",
-          second: "00",
-          minute: "00",
-          hour: "00"
-        },
-        void this.setData(n);
+  interval(t) {
+    const remainingTime = t - new Date().getTime();
+    const n = {};
+
+    if (remainingTime <= 0) {
+      app.globalData.timer.remove(this.$data.timer[t]);
+      if (!this.$data.actEndMap[t]) setActEndData(this, t, true);
+      setCountDownData(this, t, { day: "0", second: "00", minute: "00", hour: "00" });
+      return;
     }
-    var i = Math.ceil(r / 1000),
-      o = parseInt(i / 86400),
-      u = i % 86400,
-      s = (0, timeFormat.formatNumber)(parseInt(u / 3600));
-    u %= 3600;
-    var d = {
-      day: o,
-      hour: s,
-      minute: (0, timeFormat.formatNumber)(parseInt(u / 60)),
-      second: (0, timeFormat.formatNumber)(u % 60)
-    };
-    this.$data.actEndMap[t] && (n["actEndMap." + t] = !1), n["countDownMap." + t] = d, this.setData(n);
+
+    const totalSeconds = Math.ceil(remainingTime / 1000);
+    const days = parseInt(totalSeconds / 86400);
+    let remainingSeconds = totalSeconds % 86400;
+    const hours = timeFormat.formatNumber(parseInt(remainingSeconds / 3600));
+    remainingSeconds %= 3600;
+    const minutes = timeFormat.formatNumber(parseInt(remainingSeconds / 60));
+    const seconds = timeFormat.formatNumber(remainingSeconds % 60);
+
+    const countDownData = { day: days, hour: hours, minute: minutes, second: seconds };
+    if (this.$data.actEndMap[t]) setActEndData(this, t, false);
+    setCountDownData(this, t, countDownData);
   }
 };
