@@ -118,7 +118,9 @@ module.exports = siteinfo
 ## 👽联系
 全功能版商用授权及部署请联系
 - QQ:`142997`<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=142997&site=qq&menu=yes"><img width=80px align=center src="https://image.ch871.com/qq-contact .png"/></a>
-- 企业微信:  
+- 微信:
+<img src="https://image.ch871.com/wechat.jpg" width="300px" />
+- 企微:  
 <img src="https://image.ch871.com/qywx-contact .png" width="300px" />
 
 ## 🌱远程招贤纳猿
